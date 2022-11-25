@@ -1,28 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   libftprintf.h                                      :+:      :+:    :+:   */
+/*   ft_strchr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/19 14:09:14 by tlegrand          #+#    #+#             */
-/*   Updated: 2022/11/25 18:19:22 by tlegrand         ###   ########.fr       */
+/*   Created: 2022/11/08 17:24:48 by tlegrand          #+#    #+#             */
+/*   Updated: 2022/11/15 17:59:15 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "libft.h"
 
-#ifndef LIBFTPRINTF_H
-# define LIBFTPRINTF_H
-# include <stdlib.h>
-# include <unistd.h>
-# include <stdarg.h>
-# include "libft.h"
-# include <stdio.h>
+char	*ft_strchr(const char *s, int c)
+{
+	int	i;
 
-int	ft_printf(const char *str, ...);
-int	ft_putchar(char c);
-int	ft_putstr(char *s);
-int	ft_putnbr(int n);
-int	ft_putnbr_base(int nbr, char *base);
-
-#endif
+	i = 0;
+	c = c % 256;
+	while (*(s + i) != (char)c && *(s + i) != 0)
+		i++;
+	if (*(s + i) == (char)c)
+		return ((char *)(s + i));
+	return (NULL);
+}

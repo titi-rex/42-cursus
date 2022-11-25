@@ -6,20 +6,26 @@
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/25 18:00:24 by tlegrand          #+#    #+#             */
-/*   Updated: 2022/11/25 18:23:57 by tlegrand         ###   ########.fr       */
+/*   Updated: 2022/11/25 21:17:25 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libftprintf.h"
+#include "ft_printf.h"
 
-int	ft_rec_putnbr_base(int nbr, char *base, int len)
+int	ft_rec_putnbr_base(long int nbr, char *base, int len)
 {
 	int	n;
 
 	n = 0;
 	if (nbr > len)
 		n += ft_rec_putnbr_base(nbr / len, base, len);
-	n += write(1, &base[nbr % len], 1);
+	if (nbr == len)
+	{
+		n += write(1, &base[1], 1);
+		n += write(1, &base[0], 1);
+	}
+	else
+		n += write(1, &base[nbr % len], 1);
 	return (n);
 }
 
@@ -43,10 +49,10 @@ int	ft_check_base(char *base)
 	return (len);
 }
 
-int	ft_putnbr_base(int nbr, char *base)
+int	ft_putnbr_base(long int nbr, char *base)
 {
-	int		len_base;
-	int		n;
+	int			len_base;
+	int			n;
 
 	len_base = ft_check_base(base);
 	n = 0;

@@ -6,11 +6,11 @@
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/19 16:42:16 by tlegrand          #+#    #+#             */
-/*   Updated: 2022/11/25 18:53:53 by tlegrand         ###   ########.fr       */
+/*   Updated: 2022/11/25 21:10:14 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libftprintf.h"
+#include "ft_printf.h"
 
 int	main(void)
 {
@@ -32,7 +32,7 @@ int	main(void)
 	printf("\ntest %%p avec adr = %p\n", str);
 	//printf("res ft_print: %d\n", ft_printf("adr = %p\n", str));
 	printf("res print: %d\n", printf("adr = %p\n", str));
-	n = 53;
+	n = 10;
 	printf("\ntest %%d avec n = %d\n", n);
 	printf("res ft_print: %d\n", ft_printf("n = %d\n", n));
 	printf("res print: %d\n", printf("n = %d\n", n));
@@ -52,6 +52,10 @@ int	main(void)
 	printf("res ft_print: %d\n", ft_printf("nx = %X\n", nx));
 	printf("res print: %d\n", printf("nx = %X\n", nx));
 
+
+	ft_printf("\nputnbrbase: \t");
+	ft_putnbr_base(INT_MIN, "0123456789");
+/*
 	printf("res ft_print: %d\n", ft_printf("hello my name is %s, i'm %d, %c love %s\n", "Lou", 27, 'i', "chocolat"));
 	printf("res print: %d\n", printf("hello my name is %s, i'm %d, %c love %s\n", "Lou", 27, 'i', "chocolat"));
 
@@ -61,7 +65,10 @@ int	main(void)
 	ft_printf("hello %s!\n", "john", "marc");
 //	ft_printf("hello %s and %s!\n", "john");
 
-
+	str = NULL;
+	printf("res print: %d\n", printf("NULL : %s NuLL\n", str));
+	printf("res ft_print: %d\n", ft_printf("NULL : %s NuLL\n", str));
+*/
 
 
 

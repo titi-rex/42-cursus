@@ -6,18 +6,23 @@
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/25 17:59:15 by tlegrand          #+#    #+#             */
-/*   Updated: 2022/11/25 18:23:15 by tlegrand         ###   ########.fr       */
+/*   Updated: 2022/11/25 20:50:43 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libftprintf.h"
+#include "ft_printf.h"
 
 int	ft_putstr(char *s)
 {
 	int	n;
 
 	n = 0;
-	while (s && *s)
+	if (!s)
+	{
+		n += ft_putstr("(null)");
+		return (n);
+	}
+	while (*s)
 	{
 		n += ft_putchar(*s);
 		s++;

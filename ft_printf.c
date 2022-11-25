@@ -6,11 +6,11 @@
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/19 14:05:47 by tlegrand          #+#    #+#             */
-/*   Updated: 2022/11/25 18:50:53 by tlegrand         ###   ########.fr       */
+/*   Updated: 2022/11/25 21:18:27 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libftprintf.h"
+#include "ft_printf.h"
 
 int	ft_select_print(char c, va_list ap)
 {
@@ -20,7 +20,7 @@ int	ft_select_print(char c, va_list ap)
 		return (ft_putstr(va_arg(ap, char *)));
 	// else if (c == 'p')
 	// 	return (ft_putmem_fd(va_arg(ap, void *), 1));
-	else if (c == 'd' || c == 'i')
+	else if (c == 'd' || c == 'i' || c == 'u')
 		return (ft_putnbr_base(va_arg(ap, int), "0123456789"));
 	// else if (c == 'u')
 	// 	return (ft_putui(va_arg(ap, unsigned int)));
