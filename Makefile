@@ -6,7 +6,7 @@
 #    By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/11/19 14:03:05 by tlegrand          #+#    #+#              #
-#    Updated: 2022/11/19 16:46:20 by tlegrand         ###   ########.fr        #
+#    Updated: 2022/11/25 18:25:20 by tlegrand         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,7 +14,7 @@ NAME = libftprintf.a
 
 FLAGS = -Wall -Wextra -Werror -I .
 
-SRCS = 	 \
+SRCS = 	ft_printf.c ft_putchar.c ft_putstr.c ft_putnbr.c ft_putnbr_base.c\
 		
 SRCS_B = \
 
@@ -40,7 +40,7 @@ bonus :	${OBJS} ${OBJS_B}
 		${CC} ${FLAGS} -c $< -o $@
 
 check :	${OBJS} ${TOBJS}
-		${CC} ${FLAGS} ${OBJS} ${TOBJS} && ./a.out && ${RM} ${TOBJS} a.out
+		${CC} ${FLAGS} ${OBJS} ${TOBJS} libft.a && ./a.out && ${RM} ${TOBJS} a.out
 
 nn :
 	norminette ${SRCS} ${SRCS_B} ${HEADER}
