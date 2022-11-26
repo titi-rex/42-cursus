@@ -6,7 +6,7 @@
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/26 13:26:35 by tlegrand          #+#    #+#             */
-/*   Updated: 2022/11/26 17:04:35 by tlegrand         ###   ########.fr       */
+/*   Updated: 2022/11/26 17:35:39 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,8 @@ int	ft_putadr_rec(void *p)
 		if (len == -1)
 			return (len);
 		len += ft_putadr_rec((void *)(val % 16));
+		if (len == -1)
+			return (len);
 	}
 	return (len);
 }

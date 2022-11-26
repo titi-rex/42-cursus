@@ -6,7 +6,7 @@
 #    By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/11/19 14:03:05 by tlegrand          #+#    #+#              #
-#    Updated: 2022/11/26 15:17:01 by tlegrand         ###   ########.fr        #
+#    Updated: 2022/11/26 17:45:18 by tlegrand         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -30,31 +30,31 @@ FLAGS	=	-Wall -Wextra -Werror -I ${HEADER}
 
 all	: ${NAME}
 
-${NAME} :	${DIR_OBJS} ${OBJS}
+${NAME}	:	${DIR_OBJS} ${OBJS}
 		${AR} rcs $@ ${OBJS}
 
-bonus :	${DIR_OBJS} ${OBJS} ${OBJS_B}
+bonus	:	${DIR_OBJS} ${OBJS} ${OBJS_B}
 		${AR} rcs ${NAME} ${OBJS} ${OBJS_B}
 
-${DIR_OBJS}%.o :	%.c ${HEADER} Makefile
+${DIR_OBJS}%.o	:	%.c ${HEADER} Makefile
 				${CC} ${FLAGS} -c $< -o $@
 
 ${DIR_OBJS}	:
-	mkdir ${DIR_OBJS}
+			mkdir ${DIR_OBJS}
 
-check :	${DIR_OBJS} ${OBJS} ${OBJS_T}
+check	:	${DIR_OBJS} ${OBJS} ${OBJS_T}
 		${CC} ${FLAGS} ${OBJS} ${OBJS_T} && ./a.out && ${RM} ${TOBJS} a.out
 
-nn :
+nn	:
 	norminette ${SRCS} ${SRCS_B} ${HEADER}
 
-clean :
+clean	:
 		${RM} ${DIR_OBJS}
 
-fclean :	clean
+fclean	:	clean
 		${RM} ${NAME}
 
-re :	fclean
+re	:	fclean
 	${MAKE} all
 
-.PHONY : all clean fclean re bonus%
+.PHONY : all clean fclean re bonus
