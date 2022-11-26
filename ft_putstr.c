@@ -6,7 +6,7 @@
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/25 17:59:15 by tlegrand          #+#    #+#             */
-/*   Updated: 2022/11/25 20:50:43 by tlegrand         ###   ########.fr       */
+/*   Updated: 2022/11/26 17:00:29 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,18 +14,17 @@
 
 int	ft_putstr(char *s)
 {
-	int	n;
+	int	len;
 
-	n = 0;
+	len = 0;
 	if (!s)
-	{
-		n += ft_putstr("(null)");
-		return (n);
-	}
+		return (ft_putstr("(null)"));
 	while (*s)
 	{
-		n += ft_putchar(*s);
+		len += ft_putchar(*s);
 		s++;
+		if (len == -1)
+			return (len);
 	}
-	return (n);
+	return (len);
 }

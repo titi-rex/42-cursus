@@ -6,28 +6,11 @@
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/25 18:00:24 by tlegrand          #+#    #+#             */
-/*   Updated: 2022/11/26 14:18:26 by tlegrand         ###   ########.fr       */
+/*   Updated: 2022/11/26 17:29:56 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
-
-int	ft_rec_putnbr_base(long long int nbr, char *base, int len)
-{
-	int	n;
-
-	n = 0;
-	if (nbr > len)
-		n += ft_rec_putnbr_base(nbr / len, base, len);
-	if (nbr == len)
-	{
-		n += write(1, &base[1], 1);
-		n += write(1, &base[0], 1);
-	}
-	else
-		n += write(1, &base[nbr % len], 1);
-	return (n);
-}
 
 int	ft_check_base(char *base)
 {
@@ -49,20 +32,45 @@ int	ft_check_base(char *base)
 	return (len);
 }
 
+int	ft_rec_putnbr_base(long long int nbr, char *base, int len_base)
+{
+	int	len;
+
+	len = 0;
+	if (nbr > len_base)
+		len += ft_rec_putnbr_base(nbr / len_base, base, len_base);
+	if (len == -1)
+		return (len);
+	if (nbr == len_base)
+	{
+		len += write(1, &base[1], 1);
+		if (len == -1)
+			return (len);
+		len += write(1, &base[0], 1);
+		if (len == -1)
+			return (len);
+	}
+	else
+		len += write(1, &base[nbr % len_base], 1);
+	return (len);
+}
+
 int	ft_putnbr_base(long long int nbr, char *base)
 {
 	int			len_base;
-	int			n;
+	int			len;
 
 	len_base = ft_check_base(base);
-	n = 0;
+	len = 0;
 	if (len_base <= 1)
 		return (0);
 	if (nbr < 0)
 	{
-		n += write(1, "-", 1);
+		len += write(1, "-", 1);
+		if (len == -1)
+			return (len);
 		nbr = -nbr;
 	}
-	n += ft_rec_putnbr_base(nbr, base, len_base);
-	return (n);
+	len += ft_rec_putnbr_base(nbr, base, len_base);
+	return (len);
 }

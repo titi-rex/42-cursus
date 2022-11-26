@@ -6,14 +6,14 @@
 #    By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/11/19 14:03:05 by tlegrand          #+#    #+#              #
-#    Updated: 2022/11/26 14:51:43 by tlegrand         ###   ########.fr        #
+#    Updated: 2022/11/26 15:17:01 by tlegrand         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME	=	libftprintf.a
 
-SRCS	= 	ft_printf.c ft_putchar.c ft_putstr.c ft_putadr.c ft_putuint.c ft_putnbr_base.c \
-			ft_strchr.c
+SRCS	= 	ft_printf.c ft_putchar.c ft_putstr.c ft_putadr.c ft_putnbr_base.c \
+			
 SRCS_T	=	main.c
 
 DIR_OBJS	=	.objs/

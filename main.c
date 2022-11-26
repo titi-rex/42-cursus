@@ -6,7 +6,7 @@
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/19 16:42:16 by tlegrand          #+#    #+#             */
-/*   Updated: 2022/11/26 15:05:34 by tlegrand         ###   ########.fr       */
+/*   Updated: 2022/11/26 16:58:28 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,9 @@ int	main(void)
 	printf("res print: %d\n", printf("nx = %X\n", nx));
 
 	p = NULL;
-	printf("adr : %p", p);
+	printf("ft_print : %d\n", ft_printf("\001\002\007\v\010\f\r\n"));
+	printf("print : %d\n", printf("\001\002\007\v\010\f\r\n"));
+
 
 
 
