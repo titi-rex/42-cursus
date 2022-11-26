@@ -6,7 +6,7 @@
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/19 16:42:16 by tlegrand          #+#    #+#             */
-/*   Updated: 2022/11/26 14:23:57 by tlegrand         ###   ########.fr       */
+/*   Updated: 2022/11/26 15:05:34 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@ int	main(void)
 {
 	char			c;
 	char			*str;
+	void			*p;
 	int				n;
 	unsigned int	nu;
 	int				nx;
@@ -52,10 +53,8 @@ int	main(void)
 	printf("res ft_print: %d\n", ft_printf("nx = %X\n", nx));
 	printf("res print: %d\n", printf("nx = %X\n", nx));
 
-
-	ft_putnbr_base((unsigned int)nu, "0123456789");
-	ft_putchar('\n');
-	ft_putuint(nu);
+	p = NULL;
+	printf("adr : %p", p);
 
 
 
