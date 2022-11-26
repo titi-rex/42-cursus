@@ -1,35 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putnbr.c                                        :+:      :+:    :+:   */
+/*   ft_putuint.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/25 17:59:25 by tlegrand          #+#    #+#             */
-/*   Updated: 2022/11/25 20:41:32 by tlegrand         ###   ########.fr       */
+/*   Updated: 2022/11/26 11:25:52 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int	ft_putnbr(int n)
+int	ft_putuint(unsigned int n)
 {
 	int	len;
 
 	len = 0;
-	if (n == -2147483648)
-	{
-		write(1, "-2147483648", 11);
-		return (11);
-	}
-	if (n < 0)
-	{
-		write(1, "-", 1);
-		n = -n;
-		len++;
-	}
 	if (n > 9)
-		n += ft_putnbr(n / 10);
-	n += ft_putchar('0' + n % 10);
-	return (n);
+		len += ft_putuint(n / 10);
+	len += ft_putchar('0' + n % 10);
+	return (len);
 }
+

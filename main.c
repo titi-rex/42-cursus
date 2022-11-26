@@ -6,7 +6,7 @@
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/19 16:42:16 by tlegrand          #+#    #+#             */
-/*   Updated: 2022/11/25 21:10:14 by tlegrand         ###   ########.fr       */
+/*   Updated: 2022/11/26 11:24:27 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ int	main(void)
 	printf("\ntest %%i avec ni = %i\n", n);
 	printf("res ft_print: %d\n", ft_printf("n = %i\n", n));
 	printf("res print: %d\n", printf("n = %i\n", n));
-	nu = 53;
+	nu = -853;
 	printf("\ntest %%u avec nu = %u\n", nu);
 	printf("res ft_print: %d\n", ft_printf("nu = %u\n", nu));
 	printf("res print: %d\n", printf("nu = %u\n", nu));
@@ -53,9 +53,22 @@ int	main(void)
 	printf("res print: %d\n", printf("nx = %X\n", nx));
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+/*
 	ft_printf("\nputnbrbase: \t");
 	ft_putnbr_base(INT_MIN, "0123456789");
-/*
+
 	printf("res ft_print: %d\n", ft_printf("hello my name is %s, i'm %d, %c love %s\n", "Lou", 27, 'i', "chocolat"));
 	printf("res print: %d\n", printf("hello my name is %s, i'm %d, %c love %s\n", "Lou", 27, 'i', "chocolat"));
 

@@ -6,48 +6,50 @@
 #    By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/11/19 14:03:05 by tlegrand          #+#    #+#              #
-#    Updated: 2022/11/25 20:43:56 by tlegrand         ###   ########.fr        #
+#    Updated: 2022/11/26 11:51:37 by tlegrand         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME = libftprintf.a
+NAME	=	libftprintf.a
 
-FLAGS = -Wall -Wextra -Werror -I .
+SRCS	= 	ft_printf.c ft_putchar.c ft_putstr.c ft_putuint.c ft_putnbr_base.c \
+			ft_strchr.c
+SRCS_T	=	main.c
 
-SRCS = 	ft_printf.c ft_putchar.c ft_putstr.c ft_putnbr.c ft_putnbr_base.c \
-		ft_strchr.c
-		
-SRCS_B = \
+DIR_OBJS	=	.objs/
+LIST_OBJS	=	${SRCS:.c=.o}
+OBJS		=	${addprefix ${DIR_OBJS}, ${LIST_OBJS}}
+LIST_OBJS_T	=	${SRCS_T:.c=.o}
+OBJS_T		=	${addprefix ${DIR_OBJS}, ${LIST_OBJS_T}}
 
-TSRCS = main.c
+HEADER	=	ft_printf.h
 
-OBJS = ${SRCS:.c=.o}
+RM		=	rm -rf
 
-OBJS_B = ${SRCS_B:.c=.o}
+FLAGS	=	-Wall -Wextra -Werror -I ${HEADER}
 
-TOBJS = ${TSRCS:.c=.o}
+all	: ${NAME}
 
-HEADER = ft_printf.h
+${NAME} :	${DIR_OBJS} ${OBJS}
+		${AR} rcs $@ ${OBJS}
 
-all : ${NAME}
+bonus :	${DIR_OBJS} ${OBJS} ${OBJS_B}
+		${AR} rcs ${NAME} ${OBJS} ${OBJS_B}
 
-${NAME} :	${OBJS}
-		${AR} rcs $@ $^
+${DIR_OBJS}%.o :	%.c ${HEADER} Makefile
+				${CC} ${FLAGS} -c $< -o $@
 
-bonus :	${OBJS} ${OBJS_B}
-		${AR} rcs ${NAME} $^
+${DIR_OBJS}	:
+	mkdir ${DIR_OBJS}
 
-%.o :	%.c ${HEADER} Makefile
-		${CC} ${FLAGS} -c $< -o $@
-
-check :	${OBJS} ${TOBJS}
-		${CC} ${FLAGS} ${OBJS} ${TOBJS} && ./a.out && ${RM} ${TOBJS} a.out
+check :	${DIR_OBJS} ${OBJS} ${OBJS_T}
+		${CC} ${FLAGS} ${OBJS} ${OBJS_T} && ./a.out && ${RM} ${TOBJS} a.out
 
 nn :
 	norminette ${SRCS} ${SRCS_B} ${HEADER}
 
 clean :
-		${RM} ${OBJS} ${OBJS_B}
+		${RM} ${DIR_OBJS}
 
 fclean :	clean
 		${RM} ${NAME}
