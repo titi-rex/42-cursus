@@ -6,7 +6,7 @@
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/19 14:05:47 by tlegrand          #+#    #+#             */
-/*   Updated: 2022/11/26 11:51:52 by tlegrand         ###   ########.fr       */
+/*   Updated: 2022/11/26 14:36:40 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,39 +18,34 @@ int	ft_select_print(char c, va_list ap)
 		return (ft_putchar((char)va_arg(ap, int)));
 	else if (c == 's')
 		return (ft_putstr(va_arg(ap, char *)));
-	// else if (c == 'p')
-	// 	return (ft_putmem(va_arg(ap, void *)));
+	else if (c == 'p')
+		return (ft_putadr(va_arg(ap, void *)));
 	else if (c == 'd' || c == 'i')
 		return (ft_putnbr_base(va_arg(ap, int), "0123456789"));
 	else if (c == 'u')
-		return (ft_putuint(va_arg(ap, unsigned int)));
+		return (ft_putnbr_base((unsigned int)va_arg(ap, int), "0123456789"));
 	else if (c == 'x')
 		return (ft_putnbr_base(va_arg(ap, int), "0123456789abcdef"));
 	else if (c == 'X')
 		return (ft_putnbr_base(va_arg(ap, int), "0123456789ABCDEF"));
+	else
+		return (ft_putchar(c));
 	return (0);
 }
 
 int	ft_printf(const char *str, ...)
 {
 	int		n;
-	char	*idset;
-	char	*format;
 	va_list	ap;
 
-	idset = "cspdiuxX";
 	va_start(ap, str);
 	n = 0;
 	while (*str)
 	{
-		format = ft_strchr(idset, (int)*(str + 1));
 		if (*str == '%')
 		{
 			str++;
-			if (format != NULL)
-				n += ft_select_print(*format, ap);
-			else
-				n += ft_putchar(*str);
+			n += ft_select_print(*str, ap);
 		}
 		else
 			n += ft_putchar(*str);

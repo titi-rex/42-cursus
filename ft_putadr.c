@@ -1,25 +1,42 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putuint.c                                       :+:      :+:    :+:   */
+/*   ft_putmem.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/25 17:59:25 by tlegrand          #+#    #+#             */
-/*   Updated: 2022/11/26 11:25:52 by tlegrand         ###   ########.fr       */
+/*   Created: 2022/11/26 13:26:35 by tlegrand          #+#    #+#             */
+/*   Updated: 2022/11/26 14:51:17 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int	ft_putuint(unsigned int n)
+int	ft_putadr_rec(void *p)
 {
-	int	len;
+	long long	val;
+	int			len;
+	char		*base;
 
 	len = 0;
-	if (n > 9)
-		len += ft_putuint(n / 10);
-	len += ft_putchar('0' + n % 10);
+	val = (long long)p;
+	base = "0123456789abcdef";
+	if (val < 16)
+		len += write(1, &base[val], 1);
+	if (val >= 16)
+	{
+		len += ft_putadr_rec((void *)(val / 16));
+		len += ft_putadr_rec((void *)(val % 16));
+	}
 	return (len);
 }
 
+int	ft_putadr(void *p)
+{
+	int		len;
+
+	len = 0;
+	len += write(1, "0x", 2);
+	len += ft_putadr_rec(p);
+	return (len);
+}

@@ -6,13 +6,13 @@
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/25 18:00:24 by tlegrand          #+#    #+#             */
-/*   Updated: 2022/11/25 21:17:25 by tlegrand         ###   ########.fr       */
+/*   Updated: 2022/11/26 14:18:26 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int	ft_rec_putnbr_base(long int nbr, char *base, int len)
+int	ft_rec_putnbr_base(long long int nbr, char *base, int len)
 {
 	int	n;
 
@@ -49,7 +49,7 @@ int	ft_check_base(char *base)
 	return (len);
 }
 
-int	ft_putnbr_base(long int nbr, char *base)
+int	ft_putnbr_base(long long int nbr, char *base)
 {
 	int			len_base;
 	int			n;
