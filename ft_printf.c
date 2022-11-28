@@ -6,7 +6,7 @@
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/19 14:05:47 by tlegrand          #+#    #+#             */
-/*   Updated: 2022/11/28 15:53:15 by tlegrand         ###   ########.fr       */
+/*   Updated: 2022/11/28 16:25:31 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,6 @@
 
 int	ft_select_print(char c, va_list ap)
 {
-	char	*base_lx;
-	char	*base_ux;
-
-	base_lx = "0123456789abcdef";
-	base_ux = "0123456789ABCDEF";
 	if (c == 'c')
 		return (ft_putchar((char)va_arg(ap, int)));
 	else if (c == 's')
@@ -28,11 +23,11 @@ int	ft_select_print(char c, va_list ap)
 	else if (c == 'd' || c == 'i')
 		return (ft_putnbr_base(va_arg(ap, int), "0123456789"));
 	else if (c == 'u')
-		return (ft_putnbr_base((unsigned int)va_arg(ap, int), "0123456789"));
+		return (ft_putnbr_base(va_arg(ap, unsigned int), "0123456789"));
 	else if (c == 'x')
-		return (ft_putnbr_base((unsigned int)va_arg(ap, int), base_lx));
+		return (ft_putnbr_base(va_arg(ap, unsigned int), "0123456789abcdef"));
 	else if (c == 'X')
-		return (ft_putnbr_base((unsigned int)va_arg(ap, int), base_ux));
+		return (ft_putnbr_base(va_arg(ap, unsigned int), "0123456789ABCDEF"));
 	else
 		return (ft_putchar(c));
 	return (0);
@@ -40,24 +35,24 @@ int	ft_select_print(char c, va_list ap)
 
 int	ft_printf(const char *str, ...)
 {
-	int		n;
+	int		len;
 	va_list	ap;
 
 	va_start(ap, str);
-	n = 0;
+	len = 0;
 	while (*str)
 	{
 		if (*str == '%')
 		{
 			str++;
-			n += ft_select_print(*str, ap);
+			len += ft_select_print(*str, ap);
 		}
 		else
-			n += ft_putchar(*str);
+			len += ft_putchar(*str);
 		str++;
-		if (n == -1)
-			return (n);
+		if (len == -1)
+			return (len);
 	}
 	va_end(ap);
-	return (n);
+	return (len);
 }
