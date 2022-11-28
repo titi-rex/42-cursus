@@ -6,7 +6,7 @@
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/25 18:00:24 by tlegrand          #+#    #+#             */
-/*   Updated: 2022/11/26 17:42:08 by tlegrand         ###   ########.fr       */
+/*   Updated: 2022/11/28 16:02:19 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,23 +37,17 @@ int	ft_rec_putnbr_base(long long int nbr, char *base, int len_base)
 	int	len;
 
 	len = 0;
-	if (nbr > len_base)
+	if (nbr >= len_base)
 	{
 		len += ft_rec_putnbr_base(nbr / len_base, base, len_base);
 		if (len == -1)
 			return (len);
-	}
-	if (nbr == len_base)
-	{
-		len += write(1, &base[1], 1);
-		if (len == -1)
-			return (len);
-		len += write(1, &base[0], 1);
+		len += ft_rec_putnbr_base(nbr % len_base, base, len_base);
 		if (len == -1)
 			return (len);
 	}
 	else
-		len += write(1, &base[nbr % len_base], 1);
+		len += write(1, &base[nbr], 1);
 	return (len);
 }
 

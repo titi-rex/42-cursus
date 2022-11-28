@@ -6,11 +6,12 @@
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/19 16:42:16 by tlegrand          #+#    #+#             */
-/*   Updated: 2022/11/26 16:58:28 by tlegrand         ###   ########.fr       */
+/*   Updated: 2022/11/28 16:01:12 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
+#include <stdio.h>
 
 int	main(void)
 {
@@ -52,63 +53,37 @@ int	main(void)
 	printf("\ntest %%X avec nx = %X\n", nx);
 	printf("res ft_print: %d\n", ft_printf("nx = %X\n", nx));
 	printf("res print: %d\n", printf("nx = %X\n", nx));
-
 	p = NULL;
-	printf("ft_print : %d\n", ft_printf("\001\002\007\v\010\f\r\n"));
-	printf("print : %d\n", printf("\001\002\007\v\010\f\r\n"));
-
-
-
-
-
-
-
-
-
-
-
-
-/*
-	ft_printf("\nputnbrbase: \t");
-	ft_putnbr_base(INT_MIN, "0123456789");
-
-	printf("res ft_print: %d\n", ft_printf("hello my name is %s, i'm %d, %c love %s\n", "Lou", 27, 'i', "chocolat"));
-	printf("res print: %d\n", printf("hello my name is %s, i'm %d, %c love %s\n", "Lou", 27, 'i', "chocolat"));
-
-	printf("res ft_print: %d\n", ft_printf(" %% hehe\n"));
-	printf("res print: %d\n", printf(" %% hehe\n"));
-
-	ft_printf("hello %s!\n", "john", "marc");
-//	ft_printf("hello %s and %s!\n", "john");
-
-	str = NULL;
-	printf("res print: %d\n", printf("NULL : %s NuLL\n", str));
-	printf("res ft_print: %d\n", ft_printf("NULL : %s NuLL\n", str));
-*/
-
-
-
-
-
-	// printf("d = %d\n", f);
-	// printf("i = %i\n", n);
-	// printf("i = %i\n", f);
-	// printf("u = %u\n", n);
-	// printf("u = %u\n", f);
-	// printf("flags : space\t:% dendl\n", n);
-	// printf("flags : +\t:%+dendl\n", n);
-	// printf("flags : -\t:%-dendl\n", n);
-	// printf("flags : 0\t:%0dendl\n", n);
-	// printf("flags : .\t:%.dendl\n", n);
-	// printf("flags : #\t:error undefined behavior\n");
-
-	// printf("mixed flags : \n");
-	// printf("flags : space + : space is ignored\n");
-	// printf("flags : 0 . : 0 is ignored\n");
-	// printf("flags : 0 - : 0 is ignored\n");
-
+	printf("res ft_print: %d\n", ft_printf("p = %p\n", (void *)-1457));
+	printf("res print: %d\n", printf("p = %p\n", (void *)-1457));
 	return (0);
 }
+// int    main(void)
+// {
+//   //  printf("p : %d\n", printf("c: %y &&&& ", 'A'));
+//     printf("p : %d\n", ft_printf("c: %j &&&& ", 'A'));
+//     printf("p : %d\n", printf("c: %s &&&& ", "Comment vas tu"));
+//     printf("p : %d\n", ft_printf("c: %s &&&& ", "Comment vas tu"));
+//     printf("p : %d\n", printf("c: %p &&&& ", NULL));
+//     printf("p : %d\n", ft_printf("c: %p &&&& ", NULL));
+//     printf("p : %d\n", printf("c: %ld &&&& ", -2147483648));
+//     printf("p : %d\n", ft_printf("c: %d &&&& ", -2147483648));
+//     printf("p : %d\n", printf("c: %i &&&& ", 45));
+//     printf("p : %d\n", ft_printf("c: %i &&&& ", 45));
+//     printf("p : %d\n", printf("c: %u &&&& ", -100));
+//     printf("p : %d\n", ft_printf("c: %u &&&& ", -100));
+//     printf("p : %d\n", printf("c: %lx &&&& ", 4294967295));
+//     printf("p : %d\n", ft_printf("c: %x &&&& ", 4294967295));
+//     printf("p : %d\n", printf("c: %lX &&&& ", 4294967295));
+//     printf("p : %d\n", ft_printf("c: %X &&&& ", 4294967295));
+//     printf("p : %d\n", printf("c: %% &&&& "));
+//     printf("p : %d\n", ft_printf("c: %% &&&& "));
+//     printf("p : %d\n", printf("c: %c et %d et %s et %x", 'A', 58, "coucou", 15));
+//     printf("p : %d\n", printf("c: %c et %d et %s et %x", 'A', 58, "coucou", 15));
+//     printf("p : %d\n", printf(""));
+//     printf("p : %d\n", ft_printf(""));
+// 	return (0);
+// }
 
 /*
 FEAT -

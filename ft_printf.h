@@ -6,7 +6,7 @@
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/25 20:40:41 by tlegrand          #+#    #+#             */
-/*   Updated: 2022/11/26 16:04:12 by tlegrand         ###   ########.fr       */
+/*   Updated: 2022/11/28 15:23:18 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 # define FT_PRINTF_H
 # include <unistd.h>
 # include <stdarg.h>
-# include <stdio.h>
 
 int		ft_printf(const char *str, ...);
 int		ft_putchar(char c);

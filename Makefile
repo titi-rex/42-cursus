@@ -6,7 +6,7 @@
 #    By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/11/19 14:03:05 by tlegrand          #+#    #+#              #
-#    Updated: 2022/11/26 17:45:18 by tlegrand         ###   ########.fr        #
+#    Updated: 2022/11/28 16:03:19 by tlegrand         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -33,8 +33,6 @@ all	: ${NAME}
 ${NAME}	:	${DIR_OBJS} ${OBJS}
 		${AR} rcs $@ ${OBJS}
 
-bonus	:	${DIR_OBJS} ${OBJS} ${OBJS_B}
-		${AR} rcs ${NAME} ${OBJS} ${OBJS_B}
 
 ${DIR_OBJS}%.o	:	%.c ${HEADER} Makefile
 				${CC} ${FLAGS} -c $< -o $@
