@@ -6,7 +6,7 @@
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/28 16:40:14 by tlegrand          #+#    #+#             */
-/*   Updated: 2022/11/29 12:18:03 by tlegrand         ###   ########.fr       */
+/*   Updated: 2022/11/29 12:52:29 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,20 +27,26 @@ char	*get_next_line(int fd)
 		return (NULL);
 	i = 0;
 	tmp = (char *)malloc(sizeof(char));
-	while (read(fd, buff, BUFFER_SIZE))
+	while (read(fd, buff, BUFFER_SIZE) && !ft_strchr(tmp, '\n'))
 	{
-		printf("buff : %s", buff);
+	//	printf("buff :%s:\n", buff);
 		tmp = ft_strjoin(tmp, buff);
-		printf("tmp : %s", tmp);
+	//	printf("tmp :%s:\n", tmp);
 		if (ft_strchr(tmp, '\n'))
+		{
+			printf("break\n");
 			break ;
+		}
+		printf("i : %lu\n", i);
+		i++;
 	}
-	printf("tmp finale : %sfin tmp\n", tmp);
+//	printf("tmp finale : %sfin tmp\n", tmp);
+	i = 0;
 	while (tmp[i] && tmp[i] != '\n')
 		i++;
 	line = ft_substr(tmp, 0, i);
 	tmp = ft_substr(tmp, ft_strlen(line) + 1, ft_strlen(tmp) - ft_strlen(line));
-	printf("tmp after sub:%s:\n", tmp);
+//	printf("tmp after sub:%s:\n", tmp);
 	free(buff);
 	free(tmp);
 	return (line);
@@ -57,7 +63,7 @@ int	main(void)
 	while (i < 4)
 	{
 		str = get_next_line(fd);
-		// printf("\n:%s\n", str);
+		printf("\n:%s\n", str);
 		i++;
 	}
 	return (0);
