@@ -6,7 +6,7 @@
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/28 16:40:14 by tlegrand          #+#    #+#             */
-/*   Updated: 2022/11/28 18:02:57 by tlegrand         ###   ########.fr       */
+/*   Updated: 2022/11/29 12:18:03 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,27 +22,25 @@ char	*get_next_line(int fd)
 
 	if (fd == -1)
 		return (NULL);
-	buff = (char *)malloc((BUFFER_SIZE + 1) * sizeof(char));
+	buff = (char *)malloc((BUFFER_SIZE + 2) * sizeof(char));
 	if (!buff)
 		return (NULL);
 	i = 0;
-	tmp = NULL;
+	tmp = (char *)malloc(sizeof(char));
 	while (read(fd, buff, BUFFER_SIZE))
 	{
-		printf("ici c ok0\n");
+		printf("buff : %s", buff);
 		tmp = ft_strjoin(tmp, buff);
-		printf("ici c oknon?\n");
-		if (ft_strchr(buff, '\n'))
+		printf("tmp : %s", tmp);
+		if (ft_strchr(tmp, '\n'))
 			break ;
 	}
-	printf("ici c ok\n");
+	printf("tmp finale : %sfin tmp\n", tmp);
 	while (tmp[i] && tmp[i] != '\n')
 		i++;
-	printf("ici c ok2\n");
 	line = ft_substr(tmp, 0, i);
-	printf("ici c ok3\n");
-	tmp = ft_substr(tmp, ft_strlen(line), ft_strlen(tmp) - ft_strlen(line));
-	printf("ici c ok4\n");
+	tmp = ft_substr(tmp, ft_strlen(line) + 1, ft_strlen(tmp) - ft_strlen(line));
+	printf("tmp after sub:%s:\n", tmp);
 	free(buff);
 	free(tmp);
 	return (line);
@@ -51,8 +49,16 @@ char	*get_next_line(int fd)
 int	main(void)
 {
 	char	*str;
+	int		i;
+	int		fd;
 
-	str = get_next_line(1);
-	printf("\n: %s\n", str);
+	fd = open("file", O_RDONLY);
+	i = 0;
+	while (i < 4)
+	{
+		str = get_next_line(fd);
+		// printf("\n:%s\n", str);
+		i++;
+	}
 	return (0);
 }
