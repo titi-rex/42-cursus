@@ -6,7 +6,7 @@
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/28 16:40:09 by tlegrand          #+#    #+#             */
-/*   Updated: 2022/11/29 11:05:45 by tlegrand         ###   ########.fr       */
+/*   Updated: 2022/11/29 18:19:37 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,12 +18,16 @@ char	*ft_substr(char const *s, unsigned int start, size_t len)
 	char	*sub;
 
 	if (!s)
+	{
+		printf("null1\n");
 		return (NULL);
+	}
 	if (start >= ft_strlen(s))
 	{
 		sub = (char *)malloc(sizeof(char));
 		if (sub)
 			sub[0] = 0;
+		printf("null2\n");
 		return (sub);
 	}
 	if (len > ft_strlen(s) - start)
@@ -31,7 +35,9 @@ char	*ft_substr(char const *s, unsigned int start, size_t len)
 	sub = (char *)malloc((len + 1) * sizeof(char));
 	if (!sub)
 		return (sub);
+//	printf("sub s :%s:\n", s);
 	ft_strlcpy(sub, s + start, len + 1);
+//	printf("sub s after cpy :%s:\n", s);
 	return (sub);
 }
 
@@ -40,7 +46,8 @@ char	*ft_strchr(const char *s, int c)
 	int	i;
 
 	i = 0;
-	c = c % 256;
+	if (!s)
+		return (NULL);
 	while (*(s + i) != (char)c && *(s + i) != 0)
 		i++;
 	if (*(s + i) == (char)c)
@@ -60,7 +67,9 @@ size_t	ft_strlcpy(char *dst, const char *src, size_t dstsize)
 			dst[i] = src[i];
 			i++;
 		}
+//		printf("0cpy src :%s:\n", src);
 		dst[i] = 0;
+//		printf("1cpy src :%s:\n", src);
 	}
 	while (src[i])
 		i++;
@@ -94,7 +103,8 @@ char	*ft_strjoin(char const *s1, char const *s2)
 	str = (char *)malloc((len_s1 + len_s2 + 1) * sizeof(char));
 	if (!str)
 		return (NULL);
-	ft_strlcpy(str, s1, len_s1 + 1);
+	if (s1)
+		ft_strlcpy(str, s1, len_s1 + 1);
 	ft_strlcpy(str + len_s1, s2, len_s2 + 1);
 	return (str);
 }

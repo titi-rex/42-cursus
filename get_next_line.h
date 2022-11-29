@@ -6,7 +6,7 @@
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/28 16:40:12 by tlegrand          #+#    #+#             */
-/*   Updated: 2022/11/29 12:16:09 by tlegrand         ###   ########.fr       */
+/*   Updated: 2022/11/29 16:01:24 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 # include <fcntl.h> 
 
 # ifndef BUFFER_SIZE
-# define BUFFER_SIZE 20
+#  define BUFFER_SIZE 1
 # endif
 
 char	*get_next_line(int fd);
