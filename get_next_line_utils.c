@@ -6,7 +6,7 @@
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/28 16:40:09 by tlegrand          #+#    #+#             */
-/*   Updated: 2022/11/29 18:19:37 by tlegrand         ###   ########.fr       */
+/*   Updated: 2022/12/01 11:42:23 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,16 +18,12 @@ char	*ft_substr(char const *s, unsigned int start, size_t len)
 	char	*sub;
 
 	if (!s)
-	{
-		printf("null1\n");
 		return (NULL);
-	}
 	if (start >= ft_strlen(s))
 	{
 		sub = (char *)malloc(sizeof(char));
 		if (sub)
 			sub[0] = 0;
-		printf("null2\n");
 		return (sub);
 	}
 	if (len > ft_strlen(s) - start)
@@ -35,9 +31,7 @@ char	*ft_substr(char const *s, unsigned int start, size_t len)
 	sub = (char *)malloc((len + 1) * sizeof(char));
 	if (!sub)
 		return (sub);
-//	printf("sub s :%s:\n", s);
 	ft_strlcpy(sub, s + start, len + 1);
-//	printf("sub s after cpy :%s:\n", s);
 	return (sub);
 }
 
@@ -67,9 +61,7 @@ size_t	ft_strlcpy(char *dst, const char *src, size_t dstsize)
 			dst[i] = src[i];
 			i++;
 		}
-//		printf("0cpy src :%s:\n", src);
 		dst[i] = 0;
-//		printf("1cpy src :%s:\n", src);
 	}
 	while (src[i])
 		i++;
