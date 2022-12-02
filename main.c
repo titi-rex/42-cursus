@@ -6,13 +6,14 @@
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/01 11:56:05 by tlegrand          #+#    #+#             */
-/*   Updated: 2022/12/01 13:48:52 by tlegrand         ###   ########.fr       */
+/*   Updated: 2022/12/02 18:21:32 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 #include <stdio.h>
 
+/*
 int    main(void)
 {
     int        fd;
@@ -55,9 +56,9 @@ int    main(void)
     line = get_next_line(fd);
     printf("line8: |%s|\n", line);
     free(line);
-}
+}*/
 
-/*
+
 int	main(void)
 {
 	char	*str;
@@ -69,7 +70,7 @@ int	main(void)
 	while (i < 6)
 	{
 		str = get_next_line(fd);
-		printf("\n:%s:\n", str);
+		printf("\n:%p:\n", str);
 		i++;
 	}
 	free(str);
@@ -83,4 +84,3 @@ int	main(void)
 	// }
 	return (0);
 }
-*/

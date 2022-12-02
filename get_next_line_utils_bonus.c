@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line_utils.c                              :+:      :+:    :+:   */
+/*   get_next_line_utils_bonus.c                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/28 16:40:09 by tlegrand          #+#    #+#             */
-/*   Updated: 2022/12/02 19:05:22 by tlegrand         ###   ########.fr       */
+/*   Updated: 2022/12/02 18:27:47 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,7 +100,7 @@ char	*ft_self_append(char *self, char const *to_append)
 		ft_strlcpy(new_str, self, len_s + 1);
 	if (to_append)
 		ft_strlcpy(new_str + len_s, to_append, len_ta + 1);
-	free(self);
-	self = NULL;
+	if (self)
+		free(self);
 	return (new_str);
 }

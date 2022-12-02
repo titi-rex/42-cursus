@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line.c                                    :+:      :+:    :+:   */
+/*   get_next_line_bonus.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/28 16:40:14 by tlegrand          #+#    #+#             */
-/*   Updated: 2022/12/02 19:02:40 by tlegrand         ###   ########.fr       */
+/*   Created: 2022/12/02 18:27:08 by tlegrand          #+#    #+#             */
+/*   Updated: 2022/12/02 18:31:40 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,8 @@ static int	ft_fill_buff(char **s_buff, int fd)
 	char	read_buff[BUFFER_SIZE + 1];
 	int		len;
 
+	if (!*s_buff)
+		*s_buff = ft_self_append(*s_buff, "");
 	while (!ft_strchr(*s_buff, '\n'))
 	{
 		len = read(fd, read_buff, BUFFER_SIZE);
@@ -30,8 +32,6 @@ static int	ft_fill_buff(char **s_buff, int fd)
 			break ;
 		read_buff[len] = '\0';
 		*s_buff = ft_self_append(*s_buff, read_buff);
-		if (!*s_buff)
-			return (1);
 		if (!len)
 			break ;
 	}
@@ -73,24 +73,19 @@ static char	*get_stock(char *s_buff)
 		i++;
 	new = ft_substr(s_buff, i, ft_strlen(s_buff) - i);
 	free(s_buff);
-	s_buff = NULL;
 	return (new);
 }
 
 char	*get_next_line(int fd)
 {
-	static char	*s_buff;
+	static char	*s_buff[OPEN_MAX];
 	char		*line;
 
 	if (fd < 0 || BUFFER_SIZE < 1 || fd > OPEN_MAX)
 		return (NULL);
-	if (!s_buff)
-		s_buff = ft_self_append(s_buff, "");
-	if (!s_buff)
+	if (ft_fill_buff(&s_buff[fd], fd))
 		return (NULL);
-	if (ft_fill_buff(&s_buff, fd))
-		return (NULL);
-	line = get_line(s_buff);
-	s_buff = get_stock(s_buff);
+	line = get_line(s_buff[fd]);
+	s_buff[fd] = get_stock(s_buff[fd]);
 	return (line);
 }
