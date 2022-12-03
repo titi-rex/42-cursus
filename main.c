@@ -6,7 +6,7 @@
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/01 11:56:05 by tlegrand          #+#    #+#             */
-/*   Updated: 2022/12/02 19:17:35 by tlegrand         ###   ########.fr       */
+/*   Updated: 2022/12/03 11:54:21 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,7 @@ int	main(void)
 
 	fd = open("file", O_RDONLY);
 	i = 0;
-	while (i < 2)
+	while (i < 6)
 	{
 		str = get_next_line(fd);
 		printf("\n:%s:\n", str);

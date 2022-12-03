@@ -6,7 +6,7 @@
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/28 16:40:14 by tlegrand          #+#    #+#             */
-/*   Updated: 2022/12/02 19:26:27 by tlegrand         ###   ########.fr       */
+/*   Updated: 2022/12/03 11:57:55 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,7 +85,7 @@ char	*get_next_line(int fd)
 	if (fd < 0 || BUFFER_SIZE < 1 || fd > OPEN_MAX)
 		return (NULL);
 	if (!s_buff)
-		s_buff = ft_self_append(s_buff, "");
+		s_buff = ft_substr("", 0, 0);
 	if (!s_buff)
 		return (NULL);
 	if (ft_fill_buff(&s_buff, fd))
