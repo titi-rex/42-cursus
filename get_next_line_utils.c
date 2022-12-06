@@ -6,7 +6,7 @@
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/28 16:40:09 by tlegrand          #+#    #+#             */
-/*   Updated: 2022/12/02 19:07:37 by tlegrand         ###   ########.fr       */
+/*   Updated: 2022/12/06 11:52:41 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,12 +94,13 @@ char	*ft_self_append(char *self, char const *to_append)
 	else
 		len_ta = ft_strlen(to_append);
 	new_str = (char *)malloc((len_s + len_ta + 1) * sizeof(char));
-	if (!new_str)
-		return (NULL);
-	if (self)
-		ft_strlcpy(new_str, self, len_s + 1);
-	if (to_append)
-		ft_strlcpy(new_str + len_s, to_append, len_ta + 1);
+	if (new_str)
+	{
+		if (self)
+			ft_strlcpy(new_str, self, len_s + 1);
+		if (to_append)
+			ft_strlcpy(new_str + len_s, to_append, len_ta + 1);
+	}
 	if (self)
 		free(self);
 	return (new_str);
