@@ -6,11 +6,11 @@
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/02 18:27:08 by tlegrand          #+#    #+#             */
-/*   Updated: 2022/12/05 13:18:43 by tlegrand         ###   ########.fr       */
+/*   Updated: 2022/12/08 13:51:32 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "get_next_line.h"
+#include "get_next_line_bonus.h"
 
 static int	ft_fill_buff(char **s_buff, int fd)
 {
