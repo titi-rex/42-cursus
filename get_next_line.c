@@ -6,7 +6,7 @@
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/28 16:40:14 by tlegrand          #+#    #+#             */
-/*   Updated: 2022/12/05 13:39:14 by tlegrand         ###   ########.fr       */
+/*   Updated: 2022/12/09 15:52:45 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ static char	*get_line(char *s_buff)
 	line = ft_substr(s_buff, 0, i);
 	return (line);
 }
-
+/*essayer de reduire getstock en mettant un marquer dqns get line */
 static char	*get_stock(char *s_buff)
 {
 	size_t	i;
@@ -73,7 +73,6 @@ static char	*get_stock(char *s_buff)
 		i++;
 	new = ft_substr(s_buff, i, ft_strlen(s_buff) - i);
 	free(s_buff);
-	s_buff = NULL;
 	return (new);
 }
 
@@ -87,6 +86,13 @@ char	*get_next_line(int fd)
 	if (ft_fill_buff(&s_buff, fd))
 		return (NULL);
 	line = get_line(s_buff);
+	if (!line)
+	{
+		if (s_buff)
+			free(s_buff);
+		s_buff = NULL;
+		return (NULL);
+	}
 	s_buff = get_stock(s_buff);
 	return (line);
 }

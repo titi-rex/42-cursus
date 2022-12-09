@@ -6,7 +6,7 @@
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/28 16:40:12 by tlegrand          #+#    #+#             */
-/*   Updated: 2022/12/05 13:42:12 by tlegrand         ###   ########.fr       */
+/*   Updated: 2022/12/09 15:45:47 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 # define GET_NEXT_LINE_H
 # include <unistd.h>
 # include <stdlib.h>
-# include <fcntl.h> 
 # include <limits.h>
 
 # ifndef BUFFER_SIZE
