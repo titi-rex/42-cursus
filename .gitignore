@@ -4,6 +4,10 @@
 *.obj
 *.elf
 
+# vscode files
+.json
+.vscode
+
 # Linker output
 *.ilk
 *.map
