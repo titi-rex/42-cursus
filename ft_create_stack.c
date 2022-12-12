@@ -6,7 +6,7 @@
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/12 21:24:00 by tlegrand          #+#    #+#             */
-/*   Updated: 2022/12/12 22:52:08 by tlegrand         ###   ########.fr       */
+/*   Updated: 2022/12/12 23:31:05 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -113,8 +113,9 @@ int	ft_create_stack(char **arg, int n_arg, t_stack **stack)
 	t_stack	*new;
 
 	i = 1;
-	while (i <= n_arg)
+	while (i < n_arg)
 	{
+		printf("ouin %d\n", i);
 		if (ft_is_valid(arg[i]) || ft_stacksearch(stack, ft_atoi(arg[i])))
 		{
 			ft_stackclear(stack);
@@ -127,7 +128,8 @@ int	ft_create_stack(char **arg, int n_arg, t_stack **stack)
 			return (ft_error(1));
 		}
 		ft_stackadd_back(stack, new);
+		i++;
 	}
-	i++;
+	printf("value : %d\n", (new)->value);
 	return (0);
 }

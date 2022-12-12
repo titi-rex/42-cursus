@@ -6,7 +6,7 @@
 #    By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/12/03 11:42:37 by tlegrand          #+#    #+#              #
-#    Updated: 2022/12/10 21:19:54 by tlegrand         ###   ########.fr        #
+#    Updated: 2022/12/12 23:20:24 by tlegrand         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,7 +14,8 @@ NAME		=	push_swap
 
 NAME_B		=	checker
 
-SRCS		= 	 \
+SRCS		= 	push_swap.c utils.c ft_atol.c \
+				ft_create_stack.c stack_operator_basic.c
 
 SRCS_B		=	 \
 
@@ -28,6 +29,8 @@ HEADER		=	push_swap.h \
 
 HEADER_B	=	\
 
+LIB			=	libft.a \
+
 FLAGS		=	-Wall -Wextra -Werror -I ${HEADER}
 
 RM			=	rm -rf
@@ -36,7 +39,7 @@ RM			=	rm -rf
 all		: 	${NAME}
 
 ${NAME}	:	${DIR_OBJS} ${OBJS}
-		${CC} ${FLAGS} ${OBJS} -o ${NAME}
+		${CC} ${FLAGS} ${OBJS} ${LIB} -o ${NAME}
 
 leaks	: ${DIR_OBJS} ${OBJS} ${OBJS_T}
 		leaks --atExit -- ./${NAME} 
