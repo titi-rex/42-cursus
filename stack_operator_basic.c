@@ -6,11 +6,11 @@
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/10 22:54:11 by tlegrand          #+#    #+#             */
-/*   Updated: 2022/12/10 22:54:20 by tlegrand         ###   ########.fr       */
+/*   Updated: 2022/12/12 19:38:49 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-# include "push_swap.h"
+#include "push_swap.h"
 
 /**
  * @brief function swapping the two first element of a stack
@@ -20,7 +20,7 @@
 void	ft_swap(t_list *head)
 {
 	t_list	*tmp;
-	
+
 	if (head->next && head->next->next)
 	{
 		tmp = head->next->next;
@@ -38,12 +38,12 @@ void	ft_swap(t_list *head)
 void	ft_push(t_list **head_src, t_list *head_dst)
 {
 	t_list	*tmp;
-	
+
 	if (head_src && *head_src && (*head_src)->next)
 	{
 		tmp = (*head_src)->next;
 		(*head_src)->next = head_dst;
-		head_src = tmp;
+		head_src = &tmp;
 	}
 }
 
@@ -63,9 +63,9 @@ void	ft_rotate(t_list **head)
 	tmp = (*head)->next;
 	(*head)->next = NULL;
 	ft_lstlast(*head)->next = *head;
-	head = tmp;
+	head = &tmp;
 }
- 
+
 /**
  * @brief simple function searching penultimate element
  * 
@@ -100,31 +100,3 @@ void	ft_rotate_reverse(t_list **head)
 	head = &(tmp->next->next);
 	tmp->next = NULL;
 }
-
-// v2 for ft_rotate_reverse
-// /**
-//  * @brief simple deletion function
-//  * 
-//  * @param data ptr to data to erase
-//  */
-// void	ft_del_data(void *data)
-// {
-// 	data = NULL;
-// }
-
-// /**
-//  * @brief shift down all element by one, by duplicating last then delete it
-//  * last becomme head
-//  * end stack integrety preserved 
-//  * 
-//  * @param head 
-//  */
-// void	ft_rotate_reverse(t_list **head)
-// {
-// 	t_list	*tmp;
-
-// 	if (!head)
-// 		return ;
-// 	ft_lstadd_front(head,ft_lstnew(ft_lstlast(*head)->content));
-// 	ft_lstdelone(ft_lstlast(*head), ft_del_data);
-// }
