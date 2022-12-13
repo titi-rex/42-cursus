@@ -6,7 +6,7 @@
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/12 21:24:00 by tlegrand          #+#    #+#             */
-/*   Updated: 2022/12/12 23:31:05 by tlegrand         ###   ########.fr       */
+/*   Updated: 2022/12/13 13:22:50 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ void	ft_stackadd_back(t_stack **head, t_stack *new)
 {
 	if (!head || !new)
 		return ;
-	if (!*head)
+	else if (!*head)
 		*head = new;
 	else
 		ft_stacklast(*head)->next = new;
@@ -90,13 +90,11 @@ void	ft_stackclear(t_stack **head)
  * @param value value to look for
  * @return t_stack* ptr to first element with value // NULL if none
  */
-t_stack	*ft_stacksearch(t_stack **head, int value)
+t_stack	*ft_stacksearch(t_stack *head, int value)
 {
-	if (!head)
-		return (NULL);
-	while (*head && (*head)->value != value)
-		(*head) = (*head)->next;
-	return (*head);
+	while (head && head->value != value)
+		head = head->next;
+	return (head);
 }
 
 /**
@@ -107,29 +105,41 @@ t_stack	*ft_stacksearch(t_stack **head, int value)
  * @param stack ptr to first element of the stack
  * @return int error value (0 == OK // 1 == ERROR)
  */
-int	ft_create_stack(char **arg, int n_arg, t_stack **stack)
+t_stack	*ft_create_stack(char **arg, int n_arg)
 {
 	int		i;
 	t_stack	*new;
+	t_stack	*start;
 
 	i = 1;
+	new = NULL;
+	start = new;
 	while (i < n_arg)
 	{
-		printf("ouin %d\n", i);
-		if (ft_is_valid(arg[i]) || ft_stacksearch(stack, ft_atoi(arg[i])))
+		if (ft_is_valid(arg[i]) || ft_stacksearch(start, ft_atoi(arg[i])))
 		{
-			ft_stackclear(stack);
+			ft_stackclear(&start);
 			return (ft_error(0));
 		}
 		new = ft_stacknew(ft_atoi(arg[i]));
 		if (!new)
 		{
-			ft_stackclear(stack);
+			ft_stackclear(&start);
 			return (ft_error(1));
 		}
-		ft_stackadd_back(stack, new);
+		ft_stackadd_back(&start, new);
 		i++;
 	}
-	printf("value : %d\n", (new)->value);
+	return (start);
+}
+
+int	ft_print_stack(t_stack *head)
+{
+	while (head)
+	{
+		printf("%d\n", head->value);
+		head = head->next;
+	}
+	printf("END\n");
 	return (0);
 }
