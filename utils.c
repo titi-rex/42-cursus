@@ -6,7 +6,7 @@
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/12 22:55:25 by tlegrand          #+#    #+#             */
-/*   Updated: 2022/12/13 13:10:58 by tlegrand         ###   ########.fr       */
+/*   Updated: 2022/12/13 13:49:48 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,4 +53,24 @@ void	*ft_error(int wit)
 	else if (wit == 1)
 		write(1, "Malloc fail\n", 12);
 	return (NULL);
+}
+
+/**
+ * @brief print the stack
+ * 
+ * @param head first element of stack
+ * @return int lenght writed
+ */
+int	ft_print_stack(t_stack *head)
+{
+	int		len;
+
+	len = 0;
+	while (head)
+	{
+		len += ft_printf("%d\n", head->value);
+		head = head->next;
+	}
+	len += ft_printf("END\n");
+	return (len);
 }

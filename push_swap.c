@@ -6,7 +6,7 @@
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/10 21:21:41 by tlegrand          #+#    #+#             */
-/*   Updated: 2022/12/13 13:23:03 by tlegrand         ###   ########.fr       */
+/*   Updated: 2022/12/13 14:21:59 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,7 @@ int	main(int argc, char **argv)
 	if (!stack_a)
 		return (1);
 	ft_print_stack(stack_a);
+	ft_solver1(stack_a);
 	ft_stackclear(&stack_a);
 	return (0);
 }

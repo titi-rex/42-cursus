@@ -6,7 +6,7 @@
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/10 22:54:11 by tlegrand          #+#    #+#             */
-/*   Updated: 2022/12/12 19:38:49 by tlegrand         ###   ########.fr       */
+/*   Updated: 2022/12/13 13:26:57 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,9 +17,9 @@
  * 
  * @param head first element of stack
  */
-void	ft_swap(t_list *head)
+void	ft_swap(t_stack *head)
 {
-	t_list	*tmp;
+	t_stack	*tmp;
 
 	if (head->next && head->next->next)
 	{
@@ -35,9 +35,9 @@ void	ft_swap(t_list *head)
  * @param head_src pointer to first element of source stack
  * @param head_dst top of destination stack
  */
-void	ft_push(t_list **head_src, t_list *head_dst)
+void	ft_push(t_stack **head_src, t_stack *head_dst)
 {
-	t_list	*tmp;
+	t_stack	*tmp;
 
 	if (head_src && *head_src && (*head_src)->next)
 	{
@@ -54,32 +54,16 @@ void	ft_push(t_list **head_src, t_list *head_dst)
  * 
  * @param head ptr to top of stack
  */
-void	ft_rotate(t_list **head)
+void	ft_rotate(t_stack **head)
 {
-	t_list	*tmp;
+	t_stack	*tmp;
 
 	if (!head)
 		return ;
 	tmp = (*head)->next;
 	(*head)->next = NULL;
-	ft_lstlast(*head)->next = *head;
+	ft_stacklast(*head)->next = *head;
 	head = &tmp;
-}
-
-/**
- * @brief simple function searching penultimate element
- * 
- * @param lst 
- * @return t_list* ptr to penutimate element
- */
-t_list	*ft_lst_penultimate(t_list *lst)
-{
-	if (lst && lst->next)
-	{
-		while (lst->next->next)
-			lst = lst->next;
-	}
-	return (lst);
 }
 
 /**
@@ -89,13 +73,13 @@ t_list	*ft_lst_penultimate(t_list *lst)
  * 
  * @param head 
  */
-void	ft_rotate_reverse(t_list **head)
+void	ft_rotate_reverse(t_stack **head)
 {
-	t_list	*tmp;
+	t_stack	*tmp;
 
 	if (!head)
 		return ;
-	tmp = ft_lst_penultimate(*head);
+	tmp = ft_stack_penultimate(*head);
 	tmp->next->next = *head;
 	head = &(tmp->next->next);
 	tmp->next = NULL;
