@@ -6,7 +6,7 @@
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/13 13:52:47 by tlegrand          #+#    #+#             */
-/*   Updated: 2022/12/13 15:01:00 by tlegrand         ###   ########.fr       */
+/*   Updated: 2022/12/13 17:52:29 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ int	ft_solver1(t_stack *stack_a)
 	start = &stack_a;
 	size = ft_stacksize(stack_a);
 	ft_stacklast(stack_a)->next = stack_a;
-	while (stack_a)
+	while (size > 0)
 	{
 		min = ft_searchmin(stack_a, size);
 		// printf("stack : %p\tvalue : %d\n", stack_a, stack_a->value);
@@ -41,10 +41,8 @@ int	ft_solver1(t_stack *stack_a)
 			stack_a = stack_a->next;
 		}
 		ft_printf("pb\n");
-		printf("stack supp : %d\n", stack_a->value);
 		ft_stackdel(start, min);
 		stack_a = stack_a->next;
-		printf("stack after supp : %d\n", stack_a->value);
 		size--;
 	}
 	return (0);
