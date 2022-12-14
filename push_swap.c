@@ -6,7 +6,7 @@
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/10 21:21:41 by tlegrand          #+#    #+#             */
-/*   Updated: 2022/12/13 17:42:52 by tlegrand         ###   ########.fr       */
+/*   Updated: 2022/12/14 18:37:19 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,13 +24,12 @@ int	main(int argc, char **argv)
 	t_stack	*stack_a;
 
 	stack_a = NULL;
-	printf("argc %d\n", argc);
 	if (argc == 1 || argc == 2)
 		return (0);
 	stack_a = ft_create_stack(argv, argc);
 	if (!stack_a)
 		return (1);
-	ft_print_stack(stack_a);
+//	ft_print_stack(stack_a);
 	ft_solver1(stack_a);
 	// ft_stackclear(&stack_a);
 	return (0);
