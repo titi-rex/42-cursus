@@ -6,7 +6,7 @@
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/12 22:55:25 by tlegrand          #+#    #+#             */
-/*   Updated: 2022/12/13 13:49:48 by tlegrand         ###   ########.fr       */
+/*   Updated: 2022/12/15 13:57:33 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,8 @@ int	ft_is_valid(char *arg)
 	wit = 0;
 	if (arg[wit] == '-')
 		wit++;
+	if (!ft_isdigit(arg[wit]))
+		return (1);
 	i = wit;
 	while (arg[i])
 	{

@@ -1,36 +1,41 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   push_swap.c                                        :+:      :+:    :+:   */
+/*   solver2.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/12/10 21:21:41 by tlegrand          #+#    #+#             */
-/*   Updated: 2022/12/15 18:23:39 by tlegrand         ###   ########.fr       */
+/*   Created: 2022/12/15 18:20:01 by tlegrand          #+#    #+#             */
+/*   Updated: 2022/12/15 19:01:58 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-/**
- * @brief main function, call others functions
- * 
- * @param argc number of argv
- * @param argv arg
- * @return int error value (0 == OK // 1 == ERROR)
- */
-int	main(int argc, char **argv)
+int	ft_solver2(t_stack **stack_a)
 {
-	t_stack	*stack_a;
+	t_stack			**stack_b;
+	t_stack			*current;
+	unsigned int	size;
+	int				i;
 
-	stack_a = NULL;
-	if (argc == 1 || argc == 2)
-		return (0);
-	stack_a = ft_create_stack(argv, argc);
-	if (!stack_a)
-		return (1);
-//	ft_print_stack(stack_a);
-	ft_solver1(&stack_a);
-	// ft_stackclear(&stack_a);
+	size = ft_stacksize(&stack_a);
+	current = *stack_a;
+	i = 0;
+	while (ft_is_sorted(stack_a))
+	{
+		while (current)
+		{
+			if ((current->value % 10) == i)
+			{
+				ft_printf("pb\n");
+				ft_push(&current, stack_b);
+			}
+			current = current->next;
+			ft_printf("ra\n");
+		}
+		while (iii)
+		i++;
+	}
 	return (0);
 }

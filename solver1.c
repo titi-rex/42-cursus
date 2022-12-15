@@ -1,20 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   solver.c                                           :+:      :+:    :+:   */
+/*   solver1.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/12/13 13:52:47 by tlegrand          #+#    #+#             */
-/*   Updated: 2022/12/14 18:36:22 by tlegrand         ###   ########.fr       */
+/*   Created: 2022/12/15 18:19:36 by tlegrand          #+#    #+#             */
+/*   Updated: 2022/12/15 18:24:49 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+
 
 #include "push_swap.h"
 
 void	print_deg(t_stack *head, int len)
 {
-	while (len>0)
+	while (len > 0)
 	{
 		printf("%d\n", head->value);
 		head = head->next;
@@ -22,28 +24,26 @@ void	print_deg(t_stack *head, int len)
 	}
 }
 
-int	ft_solver1(t_stack *stack_a)
+int	ft_solver1(t_stack **stack_a)
 {
 	int		min;
 	int		size;
 	int		i;
-	t_stack	**start;
 
-	start = &stack_a;
-	size = ft_stacksize(stack_a);
+	size = ft_stacksize(*stack_a);
 	i = size;
-	ft_stacklast(stack_a)->next = stack_a;
+	ft_stacklast(*stack_a)->next = *stack_a;
 	while (i > 0)
 	{
-		min = ft_searchmin(stack_a, i);
-		while (stack_a->value != min)
+		min = ft_searchmin(*stack_a, i);
+		while ((*stack_a)->value != min)
 		{
 			ft_printf("ra\n");
-			stack_a = stack_a->next;
+			*stack_a = (*stack_a)->next;
 		}
 		ft_printf("pb\n");
-		ft_stackdel(start, min);
-		stack_a = stack_a->next;
+		ft_stackdel(stack_a, min);
+		*stack_a = (*stack_a)->next;
 		i--;
 	}
 	while (size > 0)
@@ -54,6 +54,12 @@ int	ft_solver1(t_stack *stack_a)
 	return (0);
 }
 
+/**
+ * @brief count size of stack
+ * 
+ * @param head firts element of stack
+ * @return int size of stack
+ */
 int	ft_stacksize(t_stack *head)
 {
 	int	size;
@@ -67,6 +73,13 @@ int	ft_stacksize(t_stack *head)
 	return (size);
 }
 
+/**
+ * @brief search for minimum value stored in looped stack 
+ * 
+ * @param head first element of stack
+ * @param size size of stack
+ * @return int minimum value stored in stack
+ */
 int	ft_searchmin(t_stack *head, int size)
 {
 	int	min;
@@ -82,6 +95,13 @@ int	ft_searchmin(t_stack *head, int size)
 	return (min);
 }
 
+/**
+ * @brief delete element storing target value inside stack
+ * preserve stack integrity
+ * 
+ * @param head first element of stack
+ * @param target value to delete
+ */
 void	ft_stackdel(t_stack **head, int target)
 {
 	t_stack	*tmp;

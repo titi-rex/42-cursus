@@ -6,7 +6,7 @@
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/10 22:54:11 by tlegrand          #+#    #+#             */
-/*   Updated: 2022/12/13 13:26:57 by tlegrand         ###   ########.fr       */
+/*   Updated: 2022/12/15 18:34:39 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,17 +33,19 @@ void	ft_swap(t_stack *head)
  * @brief function pushing first element of a stack at top of a second stack
  * 
  * @param head_src pointer to first element of source stack
- * @param head_dst top of destination stack
+ * @param head_dst ptr to first element of destination stack
  */
-void	ft_push(t_stack **head_src, t_stack *head_dst)
+void	ft_push(t_stack **head_src, t_stack **head_dst)
 {
-	t_stack	*tmp;
+	t_stack	*tmp_src;
+	t_stack	*tmp_dst;
 
 	if (head_src && *head_src && (*head_src)->next)
 	{
-		tmp = (*head_src)->next;
-		(*head_src)->next = head_dst;
-		head_src = &tmp;
+		tmp_src = (*head_src)->next;
+		(*head_src)->next = *head_dst;
+		head_dst = head_src;
+		head_src = &tmp_src;
 	}
 }
 
