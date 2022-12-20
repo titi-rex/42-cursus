@@ -6,7 +6,7 @@
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/10 22:54:11 by tlegrand          #+#    #+#             */
-/*   Updated: 2022/12/15 18:34:39 by tlegrand         ###   ########.fr       */
+/*   Updated: 2022/12/16 15:46:01 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,13 +38,17 @@ void	ft_swap(t_stack *head)
 void	ft_push(t_stack **head_src, t_stack **head_dst)
 {
 	t_stack	*tmp_src;
-	t_stack	*tmp_dst;
 
+//	printf("z\n");
 	if (head_src && *head_src && (*head_src)->next)
 	{
+	//	printf("0\n");
 		tmp_src = (*head_src)->next;
+	//	printf("1\n");
 		(*head_src)->next = *head_dst;
+	//	printf("2\n");
 		head_dst = head_src;
+	//	printf("3\n");
 		head_src = &tmp_src;
 	}
 }
