@@ -6,7 +6,7 @@
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/10 21:22:41 by tlegrand          #+#    #+#             */
-/*   Updated: 2022/12/16 15:38:59 by tlegrand         ###   ########.fr       */
+/*   Updated: 2022/12/21 15:05:17 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ int			ft_is_valid(char *arg);
 long int	ft_atol(const char *str);
 
 void		ft_swap(t_stack *head);
-void		ft_push(t_stack **head_src, t_stack **head_dst);
+void		ft_push(t_stack **start_src, t_stack **start_dst);
 void		ft_rotate(t_stack **head);
 void		ft_rotate_reverse(t_stack **head);
 

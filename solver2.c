@@ -6,7 +6,7 @@
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/15 18:20:01 by tlegrand          #+#    #+#             */
-/*   Updated: 2022/12/15 19:01:58 by tlegrand         ###   ########.fr       */
+/*   Updated: 2022/12/21 14:31:30 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,24 +18,32 @@ int	ft_solver2(t_stack **stack_a)
 	t_stack			*current;
 	unsigned int	size;
 	int				i;
+	int				n;
+	int				tmp;
 
 	size = ft_stacksize(&stack_a);
 	current = *stack_a;
 	i = 0;
 	while (ft_is_sorted(stack_a))
 	{
-		while (current)
+		tmp = (*stack_a)->value;
+		ft_rotate(stack_a);
+		ft_printf("ra\n");
+		while ((*stack_a)->value != tmp)
 		{
-			if ((current->value % 10) == i)
-			{
-				ft_printf("pb\n");
-				ft_push(&current, stack_b);
-			}
-			current = current->next;
+			ft_rotate(stack_a);
 			ft_printf("ra\n");
+			if ((*stack_a)->value < tmp)
+			{
+				ft_push(stack_a, stack_b);
+				ft_printf("pb\n");
+			}
 		}
-		while (iii)
-		i++;
+		while (*stack_b)
+		{
+			ft_push(stack_b, stack_a);
+			ft_printf("pa\n");
+		}
 	}
 	return (0);
 }

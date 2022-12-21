@@ -6,7 +6,7 @@
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/10 22:54:11 by tlegrand          #+#    #+#             */
-/*   Updated: 2022/12/16 15:46:01 by tlegrand         ###   ########.fr       */
+/*   Updated: 2022/12/21 15:33:03 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,25 +32,25 @@ void	ft_swap(t_stack *head)
 /**
  * @brief function pushing first element of a stack at top of a second stack
  * 
- * @param head_src pointer to first element of source stack
- * @param head_dst ptr to first element of destination stack
+ * @param start_src pointer to first element of source stack
+ * @param start_dst ptr to first element of destination stack
  */
-void	ft_push(t_stack **head_src, t_stack **head_dst)
+void	ft_push(t_stack **start_src, t_stack **start_dst)
 {
+	t_stack	*tmp_next;
 	t_stack	*tmp_src;
+	t_stack	*tmp_dst;
 
-//	printf("z\n");
-	if (head_src && *head_src && (*head_src)->next)
-	{
-	//	printf("0\n");
-		tmp_src = (*head_src)->next;
-	//	printf("1\n");
-		(*head_src)->next = *head_dst;
-	//	printf("2\n");
-		head_dst = head_src;
-	//	printf("3\n");
-		head_src = &tmp_src;
-	}
+	tmp_src = *start_src;
+	tmp_dst = *start_dst;
+	if (!tmp_src)
+		return ;
+	tmp_next = tmp_src->next;
+	tmp_src->next = tmp_dst;
+	tmp_dst = tmp_src;
+	tmp_src = tmp_next;
+	*start_src = tmp_src;
+	*start_dst = tmp_dst;
 }
 
 /**
@@ -70,6 +70,7 @@ void	ft_rotate(t_stack **head)
 	(*head)->next = NULL;
 	ft_stacklast(*head)->next = *head;
 	head = &tmp;
+	ft_print_stack(*head);
 }
 
 /**

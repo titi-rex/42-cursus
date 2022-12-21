@@ -6,7 +6,7 @@
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/12 22:55:25 by tlegrand          #+#    #+#             */
-/*   Updated: 2022/12/15 13:57:33 by tlegrand         ###   ########.fr       */
+/*   Updated: 2022/12/21 15:26:45 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,6 +68,10 @@ int	ft_print_stack(t_stack *head)
 	int		len;
 
 	len = 0;
+	if (!head)
+	{
+		len += ft_printf("(null)\n", head);
+	}
 	while (head)
 	{
 		len += ft_printf("%d\n", head->value);
