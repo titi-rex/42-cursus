@@ -6,17 +6,17 @@
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/15 18:20:01 by tlegrand          #+#    #+#             */
-/*   Updated: 2022/12/21 14:31:30 by tlegrand         ###   ########.fr       */
+/*   Updated: 2022/12/25 15:59:16 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
-
+/*
 int	ft_solver2(t_stack **stack_a)
 {
-	t_stack			**stack_b;
+	t_stack			**stack_b = NULL;
 	t_stack			*current;
-	unsigned int	size;
+	// unsigned int	size;
 	int				i;
 	int				n;
 	int				tmp;
@@ -47,3 +47,4 @@ int	ft_solver2(t_stack **stack_a)
 	}
 	return (0);
 }
+*/

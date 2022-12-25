@@ -6,7 +6,7 @@
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/10 22:54:11 by tlegrand          #+#    #+#             */
-/*   Updated: 2022/12/21 15:33:03 by tlegrand         ###   ########.fr       */
+/*   Updated: 2022/12/25 15:12:27 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,18 +15,23 @@
 /**
  * @brief function swapping the two first element of a stack
  * 
- * @param head first element of stack
+ * @param start ptr to first element of stack
  */
-void	ft_swap(t_stack *head)
+void	ft_swap(t_stack **start)
 {
+	t_stack	*remain;
 	t_stack	*tmp;
-
-	if (head->next && head->next->next)
-	{
-		tmp = head->next->next;
-		head->next->next = head;
-		head->next = tmp;
-	}
+	t_stack	*head;
+	
+	head = *start;
+	if (!head || !(head->next))
+		return ;
+	remain = head->next->next;
+	tmp = head;
+	head = head->next;
+	head->next = tmp;
+	head->next->next = remain;
+	*start = head;
 }
 
 /**
@@ -58,19 +63,21 @@ void	ft_push(t_stack **start_src, t_stack **start_dst)
  * head becomes last 
  * end stack integrety preserved
  * 
- * @param head ptr to top of stack
+ * @param start ptr to top of stack
  */
-void	ft_rotate(t_stack **head)
+void	ft_rotate(t_stack **start)
 {
 	t_stack	*tmp;
+	t_stack	*head;
 
-	if (!head)
+	if (!start)
 		return ;
-	tmp = (*head)->next;
-	(*head)->next = NULL;
-	ft_stacklast(*head)->next = *head;
-	head = &tmp;
-	ft_print_stack(*head);
+	head = *start;	
+	tmp = head->next;
+	ft_stacklast(head)->next = head;
+	head->next = NULL;
+	head = tmp;
+	*start = head;
 }
 
 /**
@@ -78,16 +85,19 @@ void	ft_rotate(t_stack **head)
  * last becomme head
  * end stack integrety preserved 
  * 
- * @param head 
+ * @param start 
  */
-void	ft_rotate_reverse(t_stack **head)
+void	ft_rotate_reverse(t_stack **start)
 {
 	t_stack	*tmp;
+	t_stack	*head;
 
-	if (!head)
+	if (!start)
 		return ;
-	tmp = ft_stack_penultimate(*head);
-	tmp->next->next = *head;
-	head = &(tmp->next->next);
+	head = *start;
+	tmp = ft_stack_penultimate(head);
+	tmp->next->next = head;
+	head = tmp->next;
 	tmp->next = NULL;
+	*start = head;
 }

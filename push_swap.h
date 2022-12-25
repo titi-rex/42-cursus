@@ -6,7 +6,7 @@
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/10 21:22:41 by tlegrand          #+#    #+#             */
-/*   Updated: 2022/12/21 15:05:17 by tlegrand         ###   ########.fr       */
+/*   Updated: 2022/12/25 15:56:55 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,6 @@
 # include <stdlib.h>
 # include <limits.h>
 # include "libft.h"
-# include "ft_printf.h"
 # include <stdio.h>
 
 typedef struct s_stack
@@ -38,14 +37,17 @@ void		*ft_error(int wit);
 int			ft_is_valid(char *arg);
 long int	ft_atol(const char *str);
 
-void		ft_swap(t_stack *head);
+void		ft_swap(t_stack **start);
+void		ft_swap_value(t_stack *head);
 void		ft_push(t_stack **start_src, t_stack **start_dst);
-void		ft_rotate(t_stack **head);
-void		ft_rotate_reverse(t_stack **head);
+void		ft_rotate(t_stack **start);
+void		ft_rotate_reverse(t_stack **start);
 
 int			ft_stacksize(t_stack *head);
 int			ft_searchmin(t_stack *head, int size);
-int			ft_solver1(t_stack **stack_a);
 void		ft_stackdel(t_stack **head, int target);
+
+int			ft_solver1(t_stack **stack_a);
+int			ft_solver2(t_stack **stack_a);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/12 22:55:25 by tlegrand          #+#    #+#             */
-/*   Updated: 2022/12/21 15:26:45 by tlegrand         ###   ########.fr       */
+/*   Updated: 2022/12/25 15:12:39 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,4 +79,20 @@ int	ft_print_stack(t_stack *head)
 	}
 	len += ft_printf("END\n");
 	return (len);
+}
+
+/**
+ * @brief function swapping the value of two first element of a stack
+ * 
+ * @param head first element of stack
+ */
+void	ft_swap_value(t_stack *head)
+{
+	int	tmp;
+	
+	if (!head || !(head->next) || !(head->next->next))
+		return ;
+	tmp = head->value;
+	head->value = head->next->value;
+	head->next->value = tmp;
 }

@@ -6,7 +6,7 @@
 #    By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/12/03 11:42:37 by tlegrand          #+#    #+#              #
-#    Updated: 2022/12/15 18:19:42 by tlegrand         ###   ########.fr        #
+#    Updated: 2022/12/25 15:57:48 by tlegrand         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,7 +14,7 @@ NAME		=	push_swap
 
 NAME_B		=	checker
 
-SRCS		= 	push_swap.c utils.c ft_atol.c solver1.c\
+SRCS		= 	push_swap.c utils.c ft_atol.c solver1.c solver2.c\
 				ft_create_stack.c stack_operator_basic.c stack_manipulator.c \
 
 SRCS_B		=	 \
@@ -29,7 +29,7 @@ HEADER		=	push_swap.h \
 
 HEADER_B	=	\
 
-LIB			=	libft.a libftprintf.a\
+LIB			=	libft.a \
 
 FLAGS		=	-Wall -Wextra -Werror -I ${HEADER}
 
