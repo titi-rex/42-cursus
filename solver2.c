@@ -6,7 +6,7 @@
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/15 18:20:01 by tlegrand          #+#    #+#             */
-/*   Updated: 2023/01/11 18:23:51 by tlegrand         ###   ########.fr       */
+/*   Updated: 2023/01/11 18:56:12 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -164,6 +164,7 @@ int	ft_partition(t_stack **start_a, int start, int end)
 		i++;
 		current = current->next;
 	}
+	ft_printf(" le i qa la con is %d\n", i);
 	if (i != pivot)
 	{
 		wit = pivot - i;
@@ -171,8 +172,8 @@ int	ft_partition(t_stack **start_a, int start, int end)
 		{
 			while (wit > 0)
 			{
-				ft_rotate(start_a);
-				ft_printf("ra\n");
+				ft_rotate_reverse(start_a);
+				ft_printf("rra\n");
 				wit--;
 			}
 		}
@@ -180,12 +181,14 @@ int	ft_partition(t_stack **start_a, int start, int end)
 		{
 			while (wit < 0)
 			{
-				ft_rotate_reverse(start_a);
-				ft_printf("rra\n");
+				ft_rotate(start_a);
+				ft_printf("ra\n");
 				wit++;
 			}
 		}
 	}
+	ft_printf("fin partition\n");
+	ft_printf("posipvot found is %d\n", pivot);
 	double_print(*start_a, stack_b);
 	return (pivot);
 }
