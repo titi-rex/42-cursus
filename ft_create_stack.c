@@ -6,7 +6,7 @@
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/12 21:24:00 by tlegrand          #+#    #+#             */
-/*   Updated: 2022/12/16 15:39:03 by tlegrand         ###   ########.fr       */
+/*   Updated: 2023/01/11 16:41:58 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,19 +30,11 @@ t_stack	*ft_stacknew(int value)
 	return (new);
 }
 
-/**
- * @brief create a stack with a 2d aray of char
- * 
- * @param arg 2d array of char contening value for stack
- * @param n_arg number of arg 
- * @param stack ptr to first element of the stack
- * @return int error value (0 == OK // 1 == ERROR)
- */
-t_stack	*ft_create_stack(char **arg, int n_arg)
+t_stack	*ft_init_stack(char **arg, int n_arg)
 {
-	int		i;
 	t_stack	*new;
 	t_stack	*start;
+	int		i;
 
 	i = 1;
 	new = NULL;
@@ -64,4 +56,62 @@ t_stack	*ft_create_stack(char **arg, int n_arg)
 		i++;
 	}
 	return (start);
+}
+
+int	ft_findex(int target, t_stack *stack)
+{
+	int	i;
+
+	i = 1;
+	while (stack)
+	{
+		if (stack->value < target)
+			i++;
+		stack = stack->next;
+	}
+	return (i);
+}
+
+t_stack	*ft_index(t_stack *stack)
+{
+	t_stack	*start;
+	t_stack	*new;
+	t_stack	*current;
+
+	current = stack;
+	new = NULL;
+	start = new;
+	while (current)
+	{
+		new = ft_stacknew(ft_findex(current->value, stack));
+		if (!new)
+		{
+			ft_stackclear(&start);
+			return (ft_error(1));
+		}
+		ft_stackadd_back(&start, new);
+		current = current->next;
+	}
+	return (start);
+}
+
+t_stack	*ft_create_stack(char **arg, int n_arg)
+{
+	t_stack	*start;
+	t_stack	*start_tmp;
+
+	start_tmp = ft_init_stack(arg, n_arg);
+	start = ft_index(start_tmp);
+	ft_stackclear(&start_tmp);
+	return (start);
+}
+
+void	ft_stackadd_front(t_stack **stack, t_stack *new)
+{
+	if (stack)
+	{
+		if (*stack)
+			new->next = *stack;
+		*stack = new;
+	}
 }

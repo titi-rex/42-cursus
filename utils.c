@@ -6,7 +6,7 @@
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/12 22:55:25 by tlegrand          #+#    #+#             */
-/*   Updated: 2022/12/25 15:12:39 by tlegrand         ###   ########.fr       */
+/*   Updated: 2023/01/11 14:34:30 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,65 @@ void	*ft_error(int wit)
 }
 
 /**
+ * @brief check is the stack is sorted
+ * 
+ * @param stack stack to check
+ * @return int 0 == sorted // 1 == not sorted
+ */
+int	ft_is_sorted(t_stack *stack)
+{
+	while (stack && stack->next && stack->value < stack->next->value)
+		stack = stack->next;
+	if (stack->next)
+		return (1);
+	return (0);
+}
+
+/**
+ * @brief function swapping the value of two first element of a stack
+ * 
+ * @param head first element of stack
+ */
+void	ft_swap_value(t_stack *head)
+{
+	int	tmp;
+
+	if (!head || !(head->next) || !(head->next->next))
+		return ;
+	tmp = head->value;
+	head->value = head->next->value;
+	head->next->value = tmp;
+}
+
+/**
+ * @brief print two stack side by side, even if one stack is empty
+ * 
+ * @param a stack a
+ * @param b stack b
+ */
+void	double_print(t_stack *a, t_stack *b)
+{
+	while (a || b)
+	{
+		if (a)
+		{
+			ft_printf("|%d|\t\t", a->value);
+			a = a->next;
+		}
+		else
+			ft_printf("|end|\t\t");
+		if (b)
+		{
+			ft_printf("|%d|\t\t", b->value);
+			b = b->next;
+		}
+		else
+			ft_printf("|end|\t\t");
+		printf("\n");
+	}
+}
+
+/**
  * @brief print the stack
  * 
  * @param head first element of stack
@@ -79,20 +138,4 @@ int	ft_print_stack(t_stack *head)
 	}
 	len += ft_printf("END\n");
 	return (len);
-}
-
-/**
- * @brief function swapping the value of two first element of a stack
- * 
- * @param head first element of stack
- */
-void	ft_swap_value(t_stack *head)
-{
-	int	tmp;
-	
-	if (!head || !(head->next) || !(head->next->next))
-		return ;
-	tmp = head->value;
-	head->value = head->next->value;
-	head->next->value = tmp;
 }

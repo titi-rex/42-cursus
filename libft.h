@@ -6,7 +6,7 @@
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/08 13:43:09 by tlegrand          #+#    #+#             */
-/*   Updated: 2022/12/25 15:39:57 by tlegrand         ###   ########.fr       */
+/*   Updated: 2023/01/05 10:38:41 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,11 +81,11 @@ void	ft_lstiter(t_list *lst, void (*f)(void *));
 t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *));
 
 /* ft_printf functions */
-int	ft_printf(const char *str, ...);
-int	ft_putchar(char c);
-int	ft_putstr(char *s);
-int	ft_putnbr(int n);
-int	ft_putnbr_base(long int nbr, char *base);
+int		ft_printf(const char *str, ...);
+int		ft_putchar(char c);
+int		ft_putstr(char *s);
+int		ft_putnbr(int n);
+int		ft_putnbr_base(long int nbr, char *base);
 
 /* gnl functions */
 # ifndef BUFFER_SIZE

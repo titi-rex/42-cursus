@@ -6,7 +6,7 @@
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/13 13:48:15 by tlegrand          #+#    #+#             */
-/*   Updated: 2022/12/13 14:26:26 by tlegrand         ###   ########.fr       */
+/*   Updated: 2023/01/09 17:33:58 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,4 +93,18 @@ void	ft_stackclear(t_stack **head)
 		*head = buff;
 	}
 	head = NULL;
+}
+
+int	ft_stackmax(t_stack *stack)
+{
+	int	max;
+
+	max = stack->value;
+	while (stack)
+	{
+		if (stack->value > max)
+			max = stack->value;
+		stack = stack->next;
+	}
+	return (max);
 }

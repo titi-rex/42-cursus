@@ -6,7 +6,7 @@
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/10 22:54:11 by tlegrand          #+#    #+#             */
-/*   Updated: 2022/12/25 15:12:27 by tlegrand         ###   ########.fr       */
+/*   Updated: 2023/01/06 12:34:12 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ void	ft_swap(t_stack **start)
 	t_stack	*remain;
 	t_stack	*tmp;
 	t_stack	*head;
-	
+
 	head = *start;
 	if (!head || !(head->next))
 		return ;
@@ -45,17 +45,24 @@ void	ft_push(t_stack **start_src, t_stack **start_dst)
 	t_stack	*tmp_next;
 	t_stack	*tmp_src;
 	t_stack	*tmp_dst;
+	int		wit;
 
+	if (!start_src)
+		return ;
+	wit = 0;
+	if (((*start_src)->next) == NULL)
+		wit = 1;
 	tmp_src = *start_src;
 	tmp_dst = *start_dst;
-	if (!tmp_src)
-		return ;
 	tmp_next = tmp_src->next;
 	tmp_src->next = tmp_dst;
 	tmp_dst = tmp_src;
 	tmp_src = tmp_next;
-	*start_src = tmp_src;
 	*start_dst = tmp_dst;
+	if (wit == 1)
+		*start_src = NULL;
+	else
+		*start_src = tmp_src;
 }
 
 /**
@@ -72,7 +79,7 @@ void	ft_rotate(t_stack **start)
 
 	if (!start)
 		return ;
-	head = *start;	
+	head = *start;
 	tmp = head->next;
 	ft_stacklast(head)->next = head;
 	head->next = NULL;
