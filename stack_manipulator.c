@@ -6,7 +6,7 @@
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/13 13:48:15 by tlegrand          #+#    #+#             */
-/*   Updated: 2023/01/09 17:33:58 by tlegrand         ###   ########.fr       */
+/*   Updated: 2023/01/13 14:21:02 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,4 +107,18 @@ int	ft_stackmax(t_stack *stack)
 		stack = stack->next;
 	}
 	return (max);
+}
+
+int	ft_stackmin(t_stack *stack)
+{
+	int	min;
+
+	min = stack->value;
+	while (stack)
+	{
+		if (stack->value < min)
+			min = stack->value;
+		stack = stack->next;
+	}
+	return (min);
 }

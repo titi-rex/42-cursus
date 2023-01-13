@@ -6,7 +6,7 @@
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/10 21:21:41 by tlegrand          #+#    #+#             */
-/*   Updated: 2023/01/11 18:16:53 by tlegrand         ###   ########.fr       */
+/*   Updated: 2023/01/13 15:17:13 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,6 @@ int	main(int argc, char **argv)
 {
 	t_stack	*stack_a;
 	t_stack	**start_a;
-	// int		i;
-	// int		j;
 
 	if (argc == 1 || argc == 2)
 		return (0);

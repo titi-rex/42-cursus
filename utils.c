@@ -6,7 +6,7 @@
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/12 22:55:25 by tlegrand          #+#    #+#             */
-/*   Updated: 2023/01/11 14:34:30 by tlegrand         ###   ########.fr       */
+/*   Updated: 2023/01/13 14:49:49 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,12 +63,25 @@ void	*ft_error(int wit)
  * @param stack stack to check
  * @return int 0 == sorted // 1 == not sorted
  */
-int	ft_is_sorted(t_stack *stack)
+int	ft_is_sorted(t_stack *stack, int start, int end)
 {
-	while (stack && stack->next && stack->value < stack->next->value)
+	int	i;
+
+	if (!stack)
+		return (0);
+	i = 1;
+	while (i < start)
+	{
 		stack = stack->next;
-	if (stack->next)
-		return (1);
+		i++;
+	}
+	while (stack && stack->next && i <= end)
+	{
+		if (stack->value > stack->next->value)
+			return (1);
+		stack = stack->next;
+		i++;
+	}
 	return (0);
 }
 

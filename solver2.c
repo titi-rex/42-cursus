@@ -6,103 +6,84 @@
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/15 18:20:01 by tlegrand          #+#    #+#             */
-/*   Updated: 2023/01/11 18:56:12 by tlegrand         ###   ########.fr       */
+/*   Updated: 2023/01/13 17:32:17 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
-/* passage aux indices -> tmp choisi par division 
-faire fonction search chemin 
-faire plusieurs passage d un cou p
-*/
-/*
-t_stack	*ft_create_border(int size)
-{
-	t_stack	*new;
-	t_stack *start;
-	int		tmp;
-	int		i;
-
-	new = ft_stacknew(size);
-	if (!new)
-		return (ft_error(ft_error(1)));
-	ft_stackadd_front(&start, new);
-	while (i > size /10)
-	{
-		
-	}
-	return (start);
-}
-
-int	ft_solver2(t_stack **stack_a)
-{
-	t_stack			**stack_b;
-	t_stack			*start_b;
-	t_stack			*border;
-	t_stack			*tmplst;
-	int				tmp;
-	int				tour;
-
-	tour = 0;
-	start_b = NULL;
-	border = NULL;
-	tmplst = NULL;
-	stack_b = &start_b;
-	tmp = 0;
-	ft_stackadd_front(&border, ft_stacknew(ft_stacklast(*stack_a)->value));
-	while (ft_is_sorted(*stack_a) && tour < 10)
-	{
-		tmp = ft_find_pivot(tmplst, *stack_a);
-		printf("tmp is : %d\n", tmp);
-		printf("border is : %d\n", border->value);
-		while ((*stack_a)->value != border->value)
-		{
-			if ((*stack_a)->value < tmp)
-			{
-				ft_push(stack_a, stack_b);
-				ft_printf("pb\n");
-				double_print(*stack_a, *stack_b);
-			}
-			else
-			{
-				ft_rotate(stack_a);
-				ft_printf("ra\n");
-				double_print(*stack_a, *stack_b);
-			}
-		}
-		if ((*stack_a)->value < tmp)
-		{
-			ft_push(stack_a, stack_b);
-			ft_printf("pb\n");
-			double_print(*stack_a, *stack_b);
-		}
-		printf("2 nd etape \n");
-		while ((*stack_a)->value != tmp)
-		{
-			ft_rotate(stack_a);
-			ft_printf("ra\n");
-			double_print(*stack_a, *stack_b);
-		}
-		while (*stack_b)
-		{
-			ft_push(stack_b, stack_a);
-			ft_printf("pa\n");
-			double_print(*stack_a, *stack_b);
-		}
-		tour++;
-		ft_stackadd_front(&border, ft_stacknew(tmp));
-
-	}
-	printf("nbr tour : %d\n", tour);
-	return (0);
-}*/
-
-	//		printf("curr : %d\ttmp : %d\n", (*stack_a)->value, tmp[i]);
-	//	printf("2 nd etape \n");
 
 	//			if (!ft_is_sorted(*stack_a))
 	//			break ;
 	//	ha<3
+
+void	ft_insert_sort_b(t_stack **start_a, t_stack **start_b)
+{
+	if (!(*start_b) || (*start_a)->value > ft_stackmax(*start_b))
+	{
+		ft_push(start_a, start_b);
+		ft_printf("pb\n");
+		double_print(*start_a, *start_b);
+	}
+	else if ((*start_a)->value < ft_stackmin(*start_b))
+	{
+		ft_push(start_a, start_b);
+		ft_printf("pb\n");
+		ft_rotate(start_b);
+		ft_printf("rb\n");
+		double_print(*start_a, *start_b);
+	}
+	else
+	{
+		while ((*start_b)->value > (*start_a)->value)
+		{
+			ft_rotate(start_b);
+			ft_printf("rb\n");
+		}
+		ft_push(start_a, start_b);
+		ft_printf("pb\n");
+		while ((*start_b)->value != ft_stackmax(*start_b))
+		{
+			ft_rotate(start_b);
+			ft_printf("rb\n");
+		}
+		double_print(*start_a, *start_b);
+	}
+}
+
+void	ft_insert_sort_a(t_stack **start_a, t_stack **start_b, int pivot)
+{
+	int	n;
+	int	i;
+
+	if (!(*start_a) || (*start_b)->value < pivot)
+	{
+		ft_push(start_b, start_a);
+		ft_printf("pa\n");
+		double_print(*start_a, *start_b);
+	}
+	else
+	{
+		n = 1;
+		i = 0;
+		while ((*start_a)->value != pivot)
+		{
+			ft_rotate(start_a);
+			ft_printf("ra\n");
+			n++;
+		}
+		ft_rotate(start_a);
+		ft_printf("ra\n");
+		ft_push(start_b, start_a);
+		ft_printf("pb\n");
+		while (i < n)
+		{
+			ft_rotate_reverse(start_a);
+			ft_printf("rra\n");
+			i++;
+		}
+		double_print(*start_a, *start_b);
+	}
+}
 
 int	ft_partition(t_stack **start_a, int start, int end)
 {
@@ -112,13 +93,17 @@ int	ft_partition(t_stack **start_a, int start, int end)
 	int		tmp;
 	int		i;
 	int		wit;
+	int		pivotvu;
 
 	if (start >= end)
 		return (-1);
 	stack_b = NULL;
 	i = 1;
+	pivotvu = 0;
 	pivot = start;
 	tmp = (start + end) / 2 + 1;
+	if (tmp == end)
+		tmp--;
 	ft_printf("start is %d\tend is %d\n", start, end);
 	ft_printf("tmp is : %d\n", tmp);
 	double_print(*start_a, stack_b);
@@ -132,15 +117,32 @@ int	ft_partition(t_stack **start_a, int start, int end)
 	{
 		if ((*start_a)->value < tmp)
 		{
-			ft_push(start_a, &stack_b);
-			ft_printf("pb\n");
+			if (start - end <= 11)
+				ft_insert_sort_b(start_a, &stack_b);
+			else
+			{
+				ft_push(start_a, &stack_b);
+				ft_printf("pb\n");
+				double_print(*start_a, stack_b);
+			}
+		}
+		else if ((*start_a)->value == tmp)
+		{
+			pivotvu = 1;
+			ft_rotate(start_a);
+			ft_printf("ra\n");
 			double_print(*start_a, stack_b);
 		}
 		else
 		{
-			ft_rotate(start_a);
-			ft_printf("ra\n");
-			double_print(*start_a, stack_b);
+			if (pivotvu == 0)
+				ft_insert_sort_b(start_a, &stack_b);
+			else
+			{
+				ft_rotate(start_a);
+				ft_printf("ra\n");
+				double_print(*start_a, stack_b);
+			}
 		}
 		i++;
 	}
@@ -152,8 +154,7 @@ int	ft_partition(t_stack **start_a, int start, int end)
 	}
 	while (stack_b)
 	{
-		ft_push(&stack_b, start_a);
-		ft_printf("pa\n");
+		ft_insert_sort_a(start_a, &stack_b, tmp);
 		double_print(*start_a, stack_b);
 		pivot++;
 	}
@@ -190,25 +191,61 @@ int	ft_partition(t_stack **start_a, int start, int end)
 	ft_printf("fin partition\n");
 	ft_printf("posipvot found is %d\n", pivot);
 	double_print(*start_a, stack_b);
+	ft_stackclear(&stack_b);
 	return (pivot);
+}
+
+void	ft_little_sort(t_stack **start_a, int start, int end)
+{
+	t_stack	*stack_b;
+	int		i;
+
+	i = 1;
+	stack_b = NULL;
+	while (i < start)
+	{
+		ft_rotate(start_a);
+		ft_printf("ra\n");
+		i++;
+	}
+	while (i <= end)
+	{
+		ft_insert_sort_b(start_a, &stack_b);
+		i++;
+	}
+	while (stack_b)
+	{
+		ft_push(&stack_b, start_a);
+		ft_printf("pa\n");
+	}
+	while ((*start_a)->value != ft_stackmax(*start_a))
+	{
+		ft_rotate(start_a);
+		ft_printf("ra\n");
+	}
+	ft_rotate(start_a);
+	ft_printf("ra\n");
 }
 
 int	ft_quicksort(t_stack **start_a, int start, int end)
 {
 	int	pivot;
 
-	if (!ft_is_sorted(*start_a))
+	if (!ft_is_sorted(*start_a, start, end))
 		return (0);
 	if (start < end)
 	{
 		pivot = ft_partition(start_a, start, end);
 		ft_quicksort(start_a, start, pivot - 1);
-		ft_quicksort(start_a, pivot + 1, end);
+		if (end == ft_stackmax(*start_a) && end - (pivot + 1) <= 4)
+			ft_little_sort(start_a, pivot + 1, end);
+		else
+			ft_quicksort(start_a, pivot + 1, end);
 	}
 	return (0);
 }
 
-int	ft_solver2(t_stack **start_a)
+int	ft_solverouin(t_stack **start_a)
 {
 	int	size;
 
