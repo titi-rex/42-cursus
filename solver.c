@@ -6,12 +6,20 @@
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/13 17:28:08 by tlegrand          #+#    #+#             */
-/*   Updated: 2023/01/16 19:01:13 by tlegrand         ###   ########.fr       */
+/*   Updated: 2023/01/16 22:21:44 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
+/**
+ * @brief get the number of rotate needed for reach a value in range
+ * 
+ * @param stack stack to search in
+ * @param min min range
+ * @param max max range
+ * @return int number of rotate needed // -1 if not possible
+ */
 int	ft_len_r(t_stack *stack, int min, int max)
 {
 	int	len;
@@ -27,6 +35,14 @@ int	ft_len_r(t_stack *stack, int min, int max)
 	return (len);
 }
 
+/**
+ * @brief get the number of reverse rotate needed for reach a value in range
+ * 
+ * @param stack stack to search in
+ * @param min min range
+ * @param max max range
+ * @return int int number of reverse rotate needed // -1 if not possible
+ */
 int	ft_len_rr(t_stack *stack, int min, int max)
 {
 	int	len;
@@ -50,6 +66,17 @@ int	ft_len_rr(t_stack *stack, int min, int max)
 	return (len);
 }
 
+
+/**
+ * @brief find the nearest element in desired range 
+ * can be used in stack a or b thank to name param
+ * 
+ * @param start ptr to first element of stack
+ * @param min min range
+ * @param max max range
+ * @param name stack indicator
+ * @return int return value : 1 errorr // 0 ok
+ */
 int	ft_next(t_stack **start, int min, int max, char name)
 {
 	int	len;
@@ -76,6 +103,15 @@ int	ft_next(t_stack **start, int min, int max, char name)
 	return (0);
 }
 
+/**
+ * @brief inser_sort algo by rotating src
+ * search for desired value in src and push it to dst
+ * can be used to pa or pb thank to name param
+ * 
+ * @param start_src ptr to src stack
+ * @param name_src name of src stack
+ * @param start_dst ptr to dst stack
+ */
 void	ft_insert_sort(t_stack **start_src, char name_src, t_stack **start_dst)
 {
 	int	target;
@@ -94,6 +130,14 @@ void	ft_insert_sort(t_stack **start_src, char name_src, t_stack **start_dst)
 	}
 }
 
+/**
+ * @brief insert_sort algo by rotating dst
+ * search optimal position for top src value in dst stack
+ * only use from a to b
+ * 
+ * @param start_a ptr to a stack
+ * @param start_b ptr to b stack
+ */
 void	ft_insert_sort_dst(t_stack **start_a, t_stack **start_b)
 {
 	if (!(*start_b) || (*start_a)->value > ft_stackmax(*start_b))
@@ -110,6 +154,15 @@ void	ft_insert_sort_dst(t_stack **start_a, t_stack **start_b)
 	}
 }
 
+/**
+ * @brief quicksort algo
+ * push all value inside current chunk from a to b then again wit a new chunk
+ * insert_sort for 1rst and last chunk
+ * when a is empty, push back from b to a using insert_sort
+ * 
+ * @param start_a ptr to stack a
+ * @param len size of stack a
+ */
 void	ft_quicksort(t_stack **start_a, int len)
 {
 	t_stack	*stack_b;
