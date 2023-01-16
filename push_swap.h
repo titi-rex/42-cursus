@@ -6,7 +6,7 @@
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/10 21:22:41 by tlegrand          #+#    #+#             */
-/*   Updated: 2023/01/16 17:51:47 by tlegrand         ###   ########.fr       */
+/*   Updated: 2023/01/16 18:46:45 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,7 @@ void		ft_ra(t_stack **start, int n);
 void		ft_rb(t_stack **start, int n);
 void		ft_rra(t_stack **start, int n);
 void		ft_rrb(t_stack **start, int n);
+void		ft_push_p(t_stack **start_a, t_stack **start_b, int n, char name);
 
 int			ft_stacksize(t_stack *head);
 int			ft_searchmin(t_stack *head, int size);
@@ -58,9 +59,5 @@ void		ft_stackdel(t_stack **head, int target);
 
 int			ft_is_sorted(t_stack *stack, int start, int end);
 void		ft_quicksort(t_stack **start_a, int len);
-
-int			ft_solver1(t_stack **stack_a);
-int			ft_solver2(t_stack **stack_a);
-int			ft_partition(t_stack **start_a, int start, int end);
 
 #endif

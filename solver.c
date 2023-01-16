@@ -6,7 +6,7 @@
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/13 17:28:08 by tlegrand          #+#    #+#             */
-/*   Updated: 2023/01/16 17:50:40 by tlegrand         ###   ########.fr       */
+/*   Updated: 2023/01/16 19:01:13 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,21 +69,45 @@ int	ft_next(t_stack **start, int min, int max, char name)
 	else
 	{
 		if (name == 'a')
-			ft_rra(start, len);
+			ft_rra(start, len_rr);
 		else
-			ft_rrb(start, len);
+			ft_rrb(start, len_rr);
 	}
 	return (0);
 }
 
-void	ft_insert_sort(t_stack **start_src, t_stack **start_dst)
+void	ft_insert_sort(t_stack **start_src, char name_src, t_stack **start_dst)
 {
 	int	target;
 
-	target = ft_stackmax(*start_src);
-	ft_next(start_src, target, target, 'b');
-	ft_push(start_src, start_dst);
-	ft_printf("pa\n");
+	if (name_src == 'a')
+	{
+		target = ft_stackmin(*start_src);
+		ft_next(start_src, target, target, 'a');
+		ft_push_p(start_src, start_dst, 1, 'b');
+	}
+	else
+	{
+		target = ft_stackmax(*start_src);
+		ft_next(start_src, target, target, 'b');
+		ft_push_p(start_src, start_dst, 1, 'a');
+	}
+}
+
+void	ft_insert_sort_dst(t_stack **start_a, t_stack **start_b)
+{
+	if (!(*start_b) || (*start_a)->value > ft_stackmax(*start_b))
+		ft_push_p(start_a, start_b, 1, 'b');
+	else if ((*start_a)->value < ft_stackmin(*start_b))
+	{
+		ft_push_p(start_a, start_b, 1, 'b');
+		ft_rb(start_b, 1);
+	}
+	else
+	{
+		ft_next(start_b, (*start_a)->value - 1, (*start_a)->value - 1, 'b');
+		ft_push_p(start_a, start_b, 1, 'b');
+	}
 }
 
 void	ft_quicksort(t_stack **start_a, int len)
@@ -95,19 +119,68 @@ void	ft_quicksort(t_stack **start_a, int len)
 
 	count = 0;
 	stack_b = NULL;
-	chunk = len / 4;
+	chunk = len / 100 * 7 + 13;
 	pivot = chunk;
 	while (*start_a)
 	{
 		if (count == pivot)
 			pivot += chunk;
-		ft_next(start_a, pivot - chunk, pivot, 'a');
-		ft_push(start_a, &stack_b);
-		ft_printf("pb\n");
+		if (pivot >= len - chunk)
+			ft_insert_sort(start_a, 'a', &stack_b);
+		else if (pivot <= chunk)
+		{
+			ft_next(start_a, pivot - chunk, pivot, 'a');
+			ft_insert_sort_dst(start_a, &stack_b);
+		}
+		else
+		{
+			ft_next(start_a, pivot - chunk, pivot, 'a');
+			ft_push_p(start_a, &stack_b, 1, 'b');
+		}
 		count++;
 	}
 	while (stack_b)
-		ft_insert_sort(&stack_b, start_a);
-//	double_print(*start_a, stack_b);
-//	ft_printf("end quicksort\n");
+		ft_insert_sort(&stack_b, 'b', start_a);
+}
+
+void	ft_insert_sort_a(t_stack **start_src, t_stack **start_dst)
+{
+	int	target;
+
+	target = ft_stackmax(*start_src);
+	ft_next(start_src, target, target, 'b');
+	ft_push_p(start_src, start_dst, 1, 'a');
+}
+
+void	ft_insert_sort_b(t_stack **start_a, t_stack **start_b)
+{
+	if (!(*start_b) || (*start_a)->value > ft_stackmax(*start_b))
+	{
+		ft_push(start_a, start_b);
+		ft_printf("pb\n");
+	}
+	else if ((*start_a)->value < ft_stackmin(*start_b))
+	{
+		ft_push(start_a, start_b);
+		ft_printf("pb\n");
+		ft_rotate(start_b);
+		ft_printf("rb\n");
+		double_print(*start_a, *start_b);
+	}
+	else
+	{
+		while ((*start_b)->value > (*start_a)->value)
+		{
+			ft_rotate(start_b);
+			ft_printf("rb\n");
+		}
+		ft_push(start_a, start_b);
+		ft_printf("pb\n");
+		while ((*start_b)->value != ft_stackmax(*start_b))
+		{
+			ft_rotate(start_b);
+			ft_printf("rb\n");
+		}
+		double_print(*start_a, *start_b);
+	}
 }
