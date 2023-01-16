@@ -6,7 +6,7 @@
 #    By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/12/03 11:42:37 by tlegrand          #+#    #+#              #
-#    Updated: 2023/01/13 17:32:26 by tlegrand         ###   ########.fr        #
+#    Updated: 2023/01/16 17:51:30 by tlegrand         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,7 +15,7 @@ NAME		=	push_swap
 NAME_B		=	checker
 
 SRCS		= 	push_swap.c utils.c ft_atol.c solver.c\
-				ft_create_stack.c stack_operator_basic.c stack_manipulator.c \
+				ft_create_stack.c stack_operator_basic.c stack_manipulator.c stack_operator_print.c\
 
 SRCS_B		=	 \
 

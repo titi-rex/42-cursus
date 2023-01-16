@@ -6,7 +6,7 @@
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/13 13:48:15 by tlegrand          #+#    #+#             */
-/*   Updated: 2023/01/13 14:21:02 by tlegrand         ###   ########.fr       */
+/*   Updated: 2023/01/16 17:53:28 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,6 +95,25 @@ void	ft_stackclear(t_stack **head)
 	head = NULL;
 }
 
+/**
+ * @brief count size of stack
+ * 
+ * @param head firts element of stack
+ * @return int size of stack
+ */
+int	ft_stacksize(t_stack *head)
+{
+	int	size;
+
+	size = 0;
+	while (head)
+	{
+		size++;
+		head = head->next;
+	}
+	return (size);
+}
+
 int	ft_stackmax(t_stack *stack)
 {
 	int	max;
@@ -121,4 +140,23 @@ int	ft_stackmin(t_stack *stack)
 		stack = stack->next;
 	}
 	return (min);
+}
+
+/**
+ * @brief delete element storing target value inside stack
+ * preserve stack integrity
+ * 
+ * @param head first element of stack
+ * @param target value to delete
+ */
+void	ft_stackdel(t_stack **head, int target)
+{
+	t_stack	*tmp;
+
+	while ((*head)->next->value != target)
+		*head = (*head)->next;
+	tmp = (*head)->next->next;
+	(*head)->next->value = 0;
+	free((*head)->next);
+	(*head)->next = tmp;
 }
