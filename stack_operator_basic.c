@@ -42,9 +42,9 @@ void	ft_swap(t_stack **start)
  */
 void	ft_push(t_stack **start_src, t_stack **start_dst)
 {
-	t_stack	*tmp_next;
-	t_stack	*tmp_src;
-	t_stack	*tmp_dst;
+	t_stack	*tmp;
+	t_stack	*src;
+	t_stack	*dst;
 	int		wit;
 
 	if (!start_src)
@@ -52,17 +52,18 @@ void	ft_push(t_stack **start_src, t_stack **start_dst)
 	wit = 0;
 	if (((*start_src)->next) == NULL)
 		wit = 1;
-	tmp_src = *start_src;
-	tmp_dst = *start_dst;
-	tmp_next = tmp_src->next;
-	tmp_src->next = tmp_dst;
-	tmp_dst = tmp_src;
-	tmp_src = tmp_next;
-	*start_dst = tmp_dst;
+	src = *start_src;
+	dst = *start_dst;
+	tmp = src->next;
+	// rremplacer  directement dst par start dst etc a la fin
+	src->next = dst;
+	dst = src;
+	src = tmp;
+	*start_dst = dst;
 	if (wit == 1)
 		*start_src = NULL;
 	else
-		*start_src = tmp_src;
+		*start_src = src;
 }
 
 /**
@@ -77,7 +78,7 @@ void	ft_rotate(t_stack **start)
 	t_stack	*tmp;
 	t_stack	*head;
 
-	if (!start)
+	if (!start || !*start)
 		return ;
 	head = *start;
 	tmp = head->next;
