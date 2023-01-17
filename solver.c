@@ -88,22 +88,22 @@ int	ft_next(t_stack **start, int min, int max, char name)
 	if (len <= len_rr)
 	{
 		if (name == 'a')
-			ft_rotate_p(start, 'a' len);
+			ft_rotate_p(start, 'a', len);
 		else
-			ft_rb(start, len);
+			ft_rotate_p(start, 'b', len);
 	}
 	else
 	{
 		if (name == 'a')
-			ft_rra(start, len_rr);
+			ft_rotate_reverse_p(start, 'a', len_rr);
 		else
-			ft_rrb(start, len_rr);
+			ft_rotate_reverse_p(start, 'b', len_rr);
 	}
 	return (0);
 }
 
 /**
- * @brief inser_sort algo by rotating src
+ * @brief insert_sort algo by rotating src.
  * search for desired value in src and push it to dst
  * can be used to pa or pb thank to name param
  * 
@@ -208,12 +208,12 @@ void	ft_insert_sort_dst(t_stack **start_a, t_stack **start_b)
 	else if ((*start_a)->value < ft_stackmin(*start_b))
 	{
 		ft_push_p(start_a, start_b, 'b', 1);
-		ft_rb(start_b, 1);
+		ft_rotate_p(start_b, 'b',  1);
 	}
 	else
 	{
 		while ((*start_a)->value < (*start_b)->value)
-			ft_rb(start_b, 1);
+			ft_rotate_p(start_b, 'b', 1);
 		ft_push_p(start_a, start_b, 'b', 1);
 	}
 	ft_next(start_b, ft_stackmax(*start_b), ft_stackmax(*start_b), 'b');

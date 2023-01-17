@@ -24,4 +24,19 @@ void	ft_smol_three(t_stack *stack)
 		else
 			ft_rotate_reverse_p(&stack, 'a', 1);
 	}
+	else
+	{
+		if (stack->value < stack->next->next->value)
+			ft_swap_p(&stack, 'a');
+		else
+		{
+			if (stack->next->value < stack->next->next->value)
+				ft_rotate_p(&stack, 'a', 1);
+			else
+			{
+				ft_swap_p(&stack, 'a');
+				ft_rotate_reverse_p(&stack, 'a', 1);
+			}
+		}
+	}
 }
