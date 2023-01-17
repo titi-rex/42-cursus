@@ -6,7 +6,7 @@
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/12 22:55:25 by tlegrand          #+#    #+#             */
-/*   Updated: 2023/01/13 14:49:49 by tlegrand         ###   ########.fr       */
+/*   Updated: 2023/01/17 15:32:38 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,9 +27,9 @@ int	ft_is_valid(char *arg)
 	wit = 0;
 	if (arg[wit] == '-')
 		wit++;
-	if (!ft_isdigit(arg[wit]))
-		return (1);
 	i = wit;
+	if (!arg[i])
+		return (1);
 	while (arg[i])
 	{
 		if (!ft_isdigit(arg[i]) || i > 9 + wit)
@@ -51,9 +51,9 @@ int	ft_is_valid(char *arg)
 void	*ft_error(int wit)
 {
 	if (!wit)
-		write(1, "Error\n", 6);
+		write(2, "Error\n", 6);
 	else if (wit == 1)
-		write(1, "Malloc fail\n", 12);
+		write(2, "Malloc fail\n", 12);
 	return (NULL);
 }
 

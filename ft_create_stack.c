@@ -6,7 +6,7 @@
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/12 21:24:00 by tlegrand          #+#    #+#             */
-/*   Updated: 2023/01/11 16:41:58 by tlegrand         ###   ########.fr       */
+/*   Updated: 2023/01/17 15:31:15 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,13 +30,13 @@ t_stack	*ft_stacknew(int value)
 	return (new);
 }
 
-t_stack	*ft_init_stack(char **arg, int n_arg)
+t_stack	*ft_init_stack(char **arg, int n_arg, int idx_start)
 {
 	t_stack	*new;
 	t_stack	*start;
 	int		i;
 
-	i = 1;
+	i = idx_start;
 	new = NULL;
 	start = new;
 	while (i < n_arg)
@@ -95,15 +95,15 @@ t_stack	*ft_index(t_stack *stack)
 	return (start);
 }
 
-t_stack	*ft_create_stack(char **arg, int n_arg)
+t_stack	*ft_create_stack(char **arg, int n_arg, int start)
 {
-	t_stack	*start;
-	t_stack	*start_tmp;
+	t_stack	*stack;
+	t_stack	*stack_tmp;
 
-	start_tmp = ft_init_stack(arg, n_arg);
-	start = ft_index(start_tmp);
-	ft_stackclear(&start_tmp);
-	return (start);
+	stack_tmp = ft_init_stack(arg, n_arg, start);
+	stack = ft_index(stack_tmp);
+	ft_stackclear(&stack_tmp);
+	return (stack);
 }
 
 void	ft_stackadd_front(t_stack **stack, t_stack *new)

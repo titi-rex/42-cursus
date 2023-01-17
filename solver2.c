@@ -6,7 +6,7 @@
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/15 18:20:01 by tlegrand          #+#    #+#             */
-/*   Updated: 2023/01/13 17:32:17 by tlegrand         ###   ########.fr       */
+/*   Updated: 2023/01/17 16:11:56 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -252,4 +252,47 @@ int	ft_solverouin(t_stack **start_a)
 	size = ft_stacksize(*start_a);
 	ft_quicksort(start_a, 1, size);
 	return (0);
+}
+
+
+void	ft_insert_sort_a(t_stack **start_src, t_stack **start_dst)
+{
+	int	target;
+
+	target = ft_stackmax(*start_src);
+	ft_next(start_src, target, target, 'b');
+	ft_push_p(start_src, start_dst, 'a', 1);
+}
+
+void	ft_insert_sort_b(t_stack **start_a, t_stack **start_b)
+{
+	if (!(*start_b) || (*start_a)->value > ft_stackmax(*start_b))
+	{
+		ft_push(start_a, start_b);
+		ft_printf("pb\n");
+	}
+	else if ((*start_a)->value < ft_stackmin(*start_b))
+	{
+		ft_push(start_a, start_b);
+		ft_printf("pb\n");
+		ft_rotate(start_b);
+		ft_printf("rb\n");
+		double_print(*start_a, *start_b);
+	}
+	else
+	{
+		while ((*start_b)->value > (*start_a)->value)
+		{
+			ft_rotate(start_b);
+			ft_printf("rb\n");
+		}
+		ft_push(start_a, start_b);
+		ft_printf("pb\n");
+		while ((*start_b)->value != ft_stackmax(*start_b))
+		{
+			ft_rotate(start_b);
+			ft_printf("rb\n");
+		}
+		double_print(*start_a, *start_b);
+	}
 }

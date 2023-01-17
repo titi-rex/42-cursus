@@ -6,7 +6,7 @@
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/13 17:28:08 by tlegrand          #+#    #+#             */
-/*   Updated: 2023/01/16 22:21:44 by tlegrand         ###   ########.fr       */
+/*   Updated: 2023/01/17 16:14:44 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,6 @@ int	ft_len_rr(t_stack *stack, int min, int max)
 	return (len);
 }
 
-
 /**
  * @brief find the nearest element in desired range 
  * can be used in stack a or b thank to name param
@@ -89,7 +88,7 @@ int	ft_next(t_stack **start, int min, int max, char name)
 	if (len <= len_rr)
 	{
 		if (name == 'a')
-			ft_ra(start, len);
+			ft_rotate_p(start, 'a' len);
 		else
 			ft_rb(start, len);
 	}
@@ -120,37 +119,13 @@ void	ft_insert_sort(t_stack **start_src, char name_src, t_stack **start_dst)
 	{
 		target = ft_stackmin(*start_src);
 		ft_next(start_src, target, target, 'a');
-		ft_push_p(start_src, start_dst, 1, 'b');
+		ft_push_p(start_src, start_dst, 'b', 1);
 	}
 	else
 	{
 		target = ft_stackmax(*start_src);
 		ft_next(start_src, target, target, 'b');
-		ft_push_p(start_src, start_dst, 1, 'a');
-	}
-}
-
-/**
- * @brief insert_sort algo by rotating dst
- * search optimal position for top src value in dst stack
- * only use from a to b
- * 
- * @param start_a ptr to a stack
- * @param start_b ptr to b stack
- */
-void	ft_insert_sort_dst(t_stack **start_a, t_stack **start_b)
-{
-	if (!(*start_b) || (*start_a)->value > ft_stackmax(*start_b))
-		ft_push_p(start_a, start_b, 1, 'b');
-	else if ((*start_a)->value < ft_stackmin(*start_b))
-	{
-		ft_push_p(start_a, start_b, 1, 'b');
-		ft_rb(start_b, 1);
-	}
-	else
-	{
-		ft_next(start_b, (*start_a)->value - 1, (*start_a)->value - 1, 'b');
-		ft_push_p(start_a, start_b, 1, 'b');
+		ft_push_p(start_src, start_dst, 'a', 1);
 	}
 }
 
@@ -163,16 +138,14 @@ void	ft_insert_sort_dst(t_stack **start_a, t_stack **start_b)
  * @param start_a ptr to stack a
  * @param len size of stack a
  */
-void	ft_quicksort(t_stack **start_a, int len)
+void	ft_quicksort(t_stack **start_a, int len, int chunk)
 {
 	t_stack	*stack_b;
 	int		pivot;
 	int		count;
-	int		chunk;
 
 	count = 0;
 	stack_b = NULL;
-	chunk = len / 100 * 7 + 13;
 	pivot = chunk;
 	while (*start_a)
 	{
@@ -180,15 +153,10 @@ void	ft_quicksort(t_stack **start_a, int len)
 			pivot += chunk;
 		if (pivot >= len - chunk)
 			ft_insert_sort(start_a, 'a', &stack_b);
-		else if (pivot <= chunk)
-		{
-			ft_next(start_a, pivot - chunk, pivot, 'a');
-			ft_insert_sort_dst(start_a, &stack_b);
-		}
 		else
 		{
 			ft_next(start_a, pivot - chunk, pivot, 'a');
-			ft_push_p(start_a, &stack_b, 1, 'b');
+			ft_push_p(start_a, &stack_b, 'b', 1);
 		}
 		count++;
 	}
@@ -196,44 +164,57 @@ void	ft_quicksort(t_stack **start_a, int len)
 		ft_insert_sort(&stack_b, 'b', start_a);
 }
 
-void	ft_insert_sort_a(t_stack **start_src, t_stack **start_dst)
+void	ft_partition(t_stack **start_a, int start, int end, int pivot)
 {
-	int	target;
+	t_stack	*stack_b;
+	int		count;
 
-	target = ft_stackmax(*start_src);
-	ft_next(start_src, target, target, 'b');
-	ft_push_p(start_src, start_dst, 1, 'a');
+	if (start >= end)
+		return ;
+	stack_b = NULL;
+	count = 0;
+	if (start <= ft_stacksize(*start_a))
+	{
+		while (count != start)
+		{
+			ft_rotate_p(start_a, 'a', 1);
+			count++;
+		}
+	}
+	while (count < end)
+	{
+		if ((*start_a)->value >= pivot)
+			ft_push_p(start_a, &stack_b, 'b', 1);
+		else
+			ft_rotate_p(start_a, 'a', 1);
+		count++;
+	}
+	while (stack_b)
+		ft_push_p(&stack_b, start_a, 'a', 1);
 }
 
-void	ft_insert_sort_b(t_stack **start_a, t_stack **start_b)
+/**
+ * @brief insert_sort algo by rotating dst
+ * search optimal position for top src value in dst stack
+ * only use from a to b
+ * 
+ * @param start_a ptr to a stack
+ * @param start_b ptr to b stack
+ */
+void	ft_insert_sort_dst(t_stack **start_a, t_stack **start_b)
 {
-	if (!(*start_b) || (*start_a)->value > ft_stackmax(*start_b))
-	{
-		ft_push(start_a, start_b);
-		ft_printf("pb\n");
-	}
+	if (!(*start_b) || (*start_a)->value > (*start_b)->value)
+		ft_push_p(start_a, start_b, 'b', 1);
 	else if ((*start_a)->value < ft_stackmin(*start_b))
 	{
-		ft_push(start_a, start_b);
-		ft_printf("pb\n");
-		ft_rotate(start_b);
-		ft_printf("rb\n");
-		double_print(*start_a, *start_b);
+		ft_push_p(start_a, start_b, 'b', 1);
+		ft_rb(start_b, 1);
 	}
 	else
 	{
-		while ((*start_b)->value > (*start_a)->value)
-		{
-			ft_rotate(start_b);
-			ft_printf("rb\n");
-		}
-		ft_push(start_a, start_b);
-		ft_printf("pb\n");
-		while ((*start_b)->value != ft_stackmax(*start_b))
-		{
-			ft_rotate(start_b);
-			ft_printf("rb\n");
-		}
-		double_print(*start_a, *start_b);
+		while ((*start_a)->value < (*start_b)->value)
+			ft_rb(start_b, 1);
+		ft_push_p(start_a, start_b, 'b', 1);
 	}
+	ft_next(start_b, ft_stackmax(*start_b), ft_stackmax(*start_b), 'b');
 }
