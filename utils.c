@@ -6,7 +6,7 @@
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/12 22:55:25 by tlegrand          #+#    #+#             */
-/*   Updated: 2023/01/18 14:41:31 by tlegrand         ###   ########.fr       */
+/*   Updated: 2023/01/18 16:27:29 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,13 +48,10 @@ int	ft_is_valid(char *arg)
  * @param wit indicate the type of error
  * @return int always 1 (error signal)
  */
-void	*ft_error(int wit)
+void	ft_error(void)
 {
-	if (!wit)
-		write(2, "Error\n", 6);
-	else if (wit == 1)
-		write(2, "Malloc fail\n", 12);
-	return (NULL);
+	write(2, "Error\n", 6);
+	exit(3);
 }
 
 /**

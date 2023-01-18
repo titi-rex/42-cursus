@@ -6,7 +6,7 @@
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/12 21:24:00 by tlegrand          #+#    #+#             */
-/*   Updated: 2023/01/18 14:50:29 by tlegrand         ###   ########.fr       */
+/*   Updated: 2023/01/18 16:28:19 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,13 +44,13 @@ t_stack	*ft_init_stack(char **arg, int n_arg, int idx_start)
 		if (ft_is_valid(arg[i]) || ft_stacksearch(start, ft_atoi(arg[i])))
 		{
 			ft_stackclear(&start);
-			return (ft_error(0));
+			ft_error();
 		}
 		new = ft_stacknew(ft_atoi(arg[i]));
 		if (!new)
 		{
 			ft_stackclear(&start);
-			return (ft_error(1));
+			ft_error();
 		}
 		ft_stackadd_back(&start, new);
 		i++;
@@ -87,7 +87,7 @@ t_stack	*ft_index(t_stack *stack)
 		if (!new)
 		{
 			ft_stackclear(&start);
-			return (ft_error(1));
+			ft_error();
 		}
 		ft_stackadd_back(&start, new);
 		current = current->next;

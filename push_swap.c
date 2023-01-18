@@ -6,7 +6,7 @@
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/10 21:21:41 by tlegrand          #+#    #+#             */
-/*   Updated: 2023/01/18 14:39:59 by tlegrand         ###   ########.fr       */
+/*   Updated: 2023/01/18 16:28:36 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,8 @@ int	main(int argc, char **argv)
 	if (argc == 2)
 	{
 		split = ft_split(argv[1], ' ');
+		if (!split)
+			ft_error();
 		stack_a = ft_create_stack(split, ft_splitlen(split), 0);
 		ft_freesplit(split);
 	}
