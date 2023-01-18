@@ -6,7 +6,7 @@
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/12 22:55:25 by tlegrand          #+#    #+#             */
-/*   Updated: 2023/01/17 15:32:38 by tlegrand         ###   ########.fr       */
+/*   Updated: 2023/01/18 14:41:31 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,70 +85,27 @@ int	ft_is_sorted(t_stack *stack, int start, int end)
 	return (0);
 }
 
-/**
- * @brief function swapping the value of two first element of a stack
- * 
- * @param head first element of stack
- */
-void	ft_swap_value(t_stack *head)
+void	ft_freesplit(char **split)
 {
-	int	tmp;
+	size_t	i;
 
-	if (!head || !(head->next) || !(head->next->next))
-		return ;
-	tmp = head->value;
-	head->value = head->next->value;
-	head->next->value = tmp;
-}
-
-/**
- * @brief print two stack side by side, even if one stack is empty
- * 
- * @param a stack a
- * @param b stack b
- */
-void	double_print(t_stack *a, t_stack *b)
-{
-	while (a || b)
+	i = 0;
+	while (split[i])
 	{
-		if (a)
-		{
-			ft_printf("|%d|\t\t", a->value);
-			a = a->next;
-		}
-		else
-			ft_printf("|end|\t\t");
-		if (b)
-		{
-			ft_printf("|%d|\t\t", b->value);
-			b = b->next;
-		}
-		else
-			ft_printf("|end|\t\t");
-		printf("\n");
+		free(split[i]);
+		split[i] = NULL;
+		i++;
 	}
+	free(split);
+	split = NULL;
 }
 
-/**
- * @brief print the stack
- * 
- * @param head first element of stack
- * @return int lenght writed
- */
-int	ft_print_stack(t_stack *head)
+int	ft_splitlen(char **split)
 {
-	int		len;
+	int	len;
 
 	len = 0;
-	if (!head)
-	{
-		len += ft_printf("(null)\n", head);
-	}
-	while (head)
-	{
-		len += ft_printf("%d\n", head->value);
-		head = head->next;
-	}
-	len += ft_printf("END\n");
+	while (split[len])
+		len++;
 	return (len);
 }

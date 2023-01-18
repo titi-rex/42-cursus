@@ -6,7 +6,7 @@
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/12 21:24:00 by tlegrand          #+#    #+#             */
-/*   Updated: 2023/01/17 15:31:15 by tlegrand         ###   ########.fr       */
+/*   Updated: 2023/01/18 14:50:29 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,14 +104,4 @@ t_stack	*ft_create_stack(char **arg, int n_arg, int start)
 	stack = ft_index(stack_tmp);
 	ft_stackclear(&stack_tmp);
 	return (stack);
-}
-
-void	ft_stackadd_front(t_stack **stack, t_stack *new)
-{
-	if (stack)
-	{
-		if (*stack)
-			new->next = *stack;
-		*stack = new;
-	}
 }
