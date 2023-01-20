@@ -6,7 +6,7 @@
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/20 15:52:53 by tlegrand          #+#    #+#             */
-/*   Updated: 2023/01/20 17:32:22 by tlegrand         ###   ########.fr       */
+/*   Updated: 2023/01/20 17:43:30 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,22 +74,19 @@ void	ft_check_map(t_map *map)
 	ft_check_count(map, map->count);
 }
 
-int	ft_check_collectible(char c, int count[2])
+void	ft_check_collectible(char c, int count[2])
 {
 	if (c == 'C')
 		count[0]--;
 	if (c == 'E')
 		count[1]--;
-	if (count[0] == 0 && count[1] == 0)
-		return (0);
-	return (1);
+
 }
 
 void	ft_backtrack(t_map *map, int ypos, int xpos, int count[2])
 {
 	map->layout[ypos][xpos] = '1';
-	if (!ft_check_collectible(map->layout[ypos][xpos], count))
-		return ;
+	ft_check_collectible(map->layout[ypos][xpos], count);
 	if (map->layout[ypos + 1][xpos] != '1')
 		ft_backtrack(map, ypos + 1, xpos, count);
 	if (map->layout[ypos][xpos + 1] != '1')
