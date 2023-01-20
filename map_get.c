@@ -1,17 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_map.c                                          :+:      :+:    :+:   */
+/*   map_get.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/20 15:50:46 by tlegrand          #+#    #+#             */
-/*   Updated: 2023/01/20 16:46:26 by tlegrand         ###   ########.fr       */
+/*   Updated: 2023/01/20 22:19:35 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
+/**
+ * @brief give number of char in file
+ * if can't open file, display error and quit
+ * 
+ * @param pathname pathname of file
+ * @return int number of char in file
+ */
 int	ft_file_size(char *pathname)
 {
 	int		fd;
@@ -28,6 +35,13 @@ int	ft_file_size(char *pathname)
 	return (size);
 }
 
+/**
+ * @brief extract map from file
+ * if malloc fail or can't read, display error and quit
+ * 
+ * @param pathname pathname of file
+ * @return char** array containing the file split in line
+ */
 char	**ft_get_map(char *pathname)
 {
 	char	**map;
@@ -52,6 +66,13 @@ char	**ft_get_map(char *pathname)
 	return (map);
 }
 
+/**
+ * @brief get the ysize (column lenght)
+ * column lenght is also number of line
+ * 
+ * @param layout map's layout
+ * @return int column lenght
+ */
 int	ft_get_ysize(char **layout)
 {
 	int	i;
@@ -62,6 +83,13 @@ int	ft_get_ysize(char **layout)
 	return (i);
 }
 
+/**
+ * @brief get the xsize (line lenght) and check if all line have same lenght
+ * line lenght is also number of column
+ * 
+ * @param layout map's layout
+ * @return int error : -1 // line lenght
+ */
 int	ft_get_xsize(char **layout)
 {
 	size_t	len;
@@ -78,6 +106,12 @@ int	ft_get_xsize(char **layout)
 	return ((int) len);
 }
 
+/**
+ * @brief get ysize and xsize and stock them in map
+ * if map isn't rectangular, display error and quit 
+ * 
+ * @param map map to check size
+ */
 void	ft_get_mapsize(t_map *map)
 {
 	map->ysize = ft_get_ysize(map->layout);

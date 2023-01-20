@@ -6,13 +6,13 @@
 #    By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/11/19 14:03:05 by tlegrand          #+#    #+#              #
-#    Updated: 2023/01/20 20:38:43 by tlegrand         ###   ########.fr        #
+#    Updated: 2023/01/20 21:35:28 by tlegrand         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME		=	so_long
 
-SRCS		= 	main.c get_map.c check_map.c init_map.c utils.c
+SRCS		= 	main.c map_get.c map_check.c map_init.c utils.c
 			
 DIR_OBJS	=	.objs/
 LIST_OBJS	=	${SRCS:.c=.o}
@@ -32,7 +32,7 @@ FLAGS		=	-Wall -Wextra -Werror -I .
 
 MLXFLAGS_MAC	=	-L minilibx/ -lmlx -framework OpenGL -framework AppKit
 
-MLXFLAGS_LINUX	=	-Lmlx_linux -lmlx_Linux -Imlx_linux -lXext -lX11 -lm -lz 
+MLXFLAGS_LINUX	=	-Lmlx_linux -lmlx_Linux L/usr/lib -Imlx_linux -lXext -lX11 -lm -lz 
 
 all	: ${NAME}
 
