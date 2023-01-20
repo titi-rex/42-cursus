@@ -6,7 +6,7 @@
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/20 15:52:53 by tlegrand          #+#    #+#             */
-/*   Updated: 2023/01/20 17:55:40 by tlegrand         ###   ########.fr       */
+/*   Updated: 2023/01/20 20:45:21 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,9 +80,9 @@ void	ft_backtrack(t_map *map, int ypos, int xpos)
 		map->count[1]--;
 	if (map->layout[ypos][xpos] == 'E')
 		map->count[2]--;
+	map->layout[ypos][xpos] = '1';
 	if (map->count[1] == 0 && map->count[2] == 0)
 		return ;
-	map->layout[ypos][xpos] = '1';
 	if (map->layout[ypos + 1][xpos] != '1')
 		ft_backtrack(map, ypos + 1, xpos);
 	if (map->layout[ypos][xpos + 1] != '1')

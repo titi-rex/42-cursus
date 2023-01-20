@@ -6,7 +6,7 @@
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/20 15:16:51 by tlegrand          #+#    #+#             */
-/*   Updated: 2023/01/20 18:01:48 by tlegrand         ###   ########.fr       */
+/*   Updated: 2023/01/20 20:45:54 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ void	ft_mapcpy(t_map *src, t_map *dst)
 	y = 0;
 	while (y < dst->ysize)
 	{
-		dst->layout[y] = ft_strdup(src->layout);
+		dst->layout[y] = ft_strdup(src->layout[y]);
 		if (!dst->layout[y])
 			ft_error(NULL, 12, NULL);
 		y++;
@@ -59,4 +59,5 @@ void	ft_init_map(t_map *map, char *pathname)
 	ft_check_map(map);
 	ft_mapcpy(map, &cpy);
 	ft_check_path(&cpy);
+	ft_freesplit(cpy.layout);
 }

@@ -6,7 +6,7 @@
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/19 20:07:38 by tlegrand          #+#    #+#             */
-/*   Updated: 2023/01/20 17:53:16 by tlegrand         ###   ########.fr       */
+/*   Updated: 2023/01/20 20:25:59 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@
 # include <string.h>
 # include "minilibx/mlx.h"
 # include "libft/libft.h"
+# include <mlx.h>
 
 typedef struct s_map
 {
