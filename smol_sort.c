@@ -6,12 +6,17 @@
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/17 16:00:21 by tlegrand          #+#    #+#             */
-/*   Updated: 2023/01/18 14:38:23 by tlegrand         ###   ########.fr       */
+/*   Updated: 2023/01/20 23:01:48 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
+/**
+ * @brief 3-elements sorting algo
+ * 
+ * @param stack stack to sort
+ */
 void	ft_smol_three(t_stack **stack)
 {
 	if ((*stack)->value < (*stack)->next->value)
@@ -41,6 +46,11 @@ void	ft_smol_three(t_stack **stack)
 	}
 }
 
+/**
+ * @brief 5-elements sorting algo, push 2 min to stack b, use ft_smol_three then push back to a
+ * 
+ * @param stack_a stack to sort
+ */
 void	ft_smol_five(t_stack **stack_a)
 {
 	t_stack	*stack_b;
@@ -56,6 +66,12 @@ void	ft_smol_five(t_stack **stack_a)
 	ft_push_p(&stack_b, stack_a, 'a', 1);
 }
 
+/**
+ * @brief select algo for small value
+ * 
+ * @param stack stack t osort
+ * @param len number of element in stack
+ */
 void	ft_smol_sort(t_stack **stack, int len)
 {
 	if (len == 2)

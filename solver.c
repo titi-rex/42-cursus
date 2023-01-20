@@ -6,12 +6,21 @@
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/13 17:28:08 by tlegrand          #+#    #+#             */
-/*   Updated: 2023/01/18 14:45:27 by tlegrand         ###   ########.fr       */
+/*   Updated: 2023/01/20 23:06:17 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
+/**
+ * @brief push the upper half of stack above itself using a quicksort algo
+ * can be used on specified interval wit hspecified pivot
+ * 
+ * @param start_a stack to sort
+ * @param start start of interval to partition
+ * @param end end of interval to partition
+ * @param pivot value used for partition
+ */
 void	ft_partition(t_stack **start_a, int start, int end, int pivot)
 {
 	t_stack	*stack_b;
@@ -103,6 +112,12 @@ void	ft_quicksort(t_stack **start_a, int len, int chunk)
 		ft_insert_sort(&stack_b, 'b', start_a);
 }
 
+/**
+ * @brief call sorting function depending of stack's len
+ * 
+ * @param stack_a stack to sort
+ * @param len 
+ */
 void	ft_solver(t_stack **stack_a, int len)
 {
 	int	pivot;

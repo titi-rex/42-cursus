@@ -6,12 +6,20 @@
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/12 22:45:39 by tlegrand          #+#    #+#             */
-/*   Updated: 2022/12/12 22:50:41 by tlegrand         ###   ########.fr       */
+/*   Updated: 2023/01/20 22:40:55 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
+/**
+ * @brief check if overflow occur
+ * 
+ * @param n last result
+ * @param last last char to add
+ * @param sign signe of result
+ * @return int OK 1 // else overflow
+ */
 static int	ft_check_overflow(long long int n, int last, int sign)
 {
 	if (sign * n != sign * (n * 10 + last) / 10)
@@ -24,6 +32,12 @@ static int	ft_check_overflow(long long int n, int last, int sign)
 	return (1);
 }
 
+/**
+ * @brief convert ASCII string to long int
+ * 
+ * @param str 
+ * @return long int 
+ */
 long int	ft_atol(const char *str)
 {
 	long long int	res;

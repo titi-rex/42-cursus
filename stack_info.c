@@ -6,7 +6,7 @@
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/18 14:47:18 by tlegrand          #+#    #+#             */
-/*   Updated: 2023/01/18 14:48:26 by tlegrand         ###   ########.fr       */
+/*   Updated: 2023/01/20 23:07:28 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,12 @@ int	ft_stacksize(t_stack *head)
 	return (size);
 }
 
+/**
+ * @brief get the maximum value stored in stack
+ * 
+ * @param stack 
+ * @return int max
+ */
 int	ft_stackmax(t_stack *stack)
 {
 	int	max;
@@ -45,6 +51,12 @@ int	ft_stackmax(t_stack *stack)
 	return (max);
 }
 
+/**
+ * @brief get the minimum value stored in stack
+ * 
+ * @param stack 
+ * @return int min
+ */
 int	ft_stackmin(t_stack *stack)
 {
 	int	min;

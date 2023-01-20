@@ -6,7 +6,7 @@
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/10 21:21:41 by tlegrand          #+#    #+#             */
-/*   Updated: 2023/01/20 21:22:36 by tlegrand         ###   ########.fr       */
+/*   Updated: 2023/01/20 22:53:23 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,6 @@ int	main(int argc, char **argv)
 		stack_a = ft_create_stack(argv, argc, 1);
 	if (!stack_a)
 		return (0);
-	ft_printf("sizemax is %lld\n", SIZE_MAX);
 	ft_solver(&stack_a, ft_stacksize(stack_a));
 	ft_stackclear(&stack_a);
 	return (0);

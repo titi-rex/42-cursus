@@ -6,7 +6,7 @@
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/10 21:22:41 by tlegrand          #+#    #+#             */
-/*   Updated: 2023/01/18 16:28:51 by tlegrand         ###   ########.fr       */
+/*   Updated: 2023/01/20 22:56:03 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,6 @@ void		double_print(t_stack *a, t_stack *b);
 void		ft_error(void);
 int			ft_is_valid(char *arg);
 long int	ft_atol(const char *str);
-void		ft_freesplit(char **split);
 int			ft_splitlen(char **split);
 
 void		ft_swap(t_stack **start);

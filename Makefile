@@ -6,7 +6,7 @@
 #    By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/12/03 11:42:37 by tlegrand          #+#    #+#              #
-#    Updated: 2023/01/18 16:14:43 by tlegrand         ###   ########.fr        #
+#    Updated: 2023/01/20 22:52:46 by tlegrand         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -28,7 +28,7 @@ HEADER		=	push_swap.h \
 
 LIB			=	libft/libft.a\
 
-FLAGS		=	-Wall -Wextra -Werror -I ${HEADER}
+FLAGS		=	-Wall -Wextra -Werror -I .
 
 RM			=	rm -rf
 

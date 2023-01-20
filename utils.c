@@ -6,7 +6,7 @@
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/12 22:55:25 by tlegrand          #+#    #+#             */
-/*   Updated: 2023/01/18 16:27:29 by tlegrand         ###   ########.fr       */
+/*   Updated: 2023/01/20 23:01:06 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,21 +82,12 @@ int	ft_is_sorted(t_stack *stack, int start, int end)
 	return (0);
 }
 
-void	ft_freesplit(char **split)
-{
-	size_t	i;
-
-	i = 0;
-	while (split[i])
-	{
-		free(split[i]);
-		split[i] = NULL;
-		i++;
-	}
-	free(split);
-	split = NULL;
-}
-
+/**
+ * @brief give number of string in a split
+ * 
+ * @param split 
+ * @return int 
+ */
 int	ft_splitlen(char **split)
 {
 	int	len;
