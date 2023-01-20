@@ -6,7 +6,7 @@
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/20 15:52:53 by tlegrand          #+#    #+#             */
-/*   Updated: 2023/01/20 17:43:30 by tlegrand         ###   ########.fr       */
+/*   Updated: 2023/01/20 17:55:40 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,27 +74,21 @@ void	ft_check_map(t_map *map)
 	ft_check_count(map, map->count);
 }
 
-void	ft_check_collectible(char c, int count[2])
+void	ft_backtrack(t_map *map, int ypos, int xpos)
 {
-	if (c == 'C')
-		count[0]--;
-	if (c == 'E')
-		count[1]--;
-
-}
-
-void	ft_backtrack(t_map *map, int ypos, int xpos, int count[2])
-{
-	map->layout[ypos][xpos] = '1';
-	ft_check_collectible(map->layout[ypos][xpos], count);
-	if (map->layout[ypos + 1][xpos] != '1')
-		ft_backtrack(map, ypos + 1, xpos, count);
-	if (map->layout[ypos][xpos + 1] != '1')
-		ft_backtrack(map, ypos, xpos + 1, count);
-	if (map->layout[ypos - 1][xpos] != '1')
-		ft_backtrack(map, ypos - 1, xpos, count);
-	if (map->layout[ypos][xpos - 1] != '1')
-		ft_backtrack(map, ypos, xpos - 1, count);
-	else
+	if (map->layout[ypos][xpos] == 'C')
+		map->count[1]--;
+	if (map->layout[ypos][xpos] == 'E')
+		map->count[2]--;
+	if (map->count[1] == 0 && map->count[2] == 0)
 		return ;
+	map->layout[ypos][xpos] = '1';
+	if (map->layout[ypos + 1][xpos] != '1')
+		ft_backtrack(map, ypos + 1, xpos);
+	if (map->layout[ypos][xpos + 1] != '1')
+		ft_backtrack(map, ypos, xpos + 1);
+	if (map->layout[ypos - 1][xpos] != '1')
+		ft_backtrack(map, ypos - 1, xpos);
+	if (map->layout[ypos][xpos - 1] != '1')
+		ft_backtrack(map, ypos, xpos - 1);
 }
