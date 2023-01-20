@@ -1,36 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_strtrim.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/01/19 20:16:07 by tlegrand          #+#    #+#             */
-/*   Updated: 2023/01/20 16:40:15 by tlegrand         ###   ########.fr       */
+/*   Created: 2022/11/10 14:50:53 by tlegrand          #+#    #+#             */
+/*   Updated: 2022/12/25 15:39:03 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "so_long.h"
-#include <errno.h>
+#include "../libft.h"
 
-int	main(void)
+char	*ft_strtrim(char const *s1, char const *set)
 {
-	t_map	carte;
-	t_map	*map;
+	char	*strimed;
+	size_t	end;
 
-	map = &carte;
-	ft_init_map(map, "map.ber");
-	ft_print_map(map);
-	ft_freesplit(map->layout);
-
-	return (0);
+	if (!s1 || !set)
+		return (NULL);
+	while (ft_strchr(set, *s1) && *s1)
+		s1++;
+	end = ft_strlen(s1);
+	while (ft_strchr(set, *(s1 + end)) && end > 0)
+		end--;
+	strimed = ft_substr(s1, 0, end + 1);
+	if (!strimed)
+		return (NULL);
+	return (strimed);
 }
-
-/*
-	void	*mlx_ptr;
-	void	*win_ptr;
-
-	mlx_ptr = mlx_init();
-	win_ptr = mlx_new_window(mlx_ptr, 400, 400, "my window");
-	mlx_loop(mlx_ptr);
-	*/

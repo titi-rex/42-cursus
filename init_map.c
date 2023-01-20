@@ -1,36 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   init_map.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/01/19 20:16:07 by tlegrand          #+#    #+#             */
-/*   Updated: 2023/01/20 16:40:15 by tlegrand         ###   ########.fr       */
+/*   Created: 2023/01/20 15:16:51 by tlegrand          #+#    #+#             */
+/*   Updated: 2023/01/20 17:08:16 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
-#include <errno.h>
 
-int	main(void)
+void	ft_init_count(int count[3])
 {
-	t_map	carte;
-	t_map	*map;
-
-	map = &carte;
-	ft_init_map(map, "map.ber");
-	ft_print_map(map);
-	ft_freesplit(map->layout);
-
-	return (0);
+	count[0] = 0;
+	count[1] = 0;
+	count[2] = 0;
 }
 
-/*
-	void	*mlx_ptr;
-	void	*win_ptr;
+void	ft_init_map(t_map *map, char *pathname)
+{
+	int	collectible;
 
-	mlx_ptr = mlx_init();
-	win_ptr = mlx_new_window(mlx_ptr, 400, 400, "my window");
-	mlx_loop(mlx_ptr);
-	*/
+	map->layout = ft_get_map(pathname);
+	ft_get_mapsize(map);
+	ft_init_count(map->count);
+	ft_check_map(map);
+	collectible = map->count[1];
+//	ft_check_count(map, 1, 1, collectible);
+}

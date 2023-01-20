@@ -1,36 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_strjoin.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/01/19 20:16:07 by tlegrand          #+#    #+#             */
-/*   Updated: 2023/01/20 16:40:15 by tlegrand         ###   ########.fr       */
+/*   Created: 2022/11/11 16:36:20 by tlegrand          #+#    #+#             */
+/*   Updated: 2022/12/25 15:39:03 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "so_long.h"
-#include <errno.h>
+#include "../libft.h"
 
-int	main(void)
+char	*ft_strjoin(char const *s1, char const *s2)
 {
-	t_map	carte;
-	t_map	*map;
+	size_t	len_s1;
+	size_t	len_s2;
+	char	*str;
 
-	map = &carte;
-	ft_init_map(map, "map.ber");
-	ft_print_map(map);
-	ft_freesplit(map->layout);
-
-	return (0);
+	if (!s1)
+		len_s1 = 0;
+	else
+		len_s1 = ft_strlen(s1);
+	if (!s2)
+		len_s2 = 0;
+	else
+		len_s2 = ft_strlen(s2);
+	str = (char *)malloc((len_s1 + len_s2 + 1) * sizeof(char));
+	if (!str)
+		return (NULL);
+	ft_strlcpy(str, s1, len_s1 + 1);
+	ft_strlcpy(str + len_s1, s2, len_s2 + 1);
+	return (str);
 }
-
-/*
-	void	*mlx_ptr;
-	void	*win_ptr;
-
-	mlx_ptr = mlx_init();
-	win_ptr = mlx_new_window(mlx_ptr, 400, 400, "my window");
-	mlx_loop(mlx_ptr);
-	*/

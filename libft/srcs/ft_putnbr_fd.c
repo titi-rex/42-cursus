@@ -1,36 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_putnr_fd.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/01/19 20:16:07 by tlegrand          #+#    #+#             */
-/*   Updated: 2023/01/20 16:40:15 by tlegrand         ###   ########.fr       */
+/*   Created: 2022/11/11 15:50:52 by tlegrand          #+#    #+#             */
+/*   Updated: 2022/11/15 16:55:17 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "so_long.h"
-#include <errno.h>
+#include "../libft.h"
 
-int	main(void)
+void	ft_putnbr_fd(int n, int fd)
 {
-	t_map	carte;
-	t_map	*map;
-
-	map = &carte;
-	ft_init_map(map, "map.ber");
-	ft_print_map(map);
-	ft_freesplit(map->layout);
-
-	return (0);
+	if (n == -2147483648)
+	{
+		write(fd, "-2147483648", 11);
+		return ;
+	}
+	if (n < 0)
+	{
+		write(fd, "-", 1);
+		n = -n;
+	}
+	if (n > 9)
+		ft_putnbr_fd(n / 10, fd);
+	ft_putchar_fd('0' + n % 10, fd);
 }
-
-/*
-	void	*mlx_ptr;
-	void	*win_ptr;
-
-	mlx_ptr = mlx_init();
-	win_ptr = mlx_new_window(mlx_ptr, 400, 400, "my window");
-	mlx_loop(mlx_ptr);
-	*/

@@ -1,36 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_strlcat.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/01/19 20:16:07 by tlegrand          #+#    #+#             */
-/*   Updated: 2023/01/20 16:40:15 by tlegrand         ###   ########.fr       */
+/*   Created: 2022/11/08 16:41:42 by tlegrand          #+#    #+#             */
+/*   Updated: 2022/12/25 15:39:03 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "so_long.h"
-#include <errno.h>
+#include "../libft.h"
 
-int	main(void)
+size_t	ft_strlcat(char *dst, const char *src, size_t dstsize)
 {
-	t_map	carte;
-	t_map	*map;
+	size_t	end;
+	size_t	j;
 
-	map = &carte;
-	ft_init_map(map, "map.ber");
-	ft_print_map(map);
-	ft_freesplit(map->layout);
-
-	return (0);
+	end = 0;
+	j = 0;
+	while (dst[end] && end < dstsize)
+		end++;
+	if (end < dstsize)
+	{
+		while (src[j] && end + j < dstsize - 1)
+		{
+			dst[end + j] = src[j];
+			j++;
+		}
+		dst[end + j] = 0;
+	}
+	while (src[j])
+		j++;
+	return (end + j);
 }
-
-/*
-	void	*mlx_ptr;
-	void	*win_ptr;
-
-	mlx_ptr = mlx_init();
-	win_ptr = mlx_new_window(mlx_ptr, 400, 400, "my window");
-	mlx_loop(mlx_ptr);
-	*/
