@@ -6,7 +6,7 @@
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/08 13:43:09 by tlegrand          #+#    #+#             */
-/*   Updated: 2022/12/25 15:39:57 by tlegrand         ###   ########.fr       */
+/*   Updated: 2023/01/20 21:24:07 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,9 @@
 # include <unistd.h>
 # include <limits.h>
 # include <stdarg.h>
+# ifndef SIZE_MAX
+# define SIZE_MAX 18446744073709551615UL
+# endif
 
 /* char functions */
 int		ft_isdigit(int c);
