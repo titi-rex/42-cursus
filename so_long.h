@@ -6,7 +6,7 @@
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/19 20:07:38 by tlegrand          #+#    #+#             */
-/*   Updated: 2023/01/20 16:57:01 by tlegrand         ###   ########.fr       */
+/*   Updated: 2023/01/20 17:22:20 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,9 @@ void	ft_print_map(t_map *map);
 
 char	**ft_get_map(char *pathname);
 void	ft_get_mapsize(t_map *map);
-void	ft_init_map(t_map *map, char *pathname);
+
 void	ft_check_map(t_map *map);
+void	ft_backtrack(t_map *map, int ypos, int xpos, int count[2]);
+void	ft_init_map(t_map *map, char *pathname);
 
 #endif
