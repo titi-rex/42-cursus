@@ -6,7 +6,7 @@
 #    By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/12/03 11:42:37 by tlegrand          #+#    #+#              #
-#    Updated: 2023/01/21 17:37:50 by tlegrand         ###   ########.fr        #
+#    Updated: 2023/01/22 00:10:45 by tlegrand         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,13 +14,15 @@ NAME		=	minitalk
 
 DIR_OBJS	=	.objs/
 
-NAME_S		=	server
-SRCS_S		= 	server.c
+NAME_S		=	server 
+SRCS_S		= 	server.c receiver.c encoding.c \
+				utils.c
 LIST_OBJS_S	=	${SRCS_S:.c=.o}
 OBJS_S		=	${addprefix ${DIR_OBJS}, ${LIST_OBJS_S}}
 
 NAME_C		=	client
-SRCS_C		=	client.c
+SRCS_C		=	client.c encoding.c sending.c \
+				utils.c
 LIST_OBJS_C	=	${SRCS_C:.c=.o}
 OBJS_C		=	${addprefix ${DIR_OBJS}, ${LIST_OBJS_C}}
 

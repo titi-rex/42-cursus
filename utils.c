@@ -1,33 +1,39 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   minitalk.h                                         :+:      :+:    :+:   */
+/*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/01/21 15:53:58 by tlegrand          #+#    #+#             */
-/*   Updated: 2023/01/21 22:32:11 by tlegrand         ###   ########.fr       */
+/*   Created: 2023/01/21 19:35:38 by tlegrand          #+#    #+#             */
+/*   Updated: 2023/01/21 22:06:33 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef MINITALK_H
-# define MINITALK_H
-# include "libft/libft.h"
-# include <signal.h>
-# include <unistd.h>
+#include "minitalk.h"
 
-/*	encoding/decoding functions	*/
-int 	ft_dectobin(int dec);
-int		ft_decoding(int bin);
+/**
+ * @brief display error message on stderr depending of errstr or errnum
+ * 
+ * @param errnum error value for strerror()
+ * @param errstr error message to display
+ */
+void    ft_error(char *errstr)
+{
+	ft_putstr_fd("Error\n", 2);
+    ft_putstr_fd(errstr, 2);
+    exit(3);
+}
 
-/* 	sending functions	*/
-void	ft_sender_master(int pid, char *str);
+size_t	ft_intlen(int n)
+{
+	int	len;
 
-/*	receipt functions	*/
-void	ft_handler(int sig);
-
-/*	utils functions	*/
-void    ft_error(char *errstr);
-size_t	ft_intlen(int n);
-
-#endif
+	len = 1;
+	while (n > 1)
+	{
+		n /= 10;
+		len++;
+	}
+	return (len);
+}
