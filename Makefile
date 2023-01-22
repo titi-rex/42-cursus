@@ -6,7 +6,7 @@
 #    By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/12/03 11:42:37 by tlegrand          #+#    #+#              #
-#    Updated: 2023/01/22 17:34:16 by tlegrand         ###   ########.fr        #
+#    Updated: 2023/01/22 18:41:04 by tlegrand         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -44,7 +44,8 @@ client	:	${DIR_OBJS} ${OBJS_C}
 		${CC} ${FLAGS} ${OBJS_C} ${LIB} -o ${NAME_C}
 
 leaks	: ${NAME}
-		leaks --atExit -- ./${NAME} 
+		leaks --atExit -- ./${NAME_S}
+		leaks --atExit -- ./${NAME_C}
 
 nn	:
 	/home/reina/.local/bin/norminette ${SRCS_S} ${SRCS_C} ${HEADER}
@@ -63,7 +64,7 @@ clean	:
 		make -C libft clean
 
 fclean	:	clean
-		${RM} ${NAME}
+		${RM} ${NAME_S} ${NAME_C}
 		make -C libft fclean
 
 re	:	fclean

@@ -6,7 +6,7 @@
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/21 16:09:08 by tlegrand          #+#    #+#             */
-/*   Updated: 2023/01/22 17:52:30 by tlegrand         ###   ########.fr       */
+/*   Updated: 2023/01/22 18:39:50 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,9 @@
 void	ft_sighandler_server(int sig, siginfo_t *sig_info, void *contex)
 {
 	static int				count;
-	static unsigned char	c;
+	static uint8_t			c;
 
+	(void)contex;
 	if (sig == SIGUSR1)
 		c = c | 128 >> count;
 	count++;
@@ -33,16 +34,26 @@ void	ft_sighandler_server(int sig, siginfo_t *sig_info, void *contex)
 			write(1, &c, 1);
 		c = 0;
 	}
-	if (contex)
-		return ;
+}
+
+void	ft_handler_sigterm(int sig)
+{
+	(void)sig;
+	ft_printf("Server shutdown required\n");
+	exit(EXIT_SUCCESS);
 }
 
 int	main(void)
 {
 	struct sigaction	acts1;
 	struct sigaction	acts2;
+	struct sigaction	act_sigterm;
 
 	ft_printf("Server pid is %d\n", getpid());
+	act_sigterm.sa_handler = ft_handler_sigterm;
+	act_sigterm.sa_flags = 0;
+	sigemptyset(&act_sigterm.sa_mask);
+	sigaction(SIGTERM, &act_sigterm, NULL);
 	acts1.sa_sigaction = ft_sighandler_server;
 	acts1.sa_flags = SA_SIGINFO;
 	sigemptyset(&acts1.sa_mask);

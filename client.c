@@ -6,7 +6,7 @@
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/21 17:01:32 by tlegrand          #+#    #+#             */
-/*   Updated: 2023/01/22 17:45:48 by tlegrand         ###   ########.fr       */
+/*   Updated: 2023/01/22 18:15:50 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,7 @@ void	ft_sender_master(int pid, char *str)
 	{
 		n = ft_sendout(pid, *str);
 		str++;
+		usleep(100);
 	}
 	n += ft_sendout(pid, 0);
 	if (n)
