@@ -6,7 +6,7 @@
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/21 17:01:32 by tlegrand          #+#    #+#             */
-/*   Updated: 2023/01/21 23:58:58 by tlegrand         ###   ########.fr       */
+/*   Updated: 2023/01/22 16:26:29 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,22 +16,25 @@ int	g_receipt;
 
 int	main(int argc, char **argv)
 {
-	int	killstate;
+	struct sigaction act;
 
+	act.sa_handler = ft_sighandler_client;
+	act.sa_flags = 0;
+	sigemptyset(&act.sa_mask);
+	sigaction(SIGUSR2, &act, NULL);
 	if (argc == 2)
 	{
-		killstate = kill(ft_atoi(argv[1]), SIGTERM);
-		ft_printf("killstate is %d\n", killstate);
+		if (kill(ft_atoi(argv[1]), SIGTERM) == -1)
+			ft_error("Fail to require server's shutdown\n");
 	}
 	else if (argc == 3)
-	{
 		ft_sender_master(ft_atoi(argv[1]), argv[2]);
-	}
-	else if (argc == 4)
+	else
 	{
-		killstate = kill(ft_atoi(argv[1]), SIGFPE);
-		ft_printf("killstate is %d\n", killstate);
+		if (kill(ft_atoi(argv[1]), SIGFPE) == -1)
+			ft_error("Fail to ask statue of g_bin to server\n");
 	}
-	//ft_printf("receipt is %d\n", g_receipt);
-	return(argc);
+	while(1)
+		pause();
+	return(0);
 }

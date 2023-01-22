@@ -6,7 +6,7 @@
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/21 19:35:38 by tlegrand          #+#    #+#             */
-/*   Updated: 2023/01/21 22:06:33 by tlegrand         ###   ########.fr       */
+/*   Updated: 2023/01/22 14:46:20 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ void    ft_error(char *errstr)
 {
 	ft_putstr_fd("Error\n", 2);
     ft_putstr_fd(errstr, 2);
-    exit(3);
+    exit(EXIT_FAILURE);
 }
 
 size_t	ft_intlen(int n)

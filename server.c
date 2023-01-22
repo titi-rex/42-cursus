@@ -6,7 +6,7 @@
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/21 16:09:08 by tlegrand          #+#    #+#             */
-/*   Updated: 2023/01/21 23:53:44 by tlegrand         ###   ########.fr       */
+/*   Updated: 2023/01/22 16:10:32 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,20 +16,14 @@ sig_atomic_t	g_bin;
 
 int	main(void)
 {
-	int				pid;
-	int				bin;
-	char			c;
-	struct sigaction act;
+	unsigned char		c;
+	int					bin;
+	struct sigaction	act;
 	
-	act.sa_handler = ft_handler;
-	act.sa_flags = 0;
+	ft_printf("Server pid is %d\n", getpid());
+	act.sa_sigaction = ft_sighandler_server;
+	act.sa_flags = SA_SIGINFO;
 	sigemptyset(&act.sa_mask);
-	sigaddset(&act.sa_mask, SIGUSR1);
-	sigaddset(&act.sa_mask, SIGUSR2);
-	sigaddset(&act.sa_mask, SIGTERM);
-	sigaddset(&act.sa_mask, SIGFPE);
-	pid = getpid();
-	ft_printf("server pid is %d\n", pid);
 	sigaction(SIGUSR1, &act, NULL);
 	sigaction(SIGUSR2, &act, NULL);
 	sigaction(SIGTERM, &act, NULL);
@@ -38,7 +32,7 @@ int	main(void)
 	{
 		if (g_bin > 9999999)
 		{
-			//sigemptyset(&act.sa_mask);
+			
 			bin = g_bin;
 			g_bin = 0;
 			c = ft_decoding(bin);
@@ -47,24 +41,6 @@ int	main(void)
 			else
 				write(1, "\n", 1);
 		}
-	}	
-	
+	}
 	return (0);
 }
-
-/*
-		if (ft_intlen(g_bin) == 8)
-		{
-			sigemptyset(&act.sa_mask);
-			bin = g_bin;
-			ft_decoding(bin);
-
-		}
-*/
-
-/*
-			sigaddset(&act.sa_mask, SIGUSR1);
-			sigaddset(&act.sa_mask, SIGUSR2);
-			sigaddset(&act.sa_mask, SIGTERM);
-			sigaddset(&act.sa_mask, SIGFPE);
-*/

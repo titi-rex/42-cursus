@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   encoding.c                                         :+:      :+:    :+:   */
+/*   binary_coding.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/21 19:18:05 by tlegrand          #+#    #+#             */
-/*   Updated: 2023/01/21 23:41:59 by tlegrand         ###   ########.fr       */
+/*   Updated: 2023/01/22 16:09:52 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minitalk.h"
 
-int ft_dectobin(int dec)
+int ft_encoding(int dec)
 {
 	int	bin;
 	int	div;
@@ -39,12 +39,12 @@ int	ft_decoding(int bin)
 	int	mult;
 
 	dec = 0;
-	mult = 128;
-	while (mult != 0)
+	mult = 1;
+	while (mult <= 128)
 	{
 		if (bin % 10 == 1)
 			dec += mult; 
-		mult /= 2;
+		mult *= 2;
 		bin /= 10;
 	}
 	return (dec);

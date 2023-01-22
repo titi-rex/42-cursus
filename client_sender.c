@@ -1,55 +1,60 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   sending.c                                          :+:      :+:    :+:   */
+/*   client_sender.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/21 20:25:08 by tlegrand          #+#    #+#             */
-/*   Updated: 2023/01/22 00:04:18 by tlegrand         ###   ########.fr       */
+/*   Updated: 2023/01/22 16:27:17 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minitalk.h"
 
-void	ft_sendout(int pid, int bin)
+int	ft_sendout(int pid, unsigned char bytes)
 {
-	int	i;
-	int	n;
+	uint8_t	count;
+	int		n;
 
-	i = 0;
 	n = 0;
-	while (i < 8)
+	count = 1;
+	count = count << 7;
+	while (count)
 	{
-		if (bin % 10 == 1)
+		if (bytes & count)
 			n += kill(pid, SIGUSR1);
 		else
 			n += kill(pid, SIGUSR2);
-		usleep(1);
-		bin /= 10;
-		i++;
+		usleep(100);
+		count = count >> 1;
 	}
+	return (n);
 }
 
 void	ft_sender_master(int pid, char *str)
 {
 	int	i;
+	int	n;
 
 	i = 0;
 	while (str[i])
 	{
-		//ft_printf("char to send is %c\n", str[i]);
-		ft_sendout(pid, ft_dectobin(str[i]));
+		n = ft_sendout(pid, str[i]);
 		i++;
-		usleep(10);
+		usleep(100);
 	}
-	ft_sendout(pid, 11111111);
-	usleep(5);
+	n += ft_sendout(pid, 255);
+	if (n)
+		ft_error("Some signals were lost\n");
 }
 
-/*
-	if (n != 0)
-		ft_printf("Some signals are lost : %d\n", n);
-	else
-		ft_printf("All signals succesfully sent!\n");
-*/
+void	ft_sighandler_client(int sig)
+{
+	if (sig == SIGUSR2)
+	{
+		ft_printf("server confirm receipt of message\n");
+		exit(EXIT_SUCCESS);
+	}
+}
+
