@@ -6,7 +6,7 @@
 #    By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/12/03 11:42:37 by tlegrand          #+#    #+#              #
-#    Updated: 2023/01/22 14:41:37 by tlegrand         ###   ########.fr        #
+#    Updated: 2023/01/22 17:34:16 by tlegrand         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,14 +15,12 @@ NAME		=	minitalk
 DIR_OBJS	=	.objs/
 
 NAME_S		=	server 
-SRCS_S		= 	server.c server_handler.c binary_coding.c \
-				utils.c
+SRCS_S		= 	server.c utils.c
 LIST_OBJS_S	=	${SRCS_S:.c=.o}
 OBJS_S		=	${addprefix ${DIR_OBJS}, ${LIST_OBJS_S}}
 
 NAME_C		=	client
-SRCS_C		=	client.c binary_coding.c client_sender.c \
-				utils.c
+SRCS_C		=	client.c utils.c
 LIST_OBJS_C	=	${SRCS_C:.c=.o}
 OBJS_C		=	${addprefix ${DIR_OBJS}, ${LIST_OBJS_C}}
 
@@ -49,7 +47,7 @@ leaks	: ${NAME}
 		leaks --atExit -- ./${NAME} 
 
 nn	:
-	norminette ${SRCS} ${SRCS_B} ${HEADER} ${HEADER_B}
+	/home/reina/.local/bin/norminette ${SRCS_S} ${SRCS_C} ${HEADER}
 
 lib	:
 	${MAKE} -C libft
