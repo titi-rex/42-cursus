@@ -6,7 +6,7 @@
 #    By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/12/03 11:42:37 by tlegrand          #+#    #+#              #
-#    Updated: 2023/01/23 20:25:28 by tlegrand         ###   ########.fr        #
+#    Updated: 2023/01/23 22:59:03 by tlegrand         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,7 +14,7 @@ NAME		=	pipex
 
 DIR_OBJS	=	.objs/
 
-SRCS		= 	pipex.c utils.c
+SRCS		= 	pipex.c utils.c format.c
 LIST_OBJS	=	${SRCS:.c=.o}
 OBJS		=	${addprefix ${DIR_OBJS}, ${LIST_OBJS}}
 

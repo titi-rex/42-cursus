@@ -6,7 +6,7 @@
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/23 18:30:42 by tlegrand          #+#    #+#             */
-/*   Updated: 2023/01/23 21:32:02 by tlegrand         ###   ########.fr       */
+/*   Updated: 2023/01/23 23:38:52 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,56 +28,33 @@ void	readnprint(int fd)
 
 int	main(int argc, char **argv)
 {
-	char	*buff;
+	char	**cmd;
 	int		pipefd[2];
-	int		fdout;
+	int		fd;
 
-
-	if (argc == 2)
-	{
-		buff = ft_strjoin("/usr/bin/", argv[1]);
-		if (access(buff, F_OK | X_OK) == -1)
-			ft_error("acces denied 1\n");
-		if (0 == fork())
-		{
-			fdout = open("filout", O_WRONLY);
-			dup2(fdout, 1);
-			if (execve(buff, ft_split(argv[1], ' '), NULL) == -1)
-				perror("error exe\n");
-			close(fdout);
-		}
-		free(buff);
-	}
-	if (argc == 3)
+	if (argc == 5)
 	{
 		if (pipe(pipefd))
-			ft_error("pipe error\n");
-		buff = ft_strjoin("/usr/bin/", argv[1]);
-		if (access(buff, F_OK | X_OK) == -1)
-			ft_error("acces denied 1\n");
-		if (0 == fork())
-		{
-			close(pipefd[0]);
-			dup2(pipefd[1], 1);
-			if (execve(buff, ft_split(argv[1], ' '), NULL) == -1)
-				perror("error exe\n");
-			close(pipefd[1]);
-		}
-		free(buff);
-		buff = ft_strjoin("/usr/bin/", argv[2]);
-		if (access(buff, F_OK | X_OK) == -1)
-			ft_error("acces denied 1\n");
-		if (0 == fork())
-		{
-			close(pipefd[1]);
-			fdout = open("filout", O_WRONLY);
-			dup2(pipefd[0], 0);
-			dup2(fdout, 1);
-			if (execve(buff, ft_split(argv[2], ' '), NULL) == -1)
-				perror("error exe\n");
-			close(pipefd[0]);
-			close(fdout);
-		}
+			ft_error("pipe error\n", NULL);
+		/* cmd1 */
+		cmd = ft_cmd_format(argv[2]);
+		if (!cmd)
+			ft_error("malloc fail\n", NULL);
+		ft_cmd_check(cmd);
+		fd = open(argv[1], O_RDONLY);
+		ft_cmd_exec(fd, pipefd[1], pipefd[0], cmd);
+		ft_freesplit(cmd);
+		close(fd);
+		/* cmd2 */
+		cmd = ft_cmd_format(argv[3]);
+		if (!cmd)
+			ft_error("malloc fail\n", NULL);
+		ft_cmd_check(cmd);
+		fd = open(argv[4], O_WRONLY | O_CREAT | O_TRUNC);
+		ft_cmd_exec(pipefd[0], fd, pipefd[1], cmd);
+		ft_freesplit(cmd);
+		close(fd);
+		/* close fd */
 		close(pipefd[1]);
 		close(pipefd[0]);
 	}	
@@ -88,4 +65,20 @@ int	main(int argc, char **argv)
 
 /*
 O_RDWR
+
+
+		if (0 == fork())
+		{
+			close(pipefd[0]);
+			fdin = open(argv[1], O_RDONLY);
+			dup2(fdin, 0);
+			dup2(fdf1, 1);
+			if (execve(cmd[0], cmd, NULL) == -1)
+				perror("error exe\n");
+			close(pipefd[1]);
+			close(fdin);
+		}
+
+
+valgrind --track-fd=yes ./exe
 */
