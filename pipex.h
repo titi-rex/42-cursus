@@ -6,7 +6,7 @@
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/23 18:21:30 by tlegrand          #+#    #+#             */
-/*   Updated: 2023/01/23 23:02:20 by tlegrand         ###   ########.fr       */
+/*   Updated: 2023/01/24 15:13:54 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,8 @@
 void	ft_error(char *errstr, char **cmd);
 void	ft_cmd_check(char **cmd);
 
-char	**ft_cmd_format(char *cmd);
+char	**ft_cmd_search(char *cmd, char *pathvar);
+char	**ft_cmd_format(char *cmd, char *path);
 void	ft_cmd_exec(int fdin, int fdout, int fdclose, char **cmd);
 
 #endif
