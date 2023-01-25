@@ -6,7 +6,7 @@
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/23 22:25:56 by tlegrand          #+#    #+#             */
-/*   Updated: 2023/01/24 20:17:05 by tlegrand         ###   ########.fr       */
+/*   Updated: 2023/01/25 17:26:47 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,8 +82,57 @@ void	ft_cmd_check(char **cmd)
 		ft_error("You're not authorized to use this command !\n", cmd);
 }
 
-void	ft_cmd_exec(int fdin, int fdout, int fdclose, char **cmd)
+void	ft_cmd_exec(int fdin, int fdout, char **cmd)
 {
+	pid_t	child_pid;
+	
+	child_pid = fork();
+	if (child_pid != 0 && child_pid != -1)
+	{
+		//ft_printf("parent here waiting for chpid is %d\n", child_pid);
+		waitpid(child_pid, NULL, 0);
+	}
+	if (child_pid == 0)
+	{
+		//ft_printf("chpid here is %d\n", getpid());
+		//ft_printf("fdin is %d, fdout is %d, cmd is %s\n", fdin, fdout, cmd[0]);
+		//close(fdclose);
+		//if (fdin != 0)
+			dup2(fdin, 0);
+		//if (fdout != 1)
+			dup2(fdout, 1);
+		if (execve(cmd[0], cmd, NULL) == -1)
+				ft_putstr_fd("Error execve\n", 2);
+		close(fdout);
+		close(fdin);
+		exit(EXIT_SUCCESS);
+	}
+}
+
+
+/*
+	if (child_pid == 0)
+	{
+		ft_printf("pid is %d\n", getpid());
+		ft_printf("fdin is %d, fdout is %d, fdclose is %d, cmd is %s\n", fdin, fdout, fdclose, cmd[0]);
+		//close(fdclose);
+		dup2(fdin, 0);
+		dup2(fdout, 1);
+		child_pid2 = fork();
+		waitpid(child_pid2, NULL, 0);
+		if (child_pid2 == 0)
+		{
+			if (execve(cmd[0], cmd, NULL) == -1)
+				ft_putstr_fd("Error execve\n", 2);
+		}
+		//close(fdout);
+		//close(fdin);
+		sleep(1);
+		//ft_printf("end child\n");
+		exit(EXIT_SUCCESS);
+	}
+
+
 	if (fork() == 0)
 	{
 		close(fdclose);
@@ -94,4 +143,13 @@ void	ft_cmd_exec(int fdin, int fdout, int fdclose, char **cmd)
 		close(fdout);
 		close(fdin);
 	}
-}
+*/
+
+/*
+dup2(fdin, 0);
+		dup2(fdout, 1);
+		if (execve(cmd[0], cmd, NULL) == -1)
+			ft_putstr_fd("Error execve\n", 2);
+		close(fdout);
+		close(fdin);
+*/
