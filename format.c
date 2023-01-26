@@ -6,7 +6,7 @@
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/23 22:25:56 by tlegrand          #+#    #+#             */
-/*   Updated: 2023/01/25 17:26:47 by tlegrand         ###   ########.fr       */
+/*   Updated: 2023/01/26 15:12:19 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,35 +82,49 @@ void	ft_cmd_check(char **cmd)
 		ft_error("You're not authorized to use this command !\n", cmd);
 }
 
-void	ft_cmd_exec(int fdin, int fdout, char **cmd)
+void	ft_cmd_exec(char *pathname_in, char *pathname_out, char **cmd)
 {
 	pid_t	child_pid;
+	int		fd_in;
+	int		fd_out;
+	int		fd_tmp;
 	
+	if (pathname_in)
+		fd_in = open(pathname_in, O_RDONLY | O_CLOEXEC);
+	fd_tmp = open(CAT_TMP_FILE, O_WRONLY | O_TRUNC | O_CLOEXEC | O_CREAT, 0644);
 	child_pid = fork();
-	if (child_pid != 0 && child_pid != -1)
-	{
-		//ft_printf("parent here waiting for chpid is %d\n", child_pid);
-		waitpid(child_pid, NULL, 0);
-	}
 	if (child_pid == 0)
 	{
-		//ft_printf("chpid here is %d\n", getpid());
-		//ft_printf("fdin is %d, fdout is %d, cmd is %s\n", fdin, fdout, cmd[0]);
-		//close(fdclose);
-		//if (fdin != 0)
-			dup2(fdin, 0);
-		//if (fdout != 1)
-			dup2(fdout, 1);
+		if (pathname_in)
+			dup2(fd_in, 0);
+		dup2(fd_tmp, 1);
 		if (execve(cmd[0], cmd, NULL) == -1)
 				ft_putstr_fd("Error execve\n", 2);
-		close(fdout);
-		close(fdin);
-		exit(EXIT_SUCCESS);
+		close(fd_in);
+		close(fd_tmp);
+		exit(EXIT_FAILURE);
+	}
+	else
+	{
+		waitpid(child_pid, NULL, 0);
+		close(fd_in);
+		fd_tmp = open(CAT_TMP_FILE, O_RDONLY);
+		fd_out = open(pathname_out, O_WRONLY | O_TRUNC | O_CREAT, 0644);
+		if (ft_cat_fd(fd_tmp, fd_out) == -1)
+			ft_putstr_fd("cattmp error\n", 2);
+		close(fd_tmp);
+		close(fd_out);
+		if (unlink(CAT_TMP_FILE))
+			ft_putstr_fd("Error deletion tmp file (ft_cat)\n", 2);
 	}
 }
 
 
 /*
+
+		ft_cat_fd(fdtmp, fdout);
+		close(fdtmp);
+
 	if (child_pid == 0)
 	{
 		ft_printf("pid is %d\n", getpid());

@@ -6,7 +6,7 @@
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/21 19:35:38 by tlegrand          #+#    #+#             */
-/*   Updated: 2023/01/23 22:44:42 by tlegrand         ###   ########.fr       */
+/*   Updated: 2023/01/26 14:37:59 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,5 +24,7 @@ void	ft_error(char *errstr, char **cmd)
 	perror(errstr);
 	if (cmd)
 		ft_freesplit(cmd);
+	if (unlink(PIPEX_TMP_FILE))
+			ft_putstr_fd("Error deletion tmp file (pipex)\n", 2);
 	exit(EXIT_FAILURE);
 }

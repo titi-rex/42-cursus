@@ -6,79 +6,83 @@
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/23 18:30:42 by tlegrand          #+#    #+#             */
-/*   Updated: 2023/01/25 17:34:06 by tlegrand         ###   ########.fr       */
+/*   Updated: 2023/01/26 15:11:02 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pipex.h"
 
 /* need to make a better error management */
+/* check if tmpfile exist before unlink */
 int	main(int argc, char **argv, char **env)
 {
-	char	**cmd;
-	char	*tmpfile_path;
-	int		fd;
-	int		fdtmp;
-
-	
-	tmpfile_path = "pipex_tmp";
-	if (argc == 5)
-	{
-		/* cmd first */
-		cmd = ft_cmd_search(argv[2], env[6]);
-		if (!cmd)
-			ft_error("malloc fail\n", NULL);
-		if (access(cmd[0], X_OK) == -1)
-			ft_error("You're not authorized to use this command !\n", cmd);
-		fd = open(argv[1], O_RDONLY);
-		fdtmp = open(tmpfile_path, O_RDWR | O_CREAT | O_TRUNC, 0644);
-		ft_cmd_exec(fd, fdtmp, cmd);
-		ft_freesplit(cmd);
-		close(fd);
-		close(fdtmp);
-
-		ft_printf("MIDDLE\n");
-		/* cmd end */
-		cmd = ft_cmd_search(argv[3], env[6]);
-		if (!cmd)
-			ft_error("malloc fail\n", NULL);
-		if (access(cmd[0], X_OK) == -1)
-			ft_error("You're not authorized to use this command !\n", cmd);
-		fd = open(argv[4], O_WRONLY | O_CREAT | O_TRUNC, 0644);
-		fdtmp = open(tmpfile_path, O_RDWR);
-		ft_cmd_exec(fdtmp, fdtmp, cmd);
-		ft_freesplit(cmd);
-		close(fd);
-		//if (unlink(tmpfile_path))
-			//ft_putstr_fd("Error rm tmp file \n", 2);
-		close(fdtmp);
-		ft_printf("END\n");
-
-	}	
+	if (argc < 5)
+		return(ft_man());
+	if (!ft_strncmp(argv[1], "here_doc", 9))
+		ft_append_mode(argc, argv, env[6]);
+	else
+		ft_normal_mode(argc, argv, env[6]);
+	//if (unlink(PIPEX_TMP_FILE))
+	//		ft_putstr_fd("Error deletion tmp file (pipex)\n", 2);
 	return (0);
 }
 
+void	ft_normal_mode(int argc, char **argv, char *pathvar)
+{
+	int	i;
+
+	i = 2;
+	ft_printf("normal mode laucnhed\n");
+	while (i < argc - 1)
+	{
+		if (i == 2)
+			ft_cmd_master(argv[i], argv[1], PIPEX_TMP_FILE, pathvar);
+		else if (i == argc - 2)
+			ft_cmd_master(argv[i], PIPEX_TMP_FILE, argv[argc - 1], pathvar);
+		else
+			ft_cmd_master(argv[i], PIPEX_TMP_FILE, PIPEX_TMP_FILE, pathvar);
+		i++;
+	}
+}
+void	ft_append_mode(int argc, char **argv, char *pathvar)
+{
+	int	i;
+
+	i = 3;
+	ft_printf("append mode laucnhed\n");
+	while (i < argc - 1)
+	{
+		if (i == 3)
+			ft_cmd_master(argv[i], NULL, PIPEX_TMP_FILE, pathvar);
+		else if (i == argc - 2)
+			ft_cmd_master(argv[i], PIPEX_TMP_FILE, argv[argc - 1], pathvar);
+		else
+			ft_cmd_master(argv[i], PIPEX_TMP_FILE, PIPEX_TMP_FILE, pathvar);
+		i++;
+	}
+}
+
+int	ft_man(void)
+{
+	ft_printf("use me correctly u stupid nerd!\n");
+	return (0);
+}
+
+void	ft_cmd_master(char *cmd_raw, char *file1, char *file2, char *pathvar)
+{
+	char	**cmd;
+
+	cmd = ft_cmd_search(cmd_raw, pathvar);
+	if (!cmd)
+		ft_error("malloc fail\n", NULL);
+	if (access(cmd[0], X_OK) == -1)
+		ft_error("You're not authorized to use this command !\n", cmd);
+	ft_cmd_exec(file1, file2, cmd);
+	ft_printf("END %s\n", cmd[0]);
+	ft_freesplit(cmd);
+}
+
 /*
-		 
-
-*/
-
-/*
-O_RDWR
-
-
-		if (0 == fork())
-		{
-			close(pipefd[0]);
-			fdin = open(argv[1], O_RDONLY);
-			dup2(fdin, 0);
-			dup2(fdf1, 1);
-			if (execve(cmd[0], cmd, NULL) == -1)
-				perror("error exe\n");
-			close(pipefd[1]);
-			close(fdin);
-		}
-
 
 valgrind --track-fd=yes ./exe
 */
