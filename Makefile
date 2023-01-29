@@ -6,7 +6,7 @@
 #    By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/11/19 14:03:05 by tlegrand          #+#    #+#              #
-#    Updated: 2023/01/20 21:35:28 by tlegrand         ###   ########.fr        #
+#    Updated: 2023/01/21 15:50:46 by tlegrand         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -32,7 +32,7 @@ FLAGS		=	-Wall -Wextra -Werror -I .
 
 MLXFLAGS_MAC	=	-L minilibx/ -lmlx -framework OpenGL -framework AppKit
 
-MLXFLAGS_LINUX	=	-Lmlx_linux -lmlx_Linux L/usr/lib -Imlx_linux -lXext -lX11 -lm -lz 
+MLXFLAGS_LINUX	=	-Lmlx_linux -lmlx_Linux -L/usr/local/lib -Imlx_linux -lXext -lX11 -lm -lz 
 
 all	: ${NAME}
 
@@ -40,7 +40,7 @@ ${NAME}	:	lib ${DIR_OBJS} ${OBJS}
 		${CC} ${MLXFLAGS} ${OBJS} ${LIB} -o ${NAME}
 
 ${NAME}_L	:	lib ${DIR_OBJS} ${OBJS}
-		${CC} ${MLXFLAGS_L} ${OBJS} ${LIB_LINUX} -o ${NAME}
+		${CC} ${OBJS} ${LIB_LINUX} ${MLXFLAGS_L} -o ${NAME}
 		
 leaks	: ${NAME}
 		leaks --atExit -- ./${NAME}
@@ -53,7 +53,7 @@ lib	:
 #	${MAKE} -C minilibx
 
 ${DIR_OBJS}%.o	:	%.c ${HEADER} 
-				${CC} ${FLAGS} -c $< -o $@
+				${CC} ${FLAGS} -I/usr/local/include -Imlx_linux -O3 -c $< -o $@
 
 ${DIR_OBJS}	:
 			mkdir ${DIR_OBJS}
