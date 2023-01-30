@@ -6,15 +6,13 @@
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/23 22:25:56 by tlegrand          #+#    #+#             */
-/*   Updated: 2023/01/26 15:12:19 by tlegrand         ###   ########.fr       */
+/*   Updated: 2023/01/30 13:08:05 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pipex.h"
 
-
-
-int		ft_pathlen(char *pathvar)
+int	ft_pathlen(char *pathvar)
 {
 	int	len;
 
@@ -32,11 +30,11 @@ char	**ft_cmd_search(char *cmd, char *pathvar)
 	int		varlen;
 	int		pathlen;
 
-	while(*pathvar != '/')
+	while (*pathvar != '/')
 		pathvar++;
 	buff = ft_strtrim(cmd, " \t");
 	varlen = ft_strlen(pathvar);
-	while(varlen > 0)
+	while (varlen > 0)
 	{
 		pathlen = ft_pathlen(pathvar);
 		path = ft_substr(pathvar, 0, pathlen);
@@ -88,18 +86,18 @@ void	ft_cmd_exec(char *pathname_in, char *pathname_out, char **cmd)
 	int		fd_in;
 	int		fd_out;
 	int		fd_tmp;
-	
-	if (pathname_in)
+
+	if (pathname_in || access(pathname_in, F_OK | R_OK))
 		fd_in = open(pathname_in, O_RDONLY | O_CLOEXEC);
 	fd_tmp = open(CAT_TMP_FILE, O_WRONLY | O_TRUNC | O_CLOEXEC | O_CREAT, 0644);
 	child_pid = fork();
 	if (child_pid == 0)
 	{
-		if (pathname_in)
+		if (pathname_in, access(pathname_in, F_OK | R_OK))
 			dup2(fd_in, 0);
 		dup2(fd_tmp, 1);
 		if (execve(cmd[0], cmd, NULL) == -1)
-				ft_putstr_fd("Error execve\n", 2);
+			ft_putstr_fd("Error execve\n", 2);
 		close(fd_in);
 		close(fd_tmp);
 		exit(EXIT_FAILURE);
@@ -118,7 +116,6 @@ void	ft_cmd_exec(char *pathname_in, char *pathname_out, char **cmd)
 			ft_putstr_fd("Error deletion tmp file (ft_cat)\n", 2);
 	}
 }
-
 
 /*
 

@@ -6,22 +6,29 @@
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/23 18:30:42 by tlegrand          #+#    #+#             */
-/*   Updated: 2023/01/26 15:11:02 by tlegrand         ###   ########.fr       */
+/*   Updated: 2023/01/30 15:04:32 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pipex.h"
 
 /* need to make a better error management */
+/*	check if path already exist in cmd	*/
+/*	check permission of file/if ile exist	*/
 /* check if tmpfile exist before unlink */
 int	main(int argc, char **argv, char **env)
 {
+	int		i;
+
 	if (argc < 5)
-		return(ft_man());
+		return (ft_man());
+	i = 0;
+	while (env[i] && ft_strncmp(env[i], "PATH=", 5))
+		i++;
 	if (!ft_strncmp(argv[1], "here_doc", 9))
-		ft_append_mode(argc, argv, env[6]);
+		ft_append_mode(argc, argv, env[i]);
 	else
-		ft_normal_mode(argc, argv, env[6]);
+		ft_normal_mode(argc, argv, env[i]);
 	//if (unlink(PIPEX_TMP_FILE))
 	//		ft_putstr_fd("Error deletion tmp file (pipex)\n", 2);
 	return (0);
@@ -32,7 +39,7 @@ void	ft_normal_mode(int argc, char **argv, char *pathvar)
 	int	i;
 
 	i = 2;
-	ft_printf("normal mode laucnhed\n");
+	ft_printf("normal mode launched\n");
 	while (i < argc - 1)
 	{
 		if (i == 2)
@@ -44,12 +51,13 @@ void	ft_normal_mode(int argc, char **argv, char *pathvar)
 		i++;
 	}
 }
+
 void	ft_append_mode(int argc, char **argv, char *pathvar)
 {
 	int	i;
 
 	i = 3;
-	ft_printf("append mode laucnhed\n");
+	ft_printf("append mode launched\n");
 	while (i < argc - 1)
 	{
 		if (i == 3)
