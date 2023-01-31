@@ -6,7 +6,7 @@
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/10 22:54:11 by tlegrand          #+#    #+#             */
-/*   Updated: 2023/01/20 23:15:36 by tlegrand         ###   ########.fr       */
+/*   Updated: 2023/01/31 13:48:33 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,6 @@ void	ft_push(t_stack **start_src, t_stack **start_dst)
 	src = *start_src;
 	dst = *start_dst;
 	tmp = src->next;
-	// remplacer  directement dst par start dst etc a la fin
 	src->next = dst;
 	dst = src;
 	src = tmp;

@@ -6,7 +6,7 @@
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/08 13:43:09 by tlegrand          #+#    #+#             */
-/*   Updated: 2023/01/20 22:55:27 by tlegrand         ###   ########.fr       */
+/*   Updated: 2023/01/22 17:55:23 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,10 +17,10 @@
 # include <limits.h>
 # include <stdarg.h>
 # ifndef OPEN_MAX
-# define OPEN_MAX 1024
+#  define OPEN_MAX 1024
 # endif
 # ifndef SIZE_MAX
-# define SIZE_MAX 18446744073709551615UL
+#  define SIZE_MAX 18446744073709551615UL
 # endif
 
 /* char functions */
@@ -88,11 +88,11 @@ void	ft_lstiter(t_list *lst, void (*f)(void *));
 t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *));
 
 /* ft_printf functions */
-int	ft_printf(const char *str, ...);
-int	ft_putchar(char c);
-int	ft_putstr(char *s);
-int	ft_putnbr(int n);
-int	ft_putnbr_base(long int nbr, char *base);
+int		ft_printf(const char *str, ...);
+int		ft_putchar(char c);
+int		ft_putstr(char *s);
+int		ft_putnbr(int n);
+int		ft_putnbr_base(long int nbr, char *base);
 
 /* gnl functions */
 # ifndef BUFFER_SIZE

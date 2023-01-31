@@ -6,12 +6,13 @@
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/10 21:21:41 by tlegrand          #+#    #+#             */
-/*   Updated: 2023/01/20 22:53:23 by tlegrand         ###   ########.fr       */
+/*   Updated: 2023/01/31 13:48:47 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
+// remplacer  directement dst par start dst etc a la fin
 /**
  * @brief main function, call others functions
  *

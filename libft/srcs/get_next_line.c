@@ -6,7 +6,7 @@
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/28 16:40:14 by tlegrand          #+#    #+#             */
-/*   Updated: 2022/12/25 15:47:40 by tlegrand         ###   ########.fr       */
+/*   Updated: 2023/01/20 20:09:38 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ static char	*get_line(char *s_buff)
 	line = ft_substr(s_buff, 0, i);
 	return (line);
 }
-/*essayer de reduire getstock en mettant un marquer dqns get line */
+
 static char	*get_stock(char *s_buff)
 {
 	size_t	i;

@@ -6,7 +6,7 @@
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/17 16:00:21 by tlegrand          #+#    #+#             */
-/*   Updated: 2023/01/20 23:01:48 by tlegrand         ###   ########.fr       */
+/*   Updated: 2023/01/31 13:46:10 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,8 @@ void	ft_smol_three(t_stack **stack)
 }
 
 /**
- * @brief 5-elements sorting algo, push 2 min to stack b, use ft_smol_three then push back to a
+ * @brief 5-elements sorting algo, push 2 min to stack b, 
+ * use ft_smol_three then push back to a
  * 
  * @param stack_a stack to sort
  */

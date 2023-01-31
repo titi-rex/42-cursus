@@ -6,15 +6,13 @@
 #    By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/11/08 14:39:06 by tlegrand          #+#    #+#              #
-#    Updated: 2023/01/18 16:10:13 by tlegrand         ###   ########.fr        #
+#    Updated: 2023/01/20 11:04:38 by tlegrand         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME	=	libft.a
 
 FLAGS	=	-Wall -Wextra -Werror 
-
-RM		=	rm -rf
 
 DIR_SRCS	=	srcs/
 LST_SRCS	= 	ft_isalpha.c ft_isdigit.c ft_isalnum.c ft_isprint.c ft_isascii.c \
