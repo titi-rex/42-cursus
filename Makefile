@@ -6,7 +6,7 @@
 #    By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/12/03 11:42:37 by tlegrand          #+#    #+#              #
-#    Updated: 2023/01/22 18:41:04 by tlegrand         ###   ########.fr        #
+#    Updated: 2023/01/31 13:50:53 by tlegrand         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -70,4 +70,4 @@ fclean	:	clean
 re	:	fclean
 	${MAKE} all
 
-.PHONY : all clean fclean re bonus nn test
+.PHONY : all clean fclean re nn lib leaks 

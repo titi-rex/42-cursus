@@ -6,12 +6,17 @@
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/21 17:01:32 by tlegrand          #+#    #+#             */
-/*   Updated: 2023/01/22 18:15:50 by tlegrand         ###   ########.fr       */
+/*   Updated: 2023/01/31 13:44:37 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minitalk.h"
 
+/*
+faire doc 
+check if message iis empty // done ?
+use pingpong rather than usleep
+*/
 int	ft_sendout(int pid, unsigned char bytes)
 {
 	uint8_t	count;
@@ -65,10 +70,12 @@ int	main(int argc, char **argv)
 	sigemptyset(&act.sa_mask);
 	sigaction(SIGUSR2, &act, NULL);
 	if (argc == 3)
+	{
 		ft_sender_master(ft_atoi(argv[1]), argv[2]);
-	while (sleep(3))
-		pause();
-	ft_error("Server didn't confirm receipt\n");
-	sleep(1);
+		while (sleep(3))
+			pause();
+		ft_error("Server didn't confirm receipt\n");
+		sleep(1);
+	}
 	return (0);
 }
