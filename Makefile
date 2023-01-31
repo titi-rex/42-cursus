@@ -6,7 +6,7 @@
 #    By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/12/03 11:42:37 by tlegrand          #+#    #+#              #
-#    Updated: 2023/01/25 20:49:37 by tlegrand         ###   ########.fr        #
+#    Updated: 2023/01/31 13:53:14 by tlegrand         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -37,7 +37,7 @@ leaks	: ${NAME}
 		leaks --atExit -- ./${NAME}
 
 nn	:
-	/home/reina/.local/bin/norminette ${SRCS} ${HEADER}
+	norminette ${SRCS} ${HEADER}
 
 lib	:
 	${MAKE} -C libft
@@ -59,4 +59,4 @@ fclean	:	clean
 re	:	fclean
 	${MAKE} all
 
-.PHONY : all clean fclean re bonus lib n
+.PHONY : all clean fclean re bonus lib nn
