@@ -1,0 +1,16 @@
+Makefile
+bible
+filin
+filout
+format.c
+ft_cat_fd.c
+libft
+out
+pipex
+pipex.c
+pipex.h
+pipex.subject.pdf
+test.c
+tmp_file_cat
+tmp_file_pipex
+utils.c

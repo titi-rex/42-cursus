@@ -6,11 +6,11 @@
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/25 20:25:04 by tlegrand          #+#    #+#             */
-/*   Updated: 2023/01/26 13:44:33 by tlegrand         ###   ########.fr       */
+/*   Updated: 2023/02/03 16:05:55 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-# include "pipex.h"
+#include "pipex.h"
 
 int	ft_cat_error(char *errstr)
 {
@@ -35,7 +35,7 @@ int	ft_cat_fd(int fdin, int fdout)
 			return (ft_cat_error("Read error in ft_cat\n"));
 		n_write = write(fdout, &c, 1);
 		if (!n_write)
-			return(ft_cat_error("No place to write\n"));
+			return (ft_cat_error("No place to write\n"));
 		if (n_write == -1)
 			return (ft_cat_error("Write error in ft_cat\n"));
 	}

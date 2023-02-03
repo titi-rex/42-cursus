@@ -6,7 +6,7 @@
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/23 18:30:42 by tlegrand          #+#    #+#             */
-/*   Updated: 2023/01/30 15:04:32 by tlegrand         ###   ########.fr       */
+/*   Updated: 2023/02/03 16:56:16 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,8 +29,11 @@ int	main(int argc, char **argv, char **env)
 		ft_append_mode(argc, argv, env[i]);
 	else
 		ft_normal_mode(argc, argv, env[i]);
-	//if (unlink(PIPEX_TMP_FILE))
-	//		ft_putstr_fd("Error deletion tmp file (pipex)\n", 2);
+	if (!access(PIPEX_TMP_FILE, F_OK))
+	{
+		if (unlink(PIPEX_TMP_FILE))
+			ft_error("Error deletion tmp file (pipex)", NULL, NULL);
+	}
 	return (0);
 }
 
@@ -39,7 +42,7 @@ void	ft_normal_mode(int argc, char **argv, char *pathvar)
 	int	i;
 
 	i = 2;
-	ft_printf("normal mode launched\n");
+	ft_printf("normal mode\n");
 	while (i < argc - 1)
 	{
 		if (i == 2)
@@ -57,7 +60,7 @@ void	ft_append_mode(int argc, char **argv, char *pathvar)
 	int	i;
 
 	i = 3;
-	ft_printf("append mode launched\n");
+	ft_printf("append mode\n");
 	while (i < argc - 1)
 	{
 		if (i == 3)
@@ -82,9 +85,13 @@ void	ft_cmd_master(char *cmd_raw, char *file1, char *file2, char *pathvar)
 
 	cmd = ft_cmd_search(cmd_raw, pathvar);
 	if (!cmd)
-		ft_error("malloc fail\n", NULL);
+		return ;
 	if (access(cmd[0], X_OK) == -1)
-		ft_error("You're not authorized to use this command !\n", cmd);
+	{
+		ft_freesplit(cmd);
+		ft_error("You're not authorized to use this command !\n", cmd[0], NULL);
+		return ;
+	}
 	ft_cmd_exec(file1, file2, cmd);
 	ft_printf("END %s\n", cmd[0]);
 	ft_freesplit(cmd);
