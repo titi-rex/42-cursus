@@ -6,9 +6,13 @@
 #    By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/12/03 11:42:37 by tlegrand          #+#    #+#              #
-#    Updated: 2023/01/31 13:54:19 by tlegrand         ###   ########.fr        #
+#    Updated: 2023/02/06 22:36:47 by tlegrand         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
+
+
+# search for FORCE $(shell dirname ) cc -I -L -lft dependance? .d pathsubst 
+# architecture ? dir inclue ? dir lib ? dir srcs ? 
 
 NAME		=	push_swap
 
@@ -21,42 +25,45 @@ OBJS		=	${addprefix ${DIR_OBJS}, ${LIST_OBJS}}
 
 HEADER		=	push_swap.h \
 
-LIB			=	libft/libft.a\
 
-FLAGS		=	-Wall -Wextra -Werror -I .
+FLAGS		=	-Wall -Wextra -Werror 
 
 RM			=	rm -rf
 
+DIR_LIBFT	=	libft/
+LIBFT		=	$(addprefix $(DIR_LIBFT), libft.a)
 
-all		: 	${NAME}
 
-${NAME}	:	lib ${DIR_OBJS} ${OBJS}
-		${CC} ${FLAGS} ${OBJS} ${LIB} -o ${NAME}
 
-leaks	: ${DIR_OBJS} ${OBJS}
-		leaks --atExit -- ./${NAME} 
+all:			$(NAME)
+
+
+
+$(NAME):		$(LIBFT) $(OBJS)
+				$(CC) $(FLAGS) -o $(NAME) $(OBJS) ${LIBFT}
+
+$(LIBFT): FORCE
+	$(MAKE) -C $(DIR_LIBFT)
 
 nn	:
 	norminette ${SRCS} ${HEADER} 
 
-lib	:
-	${MAKE} -C libft
+$(DIR_OBJS)%.o: %.c
+				mkdir -p $(shell dirname $@)
+				$(CC) $(FLAGS) -I . -c $< -o $@
 
-${DIR_OBJS}%.o	:	%.c ${HEADER} 
-				${CC} ${FLAGS} -c $< -o $@
+clean:
+				$(MAKE) -C $(DIR_LIBFT) clean
+				$(RM) $(DIR_OBJS)
 
-${DIR_OBJS}	:
-			mkdir ${DIR_OBJS}
+fclean: clean
+				$(MAKE) -C $(DIR_LIBFT) fclean
+				$(RM) $(NAME)
 
-clean	:
-		${RM} ${DIR_OBJS}
-		make -C libft clean
+re:				fclean
+				$(MAKE) all
 
-fclean	:	clean
-		${RM} ${NAME}
-		make -C libft fclean
 
-re	:	fclean
-	${MAKE} all
+FORCE:
 
-.PHONY : all clean fclean re bonus nn test
+.PHONY : all clean fclean re nn FORCE
