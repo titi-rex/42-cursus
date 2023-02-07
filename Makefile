@@ -6,7 +6,7 @@
 #    By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/12/03 11:42:37 by tlegrand          #+#    #+#              #
-#    Updated: 2023/02/06 17:33:56 by tlegrand         ###   ########.fr        #
+#    Updated: 2023/02/07 12:15:17 by tlegrand         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -27,14 +27,11 @@ FLAGS		=	-Wall -Wextra -Werror -I .
 RM			=	rm -rf
 
 
-all		: 	${NAME}
+all		:	lib ${NAME}
 
-${NAME}	:	lib ${DIR_OBJS} ${OBJS}
+${NAME}	:	${OBJS}
 		${CC} ${FLAGS} -o ${NAME} ${OBJS} ${LIB}
 
-
-leaks	: ${NAME}
-		leaks --atExit -- ./${NAME}
 
 nn	:
 	norminette ${SRCS} ${HEADER}
@@ -43,10 +40,8 @@ lib	:
 	${MAKE} -C libft
 
 ${DIR_OBJS}%.o	:	%.c ${HEADER} 
+				@mkdir -p ${DIR_OBJS}
 				${CC} ${FLAGS} -c $< -o $@
-
-${DIR_OBJS}	:
-			@mkdir ${DIR_OBJS}
 
 clean	:
 		${RM} ${DIR_OBJS}

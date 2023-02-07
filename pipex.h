@@ -6,7 +6,7 @@
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/23 18:21:30 by tlegrand          #+#    #+#             */
-/*   Updated: 2023/02/06 17:17:17 by tlegrand         ###   ########.fr       */
+/*   Updated: 2023/02/07 14:50:16 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,11 +20,11 @@
 # include <sys/types.h>
 
 # ifndef CAT_TMP_FILE
-#  define CAT_TMP_FILE "tmp_file_cat"
+#  define CAT_TMP_FILE "/tmp/tmp_file_cat"
 # endif
 
 # ifndef PIPEX_TMP_FILE
-#  define PIPEX_TMP_FILE "tmp_file_pipex"
+#  define PIPEX_TMP_FILE "/tmp/tmp_file_pipex"
 # endif
 
 # ifndef HERE_DOC

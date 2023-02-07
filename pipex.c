@@ -6,16 +6,12 @@
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/23 18:30:42 by tlegrand          #+#    #+#             */
-/*   Updated: 2023/02/06 17:22:33 by tlegrand         ###   ########.fr       */
+/*   Updated: 2023/02/07 14:48:31 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pipex.h"
 
-/* need to make a better error management */
-/*	check if path already exist in cmd	*/
-/*	check permission of file/if ile exist	*/
-/* check if tmpfile exist before unlink */
 int	main(int argc, char **argv, char **env)
 {
 	int		i;
@@ -87,8 +83,3 @@ void	ft_cmd_master(char *cmd_raw, char *file1, char *file2, char *pathvar)
 	ft_cmd_exec(file1, file2, cmd);
 	ft_freesplit(cmd);
 }
-
-/*
-
-valgrind --track-fd=yes ./exe
-*/

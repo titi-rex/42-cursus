@@ -6,7 +6,7 @@
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/23 22:25:56 by tlegrand          #+#    #+#             */
-/*   Updated: 2023/02/06 17:16:18 by tlegrand         ###   ########.fr       */
+/*   Updated: 2023/02/07 14:32:20 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,9 +67,9 @@ void	ft_child(char *pathname_in, char **cmd, int fd_in, int fd_tmp)
 		if (execve(cmd[0], cmd, NULL) == -1)
 			ft_putstr_fd("Error execve\n", 2);
 	}
-	else
-		ft_error("Input file not found", NULL, NULL);
-	close(fd_in);
+	ft_error("Input file not found", NULL, NULL);
+	if (fd_in)
+		close(fd_in);
 	close(fd_tmp);
 	exit(EXIT_FAILURE);
 }
@@ -80,11 +80,11 @@ void	ft_parent(char *pathname_out, int fd_in, int child_pid)
 	int	fd_tmp;
 
 	waitpid(child_pid, NULL, 0);
-	close(fd_in);
+	if (fd_in)
+		close(fd_in);
 	fd_tmp = open(CAT_TMP_FILE, O_RDONLY);
 	fd_out = open(pathname_out, O_WRONLY | O_TRUNC | O_CREAT, 0644);
-	if (ft_cat_fd(fd_tmp, fd_out) == -1)
-		ft_error("cattmp error", NULL, NULL);
+	ft_cat_fd(fd_tmp, fd_out);
 	close(fd_tmp);
 	close(fd_out);
 	if (unlink(CAT_TMP_FILE))
@@ -97,6 +97,7 @@ void	ft_cmd_exec(char *pathname_in, char *pathname_out, char **cmd)
 	int		fd_in;
 	int		fd_tmp;
 
+	fd_in = 0;
 	if (!access(pathname_in, F_OK | R_OK))
 		fd_in = open(pathname_in, O_RDONLY | O_CLOEXEC);
 	fd_tmp = open(CAT_TMP_FILE, O_WRONLY | O_TRUNC | O_CLOEXEC | O_CREAT, 0644);
@@ -106,5 +107,8 @@ void	ft_cmd_exec(char *pathname_in, char *pathname_out, char **cmd)
 	if (child_pid == 0)
 		ft_child(pathname_in, cmd, fd_in, fd_tmp);
 	else
+	{
 		ft_parent(pathname_out, fd_in, child_pid);
+		close(fd_tmp);
+	}
 }
