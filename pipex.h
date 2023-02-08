@@ -6,7 +6,7 @@
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/23 18:21:30 by tlegrand          #+#    #+#             */
-/*   Updated: 2023/02/07 14:50:16 by tlegrand         ###   ########.fr       */
+/*   Updated: 2023/02/08 16:27:29 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,5 +48,16 @@ void	ft_normal_mode(int argc, char **argv, char *pathvar, int start);
 void	ft_append_mode(int argc, char **argv, char *pathvar);
 
 int		ft_here_doc(char *end);
+
+typedef struct s_data
+{
+	int		n_cmd;
+	char	***cmds;
+	int		**cmdio;
+	int		**fds;
+	char	**env;
+
+}	t_pipex;
+
 
 #endif

@@ -6,12 +6,18 @@
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/23 18:30:42 by tlegrand          #+#    #+#             */
-/*   Updated: 2023/02/07 14:48:31 by tlegrand         ###   ########.fr       */
+/*   Updated: 2023/02/08 16:17:11 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pipex.h"
 
+
+/*
+big struct for cmd and path (store path in split)
+use pipes
+
+*/
 int	main(int argc, char **argv, char **env)
 {
 	int		i;
