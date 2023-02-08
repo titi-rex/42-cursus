@@ -6,7 +6,7 @@
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/23 18:30:42 by tlegrand          #+#    #+#             */
-/*   Updated: 2023/02/08 16:17:11 by tlegrand         ###   ########.fr       */
+/*   Updated: 2023/02/08 16:39:22 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,8 @@
 /*
 big struct for cmd and path (store path in split)
 use pipes
-
+parsing cmd : path cmd + arg + i/o
+execmd
 */
 int	main(int argc, char **argv, char **env)
 {

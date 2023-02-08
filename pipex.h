@@ -6,7 +6,7 @@
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/23 18:21:30 by tlegrand          #+#    #+#             */
-/*   Updated: 2023/02/08 16:27:29 by tlegrand         ###   ########.fr       */
+/*   Updated: 2023/02/08 16:29:55 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,5 @@ typedef struct s_data
 	char	**env;
 
 }	t_pipex;
-
 
 #endif
