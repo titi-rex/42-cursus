@@ -6,7 +6,7 @@
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/25 14:36:03 by tlegrand          #+#    #+#             */
-/*   Updated: 2023/02/06 16:43:42 by tlegrand         ###   ########.fr       */
+/*   Updated: 2023/02/09 15:10:50 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,22 @@
 
 int	ft_here_doc(char *end);
 
-int	main(void)
+int	main(int argc, char **argv, char **env)
 {
-	ft_here_doc("end");
+	char	**test;
+	int		i;
+	
+		i = 0;
+	while (env[i] && ft_strncmp(env[i], "PATH=", 5))
+		i++;
+	test = ft_split_path(env[i], ':');
+	i = 0;
+	while(test[i])
+	{
+		ft_printf("splitpath[%d] is %s\n", i, test[i]);
+		i++;
+	}
+	ft_freesplit(test);
 	return (0);
 }
 

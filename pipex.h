@@ -6,7 +6,7 @@
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/23 18:21:30 by tlegrand          #+#    #+#             */
-/*   Updated: 2023/02/08 16:29:55 by tlegrand         ###   ########.fr       */
+/*   Updated: 2023/02/09 15:05:51 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@
 # include <sys/wait.h>
 # include <sys/types.h>
 
-# ifndef CAT_TMP_FILE
+# ifndef CAT_TMP_FIL
 #  define CAT_TMP_FILE "/tmp/tmp_file_cat"
 # endif
 
@@ -58,5 +58,7 @@ typedef struct s_data
 	char	**env;
 
 }	t_pipex;
+
+char	**ft_split_path(char const *s, char c);
 
 #endif
