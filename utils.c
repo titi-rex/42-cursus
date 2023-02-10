@@ -6,13 +6,13 @@
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/21 19:35:38 by tlegrand          #+#    #+#             */
-/*   Updated: 2023/02/06 17:17:34 by tlegrand         ###   ########.fr       */
+/*   Updated: 2023/02/10 14:50:39 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pipex.h"
 
-void	*ft_error(char *errstr, char *cmdname, char *tofree)
+void	*ft_error(char *errstr, char *cmdname, char *tofree, char **split)
 {
 	ft_putstr_fd("Error\n", 2);
 	if (cmdname)
@@ -24,6 +24,8 @@ void	*ft_error(char *errstr, char *cmdname, char *tofree)
 		ft_putendl_fd(errstr, 2);
 	if (tofree)
 		free(tofree);
+	if (split)
+		ft_freesplit(split);
 	return (NULL);
 }
 
