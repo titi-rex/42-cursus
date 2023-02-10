@@ -6,7 +6,7 @@
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/25 14:36:03 by tlegrand          #+#    #+#             */
-/*   Updated: 2023/02/10 16:49:36 by tlegrand         ###   ########.fr       */
+/*   Updated: 2023/02/10 22:20:42 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,18 +18,33 @@ int	main(int argc, char **argv, char **env)
 {
 	t_pipex	test;
 	int		i;
-	int		j;
 
 	i = 0;
 	test.n_cmd = argc - 3;
+	test.env = env;
 	while (env[i] && ft_strncmp(env[i], "PATH=", 5))
 		i++;
+	test.fds[0] = 0;
+	test.fds[1] = 1;
+	if (!access(argv[1], F_OK | R_OK))
+		test.fds[0] = open(argv[1], O_RDONLY |  O_CLOEXEC);
+	if (!access(argv[argc - 1], F_OK | R_OK))
+		test.fds[1] = open(argv[argc - 1], O_RDONLY |  O_CLOEXEC);
+	pipe(test.pipefd[0]);
+	pipe(test.pipefd[1]);
+	ft_parsing(argv, env[i], &test);
 
-	ft_parsing(argv, &test, env[i]);
-	ft_free3d((void ***) test.cmds, 0, NULL);
 
 
-	exit(0);
+
+	
+
+	
+	
+
+
+
+	ft_clean_exit(&test, EXIT_SUCCESS);
 	return (0);
 }
 
@@ -69,4 +84,21 @@ void	printsplit(char **split)
 	ft_printf("line is %s\n", line);
 	free(line);
  * 
+
+
+
+ 	i = 0;
+	while (i < 2)
+	{
+		ft_printf("pipefd[%d][0] = %d\n", i, test.pipefd[i][0]);
+		ft_printf("pipefd[%d][1] = %d\n", i, test.pipefd[i][1]);
+		i++;
+	}
+	i = 0;
+	while (i < test.n_cmd)
+	{
+		ft_printf("cmdio[%d][0] = %d\n", i, test.cmdio[i][0]);
+		ft_printf("cmdio[%d][1] = %d\n", i, test.cmdio[i][1]);
+		i++;
+	}
  */

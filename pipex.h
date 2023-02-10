@@ -6,7 +6,7 @@
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/23 18:21:30 by tlegrand          #+#    #+#             */
-/*   Updated: 2023/02/10 16:49:07 by tlegrand         ###   ########.fr       */
+/*   Updated: 2023/02/10 22:19:07 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@
 #  define HERE_DOC "here_doc"
 # endif
 
-void	*ft_error(char *errstr, char *cmdname, char *tofree, char **split);
+void	ft_error(char *errstr, char *cmd_name);
 int		ft_man(void);
 int		ft_pathlen(char *pathvar);
 
@@ -54,16 +54,19 @@ typedef struct s_data
 	int		n_cmd;
 	char	***cmds;
 	int		**cmdio;
-	int		**fds;
+	int		fds[2];
+	int		pipefd[2][2];
 	char	**env;
-
 }	t_pipex;
 
 char	**ft_split_path(char const *s, char c);
-void	*ft_parsing(char **argv, t_pipex *cmd_line, char *pathvar);
+void	ft_get_cmdio(t_pipex *cmd_line, int pipefd[2][2]);
+
+void	ft_parsing(char **argv, char *pathvar, t_pipex *cmd_line);
 
 void	ft_free3d(void ***arr, int size3d, int *size2d);
 void	ft_free2d(void **arr, int size);
+void	ft_clean_exit(t_pipex *cmd_line, int exit_code);
 
 void	printsplit(char **split);
 
