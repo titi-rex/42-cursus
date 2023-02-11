@@ -6,7 +6,7 @@
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/23 22:25:56 by tlegrand          #+#    #+#             */
-/*   Updated: 2023/02/07 14:32:20 by tlegrand         ###   ########.fr       */
+/*   Updated: 2023/02/11 15:50:42 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,17 +25,17 @@ char	**ft_cmd_search(char *cmd, char *pathvar)
 		pathlen = ft_pathlen(pathvar);
 		path = ft_substr(pathvar, 0, pathlen);
 		if (!path)
-			return (ft_error("Malloc fail : ", cmd, NULL));
+			return (ft_error("Malloc fail : ", cmd));
 		cmd_formated = ft_cmd_format(cmd, path);
 		free(path);
 		if (!cmd_formated)
-			return (ft_error("Malloc fail : ", cmd, NULL));
+			return (ft_error("Malloc fail : ", cmd));
 		if (!access(cmd_formated[0], F_OK))
 			return (cmd_formated);
 		ft_freesplit(cmd_formated);
 		pathvar += pathlen + 1;
 	}
-	return (ft_error("Command not found : ", cmd, NULL));
+	return (ft_error("Command not found : ", cmd));
 }
 
 char	**ft_cmd_format(char *cmd, char *path)
@@ -67,7 +67,7 @@ void	ft_child(char *pathname_in, char **cmd, int fd_in, int fd_tmp)
 		if (execve(cmd[0], cmd, NULL) == -1)
 			ft_putstr_fd("Error execve\n", 2);
 	}
-	ft_error("Input file not found", NULL, NULL);
+	ft_error("Input file not found", NULL);
 	if (fd_in)
 		close(fd_in);
 	close(fd_tmp);
@@ -88,7 +88,7 @@ void	ft_parent(char *pathname_out, int fd_in, int child_pid)
 	close(fd_tmp);
 	close(fd_out);
 	if (unlink(CAT_TMP_FILE))
-		ft_error("Error deletion tmp file (ft_cat)", NULL, NULL);
+		ft_error("Error deletion tmp file (ft_cat)", NULL);
 }
 
 void	ft_cmd_exec(char *pathname_in, char *pathname_out, char **cmd)
@@ -102,7 +102,7 @@ void	ft_cmd_exec(char *pathname_in, char *pathname_out, char **cmd)
 		fd_in = open(pathname_in, O_RDONLY | O_CLOEXEC);
 	fd_tmp = open(CAT_TMP_FILE, O_WRONLY | O_TRUNC | O_CLOEXEC | O_CREAT, 0644);
 	if (fd_in == -1 || fd_tmp == -1)
-		return ((void) ft_error("Open failed", cmd[0], NULL));
+		return ((void) ft_error("Open failed", cmd[0]));
 	child_pid = fork();
 	if (child_pid == 0)
 		ft_child(pathname_in, cmd, fd_in, fd_tmp);
@@ -111,4 +111,14 @@ void	ft_cmd_exec(char *pathname_in, char *pathname_out, char **cmd)
 		ft_parent(pathname_out, fd_in, child_pid);
 		close(fd_tmp);
 	}
+}
+
+int	ft_pathlen(char *pathvar)
+{
+	int	len;
+
+	len = 0;
+	while (pathvar[len] != ':')
+		len++;
+	return (len);
 }

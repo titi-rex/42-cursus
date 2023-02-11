@@ -1,34 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_here_doc.c                                      :+:      :+:    :+:   */
+/*   ft_get_argv.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/02/06 16:35:25 by tlegrand          #+#    #+#             */
-/*   Updated: 2023/02/11 21:45:50 by tlegrand         ###   ########.fr       */
+/*   Created: 2023/02/11 14:19:54 by tlegrand          #+#    #+#             */
+/*   Updated: 2023/02/11 21:29:42 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "pipex_bonus.h"
+#include "pipex.h"
 
-int	ft_here_doc(char *end, t_pipex *cmd_line)
+void	ft_get_argv(char **argv, int start, t_pipex *cmd_line)
 {
-	int		n_read;
-	int		len_end;
-	char	buff[100];
+	int	i;
 
-	n_read = 1;
-	len_end = ft_strlen(end);
-	while (n_read)
+	i = 0;
+	while (i < cmd_line->n_cmd)
 	{
-		n_read = read(0, &buff, 100);
-		if (n_read == -1)
-			break ;
-		buff[n_read] = 0;
-		if (!ft_strncmp(buff, end, len_end) && buff[len_end] == '\n')
-			break ;
-		write(cmd_line->pipefd[1][1], &buff, n_read);
+		cmd_line->cmds[i] = ft_split(argv[i + start], ' ');
+		if (!cmd_line->cmds[i])
+		{
+			ft_error("Malloc failed in ft_get_argv cmd : ", argv[i + start]);
+			ft_clean_exit(cmd_line, EXIT_FAILURE);
+		}
+		i++;
 	}
-	return (0);
 }
