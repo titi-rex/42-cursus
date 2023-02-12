@@ -6,11 +6,11 @@
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/20 15:50:46 by tlegrand          #+#    #+#             */
-/*   Updated: 2023/01/20 22:19:35 by tlegrand         ###   ########.fr       */
+/*   Updated: 2023/02/12 20:30:53 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "so_long.h"
+#include "../include/so_long.h"
 
 /**
  * @brief give number of char in file

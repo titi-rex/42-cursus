@@ -6,14 +6,15 @@
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/20 15:52:53 by tlegrand          #+#    #+#             */
-/*   Updated: 2023/01/20 22:32:26 by tlegrand         ###   ########.fr       */
+/*   Updated: 2023/02/12 21:06:39 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "so_long.h"
+#include "../include/so_long.h"
 
 /**
- * @brief check is char is authorized and count number of (starting) Position, Collectible and Exit
+ * @brief check is char is authorized and count number of (starting) Position, 
+ * Collectible and Exit
  * 
  * @param c char to check
  * @param count count of E C P char
@@ -62,7 +63,8 @@ void	ft_check_count(t_map *map)
 }
 
 /**
- * @brief check if map is surrounded by wall, if char are legit and call ft_chech_count
+ * @brief check if map is surrounded by wall, if char are legit and call 
+ * ft_chech_count
  * if error occur, display error message and quit
  * 
  * @param map 

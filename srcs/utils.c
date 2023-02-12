@@ -6,14 +6,15 @@
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/20 13:40:32 by tlegrand          #+#    #+#             */
-/*   Updated: 2023/01/20 22:37:05 by tlegrand         ###   ########.fr       */
+/*   Updated: 2023/02/12 21:06:11 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "so_long.h"
+#include "../include/so_long.h"
 
 /**
- * @brief free map and display error message on stderr depending of errstr or errnum
+ * @brief free map and display error message on stderr 
+ * depending of errstr or errnum
  * 
  * @param map map to free
  * @param errnum error value for strerror()

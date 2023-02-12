@@ -6,14 +6,15 @@
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/20 15:16:51 by tlegrand          #+#    #+#             */
-/*   Updated: 2023/01/20 22:37:07 by tlegrand         ###   ########.fr       */
+/*   Updated: 2023/02/12 21:05:50 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "so_long.h"
+#include "../include/so_long.h"
 
 /**
- * @brief check if a path between P C and E exist, use ft_backtrack and check count of item
+ * @brief check if a path between P C and E exist, 
+ * use ft_backtrack and check count of item
  * display error and quit if no path found
  * 
  * @param map map to check
@@ -57,7 +58,9 @@ void	ft_mapcpy(t_map *src, t_map *dst)
 
 /**
  * @brief fill map from file and check if map is legit
- * (i.e map rectangular, no non-valid char, path exist, only 1 exit and starting pos, at least 1 collectible, map closed by wall) 
+ * (i.e map rectangular, no non-valid char, path exist, 
+ * only 1 exit and starting pos, at least 1 collectible, 
+ * map closed by wall) 
  * if error occur, display error message and quit
  * 
  * @param map map to initialize
