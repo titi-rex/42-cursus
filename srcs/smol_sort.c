@@ -6,11 +6,11 @@
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/17 16:00:21 by tlegrand          #+#    #+#             */
-/*   Updated: 2023/01/31 13:46:10 by tlegrand         ###   ########.fr       */
+/*   Updated: 2023/02/12 19:43:29 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "../push_swap.h"
 
 /**
  * @brief 3-elements sorting algo

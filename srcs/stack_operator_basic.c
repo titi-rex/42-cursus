@@ -6,11 +6,11 @@
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/10 22:54:11 by tlegrand          #+#    #+#             */
-/*   Updated: 2023/01/31 13:48:33 by tlegrand         ###   ########.fr       */
+/*   Updated: 2023/02/12 19:43:29 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "../push_swap.h"
 
 /**
  * @brief function swapping the two first element of a stack

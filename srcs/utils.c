@@ -6,11 +6,11 @@
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/12 22:55:25 by tlegrand          #+#    #+#             */
-/*   Updated: 2023/01/20 23:01:06 by tlegrand         ###   ########.fr       */
+/*   Updated: 2023/02/12 19:43:29 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "../push_swap.h"
 
 /**
  * @brief check if arg is an int

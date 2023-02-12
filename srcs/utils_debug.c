@@ -6,11 +6,11 @@
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/18 14:40:31 by tlegrand          #+#    #+#             */
-/*   Updated: 2023/01/18 16:15:47 by tlegrand         ###   ########.fr       */
+/*   Updated: 2023/02/12 19:43:29 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "../push_swap.h"
 
 /**
  * @brief print the stack

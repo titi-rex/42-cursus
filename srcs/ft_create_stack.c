@@ -6,11 +6,11 @@
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/12 21:24:00 by tlegrand          #+#    #+#             */
-/*   Updated: 2023/01/20 22:51:23 by tlegrand         ###   ########.fr       */
+/*   Updated: 2023/02/12 19:43:29 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "../push_swap.h"
 
 /**
  * @brief create a new t_stack with value

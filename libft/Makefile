@@ -6,14 +6,18 @@
 #    By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/11/08 14:39:06 by tlegrand          #+#    #+#              #
-#    Updated: 2023/01/20 11:04:38 by tlegrand         ###   ########.fr        #
+#    Updated: 2023/02/12 19:26:38 by tlegrand         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME	=	libft.a
 
-FLAGS	=	-Wall -Wextra -Werror 
+#	/*\/*\/*\/*\/*\/*\/*\/*\/*\/*\/*\/*\	PROJECT VARIABLES	/*\/*\/*\/*\/*\/*\/*\/*\/*\/*\/*\/*\	#
 
+#	==============================	NAMES	==============================	#
+NAME		=	libft.a
+
+
+#	==============================	SOURCES	==============================	#
 DIR_SRCS	=	srcs/
 LST_SRCS	= 	ft_isalpha.c ft_isdigit.c ft_isalnum.c ft_isprint.c ft_isascii.c \
 				ft_toupper.c ft_tolower.c ft_atoi.c \
@@ -29,25 +33,77 @@ LST_SRCS	= 	ft_isalpha.c ft_isdigit.c ft_isalnum.c ft_isprint.c ft_isascii.c \
 				get_next_line.c get_next_line_utils.c
 SRCS		=	${addprefix ${DIR_SRCS}, ${LST_SRCS}}
 
-OBJS	=	${SRCS:.c=.o}
 
+#	==============================	OBJECTS	==============================	#
+DIR_OBJS	=	.objs/
+OBJS	=	${patsubst ${DIR_SRCS}%.c, ${DIR_OBJS}%.o, ${SRCS}}
+
+
+#	==============================	HEADERS	==============================	#
 HEADER 		=	libft.h
 
-all : ${NAME}
 
-${NAME} :	${OBJS}
-		${AR} rcs $@ $^
+#	==============================	COMMANDS	==============================	#
+CC 			=	cc
+MKDIR 		=	mkdir -p
+RM			=	rm -rf
 
-%.o	:	%.c ${HEADER} 
-				${CC} ${FLAGS} -c $< -o $@
+
+#	==============================	FLAGS	==============================	#
+CFLAGS		=	-Wall -Wextra -Werror
+ARFLAGS		=	rcs
+
+
+
+#	/*\/*\/*\/*\/*\/*\/*\/*\/*\/*\/*\/*\	RULES	/*\/*\/*\/*\/*\/*\/*\/*\/*\/*\/*\/*\	#
+.PHONY : all clean fclean re msg_start
+
+
+#	==============================	BASIC	==============================	#
+all		:	${NAME}
 
 clean	:
-		${RM} ${OBJS}
+		@${RM} ${DIR_OBJS}
 
 fclean	:	clean
-		${RM} ${NAME}
+		@${RM} ${NAME}
+		@printf "$(GREEN)Libft all clean !\n$(END)"
 
-re	:	fclean
-	${MAKE} all
+re		:	fclean
+		@${MAKE} all
 
-.PHONY : all clean fclean re
+
+#	==============================	COMPILATION	==============================	#
+${NAME}			:	${DIR_OBJS} ${OBJS} 
+				@${AR} ${ARFLAGS} $@ ${OBJS}
+				@printf "$(GREEN_LIGHT)${NAME} created !\n$(END)"
+
+${DIR_OBJS}%.o	:	${DIR_SRCS}%.c ${HEADER}
+				@printf "$(ORANGE)Making ${NAME}...\n$(END)"
+				@${CC} ${CFLAGS} -c $< -o $@
+
+#	==============================	UTILS	==============================	#
+${DIR_OBJS}		:
+				@${MKDIR} $@
+
+
+
+#	/*\/*\/*\/*\/*\/*\/*\/*\/*\/*\/*\/*\	OPERATING VARIABLES	/*\/*\/*\/*\/*\/*\/*\/*\/*\/*\/*\/*\	#
+
+#	==============================	COLORS	==============================	#
+BLACK		=	\033[0;30m
+RED			=	\033[0;31m
+GREEN		=	\033[0;32m
+ORANGE		=	\033[0;33m
+BLUE		=	\033[0;34m
+PURPLE		=	\033[0;35m
+CYAN		=	\033[0;36m
+GRAY_LIGHT	=	\033[0;37m
+GRAY_DARK	=	\033[1;30m
+RED_LIGHT	=	\033[1;31m
+GREEN_LIGHT	=	\033[1;32m
+YELLOW 		=	\033[1;33m
+BLUE_LIGHT	=	\033[1;34m
+VIOLET		=	\033[1;35m
+CYAN		=	\033[1;36m
+WHITE		=	\033[1;37m
