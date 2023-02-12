@@ -6,7 +6,7 @@
 #    By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/11/19 14:03:05 by tlegrand          #+#    #+#              #
-#    Updated: 2023/02/12 21:07:23 by tlegrand         ###   ########.fr        #
+#    Updated: 2023/02/12 21:14:27 by tlegrand         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -30,7 +30,7 @@ OBJS		=	${patsubst ${DIR_SRCS}%.c, ${DIR_OBJS}%.o, ${SRCS}}
 
 #	==============================	HEADERS	==============================	#
 DIR_HEADER	=	include/
-HEADER		=	${addprefix ${DIR_HEADER}, so_long.h}
+HEADER		=	${addprefix ${DIR_HEADER}, ${NAME}.h}
 
 
 #	==============================	LIBRARY	==============================	#
