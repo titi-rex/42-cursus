@@ -6,7 +6,7 @@
 #    By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/12/03 11:42:37 by tlegrand          #+#    #+#              #
-#    Updated: 2023/02/12 19:53:19 by tlegrand         ###   ########.fr        #
+#    Updated: 2023/02/12 20:23:38 by tlegrand         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -37,6 +37,7 @@ HEADER		=	push_swap.h
 DIR_LIBFT	=	libft/
 LIBFT		=	$(addprefix $(DIR_LIBFT), libft.a)
 
+
 #	==============================	COMMANDS	==============================	#
 CC 			=	cc
 MKDIR 		=	mkdir -p
@@ -65,7 +66,7 @@ fclean	:	clean
 		@printf "$(GREEN)All clean !\n$(END)"
 
 re		:	fclean
-		$(MAKE) all
+		@$(MAKE) all
 
 
 #	==============================	COMPILATION	==============================	#
@@ -73,7 +74,7 @@ $(NAME)			:	$(LIBFT) ${DIR_OBJS} $(OBJS)
 				@$(CC) $(CFLAGS) $(OBJS) ${LIBFT} -o $(NAME)
 				@printf "$(GREEN_LIGHT)${NAME} created !\n$(END)"
 
-$(DIR_OBJS)%.o	:	${DIR_SRCS}%.c
+$(DIR_OBJS)%.o	:	${DIR_SRCS}%.c ${HEADER}
 				@printf "$(ORANGE)Making $@...\n$(END)"
 				@$(CC) $(CFLAGS) -c $< -o $@
 
