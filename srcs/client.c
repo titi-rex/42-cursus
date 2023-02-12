@@ -6,11 +6,11 @@
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/21 17:01:32 by tlegrand          #+#    #+#             */
-/*   Updated: 2023/01/31 13:44:37 by tlegrand         ###   ########.fr       */
+/*   Updated: 2023/02/12 18:56:39 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minitalk.h"
+#include "../minitalk.h"
 
 /*
 faire doc 

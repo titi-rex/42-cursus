@@ -6,11 +6,11 @@
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/21 16:09:08 by tlegrand          #+#    #+#             */
-/*   Updated: 2023/01/22 18:39:50 by tlegrand         ###   ########.fr       */
+/*   Updated: 2023/02/12 18:56:44 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minitalk.h"
+#include "../minitalk.h"
 
 void	ft_sighandler_server(int sig, siginfo_t *sig_info, void *contex)
 {
