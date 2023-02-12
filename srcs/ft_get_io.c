@@ -6,11 +6,11 @@
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/11 14:21:31 by tlegrand          #+#    #+#             */
-/*   Updated: 2023/02/11 21:36:52 by tlegrand         ###   ########.fr       */
+/*   Updated: 2023/02/12 20:14:20 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "pipex.h"
+#include "../include/pipex.h"
 
 void	ft_assign_io(int cmdio[2], int input, int output)
 {

@@ -6,11 +6,11 @@
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/11 14:19:54 by tlegrand          #+#    #+#             */
-/*   Updated: 2023/02/11 21:29:42 by tlegrand         ###   ########.fr       */
+/*   Updated: 2023/02/12 20:14:20 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "pipex.h"
+#include "../include/pipex.h"
 
 void	ft_get_argv(char **argv, int start, t_pipex *cmd_line)
 {

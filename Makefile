@@ -6,64 +6,122 @@
 #    By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/12/03 11:42:37 by tlegrand          #+#    #+#              #
-#    Updated: 2023/02/11 22:25:57 by tlegrand         ###   ########.fr        #
+#    Updated: 2023/02/12 20:24:13 by tlegrand         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
+
+#	/*\/*\/*\/*\/*\/*\/*\/*\/*\/*\/*\/*\	PROJECT VARIABLES	/*\/*\/*\/*\/*\/*\/*\/*\/*\/*\/*\/*\	#
+
+#	==============================	NAMES	==============================	#
 NAME		=	pipex
 NAME_B		=	pipex_bonus
 
+
+#	==============================	SOURCES	==============================	#
+DIR_SRCS		=	srcs/
+
+LST_SRCS		= 	pipex.c ft_parsing.c ft_cmd_exe.c ft_get_argv.c ft_get_io.c ft_get_path.c \
+					ft_utils.c  ft_clean.c
+SRCS			=	${addprefix ${DIR_SRCS}, ${LST_SRCS}}
+
+LST_SRCS_B		=	pipex_bonus.c ft_parsing.c ft_cmd_exe.c ft_get_argv.c ft_get_io.c ft_get_path.c \
+					ft_utils.c  ft_clean.c \
+					ft_here_doc.c
+SRCS_B			=	${addprefix ${DIR_SRCS}, ${LST_SRCS_B}}
+
+#	==============================	OBJECTS	==============================	#
 DIR_OBJS	=	.objs/
+OBJS		=	${patsubst ${DIR_SRCS}%.c, ${DIR_OBJS}%.o, ${SRCS}}
+OBJS_B		=	${patsubst ${DIR_SRCS}%.c, ${DIR_OBJS}%.o, ${SRCS_B}}
 
-SRCS		= 	pipex.c ft_parsing.c ft_cmd_exe.c ft_get_argv.c ft_get_io.c ft_get_path.c \
-				ft_utils.c  ft_clean.c
-LIST_OBJS	=	${SRCS:.c=.o}
-OBJS		=	${addprefix ${DIR_OBJS}, ${LIST_OBJS}}
 
-SRCS_B		=	pipex_bonus.c ft_parsing.c ft_cmd_exe.c ft_get_argv.c ft_get_io.c ft_get_path.c \
-				ft_utils.c  ft_clean.c \
-				ft_here_doc.c
-LIST_OBJS_B	=	${SRCS_B:.c=.o}
-OBJS_B		=	${addprefix ${DIR_OBJS}, ${LIST_OBJS_B}}
+#	==============================	HEADERS	==============================	#
+DIR_HEADER	=	include/
+HEADER		=	${addprefix ${DIR_HEADER}, pipex.h}
+HEADER_B	=	${addprefix ${DIR_HEADER}, pipex_bonus.h}
 
-HEADER		=	pipex.h
 
-HEADER_B		=	pipex_bonus.h
+#	==============================	LIBRARY	==============================	#
+DIR_LIBFT	=	libft/
+LIBFT		=	$(addprefix $(DIR_LIBFT), libft.a)
 
-LIB			=	libft/libft.a
 
-FLAGS		=	-Wall -Wextra -Werror -I .
-
+#	==============================	COMMANDS	==============================	#
+CC 			=	cc
+MKDIR 		=	mkdir -p
 RM			=	rm -rf
+MAKE		=	make -s
 
 
-all		:	lib ${NAME}
+#	==============================	FLAGS	==============================	#
+CFLAGS		=	-Wall -Wextra -Werror -I ${DIR_HEADER}
 
-${NAME}	:	${OBJS}
-		${CC} ${FLAGS} -o ${NAME} ${OBJS} ${LIB}
 
-bonus	:	${OBJS_B}
-		${CC} ${FLAGS} -o ${NAME_B} ${OBJS_B} ${LIB}
 
-nn	:
-	norminette ${SRCS} {SRCS_B} ${HEADER} ${HEADER_B}
+#	/*\/*\/*\/*\/*\/*\/*\/*\/*\/*\/*\/*\	RULES	/*\/*\/*\/*\/*\/*\/*\/*\/*\/*\/*\/*\	#
+.PHONY : all clean fclean re bonus FORCE nn
 
-lib	:
-	${MAKE} -C libft
-
-${DIR_OBJS}%.o	:	%.c ${HEADER} ${HEADER_B} 
-				@mkdir -p ${DIR_OBJS}
-				${CC} ${FLAGS} -c $< -o $@
+#	==============================	BASIC	==============================	#
+all		:	${NAME}
 
 clean	:
-		${RM} ${DIR_OBJS}
-		make -C libft clean
+		@${RM} ${DIR_OBJS}
+		@$(MAKE) -C $(DIR_LIBFT) clean
 
 fclean	:	clean
-		${RM} ${NAME} ${NAME_B}
-		make -C libft fclean
+		@${RM} ${NAME} ${NAME_B}
+		@$(MAKE) -C $(DIR_LIBFT) fclean
+		@printf "$(GREEN)All clean !\n$(END)"
 
-re	:	fclean
-	${MAKE} all
+re		:	fclean
+		@${MAKE} all
 
-.PHONY : all clean fclean re bonus lib nn
+
+#	==============================	COMPILATION	==============================	#
+${NAME}			:	${LIBFT} ${DIR_OBJS} ${OBJS}
+				@${CC} ${CFLAGS} ${OBJS} ${LIBFT} -o ${NAME}
+				@printf "$(GREEN_LIGHT)${NAME} created !\n$(END)"
+
+bonus			:	{LIBFT} ${DIR_OBJS} ${OBJS_B}
+				@${CC} ${CFLAGS} ${OBJS_B} ${LIBFT} -o ${NAME_B}
+				@printf "$(GREEN_LIGHT)${NAME_B} created !\n$(END)"
+
+${DIR_OBJS}%.o	:	${DIR_SRCS}%.c ${HEADER} ${HEADER_B} 
+				@printf "$(ORANGE)Making $@...\n$(END)"
+				@${CC} ${CFLAGS} -c $< -o $@
+
+
+#	==============================	UTILS/LIB	==============================	#
+${DIR_OBJS}	:
+			@${MKDIR} ${DIR_OBJS}
+			
+nn			:
+			@norminette ${SRCS} {SRCS_B} ${HEADER} ${HEADER_B}
+
+$(LIBFT)	:	FORCE
+			@$(MAKE) -s -C $(DIR_LIBFT)
+
+FORCE		:
+
+
+
+#	/*\/*\/*\/*\/*\/*\/*\/*\/*\/*\/*\/*\	OPERATING VARIABLES	/*\/*\/*\/*\/*\/*\/*\/*\/*\/*\/*\/*\	#
+
+#	==============================	COLORS	==============================	#
+BLACK		=	\033[0;30m
+RED			=	\033[0;31m
+GREEN		=	\033[0;32m
+ORANGE		=	\033[0;33m
+BLUE		=	\033[0;34m
+PURPLE		=	\033[0;35m
+CYAN		=	\033[0;36m
+GRAY_LIGHT	=	\033[0;37m
+GRAY_DARK	=	\033[1;30m
+RED_LIGHT	=	\033[1;31m
+GREEN_LIGHT	=	\033[1;32m
+YELLOW 		=	\033[1;33m
+BLUE_LIGHT	=	\033[1;34m
+VIOLET		=	\033[1;35m
+CYAN		=	\033[1;36m
+WHITE		=	\033[1;37m

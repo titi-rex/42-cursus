@@ -1,43 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_cat_fd.c                                        :+:      :+:    :+:   */
+/*   ft_here_doc.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/01/25 20:25:04 by tlegrand          #+#    #+#             */
-/*   Updated: 2023/02/07 14:35:15 by tlegrand         ###   ########.fr       */
+/*   Created: 2023/02/06 16:35:25 by tlegrand          #+#    #+#             */
+/*   Updated: 2023/02/12 20:14:37 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "pipex.h"
+#include "../include/pipex_bonus.h"
 
-int	ft_cat_error(char *errstr)
-{
-	ft_putstr_fd("Error\n", 2);
-	ft_putstr_fd(errstr, 2);
-	return (-1);
-}
-
-int	ft_cat_fd(int fdin, int fdout)
+int	ft_here_doc(char *end, t_pipex *cmd_line)
 {
 	int		n_read;
-	int		n_write;
-	char	c;
+	int		len_end;
+	char	buff[100];
 
 	n_read = 1;
+	len_end = ft_strlen(end);
 	while (n_read)
-	{		
-		n_read = read(fdin, &c, 1);
-		if (!n_read)
-			break ;
+	{
+		n_read = read(0, &buff, 100);
 		if (n_read == -1)
-			return (ft_cat_error("Read error (ft_cat)\n"));
-		n_write = write(fdout, &c, 1);
-		if (!n_write)
-			return (ft_cat_error("No place to write\n"));
-		if (n_write == -1)
-			return (ft_cat_error("Write permission denied\n"));
+			break ;
+		buff[n_read] = 0;
+		if (!ft_strncmp(buff, end, len_end) && buff[len_end] == '\n')
+			break ;
+		write(cmd_line->pipefd[1][1], &buff, n_read);
 	}
 	return (0);
 }
