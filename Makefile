@@ -6,7 +6,7 @@
 #    By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/12/03 11:42:37 by tlegrand          #+#    #+#              #
-#    Updated: 2023/02/12 21:08:59 by tlegrand         ###   ########.fr        #
+#    Updated: 2023/02/12 21:13:46 by tlegrand         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -38,8 +38,8 @@ OBJS_B		=	${patsubst ${DIR_SRCS}%.c, ${DIR_OBJS}%.o, ${SRCS_B}}
 
 #	==============================	HEADERS	==============================	#
 DIR_HEADER	=	include/
-HEADER		=	${addprefix ${DIR_HEADER}, pipex.h}
-HEADER_B	=	${addprefix ${DIR_HEADER}, pipex_bonus.h}
+HEADER		=	${addprefix ${DIR_HEADER}, ${NAME}.h}
+HEADER_B	=	${addprefix ${DIR_HEADER}, ${NAME}_bonus.h}
 
 
 #	==============================	LIBRARY	==============================	#
@@ -56,6 +56,7 @@ MAKE		=	make -s
 
 #	==============================	FLAGS	==============================	#
 CFLAGS		=	-Wall -Wextra -Werror -I${DIR_HEADER}
+FTFLAGS		=	-L${DIR_LIBFT} -lft 
 
 
 
@@ -67,11 +68,11 @@ all		:	${NAME}
 
 clean	:
 		@${RM} ${DIR_OBJS}
-		@$(MAKE) -C $(DIR_LIBFT) clean
+		@$(MAKE) -C ${DIR_LIBFT} clean
 
 fclean	:	clean
 		@${RM} ${NAME} ${NAME_B}
-		@$(MAKE) -C $(DIR_LIBFT) fclean
+		@$(MAKE) -C ${DIR_LIBFT} fclean
 		@printf "$(GREEN)All clean !\n$(END)"
 
 re		:	fclean
@@ -80,11 +81,11 @@ re		:	fclean
 
 #	==============================	COMPILATION	==============================	#
 ${NAME}			:	${LIBFT} ${DIR_OBJS} ${OBJS}
-				@${CC} ${CFLAGS} ${OBJS} ${LIBFT} -o ${NAME}
+				@${CC} ${CFLAGS} ${OBJS} ${FTFLAGS}-o ${NAME}
 				@printf "$(GREEN_LIGHT)${NAME} created !\n$(END)"
 
 bonus			:	{LIBFT} ${DIR_OBJS} ${OBJS_B}
-				@${CC} ${CFLAGS} ${OBJS_B} ${LIBFT} -o ${NAME_B}
+				@${CC} ${CFLAGS} ${OBJS_B} ${FTFLAGS} -o ${NAME_B}
 				@printf "$(GREEN_LIGHT)${NAME_B} created !\n$(END)"
 
 ${DIR_OBJS}%.o	:	${DIR_SRCS}%.c ${HEADER} ${HEADER_B} 
@@ -97,10 +98,10 @@ ${DIR_OBJS}	:
 			@${MKDIR} ${DIR_OBJS}
 			
 nn			:
-			@norminette ${SRCS} {SRCS_B} ${HEADER} ${HEADER_B}
+			@norminette ${SRCS} ${SRCS_B} ${HEADER} ${HEADER_B}
 
 $(LIBFT)	:	FORCE
-			@$(MAKE) -C $(DIR_LIBFT)
+			@$(MAKE) -C ${DIR_LIBFT}
 
 FORCE		:
 
