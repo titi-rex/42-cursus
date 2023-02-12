@@ -6,7 +6,7 @@
 #    By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/12/03 11:42:37 by tlegrand          #+#    #+#              #
-#    Updated: 2023/02/12 20:24:13 by tlegrand         ###   ########.fr        #
+#    Updated: 2023/02/12 21:08:59 by tlegrand         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -55,7 +55,7 @@ MAKE		=	make -s
 
 
 #	==============================	FLAGS	==============================	#
-CFLAGS		=	-Wall -Wextra -Werror -I ${DIR_HEADER}
+CFLAGS		=	-Wall -Wextra -Werror -I${DIR_HEADER}
 
 
 
@@ -100,7 +100,7 @@ nn			:
 			@norminette ${SRCS} {SRCS_B} ${HEADER} ${HEADER_B}
 
 $(LIBFT)	:	FORCE
-			@$(MAKE) -s -C $(DIR_LIBFT)
+			@$(MAKE) -C $(DIR_LIBFT)
 
 FORCE		:
 
