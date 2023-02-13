@@ -6,7 +6,7 @@
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/23 18:21:30 by tlegrand          #+#    #+#             */
-/*   Updated: 2023/02/12 20:22:15 by tlegrand         ###   ########.fr       */
+/*   Updated: 2023/02/13 13:45:48 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 # define PIPEX_H
 # include "../libft/libft.h"
 # include <fcntl.h>
+# include <sys/wait.h>
 
 typedef struct s_data
 {
@@ -31,7 +32,7 @@ void	ft_get_fd(t_pipex *cmd_line, char **argv, int argc);
 void	ft_get_cmdio(t_pipex *cmd_line, int pipefd[2][2]);
 void	ft_parsing(char **argv, int argc, int start, t_pipex *cmd_line);
 
-void	ft_cmd_master(t_pipex *cmd_line);;
+void	ft_cmd_master(t_pipex *cmd_line);
 
 void	ft_free3d(void ***arr, int size3d, int *size2d);
 void	ft_free2d(void **arr, int size);

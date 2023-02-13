@@ -6,7 +6,7 @@
 #    By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/12/03 11:42:37 by tlegrand          #+#    #+#              #
-#    Updated: 2023/02/12 21:13:46 by tlegrand         ###   ########.fr        #
+#    Updated: 2023/02/13 13:22:02 by tlegrand         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -81,10 +81,10 @@ re		:	fclean
 
 #	==============================	COMPILATION	==============================	#
 ${NAME}			:	${LIBFT} ${DIR_OBJS} ${OBJS}
-				@${CC} ${CFLAGS} ${OBJS} ${FTFLAGS}-o ${NAME}
+				@${CC} ${CFLAGS} ${OBJS} ${FTFLAGS} -o ${NAME}
 				@printf "$(GREEN_LIGHT)${NAME} created !\n$(END)"
 
-bonus			:	{LIBFT} ${DIR_OBJS} ${OBJS_B}
+bonus			:	${LIBFT} ${DIR_OBJS} ${OBJS_B}
 				@${CC} ${CFLAGS} ${OBJS_B} ${FTFLAGS} -o ${NAME_B}
 				@printf "$(GREEN_LIGHT)${NAME_B} created !\n$(END)"
 

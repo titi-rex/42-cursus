@@ -6,7 +6,7 @@
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/11 14:20:18 by tlegrand          #+#    #+#             */
-/*   Updated: 2023/02/12 20:14:20 by tlegrand         ###   ########.fr       */
+/*   Updated: 2023/02/13 13:58:10 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,7 +74,7 @@ char	*ft_get_pathcmd(char **paths, char *cmd_name)
 	int		j;
 
 	j = 0;
-	while (paths[j])
+	while (cmd_name && paths[j])
 	{
 		buffer = ft_strjoin(paths[j], cmd_name);
 		if (!buffer)
