@@ -6,7 +6,7 @@
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/25 14:36:03 by tlegrand          #+#    #+#             */
-/*   Updated: 2023/02/13 22:24:58 by tlegrand         ###   ########.fr       */
+/*   Updated: 2023/02/13 23:09:30 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,4 +39,6 @@ static void	ft_man(void)
 
 /*
 error to solve : when cmd dont exist : invalid read 
+check error if here_doc and argc < 6 ( == 5)
+*********************************
 */
