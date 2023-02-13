@@ -6,7 +6,7 @@
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/06 16:35:25 by tlegrand          #+#    #+#             */
-/*   Updated: 2023/02/13 13:40:36 by tlegrand         ###   ########.fr       */
+/*   Updated: 2023/02/13 21:42:28 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ int	ft_here_doc(char *end, t_pipex *cmd_line)
 		buff[n_read] = 0;
 		if (!ft_strncmp(buff, end, len_end) && buff[len_end] == '\n')
 			break ;
-		write(cmd_line->pipefd[1][1], &buff, n_read);
+		write(cmd_line->pipe[1][1], &buff, n_read);
 	}
 	return (0);
 }

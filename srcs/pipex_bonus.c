@@ -6,7 +6,7 @@
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/11 21:16:07 by tlegrand          #+#    #+#             */
-/*   Updated: 2023/02/13 16:03:22 by tlegrand         ###   ########.fr       */
+/*   Updated: 2023/02/13 22:21:16 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,6 @@ int	main(int argc, char **argv, char **env)
 	{
 		ft_parsing(argv, argc, 3, &cmd_line);
 		ft_here_doc(argv[2], &cmd_line);
-		printpipex(&cmd_line);
 		ft_cmd_master(&cmd_line);
 	}
 	else
@@ -48,9 +47,3 @@ static void	ft_man(void)
 	ft_printf("./pipex here_doc LIMITER cmd1 cmd2... last_cmd output_file\n");
 	exit(EXIT_SUCCESS);
 }
-
-/*
-checi if exist before check path
-check behavior when error
-wait child (sleep)
-*/

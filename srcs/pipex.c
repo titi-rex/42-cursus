@@ -6,7 +6,7 @@
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/25 14:36:03 by tlegrand          #+#    #+#             */
-/*   Updated: 2023/02/13 17:45:28 by tlegrand         ###   ########.fr       */
+/*   Updated: 2023/02/13 22:24:58 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,3 +36,7 @@ static void	ft_man(void)
 	ft_printf("Like that : ./pipex input_file cmd1 cmd2 output_file\n");
 	exit(EXIT_SUCCESS);
 }
+
+/*
+error to solve : when cmd dont exist : invalid read 
+*/

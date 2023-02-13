@@ -6,14 +6,13 @@
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/11 14:30:36 by tlegrand          #+#    #+#             */
-/*   Updated: 2023/02/13 18:00:36 by tlegrand         ###   ########.fr       */
+/*   Updated: 2023/02/13 22:16:06 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/pipex.h"
 
-
-void	ft_cmd_exe(t_pipex *cmd_l, int i, int k, int fd_in, int fd_out)
+void	ft_cmd_exe(t_pipex *cmd_l, int i, int fd_in, int fd_out)
 {
 	int	pid;
 
@@ -30,31 +29,35 @@ void	ft_cmd_exe(t_pipex *cmd_l, int i, int k, int fd_in, int fd_out)
 			if (!cmd_l->cmds[i][0])
 				ft_clean_exit(cmd_l, EXIT_FAILURE);
 			if (execve(cmd_l->cmds[i][0], cmd_l->cmds[i], cmd_l->env) == -1)
-				ft_error("Execve failed ", cmd_l->cmds[i][0]);
+				ft_error("Execution failed ", cmd_l->cmds[i][0]);
 		}
 		ft_clean_exit(cmd_l, EXIT_FAILURE);
 	}
-	else
-		ft_close_pipe(cmd_l->pipe[i % 2 + k]);
 }
 
 void	ft_cmd_master(t_pipex *cmd_l)
 {
 	int	i;
+	int	j;
 	int	k;
 
 	i = 0;
 	k = 1;
 	while (i < cmd_l->n_cmd)
 	{
-		pipe(cmd_l->pipe[i % 2]);
+		j = i % 2;
+		if (i)
+			ft_close_pipe(cmd_l->pipe[j]);
+		pipe(cmd_l->pipe[j]);
 		if (i == 0)
-			ft_cmd_exe(cmd_l, i, k, cmd_l->fds[0], cmd_l->pipe[1][1]);
+			ft_cmd_exe(cmd_l, i, cmd_l->fds[0], cmd_l->pipe[0][1]);
 		else if (i == cmd_l->n_cmd - 1)
-			ft_cmd_exe(cmd_l, i, k, cmd_l->pipe[i % 2][0], cmd_l->fds[1]);
+			ft_cmd_exe(cmd_l, i, cmd_l->pipe[j + k][0], cmd_l->fds[1]);
 		else
-			ft_cmd_exe(cmd_l, i, k, cmd_l->pipe[i % 2][0], cmd_l->pipe[i % 2 + k][1]);
+			ft_cmd_exe(cmd_l, i, cmd_l->pipe[j + k][0], cmd_l->pipe[j][1]);
 		i++;
 		k *= -1;
 	}
+	while (--i > 0)
+		wait(NULL);
 }
