@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ../push_swap.h                                        :+:      :+:    :+:   */
+/*   push_swap.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/10 21:22:41 by tlegrand          #+#    #+#             */
-/*   Updated: 2023/02/08 15:33:00 by tlegrand         ###   ########.fr       */
+/*   Updated: 2023/02/13 16:42:16 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ typedef struct s_stack
 	struct s_stack	*next;
 }	t_stack;
 
-/*	============================= 		stack functions		=============================	*/
+/*	==============		stack functions		===================	*/
 t_stack		*ft_stacknew(int value);
 t_stack		*ft_stack_penultimate(t_stack *head);
 t_stack		*ft_stacklast(t_stack *stack);
@@ -37,17 +37,17 @@ int			ft_stackmin(t_stack *stack);
 int			ft_next(t_stack **start, int min, int max, char name);
 int			ft_stacksize(t_stack *head);
 
-/*	============================= 		print stack functions	=============================	*/
+/*	==============		print stack functions	==================	*/
 int			ft_print_stack(t_stack *head);
 void		double_print(t_stack *a, t_stack *b);
 
-/*	============================= 		utils functions			=============================	*/
+/*	==============		utils functions			=================	*/
 void		ft_error(void);
 int			ft_is_valid(char *arg);
 long int	ft_atol(const char *str);
 int			ft_splitlen(char **split);
 
-/*	============================= 		basic stack operator functions		=============================	*/
+/*	==============		basic stack operator functions		===============	*/
 void		ft_swap(t_stack **start);
 void		ft_push(t_stack **start_src, t_stack **start_dst);
 void		ft_rotate(t_stack **start);
@@ -58,8 +58,7 @@ void		ft_push_p(t_stack **start_a, t_stack **start_b, char name, int n);
 void		ft_rotate_p(t_stack **start, char name, int n);
 void		ft_rotate_reverse_p(t_stack **start, char name, int n);
 
-
-/*	============================= 		algorithmic functions		=============================	*/
+/*	==============		algorithmic functions		===============	*/
 void		ft_solver(t_stack **stack_a, int len);
 void		ft_quicksort(t_stack **start_a, int len, int chunk);
 void		ft_partition(t_stack **start_a, int start, int end, int pivot);
