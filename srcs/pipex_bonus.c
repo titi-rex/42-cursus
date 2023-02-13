@@ -6,7 +6,7 @@
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/11 21:16:07 by tlegrand          #+#    #+#             */
-/*   Updated: 2023/02/13 13:41:41 by tlegrand         ###   ########.fr       */
+/*   Updated: 2023/02/13 16:03:22 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,8 +50,7 @@ static void	ft_man(void)
 }
 
 /*
-bug heredoc du caca quii reste 
+checi if exist before check path
 check behavior when error
-doc
-makefile
+wait child (sleep)
 */

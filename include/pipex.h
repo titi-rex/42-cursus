@@ -6,7 +6,7 @@
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/23 18:21:30 by tlegrand          #+#    #+#             */
-/*   Updated: 2023/02/13 13:45:48 by tlegrand         ###   ########.fr       */
+/*   Updated: 2023/02/13 17:41:39 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,10 +19,9 @@
 typedef struct s_data
 {
 	int		n_cmd;
-	char	***cmds;
-	int		**cmdio;
 	int		fds[2];
-	int		pipefd[2][2];
+	int		pipe[2][2];
+	char	***cmds;
 	char	**env;
 }	t_pipex;
 
@@ -36,6 +35,7 @@ void	ft_cmd_master(t_pipex *cmd_line);
 
 void	ft_free3d(void ***arr, int size3d, int *size2d);
 void	ft_free2d(void **arr, int size);
+void	ft_close_pipe(int pipefd[2]);
 void	ft_close(t_pipex *cmd_line);
 void	ft_clean_exit(t_pipex *cmd_line, int exit_code);
 

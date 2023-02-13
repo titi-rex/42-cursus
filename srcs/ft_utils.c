@@ -6,7 +6,7 @@
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/21 19:35:38 by tlegrand          #+#    #+#             */
-/*   Updated: 2023/02/12 20:14:20 by tlegrand         ###   ########.fr       */
+/*   Updated: 2023/02/13 17:43:15 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,23 +44,15 @@ void	printpipex(t_pipex *pipex)
 	ft_printf("n_cmd is %d\n", pipex->n_cmd);
 	ft_printf("fds[0] is %d\n", pipex->fds[0]);
 	ft_printf("fds[1] is %d\n\n", pipex->fds[1]);
-	ft_printf("pipfd[0][0] is %d\n", pipex->pipefd[0][0]);
-	ft_printf("pipfd[0][1] is %d\n", pipex->pipefd[0][1]);
-	ft_printf("pipfd[1][0] is %d\n", pipex->pipefd[1][0]);
-	ft_printf("pipfd[1][1] is %d\n", pipex->pipefd[1][1]);
+	ft_printf("pipe[0][0] is %d\n", pipex->pipe[0][0]);
+	ft_printf("pipe[0][1] is %d\n", pipex->pipe[0][1]);
+	ft_printf("pipe[1][0] is %d\n", pipex->pipe[1][0]);
+	ft_printf("pipe[1][1] is %d\n", pipex->pipe[1][1]);
 	ft_printf("\n###### cmd ######\n"),
 	i = 0;
 	while (pipex->cmds[i])
 	{
 		printsplit(pipex->cmds[i]);
-		i++;
-	}
-	ft_printf("\n###### I/O ######\n");
-	i = 0;
-	while (i < pipex->n_cmd)
-	{
-		ft_printf("cmdio[%d][0] is %d\n", i, pipex->cmdio[i][0]);
-		ft_printf("cmdio[%d][1] is %d\n", i, pipex->cmdio[i][1]);
 		i++;
 	}
 	ft_printf("end\n\n");
