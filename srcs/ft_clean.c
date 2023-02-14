@@ -6,7 +6,7 @@
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/10 15:56:31 by tlegrand          #+#    #+#             */
-/*   Updated: 2023/02/13 17:43:51 by tlegrand         ###   ########.fr       */
+/*   Updated: 2023/02/14 14:08:44 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,15 +61,11 @@ void	ft_free3d(void ***arr, int size3d, int *size2d)
 void	ft_close_pipe(int pipefd[2])
 {
 	if (pipefd[0] != -1)
-	{
 		close(pipefd[0]);
-		pipefd[0] = -1;
-	}
+	pipefd[0] = -1;
 	if (pipefd[1] != -1)
-	{
 		close(pipefd[1]);
-		pipefd[1] = -1;
-	}
+	pipefd[1] = -1;
 }
 
 void	ft_close(t_pipex *cmd_line)

@@ -6,7 +6,7 @@
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/23 18:21:30 by tlegrand          #+#    #+#             */
-/*   Updated: 2023/02/13 17:41:39 by tlegrand         ###   ########.fr       */
+/*   Updated: 2023/02/14 15:12:11 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,8 @@ typedef struct s_data
 	int		n_cmd;
 	int		fds[2];
 	int		pipe[2][2];
-	char	***cmds;
 	char	**env;
+	char	***cmds;
 }	t_pipex;
 
 void	ft_get_argv(char **argv, int start, t_pipex *cmd_line);

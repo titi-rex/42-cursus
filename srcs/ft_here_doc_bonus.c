@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_here_doc.c                                      :+:      :+:    :+:   */
+/*   ft_here_doc_bonus.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/06 16:35:25 by tlegrand          #+#    #+#             */
-/*   Updated: 2023/02/13 21:42:28 by tlegrand         ###   ########.fr       */
+/*   Updated: 2023/02/14 14:23:41 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,11 @@ int	ft_here_doc(char *end, t_pipex *cmd_line)
 	int		len_end;
 	char	buff[100];
 
+	if (pipe(cmd_line->pipe[1]) == -1)
+	{
+		ft_error("Pipe creation failed in here_doc", NULL);
+		return (1);
+	}
 	n_read = 1;
 	len_end = ft_strlen(end);
 	while (n_read)

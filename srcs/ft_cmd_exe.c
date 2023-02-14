@@ -6,7 +6,7 @@
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/11 14:30:36 by tlegrand          #+#    #+#             */
-/*   Updated: 2023/02/13 22:16:06 by tlegrand         ###   ########.fr       */
+/*   Updated: 2023/02/14 16:43:44 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,8 +46,6 @@ void	ft_cmd_master(t_pipex *cmd_l)
 	while (i < cmd_l->n_cmd)
 	{
 		j = i % 2;
-		if (i)
-			ft_close_pipe(cmd_l->pipe[j]);
 		pipe(cmd_l->pipe[j]);
 		if (i == 0)
 			ft_cmd_exe(cmd_l, i, cmd_l->fds[0], cmd_l->pipe[0][1]);
@@ -55,9 +53,11 @@ void	ft_cmd_master(t_pipex *cmd_l)
 			ft_cmd_exe(cmd_l, i, cmd_l->pipe[j + k][0], cmd_l->fds[1]);
 		else
 			ft_cmd_exe(cmd_l, i, cmd_l->pipe[j + k][0], cmd_l->pipe[j][1]);
+		ft_close_pipe(cmd_l->pipe[j + k]);
 		i++;
 		k *= -1;
 	}
-	while (--i > 0)
+	ft_close_pipe(cmd_l->pipe[j]);
+	while (i-- > 0)
 		wait(NULL);
 }

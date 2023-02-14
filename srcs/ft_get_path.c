@@ -6,65 +6,27 @@
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/11 14:20:18 by tlegrand          #+#    #+#             */
-/*   Updated: 2023/02/13 15:53:18 by tlegrand         ###   ########.fr       */
+/*   Updated: 2023/02/14 17:13:01 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/pipex.h"
 
-static size_t	ft_countstr(char const *s, char c)
+char	**ft_split_path(char const *s)
 {
-	size_t	count;
-
-	count = 0;
-	while (s && *s)
-	{
-		while (*s == c)
-			s++;
-		if (*s)
-			count++;
-		while (*s != c && *s)
-			s++;
-	}
-	return (count);
-}
-
-static size_t	ft_findsize(char const *s, char c)
-{
-	size_t	size;
-
-	size = 0;
-	while (s[size] != c && s[size])
-		size++;
-	return (size);
-}
-
-char	**ft_split_path(char const *s, char c)
-{
-	size_t	n_str;
-	size_t	i;
 	char	**split;
+	char	*tmp;
+	int		i;
 
-	n_str = ft_countstr(s, c);
-	split = (char **)malloc((n_str + 1) * sizeof(char *));
-	if (!split || !s)
-		return (NULL);
+	split = ft_split(s, ':');
 	i = 0;
-	while (*s && i < n_str)
+	while (split[i])
 	{
-		while (*s == c)
-			s++;
-		split[i] = ft_substr(s, 0, ft_findsize(s, c) + 1);
-		if (!split[i])
-		{
-			ft_freesplit(split);
-			return (NULL);
-		}
-		split[i][ft_findsize(s, c)] = '/';
+		tmp = ft_strjoin(split[i], "/");
+		free(split[i]);
+		split[i] = tmp;
 		i++;
-		s += ft_findsize(s, c);
 	}
-	split[i] = NULL;
 	return (split);
 }
 
@@ -93,7 +55,7 @@ char	*ft_get_pathcmd(char **paths, char *cmd_name)
 	}
 	ft_error("Command not found : ", cmd_name);
 	free(cmd_name);
-	return (NULL);
+	return (ft_strdup(""));
 }
 
 void	ft_get_path(char *pathvar, t_pipex *cmd_line)
@@ -103,7 +65,7 @@ void	ft_get_path(char *pathvar, t_pipex *cmd_line)
 
 	while (*pathvar != '/')
 		pathvar++;
-	paths = ft_split_path(pathvar, ':');
+	paths = ft_split_path(pathvar);
 	if (!paths)
 	{
 		ft_error("Mailoc from ft_split_path failed", NULL);
@@ -113,7 +75,7 @@ void	ft_get_path(char *pathvar, t_pipex *cmd_line)
 	i = 0;
 	while (i < cmd_line->n_cmd)
 	{
-		if (access(cmd_line->cmds[i][0], F_OK))
+		if (cmd_line->cmds[i][0] && access(cmd_line->cmds[i][0], F_OK))
 			cmd_line->cmds[i][0] = ft_get_pathcmd(paths, cmd_line->cmds[i][0]);
 		i++;
 	}

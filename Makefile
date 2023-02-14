@@ -6,7 +6,7 @@
 #    By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/12/03 11:42:37 by tlegrand          #+#    #+#              #
-#    Updated: 2023/02/13 23:29:58 by tlegrand         ###   ########.fr        #
+#    Updated: 2023/02/14 15:08:32 by tlegrand         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -27,7 +27,7 @@ SRCS			=	${addprefix ${DIR_SRCS}, ${LST_SRCS}}
 
 LST_SRCS_B		=	pipex_bonus.c ft_parsing.c ft_cmd_exe.c ft_get_argv.c ft_get_io.c ft_get_path.c \
 					ft_utils.c  ft_clean.c \
-					ft_here_doc.c
+					ft_here_doc_bonus.c
 SRCS_B			=	${addprefix ${DIR_SRCS}, ${LST_SRCS_B}}
 
 #	==============================	OBJECTS	==============================	#

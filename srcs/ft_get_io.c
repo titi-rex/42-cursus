@@ -6,7 +6,7 @@
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/11 14:21:31 by tlegrand          #+#    #+#             */
-/*   Updated: 2023/02/13 17:44:37 by tlegrand         ###   ########.fr       */
+/*   Updated: 2023/02/14 17:10:24 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,40 +30,3 @@ void	ft_get_fd(t_pipex *cmd_l, char **arg, int argc)
 		ft_error("Can't open file : ", arg[n]);
 }
 
-/*
-
-void	ft_assign_io(int cmdio[2], int input, int output)
-{
-	cmdio[0] = input;
-	cmdio[1] = output;
-}
-
-void	ft_get_cmdio(t_pipex *cmd_l, int pipefd[2][2])
-{
-	int		i;
-	int		j;
-	int		k;
-
-	i = 0;
-	k = -1;
-	j = 1;
-	while (i < cmd_l->n_cmd)
-	{
-		cmd_l->cmdio[i] = ft_calloc(2, sizeof(int));
-		if (!cmd_l->cmdio[i])
-		{
-			ft_error("Malloc failed in ft_get_cmdio", NULL);
-			ft_clean_exit(cmd_l, EXIT_FAILURE);
-		}
-		if (i == 0)
-			ft_assign_io(cmd_l->cmdio[i], cmd_l->fds[0], pipefd[j + k][1]);
-		else if (i == cmd_l->n_cmd - 1)
-			ft_assign_io(cmd_l->cmdio[i], pipefd[j][0], cmd_l->fds[1]);
-		else
-			ft_assign_io(cmd_l->cmdio[i], pipefd[j][0], pipefd[j + k][1]);
-		i++;
-		j += k;
-		k *= -1;
-	}
-}
-*/
