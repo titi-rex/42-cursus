@@ -6,7 +6,7 @@
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/19 20:07:38 by tlegrand          #+#    #+#             */
-/*   Updated: 2023/02/12 20:52:37 by tlegrand         ###   ########.fr       */
+/*   Updated: 2023/02/15 00:20:44 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,24 @@ typedef struct s_map
 	int		count[3];
 }	t_map;
 
+typedef struct s_img
+{
+	void	*ptr;
+	char	*data;
+	int		pixel;
+	int		line;
+	int		endian;
+}	t_img;
+
+typedef struct s_mlx
+{
+	void	*screen;
+	void	*win;
+	t_img	img;
+}	t_mlx;
+
+
+
 void	ft_error(t_map *map, int errnum, char *errstr);
 void	ft_print_map(t_map *map);
 
@@ -37,5 +55,11 @@ void	ft_get_mapsize(t_map *map);
 void	ft_check_map(t_map *map);
 void	ft_backtrack(t_map *map, int ypos, int xpos);
 void	ft_init_map(t_map *map, char *pathname);
+
+void	ft_free2d(void **arr, int size);
+
+
+
+int		ft_hook_key(int keycode, t_mlx *data);
 
 #endif

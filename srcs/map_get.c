@@ -6,7 +6,7 @@
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/20 15:50:46 by tlegrand          #+#    #+#             */
-/*   Updated: 2023/02/12 20:30:53 by tlegrand         ###   ########.fr       */
+/*   Updated: 2023/02/14 22:43:56 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,12 +57,16 @@ char	**ft_get_map(char *pathname)
 	if (!line)
 		ft_error(NULL, 12, NULL);
 	if (read (fd, line, size) == -1)
+	{
+		close(fd);
+		free(line);
 		ft_error(NULL, 5, "File : Failed to read\n");
+	}
+	close(fd);
 	map = ft_split(line, '\n');
 	free(line);
 	if (!map)
 		ft_error(NULL, 12, NULL);
-	close(fd);
 	return (map);
 }
 

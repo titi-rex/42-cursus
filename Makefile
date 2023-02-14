@@ -6,7 +6,7 @@
 #    By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/11/19 14:03:05 by tlegrand          #+#    #+#              #
-#    Updated: 2023/02/14 20:06:02 by tlegrand         ###   ########.fr        #
+#    Updated: 2023/02/14 23:25:10 by tlegrand         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,7 +19,7 @@ NAME		=	so_long
 
 #	==============================	SOURCES	==============================	#
 DIR_SRCS	=	srcs/
-LST_SRCS	=	main.c map_get.c map_check.c map_init.c utils.c
+LST_SRCS	=	main.c map_get.c map_check.c map_init.c utils.c ft_clean.c ft_hook.c
 SRCS		=	${addprefix ${DIR_SRCS}, ${LST_SRCS}}
 
 

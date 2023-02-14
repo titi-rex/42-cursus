@@ -6,7 +6,7 @@
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/20 13:40:32 by tlegrand          #+#    #+#             */
-/*   Updated: 2023/02/12 21:06:11 by tlegrand         ###   ########.fr       */
+/*   Updated: 2023/02/14 23:11:28 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ void	ft_error(t_map *map, int errnum, char *errstr)
 	if (map)
 	{
 		if (map->layout)
-			ft_freesplit(map->layout);
+			ft_free2d((void **) map->layout, 0);
 	}
 	write(2, "Error\n", 6);
 	if (!errstr)

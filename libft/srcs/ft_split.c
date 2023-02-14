@@ -6,7 +6,7 @@
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/11 12:51:55 by tlegrand          #+#    #+#             */
-/*   Updated: 2023/01/20 14:17:38 by tlegrand         ###   ########.fr       */
+/*   Updated: 2023/02/14 22:37:48 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ static size_t	ft_findsize(char const *s, char c)
 	return (size);
 }
 
-void	ft_freesplit(char **split)
+static void	ft_freesplit(char **split)
 {
 	size_t	i;
 
