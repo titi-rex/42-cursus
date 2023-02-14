@@ -6,7 +6,7 @@
 #    By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/12/03 11:42:37 by tlegrand          #+#    #+#              #
-#    Updated: 2023/02/12 19:53:24 by tlegrand         ###   ########.fr        #
+#    Updated: 2023/02/14 20:07:56 by tlegrand         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -97,7 +97,7 @@ $(LIBFT)	: FORCE
 			@$(MAKE) -C $(DIR_LIBFT)
 
 nn			:
-			@norminette ${SRCS_S} ${SRCS_C} ${HEADER}
+			@norminette $(sort ${SRCS_S} ${SRCS_C} ${HEADER})
 
 FORCE		:
 
