@@ -6,7 +6,7 @@
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/25 14:36:03 by tlegrand          #+#    #+#             */
-/*   Updated: 2023/02/14 17:11:18 by tlegrand         ###   ########.fr       */
+/*   Updated: 2023/02/14 19:06:54 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,6 @@ static void	ft_man(void)
 }
 
 /*
-error to solve : when cmd is empty or only space : invalid read 
-check beavioh whem infile is a directoy
+check beavior whem infile is a directoy
 *********************************
 */

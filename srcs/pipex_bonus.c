@@ -6,13 +6,13 @@
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/11 21:16:07 by tlegrand          #+#    #+#             */
-/*   Updated: 2023/02/14 14:28:09 by tlegrand         ###   ########.fr       */
+/*   Updated: 2023/02/14 19:40:56 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/pipex_bonus.h"
 
-static void	ft_man(int);
+static void	ft_man(int num);
 
 int	main(int argc, char **argv, char **env)
 {
@@ -25,7 +25,7 @@ int	main(int argc, char **argv, char **env)
 	{
 		if (argc < 6)
 			ft_man(2);
-		ft_parsing(argv, argc, 3, &cmd_line);
+		ft_parsing_doc(argv, argc, 3, &cmd_line);
 		ft_here_doc(argv[2], &cmd_line);
 		ft_cmd_master(&cmd_line);
 	}
@@ -48,7 +48,8 @@ static void	ft_man(int num)
 		ft_printf("Or with here_doc : ");
 		ft_printf("./pipex here_doc LIMITER cmd1 cmd2 output_file\n");
 		ft_printf("Or both : ");
-		ft_printf("./pipex here_doc LIMITER cmd1 cmd2... last_cmd output_file\n");
+		ft_printf("./pipex here_doc LIMITER");
+		ft_printf("cmd1 cmd2... last_cmd output_file\n");
 	}
 	else
 		ft_printf("here_doc need at least 6 arg !\n");
