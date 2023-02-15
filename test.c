@@ -1,32 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_hook.c                                          :+:      :+:    :+:   */
+/*   test.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/02/14 23:21:53 by tlegrand          #+#    #+#             */
-/*   Updated: 2023/02/15 12:07:59 by tlegrand         ###   ########.fr       */
+/*   Created: 2023/02/15 11:21:40 by tlegrand          #+#    #+#             */
+/*   Updated: 2023/02/15 11:25:32 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/so_long.h"
+#include "include/so_long.h"								
 
-void	ft_quit(t_mlx *mlx)
+int	main(void)
 {
-	//mlx_destroy_image(mlx->screen, mlx->img.ptr);
-	//free(mlx->img.ptr);
-	mlx_destroy_display(mlx->screen);
-	mlx_destroy_window(mlx->screen, mlx->win);
-	ft_putstr_fd("Quit programe\n", 2);
-	exit(0);
-}
-
-int	ft_hook_key(int keycode, t_mlx *data)
-{
-	if (keycode == 65307)
-		ft_quit(data);
-	ft_printf("key is %d\n", keycode);
+	ft_printf("sizeof char is %d\n", sizeof(int));
 	return (0);
 }
-

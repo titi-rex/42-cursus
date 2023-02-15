@@ -6,7 +6,7 @@
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/19 20:07:38 by tlegrand          #+#    #+#             */
-/*   Updated: 2023/02/15 00:20:44 by tlegrand         ###   ########.fr       */
+/*   Updated: 2023/02/15 11:18:03 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,7 @@ typedef struct s_img
 	int		pixel;
 	int		line;
 	int		endian;
+	int		height;
 }	t_img;
 
 typedef struct s_mlx
