@@ -6,7 +6,7 @@
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/10 21:22:41 by tlegrand          #+#    #+#             */
-/*   Updated: 2023/02/13 16:42:16 by tlegrand         ###   ########.fr       */
+/*   Updated: 2023/02/14 12:38:27 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ t_stack		*ft_stacknew(int value);
 t_stack		*ft_stack_penultimate(t_stack *head);
 t_stack		*ft_stacklast(t_stack *stack);
 t_stack		*ft_stacksearch(t_stack *head, int value);
-t_stack		*ft_create_stack(char **arg, int n_arg, int start);
+t_stack		*ft_create_stack(char **arg, int n_arg, int start, int err_flag);
 void		ft_stackadd_back(t_stack **head, t_stack *new);
 void		ft_stackdel(t_stack **head, int target);
 void		ft_stackclear(t_stack **head);
@@ -43,6 +43,7 @@ void		double_print(t_stack *a, t_stack *b);
 
 /*	==============		utils functions			=================	*/
 void		ft_error(void);
+void		ft_clean_error(t_stack **stack, char **arg, int err_flag);
 int			ft_is_valid(char *arg);
 long int	ft_atol(const char *str);
 int			ft_splitlen(char **split);

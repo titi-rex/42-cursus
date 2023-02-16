@@ -6,7 +6,7 @@
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/12 21:24:00 by tlegrand          #+#    #+#             */
-/*   Updated: 2023/02/13 17:08:30 by tlegrand         ###   ########.fr       */
+/*   Updated: 2023/02/14 12:39:20 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ t_stack	*ft_stacknew(int value)
  * @param idx_start where to start from arg (used if arg[0] is program's name)
  * @return t_stack* ptr to first element of stack
  */
-t_stack	*ft_init_stack(char **arg, int n_arg, int idx_start)
+t_stack	*ft_init_stack(char **arg, int n_arg, int idx_start, int err_flag)
 {
 	t_stack	*new;
 	t_stack	*start;
@@ -51,18 +51,10 @@ t_stack	*ft_init_stack(char **arg, int n_arg, int idx_start)
 	while (++i < n_arg)
 	{
 		if (ft_is_valid(arg[i]) || ft_stacksearch(start, ft_atoi(arg[i])))
-		{
-			ft_stackclear(&start);
-			ft_freesplit(arg);
-			ft_error();
-		}
+			ft_clean_error(&start, arg, err_flag);
 		new = ft_stacknew(ft_atoi(arg[i]));
 		if (!new)
-		{
-			ft_stackclear(&start);
-			ft_freesplit(arg);
-			ft_error();
-		}
+			ft_clean_error(&start, arg, err_flag);
 		ft_stackadd_back(&start, new);
 	}
 	return (start);
@@ -128,12 +120,12 @@ t_stack	*ft_index(t_stack *stack)
  * @param start where to start from arg (used if arg[0] is program's name)
  * @return t_stack* ptr to first element of stack
  */
-t_stack	*ft_create_stack(char **arg, int n_arg, int start)
+t_stack	*ft_create_stack(char **arg, int n_arg, int start, int err_flag)
 {
 	t_stack	*stack;
 	t_stack	*stack_tmp;
 
-	stack_tmp = ft_init_stack(arg, n_arg, start);
+	stack_tmp = ft_init_stack(arg, n_arg, start, err_flag);
 	if (stack_tmp)
 	{
 		stack = ft_index(stack_tmp);

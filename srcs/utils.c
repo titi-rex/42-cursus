@@ -6,7 +6,7 @@
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/12 22:55:25 by tlegrand          #+#    #+#             */
-/*   Updated: 2023/02/12 19:43:29 by tlegrand         ###   ########.fr       */
+/*   Updated: 2023/02/14 12:37:38 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,14 @@ void	ft_error(void)
 {
 	write(2, "Error\n", 6);
 	exit(3);
+}
+
+void	ft_clean_error(t_stack **stack, char **arg, int err_flag)
+{
+	ft_stackclear(stack);
+	if (!err_flag)
+		ft_freesplit(arg);
+	ft_error();
 }
 
 /**

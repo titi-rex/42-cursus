@@ -6,13 +6,12 @@
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/10 21:21:41 by tlegrand          #+#    #+#             */
-/*   Updated: 2023/02/13 17:07:41 by tlegrand         ###   ########.fr       */
+/*   Updated: 2023/02/16 15:18:47 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../push_swap.h"
 
-// remplacer  directement dst par start dst etc a la fin
 /**
  * @brief main function, call others functions
  *
@@ -32,13 +31,16 @@ int	main(int argc, char **argv)
 		split = ft_split(argv[1], ' ');
 		if (!split)
 			ft_error();
-		stack_a = ft_create_stack(split, ft_splitlen(split), 0);
+		stack_a = ft_create_stack(split, ft_splitlen(split), 0, 0);
 		ft_freesplit(split);
 	}
 	else
-		stack_a = ft_create_stack(argv, argc, 1);
+		stack_a = ft_create_stack(argv, argc, 1, 1);
 	if (!stack_a)
+	{
+		ft_error();
 		return (0);
+	}
 	ft_solver(&stack_a, ft_stacksize(stack_a));
 	ft_stackclear(&stack_a);
 	return (0);
