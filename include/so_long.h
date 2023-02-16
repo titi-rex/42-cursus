@@ -6,7 +6,7 @@
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/19 20:07:38 by tlegrand          #+#    #+#             */
-/*   Updated: 2023/02/15 18:50:15 by tlegrand         ###   ########.fr       */
+/*   Updated: 2023/02/16 18:28:58 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@
 # include <string.h>
 # include "../libft/libft.h"
 # include "../minilibx-linux/mlx.h"
+# include "img_draw.h"
 
 typedef struct s_map
 {
@@ -28,16 +29,12 @@ typedef struct s_map
 	int		count[3];
 }	t_map;
 
-typedef struct s_img
+typedef struct s_sprite
 {
 	void	*id;
-	char	*addr;
-	int		bbp;
-	int		line;
-	int		endian;
 	int		height;
 	int		width;
-}	t_img;
+}	t_sprite;
 
 typedef struct s_mlx
 {
@@ -47,25 +44,25 @@ typedef struct s_mlx
 
 typedef struct s_game
 {
-	t_map	map;
-	t_mlx	mlx;
-	t_img	backround;
-	t_img	character;
-	t_img	collectible;
-	t_img	wall;
-	t_img	exit;
-	int		pos[2];
+	int			pos[2];
+	t_map		map;
+	t_mlx		mlx;
+	t_sprite	backround;
+	t_sprite	player;
+	t_sprite	gem;
+	t_sprite	wall;
+	t_sprite	exit[2];
 }	t_game_data;
 
 
-# ifndef WINDOW_HEIGHT
-#  define WINDOW_HEIGHT 800
+# ifndef W_HEIGHT
+#  define W_HEIGHT 800
 # endif
-# ifndef WINDOW_WIDTH
-#  define WINDOW_WIDTH 800
+# ifndef W_WIDTH
+#  define W_WIDTH 800
 # endif
 
-void	ft_error(t_map *map, int errnum, char *errstr);
+void	ft_error_map(t_map *map, int errnum, char *errstr);
 void	ft_print_map(t_map *map);
 
 char	**ft_get_map(char *pathname);
@@ -80,5 +77,13 @@ void	ft_free2d(void **arr, int size);
 void	ft_img_fill(t_img *img, int color);
 
 int		ft_hook_key(int keycode, t_mlx *data);
+
+# define BGRD	"sprites/background.xpm"
+# define CHARA	"sprites/character.xpm"
+# define GEM	"sprites/gems.xpm"
+# define WALL	"sprites/wall.xpm"
+# define EXIT_C	"sprites/exit_close.xpm"
+# define EXIT_O	"sprites/exit_open.xpm"
+
 
 #endif

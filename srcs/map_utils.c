@@ -1,32 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   utils.c                                            :+:      :+:    :+:   */
+/*   map_utils.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/20 13:40:32 by tlegrand          #+#    #+#             */
-/*   Updated: 2023/02/14 23:11:28 by tlegrand         ###   ########.fr       */
+/*   Updated: 2023/02/16 18:42:16 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/so_long.h"
 
-/**
- * @brief free map and display error message on stderr 
- * depending of errstr or errnum
- * 
- * @param map map to free
- * @param errnum error value for strerror()
- * @param errstr error message to display
- */
-void	ft_error(t_map *map, int errnum, char *errstr)
+void	ft_clean_map(t_map *map)
 {
 	if (map)
 	{
 		if (map->layout)
 			ft_free2d((void **) map->layout, 0);
 	}
+}
+
+void	ft_error_map(t_map *map, int errnum, char *errstr)
+{
+	ft_clean_map(map);
 	write(2, "Error\n", 6);
 	if (!errstr)
 		ft_putstr_fd(strerror(errnum), 2);
@@ -35,11 +32,7 @@ void	ft_error(t_map *map, int errnum, char *errstr)
 	exit(errnum);
 }
 
-/**
- * @brief print map
- * 
- * @param map 
- */
+
 void	ft_print_map(t_map *map)
 {
 	int	y;

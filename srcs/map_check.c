@@ -6,7 +6,7 @@
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/20 15:52:53 by tlegrand          #+#    #+#             */
-/*   Updated: 2023/02/12 21:06:39 by tlegrand         ###   ########.fr       */
+/*   Updated: 2023/02/16 18:28:58 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,15 +51,15 @@ int	ft_is_valid(char c, int count[3])
 void	ft_check_count(t_map *map)
 {
 	if (map->count[0] < 1)
-		ft_error(map, 3, "Map : No starting position\n");
+		ft_error_map(map, 3, "Map : No starting position\n");
 	else if (map->count[0] > 1)
-		ft_error(map, 3, "Map : Too much starting position\n");
+		ft_error_map(map, 3, "Map : Too much starting position\n");
 	if (map->count[2] < 1)
-		ft_error(map, 3, "Map : No exit\n");
+		ft_error_map(map, 3, "Map : No exit\n");
 	else if (map->count[2] > 1)
-		ft_error(map, 3, "Map : Too much exit\n");
+		ft_error_map(map, 3, "Map : Too much exit\n");
 	if (map->count[1] < 1)
-		ft_error(map, 3, "Map : No collectible\n");
+		ft_error_map(map, 3, "Map : No collectible\n");
 }
 
 /**
@@ -81,11 +81,11 @@ void	ft_check_map(t_map *map)
 		while (x < map->xsize)
 		{
 			if (ft_is_valid(map->layout[y][x], map->count))
-				ft_error(map, 3, "Map : Non-valid character in map\n");
+				ft_error_map(map, 3, "Map : Non-valid character in map\n");
 			if (y == 0 || x == 0 || y == map->ysize - 1 || x == map->xsize - 1)
 			{
 				if (map->layout[y][x] != '1')
-					ft_error(map, 5, "Map : Not surrounded by wall\n");
+					ft_error_map(map, 5, "Map : Not surrounded by wall\n");
 			}
 			x++;
 		}

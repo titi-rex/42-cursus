@@ -6,7 +6,7 @@
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/20 15:16:51 by tlegrand          #+#    #+#             */
-/*   Updated: 2023/02/14 23:11:14 by tlegrand         ###   ########.fr       */
+/*   Updated: 2023/02/16 18:28:58 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ void	ft_mapcpy(t_map *src, t_map *dst)
 	dst->xsize = src->xsize;
 	dst->layout = (char **)ft_calloc(dst->ysize, sizeof(char *));
 	if (!dst->layout)
-		ft_error(src, 12, NULL);
+		ft_error_map(src, 12, NULL);
 	y = 0;
 	while (y < dst->ysize)
 	{
@@ -50,7 +50,7 @@ void	ft_mapcpy(t_map *src, t_map *dst)
 		if (!dst->layout[y])
 		{
 			ft_free2d((void **) dst->layout, 0);
-			ft_error(src, 12, NULL);
+			ft_error_map(src, 12, NULL);
 		}
 		y++;
 	}
@@ -83,7 +83,7 @@ void	ft_init_map(t_map *map, char *pathname)
 	if (!ft_check_path(&cpy))
 	{
 		ft_free2d((void **) cpy.layout, 0);
-		ft_error(map, 3, "Map : No path found\n");
+		ft_error_map(map, 3, "Map : No path found\n");
 	}
 	ft_free2d((void **) cpy.layout, 0);
 }

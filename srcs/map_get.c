@@ -6,7 +6,7 @@
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/20 15:50:46 by tlegrand          #+#    #+#             */
-/*   Updated: 2023/02/14 22:43:56 by tlegrand         ###   ########.fr       */
+/*   Updated: 2023/02/16 18:28:58 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ int	ft_file_size(char *pathname)
 
 	fd = open(pathname, O_RDONLY);
 	if (fd == -1)
-		ft_error(NULL, 3, "File : Failed to open\n");
+		ft_error_map(NULL, 3, "File : Failed to open\n");
 	size = 1;
 	while (read(fd, &buff, 1))
 			size++;
@@ -52,21 +52,21 @@ char	**ft_get_map(char *pathname)
 	size = ft_file_size(pathname);
 	fd = open(pathname, O_RDONLY);
 	if (fd == -1)
-		ft_error(NULL, 3, "File : Failed to open\n");
+		ft_error_map(NULL, 3, "File : Failed to open\n");
 	line = (char *)ft_calloc(size, sizeof(char));
 	if (!line)
-		ft_error(NULL, 12, NULL);
+		ft_error_map(NULL, 12, NULL);
 	if (read (fd, line, size) == -1)
 	{
 		close(fd);
 		free(line);
-		ft_error(NULL, 5, "File : Failed to read\n");
+		ft_error_map(NULL, 5, "File : Failed to read\n");
 	}
 	close(fd);
 	map = ft_split(line, '\n');
 	free(line);
 	if (!map)
-		ft_error(NULL, 12, NULL);
+		ft_error_map(NULL, 12, NULL);
 	return (map);
 }
 
@@ -121,5 +121,5 @@ void	ft_get_mapsize(t_map *map)
 	map->ysize = ft_get_ysize(map->layout);
 	map->xsize = ft_get_xsize(map->layout);
 	if (map->ysize == 0 || map->xsize == -1)
-		ft_error(map, 3, "Map : Not a rectangle\n");
+		ft_error_map(map, 3, "Map : Not a rectangle\n");
 }
