@@ -6,7 +6,7 @@
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/09 14:10:35 by tlegrand          #+#    #+#             */
-/*   Updated: 2023/02/14 14:53:22 by tlegrand         ###   ########.fr       */
+/*   Updated: 2023/02/16 14:08:19 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ void	ft_parsing(char **argv, int argc, int start, t_pipex *cmd_line)
 	i = 0;
 	while (cmd_line->env[i] && ft_strncmp(cmd_line->env[i], "PATH=", 5))
 		i++;
+	ft_get_fd(cmd_line, argv, argc);
 	ft_get_argv(argv, start, cmd_line);
 	ft_get_path(cmd_line->env[i], cmd_line);
-	ft_get_fd(cmd_line, argv, argc);
 }
