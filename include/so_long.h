@@ -6,7 +6,7 @@
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/19 20:07:38 by tlegrand          #+#    #+#             */
-/*   Updated: 2023/02/16 18:28:58 by tlegrand         ###   ########.fr       */
+/*   Updated: 2023/02/16 21:00:08 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,10 +56,10 @@ typedef struct s_game
 
 
 # ifndef W_HEIGHT
-#  define W_HEIGHT 800
+#  define W_HEIGHT 500
 # endif
 # ifndef W_WIDTH
-#  define W_WIDTH 800
+#  define W_WIDTH 500
 # endif
 
 void	ft_error_map(t_map *map, int errnum, char *errstr);

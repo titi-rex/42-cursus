@@ -6,13 +6,14 @@
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/16 17:44:04 by tlegrand          #+#    #+#             */
-/*   Updated: 2023/02/16 17:57:47 by tlegrand         ###   ########.fr       */
+/*   Updated: 2023/02/16 22:52:31 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef IMG_DRAW_H
 # define IMG_DRAW_H
 # include "../minilibx-linux/mlx.h"
+# include "../libft/libft.h"
 
 typedef struct s_img
 {
