@@ -6,7 +6,7 @@
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/16 18:03:45 by tlegrand          #+#    #+#             */
-/*   Updated: 2023/02/17 23:50:58 by tlegrand         ###   ########.fr       */
+/*   Updated: 2023/02/18 00:02:27 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ void	ft_init_game(t_game_data *game)
 	game->gem.id = NULL;
 	game->wall.id = NULL;
 	game->exit.id = NULL;
-	while (++i < 6)
+	while (++i < 7)
 		game->player[i].id = NULL;
 }
 
@@ -88,7 +88,8 @@ int	ft_init_sprite_player(t_mlx *mlx, t_sprite player[6])
 	player[3].id = mlx_xpm_file_to_image(mlx->ptr, CHARA4, &tmp, &tmp);
 	player[4].id = mlx_xpm_file_to_image(mlx->ptr, CHARA5, &tmp, &tmp);
 	player[5].id = mlx_xpm_file_to_image(mlx->ptr, CHARA6, &tmp, &tmp);
-	if (!player[3].id || !player[4].id || !player[5].id)
+	player[6].id = mlx_xpm_file_to_image(mlx->ptr, CHARA7, &tmp, &tmp);
+	if (!player[3].id || !player[4].id || !player[5].id || !player[6].id)
 		return (1);
 	return (0);
 }

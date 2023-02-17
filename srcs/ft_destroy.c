@@ -6,7 +6,7 @@
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/16 18:39:15 by tlegrand          #+#    #+#             */
-/*   Updated: 2023/02/17 23:42:14 by tlegrand         ###   ########.fr       */
+/*   Updated: 2023/02/18 00:02:34 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ void	ft_destroy_sprite(t_game_data *game)
 	int	i;
 
 	i = 0;
-	while (i < 6)
+	while (i < 7)
 	{
 		if (game->player[i].id)
 			mlx_destroy_image(game->mlx.ptr, game->player[i].id);
