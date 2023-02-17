@@ -6,19 +6,12 @@
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/20 15:16:51 by tlegrand          #+#    #+#             */
-/*   Updated: 2023/02/16 18:28:58 by tlegrand         ###   ########.fr       */
+/*   Updated: 2023/02/17 13:44:06 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/so_long.h"
 
-/**
- * @brief check if a path between P C and E exist, 
- * use ft_backtrack and check count of item
- * display error and quit if no path found
- * 
- * @param map map to check
- */
 int	ft_check_path(t_map *map)
 {
 	ft_backtrack(map, 1, 1);
@@ -27,20 +20,13 @@ int	ft_check_path(t_map *map)
 	return (0);
 }
 
-/**
- * @brief copy a map
- * if malloc fail, display error and quit 
- * 
- * @param src 
- * @param dst 
- */
 void	ft_mapcpy(t_map *src, t_map *dst)
 {
 	int	y;
 
 	dst->ysize = src->ysize;
 	dst->xsize = src->xsize;
-	dst->layout = (char **)ft_calloc(dst->ysize, sizeof(char *));
+	dst->layout = (char **)ft_calloc(dst->ysize + 1, sizeof(char *));
 	if (!dst->layout)
 		ft_error_map(src, 12, NULL);
 	y = 0;

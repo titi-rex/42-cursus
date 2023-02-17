@@ -6,7 +6,7 @@
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/19 20:07:38 by tlegrand          #+#    #+#             */
-/*   Updated: 2023/02/17 11:30:08 by tlegrand         ###   ########.fr       */
+/*   Updated: 2023/02/17 18:17:44 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 # include <fcntl.h>
 # include <stdio.h>
 # include <string.h>
+# include <X11/X.h>
 # include "../libft/libft.h"
 # include "../minilibx-linux/mlx.h"
 # include "img_draw.h"
@@ -45,13 +46,15 @@ typedef struct s_mlx
 typedef struct s_game
 {
 	int			pos[2];
+	int			pos_e[2];
+	int			move;
 	t_map		map;
 	t_mlx		mlx;
 	t_sprite	floor;
 	t_sprite	player;
 	t_sprite	gem;
 	t_sprite	wall;
-	t_sprite	exit[2];
+	t_sprite	exit;
 }	t_game_data;
 
 
@@ -76,19 +79,35 @@ void	ft_init_mlx(t_game_data *game);
 void	ft_init_sprite(t_game_data *game);
 void	ft_init_pos(t_game_data *game);
 
-int		ft_hook_key(int keycode, t_mlx *data);
+
+int		ft_hook_key(int keycode, t_game_data *game);
+int		ft_stop(t_game_data *game);
+
+# define UP	65362
+# define DOWN	65364
+# define LEFT	65361
+# define RIGHT	65363
+# define ESC	65307
 
 
-void	ft_img_fill(t_img *img, int color);
+void	ft_display_tile(t_mlx *mlx, t_sprite *tile, int x, int y);
+void	ft_display_start(t_game_data *game);
+void	ft_display_exit_open(t_game_data *game);
+void	ft_move(t_game_data *game, int axis, int dir);
 
-# define FLOOR	"sprites/background.xpm"
-# define CHARA	"sprites/character.xpm"
-# define GEM	"sprites/gems.xpm"
-# define WALL	"sprites/wall.xpm"
-# define EXIT_C	"sprites/exit_close.xpm"
-# define EXIT_O	"sprites/exit_open.xpm"
+# ifndef TILE
+#  define TILE 90
+# endif
+
+# define FLOOR	"sprites/grass_1.xpm"
+# define CHARA	"sprites/run_1.xpm"
+# define GEM	"sprites/run_5.xpm"
+# define WALL	"sprites/tree_1.xpm"
+# define EXIT_C	"sprites/bush.xpm"
+# define EXIT_O	"sprites/run_8.xpm"
 
 void	ft_free2d(void **arr, int size);
 void	ft_clean_exit(t_game_data *game, int exit_code);
+void	ft_quit(t_game_data *game, char *strerr, int exit_code);
 
 #endif

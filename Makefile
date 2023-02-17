@@ -6,7 +6,7 @@
 #    By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/11/19 14:03:05 by tlegrand          #+#    #+#              #
-#    Updated: 2023/02/17 11:18:45 by tlegrand         ###   ########.fr        #
+#    Updated: 2023/02/17 17:48:10 by tlegrand         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,8 +22,8 @@ DIR_SRCS	=	srcs/
 LST_SRCS	=	main.c map_get.c map_check.c map_init.c map_utils.c \
 				ft_init.c ft_destroy.c \
 				ft_clean.c \
-				ft_hook.c \
-				ft_img_draw.c
+				ft_hook.c ft_move.c\
+				ft_display.c ft_img_draw.c
 SRCS		=	${addprefix ${DIR_SRCS}, ${LST_SRCS}}
 
 

@@ -6,29 +6,29 @@
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/14 23:21:53 by tlegrand          #+#    #+#             */
-/*   Updated: 2023/02/16 16:30:15 by tlegrand         ###   ########.fr       */
+/*   Updated: 2023/02/17 18:17:37 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/so_long.h"
 
-void	ft_quit(t_mlx *mlx)
+int	ft_hook_key(int keycode, t_game_data *game)
 {
-	mlx_destroy_window(mlx->ptr, mlx->win);
-	mlx_destroy_display(mlx->ptr);
-	free(mlx->ptr);
-	ft_putstr_fd("Quit programe\n", 2);
-	exit(0);
-}
-
-
-
-int	ft_hook_key(int keycode, t_mlx *data)
-{
-	if (keycode == 65307)
-		ft_quit(data);
-
-	ft_printf("key is %d\n", keycode);
+	if (keycode == ESC)
+		ft_quit(game, NULL, EXIT_SUCCESS);
+	if (keycode == UP)
+		ft_move(game, 0, -1);
+	if (keycode == DOWN)
+		ft_move(game, 0, 1);
+	if (keycode == RIGHT)
+		ft_move(game, 1, 1);
+	if (keycode == LEFT)
+		ft_move(game, 1, -1);
 	return (0);
 }
 
+int	ft_stop(t_game_data *game)
+{
+	ft_quit(game, NULL, EXIT_SUCCESS);
+	return (0);
+}
