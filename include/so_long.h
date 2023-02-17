@@ -6,7 +6,7 @@
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/19 20:07:38 by tlegrand          #+#    #+#             */
-/*   Updated: 2023/02/17 18:17:44 by tlegrand         ###   ########.fr       */
+/*   Updated: 2023/02/17 18:59:52 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ typedef struct s_game
 	t_map		map;
 	t_mlx		mlx;
 	t_sprite	floor;
-	t_sprite	player;
+	t_sprite	player[6];
 	t_sprite	gem;
 	t_sprite	wall;
 	t_sprite	exit;
@@ -95,12 +95,21 @@ void	ft_display_start(t_game_data *game);
 void	ft_display_exit_open(t_game_data *game);
 void	ft_move(t_game_data *game, int axis, int dir);
 
+int		ft_animate_player(t_game_data *game);
+
 # ifndef TILE
 #  define TILE 90
 # endif
 
+# define CHARA1	"sprites/idle_1.xpm"
+# define CHARA2	"sprites/idle_2.xpm"
+# define CHARA3	"sprites/idle_3.xpm"
+# define CHARA4	"sprites/idle_4.xpm"
+# define CHARA5	"sprites/idle_5.xpm"
+# define CHARA6	"sprites/idle_6.xpm"
+
+
 # define FLOOR	"sprites/grass_1.xpm"
-# define CHARA	"sprites/run_1.xpm"
 # define GEM	"sprites/run_5.xpm"
 # define WALL	"sprites/tree_1.xpm"
 # define EXIT_C	"sprites/bush.xpm"

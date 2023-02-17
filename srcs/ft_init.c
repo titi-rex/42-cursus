@@ -6,7 +6,7 @@
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/16 18:03:45 by tlegrand          #+#    #+#             */
-/*   Updated: 2023/02/17 18:19:29 by tlegrand         ###   ########.fr       */
+/*   Updated: 2023/02/17 18:36:15 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,9 @@
 
 void	ft_init_game(t_game_data *game)
 {
+	int	i;
+
+	i = -1;
 	game->pos[0] = 0;
 	game->pos[1] = 0;
 	game->pos_e[0] = 0;
@@ -22,10 +25,11 @@ void	ft_init_game(t_game_data *game)
 	game->mlx.ptr = NULL;
 	game->mlx.win = NULL;
 	game->floor.id = NULL;
-	game->player.id = NULL;
 	game->gem.id = NULL;
 	game->wall.id = NULL;
 	game->exit.id = NULL;
+	while (++i < 6)
+		game->player[i].id = NULL;
 }
 
 void	ft_init_pos(t_game_data *game)
@@ -70,18 +74,35 @@ void	ft_init_mlx(t_game_data *game)
 		return (ft_clean_exit(game, EXIT_FAILURE));
 }
 
+int	ft_init_sprite_player(t_mlx *mlx, t_sprite player[6])
+{
+	int	tmp;
+
+	player[0].id = mlx_xpm_file_to_image(mlx->ptr, CHARA1, &tmp, &tmp);
+	player[1].id = mlx_xpm_file_to_image(mlx->ptr, CHARA2, &tmp, &tmp);
+	player[2].id = mlx_xpm_file_to_image(mlx->ptr, CHARA3, &tmp, &tmp);
+	if (!player[0].id || !player[1].id || !player[2].id)
+		return (1);
+	player[3].id = mlx_xpm_file_to_image(mlx->ptr, CHARA4, &tmp, &tmp);
+	player[4].id = mlx_xpm_file_to_image(mlx->ptr, CHARA5, &tmp, &tmp);
+	player[5].id = mlx_xpm_file_to_image(mlx->ptr, CHARA6, &tmp, &tmp);
+	if (!player[3].id || !player[4].id || !player[5].id)
+		return (1);
+	return (0);
+}
+
 void	ft_init_sprite(t_game_data *game)
 {
-	int	i;
-	int	j;
+	int	tmp;
 
-	game->floor.id = mlx_xpm_file_to_image(game->mlx.ptr, FLOOR, &i, &j);
-	game->player.id = mlx_xpm_file_to_image(game->mlx.ptr, CHARA, &i, &j);
-	game->gem.id = mlx_xpm_file_to_image(game->mlx.ptr, GEM, &i, &j);
-	game->wall.id = mlx_xpm_file_to_image(game->mlx.ptr, WALL, &i, &j);
-	if (!game->floor.id || !game->player.id || !game->gem.id || !game->wall.id)
+	if (ft_init_sprite_player(&game->mlx, game->player))
 		ft_quit(game, "Error\nCan't load sprites", EXIT_FAILURE);
-	game->exit.id = mlx_xpm_file_to_image(game->mlx.ptr, EXIT_C, &i, &j);
+	game->floor.id = mlx_xpm_file_to_image(game->mlx.ptr, FLOOR, &tmp, &tmp);
+	game->gem.id = mlx_xpm_file_to_image(game->mlx.ptr, GEM, &tmp, &tmp);
+	game->wall.id = mlx_xpm_file_to_image(game->mlx.ptr, WALL, &tmp, &tmp);
+	if (!game->floor.id || !game->gem.id || !game->wall.id)
+		ft_quit(game, "Error\nCan't load sprites", EXIT_FAILURE);
+	game->exit.id = mlx_xpm_file_to_image(game->mlx.ptr, EXIT_C, &tmp, &tmp);
 	if (!game->exit.id)
 		ft_quit(game, "Error\nCan't load sprites", EXIT_FAILURE);
 }
