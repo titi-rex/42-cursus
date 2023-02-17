@@ -6,41 +6,32 @@
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/19 20:16:07 by tlegrand          #+#    #+#             */
-/*   Updated: 2023/02/16 23:40:01 by tlegrand         ###   ########.fr       */
+/*   Updated: 2023/02/17 11:24:20 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/so_long.h"
 #include <stdio.h>
 
-int	main(void)
-{
-	t_mlx	mlx;
-	t_img	img;
-	t_img	backround;
+int	ft_man(void);
 
-	mlx.ptr = mlx_init();
-	if (!mlx.ptr)
-		return (-1);
-	mlx.win = mlx_new_window(mlx.ptr, W_WIDTH, W_HEIGHT, "So long..");
-	if (!mlx.win)
-		return (-1);
-	mlx_key_hook(mlx.win, &ft_hook_key, (void *) &mlx);
-	backround.width = W_WIDTH;
-	backround.height = W_HEIGHT;
-	backround.id = mlx_new_image(mlx.ptr, W_WIDTH, W_HEIGHT);
-	img.id = mlx_xpm_file_to_image(mlx.ptr, "sprites/run_3.xpm", &img.width, &img.height);
-	if (!img.id || !backround.id)
-		ft_putendl_fd("Error creating new image", 1);
-	else
-	{
-		backround.addr = mlx_get_data_addr(backround.id, &backround.bbp, &backround.line, &backround.endian);
-		ft_img_fill(&backround, BLACK);
-		mlx_put_image_to_window(mlx.ptr, mlx.win, backround.id, 0, 0);
-		mlx_put_image_to_window(mlx.ptr, mlx.win, img.id, 0, 0);
-		mlx_destroy_image(mlx.ptr, backround.id);
-		mlx_destroy_image(mlx.ptr, img.id);
-	}
-	mlx_loop(mlx.ptr);
+int	main(int argc, char **argv)
+{
+	t_game_data	game;
+
+	if (argc != 2)
+		return (ft_man());
+	ft_init_map(&game.map, argv[1]);
+	//ft_init_mlx(&game);
+	//ft_init_sprite(&game);
+	//ft_init_pos(&game);
+	
+	ft_clean_exit(&game, EXIT_SUCCESS);
+	return (0);
+}
+
+int	ft_man(void)
+{
+	ft_printf("So long take only 1 parameter\n");
 	return (0);
 }

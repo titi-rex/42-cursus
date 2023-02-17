@@ -6,7 +6,7 @@
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/20 15:50:46 by tlegrand          #+#    #+#             */
-/*   Updated: 2023/02/16 18:28:58 by tlegrand         ###   ########.fr       */
+/*   Updated: 2023/02/17 11:15:24 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ int	ft_file_size(char *pathname)
 		ft_error_map(NULL, 3, "File : Failed to open\n");
 	size = 1;
 	while (read(fd, &buff, 1))
-			size++;
+		size++;
 	close(fd);
 	return (size);
 }

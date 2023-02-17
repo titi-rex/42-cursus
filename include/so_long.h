@@ -6,7 +6,7 @@
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/19 20:07:38 by tlegrand          #+#    #+#             */
-/*   Updated: 2023/02/16 21:00:08 by tlegrand         ###   ########.fr       */
+/*   Updated: 2023/02/17 11:30:08 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ typedef struct s_game
 	int			pos[2];
 	t_map		map;
 	t_mlx		mlx;
-	t_sprite	backround;
+	t_sprite	floor;
 	t_sprite	player;
 	t_sprite	gem;
 	t_sprite	wall;
@@ -64,26 +64,31 @@ typedef struct s_game
 
 void	ft_error_map(t_map *map, int errnum, char *errstr);
 void	ft_print_map(t_map *map);
-
 char	**ft_get_map(char *pathname);
 void	ft_get_mapsize(t_map *map);
-
 void	ft_check_map(t_map *map);
 void	ft_backtrack(t_map *map, int ypos, int xpos);
 void	ft_init_map(t_map *map, char *pathname);
+void	ft_clean_map(t_map *map);
 
-void	ft_free2d(void **arr, int size);
-
-void	ft_img_fill(t_img *img, int color);
+void	ft_init_game(t_game_data *game);
+void	ft_init_mlx(t_game_data *game);
+void	ft_init_sprite(t_game_data *game);
+void	ft_init_pos(t_game_data *game);
 
 int		ft_hook_key(int keycode, t_mlx *data);
 
-# define BGRD	"sprites/background.xpm"
+
+void	ft_img_fill(t_img *img, int color);
+
+# define FLOOR	"sprites/background.xpm"
 # define CHARA	"sprites/character.xpm"
 # define GEM	"sprites/gems.xpm"
 # define WALL	"sprites/wall.xpm"
 # define EXIT_C	"sprites/exit_close.xpm"
 # define EXIT_O	"sprites/exit_open.xpm"
 
+void	ft_free2d(void **arr, int size);
+void	ft_clean_exit(t_game_data *game, int exit_code);
 
 #endif
