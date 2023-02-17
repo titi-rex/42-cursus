@@ -6,7 +6,7 @@
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/16 18:03:45 by tlegrand          #+#    #+#             */
-/*   Updated: 2023/02/17 18:36:15 by tlegrand         ###   ########.fr       */
+/*   Updated: 2023/02/17 23:50:58 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,11 +37,11 @@ void	ft_init_pos(t_game_data *game)
 	int	i;
 	int	j;
 
-	i = 0;
-	while (i < game->map.ysize)
+	i = 1;
+	while (i < game->map.ysize - 1)
 	{
-		j = 0;
-		while (j < game->map.xsize)
+		j = 1;
+		while (j < game->map.xsize - 1)
 		{
 			if (game->map.layout[i][j] == 'P')
 			{
@@ -51,8 +51,10 @@ void	ft_init_pos(t_game_data *game)
 			if (game->map.layout[i][j] == 'E')
 			{
 				game->pos_e[0] = i;
-				game->pos_e[j] = j;
+				game->pos_e[1] = j;
 			}
+			if (game->pos[0] && game->pos_e[0])
+				return ;
 			j++;
 		}
 		i++;

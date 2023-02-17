@@ -6,7 +6,7 @@
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/19 20:07:38 by tlegrand          #+#    #+#             */
-/*   Updated: 2023/02/17 18:59:52 by tlegrand         ###   ########.fr       */
+/*   Updated: 2023/02/17 23:52:28 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,7 +83,7 @@ void	ft_init_pos(t_game_data *game);
 int		ft_hook_key(int keycode, t_game_data *game);
 int		ft_stop(t_game_data *game);
 
-# define UP	65362
+# define UP		65362
 # define DOWN	65364
 # define LEFT	65361
 # define RIGHT	65363
@@ -98,7 +98,7 @@ void	ft_move(t_game_data *game, int axis, int dir);
 int		ft_animate_player(t_game_data *game);
 
 # ifndef TILE
-#  define TILE 90
+#  define TILE 96
 # endif
 
 # define CHARA1	"sprites/idle_1.xpm"
@@ -110,10 +110,10 @@ int		ft_animate_player(t_game_data *game);
 
 
 # define FLOOR	"sprites/grass_1.xpm"
-# define GEM	"sprites/run_5.xpm"
-# define WALL	"sprites/tree_1.xpm"
-# define EXIT_C	"sprites/bush.xpm"
-# define EXIT_O	"sprites/run_8.xpm"
+# define GEM	"sprites/gem_1.xpm"
+# define WALL	"sprites/tree_2.xpm"
+# define EXIT_C	"sprites/box_close.xpm"
+# define EXIT_O	"sprites/box_open.xpm"
 
 void	ft_free2d(void **arr, int size);
 void	ft_clean_exit(t_game_data *game, int exit_code);
