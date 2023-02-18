@@ -6,7 +6,7 @@
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/20 13:40:32 by tlegrand          #+#    #+#             */
-/*   Updated: 2023/02/17 12:59:29 by tlegrand         ###   ########.fr       */
+/*   Updated: 2023/02/18 12:28:38 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,6 @@ void	ft_error_map(t_map *map, int errnum, char *errstr)
 		ft_putstr_fd(errstr, 2);
 	exit(errnum);
 }
-
 
 void	ft_print_map(t_map *map)
 {

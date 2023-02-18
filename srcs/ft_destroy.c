@@ -6,7 +6,7 @@
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/16 18:39:15 by tlegrand          #+#    #+#             */
-/*   Updated: 2023/02/18 00:02:34 by tlegrand         ###   ########.fr       */
+/*   Updated: 2023/02/18 12:42:05 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,10 +23,15 @@ void	ft_destroy_sprite(t_game_data *game)
 			mlx_destroy_image(game->mlx.ptr, game->player[i].id);
 		i++;
 	}
+	i = 0;
+	while (i < 5)
+	{
+		if (game->gem[i].id)
+			mlx_destroy_image(game->mlx.ptr, game->gem[i].id);
+		i++;
+	}
 	if (game->floor.id)
 		mlx_destroy_image(game->mlx.ptr, game->floor.id);
-	if (game->gem.id)
-		mlx_destroy_image(game->mlx.ptr, game->gem.id);
 	if (game->wall.id)
 		mlx_destroy_image(game->mlx.ptr, game->wall.id);
 	if (game->exit.id)

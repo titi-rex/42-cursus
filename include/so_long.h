@@ -6,7 +6,7 @@
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/19 20:07:38 by tlegrand          #+#    #+#             */
-/*   Updated: 2023/02/18 00:02:12 by tlegrand         ###   ########.fr       */
+/*   Updated: 2023/02/18 12:38:10 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,11 +52,10 @@ typedef struct s_game
 	t_mlx		mlx;
 	t_sprite	floor;
 	t_sprite	player[7];
-	t_sprite	gem;
+	t_sprite	gem[5];
 	t_sprite	wall;
 	t_sprite	exit;
 }	t_game_data;
-
 
 # ifndef W_HEIGHT
 #  define W_HEIGHT 500
@@ -67,6 +66,7 @@ typedef struct s_game
 
 void	ft_error_map(t_map *map, int errnum, char *errstr);
 void	ft_print_map(t_map *map);
+void	ft_map_check_name(char *pathname);
 char	**ft_get_map(char *pathname);
 void	ft_get_mapsize(t_map *map);
 void	ft_check_map(t_map *map);
@@ -79,7 +79,6 @@ void	ft_init_mlx(t_game_data *game);
 void	ft_init_sprite(t_game_data *game);
 void	ft_init_pos(t_game_data *game);
 
-
 int		ft_hook_key(int keycode, t_game_data *game);
 int		ft_stop(t_game_data *game);
 
@@ -88,7 +87,6 @@ int		ft_stop(t_game_data *game);
 # define LEFT	65361
 # define RIGHT	65363
 # define ESC	65307
-
 
 void	ft_display_tile(t_mlx *mlx, t_sprite *tile, int x, int y);
 void	ft_display_start(t_game_data *game);
@@ -109,9 +107,13 @@ int		ft_animate_player(t_game_data *game);
 # define CHARA6	"sprites/idle_6.xpm"
 # define CHARA7	"sprites/idle_on_exit.xpm"
 
+# define GEM1	"sprites/gem_1.xpm"
+# define GEM2	"sprites/gem_2.xpm"
+# define GEM3	"sprites/gem_3.xpm"
+# define GEM4	"sprites/gem_4.xpm"
+# define GEM5	"sprites/gem_5.xpm"
 
 # define FLOOR	"sprites/grass_1.xpm"
-# define GEM	"sprites/gem_1.xpm"
 # define WALL	"sprites/tree_2.xpm"
 # define EXIT_C	"sprites/box_close.xpm"
 # define EXIT_O	"sprites/box_open.xpm"

@@ -6,7 +6,7 @@
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/20 15:16:51 by tlegrand          #+#    #+#             */
-/*   Updated: 2023/02/17 13:44:06 by tlegrand         ###   ########.fr       */
+/*   Updated: 2023/02/18 12:38:53 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,7 @@ void	ft_init_map(t_map *map, char *pathname)
 {
 	t_map	cpy;
 
+	ft_map_check_name(pathname);
 	map->layout = ft_get_map(pathname);
 	ft_get_mapsize(map);
 	map->count[0] = 0;

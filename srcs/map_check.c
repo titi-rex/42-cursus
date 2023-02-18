@@ -6,7 +6,7 @@
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/20 15:52:53 by tlegrand          #+#    #+#             */
-/*   Updated: 2023/02/16 18:28:58 by tlegrand         ###   ########.fr       */
+/*   Updated: 2023/02/18 12:36:32 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -119,4 +119,18 @@ void	ft_backtrack(t_map *map, int ypos, int xpos)
 		ft_backtrack(map, ypos - 1, xpos);
 	if (map->layout[ypos][xpos - 1] != '1')
 		ft_backtrack(map, ypos, xpos - 1);
+}
+
+void	ft_map_check_name(char *pathname)
+{
+	int	i;
+
+	i = 0;
+	while (pathname[i])
+	{
+		if (!ft_strncmp(&pathname[i], ".ber", 5))
+			return ;
+		i++;
+	}
+	ft_error_map(NULL, 0, "Wrong argument, so_long only take .ber map\n");
 }
