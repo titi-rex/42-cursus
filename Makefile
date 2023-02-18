@@ -6,7 +6,7 @@
 #    By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/11/19 14:03:05 by tlegrand          #+#    #+#              #
-#    Updated: 2023/02/18 17:49:58 by tlegrand         ###   ########.fr        #
+#    Updated: 2023/02/18 22:24:38 by tlegrand         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,7 +16,7 @@
 #	==============================	NAMES	==============================	#
 NAME		=	so_long
 NAME_B		=	so_long_bonus
-NAME_G		=	gen_map
+
 
 #	==============================	SOURCES	==============================	#
 DIR_SRCS	=	srcs/
@@ -27,19 +27,17 @@ LST_SRCS	=	main.c map_get.c map_check.c map_init.c map_utils.c \
 				ft_display.c ft_img_draw.c
 SRCS		=	${addprefix ${DIR_SRCS}, ${LST_SRCS}}
 
-LST_SRCS_G	=	map_generator.c map_generator_utils.c
-SRCS_G		=	${addprefix ${DIR_SRCS}, ${LST_SRCS_G}}
 
 #	==============================	OBJECTS	==============================	#
 DIR_OBJS	=	.objs/
 OBJS		=	${patsubst ${DIR_SRCS}%.c, ${DIR_OBJS}%.o, ${SRCS}}
 
-OBJS_G		=	${patsubst ${DIR_SRCS}%.c, ${DIR_OBJS}%.o, ${SRCS_G}}
 
 #	==============================	HEADERS	==============================	#
 DIR_HEADER	=	include/
-LST_HEADER	=	${NAME}.h ${NAME_B}.h map_gen.h
+LST_HEADER	=	${NAME}.h ${NAME_B}.h 
 HEADER		=	${addprefix ${DIR_HEADER}, ${LST_HEADER}}
+
 
 #	==============================	LIBRARY	==============================	#
 DIR_LIBFT	=	libft/
@@ -68,6 +66,8 @@ MLXFLAGS	=	-L${DIR_LIBMLX} -lmlx -lXext -lX11 -lm -lz
 #	==============================	BASIC	==============================	#
 all		:	${NAME}
 
+bonus	:	${NAME_B}
+
 clean	:
 		@${RM} ${DIR_OBJS}
 		@${MAKE} -C ${DIR_LIBFT} clean
@@ -75,7 +75,6 @@ clean	:
 fclean	:	clean
 		@${RM} ${NAME}
 		@${RM} ${NAME_B}
-		@${RM} ${NAME_G}
 		@${MAKE} -C ${DIR_LIBFT}  fclean
 		@${MAKE} -C ${DIR_LIBMLX} clean
 		@printf "$(GREEN)All clean !\n$(END)"
@@ -89,8 +88,8 @@ ${NAME}			:	${LIBFT} ${LIBMLX} ${DIR_OBJS} ${OBJS}
 				@${CC} ${CFLAGS} ${OBJS} ${FTFLAGS} ${MLXFLAGS} -o $@
 				@printf "$(GREEN_LIGHT)$@ created !\n$(END)"
 
-${NAME_G}		:	${LIBFT} ${DIR_OBJS} ${OBJS_G}
-				@${CC} ${CFLAGS} ${OBJS_G} ${FTFLAGS} -o $@
+${NAME_B}		:	${LIBFT} ${DIR_OBJS} ${OBJS_B}
+				@${CC} ${CFLAGS} ${OBJS_B} ${FTFLAGS} -o $@
 				@printf "$(GREEN_LIGHT)$@ created !\n$(END)"
 
 ${DIR_OBJS}%.o	:	${DIR_SRCS}%.c ${HEADER}
