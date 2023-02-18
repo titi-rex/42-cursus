@@ -6,7 +6,7 @@
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/19 20:07:38 by tlegrand          #+#    #+#             */
-/*   Updated: 2023/02/18 15:14:15 by tlegrand         ###   ########.fr       */
+/*   Updated: 2023/02/19 00:23:13 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,6 +61,7 @@ void	ft_init_pos(t_game_data *game);
 void	ft_free2d(void **arr, int size);
 void	ft_clean_exit(t_game_data *game, int exit_code);
 void	ft_putstr_quit(t_game_data *game, char *strerr, int exit_code);
+void	ft_credit(void);
 
 /*	==========	map management	==========	*/
 void	ft_error_map(t_map *map, int errnum, char *errstr);

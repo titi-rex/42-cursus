@@ -6,7 +6,7 @@
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/17 17:33:16 by tlegrand          #+#    #+#             */
-/*   Updated: 2023/02/18 15:14:15 by tlegrand         ###   ########.fr       */
+/*   Updated: 2023/02/19 00:25:12 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,10 @@ void	ft_map_update(t_game_data *game, int pos[2])
 	if (game->map.count[1] == 0)
 		ft_display_exit_open(game);
 	if (game->map.count[1] == 0 && game->map.layout[pos[0]][pos[1]] == 'E')
-		ft_putstr_quit(game, "U win the game!", EXIT_SUCCESS);
+	{
+		ft_credit();
+		ft_putstr_quit(game, "\nCongrats! U win the game!", EXIT_SUCCESS);
+	}
 }
 
 void	ft_move(t_game_data *game, int axis, int dir)

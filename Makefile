@@ -6,7 +6,7 @@
 #    By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/11/19 14:03:05 by tlegrand          #+#    #+#              #
-#    Updated: 2023/02/18 22:24:38 by tlegrand         ###   ########.fr        #
+#    Updated: 2023/02/19 00:20:44 by tlegrand         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,8 +24,15 @@ LST_SRCS	=	main.c map_get.c map_check.c map_init.c map_utils.c \
 				ft_init.c ft_init_sprites.c ft_destroy.c \
 				ft_clean.c \
 				ft_hook.c ft_move.c\
-				ft_display.c ft_img_draw.c
+				ft_display.c 
 SRCS		=	${addprefix ${DIR_SRCS}, ${LST_SRCS}}
+
+LST_SRCS_B	=	main_bonus.c map_get.c map_check.c map_init.c map_utils.c \
+				ft_init_bonus.c ft_init_sprites_bonus.c ft_destroy_bonus.c \
+				ft_clean.c \
+				ft_hook_bonus.c ft_move.c\
+				ft_display_bonus.c ft_img_draw.c
+SRCS_B		=	${addprefix ${DIR_SRCS}, ${LST_SRCS_B}}
 
 
 #	==============================	OBJECTS	==============================	#

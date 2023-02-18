@@ -6,7 +6,7 @@
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/19 20:16:07 by tlegrand          #+#    #+#             */
-/*   Updated: 2023/02/18 17:47:40 by tlegrand         ###   ########.fr       */
+/*   Updated: 2023/02/19 00:27:19 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ int	main(int argc, char **argv)
 	mlx_hook(game.mlx.win, DestroyNotify, StructureNotifyMask, ft_stop, &game);
 	ft_display_start(&game);
 	mlx_loop(game.mlx.ptr);
-	ft_clean_exit(&game, EXIT_SUCCESS);
+	ft_clean_exit(&game, EXIT_FAILURE);
 	return (0);
 }
 
@@ -41,6 +41,17 @@ int	ft_man(int num)
 		ft_printf("So long take only 1 parameter!\n");
 	ft_printf("Example : ./so_long map.ber\n");
 	return (0);
+}
+
+void	ft_credit(void)
+{
+	ft_putendl_fd("\n# ===== Sprites credits ===== #", 1);
+	ft_putendl_fd("Found on itch.io :", 1);
+	ft_putendl_fd("FreePixelFood by Henry Software", 1);
+	ft_putendl_fd("Sprout Lands Asset Pack by Cup NooBle", 1);
+	ft_putendl_fd("Cute Legends Heroes Meow-Knight by 9E0", 1);
+	ft_putendl_fd("Found on opengameart.org", 1);
+	ft_putendl_fd("Cardboard Box by cinamerg", 1);
 }
 
 /*
