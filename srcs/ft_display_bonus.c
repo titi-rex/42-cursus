@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_display.c                                       :+:      :+:    :+:   */
+/*   ft_display_bonus.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/02/17 13:59:34 by tlegrand          #+#    #+#             */
-/*   Updated: 2023/02/18 14:57:17 by tlegrand         ###   ########.fr       */
+/*   Created: 2023/02/18 13:55:37 by tlegrand          #+#    #+#             */
+/*   Updated: 2023/02/18 13:56:40 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,9 +22,9 @@ void	ft_choose_tile(t_game_data *game, int x, int y)
 	if (game->map.layout[y][x] == '0')
 		ft_display_tile(&game->mlx, &game->floor, x, y);
 	else if (game->map.layout[y][x] == 'P')
-		ft_display_tile(&game->mlx, &game->player[1], x, y);
+		ft_display_tile(&game->mlx, &game->player[0], x, y);
 	else if (game->map.layout[y][x] == 'C')
-		ft_display_tile(&game->mlx, &game->gem[x % 3 + y % 3], x, y);
+		ft_display_tile(&game->mlx, &game->gem[x % 4 + y % 3], x, y);
 	else if (game->map.layout[y][x] == '1')
 		ft_display_tile(&game->mlx, &game->wall[(x / 2 + y / 2) % 2], x, y);
 	else if (game->map.layout[y][x] == 'E')
@@ -56,4 +56,19 @@ void	ft_display_exit_open(t_game_data *game)
 	mlx_destroy_image(game->mlx.ptr, game->exit.id);
 	game->exit.id = mlx_xpm_file_to_image(game->mlx.ptr, EXIT_O, &tmp, &tmp);
 	ft_display_tile(&game->mlx, &game->exit, game->pos_e[1], game->pos_e[0]);
+}
+
+int	ft_animate_player(t_game_data *game)
+{
+	int	i;
+
+	i = 0;
+	while (i < 6)
+	{
+		ft_display_tile(&game->mlx, &game->floor, 7, 2);
+		ft_display_tile(&game->mlx, &game->player[i], 7, 2);
+		sleep(1);
+		i++;
+	}
+	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/19 20:16:07 by tlegrand          #+#    #+#             */
-/*   Updated: 2023/02/17 23:43:56 by tlegrand         ###   ########.fr       */
+/*   Updated: 2023/02/18 17:47:40 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,6 @@ int	main(int argc, char **argv)
 	ft_init_pos(&game);
 	mlx_hook(game.mlx.win, KeyPress, KeyPressMask, ft_hook_key, &game);
 	mlx_hook(game.mlx.win, DestroyNotify, StructureNotifyMask, ft_stop, &game);
-	//mlx_loop_hook(game.mlx.ptr, ft_animate_player, &game);
 	ft_display_start(&game);
 	mlx_loop(game.mlx.ptr);
 	ft_clean_exit(&game, EXIT_SUCCESS);
@@ -43,3 +42,18 @@ int	ft_man(int num)
 	ft_printf("Example : ./so_long map.ber\n");
 	return (0);
 }
+
+/*
+add credit !!!!
+
+animation : etoile yeux qund collect recuper et tous recup
+animation + physique vent
+refaire tiles herbes generation aleatoire 
+pause when unfocus
+
+sprites a faire : 
+-herbe 16x16
+-etoiles yeux
+-chat move gauche
+-chat move up/down
+*/

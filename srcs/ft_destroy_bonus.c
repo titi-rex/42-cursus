@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_destroy.c                                       :+:      :+:    :+:   */
+/*   ft_destroy_bonus.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/02/16 18:39:15 by tlegrand          #+#    #+#             */
-/*   Updated: 2023/02/18 15:10:08 by tlegrand         ###   ########.fr       */
+/*   Created: 2023/02/18 14:04:48 by tlegrand          #+#    #+#             */
+/*   Updated: 2023/02/18 15:14:15 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,16 +17,19 @@ void	ft_destroy_sprite(t_game_data *game)
 	int	i;
 
 	i = 0;
+	while (i < 7)
+	{
+		if (game->player[i].id)
+			mlx_destroy_image(game->mlx.ptr, game->player[i].id);
+		i++;
+	}
+	i = 0;
 	while (i < 5)
 	{
 		if (game->gem[i].id)
 			mlx_destroy_image(game->mlx.ptr, game->gem[i].id);
 		i++;
 	}
-	if (game->player[0].id)
-		mlx_destroy_image(game->mlx.ptr, game->player[0].id);
-	if (game->player[1].id)
-		mlx_destroy_image(game->mlx.ptr, game->player[1].id);
 	if (game->floor.id)
 		mlx_destroy_image(game->mlx.ptr, game->floor.id);
 	if (game->wall[0].id)

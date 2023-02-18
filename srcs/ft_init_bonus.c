@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_init.c                                          :+:      :+:    :+:   */
+/*   ft_init_bonus.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/16 18:03:45 by tlegrand          #+#    #+#             */
-/*   Updated: 2023/02/18 14:37:51 by tlegrand         ###   ########.fr       */
+/*   Updated: 2023/02/18 14:01:47 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,8 +28,8 @@ void	ft_init_game(t_game_data *game)
 	game->wall[0].id = NULL;
 	game->wall[1].id = NULL;
 	game->exit.id = NULL;
-	game->player[0].id = NULL;
-	game->player[1].id = NULL;
+	while (++i < 7)
+		game->player[i].id = NULL;
 	while (++i < 5)
 		game->gem[i].id = NULL;
 }
