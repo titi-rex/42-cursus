@@ -1,0 +1,29 @@
+/* XPM */
+static char *sign_one[] = {
+/* columns rows colors chars-per-pixel */
+"13 20 3 1 ",
+"  c black",
+". c #FFFCF4",
+"X c #FFFDF5",
+/* pixels */
+"XXXXXXXXXXXXX",
+"XXXXXXXXXXXXX",
+"XXXXXXXX.XXXX",
+"XXXXXX  .XXXX",
+"XXXXXX  XXXXX",
+"XXXXX   XXXXX",
+"XXX  X  XXXXX",
+"XXXXXX  XXXXX",
+"XXXXXX  XXXXX",
+"XXXXXX  XXXXX",
+"XXXXXX  XXXXX",
+"XXXXXX  XXXXX",
+"XXXXXX  XXXXX",
+"XXXXXX  XXXXX",
+"XXXXXX  XXXXX",
+"XXXXXX  XXXXX",
+"XXXXXX  XXXXX",
+"XXXXXXXXXXXXX",
+"XXXXXXXXXXXXX",
+"XXXXXXXXXXXXX"
+};

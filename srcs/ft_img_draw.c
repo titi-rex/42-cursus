@@ -6,7 +6,7 @@
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/16 17:42:19 by tlegrand          #+#    #+#             */
-/*   Updated: 2023/02/16 22:51:35 by tlegrand         ###   ########.fr       */
+/*   Updated: 2023/02/20 21:07:27 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ void	ft_print_img_data(t_img *img)
 	if (!img)
 		return ;
 	ft_printf("ptr : %p\ndata adr : %p\n", img->id, img->addr);
-	ft_printf("bytes by pixel : %d\nsize line : %d\nendian : %d\n", \
+	ft_printf("bites by pixel : %d\nsize line : %d\nendian : %d\n", \
 		img->bbp, img->line, img->endian);
 	ft_printf("height : %d\nwidth : %d\n", img->height, img->width);
 }

@@ -6,7 +6,7 @@
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/19 20:16:07 by tlegrand          #+#    #+#             */
-/*   Updated: 2023/02/20 16:55:33 by tlegrand         ###   ########.fr       */
+/*   Updated: 2023/02/20 21:07:55 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,9 +66,10 @@ refaire tiles herbes generation aleatoire
 pause when unfocus
 
 sprites a faire : 
+-chat move gauche
+-chat move up/down
+-panneau move + chiffre
 -idle on exit
 -herbe 16x16
 -etoiles yeux
--chat move gauche
--chat move up/down
 */

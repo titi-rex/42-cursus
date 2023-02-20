@@ -6,7 +6,7 @@
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/19 20:07:38 by tlegrand          #+#    #+#             */
-/*   Updated: 2023/02/20 16:46:02 by tlegrand         ###   ########.fr       */
+/*   Updated: 2023/02/20 22:53:23 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -124,6 +124,18 @@ void	ft_animate_run_r(t_game_data *game);
 # define RUN_R6	"sprites/run_r_6.xpm"
 # define RUN_R7	"sprites/run_r_7.xpm"
 # define RUN_R8	"sprites/run_r_8.xpm"
+
+# define SIGN0	"sprites/sign_zero.xpm"
+# define SIGN1	"sprites/sign_one.xpm"
+# define SIGN2	"sprites/sign_two.xpm"
+# define SIGN3	"sprites/sign_three.xpm"
+# define SIGN4	"sprites/sign_four.xpm"
+# define SIGN5	"sprites/sign_five.xpm"
+# define SIGN6	"sprites/sign_six.xpm"
+# define SIGN7	"sprites/sign_seven.xpm"
+# define SIGN8	"sprites/sign_eight.xpm"
+# define SIGN9	"sprites/sign_nine.xpm"
+# define SIGN10	"sprites/sign.xpm"
 
 # define GEM1	"sprites/gem_1.xpm"
 # define GEM2	"sprites/gem_2.xpm"

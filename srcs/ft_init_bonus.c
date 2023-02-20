@@ -6,7 +6,7 @@
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/16 18:03:45 by tlegrand          #+#    #+#             */
-/*   Updated: 2023/02/20 16:35:54 by tlegrand         ###   ########.fr       */
+/*   Updated: 2023/02/20 22:14:33 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,9 @@ void	ft_init_game(t_game_data *game)
 	i = -1;
 	while (++i < 5)
 		game->gem[i].id = NULL;
+	i = -1;
+	while (++i < 11)
+		game->sign[i].id = NULL;
 }
 
 void	ft_init_pos(t_game_data *game)

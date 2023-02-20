@@ -6,7 +6,7 @@
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/18 13:55:37 by tlegrand          #+#    #+#             */
-/*   Updated: 2023/02/20 16:53:50 by tlegrand         ###   ########.fr       */
+/*   Updated: 2023/02/20 23:21:49 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,13 +62,16 @@ void	ft_display_move(t_game_data *game)
 {
 	int	m;
 
+	mlx_put_image_to_window(game->mlx.ptr, game->mlx.win, game->sign[10].id, \
+		0, 0);
 	m = game->move % 1000;
-	mlx_put_image_to_window(game->mlx.ptr, game->mlx.win, game->sign[10].id, 10, 10);
-	if (m / 100)
-		mlx_put_image_to_window(game->mlx.ptr, game->mlx.win, game->sign[m / 100].id, 30, 10);
-	if (m / 10)
-		mlx_put_image_to_window(game->mlx.ptr, game->mlx.win, game->sign[m / 10].id, 50, 10);
-	if (m % 10)
-		mlx_put_image_to_window(game->mlx.ptr, game->mlx.win, game->sign[m / 10].id, 70, 10);
+	mlx_put_image_to_window(game->mlx.ptr, game->mlx.win, game->sign[m / 100]. \
+		id, 110, 34);
+	m %= 100;
+	mlx_put_image_to_window(game->mlx.ptr, game->mlx.win, game->sign[m / 10]. \
+		id, 122, 34);
+	m %= 10;
+	mlx_put_image_to_window(game->mlx.ptr, game->mlx.win, game->sign[m].id, \
+		134, 34);
 
 }

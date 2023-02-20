@@ -6,7 +6,7 @@
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/17 17:33:16 by tlegrand          #+#    #+#             */
-/*   Updated: 2023/02/20 16:27:15 by tlegrand         ###   ########.fr       */
+/*   Updated: 2023/02/20 22:17:20 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,5 +62,5 @@ void	ft_move(t_game_data *game, int axis, int dir)
 	}
 	ft_map_update(game, game->pos);
 	game->move++;
-	ft_printf("Move : %d\n", game->move);
+	ft_display_move(game);
 }
