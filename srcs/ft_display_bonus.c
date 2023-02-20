@@ -6,11 +6,11 @@
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/18 13:55:37 by tlegrand          #+#    #+#             */
-/*   Updated: 2023/02/18 13:56:40 by tlegrand         ###   ########.fr       */
+/*   Updated: 2023/02/20 16:53:50 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/so_long.h"
+#include "../include/so_long_bonus.h"
 
 void	ft_display_tile(t_mlx *mlx, t_sprite *tile, int x, int y)
 {
@@ -22,9 +22,9 @@ void	ft_choose_tile(t_game_data *game, int x, int y)
 	if (game->map.layout[y][x] == '0')
 		ft_display_tile(&game->mlx, &game->floor, x, y);
 	else if (game->map.layout[y][x] == 'P')
-		ft_display_tile(&game->mlx, &game->player[0], x, y);
+		ft_display_tile(&game->mlx, &game->idle[0], x, y);
 	else if (game->map.layout[y][x] == 'C')
-		ft_display_tile(&game->mlx, &game->gem[x % 4 + y % 3], x, y);
+		ft_display_tile(&game->mlx, &game->gem[x % 3 + y % 3], x, y);
 	else if (game->map.layout[y][x] == '1')
 		ft_display_tile(&game->mlx, &game->wall[(x / 2 + y / 2) % 2], x, y);
 	else if (game->map.layout[y][x] == 'E')
@@ -58,17 +58,17 @@ void	ft_display_exit_open(t_game_data *game)
 	ft_display_tile(&game->mlx, &game->exit, game->pos_e[1], game->pos_e[0]);
 }
 
-int	ft_animate_player(t_game_data *game)
+void	ft_display_move(t_game_data *game)
 {
-	int	i;
+	int	m;
 
-	i = 0;
-	while (i < 6)
-	{
-		ft_display_tile(&game->mlx, &game->floor, 7, 2);
-		ft_display_tile(&game->mlx, &game->player[i], 7, 2);
-		sleep(1);
-		i++;
-	}
-	return (0);
+	m = game->move % 1000;
+	mlx_put_image_to_window(game->mlx.ptr, game->mlx.win, game->sign[10].id, 10, 10);
+	if (m / 100)
+		mlx_put_image_to_window(game->mlx.ptr, game->mlx.win, game->sign[m / 100].id, 30, 10);
+	if (m / 10)
+		mlx_put_image_to_window(game->mlx.ptr, game->mlx.win, game->sign[m / 10].id, 50, 10);
+	if (m % 10)
+		mlx_put_image_to_window(game->mlx.ptr, game->mlx.win, game->sign[m / 10].id, 70, 10);
+
 }

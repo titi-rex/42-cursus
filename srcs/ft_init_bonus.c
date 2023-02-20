@@ -6,30 +6,35 @@
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/16 18:03:45 by tlegrand          #+#    #+#             */
-/*   Updated: 2023/02/18 14:01:47 by tlegrand         ###   ########.fr       */
+/*   Updated: 2023/02/20 16:35:54 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/so_long.h"
+#include "../include/so_long_bonus.h"
 
 void	ft_init_game(t_game_data *game)
 {
 	int	i;
 
-	i = -1;
 	game->pos[0] = 0;
 	game->pos[1] = 0;
 	game->pos_e[0] = 0;
 	game->pos_e[1] = 0;
 	game->move = 0;
+	game->badguys = 0;
 	game->mlx.ptr = NULL;
 	game->mlx.win = NULL;
 	game->floor.id = NULL;
 	game->wall[0].id = NULL;
 	game->wall[1].id = NULL;
 	game->exit.id = NULL;
+	i = -1;
 	while (++i < 7)
-		game->player[i].id = NULL;
+		game->idle[i].id = NULL;
+	i = -1;
+	while (++i < 8)
+		game->run_r[i].id = NULL;
+	i = -1;
 	while (++i < 5)
 		game->gem[i].id = NULL;
 }

@@ -6,7 +6,7 @@
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/10 15:56:31 by tlegrand          #+#    #+#             */
-/*   Updated: 2023/02/14 23:13:06 by tlegrand         ###   ########.fr       */
+/*   Updated: 2023/02/20 11:34:13 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,4 +67,3 @@ void	ft_close_pipe(int pipefd[2])
 		close(pipefd[1]);
 	pipefd[1] = -1;
 }
-

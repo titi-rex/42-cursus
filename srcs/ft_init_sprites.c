@@ -6,7 +6,7 @@
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/18 12:15:25 by tlegrand          #+#    #+#             */
-/*   Updated: 2023/02/18 15:14:15 by tlegrand         ###   ########.fr       */
+/*   Updated: 2023/02/20 11:07:44 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,8 @@ void	ft_init_sprite(t_game_data *game)
 		ft_putstr_quit(game, "Error\nCan't load gem sprites", EXIT_FAILURE);
 	game->player[0].id = mlx_xpm_file_to_image(game->mlx.ptr, CHARAE, &n, &n);
 	game->player[1].id = mlx_xpm_file_to_image(game->mlx.ptr, CHARA1, &n, &n);
+	if (!game->player[0].id || !game->player[1].id)
+		ft_putstr_quit(game, "Error\nCan't load sprites", EXIT_FAILURE);
 	game->wall[0].id = mlx_xpm_file_to_image(game->mlx.ptr, WALL1, &n, &n);
 	game->wall[1].id = mlx_xpm_file_to_image(game->mlx.ptr, WALL2, &n, &n);
 	game->floor.id = mlx_xpm_file_to_image(game->mlx.ptr, FLOOR, &n, &n);

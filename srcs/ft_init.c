@@ -6,7 +6,7 @@
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/16 18:03:45 by tlegrand          #+#    #+#             */
-/*   Updated: 2023/02/18 14:37:51 by tlegrand         ###   ########.fr       */
+/*   Updated: 2023/02/20 15:11:52 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,6 @@ void	ft_init_game(t_game_data *game)
 {
 	int	i;
 
-	i = -1;
 	game->pos[0] = 0;
 	game->pos[1] = 0;
 	game->pos_e[0] = 0;
@@ -30,6 +29,7 @@ void	ft_init_game(t_game_data *game)
 	game->exit.id = NULL;
 	game->player[0].id = NULL;
 	game->player[1].id = NULL;
+	i = -1;
 	while (++i < 5)
 		game->gem[i].id = NULL;
 }

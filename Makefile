@@ -6,7 +6,7 @@
 #    By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/11/19 14:03:05 by tlegrand          #+#    #+#              #
-#    Updated: 2023/02/19 00:20:44 by tlegrand         ###   ########.fr        #
+#    Updated: 2023/02/20 16:54:50 by tlegrand         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -30,14 +30,15 @@ SRCS		=	${addprefix ${DIR_SRCS}, ${LST_SRCS}}
 LST_SRCS_B	=	main_bonus.c map_get.c map_check.c map_init.c map_utils.c \
 				ft_init_bonus.c ft_init_sprites_bonus.c ft_destroy_bonus.c \
 				ft_clean.c \
-				ft_hook_bonus.c ft_move.c\
-				ft_display_bonus.c ft_img_draw.c
+				ft_hook.c ft_hook_bonus.c ft_move_bonus.c ft_enemy.c \
+				ft_display_bonus.c ft_animate_bonus.c
 SRCS_B		=	${addprefix ${DIR_SRCS}, ${LST_SRCS_B}}
 
 
 #	==============================	OBJECTS	==============================	#
 DIR_OBJS	=	.objs/
 OBJS		=	${patsubst ${DIR_SRCS}%.c, ${DIR_OBJS}%.o, ${SRCS}}
+OBJS_B		=	${patsubst ${DIR_SRCS}%.c, ${DIR_OBJS}%.o, ${SRCS_B}}
 
 
 #	==============================	HEADERS	==============================	#
@@ -82,7 +83,7 @@ clean	:
 fclean	:	clean
 		@${RM} ${NAME}
 		@${RM} ${NAME_B}
-		@${MAKE} -C ${DIR_LIBFT}  fclean
+		@${MAKE} -C ${DIR_LIBFT} fclean
 		@${MAKE} -C ${DIR_LIBMLX} clean
 		@printf "$(GREEN)All clean !\n$(END)"
 
@@ -95,8 +96,8 @@ ${NAME}			:	${LIBFT} ${LIBMLX} ${DIR_OBJS} ${OBJS}
 				@${CC} ${CFLAGS} ${OBJS} ${FTFLAGS} ${MLXFLAGS} -o $@
 				@printf "$(GREEN_LIGHT)$@ created !\n$(END)"
 
-${NAME_B}		:	${LIBFT} ${DIR_OBJS} ${OBJS_B}
-				@${CC} ${CFLAGS} ${OBJS_B} ${FTFLAGS} -o $@
+${NAME_B}		:	${LIBFT} ${LIBMLX} ${DIR_OBJS} ${OBJS_B}
+				@${CC} ${CFLAGS} ${OBJS_B} ${FTFLAGS} ${MLXFLAGS} -o $@
 				@printf "$(GREEN_LIGHT)$@ created !\n$(END)"
 
 ${DIR_OBJS}%.o	:	${DIR_SRCS}%.c ${HEADER}
