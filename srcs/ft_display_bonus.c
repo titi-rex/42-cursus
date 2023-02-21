@@ -6,7 +6,7 @@
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/18 13:55:37 by tlegrand          #+#    #+#             */
-/*   Updated: 2023/02/20 23:37:33 by tlegrand         ###   ########.fr       */
+/*   Updated: 2023/02/21 01:01:58 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,7 @@ void	ft_display_start(t_game_data *game)
 		}
 		i++;
 	}
+	ft_display_move(game);
 }
 
 void	ft_display_exit_open(t_game_data *game)
@@ -73,5 +74,4 @@ void	ft_display_move(t_game_data *game)
 	m %= 10;
 	mlx_put_image_to_window(game->mlx.ptr, game->mlx.win, game->sign[m].id, \
 		136, 36);
-
 }

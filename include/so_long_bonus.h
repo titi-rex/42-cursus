@@ -6,7 +6,7 @@
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/19 20:07:38 by tlegrand          #+#    #+#             */
-/*   Updated: 2023/02/20 22:53:23 by tlegrand         ###   ########.fr       */
+/*   Updated: 2023/02/21 01:02:38 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,8 +54,10 @@ typedef struct s_game
 	t_map		map;
 	t_mlx		mlx;
 	t_sprite	floor;
-	t_sprite	idle[7];
+	t_sprite	idle[6];
+	t_sprite	idle_exit[6];
 	t_sprite	run_r[8];
+	t_sprite	run_l[8];
 	t_sprite	gem[5];
 	t_sprite	wall[2];
 	t_sprite	sign[11];
@@ -98,7 +100,13 @@ int		ft_stop(t_game_data *game);
 #  define TILE 96
 # endif
 
+int		ft_init_sprite_idle(t_mlx *mlx, t_sprite idle[6]);
+int		ft_init_sprite_idle_exit(t_mlx *mlx, t_sprite idle_exit[6]);
+int		ft_init_sprite_run_r(t_mlx *mlx, t_sprite run_r[6]);
+int		ft_init_sprite_run_l(t_mlx *mlx, t_sprite run_l[6]);
+int		ft_init_sprite_gem(t_mlx *mlx, t_sprite gem[5]);
 void	ft_init_sprite(t_game_data *game);
+
 void	ft_display_tile(t_mlx *mlx, t_sprite *tile, int x, int y);
 void	ft_display_start(t_game_data *game);
 void	ft_display_exit_open(t_game_data *game);
@@ -107,6 +115,7 @@ void	ft_move(t_game_data *game, int axis, int dir);
 void	ft_animate_idle(t_game_data *game);
 int		ft_animate_loop(t_game_data *game);
 void	ft_animate_run_r(t_game_data *game);
+void	ft_animate_run_l(t_game_data *game);
 
 # define IDLE1	"sprites/idle_1.xpm"
 # define IDLE2	"sprites/idle_2.xpm"
@@ -114,7 +123,13 @@ void	ft_animate_run_r(t_game_data *game);
 # define IDLE4	"sprites/idle_4.xpm"
 # define IDLE5	"sprites/idle_5.xpm"
 # define IDLE6	"sprites/idle_6.xpm"
-# define IDLE7	"sprites/idle_on_exit.xpm"
+
+# define IDLE_EXIT1	"sprites/idle_1_exit.xpm"
+# define IDLE_EXIT2	"sprites/idle_2_exit.xpm"
+# define IDLE_EXIT3	"sprites/idle_3_exit.xpm"
+# define IDLE_EXIT4	"sprites/idle_4_exit.xpm"
+# define IDLE_EXIT5	"sprites/idle_5_exit.xpm"
+# define IDLE_EXIT6	"sprites/idle_6_exit.xpm"
 
 # define RUN_R1	"sprites/run_r_1.xpm"
 # define RUN_R2	"sprites/run_r_2.xpm"
@@ -124,6 +139,15 @@ void	ft_animate_run_r(t_game_data *game);
 # define RUN_R6	"sprites/run_r_6.xpm"
 # define RUN_R7	"sprites/run_r_7.xpm"
 # define RUN_R8	"sprites/run_r_8.xpm"
+
+# define RUN_L1	"sprites/run_l_1.xpm"
+# define RUN_L2	"sprites/run_l_2.xpm"
+# define RUN_L3	"sprites/run_l_3.xpm"
+# define RUN_L4	"sprites/run_l_4.xpm"
+# define RUN_L5	"sprites/run_l_5.xpm"
+# define RUN_L6	"sprites/run_l_6.xpm"
+# define RUN_L7	"sprites/run_l_7.xpm"
+# define RUN_L8	"sprites/run_l_8.xpm"
 
 # define SIGN0	"sprites/sign_zero.xpm"
 # define SIGN1	"sprites/sign_one.xpm"

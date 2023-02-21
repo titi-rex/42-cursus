@@ -6,7 +6,7 @@
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/20 16:25:43 by tlegrand          #+#    #+#             */
-/*   Updated: 2023/02/20 16:53:40 by tlegrand         ###   ########.fr       */
+/*   Updated: 2023/02/21 01:02:09 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,4 +65,3 @@ void	ft_init_enemy(t_map *map, int *badguys)
 	}
 	map->layout[i][j] = 'E';
 }
-

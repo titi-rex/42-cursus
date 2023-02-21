@@ -6,7 +6,7 @@
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/19 20:16:07 by tlegrand          #+#    #+#             */
-/*   Updated: 2023/02/20 23:46:03 by tlegrand         ###   ########.fr       */
+/*   Updated: 2023/02/21 00:40:35 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,25 +51,23 @@ void	ft_credit(void)
 {
 	ft_putendl_fd("\n# ===== Sprites credits ===== #", 1);
 	ft_putendl_fd("Found on itch.io :", 1);
-	ft_putendl_fd("FreePixelFood by Henry Software", 1);
-	ft_putendl_fd("Sprout Lands Asset Pack by Cup NooBle", 1);
-	ft_putendl_fd("Cute Legends Heroes Meow-Knight by 9E0", 1);
-	ft_putendl_fd("Found on opengameart.org", 1);
-	ft_putendl_fd("Cardboard Box by cinamerg", 1);
+	ft_putendl_fd("* FreePixelFood by Henry Software", 1);
+	ft_putendl_fd("* Sprout Lands Asset Pack by Cup NooBle", 1);
+	ft_putendl_fd("* Cute Legends Heroes Meow-Knight by 9E0", 1);
+	ft_putendl_fd("* Silver Font by PoppyWorks", 1);
+	ft_putendl_fd("* Complete GUI Essential Pack by Crusenho", 1);
+	ft_putendl_fd("Found on opengameart.org :", 1);
+	ft_putendl_fd("* Cardboard Box by cinamerg", 1);
 }
 
 /*
 patrol ennemie
+pause when unfocus
 animation : etoile yeux qund collect recuper et tous recup
 animation + physique vent
-refaire tiles herbes generation aleatoire 
-pause when unfocus
 
 sprites a faire : 
--chat move gauche
 -chat move up/down
--panneau move + chiffre
--idle on exit
--herbe 16x16
+
 -etoiles yeux
 */

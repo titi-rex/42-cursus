@@ -6,16 +6,26 @@
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/16 18:03:45 by tlegrand          #+#    #+#             */
-/*   Updated: 2023/02/20 22:14:33 by tlegrand         ###   ########.fr       */
+/*   Updated: 2023/02/21 00:57:51 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/so_long_bonus.h"
 
-void	ft_init_game(t_game_data *game)
+void	ft_init_sprite_loop(t_sprite *sprite, int size)
 {
 	int	i;
 
+	i = 0;
+	while (i < size)
+	{
+		sprite[i].id = NULL;
+		i++;
+	}
+}
+
+void	ft_init_game(t_game_data *game)
+{
 	game->pos[0] = 0;
 	game->pos[1] = 0;
 	game->pos_e[0] = 0;
@@ -28,18 +38,12 @@ void	ft_init_game(t_game_data *game)
 	game->wall[0].id = NULL;
 	game->wall[1].id = NULL;
 	game->exit.id = NULL;
-	i = -1;
-	while (++i < 7)
-		game->idle[i].id = NULL;
-	i = -1;
-	while (++i < 8)
-		game->run_r[i].id = NULL;
-	i = -1;
-	while (++i < 5)
-		game->gem[i].id = NULL;
-	i = -1;
-	while (++i < 11)
-		game->sign[i].id = NULL;
+	ft_init_sprite_loop(game->idle, 6);
+	ft_init_sprite_loop(game->idle_exit, 6);
+	ft_init_sprite_loop(game->run_r, 8);
+	ft_init_sprite_loop(game->run_l, 8);
+	ft_init_sprite_loop(game->gem, 5);
+	ft_init_sprite_loop(game->sign, 11);
 }
 
 void	ft_init_pos(t_game_data *game)
