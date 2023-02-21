@@ -6,7 +6,7 @@
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/20 16:25:43 by tlegrand          #+#    #+#             */
-/*   Updated: 2023/02/21 19:38:04 by tlegrand         ###   ########.fr       */
+/*   Updated: 2023/02/22 00:42:26 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,4 +74,43 @@ void	ft_init_enemy(t_game_data *game)
 	}
 	game->pos_b[0] = i;
 	game->pos_b[1] = j;
+}
+
+void	ft_move_enemy(t_game_data *game, int axis, int dir)
+{
+	if (ft_move_authorize(game->map.layout, game->pos_b, axis, dir))
+		return ;
+	if (game->map.layout[game->pos_b[0]][game->pos_b[1]] == 'E')
+		ft_display_tile(&game->mlx, &game->exit, game->pos_b[1], \
+			game->pos_b[0]);
+	else if (game->map.layout[game->pos_b[0]][game->pos_b[1]] == 'C')
+		ft_display_tile(&game->mlx, &game->gem[game->pos_b[1] % 3 + game->pos_b \
+			[0] % 3], game->pos_b[1], game->pos_b[0]);
+	else
+		ft_display_tile(&game->mlx, &game->floor, game->pos_b[1], \
+			game->pos_b[0]);
+	game->pos_b[axis] += dir;
+	ft_display_tile(&game->mlx, &game->enemy[1], game->pos_b[1], \
+		game->pos_b[0]);
+	ft_is_lost(game);
+}
+
+void	ft_select_move_enemy(t_game_data *game)
+{
+	int	dir;
+	int	err;
+
+	err = 1;
+	dir = ft_randuint(1, 4, &err);
+	if (err == 0)
+		return ((void) ft_putendl_fd("Randuint for enemy move fail", 2));
+	else if (dir == 1)
+		ft_move_enemy(game, 0, -1);
+	else if (dir == 2)
+		ft_move_enemy(game, 0, 1);
+	else if (dir == 3)
+		ft_move_enemy(game, 1, -1);
+	else if (dir == 4)
+		ft_move_enemy(game, 1, 1);
+
 }

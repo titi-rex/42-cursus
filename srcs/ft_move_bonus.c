@@ -6,7 +6,7 @@
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/17 17:33:16 by tlegrand          #+#    #+#             */
-/*   Updated: 2023/02/21 22:54:16 by tlegrand         ###   ########.fr       */
+/*   Updated: 2023/02/22 00:48:08 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,26 @@ int	ft_move_authorize(char **layout, int pos[2], int axis, int dir)
 	return (0);
 }
 
+void	ft_is_lost(t_game_data *game)
+{
+	if (game->pos[0] == game->pos_b[0] && game->pos[1] == game->pos_b[1])
+	{
+		ft_credit();
+		ft_putstr_quit(game, "\nSad.. U let this poor cat die..", EXIT_SUCCESS);
+	}
+}
+
+void	ft_is_win(t_game_data *game)
+{
+	if (game->map.count[1] != 0)
+		return ;
+	if (game->map.layout[game->pos[0]][game->pos[1]] == 'E')
+	{
+		ft_credit();
+		ft_putstr_quit(game, "\nCongrats! U win the game!", EXIT_SUCCESS);
+	}
+}
+
 void	ft_map_update(t_game_data *game, int pos[2])
 {
 	if (game->map.layout[pos[0]][pos[1]] == 'C')
@@ -36,16 +56,8 @@ void	ft_map_update(t_game_data *game, int pos[2])
 		game->map.count[2] = 0;
 		ft_display_exit_open(game);
 	}
-	if (pos[0] == game->pos_b[0] && pos[1] == game->pos_b[1])
-	{
-		ft_credit();
-		ft_putstr_quit(game, "\nSad.. U let this poor cat die..", EXIT_SUCCESS);
-	}
-	if (game->map.count[1] == 0 && game->map.layout[pos[0]][pos[1]] == 'E')
-	{
-		ft_credit();
-		ft_putstr_quit(game, "\nCongrats! U win the game!", EXIT_SUCCESS);
-	}
+	ft_is_lost(game);
+	ft_is_win(game);
 }
 
 void	ft_move(t_game_data *game, int axis, int dir)
@@ -68,4 +80,5 @@ void	ft_move(t_game_data *game, int axis, int dir)
 	ft_map_update(game, game->pos);
 	game->move++;
 	ft_display_move(game);
+	ft_select_move_enemy(game);
 }

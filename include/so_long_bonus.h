@@ -6,7 +6,7 @@
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/19 20:07:38 by tlegrand          #+#    #+#             */
-/*   Updated: 2023/02/21 23:34:03 by tlegrand         ###   ########.fr       */
+/*   Updated: 2023/02/22 00:46:55 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,6 +73,8 @@ void	ft_free2d(void **arr, int size);
 void	ft_clean_exit(t_game_data *game, int exit_code);
 void	ft_putstr_quit(t_game_data *game, char *strerr, int exit_code);
 void	ft_credit(void);
+void	ft_is_lost(t_game_data *game);
+int		ft_move_authorize(char **layout, int pos[2], int axis, int dir);
 
 /*	==========	map management	==========	*/
 void	ft_error_map(t_map *map, int errnum, char *errstr);
@@ -117,6 +119,7 @@ int		ft_animate_loop(t_game_data *game);
 void	ft_animate_run(t_game_data *game, t_sprite *sprite, int dir);
 void	ft_animate_jump(t_game_data *game, t_sprite *sprite, int dir);
 void	ft_move(t_game_data *game, int axis, int dir);
+void	ft_select_move_enemy(t_game_data *game);
 void	ft_display_move(t_game_data *game);
 
 # define IDLE1	"sprites/idle_1.xpm"

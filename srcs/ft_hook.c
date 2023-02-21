@@ -6,7 +6,7 @@
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/14 23:21:53 by tlegrand          #+#    #+#             */
-/*   Updated: 2023/02/19 00:26:04 by tlegrand         ###   ########.fr       */
+/*   Updated: 2023/02/22 00:31:53 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,10 +23,10 @@ int	ft_hook_key(int keycode, t_game_data *game)
 		ft_move(game, 0, -1);
 	if (keycode == DOWN)
 		ft_move(game, 0, 1);
-	if (keycode == RIGHT)
-		ft_move(game, 1, 1);
 	if (keycode == LEFT)
 		ft_move(game, 1, -1);
+	if (keycode == RIGHT)
+		ft_move(game, 1, 1);
 	return (0);
 }
 
