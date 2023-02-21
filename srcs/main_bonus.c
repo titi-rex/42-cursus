@@ -6,7 +6,7 @@
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/19 20:16:07 by tlegrand          #+#    #+#             */
-/*   Updated: 2023/02/21 17:48:59 by tlegrand         ###   ########.fr       */
+/*   Updated: 2023/02/21 19:40:14 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,12 +22,15 @@ int	main(int argc, char **argv)
 		return (ft_man(argc));
 	ft_init_game(&game);
 	ft_init_map(&game.map, argv[1]);
-	if (game.map.ysize > 5 && game.map.xsize > 5)
-		game.badguys = 1;
 	ft_init_mlx(&game);
 	ft_init_sprite(&game);
 	ft_init_pos(&game);
-	ft_display_start(&game);
+	if (game.map.ysize > 5 && game.map.xsize > 5)
+	{
+		game.badguys = 1;
+		ft_init_enemy(&game);
+	}
+	ft_display_all(&game);
 	mlx_loop_hook(game.mlx.ptr, ft_animate_loop, &game);
 	mlx_hook(game.mlx.win, KeyPress, KeyPressMask, ft_hook_key, &game);
 	mlx_hook(game.mlx.win, DestroyNotify, StructureNotifyMask, ft_stop, &game);

@@ -6,7 +6,7 @@
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/18 13:55:37 by tlegrand          #+#    #+#             */
-/*   Updated: 2023/02/21 17:06:26 by tlegrand         ###   ########.fr       */
+/*   Updated: 2023/02/21 19:49:08 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ void	ft_choose_tile(t_game_data *game, int x, int y)
 		ft_display_tile(&game->mlx, &game->exit, x, y);
 }
 
-void	ft_display_start(t_game_data *game)
+void	ft_display_all(t_game_data *game)
 {
 	int	i;
 	int	j;
@@ -48,6 +48,8 @@ void	ft_display_start(t_game_data *game)
 		i++;
 	}
 	ft_display_move(game);
+	ft_display_tile(&game->mlx, &game->sign[0], game->pos_b[1], \
+		game->pos_b[0]);
 }
 
 void	ft_display_exit_open(t_game_data *game)

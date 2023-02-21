@@ -6,7 +6,7 @@
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/21 00:59:26 by tlegrand          #+#    #+#             */
-/*   Updated: 2023/02/21 16:16:54 by tlegrand         ###   ########.fr       */
+/*   Updated: 2023/02/21 19:17:18 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,6 +107,6 @@ void	ft_init_sprite(t_game_data *game)
 	game->floor.id = mlx_xpm_file_to_image(game->mlx.ptr, FLOOR, &tmp, &tmp);
 	game->exit.id = mlx_xpm_file_to_image(game->mlx.ptr, EXIT_C, &tmp, &tmp);
 	if (!game->floor.id || !game->wall[0].id || !game->exit.id || \
-			!game->wall[0].id)
+			!game->wall[1].id)
 		ft_putstr_quit(game, "Error\nCan't load sprites", EXIT_FAILURE);
 }

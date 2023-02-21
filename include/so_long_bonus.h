@@ -6,7 +6,7 @@
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/19 20:07:38 by tlegrand          #+#    #+#             */
-/*   Updated: 2023/02/21 17:35:45 by tlegrand         ###   ########.fr       */
+/*   Updated: 2023/02/21 19:43:55 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,10 +25,10 @@
 /*	==========	struct	==========	*/
 typedef struct s_map
 {
+	char	**layout;
 	int		ysize;
 	int		xsize;
 	int		count[3];
-	char	**layout;
 }	t_map;
 
 typedef struct s_mlx
@@ -44,11 +44,12 @@ typedef struct s_sprite
 
 typedef struct s_game
 {
-	int			move;
+	t_map		map;
 	int			pos[2];
 	int			pos_e[2];
+	int			pos_b[2];
+	int			move;
 	int			badguys;
-	t_map		map;
 	t_mlx		mlx;
 	t_sprite	floor;
 	t_sprite	exit;
@@ -109,7 +110,7 @@ int		ft_init_sprite_gem(t_mlx *mlx, t_sprite gem[5]);
 void	ft_init_sprite(t_game_data *game);
 
 void	ft_display_tile(t_mlx *mlx, t_sprite *tile, int x, int y);
-void	ft_display_start(t_game_data *game);
+void	ft_display_all(t_game_data *game);
 void	ft_display_exit_open(t_game_data *game);
 void	ft_animate_idle(t_game_data *game);
 int		ft_animate_loop(t_game_data *game);
