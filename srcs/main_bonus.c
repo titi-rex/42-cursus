@@ -6,7 +6,7 @@
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/19 20:16:07 by tlegrand          #+#    #+#             */
-/*   Updated: 2023/02/21 00:40:35 by tlegrand         ###   ########.fr       */
+/*   Updated: 2023/02/21 01:15:08 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,6 +63,9 @@ void	ft_credit(void)
 /*
 patrol ennemie
 pause when unfocus
+ecran fin
+
+
 animation : etoile yeux qund collect recuper et tous recup
 animation + physique vent
 
