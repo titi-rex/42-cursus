@@ -6,7 +6,7 @@
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/19 20:07:38 by tlegrand          #+#    #+#             */
-/*   Updated: 2023/02/21 17:05:53 by tlegrand         ###   ########.fr       */
+/*   Updated: 2023/02/21 17:35:45 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,8 +40,6 @@ typedef struct s_mlx
 typedef struct s_sprite
 {
 	void	*id;
-	int		height;
-	int		width;
 }	t_sprite;
 
 typedef struct s_game
@@ -50,7 +48,6 @@ typedef struct s_game
 	int			pos[2];
 	int			pos_e[2];
 	int			badguys;
-	int			pos_b[2];
 	t_map		map;
 	t_mlx		mlx;
 	t_sprite	floor;

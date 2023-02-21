@@ -6,7 +6,7 @@
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/16 18:03:45 by tlegrand          #+#    #+#             */
-/*   Updated: 2023/02/21 17:01:41 by tlegrand         ###   ########.fr       */
+/*   Updated: 2023/02/21 17:33:42 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,8 +30,6 @@ void	ft_init_game(t_game_data *game)
 	game->pos[1] = 0;
 	game->pos_e[0] = 0;
 	game->pos_e[1] = 0;
-	game->pos_b[0] = 0;
-	game->pos_b[1] = 0;
 	game->move = 0;
 	game->badguys = 0;
 	game->mlx.ptr = NULL;

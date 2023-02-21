@@ -6,7 +6,7 @@
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/19 20:16:07 by tlegrand          #+#    #+#             */
-/*   Updated: 2023/02/21 17:06:14 by tlegrand         ###   ########.fr       */
+/*   Updated: 2023/02/21 17:48:59 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,6 @@ int	main(int argc, char **argv)
 	ft_init_map(&game.map, argv[1]);
 	if (game.map.ysize > 5 && game.map.xsize > 5)
 		game.badguys = 1;
-	ft_init_enemy(&game);
 	ft_init_mlx(&game);
 	ft_init_sprite(&game);
 	ft_init_pos(&game);
