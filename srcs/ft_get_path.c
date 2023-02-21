@@ -6,7 +6,7 @@
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/11 14:20:18 by tlegrand          #+#    #+#             */
-/*   Updated: 2023/02/16 14:37:33 by tlegrand         ###   ########.fr       */
+/*   Updated: 2023/02/21 14:25:05 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,7 +77,8 @@ void	ft_get_path(char *pathvar, t_pipex *cmd_line)
 	{
 		if (cmd_line->cmds[i][0] == NULL)
 			ft_error("Command empty", NULL);
-		if (cmd_line->cmds[i][0] && access(cmd_line->cmds[i][0], F_OK | X_OK))
+		else if (cmd_line->cmds[i][0] && access(cmd_line->cmds[i][0], X_OK) && \
+			cmd_line->cmds[i][0][0] != '.' && cmd_line->cmds[i][0][0] != '/')
 			cmd_line->cmds[i][0] = ft_get_pathcmd(paths, cmd_line->cmds[i][0]);
 		i++;
 	}
