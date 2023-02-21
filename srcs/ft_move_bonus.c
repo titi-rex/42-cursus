@@ -6,7 +6,7 @@
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/17 17:33:16 by tlegrand          #+#    #+#             */
-/*   Updated: 2023/02/21 16:09:34 by tlegrand         ###   ########.fr       */
+/*   Updated: 2023/02/21 22:54:16 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,8 +31,16 @@ void	ft_map_update(t_game_data *game, int pos[2])
 		game->map.count[1]--;
 		game->map.layout[pos[0]][pos[1]] = '0';
 	}
-	if (game->map.count[1] == 0)
+	if (game->map.count[1] == 0 && game->map.count[2])
+	{
+		game->map.count[2] = 0;
 		ft_display_exit_open(game);
+	}
+	if (pos[0] == game->pos_b[0] && pos[1] == game->pos_b[1])
+	{
+		ft_credit();
+		ft_putstr_quit(game, "\nSad.. U let this poor cat die..", EXIT_SUCCESS);
+	}
 	if (game->map.count[1] == 0 && game->map.layout[pos[0]][pos[1]] == 'E')
 	{
 		ft_credit();
@@ -50,13 +58,13 @@ void	ft_move(t_game_data *game, int axis, int dir)
 		ft_display_tile(&game->mlx, &game->floor, game->pos[1], game->pos[0]);
 	game->pos[axis] += dir;
 	if (axis == 1 && dir == 1)
-		ft_animate_run_r(game);
+		ft_animate_run(game, game->run_r, -1);
 	else if (axis == 1 && dir == -1)
-		ft_animate_run_l(game);
+		ft_animate_run(game, game->run_l, 1);
 	else if (axis == 0 && dir == -1)
-		ft_animate_jump_u(game);
+		ft_animate_jump(game, game->jump, 1);
 	else if (axis == 0 && dir == 1)
-		ft_animate_jump_d(game);
+		ft_animate_jump(game, game->jump, -1);
 	ft_map_update(game, game->pos);
 	game->move++;
 	ft_display_move(game);

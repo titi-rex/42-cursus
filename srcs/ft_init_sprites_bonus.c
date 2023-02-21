@@ -5,84 +5,12 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/02/18 14:02:52 by tlegrand          #+#    #+#             */
-/*   Updated: 2023/02/21 00:59:56 by tlegrand         ###   ########.fr       */
+/*   Created: 2023/02/21 00:59:26 by tlegrand          #+#    #+#             */
+/*   Updated: 2023/02/21 23:31:54 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/so_long_bonus.h"
-
-int	ft_init_sprite_idle(t_mlx *mlx, t_sprite idle[6])
-{
-	int	tmp;
-
-	idle[0].id = mlx_xpm_file_to_image(mlx->ptr, IDLE1, &tmp, &tmp);
-	idle[1].id = mlx_xpm_file_to_image(mlx->ptr, IDLE2, &tmp, &tmp);
-	idle[2].id = mlx_xpm_file_to_image(mlx->ptr, IDLE3, &tmp, &tmp);
-	if (!idle[0].id || !idle[1].id || !idle[2].id)
-		return (1);
-	idle[3].id = mlx_xpm_file_to_image(mlx->ptr, IDLE4, &tmp, &tmp);
-	idle[4].id = mlx_xpm_file_to_image(mlx->ptr, IDLE5, &tmp, &tmp);
-	idle[5].id = mlx_xpm_file_to_image(mlx->ptr, IDLE6, &tmp, &tmp);
-	if (!idle[3].id || !idle[4].id || !idle[5].id)
-		return (1);
-	return (0);
-}
-
-int	ft_init_sprite_idle_exit(t_mlx *mlx, t_sprite idle_exit[6])
-{
-	int	tmp;
-
-	idle_exit[0].id = mlx_xpm_file_to_image(mlx->ptr, IDLE_EXIT1, &tmp, &tmp);
-	idle_exit[1].id = mlx_xpm_file_to_image(mlx->ptr, IDLE_EXIT2, &tmp, &tmp);
-	idle_exit[2].id = mlx_xpm_file_to_image(mlx->ptr, IDLE_EXIT3, &tmp, &tmp);
-	if (!idle_exit[0].id || !idle_exit[1].id || !idle_exit[2].id)
-		return (1);
-	idle_exit[3].id = mlx_xpm_file_to_image(mlx->ptr, IDLE_EXIT4, &tmp, &tmp);
-	idle_exit[4].id = mlx_xpm_file_to_image(mlx->ptr, IDLE_EXIT5, &tmp, &tmp);
-	idle_exit[5].id = mlx_xpm_file_to_image(mlx->ptr, IDLE_EXIT6, &tmp, &tmp);
-	if (!idle_exit[3].id || !idle_exit[4].id || !idle_exit[5].id)
-		return (1);
-	return (0);
-}
-
-int	ft_init_sprite_run_r(t_mlx *mlx, t_sprite run_r[6])
-{
-	int	tmp;
-
-	run_r[0].id = mlx_xpm_file_to_image(mlx->ptr, RUN_R1, &tmp, &tmp);
-	run_r[1].id = mlx_xpm_file_to_image(mlx->ptr, RUN_R2, &tmp, &tmp);
-	run_r[2].id = mlx_xpm_file_to_image(mlx->ptr, RUN_R3, &tmp, &tmp);
-	run_r[3].id = mlx_xpm_file_to_image(mlx->ptr, RUN_R4, &tmp, &tmp);
-	if (!run_r[0].id || !run_r[1].id || !run_r[2].id || !run_r[3].id)
-		return (1);
-	run_r[4].id = mlx_xpm_file_to_image(mlx->ptr, RUN_R5, &tmp, &tmp);
-	run_r[5].id = mlx_xpm_file_to_image(mlx->ptr, RUN_R6, &tmp, &tmp);
-	run_r[6].id = mlx_xpm_file_to_image(mlx->ptr, RUN_R7, &tmp, &tmp);
-	run_r[7].id = mlx_xpm_file_to_image(mlx->ptr, RUN_R8, &tmp, &tmp);
-	if (!run_r[4].id || !run_r[5].id || !run_r[6].id || !run_r[7].id)
-		return (1);
-	return (0);
-}
-
-int	ft_init_sprite_run_l(t_mlx *mlx, t_sprite run_l[6])
-{
-	int	tmp;
-
-	run_l[0].id = mlx_xpm_file_to_image(mlx->ptr, RUN_L1, &tmp, &tmp);
-	run_l[1].id = mlx_xpm_file_to_image(mlx->ptr, RUN_L2, &tmp, &tmp);
-	run_l[2].id = mlx_xpm_file_to_image(mlx->ptr, RUN_L3, &tmp, &tmp);
-	run_l[3].id = mlx_xpm_file_to_image(mlx->ptr, RUN_L4, &tmp, &tmp);
-	if (!run_l[0].id || !run_l[1].id || !run_l[2].id || !run_l[3].id)
-		return (1);
-	run_l[4].id = mlx_xpm_file_to_image(mlx->ptr, RUN_L5, &tmp, &tmp);
-	run_l[5].id = mlx_xpm_file_to_image(mlx->ptr, RUN_L6, &tmp, &tmp);
-	run_l[6].id = mlx_xpm_file_to_image(mlx->ptr, RUN_L7, &tmp, &tmp);
-	run_l[7].id = mlx_xpm_file_to_image(mlx->ptr, RUN_L8, &tmp, &tmp);
-	if (!run_l[4].id || !run_l[5].id || !run_l[6].id || !run_l[7].id)
-		return (1);
-	return (0);
-}
 
 int	ft_init_sprite_gem(t_mlx *mlx, t_sprite gem[5])
 {
@@ -98,4 +26,82 @@ int	ft_init_sprite_gem(t_mlx *mlx, t_sprite gem[5])
 	if (!gem[3].id || !gem[4].id)
 		return (1);
 	return (0);
+}
+
+int	ft_init_sprite_enemy(t_mlx *mlx, t_sprite enemy[4])
+{
+	int	tmp;
+
+	enemy[0].id = mlx_xpm_file_to_image(mlx->ptr, BAD1, &tmp, &tmp);
+	enemy[1].id = mlx_xpm_file_to_image(mlx->ptr, BAD2, &tmp, &tmp);
+	enemy[2].id = mlx_xpm_file_to_image(mlx->ptr, BAD3, &tmp, &tmp);
+	enemy[3].id = mlx_xpm_file_to_image(mlx->ptr, BAD4, &tmp, &tmp);
+	if (!enemy[0].id || !enemy[1].id || !enemy[2].id || !enemy[3].id)
+		return (1);
+	return (0);
+}
+
+int	ft_init_sprite_gui(t_mlx *mlx, t_sprite gui[3])
+{
+	int	tmp;
+
+	gui[0].id = mlx_xpm_file_to_image(mlx->ptr, GUI1, &tmp, &tmp);
+	gui[1].id = mlx_xpm_file_to_image(mlx->ptr, GUI2, &tmp, &tmp);
+	gui[2].id = mlx_xpm_file_to_image(mlx->ptr, GUI3, &tmp, &tmp);
+	if (!gui[0].id || !gui[1].id || !gui[2].id)
+		return (1);
+	return (0);
+}
+
+int	ft_init_sprite_sign(t_mlx *mlx, t_sprite sign[11])
+{
+	int	tmp;
+
+	sign[0].id = mlx_xpm_file_to_image(mlx->ptr, SIGN0, &tmp, &tmp);
+	sign[1].id = mlx_xpm_file_to_image(mlx->ptr, SIGN1, &tmp, &tmp);
+	sign[2].id = mlx_xpm_file_to_image(mlx->ptr, SIGN2, &tmp, &tmp);
+	sign[3].id = mlx_xpm_file_to_image(mlx->ptr, SIGN3, &tmp, &tmp);
+	if (!sign[0].id || !sign[1].id || !sign[2].id || !sign[3].id)
+		return (1);
+	sign[4].id = mlx_xpm_file_to_image(mlx->ptr, SIGN4, &tmp, &tmp);
+	sign[5].id = mlx_xpm_file_to_image(mlx->ptr, SIGN5, &tmp, &tmp);
+	sign[6].id = mlx_xpm_file_to_image(mlx->ptr, SIGN6, &tmp, &tmp);
+	sign[7].id = mlx_xpm_file_to_image(mlx->ptr, SIGN7, &tmp, &tmp);
+	if (!sign[4].id || !sign[5].id || !sign[6].id || !sign[7].id)
+		return (1);
+	sign[8].id = mlx_xpm_file_to_image(mlx->ptr, SIGN8, &tmp, &tmp);
+	sign[9].id = mlx_xpm_file_to_image(mlx->ptr, SIGN9, &tmp, &tmp);
+	sign[10].id = mlx_xpm_file_to_image(mlx->ptr, SIGN10, &tmp, &tmp);
+	if (!sign[8].id || !sign[9].id || !sign[10].id)
+		return (1);
+	return (0);
+}
+
+void	ft_init_sprite(t_game_data *game)
+{
+	int	tmp;
+
+	if (ft_init_sprite_idle(&game->mlx, game->idle))
+		ft_putstr_quit(game, "Error\nCan't load idle sprites", EXIT_FAILURE);
+	if (ft_init_sprite_idle_exit(&game->mlx, game->idle_exit))
+		ft_putstr_quit(game, "Error\nCan't load idle_e sprites", EXIT_FAILURE);
+	if (ft_init_sprite_run_r(&game->mlx, game->run_r))
+		ft_putstr_quit(game, "Error\nCan't load run_r sprites", EXIT_FAILURE);
+	if (ft_init_sprite_run_l(&game->mlx, game->run_l))
+		ft_putstr_quit(game, "Error\nCan't load run_l sprites", EXIT_FAILURE);
+	if (ft_init_sprite_jump(&game->mlx, game->jump))
+		ft_putstr_quit(game, "Error\nCan't load jump sprites", EXIT_FAILURE);
+	if (ft_init_sprite_gem(&game->mlx, game->gem))
+		ft_putstr_quit(game, "Error\nCan't load gem sprites", EXIT_FAILURE);
+	if (ft_init_sprite_enemy(&game->mlx, game->enemy))
+		ft_putstr_quit(game, "Error\nCan't load enemy sprites", EXIT_FAILURE);
+	if (ft_init_sprite_sign(&game->mlx, game->sign))
+		ft_putstr_quit(game, "Error\nCan't load sign sprites", EXIT_FAILURE);
+	game->wall[0].id = mlx_xpm_file_to_image(game->mlx.ptr, WALL1, &tmp, &tmp);
+	game->wall[1].id = mlx_xpm_file_to_image(game->mlx.ptr, WALL2, &tmp, &tmp);
+	game->floor.id = mlx_xpm_file_to_image(game->mlx.ptr, FLOOR, &tmp, &tmp);
+	game->exit.id = mlx_xpm_file_to_image(game->mlx.ptr, EXIT_C, &tmp, &tmp);
+	if (!game->floor.id || !game->wall[0].id || !game->exit.id || \
+			!game->wall[1].id)
+		ft_putstr_quit(game, "Error\nCan't load sprites", EXIT_FAILURE);
 }

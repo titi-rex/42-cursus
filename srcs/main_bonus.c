@@ -6,7 +6,7 @@
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/19 20:16:07 by tlegrand          #+#    #+#             */
-/*   Updated: 2023/02/21 19:40:14 by tlegrand         ###   ########.fr       */
+/*   Updated: 2023/02/21 22:25:30 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,8 @@ void	ft_credit(void)
 	ft_putendl_fd("* Cute Legends Heroes Meow-Knight by 9E0", 1);
 	ft_putendl_fd("* Silver Font by PoppyWorks", 1);
 	ft_putendl_fd("* Complete GUI Essential Pack by Crusenho", 1);
+	ft_putendl_fd("* Skinless Yarik By Novely", 1);
+
 	ft_putendl_fd("Found on opengameart.org :", 1);
 	ft_putendl_fd("* Cardboard Box by cinamerg", 1);
 }

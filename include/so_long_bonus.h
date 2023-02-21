@@ -6,7 +6,7 @@
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/19 20:07:38 by tlegrand          #+#    #+#             */
-/*   Updated: 2023/02/21 19:43:55 by tlegrand         ###   ########.fr       */
+/*   Updated: 2023/02/21 23:34:03 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,7 @@ typedef struct s_game
 	int			pos_b[2];
 	int			move;
 	int			badguys;
+	int			pause;
 	t_mlx		mlx;
 	t_sprite	floor;
 	t_sprite	exit;
@@ -61,9 +62,8 @@ typedef struct s_game
 	t_sprite	idle_exit[6];
 	t_sprite	run_r[8];
 	t_sprite	run_l[8];
-	t_sprite	jump_u[12];
-	t_sprite	jump_d[12];
-	t_sprite	enemy[5];
+	t_sprite	jump[12];
+	t_sprite	enemy[4];
 }	t_game_data;
 
 /*	==========	general functions	==========	*/
@@ -106,7 +106,7 @@ int		ft_init_sprite_idle(t_mlx *mlx, t_sprite idle[6]);
 int		ft_init_sprite_idle_exit(t_mlx *mlx, t_sprite idle_exit[6]);
 int		ft_init_sprite_run_r(t_mlx *mlx, t_sprite run_r[6]);
 int		ft_init_sprite_run_l(t_mlx *mlx, t_sprite run_l[6]);
-int		ft_init_sprite_gem(t_mlx *mlx, t_sprite gem[5]);
+int		ft_init_sprite_jump(t_mlx *mlx, t_sprite jump[12]);
 void	ft_init_sprite(t_game_data *game);
 
 void	ft_display_tile(t_mlx *mlx, t_sprite *tile, int x, int y);
@@ -114,10 +114,8 @@ void	ft_display_all(t_game_data *game);
 void	ft_display_exit_open(t_game_data *game);
 void	ft_animate_idle(t_game_data *game);
 int		ft_animate_loop(t_game_data *game);
-void	ft_animate_run_r(t_game_data *game);
-void	ft_animate_run_l(t_game_data *game);
-void	ft_animate_jump_u(t_game_data *game);
-void	ft_animate_jump_d(t_game_data *game);
+void	ft_animate_run(t_game_data *game, t_sprite *sprite, int dir);
+void	ft_animate_jump(t_game_data *game, t_sprite *sprite, int dir);
 void	ft_move(t_game_data *game, int axis, int dir);
 void	ft_display_move(t_game_data *game);
 
@@ -153,31 +151,18 @@ void	ft_display_move(t_game_data *game);
 # define RUN_L7	"sprites/run_l_7.xpm"
 # define RUN_L8	"sprites/run_l_8.xpm"
 
-# define JUMP_U0	"sprites/jump_u_0.xpm"
-# define JUMP_U1	"sprites/jump_u_1.xpm"
-# define JUMP_U2	"sprites/jump_u_2.xpm"
-# define JUMP_U3	"sprites/jump_u_3.xpm"
-# define JUMP_U4	"sprites/jump_u_4.xpm"
-# define JUMP_U5	"sprites/jump_u_5.xpm"
-# define JUMP_U6	"sprites/jump_u_6.xpm"
-# define JUMP_U7	"sprites/jump_u_7.xpm"
-# define JUMP_U8	"sprites/jump_u_8.xpm"
-# define JUMP_U9	"sprites/jump_u_9.xpm"
-# define JUMP_U10	"sprites/jump_u_10.xpm"
-# define JUMP_U11	"sprites/jump_u_11.xpm"
-
-# define JUMP_D0	"sprites/jump_d_0.xpm"
-# define JUMP_D1	"sprites/jump_d_1.xpm"
-# define JUMP_D2	"sprites/jump_d_2.xpm"
-# define JUMP_D3	"sprites/jump_d_3.xpm"
-# define JUMP_D4	"sprites/jump_d_4.xpm"
-# define JUMP_D5	"sprites/jump_d_5.xpm"
-# define JUMP_D6	"sprites/jump_d_6.xpm"
-# define JUMP_D7	"sprites/jump_d_7.xpm"
-# define JUMP_D8	"sprites/jump_d_8.xpm"
-# define JUMP_D9	"sprites/jump_d_9.xpm"
-# define JUMP_D10	"sprites/jump_d_10.xpm"
-# define JUMP_D11	"sprites/jump_d_11.xpm"
+# define JUMP1	"sprites/jump_1.xpm"
+# define JUMP2	"sprites/jump_2.xpm"
+# define JUMP3	"sprites/jump_3.xpm"
+# define JUMP4	"sprites/jump_4.xpm"
+# define JUMP5	"sprites/jump_5.xpm"
+# define JUMP6	"sprites/jump_6.xpm"
+# define JUMP7	"sprites/jump_7.xpm"
+# define JUMP8	"sprites/jump_8.xpm"
+# define JUMP9	"sprites/jump_9.xpm"
+# define JUMP10	"sprites/jump_10.xpm"
+# define JUMP11	"sprites/jump_11.xpm"
+# define JUMP12	"sprites/jump_12.xpm"
 
 # define SIGN0	"sprites/sign_zero.xpm"
 # define SIGN1	"sprites/sign_one.xpm"
@@ -196,6 +181,15 @@ void	ft_display_move(t_game_data *game);
 # define GEM3	"sprites/gem_3.xpm"
 # define GEM4	"sprites/gem_4.xpm"
 # define GEM5	"sprites/gem_5.xpm"
+
+# define BAD1	"sprites/head_1.xpm"
+# define BAD2	"sprites/head_2.xpm"
+# define BAD3	"sprites/head_3.xpm"
+# define BAD4	"sprites/head_4.xpm"
+
+# define GUI1	"sprites/victory_banner.xpm"
+# define GUI2	"sprites/loose_banner.xpm"
+# define GUI3	"sprites/bigbanner.xpm"
 
 # define FLOOR	"sprites/grass_1.xpm"
 # define WALL1	"sprites/tree_1.xpm"
