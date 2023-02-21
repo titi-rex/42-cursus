@@ -6,7 +6,7 @@
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/17 17:33:16 by tlegrand          #+#    #+#             */
-/*   Updated: 2023/02/21 00:52:11 by tlegrand         ###   ########.fr       */
+/*   Updated: 2023/02/21 16:09:34 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,15 +53,10 @@ void	ft_move(t_game_data *game, int axis, int dir)
 		ft_animate_run_r(game);
 	else if (axis == 1 && dir == -1)
 		ft_animate_run_l(game);
-	else
-	{
-		if (game->map.layout[game->pos[0]][game->pos[1]] == 'E')
-			ft_display_tile(&game->mlx, &game->idle_exit[0], game->pos[1], \
-				game->pos[0]);
-		else
-			ft_display_tile(&game->mlx, &game->idle[0], game->pos[1], \
-				game->pos[0]);
-	}
+	else if (axis == 0 && dir == -1)
+		ft_animate_jump_u(game);
+	else if (axis == 0 && dir == 1)
+		ft_animate_jump_d(game);
 	ft_map_update(game, game->pos);
 	game->move++;
 	ft_display_move(game);

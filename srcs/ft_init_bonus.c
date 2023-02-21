@@ -6,7 +6,7 @@
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/16 18:03:45 by tlegrand          #+#    #+#             */
-/*   Updated: 2023/02/21 00:57:51 by tlegrand         ###   ########.fr       */
+/*   Updated: 2023/02/21 17:01:41 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,8 @@ void	ft_init_game(t_game_data *game)
 	game->pos[1] = 0;
 	game->pos_e[0] = 0;
 	game->pos_e[1] = 0;
+	game->pos_b[0] = 0;
+	game->pos_b[1] = 0;
 	game->move = 0;
 	game->badguys = 0;
 	game->mlx.ptr = NULL;
@@ -42,6 +44,10 @@ void	ft_init_game(t_game_data *game)
 	ft_init_sprite_loop(game->idle_exit, 6);
 	ft_init_sprite_loop(game->run_r, 8);
 	ft_init_sprite_loop(game->run_l, 8);
+	ft_init_sprite_loop(game->jump_u, 12);
+	ft_init_sprite_loop(game->jump_d, 12);
+	ft_init_sprite_loop(game->enemy, 5);
+	ft_init_sprite_loop(game->gui, 3);
 	ft_init_sprite_loop(game->gem, 5);
 	ft_init_sprite_loop(game->sign, 11);
 }
@@ -84,8 +90,8 @@ void	ft_init_mlx(t_game_data *game)
 	w_height = game->map.ysize * TILE;
 	game->mlx.ptr = mlx_init();
 	if (!game->mlx.ptr)
-		return (ft_clean_exit(game, EXIT_FAILURE));
+		return (ft_putstr_quit(game, "Error\nMlx init fail", EXIT_FAILURE));
 	game->mlx.win = mlx_new_window(game->mlx.ptr, w_widht, w_height, "So long");
 	if (!game->mlx.win)
-		return (ft_clean_exit(game, EXIT_FAILURE));
+		return (ft_putstr_quit(game, "Error\nNew window fail", EXIT_FAILURE));
 }

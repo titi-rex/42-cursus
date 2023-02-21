@@ -6,7 +6,7 @@
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/18 14:04:48 by tlegrand          #+#    #+#             */
-/*   Updated: 2023/02/21 00:51:13 by tlegrand         ###   ########.fr       */
+/*   Updated: 2023/02/21 16:18:43 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,14 +31,14 @@ void	ft_destroy_sprite(t_game_data *game)
 	ft_destroy_sprite_loop(game, game->idle_exit, 6);
 	ft_destroy_sprite_loop(game, game->run_r, 8);
 	ft_destroy_sprite_loop(game, game->run_l, 8);
+	ft_destroy_sprite_loop(game, game->jump_u, 12);
+	ft_destroy_sprite_loop(game, game->jump_d, 12);
 	ft_destroy_sprite_loop(game, game->gem, 5);
 	ft_destroy_sprite_loop(game, game->sign, 11);
+	ft_destroy_sprite_loop(game, game->gui, 3);
+	ft_destroy_sprite_loop(game, game->wall, 2);
 	if (game->floor.id)
 		mlx_destroy_image(game->mlx.ptr, game->floor.id);
-	if (game->wall[0].id)
-		mlx_destroy_image(game->mlx.ptr, game->wall[0].id);
-	if (game->wall[1].id)
-		mlx_destroy_image(game->mlx.ptr, game->wall[1].id);
 	if (game->exit.id)
 		mlx_destroy_image(game->mlx.ptr, game->exit.id);
 }

@@ -6,7 +6,7 @@
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/16 18:03:45 by tlegrand          #+#    #+#             */
-/*   Updated: 2023/02/20 15:11:52 by tlegrand         ###   ########.fr       */
+/*   Updated: 2023/02/21 13:46:42 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,8 +72,8 @@ void	ft_init_mlx(t_game_data *game)
 	w_height = game->map.ysize * TILE;
 	game->mlx.ptr = mlx_init();
 	if (!game->mlx.ptr)
-		return (ft_clean_exit(game, EXIT_FAILURE));
+		return (ft_putstr_quit(game, "Error\nMlx init fail", EXIT_FAILURE));
 	game->mlx.win = mlx_new_window(game->mlx.ptr, w_widht, w_height, "So long");
 	if (!game->mlx.win)
-		return (ft_clean_exit(game, EXIT_FAILURE));
+		return (ft_putstr_quit(game, "Error\nNew window fail", EXIT_FAILURE));
 }

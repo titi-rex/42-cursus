@@ -6,11 +6,61 @@
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/21 00:59:26 by tlegrand          #+#    #+#             */
-/*   Updated: 2023/02/21 01:03:30 by tlegrand         ###   ########.fr       */
+/*   Updated: 2023/02/21 16:16:54 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/so_long_bonus.h"
+
+int	ft_init_sprite_jump_u(t_mlx *mlx, t_sprite jump_u[12])
+{
+	int	tmp;
+
+	jump_u[0].id = mlx_xpm_file_to_image(mlx->ptr, JUMP_U0, &tmp, &tmp);
+	jump_u[1].id = mlx_xpm_file_to_image(mlx->ptr, JUMP_U1, &tmp, &tmp);
+	jump_u[2].id = mlx_xpm_file_to_image(mlx->ptr, JUMP_U2, &tmp, &tmp);
+	jump_u[3].id = mlx_xpm_file_to_image(mlx->ptr, JUMP_U3, &tmp, &tmp);
+	if (!jump_u[0].id || !jump_u[1].id || !jump_u[2].id || !jump_u[3].id)
+		return (1);
+	jump_u[4].id = mlx_xpm_file_to_image(mlx->ptr, JUMP_U4, &tmp, &tmp);
+	jump_u[5].id = mlx_xpm_file_to_image(mlx->ptr, JUMP_U5, &tmp, &tmp);
+	jump_u[6].id = mlx_xpm_file_to_image(mlx->ptr, JUMP_U6, &tmp, &tmp);
+	jump_u[7].id = mlx_xpm_file_to_image(mlx->ptr, JUMP_U7, &tmp, &tmp);
+	if (!jump_u[4].id || !jump_u[5].id || !jump_u[6].id || !jump_u[7].id)
+		return (1);
+	jump_u[8].id = mlx_xpm_file_to_image(mlx->ptr, JUMP_U8, &tmp, &tmp);
+	jump_u[9].id = mlx_xpm_file_to_image(mlx->ptr, JUMP_U9, &tmp, &tmp);
+	jump_u[10].id = mlx_xpm_file_to_image(mlx->ptr, JUMP_U10, &tmp, &tmp);
+	jump_u[11].id = mlx_xpm_file_to_image(mlx->ptr, JUMP_U11, &tmp, &tmp);
+	if (!jump_u[8].id || !jump_u[9].id || !jump_u[10].id || !jump_u[11].id)
+		return (1);
+	return (0);
+}
+
+int	ft_init_sprite_jump_d(t_mlx *mlx, t_sprite jump_l[12])
+{
+	int	tmp;
+
+	jump_l[0].id = mlx_xpm_file_to_image(mlx->ptr, JUMP_D0, &tmp, &tmp);
+	jump_l[1].id = mlx_xpm_file_to_image(mlx->ptr, JUMP_D1, &tmp, &tmp);
+	jump_l[2].id = mlx_xpm_file_to_image(mlx->ptr, JUMP_D2, &tmp, &tmp);
+	jump_l[3].id = mlx_xpm_file_to_image(mlx->ptr, JUMP_D3, &tmp, &tmp);
+	if (!jump_l[0].id || !jump_l[1].id || !jump_l[2].id || !jump_l[3].id)
+		return (1);
+	jump_l[4].id = mlx_xpm_file_to_image(mlx->ptr, JUMP_D4, &tmp, &tmp);
+	jump_l[5].id = mlx_xpm_file_to_image(mlx->ptr, JUMP_D5, &tmp, &tmp);
+	jump_l[6].id = mlx_xpm_file_to_image(mlx->ptr, JUMP_D6, &tmp, &tmp);
+	jump_l[7].id = mlx_xpm_file_to_image(mlx->ptr, JUMP_D7, &tmp, &tmp);
+	if (!jump_l[4].id || !jump_l[5].id || !jump_l[6].id || !jump_l[7].id)
+		return (1);
+	jump_l[8].id = mlx_xpm_file_to_image(mlx->ptr, JUMP_D8, &tmp, &tmp);
+	jump_l[9].id = mlx_xpm_file_to_image(mlx->ptr, JUMP_D9, &tmp, &tmp);
+	jump_l[10].id = mlx_xpm_file_to_image(mlx->ptr, JUMP_D10, &tmp, &tmp);
+	jump_l[11].id = mlx_xpm_file_to_image(mlx->ptr, JUMP_D11, &tmp, &tmp);
+	if (!jump_l[8].id || !jump_l[9].id || !jump_l[10].id || !jump_l[11].id)
+		return (1);
+	return (0);
+}
 
 int	ft_init_sprite_sign(t_mlx *mlx, t_sprite sign[5])
 {
@@ -56,7 +106,7 @@ void	ft_init_sprite(t_game_data *game)
 	game->wall[1].id = mlx_xpm_file_to_image(game->mlx.ptr, WALL2, &tmp, &tmp);
 	game->floor.id = mlx_xpm_file_to_image(game->mlx.ptr, FLOOR, &tmp, &tmp);
 	game->exit.id = mlx_xpm_file_to_image(game->mlx.ptr, EXIT_C, &tmp, &tmp);
-	if (!game->floor.id || !game->wall[0].id \
-		|| !game->exit.id || !game->wall[0].id)
+	if (!game->floor.id || !game->wall[0].id || !game->exit.id || \
+			!game->wall[0].id)
 		ft_putstr_quit(game, "Error\nCan't load sprites", EXIT_FAILURE);
 }

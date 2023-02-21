@@ -6,62 +6,72 @@
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/20 16:25:43 by tlegrand          #+#    #+#             */
-/*   Updated: 2023/02/21 01:02:09 by tlegrand         ###   ########.fr       */
+/*   Updated: 2023/02/21 17:04:56 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/so_long_bonus.h"
 
-int	ft_randint(int min, int max)
+int	ft_randuint(int min, int max, int *err)
 {
-	int	fd;
-	int	c;
+	unsigned int	c;
+	int				fd;
 
+	c = 0;
 	fd = open("/dev/urandom", O_RDONLY);
 	if (fd == -1)
-		return (0);
-	read(fd, &c, 1);
-	close (fd);
-	return (c % max + min);
+		*err = 0;
+	else
+	{
+		if (read(fd, &c, 1) == -1)
+			*err = 0;
+		close (fd);
+	}
+	return (c % (max - min) + min);
 }
 
-void	ft_init_enemy_secure(t_map *map)
+void	ft_init_enemy_secure(t_game_data *game)
 {
 	int	i;
 	int	j;
 
 	i = 0;
-	while (i < map->ysize)
+	while (i < game->map.ysize)
 	{
 		j = 0;
-		while (j < map->xsize)
+		while (j < game->map.xsize)
 		{
-			if (map->layout[i][j] == '0')
-				map->layout[i][j] = 'E';
+			if (game->map.layout[i][j] == '0')
+			{
+				game->pos_b[0] = i;
+				game->pos_b[1] = j;
+				return ;
+			}
 			j++;
 		}
 		i++;
 	}
 }
 
-void	ft_init_enemy(t_map *map, int *badguys)
+void	ft_init_enemy(t_game_data *game)
 {
 	int	i;
 	int	j;
 	int	wit;
 
-	if (!*badguys)
+	if (!game->badguys)
 		return ;
 	i = 0;
 	j = 0;
-	wit = 0;
-	while (map->layout[i][j] != '0')
+	wit = 50;
+	while (game->map.layout[i][j] != '0')
 	{
-		i = ft_randint(1, map->ysize);
-		j = ft_randint(1, map->xsize);
-		wit++;
-		if (wit > 50)
-			return ((void) ft_init_enemy_secure(map));
+		i = ft_randuint(1, game->map.ysize, &wit);
+		j = ft_randuint(1, game->map.xsize, &wit);
+		wit--;
+		if (wit <= 0)
+			return ((void) ft_init_enemy_secure(game));
 	}
-	map->layout[i][j] = 'E';
+	game->pos_b[0] = i;
+	game->pos_b[1] = j;
 }
