@@ -6,7 +6,7 @@
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/19 20:16:07 by tlegrand          #+#    #+#             */
-/*   Updated: 2023/02/22 13:46:29 by tlegrand         ###   ########.fr       */
+/*   Updated: 2023/02/22 17:45:16 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,8 +65,8 @@ void	ft_credit(void)
 }
 
 /*
-patrol ennemie
 ecran fin
+remplacer operateur aritmetiaue par bitwise (/2 bitshift 1)
 pause when unfocus
 
 

@@ -6,7 +6,7 @@
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/20 16:25:43 by tlegrand          #+#    #+#             */
-/*   Updated: 2023/02/22 13:32:21 by tlegrand         ###   ########.fr       */
+/*   Updated: 2023/02/22 16:55:57 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,8 +66,8 @@ void	ft_init_enemy(t_game_data *game)
 	wit = 50;
 	while (game->map.layout[i][j] != '0')
 	{
-		i = ft_randuint(1, game->map.ysize, &wit);
-		j = ft_randuint(1, game->map.xsize, &wit);
+		i = ft_randuint(1, game->map.ysize - 2, &wit);
+		j = ft_randuint(1, game->map.xsize - 2, &wit);
 		wit--;
 		if (wit <= 0)
 			return ((void) ft_init_enemy_secure(game));
@@ -76,9 +76,21 @@ void	ft_init_enemy(t_game_data *game)
 	game->pos_b[1] = j;
 }
 
+int	ft_move_authorize_enemy(t_map *map, int pos[2], int axis, int dir)
+{
+	int	tmp[2];
+
+	tmp[0] = pos[0];
+	tmp[1] = pos[1];
+	tmp[axis] += dir;
+	if (map->layout[tmp[0]][tmp[1]] == '1' || map->layout[tmp[0]][tmp[1]] == 'E')
+		return (1);
+	return (0);
+}
+
 void	ft_move_enemy(t_game_data *game, int axis, int dir)
 {
-	if (ft_move_authorize(game->map.layout, game->pos_b, axis, dir))
+	if (ft_move_authorize_enemy(&game->map, game->pos_b, axis, dir))
 		return ;
 	if (game->map.layout[game->pos_b[0]][game->pos_b[1]] == 'E')
 		ft_display_tile(&game->mlx, &game->exit, game->pos_b[1], \
@@ -95,11 +107,14 @@ void	ft_move_enemy(t_game_data *game, int axis, int dir)
 	ft_is_lost(game);
 }
 
+
 void	ft_select_move_enemy(t_game_data *game)
 {
 	int	dir;
 	int	err;
 
+	if (game->pause)
+		return ;
 	err = 1;
 	dir = ft_randuint(1, 4, &err);
 	if (err == 0)

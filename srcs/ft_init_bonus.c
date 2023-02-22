@@ -6,7 +6,7 @@
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/16 18:03:45 by tlegrand          #+#    #+#             */
-/*   Updated: 2023/02/21 23:34:32 by tlegrand         ###   ########.fr       */
+/*   Updated: 2023/02/22 17:49:40 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,8 @@ void	ft_init_game(t_game_data *game)
 	game->pos[1] = 0;
 	game->pos_e[0] = 0;
 	game->pos_e[1] = 0;
+	game->pos_b[0] = 0;
+	game->pos_b[1] = 0;
 	game->move = 0;
 	game->badguys = 0;
 	game->pause = 0;
@@ -40,7 +42,7 @@ void	ft_init_game(t_game_data *game)
 	game->wall[1].id = NULL;
 	game->exit.id = NULL;
 	ft_init_sprite_loop(game->idle, 6);
-	ft_init_sprite_loop(game->idle_exit, 6);
+	ft_init_sprite_loop(game->dead, 6);
 	ft_init_sprite_loop(game->run_r, 8);
 	ft_init_sprite_loop(game->run_l, 8);
 	ft_init_sprite_loop(game->jump, 12);

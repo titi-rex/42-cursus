@@ -6,7 +6,7 @@
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/19 20:07:38 by tlegrand          #+#    #+#             */
-/*   Updated: 2023/02/22 00:46:55 by tlegrand         ###   ########.fr       */
+/*   Updated: 2023/02/22 17:49:23 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@ typedef struct s_game
 	t_sprite	gui[3];
 	t_sprite	sign[11];
 	t_sprite	idle[6];
-	t_sprite	idle_exit[6];
+	t_sprite	dead[6];
 	t_sprite	run_r[8];
 	t_sprite	run_l[8];
 	t_sprite	jump[12];
@@ -192,7 +192,7 @@ void	ft_display_move(t_game_data *game);
 
 # define GUI1	"sprites/victory_banner.xpm"
 # define GUI2	"sprites/loose_banner.xpm"
-# define GUI3	"sprites/bigbanner.xpm"
+# define GUI3	"sprites/gui_banner.xpm"
 
 # define FLOOR	"sprites/grass_1.xpm"
 # define WALL1	"sprites/tree_1.xpm"

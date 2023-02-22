@@ -6,7 +6,7 @@
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/21 00:59:26 by tlegrand          #+#    #+#             */
-/*   Updated: 2023/02/21 23:31:54 by tlegrand         ###   ########.fr       */
+/*   Updated: 2023/02/22 17:50:00 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,8 +83,8 @@ void	ft_init_sprite(t_game_data *game)
 
 	if (ft_init_sprite_idle(&game->mlx, game->idle))
 		ft_putstr_quit(game, "Error\nCan't load idle sprites", EXIT_FAILURE);
-	if (ft_init_sprite_idle_exit(&game->mlx, game->idle_exit))
-		ft_putstr_quit(game, "Error\nCan't load idle_e sprites", EXIT_FAILURE);
+	// if (ft_init_sprite_dead(&game->mlx, game->dead))
+	// 	ft_putstr_quit(game, "Error\nCan't load dead sprites", EXIT_FAILURE);
 	if (ft_init_sprite_run_r(&game->mlx, game->run_r))
 		ft_putstr_quit(game, "Error\nCan't load run_r sprites", EXIT_FAILURE);
 	if (ft_init_sprite_run_l(&game->mlx, game->run_l))
@@ -97,6 +97,8 @@ void	ft_init_sprite(t_game_data *game)
 		ft_putstr_quit(game, "Error\nCan't load enemy sprites", EXIT_FAILURE);
 	if (ft_init_sprite_sign(&game->mlx, game->sign))
 		ft_putstr_quit(game, "Error\nCan't load sign sprites", EXIT_FAILURE);
+	if (ft_init_sprite_gui(&game->mlx, game->gui))
+		ft_putstr_quit(game, "Error\nCan't load gui sprites", EXIT_FAILURE);
 	game->wall[0].id = mlx_xpm_file_to_image(game->mlx.ptr, WALL1, &tmp, &tmp);
 	game->wall[1].id = mlx_xpm_file_to_image(game->mlx.ptr, WALL2, &tmp, &tmp);
 	game->floor.id = mlx_xpm_file_to_image(game->mlx.ptr, FLOOR, &tmp, &tmp);
