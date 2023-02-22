@@ -6,7 +6,7 @@
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/20 16:25:43 by tlegrand          #+#    #+#             */
-/*   Updated: 2023/02/22 00:42:26 by tlegrand         ###   ########.fr       */
+/*   Updated: 2023/02/22 13:32:21 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ int	ft_randuint(int min, int max, int *err)
 			*err = 0;
 		close (fd);
 	}
-	return (c % (max - min) + min);
+	return (c % (max + 1 - min) + min);
 }
 
 void	ft_init_enemy_secure(t_game_data *game)
