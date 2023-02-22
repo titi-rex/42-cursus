@@ -6,7 +6,7 @@
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/21 00:59:26 by tlegrand          #+#    #+#             */
-/*   Updated: 2023/02/22 17:50:00 by tlegrand         ###   ########.fr       */
+/*   Updated: 2023/02/22 21:48:38 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,8 +83,8 @@ void	ft_init_sprite(t_game_data *game)
 
 	if (ft_init_sprite_idle(&game->mlx, game->idle))
 		ft_putstr_quit(game, "Error\nCan't load idle sprites", EXIT_FAILURE);
-	// if (ft_init_sprite_dead(&game->mlx, game->dead))
-	// 	ft_putstr_quit(game, "Error\nCan't load dead sprites", EXIT_FAILURE);
+	if (ft_init_sprite_dead(&game->mlx, game->dead))
+		ft_putstr_quit(game, "Error\nCan't load dead sprites", EXIT_FAILURE);
 	if (ft_init_sprite_run_r(&game->mlx, game->run_r))
 		ft_putstr_quit(game, "Error\nCan't load run_r sprites", EXIT_FAILURE);
 	if (ft_init_sprite_run_l(&game->mlx, game->run_l))

@@ -6,7 +6,7 @@
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/18 13:55:37 by tlegrand          #+#    #+#             */
-/*   Updated: 2023/02/22 13:47:05 by tlegrand         ###   ########.fr       */
+/*   Updated: 2023/02/22 21:15:56 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ void	ft_choose_tile(t_game_data *game, int x, int y)
 	else if (game->map.layout[y][x] == 'C')
 		ft_display_tile(&game->mlx, &game->gem[x % 3 + y % 3], x, y);
 	else if (game->map.layout[y][x] == '1')
-		ft_display_tile(&game->mlx, &game->wall[(x / 2 + y / 2) % 2], x, y);
+		ft_display_tile(&game->mlx, &game->wall[(x + (y >> 1)) % 2], x, y);
 	else if (game->map.layout[y][x] == 'E')
 		ft_display_tile(&game->mlx, &game->exit, x, y);
 }

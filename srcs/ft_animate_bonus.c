@@ -6,7 +6,7 @@
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/20 11:41:10 by tlegrand          #+#    #+#             */
-/*   Updated: 2023/02/22 17:41:38 by tlegrand         ###   ########.fr       */
+/*   Updated: 2023/02/22 22:17:18 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,13 @@ void	ft_animate_idle(t_game_data *game)
 	static int	i;
 
 	if (i % 10000 == 0)
+	{
 		ft_display_tile(&game->mlx, &game->idle[i / 10000], \
 			game->pos[1], game->pos[0]);
+		if (i <= 30000)
+			ft_display_tile(&game->mlx, &game->enemy[i / 10000], \
+				game->pos_b[1], game->pos_b[0]);
+	}
 	i++;
 	if (i >= 60000)
 		i = 0;

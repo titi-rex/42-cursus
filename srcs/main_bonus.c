@@ -6,7 +6,7 @@
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/19 20:16:07 by tlegrand          #+#    #+#             */
-/*   Updated: 2023/02/22 17:45:16 by tlegrand         ###   ########.fr       */
+/*   Updated: 2023/02/22 21:00:09 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,6 +66,7 @@ void	ft_credit(void)
 
 /*
 ecran fin
+animation idle enemy
 remplacer operateur aritmetiaue par bitwise (/2 bitshift 1)
 pause when unfocus
 
@@ -74,9 +75,7 @@ animation : etoile yeux qund collect recuper et tous recup
 animation + physique vent
 
 sprites a faire : 
--mouvement retouche
 -GUI fin/pause
--enemy
 
 -etoiles yeux
 */

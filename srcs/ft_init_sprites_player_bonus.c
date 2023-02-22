@@ -6,7 +6,7 @@
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/18 14:02:52 by tlegrand          #+#    #+#             */
-/*   Updated: 2023/02/21 21:37:33 by tlegrand         ###   ########.fr       */
+/*   Updated: 2023/02/22 21:48:00 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,19 +29,19 @@ int	ft_init_sprite_idle(t_mlx *mlx, t_sprite idle[6])
 	return (0);
 }
 
-int	ft_init_sprite_idle_exit(t_mlx *mlx, t_sprite idle_exit[6])
+int	ft_init_sprite_dead(t_mlx *mlx, t_sprite dead[6])
 {
 	int	tmp;
 
-	idle_exit[0].id = mlx_xpm_file_to_image(mlx->ptr, IDLE_EXIT1, &tmp, &tmp);
-	idle_exit[1].id = mlx_xpm_file_to_image(mlx->ptr, IDLE_EXIT2, &tmp, &tmp);
-	idle_exit[2].id = mlx_xpm_file_to_image(mlx->ptr, IDLE_EXIT3, &tmp, &tmp);
-	if (!idle_exit[0].id || !idle_exit[1].id || !idle_exit[2].id)
+	dead[0].id = mlx_xpm_file_to_image(mlx->ptr, DEAD1, &tmp, &tmp);
+	dead[1].id = mlx_xpm_file_to_image(mlx->ptr, DEAD2, &tmp, &tmp);
+	dead[2].id = mlx_xpm_file_to_image(mlx->ptr, DEAD3, &tmp, &tmp);
+	if (!dead[0].id || !dead[1].id || !dead[2].id)
 		return (1);
-	idle_exit[3].id = mlx_xpm_file_to_image(mlx->ptr, IDLE_EXIT4, &tmp, &tmp);
-	idle_exit[4].id = mlx_xpm_file_to_image(mlx->ptr, IDLE_EXIT5, &tmp, &tmp);
-	idle_exit[5].id = mlx_xpm_file_to_image(mlx->ptr, IDLE_EXIT6, &tmp, &tmp);
-	if (!idle_exit[3].id || !idle_exit[4].id || !idle_exit[5].id)
+	dead[3].id = mlx_xpm_file_to_image(mlx->ptr, DEAD4, &tmp, &tmp);
+	dead[4].id = mlx_xpm_file_to_image(mlx->ptr, DEAD5, &tmp, &tmp);
+	dead[5].id = mlx_xpm_file_to_image(mlx->ptr, DEAD6, &tmp, &tmp);
+	if (!dead[3].id || !dead[4].id || !dead[5].id)
 		return (1);
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/19 20:07:38 by tlegrand          #+#    #+#             */
-/*   Updated: 2023/02/22 17:49:23 by tlegrand         ###   ########.fr       */
+/*   Updated: 2023/02/22 22:04:41 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,7 +105,7 @@ int		ft_stop(t_game_data *game);
 # endif
 
 int		ft_init_sprite_idle(t_mlx *mlx, t_sprite idle[6]);
-int		ft_init_sprite_idle_exit(t_mlx *mlx, t_sprite idle_exit[6]);
+int		ft_init_sprite_dead(t_mlx *mlx, t_sprite dead[6]);
 int		ft_init_sprite_run_r(t_mlx *mlx, t_sprite run_r[6]);
 int		ft_init_sprite_run_l(t_mlx *mlx, t_sprite run_l[6]);
 int		ft_init_sprite_jump(t_mlx *mlx, t_sprite jump[12]);
@@ -122,6 +122,10 @@ void	ft_move(t_game_data *game, int axis, int dir);
 void	ft_select_move_enemy(t_game_data *game);
 void	ft_display_move(t_game_data *game);
 
+
+# define BLOOD 0xC7003F
+# define PEACE 0x69F0C5
+
 # define IDLE1	"sprites/idle_1.xpm"
 # define IDLE2	"sprites/idle_2.xpm"
 # define IDLE3	"sprites/idle_3.xpm"
@@ -129,12 +133,12 @@ void	ft_display_move(t_game_data *game);
 # define IDLE5	"sprites/idle_5.xpm"
 # define IDLE6	"sprites/idle_6.xpm"
 
-# define IDLE_EXIT1	"sprites/idle_1_exit.xpm"
-# define IDLE_EXIT2	"sprites/idle_2_exit.xpm"
-# define IDLE_EXIT3	"sprites/idle_3_exit.xpm"
-# define IDLE_EXIT4	"sprites/idle_4_exit.xpm"
-# define IDLE_EXIT5	"sprites/idle_5_exit.xpm"
-# define IDLE_EXIT6	"sprites/idle_6_exit.xpm"
+# define DEAD1	"sprites/dead_circle_1.xpm"
+# define DEAD2	"sprites/dead_circle_2.xpm"
+# define DEAD3	"sprites/dead_circle_3.xpm"
+# define DEAD4	"sprites/dead_circle_4.xpm"
+# define DEAD5	"sprites/dead_circle_5.xpm"
+# define DEAD6	"sprites/dead_circle_6.xpm"
 
 # define RUN_R1	"sprites/run_r_1.xpm"
 # define RUN_R2	"sprites/run_r_2.xpm"
@@ -190,9 +194,9 @@ void	ft_display_move(t_game_data *game);
 # define BAD3	"sprites/head_3.xpm"
 # define BAD4	"sprites/head_4.xpm"
 
-# define GUI1	"sprites/victory_banner.xpm"
-# define GUI2	"sprites/loose_banner.xpm"
-# define GUI3	"sprites/gui_banner.xpm"
+# define GUI1	"sprites/goodend_msg.xpm"
+# define GUI2	"sprites/badend_msg.xpm"
+# define GUI3	"sprites/peace.xpm"
 
 # define FLOOR	"sprites/grass_1.xpm"
 # define WALL1	"sprites/tree_1.xpm"
