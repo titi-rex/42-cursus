@@ -6,7 +6,7 @@
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/11 14:30:36 by tlegrand          #+#    #+#             */
-/*   Updated: 2023/02/16 14:34:02 by tlegrand         ###   ########.fr       */
+/*   Updated: 2023/02/22 18:30:47 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,8 @@ void	ft_cmd_exe(t_pipex *cmd_l, int i, int fd_in, int fd_out)
 	{
 		if (fd_in != -1 && fd_out != -1)
 		{
-			dup2(fd_in, 0);
-			dup2(fd_out, 1);
+			if (dup2(fd_in, 0) == -1 || dup2(fd_out, 1) == -1)
+				ft_putendl_fd("Error\nDup2 fail", 2);
 			ft_close(cmd_l);
 			if (!cmd_l->cmds[i][0])
 				ft_clean_exit(cmd_l, EXIT_FAILURE);

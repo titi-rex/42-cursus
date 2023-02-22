@@ -6,7 +6,7 @@
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/25 14:36:03 by tlegrand          #+#    #+#             */
-/*   Updated: 2023/02/16 14:37:40 by tlegrand         ###   ########.fr       */
+/*   Updated: 2023/02/22 18:14:53 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,8 +36,3 @@ static void	ft_man(void)
 	ft_printf("Like that : ./pipex input_file cmd1 cmd2 output_file\n");
 	exit(EXIT_SUCCESS);
 }
-
-/*
-check beavior whem infile is a directoy
-*********************************
-*/
