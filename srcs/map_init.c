@@ -6,7 +6,7 @@
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/20 15:16:51 by tlegrand          #+#    #+#             */
-/*   Updated: 2023/02/20 16:34:47 by tlegrand         ###   ########.fr       */
+/*   Updated: 2023/02/23 12:13:06 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,27 @@
 
 int	ft_check_path(t_map *map)
 {
-	ft_backtrack(map, 1, 1);
-	if (map->count[1] == 0 && map->count[2] == 0)
-		return (1);
-	return (0);
+	int	i;
+	int	j;
+
+	i = 1;
+	while (i < map->ysize - 1)
+	{
+		j = 1;
+		while (j < map->xsize - 1)
+		{
+			if (map->layout[i][j] == 'P')
+			{
+				ft_backtrack(map, i, j);
+				if (map->count[1] == 0 && map->count[2] == 0)
+					return (1);
+				return (0);
+			}
+			j++;
+		}
+		i++;
+	}
+	return (-1);
 }
 
 void	ft_mapcpy(t_map *src, t_map *dst)

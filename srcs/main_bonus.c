@@ -6,7 +6,7 @@
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/19 20:16:07 by tlegrand          #+#    #+#             */
-/*   Updated: 2023/02/22 21:00:09 by tlegrand         ###   ########.fr       */
+/*   Updated: 2023/02/23 13:38:58 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,9 +31,10 @@ int	main(int argc, char **argv)
 		ft_init_enemy(&game);
 	}
 	ft_display_all(&game);
-	mlx_loop_hook(game.mlx.ptr, ft_animate_loop, &game);
+	mlx_loop_hook(game.mlx.ptr, ft_hook_loop, &game);
 	mlx_hook(game.mlx.win, KeyPress, KeyPressMask, ft_hook_key, &game);
-	mlx_hook(game.mlx.win, DestroyNotify, StructureNotifyMask, ft_stop, &game);
+	mlx_hook(game.mlx.win, DestroyNotify, StructureNotifyMask, ft_hook_stop, \
+		&game);
 	mlx_loop(game.mlx.ptr);
 	ft_clean_exit(&game, EXIT_FAILURE);
 	return (0);

@@ -6,7 +6,7 @@
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/17 17:33:16 by tlegrand          #+#    #+#             */
-/*   Updated: 2023/02/22 22:03:37 by tlegrand         ###   ########.fr       */
+/*   Updated: 2023/02/23 13:53:21 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,28 @@ int	ft_move_authorize_player(t_map *map, int pos[2], int axis, int dir)
 	return (0);
 }
 
+void	ft_curtains(t_game_data *game, void *id, t_sprite *end)
+{
+	int	i;
+	int	j;
+
+	i = 0;
+	while (i < game->map.ysize)
+	{
+		j = 0;
+		while (j < game->map.xsize)
+		{
+			if (i == game->pos[0] && j == game->pos[1])
+				ft_display_tile(&game->mlx, end, j, i);
+			else
+				mlx_put_image_to_window(game->mlx.ptr, game->mlx.win, id, \
+					j * TILE, i * TILE);
+			j++;
+		}
+		i++;
+	}
+}
+
 void	ft_is_lost(t_game_data *game)
 {
 	t_img	end;
@@ -33,33 +55,45 @@ void	ft_is_lost(t_game_data *game)
 	if (game->pos[0] == game->pos_b[0] && game->pos[1] == game->pos_b[1])
 	{
 		game->pause = 1;
-		end.id = mlx_new_image(game->mlx.ptr, TILE, TILE);
+		end.height = TILE;
+		end.width = TILE;
+		end.id = mlx_new_image(game->mlx.ptr, end.width, end.height);
 		if (end.id)
 		{
-			end.height = game->map.ysize;
-			end.width = game->map.xsize;
-			end.addr = mlx_get_data_addr(end.id, &end.bbp, &end.line, &end.endian);
+			end.addr = mlx_get_data_addr(end.id, &end.bbp, &end.line, \
+				&end.endian);
 			ft_img_fill(&end, BLOOD);
-			ft_putendl_fd("end filled", 2);
-			mlx_put_image_to_window(game->mlx.ptr, game->mlx.win, end.id, 10, 10);
+			ft_curtains(game, end.id, &game->dead[0]);
 		}
-		else
-			ft_putendl_fd("error badend img", 2);
-		ft_display_tile(&game->mlx, &game->dead[5], game->pos[1], game->pos[0]);
-		ft_display_tile(&game->mlx, &game->gui[1], game->map.xsize >> 1, game->map.ysize / 2);
+		ft_animate_dead(game);
+		ft_display_tile(&game->mlx, &game->gui[1], game->pos[1], \
+			game->pos[0] - 1);
 		ft_putstr_fd("\nSad.. U let this poor cat die..", 1);
 	}
 }
 
 void	ft_is_win(t_game_data *game)
 {
+	t_img	end;
+
 	if (game->map.count[1] != 0)
 		return ;
 	if (game->map.layout[game->pos[0]][game->pos[1]] == 'E')
 	{
 		game->pause = 1;
+		end.height = TILE;
+		end.width = TILE;
+		end.id = mlx_new_image(game->mlx.ptr, end.width, end.height);
+		if (end.id)
+		{
+			end.addr = mlx_get_data_addr(end.id, &end.bbp, &end.line, \
+				&end.endian);
+			ft_img_fill(&end, PEACE);
+			ft_curtains(game, end.id, &game->gui[2]);
+		}
 		ft_display_tile(&game->mlx, &game->gui[2], game->pos[1], game->pos[0]);
-		ft_display_tile(&game->mlx, &game->gui[0], game->map.xsize / 2, game->map.ysize / 2);
+		ft_display_tile(&game->mlx, &game->gui[0], game->map.xsize >> 1, \
+			game->map.ysize >> 1);
 		ft_putstr_fd("\nCongrats! U win the game!", 1);
 	}
 }

@@ -6,7 +6,7 @@
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/20 11:41:10 by tlegrand          #+#    #+#             */
-/*   Updated: 2023/02/22 22:17:18 by tlegrand         ###   ########.fr       */
+/*   Updated: 2023/02/23 13:49:03 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,19 @@ void	ft_animate_idle(t_game_data *game)
 	i++;
 	if (i >= 60000)
 		i = 0;
+}
+
+void	ft_animate_dead(t_game_data *game)
+{
+	int	i;
+
+	i = 0;
+	while (i <= 100000)
+	{
+		ft_display_tile(&game->mlx, &game->dead[i / 20000], game->pos[1], \
+			game->pos[0]);
+		i++;
+	}
 }
 
 void	ft_animate_run(t_game_data *game, t_sprite *sprite, int dir)

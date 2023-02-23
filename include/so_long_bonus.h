@@ -6,7 +6,7 @@
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/19 20:07:38 by tlegrand          #+#    #+#             */
-/*   Updated: 2023/02/22 22:04:41 by tlegrand         ###   ########.fr       */
+/*   Updated: 2023/02/23 13:38:28 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,7 +97,8 @@ void	ft_init_enemy(t_game_data *game);
 
 void	ft_init_mlx(t_game_data *game);
 int		ft_hook_key(int keycode, t_game_data *game);
-int		ft_stop(t_game_data *game);
+int		ft_hook_loop(t_game_data *game);
+int		ft_hook_stop(t_game_data *game);
 
 /*	==========	sprite and image	==========	*/
 # ifndef TILE
@@ -115,7 +116,8 @@ void	ft_display_tile(t_mlx *mlx, t_sprite *tile, int x, int y);
 void	ft_display_all(t_game_data *game);
 void	ft_display_exit_open(t_game_data *game);
 void	ft_animate_idle(t_game_data *game);
-int		ft_animate_loop(t_game_data *game);
+void	ft_animate_dead(t_game_data *game);
+
 void	ft_animate_run(t_game_data *game, t_sprite *sprite, int dir);
 void	ft_animate_jump(t_game_data *game, t_sprite *sprite, int dir);
 void	ft_move(t_game_data *game, int axis, int dir);

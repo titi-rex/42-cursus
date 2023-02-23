@@ -6,7 +6,7 @@
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/18 13:55:37 by tlegrand          #+#    #+#             */
-/*   Updated: 2023/02/22 21:15:56 by tlegrand         ###   ########.fr       */
+/*   Updated: 2023/02/23 13:14:55 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,6 +66,8 @@ void	ft_display_move(t_game_data *game)
 {
 	int	m;
 
+	if (game->pause)
+		return ;
 	mlx_put_image_to_window(game->mlx.ptr, game->mlx.win, game->sign[10].id, \
 		0, 0);
 	m = game->move % 1000;

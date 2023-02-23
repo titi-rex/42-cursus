@@ -6,7 +6,7 @@
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/20 11:21:57 by tlegrand          #+#    #+#             */
-/*   Updated: 2023/02/22 17:39:47 by tlegrand         ###   ########.fr       */
+/*   Updated: 2023/02/23 13:38:53 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,14 +32,14 @@ int	ft_hook_key(int keycode, t_game_data *game)
 	return (0);
 }
 
-int	ft_stop(t_game_data *game)
+int	ft_hook_stop(t_game_data *game)
 {
 	ft_credit();
 	ft_putstr_quit(game, NULL, EXIT_SUCCESS);
 	return (0);
 }
 
-int	ft_animate_loop(t_game_data *game)
+int	ft_hook_loop(t_game_data *game)
 {
 	if (!game->pause)
 		ft_animate_idle(game);
