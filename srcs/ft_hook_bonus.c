@@ -6,7 +6,7 @@
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/20 11:21:57 by tlegrand          #+#    #+#             */
-/*   Updated: 2023/02/23 13:38:53 by tlegrand         ###   ########.fr       */
+/*   Updated: 2023/02/23 14:39:10 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,8 @@ int	ft_hook_key(int keycode, t_game_data *game)
 	}
 	if (game->pause)
 		return (0);
+	if (keycode == 32)
+		ft_select_move_enemy(game);
 	if (keycode == UP)
 		ft_move(game, 0, -1);
 	if (keycode == DOWN)
