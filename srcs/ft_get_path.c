@@ -6,7 +6,7 @@
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/11 14:20:18 by tlegrand          #+#    #+#             */
-/*   Updated: 2023/02/21 14:25:05 by tlegrand         ###   ########.fr       */
+/*   Updated: 2023/02/23 11:03:52 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,6 +63,8 @@ void	ft_get_path(char *pathvar, t_pipex *cmd_line)
 	char	**paths;
 	int		i;
 
+	if (!pathvar)
+		return ;
 	while (*pathvar != '/')
 		pathvar++;
 	paths = ft_split_path(pathvar);
