@@ -6,29 +6,11 @@
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/20 16:25:43 by tlegrand          #+#    #+#             */
-/*   Updated: 2023/02/22 16:55:57 by tlegrand         ###   ########.fr       */
+/*   Updated: 2023/02/23 14:25:20 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/so_long_bonus.h"
-
-int	ft_randuint(int min, int max, int *err)
-{
-	unsigned int	c;
-	int				fd;
-
-	c = 0;
-	fd = open("/dev/urandom", O_RDONLY);
-	if (fd == -1)
-		*err = 0;
-	else
-	{
-		if (read(fd, &c, 1) == -1)
-			*err = 0;
-		close (fd);
-	}
-	return (c % (max + 1 - min) + min);
-}
 
 void	ft_init_enemy_secure(t_game_data *game)
 {
@@ -83,7 +65,8 @@ int	ft_move_authorize_enemy(t_map *map, int pos[2], int axis, int dir)
 	tmp[0] = pos[0];
 	tmp[1] = pos[1];
 	tmp[axis] += dir;
-	if (map->layout[tmp[0]][tmp[1]] == '1' || map->layout[tmp[0]][tmp[1]] == 'E')
+	if (map->layout[tmp[0]][tmp[1]] == '1' || \
+		map->layout[tmp[0]][tmp[1]] == 'E')
 		return (1);
 	return (0);
 }

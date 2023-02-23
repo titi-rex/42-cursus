@@ -6,7 +6,7 @@
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/19 20:07:38 by tlegrand          #+#    #+#             */
-/*   Updated: 2023/02/23 13:38:28 by tlegrand         ###   ########.fr       */
+/*   Updated: 2023/02/23 14:04:26 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,7 +74,7 @@ void	ft_clean_exit(t_game_data *game, int exit_code);
 void	ft_putstr_quit(t_game_data *game, char *strerr, int exit_code);
 void	ft_credit(void);
 void	ft_is_lost(t_game_data *game);
-int		ft_move_authorize(char **layout, int pos[2], int axis, int dir);
+int		ft_randuint(int min, int max, int *err);
 
 /*	==========	map management	==========	*/
 void	ft_error_map(t_map *map, int errnum, char *errstr);
@@ -87,6 +87,7 @@ void	ft_backtrack(t_map *map, int ypos, int xpos);
 void	ft_init_map(t_map *map, char *pathname);
 void	ft_clean_map(t_map *map);
 void	ft_init_enemy(t_game_data *game);
+void	ft_map_update(t_game_data *game, int pos[2]);
 
 /*	==========	mlx management	==========	*/
 # define UP		65362
@@ -114,6 +115,7 @@ void	ft_init_sprite(t_game_data *game);
 
 void	ft_display_tile(t_mlx *mlx, t_sprite *tile, int x, int y);
 void	ft_display_all(t_game_data *game);
+void	ft_curtains(t_game_data *game, void *id, t_sprite *end);
 void	ft_display_exit_open(t_game_data *game);
 void	ft_animate_idle(t_game_data *game);
 void	ft_animate_dead(t_game_data *game);
