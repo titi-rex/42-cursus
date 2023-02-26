@@ -6,7 +6,7 @@
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/19 20:07:38 by tlegrand          #+#    #+#             */
-/*   Updated: 2023/02/23 12:14:13 by tlegrand         ###   ########.fr       */
+/*   Updated: 2023/02/26 18:02:10 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,12 +75,6 @@ void	ft_init_map(t_map *map, char *pathname);
 void	ft_clean_map(t_map *map);
 
 /*	==========	mlx management	==========	*/
-# define UP		65362
-# define DOWN	65364
-# define LEFT	65361
-# define RIGHT	65363
-# define ESC	65307
-
 void	ft_init_mlx(t_game_data *game);
 int		ft_hook_key(int keycode, t_game_data *game);
 int		ft_stop(t_game_data *game);

@@ -6,7 +6,7 @@
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/19 20:07:38 by tlegrand          #+#    #+#             */
-/*   Updated: 2023/02/23 14:04:26 by tlegrand         ###   ########.fr       */
+/*   Updated: 2023/02/26 18:01:47 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,6 @@
 # include <unistd.h>
 # include <stdlib.h>
 # include <fcntl.h>
-# include <stdio.h>
 # include <string.h>
 # include <X11/X.h>
 # include "../libft/libft.h"
@@ -90,12 +89,6 @@ void	ft_init_enemy(t_game_data *game);
 void	ft_map_update(t_game_data *game, int pos[2]);
 
 /*	==========	mlx management	==========	*/
-# define UP		65362
-# define DOWN	65364
-# define LEFT	65361
-# define RIGHT	65363
-# define ESC	65307
-
 void	ft_init_mlx(t_game_data *game);
 int		ft_hook_key(int keycode, t_game_data *game);
 int		ft_hook_loop(t_game_data *game);

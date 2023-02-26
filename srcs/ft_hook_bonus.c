@@ -6,7 +6,7 @@
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/20 11:21:57 by tlegrand          #+#    #+#             */
-/*   Updated: 2023/02/23 14:39:10 by tlegrand         ###   ########.fr       */
+/*   Updated: 2023/02/26 18:00:59 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 int	ft_hook_key(int keycode, t_game_data *game)
 {
-	if (keycode == ESC)
+	if (keycode == 65307)
 	{
 		ft_credit();
 		ft_putstr_quit(game, NULL, EXIT_SUCCESS);
@@ -23,13 +23,13 @@ int	ft_hook_key(int keycode, t_game_data *game)
 		return (0);
 	if (keycode == 32)
 		ft_select_move_enemy(game);
-	if (keycode == UP)
+	if (keycode == 65362)
 		ft_move(game, 0, -1);
-	if (keycode == DOWN)
+	if (keycode == 65364)
 		ft_move(game, 0, 1);
-	if (keycode == LEFT)
+	if (keycode == 65361)
 		ft_move(game, 1, -1);
-	if (keycode == RIGHT)
+	if (keycode == 65363)
 		ft_move(game, 1, 1);
 	return (0);
 }

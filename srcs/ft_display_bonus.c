@@ -6,7 +6,7 @@
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/18 13:55:37 by tlegrand          #+#    #+#             */
-/*   Updated: 2023/02/23 13:14:55 by tlegrand         ###   ########.fr       */
+/*   Updated: 2023/02/26 18:15:29 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,9 @@
 
 void	ft_display_tile(t_mlx *mlx, t_sprite *tile, int x, int y)
 {
-	mlx_put_image_to_window(mlx->ptr, mlx->win, tile->id, x * TILE, y * TILE);
+	if (mlx->ptr && mlx->win && tile->id)
+		mlx_put_image_to_window(mlx->ptr, mlx->win, tile->id, \
+			x * TILE, y * TILE);
 }
 
 void	ft_choose_tile(t_game_data *game, int x, int y)
@@ -59,7 +61,9 @@ void	ft_display_exit_open(t_game_data *game)
 
 	mlx_destroy_image(game->mlx.ptr, game->exit.id);
 	game->exit.id = mlx_xpm_file_to_image(game->mlx.ptr, EXIT_O, &tmp, &tmp);
-	ft_display_tile(&game->mlx, &game->exit, game->pos_e[1], game->pos_e[0]);
+	if (game->exit.id)
+		ft_display_tile(&game->mlx, &game->exit, game->pos_e[1], \
+			game->pos_e[0]);
 }
 
 void	ft_display_move(t_game_data *game)

@@ -6,7 +6,7 @@
 #    By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/11/19 14:03:05 by tlegrand          #+#    #+#              #
-#    Updated: 2023/02/23 14:02:03 by tlegrand         ###   ########.fr        #
+#    Updated: 2023/02/26 17:47:30 by tlegrand         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -118,7 +118,6 @@ ${LIBFT}	:	FORCE
 
 ${LIBMLX}	:	FORCE
 			@$(MAKE) -C ${DIR_LIBMLX}
-			@printf "$(GREEN_LIGHT)${LIBMLX} created !\n$(END)"
 
 FORCE		:
 
