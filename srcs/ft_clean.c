@@ -6,7 +6,7 @@
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/10 15:56:31 by tlegrand          #+#    #+#             */
-/*   Updated: 2023/02/14 14:08:44 by tlegrand         ###   ########.fr       */
+/*   Updated: 2023/02/26 19:29:12 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,10 +22,7 @@ void	ft_free2d(void **arr, int size)
 	if (!size)
 	{
 		while (arr[++i])
-		{
-			if (arr[i])
-				free(arr[i]);
-		}
+			free(arr[i]);
 	}
 	else
 	{

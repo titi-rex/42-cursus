@@ -6,14 +6,15 @@
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/21 19:35:38 by tlegrand          #+#    #+#             */
-/*   Updated: 2023/02/13 17:43:15 by tlegrand         ###   ########.fr       */
+/*   Updated: 2023/02/23 21:59:15 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/pipex.h"
 
-void	ft_error(char *errstr, char *cmd_name)
+void	ft_error(char *errstr, char *cmd_name, int *err)
 {
+	*err = EXIT_FAILURE;
 	ft_putstr_fd("Error\n", 2);
 	if (!cmd_name)
 		ft_putendl_fd(errstr, 2);

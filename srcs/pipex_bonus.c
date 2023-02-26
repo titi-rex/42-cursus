@@ -6,7 +6,7 @@
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/11 21:16:07 by tlegrand          #+#    #+#             */
-/*   Updated: 2023/02/14 19:40:56 by tlegrand         ###   ########.fr       */
+/*   Updated: 2023/02/26 18:46:28 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@ int	main(int argc, char **argv, char **env)
 	if (argc < 5)
 		ft_man(1);
 	cmd_line.env = env;
+	cmd_line.err = EXIT_SUCCESS;
 	if ((!ft_strncmp(argv[1], "here_doc", 9)))
 	{
 		if (argc < 6)
@@ -34,7 +35,7 @@ int	main(int argc, char **argv, char **env)
 		ft_parsing(argv, argc, 2, &cmd_line);
 		ft_cmd_master(&cmd_line);
 	}
-	ft_clean_exit(&cmd_line, EXIT_SUCCESS);
+	ft_clean_exit(&cmd_line, cmd_line.err);
 	return (0);
 }
 
@@ -53,5 +54,5 @@ static void	ft_man(int num)
 	}
 	else
 		ft_printf("here_doc need at least 6 arg !\n");
-	exit(EXIT_SUCCESS);
+	exit(EXIT_FAILURE);
 }
