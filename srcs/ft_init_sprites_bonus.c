@@ -6,7 +6,7 @@
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/21 00:59:26 by tlegrand          #+#    #+#             */
-/*   Updated: 2023/02/22 21:48:38 by tlegrand         ###   ########.fr       */
+/*   Updated: 2023/02/27 13:39:58 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,8 +79,6 @@ int	ft_init_sprite_sign(t_mlx *mlx, t_sprite sign[11])
 
 void	ft_init_sprite(t_game_data *game)
 {
-	int	tmp;
-
 	if (ft_init_sprite_idle(&game->mlx, game->idle))
 		ft_putstr_quit(game, "Error\nCan't load idle sprites", EXIT_FAILURE);
 	if (ft_init_sprite_dead(&game->mlx, game->dead))
@@ -99,11 +97,6 @@ void	ft_init_sprite(t_game_data *game)
 		ft_putstr_quit(game, "Error\nCan't load sign sprites", EXIT_FAILURE);
 	if (ft_init_sprite_gui(&game->mlx, game->gui))
 		ft_putstr_quit(game, "Error\nCan't load gui sprites", EXIT_FAILURE);
-	game->wall[0].id = mlx_xpm_file_to_image(game->mlx.ptr, WALL1, &tmp, &tmp);
-	game->wall[1].id = mlx_xpm_file_to_image(game->mlx.ptr, WALL2, &tmp, &tmp);
-	game->floor.id = mlx_xpm_file_to_image(game->mlx.ptr, FLOOR, &tmp, &tmp);
-	game->exit.id = mlx_xpm_file_to_image(game->mlx.ptr, EXIT_C, &tmp, &tmp);
-	if (!game->floor.id || !game->wall[0].id || !game->exit.id || \
-			!game->wall[1].id)
+	if (ft_init_sprite_misc(game))
 		ft_putstr_quit(game, "Error\nCan't load sprites", EXIT_FAILURE);
 }

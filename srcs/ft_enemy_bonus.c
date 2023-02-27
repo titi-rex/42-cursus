@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_enemy.c                                         :+:      :+:    :+:   */
+/*   ft_enemy_bonus.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/20 16:25:43 by tlegrand          #+#    #+#             */
-/*   Updated: 2023/02/23 14:35:05 by tlegrand         ###   ########.fr       */
+/*   Updated: 2023/02/27 13:38:50 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,7 +90,6 @@ void	ft_move_enemy(t_game_data *game, int axis, int dir)
 	ft_is_lost(game);
 }
 
-
 void	ft_select_move_enemy(t_game_data *game)
 {
 	int	dir;
@@ -110,5 +109,4 @@ void	ft_select_move_enemy(t_game_data *game)
 		ft_move_enemy(game, 1, -1);
 	else if (dir == 4)
 		ft_move_enemy(game, 1, 1);
-
 }

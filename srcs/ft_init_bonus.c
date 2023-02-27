@@ -6,7 +6,7 @@
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/16 18:03:45 by tlegrand          #+#    #+#             */
-/*   Updated: 2023/02/26 18:18:02 by tlegrand         ###   ########.fr       */
+/*   Updated: 2023/02/27 15:01:04 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,8 +26,8 @@ void	ft_init_sprite_loop(t_sprite *sprite, int size)
 
 void	ft_init_game(t_game_data *game)
 {
-	game->pos[0] = 0;
-	game->pos[1] = 0;
+	game->pos[0] = 1;
+	game->pos[1] = 1;
 	game->pos_e[0] = 0;
 	game->pos_e[1] = 0;
 	game->pos_b[0] = 0;

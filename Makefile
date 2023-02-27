@@ -6,7 +6,7 @@
 #    By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/11/19 14:03:05 by tlegrand          #+#    #+#              #
-#    Updated: 2023/02/26 17:47:30 by tlegrand         ###   ########.fr        #
+#    Updated: 2023/02/27 13:39:05 by tlegrand         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -30,9 +30,9 @@ SRCS		=	${addprefix ${DIR_SRCS}, ${LST_SRCS}}
 LST_SRCS_B	=	main_bonus.c map_get.c map_check.c map_init.c map_utils.c \
 				ft_init_bonus.c ft_init_sprites_bonus.c ft_init_sprites_player_bonus.c ft_destroy_bonus.c \
 				ft_clean.c ft_img_draw.c ft_random.c \
-				ft_hook_bonus.c ft_move_bonus.c ft_enemy.c \
+				ft_hook_bonus.c ft_move_bonus.c ft_enemy_bonus.c \
 				ft_display_bonus.c ft_animate_bonus.c \
-				ft_endgame.c
+				ft_endgame_bonus.c
 SRCS_B		=	${addprefix ${DIR_SRCS}, ${LST_SRCS_B}}
 
 

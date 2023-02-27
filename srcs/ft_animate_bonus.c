@@ -6,7 +6,7 @@
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/20 11:41:10 by tlegrand          #+#    #+#             */
-/*   Updated: 2023/02/23 13:49:03 by tlegrand         ###   ########.fr       */
+/*   Updated: 2023/02/27 13:51:03 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ void	ft_animate_idle(t_game_data *game)
 	{
 		ft_display_tile(&game->mlx, &game->idle[i / 10000], \
 			game->pos[1], game->pos[0]);
-		if (i <= 30000)
+		if (i <= 30000 && game->badguys)
 			ft_display_tile(&game->mlx, &game->enemy[i / 10000], \
 				game->pos_b[1], game->pos_b[0]);
 	}
@@ -92,4 +92,18 @@ void	ft_animate_jump(t_game_data *game, t_sprite *sprite, int dir)
 		}
 		i++;
 	}
+}
+
+int	ft_init_sprite_misc(t_game_data *game)
+{
+	int	tmp;
+
+	game->wall[0].id = mlx_xpm_file_to_image(game->mlx.ptr, WALL1, &tmp, &tmp);
+	game->wall[1].id = mlx_xpm_file_to_image(game->mlx.ptr, WALL2, &tmp, &tmp);
+	game->floor.id = mlx_xpm_file_to_image(game->mlx.ptr, FLOOR, &tmp, &tmp);
+	game->exit.id = mlx_xpm_file_to_image(game->mlx.ptr, EXIT_C, &tmp, &tmp);
+	if (!game->floor.id || !game->wall[0].id || !game->exit.id || \
+			!game->wall[1].id)
+		return (1);
+	return (0);
 }

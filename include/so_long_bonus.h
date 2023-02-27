@@ -6,7 +6,7 @@
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/19 20:07:38 by tlegrand          #+#    #+#             */
-/*   Updated: 2023/02/27 13:09:31 by tlegrand         ###   ########.fr       */
+/*   Updated: 2023/02/27 13:39:37 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,6 +104,7 @@ int		ft_init_sprite_dead(t_mlx *mlx, t_sprite dead[6]);
 int		ft_init_sprite_run_r(t_mlx *mlx, t_sprite run_r[6]);
 int		ft_init_sprite_run_l(t_mlx *mlx, t_sprite run_l[6]);
 int		ft_init_sprite_jump(t_mlx *mlx, t_sprite jump[12]);
+int		ft_init_sprite_misc(t_game_data *game);
 void	ft_init_sprite(t_game_data *game);
 
 void	ft_display_tile(t_mlx *mlx, t_sprite *tile, int x, int y);
