@@ -6,7 +6,7 @@
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/19 20:16:07 by tlegrand          #+#    #+#             */
-/*   Updated: 2023/02/23 13:38:58 by tlegrand         ###   ########.fr       */
+/*   Updated: 2023/02/26 18:19:22 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,19 +64,3 @@ void	ft_credit(void)
 	ft_putendl_fd("Found on opengameart.org :", 1);
 	ft_putendl_fd("* Cardboard Box by cinamerg", 1);
 }
-
-/*
-ecran fin
-animation idle enemy
-remplacer operateur aritmetiaue par bitwise (/2 bitshift 1)
-pause when unfocus
-
-
-animation : etoile yeux qund collect recuper et tous recup
-animation + physique vent
-
-sprites a faire : 
--GUI fin/pause
-
--etoiles yeux
-*/
