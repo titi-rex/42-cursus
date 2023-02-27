@@ -6,7 +6,7 @@
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/19 20:07:38 by tlegrand          #+#    #+#             */
-/*   Updated: 2023/02/26 18:01:47 by tlegrand         ###   ########.fr       */
+/*   Updated: 2023/02/27 13:09:31 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -118,10 +118,6 @@ void	ft_animate_jump(t_game_data *game, t_sprite *sprite, int dir);
 void	ft_move(t_game_data *game, int axis, int dir);
 void	ft_select_move_enemy(t_game_data *game);
 void	ft_display_move(t_game_data *game);
-
-
-# define BLOOD 0xC7003F
-# define PEACE 0x69F0C5
 
 # define IDLE1	"sprites/idle_1.xpm"
 # define IDLE2	"sprites/idle_2.xpm"

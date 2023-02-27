@@ -6,7 +6,7 @@
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/23 14:01:18 by tlegrand          #+#    #+#             */
-/*   Updated: 2023/02/23 14:02:42 by tlegrand         ###   ########.fr       */
+/*   Updated: 2023/02/27 13:09:47 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ void	ft_is_lost(t_game_data *game)
 		{
 			end.addr = mlx_get_data_addr(end.id, &end.bbp, &end.line, \
 				&end.endian);
-			ft_img_fill(&end, BLOOD);
+			ft_img_fill(&end, 0xC7003F);
 			ft_curtains(game, end.id, &game->dead[0]);
 			mlx_destroy_image(game->mlx.ptr, end.id);
 		}
@@ -53,7 +53,7 @@ void	ft_is_win(t_game_data *game)
 		{
 			end.addr = mlx_get_data_addr(end.id, &end.bbp, &end.line, \
 				&end.endian);
-			ft_img_fill(&end, PEACE);
+			ft_img_fill(&end, 0x69F0C5);
 			ft_curtains(game, end.id, &game->gui[2]);
 			mlx_destroy_image(game->mlx.ptr, end.id);
 		}
