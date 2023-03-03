@@ -6,7 +6,7 @@
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/23 18:21:30 by tlegrand          #+#    #+#             */
-/*   Updated: 2023/02/26 19:41:56 by tlegrand         ###   ########.fr       */
+/*   Updated: 2023/03/01 13:35:57 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,13 +15,16 @@
 # include "../libft/libft.h"
 # include <fcntl.h>
 # include <sys/wait.h>
+# include <stdio.h>
 
 typedef struct s_data
 {
 	char	***cmds;
 	char	**env;
 	int		pipe[2][2];
-	int		fds[2];
+	char	*in;
+	char	*out;
+	int		here_doc;
 	int		n_cmd;
 	int		err;
 }	t_pipex;
@@ -42,6 +45,6 @@ void	ft_clean_exit(t_pipex *cmd_line, int exit_code);
 
 void	printsplit(char **split);
 void	printpipex(t_pipex *pipex);
-void	ft_error(char *errstr, char *cmd_name, int *err);
+void	ft_error(char *errstr, int *err);
 
 #endif

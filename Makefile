@@ -6,7 +6,7 @@
 #    By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/12/03 11:42:37 by tlegrand          #+#    #+#              #
-#    Updated: 2023/02/27 15:40:48 by tlegrand         ###   ########.fr        #
+#    Updated: 2023/03/01 15:10:07 by tlegrand         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,11 +21,11 @@ NAME_B		=	pipex_bonus
 #	==============================	SOURCES	==============================	#
 DIR_SRCS		=	srcs/
 
-LST_SRCS		= 	pipex.c ft_parsing.c ft_cmd_exe.c ft_get_argv.c ft_get_io.c ft_get_path.c \
+LST_SRCS		= 	pipex.c ft_parsing.c ft_cmd_exe.c ft_get_argv.c ft_get_path.c \
 					ft_utils.c  ft_clean.c
 SRCS			=	${addprefix ${DIR_SRCS}, ${LST_SRCS}}
 
-LST_SRCS_B		=	pipex_bonus.c ft_parsing.c ft_cmd_exe.c ft_get_argv.c ft_get_io.c ft_get_path.c \
+LST_SRCS_B		=	pipex_bonus.c ft_parsing.c ft_cmd_exe.c ft_get_argv.c ft_get_path.c \
 					ft_utils.c  ft_clean.c \
 					ft_here_doc_bonus.c
 SRCS_B			=	${addprefix ${DIR_SRCS}, ${LST_SRCS_B}}
@@ -83,11 +83,11 @@ re		:	fclean
 
 #	==============================	COMPILATION	==============================	#
 ${NAME}			:	${LIBFT} ${DIR_OBJS} ${OBJS}
-				${CC} ${CFLAGS} ${OBJS} ${FTFLAGS} -o ${NAME}
+				@${CC} ${CFLAGS} ${OBJS} ${FTFLAGS} -o ${NAME}
 				@printf "$(GREEN_LIGHT)${NAME} created !\n$(END)"
 
 ${NAME_B}		:	${LIBFT} ${DIR_OBJS} ${OBJS_B}
-				${CC} ${CFLAGS} ${OBJS_B} ${FTFLAGS} -o ${NAME_B}
+				@${CC} ${CFLAGS} ${OBJS_B} ${FTFLAGS} -o ${NAME_B}
 				@printf "$(GREEN_LIGHT)${NAME_B} created !\n$(END)"
 
 ${DIR_OBJS}%.o	:	${DIR_SRCS}%.c ${HEADER} ${HEADER_B} 
@@ -131,4 +131,4 @@ WHITE		=	\033[1;37m
 END			=	\033[0m
 UNDERLINE	=	\033[4m
 REV			=	\033[7m
-ERASE		=	\033[2K\r
+ERASE		=	\r\033[2K

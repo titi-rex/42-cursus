@@ -6,7 +6,7 @@
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/11 14:19:54 by tlegrand          #+#    #+#             */
-/*   Updated: 2023/02/26 19:06:33 by tlegrand         ###   ########.fr       */
+/*   Updated: 2023/03/01 13:37:59 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,7 @@ void	ft_get_argv(char **argv, int start, t_pipex *cmd_line)
 		cmd_line->cmds[i] = ft_split(argv[i + start], ' ');
 		if (!cmd_line->cmds[i])
 		{
-			ft_error("Malloc failed in ft_get_argv cmd : ", argv[i + start], \
-				&cmd_line->err);
+			ft_error(argv[i + start], &cmd_line->err);
 			ft_clean_exit(cmd_line, cmd_line->err);
 		}
 		i++;

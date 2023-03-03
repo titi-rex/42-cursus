@@ -6,7 +6,7 @@
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/10 15:56:31 by tlegrand          #+#    #+#             */
-/*   Updated: 2023/02/26 19:29:12 by tlegrand         ###   ########.fr       */
+/*   Updated: 2023/03/01 12:45:02 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,12 +67,6 @@ void	ft_close_pipe(int pipefd[2])
 
 void	ft_close(t_pipex *cmd_line)
 {
-	if (cmd_line->fds[0] != -1)
-		close(cmd_line->fds[0]);
-	cmd_line->fds[0] = -1;
-	if (cmd_line->fds[1] != -1)
-		close(cmd_line->fds[1]);
-	cmd_line->fds[1] = -1;
 	ft_close_pipe(cmd_line->pipe[0]);
 	ft_close_pipe(cmd_line->pipe[1]);
 }

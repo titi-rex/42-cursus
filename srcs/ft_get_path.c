@@ -6,7 +6,7 @@
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/11 14:20:18 by tlegrand          #+#    #+#             */
-/*   Updated: 2023/02/26 19:29:22 by tlegrand         ###   ########.fr       */
+/*   Updated: 2023/03/01 13:46:54 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,8 +67,7 @@ char	*ft_get_pathcmd(char **paths, char *cmd_name, int *err)
 		buffer = ft_strjoin(paths[j], cmd_name);
 		if (!buffer)
 		{
-			ft_error("Malloc failed in ft_get_pathcmd for cmd : ", cmd_name, \
-				err);
+			ft_error(cmd_name, err);
 			free(cmd_name);
 			return (NULL);
 		}
@@ -80,7 +79,7 @@ char	*ft_get_pathcmd(char **paths, char *cmd_name, int *err)
 		free(buffer);
 		j++;
 	}
-	ft_error("Command not found : ", cmd_name, err);
+	ft_error(cmd_name, err);
 	free(cmd_name);
 	return (NULL);
 }
@@ -97,7 +96,7 @@ void	ft_get_path(char *pathvar, t_pipex *cmd_l, int *err)
 	paths = ft_split_path(pathvar);
 	if (!paths)
 	{
-		ft_error("Mailoc from ft_split_path failed", NULL, err);
+		ft_error("ft_split_path ", err);
 		ft_free2d((void **) paths, 0);
 		ft_clean_exit(cmd_l, cmd_l->err);
 	}
@@ -105,7 +104,7 @@ void	ft_get_path(char *pathvar, t_pipex *cmd_l, int *err)
 	while (i < cmd_l->n_cmd)
 	{
 		if (cmd_l->cmds[i][0] == NULL)
-			ft_error("Command empty", NULL, err);
+			ft_error("(null) ", err);
 		else if (cmd_l->cmds[i][0] && access(cmd_l->cmds[i][0], X_OK) && \
 			cmd_l->cmds[i][0][0] != '.' && cmd_l->cmds[i][0][0] != '/')
 			cmd_l->cmds[i][0] = ft_get_pathcmd(paths, cmd_l->cmds[i][0], err);
