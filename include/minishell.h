@@ -6,13 +6,17 @@
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/06 21:46:27 by tlegrand          #+#    #+#             */
-/*   Updated: 2023/03/06 22:01:25 by tlegrand         ###   ########.fr       */
+/*   Updated: 2023/03/06 22:38:14 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef MINISHELL_H
 # define MINISHELL_H
 
+/*	structure storing one redirection and point to the next
+	type	: 0 == <, 1 == >, 2 == <<, 3 == >>
+	arg		: filename or delimiter 
+*/
 typedef struct s_redirect
 {
 	int			type;
@@ -20,6 +24,10 @@ typedef struct s_redirect
 	t_redirect	*next;
 }	t_redirect;
 
+/*	structure for one command to execute 
+	cmd		: cmd path, flags and arg
+	io		: all redirection stored in list
+*/
 typedef struct s_cmd
 {
 	char		**cmd;
