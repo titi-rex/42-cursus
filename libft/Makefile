@@ -6,7 +6,7 @@
 #    By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/11/08 14:39:06 by tlegrand          #+#    #+#              #
-#    Updated: 2023/02/12 19:26:51 by tlegrand         ###   ########.fr        #
+#    Updated: 2023/03/06 14:30:05 by tlegrand         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -76,10 +76,10 @@ re		:	fclean
 #	==============================	COMPILATION	==============================	#
 ${NAME}			:	${DIR_OBJS} ${OBJS} 
 				@${AR} ${ARFLAGS} $@ ${OBJS}
-				@printf "$(GREEN_LIGHT)${NAME} created !\n$(END)"
+				@printf "\n$(GREEN_LIGHT)${NAME} created !\n$(END)"
 
 ${DIR_OBJS}%.o	:	${DIR_SRCS}%.c ${HEADER}
-				@printf "$(ORANGE)Making ${NAME}...\n$(END)"
+				@printf "$(RERASE) $(ORANGE)Making ${NAME}...$(END)"
 				@${CC} ${CFLAGS} -c $< -o $@
 
 #	==============================	UTILS	==============================	#
@@ -107,3 +107,6 @@ BLUE_LIGHT	=	\033[1;34m
 VIOLET		=	\033[1;35m
 CYAN		=	\033[1;36m
 WHITE		=	\033[1;37m
+END			=	\033[0m
+ERASE		=	\033[2K
+RERASE		=	\r\033[2K
