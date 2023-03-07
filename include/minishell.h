@@ -6,7 +6,7 @@
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/06 21:46:27 by tlegrand          #+#    #+#             */
-/*   Updated: 2023/03/06 22:38:14 by tlegrand         ###   ########.fr       */
+/*   Updated: 2023/03/06 22:45:12 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 
 /*	structure storing one redirection and point to the next
 	type	: 0 == <, 1 == >, 2 == <<, 3 == >>
-	arg		: filename or delimiter 
+	arg		: filename or delimiter
 */
 typedef struct s_redirect
 {
