@@ -6,7 +6,7 @@
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/08 12:28:13 by tlegrand          #+#    #+#             */
-/*   Updated: 2023/03/08 12:30:02 by tlegrand         ###   ########.fr       */
+/*   Updated: 2023/03/08 13:21:26 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 
 int	main(int ac, char **arg)
 {
+	pwd();
 	if (ac == 2 || ac == 3)
 		echo(arg);
 	return (0);

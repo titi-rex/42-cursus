@@ -6,14 +6,14 @@
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/08 12:18:35 by tlegrand          #+#    #+#             */
-/*   Updated: 2023/03/08 13:07:20 by tlegrand         ###   ########.fr       */
+/*   Updated: 2023/03/08 13:21:11 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/minishell.h"
 
 /* TODO: free arg before exit ? */
-int	echo(char **arg)
+void	echo(char **arg)
 {
 	char	new_line;
 	int		i;

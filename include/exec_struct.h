@@ -6,7 +6,7 @@
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/06 21:46:27 by tlegrand          #+#    #+#             */
-/*   Updated: 2023/03/08 12:44:19 by tlegrand         ###   ########.fr       */
+/*   Updated: 2023/03/08 13:13:54 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,7 @@ typedef struct s_line
 	int		pipe[2][2];
 	int		n_cmds;
 	int		exit_status;
+	void	*env;
 }	t_line;
 
 #endif

@@ -1,22 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   minishell.h                                        :+:      :+:    :+:   */
+/*   pwd.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/03/08 12:19:09 by tlegrand          #+#    #+#             */
-/*   Updated: 2023/03/08 13:21:18 by tlegrand         ###   ########.fr       */
+/*   Created: 2023/03/08 13:10:16 by tlegrand          #+#    #+#             */
+/*   Updated: 2023/03/08 13:21:45 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef MINISHELL_H
-# define MINISHELL_H
-# include <stdio.h>
-# include "../libft/libft.h"
-# include "exec_struct.h"
+#include "../include/minishell.h"
 
-void	echo(char **arg);
-void	pwd(void);
+void	pwd(void)
+{
+	char	*pwd;
 
-#endif
+	pwd = getcwd(NULL, 0);
+	if (!pwd)
+		exit(EXIT_FAILURE);
+	printf("%s\n", pwd);
+	free(pwd);
+	exit(EXIT_SUCCESS);
+}
