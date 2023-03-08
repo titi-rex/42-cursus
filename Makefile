@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+         #
+#    By: louisa <louisa@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/02/12 20:46:19 by tlegrand          #+#    #+#              #
-#    Updated: 2023/03/08 14:57:29 by tlegrand         ###   ########.fr        #
+#    Updated: 2023/03/08 16:24:23 by louisa           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,7 +20,7 @@ NAME		=	minishell
 #	==============================	SOURCES	==============================	#
 DIR_SRCS		=	srcs/
 
-LST_SRCS		=	
+LST_SRCS		=	parsing.c
 SRCS			=	${addprefix ${DIR_SRCS}, ${LST_SRCS}}
 
 
