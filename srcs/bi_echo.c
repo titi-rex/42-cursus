@@ -1,32 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   pwd.c                                              :+:      :+:    :+:   */
+/*   echo.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/03/08 13:10:16 by tlegrand          #+#    #+#             */
-/*   Updated: 2023/03/08 13:37:32 by tlegrand         ###   ########.fr       */
+/*   Created: 2023/03/08 12:18:35 by tlegrand          #+#    #+#             */
+/*   Updated: 2023/03/08 14:15:37 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/minishell.h"
 
-void	pwd(void)
+/*	TODO: free arg before exit	*/
+void	bi_echo(char **arg)
 {
-	char	*pwd;
+	char	new_line;
+	int		i;
+	int		err;
 
-	pwd = getcwd(NULL, 0);
-	if (!pwd)
+	i = 1;
+	new_line = '\n';
+	err = EXIT_SUCCESS;
+	if (!ft_strncmp(arg[1], "-n", 3))
 	{
-		perror("Error ");
-		exit(EXIT_FAILURE);
+		new_line = '\0';
+		i++;
 	}
-	if (printf("%s\n", pwd) < 0)
+	if (printf("%s%c", arg[i], new_line) < 0)
 	{
+		err = EXIT_FAILURE;
 		perror("Error ");
-		exit(EXIT_FAILURE);
 	}
-	free(pwd);
-	exit(EXIT_SUCCESS);
+	//ft_free2d((void **) arg, 0);
+	exit(err);
 }

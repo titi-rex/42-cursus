@@ -1,37 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   echo.c                                             :+:      :+:    :+:   */
+/*   bi_cd.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/03/08 12:18:35 by tlegrand          #+#    #+#             */
-/*   Updated: 2023/03/08 14:05:29 by tlegrand         ###   ########.fr       */
+/*   Created: 2023/03/08 13:27:20 by tlegrand          #+#    #+#             */
+/*   Updated: 2023/03/08 14:16:52 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/minishell.h"
 
-/*	TODO: free arg before exit	*/
-void	echo(char **arg)
+/*	TODO: check if cd print pwd after cd at school	*/
+/*	TODO: check beaviohor when piped	*/
+/*	FIXME: perror display succes when error too much arg	*/
+int	bi_cd(char **arg)
 {
-	char	new_line;
-	int		i;
-	int		err;
-
-	i = 1;
-	new_line = '\n';
-	err = EXIT_SUCCESS;
-	if (!ft_strncmp(arg[1], "-n", 3))
+	if (arg[2])
 	{
-		new_line = '\0';
-		i++;
+		perror("Error, too much arguments ");
+		return (EXIT_FAILURE);
 	}
-	if (printf("%s%c", arg[i], new_line) < 0)
+	if (!chdir(arg[1]))
 	{
-		err = EXIT_FAILURE;
-		perror("Error ");
+		if (arg[1][0] != '.' && arg[1][0] != '/' )
+			bi_pwd();
+		return (EXIT_SUCCESS);
 	}
-	//ft_free2d((void **) arg, 0);
-	exit(err);
+	perror("Error ");
+	return (EXIT_FAILURE);
 }

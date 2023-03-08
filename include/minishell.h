@@ -6,7 +6,7 @@
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/08 12:19:09 by tlegrand          #+#    #+#             */
-/*   Updated: 2023/03/08 13:58:59 by tlegrand         ###   ########.fr       */
+/*   Updated: 2023/03/08 14:15:21 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,9 @@
 # include "../libft/libft.h"
 # include "exec_struct.h"
 
-void	echo(char **arg);
-void	pwd(void);
-int		cd(char **arg);
+void	bi_echo(char **arg);
+void	bi_pwd(void);
+int		bi_cd(char **arg);
+void	bi_exit(t_line *line, int exit_status);
 
 #endif

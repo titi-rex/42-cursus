@@ -1,33 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cd.c                                               :+:      :+:    :+:   */
+/*   pwd.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/03/08 13:27:20 by tlegrand          #+#    #+#             */
-/*   Updated: 2023/03/08 14:05:19 by tlegrand         ###   ########.fr       */
+/*   Created: 2023/03/08 13:10:16 by tlegrand          #+#    #+#             */
+/*   Updated: 2023/03/08 14:15:32 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/minishell.h"
 
-/*	TODO: check if cd print pwd after cd at school	*/
-/*	TODO: check beaviohor when piped	*/
-/*	FIXME: perror display succes when error too much arg	*/
-int	cd(char **arg)
+void	bi_pwd(void)
 {
-	if (arg[2])
+	char	*pwd;
+
+	pwd = getcwd(NULL, 0);
+	if (!pwd)
 	{
-		perror("Error, too much arguments ");
-		return (EXIT_FAILURE);
+		perror("Error ");
+		exit(EXIT_FAILURE);
 	}
-	if (!chdir(arg[1]))
+	if (printf("%s\n", pwd) < 0)
 	{
-		if (arg[1][0] != '.' && arg[1][0] != '/' )
-			pwd();
-		return (EXIT_SUCCESS);
+		perror("Error ");
+		exit(EXIT_FAILURE);
 	}
-	perror("Error ");
-	return (EXIT_FAILURE);
+	free(pwd);
+	exit(EXIT_SUCCESS);
 }
