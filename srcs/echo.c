@@ -6,13 +6,13 @@
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/08 12:18:35 by tlegrand          #+#    #+#             */
-/*   Updated: 2023/03/08 13:21:11 by tlegrand         ###   ########.fr       */
+/*   Updated: 2023/03/08 14:05:29 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/minishell.h"
 
-/* TODO: free arg before exit ? */
+/*	TODO: free arg before exit	*/
 void	echo(char **arg)
 {
 	char	new_line;
@@ -28,7 +28,10 @@ void	echo(char **arg)
 		i++;
 	}
 	if (printf("%s%c", arg[i], new_line) < 0)
+	{
 		err = EXIT_FAILURE;
+		perror("Error ");
+	}
 	//ft_free2d((void **) arg, 0);
 	exit(err);
 }

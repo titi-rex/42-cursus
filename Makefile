@@ -6,7 +6,7 @@
 #    By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/02/12 20:46:19 by tlegrand          #+#    #+#              #
-#    Updated: 2023/03/08 13:21:37 by tlegrand         ###   ########.fr        #
+#    Updated: 2023/03/08 13:39:32 by tlegrand         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,7 +21,7 @@ NAME		=	minishell
 DIR_SRCS		=	srcs/
 
 LST_SRCS		=	main_test.c \
-					echo.c pwd.c
+					echo.c pwd.c cd.c
 
 SRCS			=	${addprefix ${DIR_SRCS}, ${LST_SRCS}}
 

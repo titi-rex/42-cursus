@@ -6,7 +6,7 @@
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/08 13:10:16 by tlegrand          #+#    #+#             */
-/*   Updated: 2023/03/08 13:21:45 by tlegrand         ###   ########.fr       */
+/*   Updated: 2023/03/08 13:37:32 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,15 @@ void	pwd(void)
 
 	pwd = getcwd(NULL, 0);
 	if (!pwd)
+	{
+		perror("Error ");
 		exit(EXIT_FAILURE);
-	printf("%s\n", pwd);
+	}
+	if (printf("%s\n", pwd) < 0)
+	{
+		perror("Error ");
+		exit(EXIT_FAILURE);
+	}
 	free(pwd);
 	exit(EXIT_SUCCESS);
 }
