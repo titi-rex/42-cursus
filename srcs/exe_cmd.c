@@ -6,7 +6,7 @@
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/08 15:07:58 by tlegrand          #+#    #+#             */
-/*   Updated: 2023/03/08 16:28:19 by tlegrand         ###   ########.fr       */
+/*   Updated: 2023/03/08 18:35:25 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,17 +15,20 @@
 void	ft_exe_cmd(t_cmd *cmd, int pipe_in[2], int pipe_out[2])
 {
 	int	pid;
+	int	here_pipe[2];
 
 	pid = fork();
 	if (pid == -1)
 		perror("Error ");
 	else if (pid == 0)
 	{
-		ft_dup_redirect(cmd->io);
+		if (ft_dup_redirect(cmd->io, here_pipe))
+			perror("Error ");
 		ft_dup_pipe(pipe_in, pipe_out);
 		if (execve(cmd->cmd[0], cmd->cmd, NULL) == -1)
 			perror("Error ");
-		ft_exit_cmd(cmd);
+		ft_clear_cmd(cmd);
+		exit(EXIT_FAILURE);
 	}
 }
 
@@ -41,6 +44,9 @@ static void	ft_get_wait_status(int max_wait, int *exit_code)
 		*exit_code = WEXITSTATUS(wstatus);
 }
 
+/*	TODO: change built-in exe (merge is_bi and bi_select)
+	need to have builtin done before
+*/
 void	ft_exe_master(t_line *line)
 {
 	int	i;

@@ -6,7 +6,7 @@
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/08 16:17:01 by tlegrand          #+#    #+#             */
-/*   Updated: 2023/03/08 16:57:33 by tlegrand         ###   ########.fr       */
+/*   Updated: 2023/03/08 17:52:15 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,10 @@ int	ft_is_bi(char *name)
 /*	TODO: check if dup2(0, 0) resore stdin to term, if not use fdtmp and dup*/
 void	ft_bi_selector(t_line *line, int pipe_in[2], int pipe_out[2])
 {
-	ft_dup_redirect(line->cmd->io);
+	int	here_pipe[2];
+
+	if (ft_dup_redirect(line->cmd->io, here_pipe))
+		return ;
 	if (dup2(pipe_in[0], 0) == -1 || dup2(pipe_out[1], 1) == -1)
 		perror("Error ");
 	if (!ft_strncmp(line->cmd->cmd[0], "cd", 3))
