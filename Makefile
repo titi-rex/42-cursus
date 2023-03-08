@@ -6,7 +6,7 @@
 #    By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/02/12 20:46:19 by tlegrand          #+#    #+#              #
-#    Updated: 2023/03/08 14:17:45 by tlegrand         ###   ########.fr        #
+#    Updated: 2023/03/08 15:55:14 by tlegrand         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,14 +14,15 @@
 #	/*\/*\/*\/*\/*\/*\/*\/*\/*\/*\/*\/*\	PROJECT VARIABLES	/*\/*\/*\/*\/*\/*\/*\/*\/*\/*\/*\/*\	#
 
 #	==============================	NAMES	==============================	#
-NAME		=	minishell.out
+NAME		=	minishell
 
 
 #	==============================	SOURCES	==============================	#
 DIR_SRCS		=	srcs/
 
 LST_SRCS		=	main_test.c \
-					bi_echo.c bi_pwd.c bi_cd.c bi_exit.c
+					bi_echo.c bi_pwd.c bi_cd.c bi_exit.c \
+					exe_cmd.c
 
 SRCS			=	${addprefix ${DIR_SRCS}, ${LST_SRCS}}
 
@@ -74,7 +75,7 @@ re		:	fclean
 
 #	==============================	COMPILATION	==============================	#
 ${NAME}			:	${LIBFT} ${DIR_OBJS} ${OBJS}
-				@${CC} ${CFLAGS} ${OBJS} ${FTFLAGS} -o ${NAME}
+				@${CC} ${CFLAGS} ${OBJS} ${FTFLAGS} -o ${NAME}.out
 				@printf "$(GREEN_LIGHT)${NAME} created !\n$(END)"
 
 

@@ -1,27 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   echo.c                                             :+:      :+:    :+:   */
+/*   bi_echo.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/08 12:18:35 by tlegrand          #+#    #+#             */
-/*   Updated: 2023/03/08 14:15:37 by tlegrand         ###   ########.fr       */
+/*   Updated: 2023/03/08 16:34:34 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/minishell.h"
 
-/*	TODO: free arg before exit	*/
-void	bi_echo(char **arg)
+int	bi_echo(char **arg)
 {
 	char	new_line;
 	int		i;
-	int		err;
 
 	i = 1;
 	new_line = '\n';
-	err = EXIT_SUCCESS;
 	if (!ft_strncmp(arg[1], "-n", 3))
 	{
 		new_line = '\0';
@@ -29,9 +26,8 @@ void	bi_echo(char **arg)
 	}
 	if (printf("%s%c", arg[i], new_line) < 0)
 	{
-		err = EXIT_FAILURE;
 		perror("Error ");
+		return (EXIT_FAILURE);
 	}
-	//ft_free2d((void **) arg, 0);
-	exit(err);
+	return (EXIT_SUCCESS);
 }
