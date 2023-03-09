@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: louisa <louisa@student.42.fr>              +#+  +:+       +#+        */
+/*   By: lboudjem <lboudjem@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/08 11:21:07 by louisa            #+#    #+#             */
-/*   Updated: 2023/03/08 19:19:50 by louisa           ###   ########.fr       */
+/*   Updated: 2023/03/09 12:22:08 by lboudjem         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,11 @@
 
 // "          exit"
 
-int main (void)
+int	main(void)
 {
 	char	*str;
 
-	while(1)
+	while (1)
 	{
 		str = readline("$> ");
 		if (ft_strncmp(str, "exit", ft_strlen(str)) == 0)
