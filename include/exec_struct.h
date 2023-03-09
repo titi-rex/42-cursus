@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exec_struct.h                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: lboudjem <lboudjem@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/06 21:46:27 by tlegrand          #+#    #+#             */
-/*   Updated: 2023/03/08 12:46:31 by tlegrand         ###   ########.fr       */
+/*   Updated: 2023/03/09 14:55:46 by lboudjem         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ typedef struct s_redirect
 */
 typedef struct s_cmd
 {
-	char			**cmd;
+	char			**arg;
 	t_redirect		*io;
 	struct s_cmd	*next;
 	struct s_cmd	*previous;
@@ -42,10 +42,20 @@ typedef struct s_cmd
 */
 typedef struct s_line
 {
-	t_cmd	*first;
+	t_cmd	*cmd;
+	char	**env;
+	char	*path;
 	int		pipe[2][2];
 	int		n_cmds;
 	int		exit_status;
 }	t_line;
+
+typedef struct s_var_env
+{
+	char		*name;
+	char		*value;
+	t_var_env	next;
+	t_var_env	previous;
+}	t_var_env;
 
 #endif

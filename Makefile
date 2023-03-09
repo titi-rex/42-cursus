@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: louisa <louisa@student.42.fr>              +#+  +:+       +#+         #
+#    By: lboudjem <lboudjem@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/02/12 20:46:19 by tlegrand          #+#    #+#              #
-#    Updated: 2023/03/08 17:12:25 by louisa           ###   ########.fr        #
+#    Updated: 2023/03/09 13:58:37 by lboudjem         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,7 +22,9 @@ DIR_SRCS		=	srcs/
 
 READ			=	-lreadline
 
-LST_SRCS		=	parsing.c
+LST_SRCS		=	parsing.c \
+					utils.c \
+					get_path.c
 SRCS			=	${addprefix ${DIR_SRCS}, ${LST_SRCS}}
 
 
