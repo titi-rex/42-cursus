@@ -6,7 +6,7 @@
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/06 21:46:27 by tlegrand          #+#    #+#             */
-/*   Updated: 2023/03/09 21:04:51 by tlegrand         ###   ########.fr       */
+/*   Updated: 2023/03/09 22:16:14 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,13 +50,12 @@ typedef struct s_line
 }	t_line;
 
 /*	structure storing fd called by a varname
-	varname must be {varname}
-	name is either varname or {varname}, up to you 
+	varname must be {name} format
 	int is the fd linked
 */
 typedef struct s_varfd
 {
-	char			*name;
+	char			*varname;
 	int				fd;
 	struct s_varfd	*next;
 }	t_varfd;
