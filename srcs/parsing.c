@@ -3,46 +3,24 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: louisa <louisa@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/08 11:21:07 by louisa            #+#    #+#             */
-/*   Updated: 2023/03/08 17:05:55 by tlegrand         ###   ########.fr       */
+/*   Updated: 2023/03/09 11:40:41 by louisa           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/minishell.h"
 
-char *prompt (void)
+int	main(void)
 {
-	char *invite;
+	char	*str;
 
-	invite = malloc(4 * sizeof(char));
-	invite[0] = '$';
-	invite[1] = '>';
-	invite[2] = ' ';
-	invite[3] = '\0';
-
-	return invite;
-}
-
-int main (void)
-{
-	int end = 0;
-	char *s;
-	char line[128];
-
-	while (!end)
+	while (1)
 	{
-		s = prompt();
-
-		if (s != NULL)
-		{
-			ft_putstr_fd(s, 1);
-			free (s);
-			s = NULL;
-		}
-	read(1, line, sizeof line);
-	end = ft_strncmp(line, "exit\n", 5) == 0;
-   }
-   return (0);
+		str = readline("$> ");
+		if (ft_strncmp(str, "exit", ft_strlen(str)) == 0)
+			return (0);
+	}
+	return (0);
 }
