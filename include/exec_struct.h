@@ -6,7 +6,7 @@
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/06 21:46:27 by tlegrand          #+#    #+#             */
-/*   Updated: 2023/03/09 14:24:54 by tlegrand         ###   ########.fr       */
+/*   Updated: 2023/03/09 21:04:51 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,5 +48,17 @@ typedef struct s_line
 	int		exit_status;
 	void	*env;
 }	t_line;
+
+/*	structure storing fd called by a varname
+	varname must be {varname}
+	name is either varname or {varname}, up to you 
+	int is the fd linked
+*/
+typedef struct s_varfd
+{
+	char			*name;
+	int				fd;
+	struct s_varfd	*next;
+}	t_varfd;
 
 #endif

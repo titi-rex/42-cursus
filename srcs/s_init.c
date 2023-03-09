@@ -6,11 +6,18 @@
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/09 14:18:27 by tlegrand          #+#    #+#             */
-/*   Updated: 2023/03/09 14:36:16 by tlegrand         ###   ########.fr       */
+/*   Updated: 2023/03/09 21:07:02 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/minishell.h"
+
+void	s_init_varfd(t_varfd *varfd)
+{
+	varfd->name = NULL;
+	varfd->fd = 10;
+	varfd->next = NULL;
+}
 
 void	s_init_redirect(t_redirect *io)
 {

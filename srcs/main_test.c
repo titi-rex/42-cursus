@@ -6,7 +6,7 @@
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/08 12:28:13 by tlegrand          #+#    #+#             */
-/*   Updated: 2023/03/09 20:57:09 by tlegrand         ###   ########.fr       */
+/*   Updated: 2023/03/09 22:09:21 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ int	main(int ac, char **arg)
 	line.cmd = &cmd;
 	line.n_cmds = 1;
 	ft_exe_master(&line);
-	ft_clear_line_exit(&line, EXIT_SUCCESS);
+	ft_clear_line_exit(&line, line.exit_status);
 	(void) arg;
 	(void) ac;
 	return (0);
@@ -42,4 +42,27 @@ ctrl d = send OEF NOT A SIGNAL close terminal (exit)
 ctrl \ = SIGQUIT (rompish)
 
 ctrl z = SIGSTP (freeze)
+
+valgrind
+--suppressions=valgrind_ignore_leaks.txt
+--leak-check=full --show-leak-kinds=all
+--track-origins=yes --verbose
+--show-mismatched-frees=yes
+--read-var-info=yes
+
+(option) --log-file=valgrind-out.txt
+
+valgrind_ignore_leaks.txt :
+{
+	leak readline
+	Memcheck:Leak
+	...
+	fun:readline
+}
+{
+	leak add_history
+	Memcheck:Leak
+	...
+	fun:add_history
+}
 */
