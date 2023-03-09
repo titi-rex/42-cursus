@@ -6,12 +6,13 @@
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/08 13:10:16 by tlegrand          #+#    #+#             */
-/*   Updated: 2023/03/09 12:59:45 by tlegrand         ###   ########.fr       */
+/*   Updated: 2023/03/09 14:37:12 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/minishell.h"
 
+/*	TODO: use env to get pwd */
 int	bi_pwd(t_line *line)
 {
 	char	*pwd;

@@ -6,7 +6,7 @@
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/09 14:18:27 by tlegrand          #+#    #+#             */
-/*   Updated: 2023/03/09 14:18:31 by tlegrand         ###   ########.fr       */
+/*   Updated: 2023/03/09 14:36:16 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ void	s_init_redirect(t_redirect *io)
 
 void	s_init_cmd(t_cmd *cmd)
 {
-	cmd->cmd = NULL;
+	cmd->arg = NULL;
 	cmd->io = NULL;
 	cmd->next = NULL;
 	cmd->previous = NULL;

@@ -6,13 +6,42 @@
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/08 15:07:58 by tlegrand          #+#    #+#             */
-/*   Updated: 2023/03/08 18:35:25 by tlegrand         ###   ########.fr       */
+/*   Updated: 2023/03/09 17:06:43 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/minishell.h"
 
-void	ft_exe_cmd(t_cmd *cmd, int pipe_in[2], int pipe_out[2])
+void	ft_exe_bi(t_line *line, int pipe_in[2], int pipe_out[2], \
+	int (*ft_bi)(t_line *))
+{
+	int	here_pipe[2];
+	int	pid;
+
+	if (line->n_cmds == 1)
+	{
+		if (ft_dup_redirect(line->cmd->io, here_pipe))
+			return ;
+		line->exit_status = ft_bi(line);
+	}
+	else
+	{
+		pid = fork();
+		if (pid == -1)
+			perror("Error ");
+		else if (pid == 0)
+		{
+			if (ft_dup_redirect(line->cmd->io, here_pipe))
+				ft_clear_line_exit(line, EXIT_FAILURE);
+			if (dup2(pipe_in[0], 0) == -1 || dup2(pipe_out[1], 1) == -1)
+				perror("Error ");
+			line->exit_status = ft_bi(line);
+			ft_clear_line_exit(line, EXIT_SUCCESS);
+		}
+	}
+}
+
+void	ft_exe_cmd(t_line *line, int pipe_in[2], int pipe_out[2])
 {
 	int	pid;
 	int	here_pipe[2];
@@ -22,17 +51,38 @@ void	ft_exe_cmd(t_cmd *cmd, int pipe_in[2], int pipe_out[2])
 		perror("Error ");
 	else if (pid == 0)
 	{
-		if (ft_dup_redirect(cmd->io, here_pipe))
+		if (ft_dup_redirect(line->cmd->io, here_pipe))
 			perror("Error ");
 		ft_dup_pipe(pipe_in, pipe_out);
-		if (execve(cmd->cmd[0], cmd->cmd, NULL) == -1)
+		if (execve(line->cmd->arg[0], line->cmd->arg, NULL) == -1)
 			perror("Error ");
-		ft_clear_cmd(cmd);
-		exit(EXIT_FAILURE);
+		ft_clear_line_exit(line, EXIT_FAILURE);
 	}
 }
 
-static void	ft_get_wait_status(int max_wait, int *exit_code)
+void	ft_exe_selector(t_line *line, int pipe_in[2], int pipe_out[2])
+{
+	if (!line->cmd->arg[0])
+		return ;
+	if (!ft_strncmp(line->cmd->arg[0], "cd", 3))
+		ft_exe_bi(line, pipe_in, pipe_out, bi_cd);
+	else if (line->cmd->arg && !ft_strncmp(line->cmd->arg[0], "echo", 5))
+		ft_exe_bi(line, pipe_in, pipe_out, bi_echo);
+	//else if (line->cmd->arg && !ft_strncmp(line->cmd->arg[0], "env", 4))
+	//	ft_exe_bi(line, pipe_in, pipe_out, bi_env);
+	else if (line->cmd->arg && !ft_strncmp(line->cmd->arg[0], "exit", 5))
+		ft_exe_bi(line, pipe_in, pipe_out, bi_exit);
+	//else if (line->cmd->arg && !ft_strncmp(line->cmd->arg[0], "export", 7))
+	//	ft_exe_bi(line, pipe_in, pipe_out, bi_export);
+	else if (line->cmd->arg && !ft_strncmp(line->cmd->arg[0], "pwd", 4))
+		ft_exe_bi(line, pipe_in, pipe_out, bi_pwd);
+	//else if (line->cmd->arg && !ft_strncmp(line->cmd->arg[0], "unset", 6))
+	//	ft_exe_bi(line, pipe_in, pipe_out, bi_unset);
+	else
+		ft_exe_cmd(line, pipe_in, pipe_out);
+}
+
+void	ft_get_wait_status(int max_wait, int *exit_code)
 {
 	int	wstatus;
 	int	i;
@@ -45,7 +95,7 @@ static void	ft_get_wait_status(int max_wait, int *exit_code)
 }
 
 /*	TODO: change built-in exe (merge is_bi and bi_select)
-	need to have builtin done before
+	TODO: change selection (if 1 cmd bi launch by parent)
 */
 void	ft_exe_master(t_line *line)
 {
@@ -54,6 +104,8 @@ void	ft_exe_master(t_line *line)
 
 	i = 0;
 	j = 1;
+	// printf("cmd : %s\n", line->cmd->arg[0]);
+	// printf("cmd->next : %p\n", line->cmd->arg[0]);
 	while (line->cmd)
 	{
 		if (line->cmd->next)
@@ -61,10 +113,7 @@ void	ft_exe_master(t_line *line)
 			if (pipe(line->pipe[i]) == -1)
 				perror("Error ");
 		}
-		if (ft_is_bi(line->cmd->cmd[0]))
-			ft_bi_selector(line, line->pipe[j], line->pipe[i]);
-		else
-			ft_exe_cmd(line->cmd, line->pipe[j], line->pipe[i]);
+		ft_exe_selector(line, line->pipe[j], line->pipe[i]);
 		ft_close_pipe(line->pipe[j]);
 		i = i + 1 % 2;
 		j = j + 1 % 2;

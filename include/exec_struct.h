@@ -6,7 +6,7 @@
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/06 21:46:27 by tlegrand          #+#    #+#             */
-/*   Updated: 2023/03/08 18:37:48 by tlegrand         ###   ########.fr       */
+/*   Updated: 2023/03/09 14:24:54 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,12 +27,12 @@ typedef struct s_redirect
 }	t_redirect;
 
 /*	structure for one command to execute 
-	cmd		: cmd path, flags and arg
+	arg		: cmd path, flags and arg
 	io		: all redirection stored in list
 */
 typedef struct s_cmd
 {
-	char			**cmd;
+	char			**arg;
 	t_redirect		*io;
 	struct s_cmd	*next;
 	struct s_cmd	*previous;

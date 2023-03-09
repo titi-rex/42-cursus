@@ -6,7 +6,7 @@
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/08 12:18:35 by tlegrand          #+#    #+#             */
-/*   Updated: 2023/03/09 13:26:58 by tlegrand         ###   ########.fr       */
+/*   Updated: 2023/03/09 14:32:33 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,15 +19,18 @@ int	bi_echo(t_line *line)
 
 	i = 1;
 	new_line = '\n';
-	if (line->cmd->cmd[1] && !ft_strncmp(line->cmd->cmd[1], "-n", 3))
+	if (line->cmd && line->cmd->arg)
 	{
-		new_line = '\0';
-		i++;
-	}
-	while (line->cmd->cmd[i])
-	{
-		printf("%s", line->cmd->cmd[i]);
-		i++;
+		if (line->cmd->arg[1] && !ft_strncmp(line->cmd->arg[1], "-n", 3))
+		{
+			new_line = '\0';
+			i++;
+		}
+		while (line->cmd->arg[i])
+		{
+			printf("%s", line->cmd->arg[i]);
+			i++;
+		}
 	}
 	printf("%c", new_line);
 	return (EXIT_SUCCESS);
