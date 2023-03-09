@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+         #
+#    By: louisa <louisa@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/02/12 20:46:19 by tlegrand          #+#    #+#              #
-#    Updated: 2023/03/08 17:04:35 by tlegrand         ###   ########.fr        #
+#    Updated: 2023/03/08 17:12:25 by louisa           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,6 +19,8 @@ NAME		=	minishell
 
 #	==============================	SOURCES	==============================	#
 DIR_SRCS		=	srcs/
+
+READ			=	-lreadline
 
 LST_SRCS		=	parsing.c
 SRCS			=	${addprefix ${DIR_SRCS}, ${LST_SRCS}}
@@ -47,7 +49,8 @@ MAKE		=	make -s
 
 
 #	==============================	FLAGS	==============================	#
-CFLAGS		=	-Wall -Wextra -Werror -I${DIR_HEADER}
+CFLAGS		=	-Wall -Wextra -Werror -I${DIR_HEADER} 
+RFLAGS		=	-L/usr/local/lib -I/usr/local/include
 FTFLAGS		=	-L${DIR_LIBFT} -lft 
 
 
@@ -72,7 +75,7 @@ re		:	fclean
 
 #	==============================	COMPILATION	==============================	#
 ${NAME}			:	${LIBFT} ${DIR_OBJS} ${OBJS}
-				@${CC} ${CFLAGS} ${OBJS} ${FTFLAGS} -o ${NAME}
+				@${CC} ${CFLAGS} ${RFLAGS} ${OBJS} ${FTFLAGS} ${READ} -o ${NAME}
 				@printf "$(GREEN_LIGHT)${NAME} created !\n$(END)"
 
 
