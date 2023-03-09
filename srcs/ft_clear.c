@@ -6,7 +6,7 @@
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/08 18:19:34 by tlegrand          #+#    #+#             */
-/*   Updated: 2023/03/09 22:11:59 by tlegrand         ###   ########.fr       */
+/*   Updated: 2023/03/09 23:49:33 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,26 +21,41 @@ void	ft_clear_lst_io(t_redirect *io)
 	ft_clear_lst_io(io->next);
 }
 
-void	ft_clear_cmd(t_cmd *cmd)
+void	ft_clear_cmd(t_cmd **cmd)
 {
-	if (cmd->arg)
-		ft_free2d((void **)cmd->arg, 0);
-	cmd->arg = NULL;
-	ft_clear_lst_io(cmd->io);
+	if ((*cmd)->arg)
+		ft_free2d((void **)(*cmd)->arg, 0);
+	ft_clear_lst_io((*cmd)->io);
+	*cmd = NULL;
+	cmd = NULL;
 }
 
-void	ft_clear_lst_cmd(t_cmd *cmd)
+void	ft_clear_lst_cmd_previous(t_cmd **cmd)
 {
-	if (!cmd)
+	t_cmd	*previous;
+
+	if (!cmd || !*cmd)
 		return ;
+	previous = (*cmd)->previous;
 	ft_clear_cmd(cmd);
-	ft_clear_lst_cmd(cmd->previous);
-	ft_clear_lst_cmd(cmd->next);
+	ft_clear_lst_cmd_previous(&previous);
+}
+
+void	ft_clear_lst_cmd_next(t_cmd **cmd)
+{
+	t_cmd	*next;
+
+	if (!cmd || !*cmd)
+		return ;
+	next = (*cmd)->next;
+	ft_clear_cmd(cmd);
+	ft_clear_lst_cmd_next(&next);
 }
 
 void	ft_clear_line(t_line *line)
 {
-	ft_clear_lst_cmd(line->cmd);
+	ft_clear_lst_cmd_previous(&line->cmd->previous);
+	ft_clear_lst_cmd_next(&line->cmd);
 	ft_close_pipe(line->pipe[0]);
 	ft_close_pipe(line->pipe[1]);
 	line->n_cmds = 0;

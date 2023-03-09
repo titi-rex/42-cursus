@@ -6,7 +6,7 @@
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/09 14:18:27 by tlegrand          #+#    #+#             */
-/*   Updated: 2023/03/09 21:07:02 by tlegrand         ###   ########.fr       */
+/*   Updated: 2023/03/09 22:32:08 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	s_init_varfd(t_varfd *varfd)
 {
-	varfd->name = NULL;
+	varfd->varname = NULL;
 	varfd->fd = 10;
 	varfd->next = NULL;
 }

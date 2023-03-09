@@ -6,7 +6,7 @@
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/08 12:19:09 by tlegrand          #+#    #+#             */
-/*   Updated: 2023/03/09 16:01:11 by tlegrand         ###   ########.fr       */
+/*   Updated: 2023/03/09 23:15:34 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,8 +29,8 @@ void	ft_exe_master(t_line *line);
 int		ft_dup_redirect(t_redirect *io, int here_pipe[2]);
 void	ft_dup_pipe(int pipe_in[2], int pipe_out[2]);
 
-void	ft_clear_cmd(t_cmd *cmd);
-void	ft_clear_lst_cmd(t_cmd *cmd);
+void	ft_clear_cmd(t_cmd **cmd);
+void	ft_clear_lst_cmd(t_cmd **cmd);
 void	ft_clear_line(t_line *line);
 void	ft_clear_line_exit(t_line *line, int exit_code);
 

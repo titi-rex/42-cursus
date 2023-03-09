@@ -6,7 +6,7 @@
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/08 15:07:58 by tlegrand          #+#    #+#             */
-/*   Updated: 2023/03/09 22:09:49 by tlegrand         ###   ########.fr       */
+/*   Updated: 2023/03/09 23:51:23 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,11 +33,14 @@ void	ft_exe_bi(t_line *line, int pipe_in[2], int pipe_out[2], \
 		{
 			if (ft_dup_redirect(line->cmd->io, here_pipe))
 				ft_clear_line_exit(line, EXIT_FAILURE);
-			if (dup2(pipe_in[0], 0) == -1 || dup2(pipe_out[1], 1) == -1)
-				perror("Error ");
+			//if (dup2(pipe_in[0], 0) == -1 || dup2(pipe_out[1], 1) == -1)
+			//	perror("Error dup pipe bi ");
 			line->exit_status = ft_bi(line);
+			
 			ft_clear_line_exit(line, EXIT_SUCCESS);
 		}
+		(void) pipe_in;
+		(void) pipe_out;
 	}
 }
 
@@ -85,16 +88,19 @@ void	ft_exe_selector(t_line *line, int pipe_in[2], int pipe_out[2])
 void	ft_get_wait_status(int max_wait, int *exit_code)
 {
 	int	wstatus;
+	int	tmp;
 	int	i;
 
 	i = -1;
+	tmp = -1;
+	wstatus = 0;
 	while (i++ < max_wait)
-		waitpid(-1, &wstatus, 0);
-	if (WIFEXITED(wstatus))
+		tmp = waitpid(-1, &wstatus, 0);
+	if (tmp != -1 && WIFEXITED(wstatus))
 		*exit_code = WEXITSTATUS(wstatus);
 }
 
-/*	TODO: ft_reset_line after exe master	*/
+/*	FIXME: error dup pipe in bi	*/
 void	ft_exe_master(t_line *line)
 {
 	int	i;
@@ -107,7 +113,7 @@ void	ft_exe_master(t_line *line)
 		if (line->cmd->next)
 		{
 			if (pipe(line->pipe[i]) == -1)
-				perror("Error1 ");
+				perror("Error open pipe ");
 		}
 		ft_exe_selector(line, line->pipe[j], line->pipe[i]);
 		ft_close_pipe(line->pipe[j]);
