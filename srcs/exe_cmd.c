@@ -6,7 +6,7 @@
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/08 15:07:58 by tlegrand          #+#    #+#             */
-/*   Updated: 2023/03/09 17:06:43 by tlegrand         ###   ########.fr       */
+/*   Updated: 2023/03/09 17:14:30 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ void	ft_exe_cmd(t_line *line, int pipe_in[2], int pipe_out[2])
 		ft_dup_pipe(pipe_in, pipe_out);
 		if (execve(line->cmd->arg[0], line->cmd->arg, NULL) == -1)
 			perror("Error ");
-		ft_clear_line_exit(line, EXIT_FAILURE);
+		//ft_clear_line_exit(line, EXIT_FAILURE);
 	}
 }
 
@@ -120,4 +120,5 @@ void	ft_exe_master(t_line *line)
 		line->cmd = line->cmd->next;
 	}
 	ft_get_wait_status(line->n_cmds, &line->exit_status);
+	printf("cmd is %s\n", line->cmd->arg[0]);
 }
