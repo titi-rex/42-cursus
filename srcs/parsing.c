@@ -6,7 +6,7 @@
 /*   By: lboudjem <lboudjem@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/08 11:21:07 by louisa            #+#    #+#             */
-/*   Updated: 2023/03/09 14:52:47 by lboudjem         ###   ########.fr       */
+/*   Updated: 2023/03/09 15:10:41 by lboudjem         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,6 @@ int	ft_prompt(t_line *line)
 			return (1);
 		cmd = get_cmd(str, line);
 		ft_get_path(line->path, line->cmd);
-		printf("cmd = %s\n", line->cmd->arg[0]);
 		if (!cmd)
 			return (1);
 		if (ft_strncmp(str, "exit", ft_strlen(str)) == 0)

@@ -6,7 +6,7 @@
 /*   By: lboudjem <lboudjem@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/06 21:46:27 by tlegrand          #+#    #+#             */
-/*   Updated: 2023/03/09 14:55:46 by lboudjem         ###   ########.fr       */
+/*   Updated: 2023/03/09 15:14:08 by lboudjem         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,12 +50,14 @@ typedef struct s_line
 	int		exit_status;
 }	t_line;
 
+/*	structure for environment variables
+*/
 typedef struct s_var_env
 {
-	char		*name;
-	char		*value;
-	t_var_env	next;
-	t_var_env	previous;
+	char				*name;
+	char				*value;
+	struct s_var_env	*next;
+	struct s_var_env	*previous;
 }	t_var_env;
 
 #endif
