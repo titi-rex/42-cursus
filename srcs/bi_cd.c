@@ -6,28 +6,39 @@
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/08 13:27:20 by tlegrand          #+#    #+#             */
-/*   Updated: 2023/03/08 14:16:52 by tlegrand         ###   ########.fr       */
+/*   Updated: 2023/03/09 14:20:29 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/minishell.h"
 
-/*	TODO: check if cd print pwd after cd at school	*/
-/*	TODO: check beaviohor when piped	*/
-/*	FIXME: perror display succes when error too much arg	*/
-int	bi_cd(char **arg)
+static int	bi_count_arg(char **arg)
 {
-	if (arg[2])
+	int	n;
+
+	n = 0;
+	while (arg[n])
+		n++;
+	return (n);
+}
+
+/*	TODO: when piped do nothing > in child*/
+/*	TODO: cd $HOME	*/
+int	bi_cd(t_line *line)
+{
+	if (bi_count_arg(line->cmd->cmd) > 2)
 	{
-		perror("Error, too much arguments ");
+		ft_putstr_fd("Error, too much arguments\n", 2);
 		return (EXIT_FAILURE);
 	}
-	if (!chdir(arg[1]))
+	if (!line->cmd->cmd[1])
 	{
-		if (arg[1][0] != '.' && arg[1][0] != '/' )
-			bi_pwd();
+		chdir("");
+		perror("Error ");
 		return (EXIT_SUCCESS);
 	}
+	if (!chdir(line->cmd->cmd[1]))
+		return (EXIT_SUCCESS);
 	perror("Error ");
 	return (EXIT_FAILURE);
 }

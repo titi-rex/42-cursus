@@ -6,7 +6,7 @@
 #    By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/02/12 20:46:19 by tlegrand          #+#    #+#              #
-#    Updated: 2023/03/08 18:26:12 by tlegrand         ###   ########.fr        #
+#    Updated: 2023/03/09 14:19:20 by tlegrand         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,7 +23,7 @@ DIR_SRCS		=	srcs/
 LST_SRCS		=	main_test.c \
 					bi_utils.c bi_echo.c bi_pwd.c bi_cd.c bi_exit.c \
 					exe_dup_redirect.c exe_dup_pipe.c exe_cmd.c \
-					ft_clear.c
+					ft_clear.c s_init.c
 
 SRCS			=	${addprefix ${DIR_SRCS}, ${LST_SRCS}}
 
@@ -76,7 +76,7 @@ re		:	fclean
 
 #	==============================	COMPILATION	==============================	#
 ${NAME}			:	${LIBFT} ${DIR_OBJS} ${OBJS}
-				@${CC} ${CFLAGS} ${OBJS} ${FTFLAGS} -o ${NAME}.out
+				@${CC} ${CFLAGS} ${OBJS} ${FTFLAGS} -o ${NAME}
 				@printf "$(GREEN_LIGHT)${NAME} created !\n$(END)"
 
 

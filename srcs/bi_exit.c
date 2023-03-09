@@ -6,17 +6,22 @@
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/08 14:10:12 by tlegrand          #+#    #+#             */
-/*   Updated: 2023/03/08 14:14:53 by tlegrand         ###   ########.fr       */
+/*   Updated: 2023/03/09 13:43:48 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/minishell.h"
 
 /*	TODO: add clean struct	*/
-void	bi_exit(t_line *line, int exit_status)
+int	bi_exit(t_line *line)
 {
-	if (exit_status != -1)
-		exit(exit_status);
+	int	exit_code;
+
+	if (line->cmd && line->cmd->cmd && line->cmd->cmd[1])
+		exit_code = ft_atoi(line->cmd->cmd[1]);
 	else
-		exit(line->exit_status);
+		exit_code = line->exit_status;
+	ft_clear_line(line);
+	exit(exit_code);
+	return (EXIT_FAILURE);
 }

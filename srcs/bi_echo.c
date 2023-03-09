@@ -6,28 +6,29 @@
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/08 12:18:35 by tlegrand          #+#    #+#             */
-/*   Updated: 2023/03/08 16:34:34 by tlegrand         ###   ########.fr       */
+/*   Updated: 2023/03/09 13:26:58 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/minishell.h"
 
-int	bi_echo(char **arg)
+int	bi_echo(t_line *line)
 {
 	char	new_line;
 	int		i;
 
 	i = 1;
 	new_line = '\n';
-	if (!ft_strncmp(arg[1], "-n", 3))
+	if (line->cmd->cmd[1] && !ft_strncmp(line->cmd->cmd[1], "-n", 3))
 	{
 		new_line = '\0';
 		i++;
 	}
-	if (printf("%s%c", arg[i], new_line) < 0)
+	while (line->cmd->cmd[i])
 	{
-		perror("Error ");
-		return (EXIT_FAILURE);
+		printf("%s", line->cmd->cmd[i]);
+		i++;
 	}
+	printf("%c", new_line);
 	return (EXIT_SUCCESS);
 }

@@ -6,7 +6,7 @@
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/08 16:17:01 by tlegrand          #+#    #+#             */
-/*   Updated: 2023/03/08 17:52:15 by tlegrand         ###   ########.fr       */
+/*   Updated: 2023/03/09 12:57:31 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,17 +39,17 @@ void	ft_bi_selector(t_line *line, int pipe_in[2], int pipe_out[2])
 	if (dup2(pipe_in[0], 0) == -1 || dup2(pipe_out[1], 1) == -1)
 		perror("Error ");
 	if (!ft_strncmp(line->cmd->cmd[0], "cd", 3))
-		line->exit_status = bi_cd(line->cmd->cmd);
+		line->exit_status = bi_cd(line);
 	if (!ft_strncmp(line->cmd->cmd[0], "echo", 5))
-		line->exit_status = bi_echo(line->cmd->cmd);
+		line->exit_status = bi_echo(line);
 	//if (!ft_strncmp(line->cmd->cmd[0], "env", 4))
 	//	line->exit_status = env();
 	if (!ft_strncmp(line->cmd->cmd[0], "exit", 5))
-		bi_exit(line, ft_atoi(line->cmd->cmd[1]));
+		bi_exit(line);
 	//if (!ft_strncmp(line->cmd->cmd[0], "export", 7))
 	//	line->exit_status = export();
 	if (!ft_strncmp(line->cmd->cmd[0], "pwd", 4))
-		line->exit_status = bi_pwd();
+		line->exit_status = bi_pwd(line);
 	//if (!ft_strncmp(line->cmd->cmd[0], "unset", 7))
 	//	line->exit_status = unset();
 	if (dup2(0, 0) == -1 || dup2(1, 1) == -1)
