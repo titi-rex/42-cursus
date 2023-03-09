@@ -6,7 +6,7 @@
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/08 17:17:17 by tlegrand          #+#    #+#             */
-/*   Updated: 2023/03/08 18:14:55 by tlegrand         ###   ########.fr       */
+/*   Updated: 2023/03/09 20:01:05 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,11 +19,11 @@ static int	ft_dup_in(t_redirect *io)
 	fd = open(io->arg, O_RDONLY);
 	if (fd == -1)
 	{
-		perror("Error ");
+		perror("Error dup io < ");
 		return (1);
 	}
 	if (dup2(fd, io->fd) == -1)
-		perror("Error ");
+		perror("Error dup io < ");
 	close(fd);
 	return (0);
 }
@@ -35,11 +35,11 @@ static int	ft_dup_out(t_redirect *io)
 	fd = open(io->arg, O_WRONLY | O_TRUNC | O_CREAT, 0644);
 	if (fd == -1)
 	{
-		perror("Error ");
+		perror("Error dup io > ");
 		return (1);
 	}
 	if (dup2(fd, io->fd) == -1)
-		perror("Error ");
+		perror("Error dup io > ");
 	close(fd);
 	return (0);
 }
@@ -51,11 +51,11 @@ static int	ft_dup_out_append(t_redirect *io)
 	fd = open(io->arg, O_WRONLY | O_APPEND | O_CREAT, 0644);
 	if (fd == -1)
 	{
-		perror("Error ");
+		perror("Error dup io >> ");
 		return (1);
 	}
 	if (dup2(fd, io->fd) == -1)
-		perror("Error ");
+		perror("Error dup io >> ");
 	close(fd);
 	return (0);
 }
@@ -68,9 +68,9 @@ static int	ft_dup_here_doc(t_redirect *io, int here_pipe[2])
 		return (1);
 	}
 	if (write(here_pipe[0], io->arg, ft_strlen(io->arg)) == -1)
-		perror("Error ");
+		perror("Error dup here_doc ");
 	if (dup2(here_pipe[1], 0) == -1)
-		perror("Error ");
+		perror("Error dup here_doc ");
 	ft_close_pipe(here_pipe);
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/08 12:28:13 by tlegrand          #+#    #+#             */
-/*   Updated: 2023/03/09 17:14:49 by tlegrand         ###   ########.fr       */
+/*   Updated: 2023/03/09 20:57:09 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,11 +30,16 @@ int	main(int ac, char **arg)
 	line.cmd = &cmd;
 	line.n_cmds = 1;
 	ft_exe_master(&line);
-	printf("euh c malaisant\n");
-
 	ft_clear_line_exit(&line, EXIT_SUCCESS);
 	(void) arg;
 	(void) ac;
 	return (0);
 }
 
+/*
+ctrl c = SIGINT (new prompt new line)
+ctrl d = send OEF NOT A SIGNAL close terminal (exit)
+ctrl \ = SIGQUIT (rompish)
+
+ctrl z = SIGSTP (freeze)
+*/

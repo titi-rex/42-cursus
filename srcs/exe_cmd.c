@@ -6,7 +6,7 @@
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/08 15:07:58 by tlegrand          #+#    #+#             */
-/*   Updated: 2023/03/09 17:14:30 by tlegrand         ###   ########.fr       */
+/*   Updated: 2023/03/09 20:37:31 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ void	ft_exe_cmd(t_line *line, int pipe_in[2], int pipe_out[2])
 		ft_dup_pipe(pipe_in, pipe_out);
 		if (execve(line->cmd->arg[0], line->cmd->arg, NULL) == -1)
 			perror("Error ");
-		//ft_clear_line_exit(line, EXIT_FAILURE);
+		ft_clear_line_exit(line, EXIT_FAILURE);
 	}
 }
 
@@ -64,7 +64,7 @@ void	ft_exe_selector(t_line *line, int pipe_in[2], int pipe_out[2])
 {
 	if (!line->cmd->arg[0])
 		return ;
-	if (!ft_strncmp(line->cmd->arg[0], "cd", 3))
+	else if (!ft_strncmp(line->cmd->arg[0], "cd", 3))
 		ft_exe_bi(line, pipe_in, pipe_out, bi_cd);
 	else if (line->cmd->arg && !ft_strncmp(line->cmd->arg[0], "echo", 5))
 		ft_exe_bi(line, pipe_in, pipe_out, bi_echo);
@@ -94,9 +94,7 @@ void	ft_get_wait_status(int max_wait, int *exit_code)
 		*exit_code = WEXITSTATUS(wstatus);
 }
 
-/*	TODO: change built-in exe (merge is_bi and bi_select)
-	TODO: change selection (if 1 cmd bi launch by parent)
-*/
+/*	TODO: ft_reset_line after exe master	*/
 void	ft_exe_master(t_line *line)
 {
 	int	i;
@@ -104,21 +102,21 @@ void	ft_exe_master(t_line *line)
 
 	i = 0;
 	j = 1;
-	// printf("cmd : %s\n", line->cmd->arg[0]);
-	// printf("cmd->next : %p\n", line->cmd->arg[0]);
-	while (line->cmd)
+	while (line->n_cmds && line->cmd)
 	{
 		if (line->cmd->next)
 		{
 			if (pipe(line->pipe[i]) == -1)
-				perror("Error ");
+				perror("Error1 ");
 		}
 		ft_exe_selector(line, line->pipe[j], line->pipe[i]);
 		ft_close_pipe(line->pipe[j]);
 		i = i + 1 % 2;
 		j = j + 1 % 2;
+		if (!line->cmd->next)
+			break ;
 		line->cmd = line->cmd->next;
 	}
 	ft_get_wait_status(line->n_cmds, &line->exit_status);
-	printf("cmd is %s\n", line->cmd->arg[0]);
+	ft_clear_line(line);
 }

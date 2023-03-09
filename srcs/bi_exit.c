@@ -6,13 +6,13 @@
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/08 14:10:12 by tlegrand          #+#    #+#             */
-/*   Updated: 2023/03/09 16:43:24 by tlegrand         ###   ########.fr       */
+/*   Updated: 2023/03/09 20:59:50 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/minishell.h"
 
-/*	TODO: add clean struct	*/
+/*	TODO: check if display exit bedore exit at school	*/
 int	bi_exit(t_line *line)
 {
 	int	exit_code;
