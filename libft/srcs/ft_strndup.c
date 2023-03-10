@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strndup.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lboudjem <lboudjem@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/10 14:19:01 by lboudjem          #+#    #+#             */
-/*   Updated: 2023/03/10 14:43:45 by lboudjem         ###   ########.fr       */
+/*   Updated: 2023/03/10 15:11:42 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/minishell.h"
+#include "../libft.h"
 
 char	*ft_strndup(char *src, int n)
 {
@@ -30,14 +30,4 @@ char	*ft_strndup(char *src, int n)
 	}
 	cpy[tmp] = '\0';
 	return (cpy);
-}
-
-size_t	ft_strlen2(const char *s)
-{
-	size_t	i;
-
-	i = 0;
-	while (s && s[i])
-		i++;
-	return (i);
 }

@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: lboudjem <lboudjem@student.42.fr>          +#+  +:+       +#+         #
+#    By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/02/12 20:46:19 by tlegrand          #+#    #+#              #
-#    Updated: 2023/03/10 14:55:11 by lboudjem         ###   ########.fr        #
+#    Updated: 2023/03/10 15:12:05 by tlegrand         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -25,11 +25,10 @@ LST_SRCS		=	main_test.c \
 					bi_echo.c bi_pwd.c bi_cd.c bi_exit.c \
 					exe_dup_redirect.c exe_dup_pipe.c exe_cmd.c \
 					ft_clear.c s_init.c \
-          parsing.c \
+					parsing.c \
 					var_env_utils.c \
 					var_env_utils2.c \
 					var_env.c \
-					ft_strndup.c \
 					get_path.c
 
 SRCS			=	${addprefix ${DIR_SRCS}, ${LST_SRCS}}

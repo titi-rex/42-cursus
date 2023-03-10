@@ -3,16 +3,19 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lboudjem <lboudjem@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/08 17:06:26 by tlegrand          #+#    #+#             */
-/*   Updated: 2023/03/10 14:27:22 by lboudjem         ###   ########.fr       */
+/*   Updated: 2023/03/10 15:08:15 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef MINISHELL_H
 # define MINISHELL_H
 # include <stdio.h> 
+# include <string.h>
+# include <sys/wait.h>
+# include <fcntl.h>
 # include <readline/readline.h>
 # include <readline/history.h>
 # include "../libft/libft.h"
@@ -43,5 +46,25 @@ char		*ft_strndup(char *src, int n);
 size_t		ft_strlen2(const char *s);
 
 //int bi_env(t_line *line)
+
+/*				exe functions						*/
+int			bi_echo(t_line *line);
+int			bi_pwd(t_line *line);
+int			bi_cd(t_line *line);
+int			bi_exit(t_line *line);
+
+void		ft_exe_master(t_line *line);
+
+int			ft_dup_redirect(t_redirect *io, int here_pipe[2]);
+void		ft_dup_pipe(int pipe_in[2], int pipe_out[2]);
+
+void		ft_clear_cmd(t_cmd **cmd);
+void		ft_clear_lst_cmd(t_cmd **cmd);
+void		ft_clear_line(t_line *line);
+void		ft_clear_line_exit(t_line *line, int exit_code);
+
+void		s_init_redirect(t_redirect *io);
+void		s_init_cmd(t_cmd *cmd);
+void		s_init_line(t_line *line);
 
 #endif 

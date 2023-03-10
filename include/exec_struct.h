@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   exec_struct.h                                      :+:      :+:    :+:   */
+/*   exec_struct2.h                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lboudjem <lboudjem@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/06 21:46:27 by tlegrand          #+#    #+#             */
-/*   Updated: 2023/03/10 14:07:56 by lboudjem         ###   ########.fr       */
+/*   Updated: 2023/03/10 15:06:32 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,5 +61,15 @@ typedef struct s_line
 	t_var_env	*lst_env;
 }	t_line;
 
+/*	structure storing fd called by a varname
+	varname must be {name} format
+	int is the fd linked
+*/
+typedef struct s_varfd
+{
+	char			*varname;
+	int				fd;
+	struct s_varfd	*next;
+}	t_varfd;
 
 #endif
