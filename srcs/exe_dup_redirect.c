@@ -6,7 +6,7 @@
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/08 17:17:17 by tlegrand          #+#    #+#             */
-/*   Updated: 2023/03/09 20:01:05 by tlegrand         ###   ########.fr       */
+/*   Updated: 2023/03/10 13:12:29 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,6 +72,36 @@ static int	ft_dup_here_doc(t_redirect *io, int here_pipe[2])
 	if (dup2(here_pipe[1], 0) == -1)
 		perror("Error dup here_doc ");
 	ft_close_pipe(here_pipe);
+	return (0);
+}
+
+int	ft_dup_here_doc_v2(t_redirect *io, int here_pipe[2], t_line *line)
+{
+	int	pid;
+
+	if (pipe(here_pipe) == -1)
+	{
+		perror("Error ");
+		return (1);
+	}
+	pid = fork();
+	if (pid == -1)
+		perror("Error ");
+	else if (pid == 0)
+	{
+		while (io->arg)
+		{
+			write(here_pipe[0], io->arg, 1);
+			io->arg++;
+		}
+		ft_clear_line_exit(line, EXIT_SUCCESS);
+	}
+	else
+	{
+		if (dup2(here_pipe[1], 0) == -1)
+			perror("Error dup here_doc ");
+		ft_close_pipe(here_pipe);
+	}
 	return (0);
 }
 

@@ -6,7 +6,7 @@
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/09 21:05:09 by tlegrand          #+#    #+#             */
-/*   Updated: 2023/03/09 22:26:18 by tlegrand         ###   ########.fr       */
+/*   Updated: 2023/03/10 14:36:54 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,10 @@ t_varfd	*s_new_varfd(char *varname, int fdcount)
 		return (NULL);
 	}
 	new->fd = 10 + fdcount;
-	new->next = NULL;
 	return (new);
+}
+
+int	bi_add_env(t_line *line)
+{
+	ft_add_env(line->cmd->arg[0], line->cmd->arg[1]);
 }
