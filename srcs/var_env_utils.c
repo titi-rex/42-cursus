@@ -6,7 +6,7 @@
 /*   By: lboudjem <lboudjem@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/09 13:33:56 by lboudjem          #+#    #+#             */
-/*   Updated: 2023/03/10 14:33:02 by lboudjem         ###   ########.fr       */
+/*   Updated: 2023/03/10 14:50:50 by lboudjem         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,14 +21,17 @@ t_var_env	*ft_new_env(char *name, char *value)
 	new = (t_var_env *)malloc(sizeof(t_var_env));
 	if (!new)
 		return (NULL);
-	new->name = ft_strndup(name, ft_strlen2(name));
-	if (!name)
-		return (free(new), NULL);
-	new->value = ft_strndup(value, ft_strlen2(value));
-	if (!value)
-		return (free(new), free(name), NULL);
 	new->next = NULL;
 	new->previous = NULL;
+	new->name = ft_strndup(name, ft_strlen2(name));
+	new->value = ft_strndup(value, ft_strlen2(value));
+	if (!new->value || !new->name)
+	{
+		ft_free_env(new);
+		return (NULL);
+	}
+	(void) value;
+	(void) name;
 	return (new);
 }
 

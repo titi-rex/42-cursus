@@ -6,7 +6,7 @@
 /*   By: lboudjem <lboudjem@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/09 14:58:48 by lboudjem          #+#    #+#             */
-/*   Updated: 2023/03/10 14:27:20 by lboudjem         ###   ########.fr       */
+/*   Updated: 2023/03/10 14:54:33 by lboudjem         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ void	fill_lst_env(t_line *line, int i)
 		free(name);
 		free(value);
 		if (!new)
-			return ;
+			return ((void)ft_envclear(&line->lst_env));
 		ft_envadd_back(&line->lst_env, new);
 		i++;
 	}

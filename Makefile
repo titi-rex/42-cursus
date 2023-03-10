@@ -6,7 +6,7 @@
 #    By: lboudjem <lboudjem@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/02/12 20:46:19 by tlegrand          #+#    #+#              #
-#    Updated: 2023/03/10 14:30:12 by lboudjem         ###   ########.fr        #
+#    Updated: 2023/03/10 14:55:11 by lboudjem         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,8 +23,8 @@ DIR_SRCS		=	srcs/
 READ			=	-lreadline
 
 LST_SRCS		=	parsing.c \
-					env_utils.c \
-					env_utils2.c \
+					var_env_utils.c \
+					var_env_utils2.c \
 					var_env.c \
 					ft_strndup.c \
 					get_path.c
