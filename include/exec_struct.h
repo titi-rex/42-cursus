@@ -6,7 +6,7 @@
 /*   By: lboudjem <lboudjem@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/06 21:46:27 by tlegrand          #+#    #+#             */
-/*   Updated: 2023/03/09 15:14:08 by lboudjem         ###   ########.fr       */
+/*   Updated: 2023/03/10 14:07:56 by lboudjem         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,18 +38,6 @@ typedef struct s_cmd
 	struct s_cmd	*previous;
 }	t_cmd;
 
-/*	structure holding the whole command line, only used in exec part
-*/
-typedef struct s_line
-{
-	t_cmd	*cmd;
-	char	**env;
-	char	*path;
-	int		pipe[2][2];
-	int		n_cmds;
-	int		exit_status;
-}	t_line;
-
 /*	structure for environment variables
 */
 typedef struct s_var_env
@@ -59,5 +47,19 @@ typedef struct s_var_env
 	struct s_var_env	*next;
 	struct s_var_env	*previous;
 }	t_var_env;
+
+/*	structure holding the whole command line, only used in exec part
+*/
+typedef struct s_line
+{
+	t_cmd		*cmd;
+	char		**env;
+	char		*path;
+	int			pipe[2][2];
+	int			n_cmds;
+	int			exit_status;
+	t_var_env	*lst_env;
+}	t_line;
+
 
 #endif

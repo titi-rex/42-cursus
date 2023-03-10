@@ -6,11 +6,19 @@
 /*   By: lboudjem <lboudjem@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/09 15:50:31 by lboudjem          #+#    #+#             */
-/*   Updated: 2023/03/09 16:44:57 by lboudjem         ###   ########.fr       */
+/*   Updated: 2023/03/10 13:58:49 by lboudjem         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/minishell.h"
+
+void	init_variables(t_var_env *lst)
+{
+	lst->name = NULL;
+	lst->value = NULL;
+	lst->next = NULL;
+	lst->previous = NULL;
+}
 
 t_var_env	*ft_envlast(t_var_env *lst)
 {

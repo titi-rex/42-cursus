@@ -6,7 +6,7 @@
 #    By: lboudjem <lboudjem@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/02/12 20:46:19 by tlegrand          #+#    #+#              #
-#    Updated: 2023/03/10 13:28:37 by lboudjem         ###   ########.fr        #
+#    Updated: 2023/03/10 14:20:22 by lboudjem         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -26,6 +26,7 @@ LST_SRCS		=	parsing.c \
 					env_utils.c \
 					env_utils2.c \
 					var_env.c \
+					ft_strndup.c \
 					get_path.c
 SRCS			=	${addprefix ${DIR_SRCS}, ${LST_SRCS}}
 
@@ -53,7 +54,7 @@ MAKE		=	make -s
 
 
 #	==============================	FLAGS	==============================	#
-CFLAGS		=	-Wall -Wextra -Werror -fsanitize=address -g3 -I${DIR_HEADER} 
+CFLAGS		=	-Wall -Wextra -Werror  -I${DIR_HEADER} #-fsanitize=address -g3
 RFLAGS		=	-L/usr/local/lib -I/usr/local/include
 FTFLAGS		=	-L${DIR_LIBFT} -lft 
 

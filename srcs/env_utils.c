@@ -6,7 +6,7 @@
 /*   By: lboudjem <lboudjem@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/09 13:33:56 by lboudjem          #+#    #+#             */
-/*   Updated: 2023/03/10 13:51:29 by lboudjem         ###   ########.fr       */
+/*   Updated: 2023/03/10 14:14:41 by lboudjem         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,7 @@ void	ft_free_env(t_var_env *lst)
 		free(lst->name);
 	if (lst->value)
 		free(lst->value);
-	init_variables(lst);
+	free(lst);
 }
 
 void	ft_envremove(t_var_env *lst)
