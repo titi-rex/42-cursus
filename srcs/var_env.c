@@ -6,7 +6,7 @@
 /*   By: lboudjem <lboudjem@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/09 14:58:48 by lboudjem          #+#    #+#             */
-/*   Updated: 2023/03/10 13:44:46 by lboudjem         ###   ########.fr       */
+/*   Updated: 2023/03/10 13:53:15 by lboudjem         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,34 +38,29 @@ void	init_variables(t_var_env *lst)
 	lst->previous = NULL;
 }
 
-void	fill_lst_env(t_line *line)
+void	fill_lst_env(t_line *line, int i)
 {
 	char		*name;
 	char		*value;
-	int			i;
 	int			n;
 	t_var_env	*lst;
 	t_var_env	*new;
 
-	i = 0;
 	new = NULL;
 	lst = new;
 	while (line->env[i])
 	{
-		if (ft_strchr(line->env[i], '='))
-			n = ft_strchr(line->env[i], '=') - line->env[i];
-		else
-			n = 0;
+		n = 0;
+		while (line->env[i][n] && line->env[i][n] != '=')
+			n++;
 		name = ft_strndup(line->env[i], n);
-		value = ft_strndup(line->env[i] + n + 1, \
-				ft_strchr(line->env[i] + n + 1, '\0') \
-					- (line->env[i] + n + 1));
+		value = ft_strndup(line->env[i] + n + 1, ft_strlen(line->env[i]) - n);
 		new = ft_new_env(name, value);
+		free(name);
+		free(value);
 		if (!new)
 			return ;
 		ft_envadd_back(&lst, new);
-		free(name);
-		free(value);
 		i++;
 	}
 }

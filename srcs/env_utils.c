@@ -6,7 +6,7 @@
 /*   By: lboudjem <lboudjem@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/09 13:33:56 by lboudjem          #+#    #+#             */
-/*   Updated: 2023/03/10 13:43:17 by lboudjem         ###   ########.fr       */
+/*   Updated: 2023/03/10 13:51:29 by lboudjem         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,10 +47,7 @@ void	ft_envadd_back(t_var_env **lst, t_var_env *new)
 	if (!lst || !new)
 		return ;
 	if (!*lst)
-	{	
-		dprintf(2, "test\n");
 		*lst = new;
-	}
 	else
 	{
 		last = ft_envlast(*lst);
