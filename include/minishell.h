@@ -6,7 +6,7 @@
 /*   By: lboudjem <lboudjem@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/08 17:06:26 by tlegrand          #+#    #+#             */
-/*   Updated: 2023/03/09 16:45:55 by lboudjem         ###   ########.fr       */
+/*   Updated: 2023/03/10 11:22:29 by lboudjem         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,7 @@ void		change_value(t_var_env *lst, char *value, char *name);
 char		*get_value(t_var_env *lst, char *name);
 t_var_env	*ft_new_env(char *name, char *value);
 t_var_env	*ft_envlast(t_var_env *lst);
+void		fill_lst_env(t_line *line);
 
 //int bi_env(t_line *line)
 

@@ -6,7 +6,7 @@
 /*   By: lboudjem <lboudjem@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/08 11:21:07 by louisa            #+#    #+#             */
-/*   Updated: 2023/03/09 17:12:52 by lboudjem         ###   ########.fr       */
+/*   Updated: 2023/03/10 11:30:19 by lboudjem         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,8 +35,6 @@ int	ft_prompt(t_line *line)
 		ft_get_path(line->path, line->cmd);
 		if (!cmd)
 			return (1);
-		if (ft_strncmp(str, "exit", ft_strlen(str)) == 0)
-			return (0);
 	}
 }
 
@@ -54,6 +52,7 @@ int	main(int argc, char **argv, char **env)
 	while (env[i] && ft_strncmp(env[i], "PATH=", 5))
 		i++;
 	line.path = env[i];
+	fill_lst_env(&line);
 	if (ft_prompt(&line) == 1)
 		return (1);
 	ft_get_path(env[i], line.cmd);
