@@ -1,0 +1,21 @@
+void	ft_clear_lst_cmd_previous(t_cmd **cmd)
+{
+	t_cmd	*previous;
+
+	if (!cmd || !*cmd)
+		return ;
+	previous = (*cmd)->previous;
+	ft_cmd_del(*cmd);
+	ft_clear_lst_cmd_previous(&previous);
+}
+
+void	ft_clear_lst_cmd_next(t_cmd **cmd)
+{
+	t_cmd	*next;
+
+	if (!cmd || !*cmd)
+		return ;
+	next = (*cmd)->next;
+	ft_cmd_del(*cmd);
+	ft_clear_lst_cmd_next(&next);
+}

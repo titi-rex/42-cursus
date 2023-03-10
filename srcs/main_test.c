@@ -6,7 +6,7 @@
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/08 12:28:13 by tlegrand          #+#    #+#             */
-/*   Updated: 2023/03/10 22:02:23 by tlegrand         ###   ########.fr       */
+/*   Updated: 2023/03/10 23:24:57 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,23 +14,39 @@
 
 int	main(int ac, char **arg)
 {
-	t_line	line;
-	int		i;
+	t_line		line;
+	t_list		*io;
+	t_list		*new_l;
+	t_redirect	*new_red;
+	char		**split;
+	int			i;
 
 	s_init_line(&line);
 	line.n_cmds = 1;
 	line.lst_varfd = NULL;
+	new_red = ft_redirect_new(0, 0, "test");
+	if (!new_red)
+		return (1);
+	new_l = ft_lstnew(new_red);
+	if (!new_l)
+		return (1);
+	ft_lstadd_back(&io, new_l);
+	printf("io : %d, %d, %s\n", *ft_redirect_acces_type(io->content), \
+		*ft_redirect_acces_fd(io->content), \
+		ft_redirect_acces_arg(io->content));
+	//printf("io ad : %p\n", io);
+	//printf("io->next ad : %p\n", io->next);
+	split = ft_calloc(ac, sizeof(void *));
 	i = 0;
-	i = ft_varfd_get_value_from_key(&line, "hello");
-	printf("return %d\n", i);
-	i = ft_varfd_get_value_from_key(&line, "hella");
-	printf("return %d\n", i);
-	i = ft_varfd_get_value_from_key(&line, "hello");
-	printf("return %d\n", i);
-	i = ft_varfd_get_value_from_key(&line, "hella");
-	printf("return %d\n", i);
-	ft_lstclear(&line.lst_varfd, ft_varfd_del);
-	//ft_exe_master(&line);
+	while (i < ac - 1)
+	{
+		split[i] = ft_strdup(arg[i + 1]);
+		i++;
+	}
+	line.cmd = ft_cmd_new_alloc(split, io);
+
+
+	ft_exe_master(&line);
 	//ft_clear_line(&line);
 	//ft_clear_line_exit(&line, line.exit_status);
 	(void) arg;

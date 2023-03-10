@@ -6,7 +6,7 @@
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/08 17:06:26 by tlegrand          #+#    #+#             */
-/*   Updated: 2023/03/10 22:29:17 by tlegrand         ###   ########.fr       */
+/*   Updated: 2023/03/10 22:58:39 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,5 +83,17 @@ char		*ft_redirect_acces_arg(t_redirect *io);
 t_redirect	*ft_redirect_new(int type, int fd, char *arg);
 void		ft_redirect_del(void *addr);
 t_list		*ft_redirect_search_type(t_list *lst, int ref);
+
+
+/*			LESS EXPERIEMENTAL CMD LST			*/
+
+
+t_cmd		*ft_cmd_new(char **arg, t_list *io);
+t_cmd		*ft_cmd_new_alloc(char **arg, t_list *io);
+void		ft_cmd_del(t_cmd *cmd);
+void		ft_cmd_clear_lst(t_cmd	**cmd);
+t_cmd		*ft_cmd_last(t_cmd *cmd);
+t_cmd		*ft_cmd_first(t_cmd *cmd);
+void		ft_cmd_add_back(t_cmd **start, t_cmd *new);
 
 #endif 
