@@ -1,32 +1,43 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strlcpy.c                                       :+:      :+:    :+:   */
+/*   ft_strndup.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lboudjem <lboudjem@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/08 15:58:38 by tlegrand          #+#    #+#             */
-/*   Updated: 2023/03/09 12:22:26 by lboudjem         ###   ########.fr       */
+/*   Created: 2023/03/10 14:19:01 by lboudjem          #+#    #+#             */
+/*   Updated: 2023/03/10 14:43:45 by lboudjem         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../libft.h"
+#include "../include/minishell.h"
 
-size_t	ft_strlcpy(char *dst, const char *src, size_t dstsize)
+char	*ft_strndup(char *src, int n)
+{
+	int		tmp;
+	char	*cpy;
+
+	if (!src)
+		return (NULL);
+	cpy = (char *)malloc((n + 1) * sizeof(char));
+	if (!cpy)
+		return (NULL);
+	tmp = 0;
+	while (src && src[tmp] && tmp < n)
+	{
+		cpy[tmp] = src[tmp];
+		tmp++;
+	}
+	cpy[tmp] = '\0';
+	return (cpy);
+}
+
+size_t	ft_strlen2(const char *s)
 {
 	size_t	i;
 
 	i = 0;
-	if (dstsize)
-	{
-		while (i < dstsize - 1 && src[i])
-		{
-			dst[i] = src[i];
-			i++;
-		}
-		dst[i] = 0;
-	}
-	while (src[i])
+	while (s && s[i])
 		i++;
 	return (i);
 }
