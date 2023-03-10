@@ -6,7 +6,7 @@
 /*   By: lboudjem <lboudjem@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/09 13:33:56 by lboudjem          #+#    #+#             */
-/*   Updated: 2023/03/10 15:53:04 by lboudjem         ###   ########.fr       */
+/*   Updated: 2023/03/10 16:50:38 by lboudjem         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,8 +28,6 @@ t_var_env	*ft_new_env(char *name, char *value)
 		ft_free_env(new);
 		return (NULL);
 	}
-	(void) value;
-	(void) name;
 	return (new);
 }
 
