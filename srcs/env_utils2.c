@@ -6,7 +6,7 @@
 /*   By: lboudjem <lboudjem@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/09 15:50:31 by lboudjem          #+#    #+#             */
-/*   Updated: 2023/03/10 13:58:49 by lboudjem         ###   ########.fr       */
+/*   Updated: 2023/03/10 14:28:23 by lboudjem         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ void	change_value(t_var_env *lst, char *value, char *name)
 {
 	while (lst)
 	{
-		if (ft_strncmp(lst->name, name, ft_strlen(name) + 1))
+		if (ft_strncmp(lst->name, name, ft_strlen2(name) + 1))
 		{
 			free(lst->value);
 			lst->value = NULL;
@@ -63,7 +63,7 @@ char	*get_value(t_var_env *lst, char *name)
 {
 	while (lst)
 	{
-		if (ft_strncmp(lst->name, name, ft_strlen(name) + 1))
+		if (ft_strncmp(lst->name, name, ft_strlen2(name) + 1))
 			return (lst->value);
 		lst = lst->next;
 	}

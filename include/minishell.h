@@ -6,7 +6,7 @@
 /*   By: lboudjem <lboudjem@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/08 17:06:26 by tlegrand          #+#    #+#             */
-/*   Updated: 2023/03/10 14:20:02 by lboudjem         ###   ########.fr       */
+/*   Updated: 2023/03/10 14:27:22 by lboudjem         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,7 @@ void		fill_lst_env(t_line *line, int i);
 
 /*				a remettre dans la libft			*/
 char		*ft_strndup(char *src, int n);
+size_t		ft_strlen2(const char *s);
 
 //int bi_env(t_line *line)
 

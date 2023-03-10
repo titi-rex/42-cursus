@@ -6,7 +6,7 @@
 /*   By: lboudjem <lboudjem@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/10 14:19:01 by lboudjem          #+#    #+#             */
-/*   Updated: 2023/03/10 14:19:17 by lboudjem         ###   ########.fr       */
+/*   Updated: 2023/03/10 14:32:02 by lboudjem         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,4 +28,14 @@ char	*ft_strndup(char *src, int n)
 	}
 	cpy[tmp] = '\0';
 	return (cpy);
+}
+
+size_t	ft_strlen2(const char *s)
+{
+	size_t	i;
+
+	i = 0;
+	while (s && s[i])
+		i++;
+	return (i);
 }

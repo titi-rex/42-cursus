@@ -6,7 +6,7 @@
 /*   By: lboudjem <lboudjem@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/09 14:58:48 by lboudjem          #+#    #+#             */
-/*   Updated: 2023/03/10 14:19:22 by lboudjem         ###   ########.fr       */
+/*   Updated: 2023/03/10 14:27:20 by lboudjem         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ void	fill_lst_env(t_line *line, int i)
 		while (line->env[i][n] && line->env[i][n] != '=')
 			n++;
 		name = ft_strndup(line->env[i], n);
-		value = ft_strndup(line->env[i] + n + 1, ft_strlen(line->env[i]) - n);
+		value = ft_strndup(line->env[i] + n + 1, ft_strlen2(line->env[i]) - n);
 		new = ft_new_env(name, value);
 		free(name);
 		free(value);
