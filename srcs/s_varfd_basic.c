@@ -1,18 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   s_varfd.c                                          :+:      :+:    :+:   */
+/*   s_varfd_basic.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/09 21:05:09 by tlegrand          #+#    #+#             */
-/*   Updated: 2023/03/10 16:45:34 by tlegrand         ###   ########.fr       */
+/*   Updated: 2023/03/10 21:55:33 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/minishell.h"
 
-/*	open pipe to mimic bash ?? */
+int	*ft_varfd_acces_fd(t_varfd *varfd)
+{
+	if (!varfd)
+		return (NULL);
+	return (&varfd->fd);
+}
+
+char	*ft_varfd_acces_varname(t_varfd *varfd)
+{
+	if (!varfd)
+		return (NULL);
+	return (varfd->varname);
+}
+
 t_varfd	*ft_varfd_new(char *varname, int fdcount)
 {
 	t_varfd	*new;
@@ -30,28 +43,12 @@ t_varfd	*ft_varfd_new(char *varname, int fdcount)
 	return (new);
 }
 
-int	bi_add_env(t_line *line)
+void	ft_varfd_del(void *addr)
 {
-	ft_add_env(line->cmd->arg[0], line->cmd->arg[1]);
-}
+	t_varfd	*varfd;
 
-int	s_varfd_get(t_line *line, char *name)
-{
-	t_varfd	*tmp;
-	t_list	*new;
-
-	tmp = ft_varfd_search(line->lst_varfd, name);
-	if (tmp)
-		return (tmp->fd);
-	tmp = ft_varfd_new(name, line->fdcount);
-	if (!tmp)
-		return (-1);
-	new = ft_lstnew((void *) tmp);
-	if (!new)
-	{
-		ft_clear_varfd(tmp);
-		return (-1);
-	}
-	ft_lstadd_back(line->lst_varfd, new);
-	return (new->fd);
+	varfd = addr;
+	if (varfd->varname)
+		free(varfd->varname);
+	free(varfd);
 }

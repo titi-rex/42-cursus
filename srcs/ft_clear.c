@@ -6,26 +6,17 @@
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/08 18:19:34 by tlegrand          #+#    #+#             */
-/*   Updated: 2023/03/10 14:05:40 by tlegrand         ###   ########.fr       */
+/*   Updated: 2023/03/10 22:24:15 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/minishell.h"
 
-void	ft_clear_lst_io(t_redirect *io)
-{
-	if (!io)
-		return ;
-	if (io->arg)
-		free(io->arg);
-	ft_clear_lst_io(io->next);
-}
-
 void	ft_clear_cmd(t_cmd **cmd)
 {
 	if ((*cmd)->arg)
 		ft_free2d((void **)(*cmd)->arg, 0);
-	ft_clear_lst_io((*cmd)->io);
+	ft_lstclear(&(*cmd)->io, ft_redirect_del);
 	*cmd = NULL;
 	cmd = NULL;
 }
@@ -71,3 +62,15 @@ void	ft_clear_line_exit(t_line *line, int exit_code)
 	//ft_envclear(line->env);
 	exit(exit_code);
 }
+
+
+/*	old clear io
+void	ft_clear_lst_io(t_redirect *io)
+{
+	if (!io)
+		return ;
+	if (io->arg)
+		free(io->arg);
+	ft_clear_lst_io(io->next);
+}
+*/

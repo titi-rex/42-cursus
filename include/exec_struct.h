@@ -6,7 +6,7 @@
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/06 21:46:27 by tlegrand          #+#    #+#             */
-/*   Updated: 2023/03/10 16:40:31 by tlegrand         ###   ########.fr       */
+/*   Updated: 2023/03/10 22:20:12 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,6 @@ typedef struct s_redirect
 	int					type;
 	int					fd;
 	char				*arg;
-	struct s_redirect	*next;
 }	t_redirect;
 
 /*	structure for one command to execute 
@@ -33,7 +32,7 @@ typedef struct s_redirect
 typedef struct s_cmd
 {
 	char			**arg;
-	t_redirect		*io;
+	t_list			*io;
 	struct s_cmd	*next;
 	struct s_cmd	*previous;
 }	t_cmd;
