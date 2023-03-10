@@ -20,16 +20,21 @@ NAME		=	minishell
 #	==============================	SOURCES	==============================	#
 DIR_SRCS		=	srcs/
 
-READ			=	-lreadline
 
-LST_SRCS		=	parsing.c \
+LST_SRCS		=	main_test.c \
+					bi_echo.c bi_pwd.c bi_cd.c bi_exit.c \
+					exe_dup_redirect.c exe_dup_pipe.c exe_cmd.c \
+					ft_clear.c s_init.c \
+          parsing.c \
 					var_env_utils.c \
 					var_env_utils2.c \
 					var_env.c \
 					ft_strndup.c \
 					get_path.c
+
 SRCS			=	${addprefix ${DIR_SRCS}, ${LST_SRCS}}
 
+READ			=	-lreadline
 
 #	==============================	OBJECTS	==============================	#
 DIR_OBJS	=	.objs/
