@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   exec_struct2.h                                     :+:      :+:    :+:   */
+/*   exec_struct.h                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/06 21:46:27 by tlegrand          #+#    #+#             */
-/*   Updated: 2023/03/10 15:06:32 by tlegrand         ###   ########.fr       */
+/*   Updated: 2023/03/10 16:40:31 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,8 @@ typedef struct s_line
 	int			n_cmds;
 	int			exit_status;
 	t_var_env	*lst_env;
+	t_list		*lst_varfd;
+	int			fdcount;
 }	t_line;
 
 /*	structure storing fd called by a varname
@@ -69,7 +71,6 @@ typedef struct s_varfd
 {
 	char			*varname;
 	int				fd;
-	struct s_varfd	*next;
 }	t_varfd;
 
 #endif

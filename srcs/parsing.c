@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lboudjem <lboudjem@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/08 11:21:07 by louisa            #+#    #+#             */
-/*   Updated: 2023/03/10 14:13:23 by lboudjem         ###   ########.fr       */
+/*   Updated: 2023/03/10 15:23:10 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ int	ft_prompt(t_line *line)
 			return (1);
 	}
 }
-
+/*
 int	main(int argc, char **argv, char **env)
 {
 	t_line	line;
@@ -60,3 +60,4 @@ int	main(int argc, char **argv, char **env)
 	//ft_get_path(env[i], line.cmd);
 	return (0);
 }
+*/
