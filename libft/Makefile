@@ -6,7 +6,7 @@
 #    By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/11/08 14:39:06 by tlegrand          #+#    #+#              #
-#    Updated: 2023/03/08 12:33:51 by tlegrand         ###   ########.fr        #
+#    Updated: 2023/03/08 14:58:54 by tlegrand         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -108,5 +108,7 @@ VIOLET		=	\033[1;35m
 CYAN		=	\033[1;36m
 WHITE		=	\033[1;37m
 END			=	\033[0m
+UNDERLINE	=	\033[4m
+REV			=	\033[7m
 ERASE		=	\033[2K
 RERASE		=	\r\033[2K

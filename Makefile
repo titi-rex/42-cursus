@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+         #
+#    By: lboudjem <lboudjem@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/02/12 20:46:19 by tlegrand          #+#    #+#              #
-#    Updated: 2023/03/09 16:00:08 by tlegrand         ###   ########.fr        #
+#    Updated: 2023/03/10 14:55:11 by lboudjem         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,13 +20,21 @@ NAME		=	minishell
 #	==============================	SOURCES	==============================	#
 DIR_SRCS		=	srcs/
 
+
 LST_SRCS		=	main_test.c \
 					bi_echo.c bi_pwd.c bi_cd.c bi_exit.c \
 					exe_dup_redirect.c exe_dup_pipe.c exe_cmd.c \
-					ft_clear.c s_init.c
+					ft_clear.c s_init.c \
+          parsing.c \
+					var_env_utils.c \
+					var_env_utils2.c \
+					var_env.c \
+					ft_strndup.c \
+					get_path.c
 
 SRCS			=	${addprefix ${DIR_SRCS}, ${LST_SRCS}}
 
+READ			=	-lreadline
 
 #	==============================	OBJECTS	==============================	#
 DIR_OBJS	=	.objs/
@@ -51,7 +59,8 @@ MAKE		=	make -s
 
 
 #	==============================	FLAGS	==============================	#
-CFLAGS		=	-Wall -Wextra -Werror -I${DIR_HEADER}
+CFLAGS		=	-Wall -Wextra -Werror  -I${DIR_HEADER} #-fsanitize=address -g3
+RFLAGS		=	-L/usr/local/lib -I/usr/local/include
 FTFLAGS		=	-L${DIR_LIBFT} -lft 
 
 
@@ -76,7 +85,7 @@ re		:	fclean
 
 #	==============================	COMPILATION	==============================	#
 ${NAME}			:	${LIBFT} ${DIR_OBJS} ${OBJS}
-				@${CC} ${CFLAGS} ${OBJS} ${FTFLAGS} -o ${NAME}
+				@${CC} ${CFLAGS} ${RFLAGS} ${OBJS} ${FTFLAGS} ${READ} -o ${NAME}
 				@printf "$(GREEN_LIGHT)${NAME} created !\n$(END)"
 
 
