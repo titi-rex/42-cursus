@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: lboudjem <lboudjem@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/08 17:06:26 by tlegrand          #+#    #+#             */
-/*   Updated: 2023/03/10 15:08:15 by tlegrand         ###   ########.fr       */
+/*   Updated: 2023/03/11 12:00:38 by lboudjem         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,9 @@
 # include <readline/history.h>
 # include "../libft/libft.h"
 # include "exec_struct.h"
+
+/*                  Parsing functiun            */
+void		ft_browse_line(char *str);
 
 /*     			 get path functiuns   		   */
 int			ft_splitlen(char **split);
@@ -44,8 +47,6 @@ void		fill_lst_env(t_line *line, int i);
 /*				a remettre dans la libft			*/
 char		*ft_strndup(char *src, int n);
 size_t		ft_strlen2(const char *s);
-
-//int bi_env(t_line *line)
 
 /*				exe functions						*/
 int			bi_echo(t_line *line);
