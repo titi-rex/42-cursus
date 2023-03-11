@@ -6,7 +6,7 @@
 /*   By: lboudjem <lboudjem@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/08 11:21:07 by louisa            #+#    #+#             */
-/*   Updated: 2023/03/11 16:07:12 by lboudjem         ###   ########.fr       */
+/*   Updated: 2023/03/11 16:57:02 by lboudjem         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,40 @@ char	*ft_replace_expansion_value(char *bloc, t_line *line, int len)
 	return (value);
 }
 
+char	*ft_replace_by_exit_status(char *bloc, int i, t_line *line)
+{
+	char	*exit_s;
+	char	*cpy;
+	int		len;
+	int		tmp;
+
+	tmp = i + 2;
+	exit_s = ft_itoa(line->exit_status);
+	if (!exit_s)
+		return (NULL);
+	len = (int)(ft_strlen2(bloc)) - 2 + ft_strlen2(exit_s);
+	cpy = malloc((len + 1) * sizeof(char));
+	if (!cpy)
+		return (NULL);
+	ft_strlcpy(cpy, bloc, i + 1);
+	len = 0;
+	while (exit_s[len])
+		cpy[i++] = exit_s[len++];
+	i++;
+	printf("bloc[tmp] = %c\n", bloc[tmp]);
+	while (bloc[tmp])
+	{
+		cpy[i] = bloc[tmp];
+		i++;
+		printf("1");
+		tmp++;
+	}
+	cpy[i] = '\0';
+	printf("cpy = %s\n", cpy);
+	//free(bloc);
+	return (cpy);
+}
+
 void	ft_handle_expansion(char *bloc, t_line *line)
 {
 	int		i;
@@ -40,12 +74,13 @@ void	ft_handle_expansion(char *bloc, t_line *line)
 			while (bloc[i] != 39)
 				i++;
 		if (bloc[i] == '$' && bloc[i + 1] == '?')
-			ft_replace_by_exit_status(bloc, i);
+			bloc = ft_replace_by_exit_status(bloc, i, line);
 		if (bloc[i] == '$')
 		{
 			i++;
 			while (bloc[i++] != ' ')
 				name_len++;
+			//bloc = ft_replace_by_value(bloc, name_len);
 		}
 		i++;
 	}
