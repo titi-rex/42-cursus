@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parsing.c                                          :+:      :+:    :+:   */
+/*   prompt.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lboudjem <lboudjem@student.42.fr>          +#+  +:+       +#+        */
+/*   By: louisa <louisa@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/08 11:21:07 by louisa            #+#    #+#             */
-/*   Updated: 2023/03/10 15:26:09 by lboudjem         ###   ########.fr       */
+/*   Updated: 2023/03/10 21:53:29 by louisa           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,7 @@ int	ft_prompt(t_line *line)
 		str = readline("$> ");
 		if (!str)
 			return (1);
+		ft_browse_line(str);
 		cmd = get_cmd(str, line);
 		ft_get_path(line->path, line->cmd);
 		if (!cmd)
@@ -53,8 +54,8 @@ int	main(int argc, char **argv, char **env)
 		i++;
 	line.path = env[i];
 	fill_lst_env(&line, 0);
-	print_env(line.lst_env);
-	ft_envclear(&line.lst_env);
+	//print_env(line.lst_env);
+	//ft_envclear(&line.lst_env);
 	if (ft_prompt(&line) == 1)
 		return (1);
 	ft_get_path(env[i], line.cmd);
