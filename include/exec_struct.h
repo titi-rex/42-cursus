@@ -6,12 +6,13 @@
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/06 21:46:27 by tlegrand          #+#    #+#             */
-/*   Updated: 2023/03/10 22:20:12 by tlegrand         ###   ########.fr       */
+/*   Updated: 2023/03/11 12:00:06 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef EXEC_STRUCT_H
 # define EXEC_STRUCT_H
+# include "../libft/libft.h"
 
 /*	structure storing one redirection and point to the next
 	type	: 0 == <, 1 == >, 2 == <<, 3 == >>
