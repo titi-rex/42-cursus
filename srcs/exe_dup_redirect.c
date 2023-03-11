@@ -6,7 +6,7 @@
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/08 17:17:17 by tlegrand          #+#    #+#             */
-/*   Updated: 2023/03/10 13:12:29 by tlegrand         ###   ########.fr       */
+/*   Updated: 2023/03/10 23:25:43 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,6 +106,33 @@ int	ft_dup_here_doc_v2(t_redirect *io, int here_pipe[2], t_line *line)
 }
 
 /*	TODO: check if format like io->type 0 works	*/
+int	ft_dup_redirect(t_list *io, int here_pipe[2])
+{
+	while (io)
+	{
+		if (*ft_redirect_acces_type(io->content) == 0 && ft_dup_in(io->content))
+			return (1);
+		else if (*ft_redirect_acces_type(io->content) == 1)
+		{
+			if (ft_dup_out(io->content))
+				return (1);
+		}
+		else if (*ft_redirect_acces_type(io->content) == 2)
+		{
+			if (ft_dup_here_doc(io->content, here_pipe))
+				return (1);
+		}
+		else if (*ft_redirect_acces_type(io->content) == 3)
+		{
+			if (ft_dup_out_append(io->content))
+				return (1);
+		}
+		io = io->next;
+	}
+	return (0);
+}
+
+/*
 int	ft_dup_redirect(t_redirect *io, int here_pipe[2])
 {
 	while (io)
@@ -131,3 +158,4 @@ int	ft_dup_redirect(t_redirect *io, int here_pipe[2])
 	}
 	return (0);
 }
+*/

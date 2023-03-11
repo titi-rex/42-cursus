@@ -6,7 +6,7 @@
 /*   By: lboudjem <lboudjem@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/08 17:06:26 by tlegrand          #+#    #+#             */
-/*   Updated: 2023/03/11 12:00:38 by lboudjem         ###   ########.fr       */
+/*   Updated: 2023/03/11 12:38:19 by lboudjem         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ int			bi_exit(t_line *line);
 
 void		ft_exe_master(t_line *line);
 
-int			ft_dup_redirect(t_redirect *io, int here_pipe[2]);
+int			ft_dup_redirect(t_list *io, int here_pipe[2]);
 void		ft_dup_pipe(int pipe_in[2], int pipe_out[2]);
 
 void		ft_clear_cmd(t_cmd **cmd);
@@ -67,5 +67,34 @@ void		ft_clear_line_exit(t_line *line, int exit_code);
 void		s_init_redirect(t_redirect *io);
 void		s_init_cmd(t_cmd *cmd);
 void		s_init_line(t_line *line);
+
+/*			EXPERIEMENTAL VARFD LST			*/
+int			*ft_varfd_acces_fd(t_varfd *varfd);
+char		*ft_varfd_acces_varname(t_varfd *varfd);
+t_varfd		*ft_varfd_new(char *varname, int fdcount);
+void		ft_varfd_del(void *addr);
+t_list		*ft_varfd_search(t_list *lst, char *name);
+int			ft_varfd_get_value_from_key(t_line *line, char *name);
+
+
+/*			EXPERIEMENTAL IO LST			*/
+int			*ft_redirect_acces_type(t_redirect *io);
+int			*ft_redirect_acces_fd(t_redirect *io);
+char		*ft_redirect_acces_arg(t_redirect *io);
+t_redirect	*ft_redirect_new(int type, int fd, char *arg);
+void		ft_redirect_del(void *addr);
+t_list		*ft_redirect_search_type(t_list *lst, int ref);
+
+
+/*			LESS EXPERIEMENTAL CMD LST			*/
+
+
+t_cmd		*ft_cmd_new(char **arg, t_list *io);
+t_cmd		*ft_cmd_new_alloc(char **arg, t_list *io);
+void		ft_cmd_del(t_cmd *cmd);
+void		ft_cmd_clear_lst(t_cmd	**cmd);
+t_cmd		*ft_cmd_last(t_cmd *cmd);
+t_cmd		*ft_cmd_first(t_cmd *cmd);
+void		ft_cmd_add_back(t_cmd **start, t_cmd *new);
 
 #endif 

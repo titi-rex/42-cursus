@@ -6,7 +6,7 @@
 #    By: lboudjem <lboudjem@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/02/12 20:46:19 by tlegrand          #+#    #+#              #
-#    Updated: 2023/03/10 15:52:41 by lboudjem         ###   ########.fr        #
+#    Updated: 2023/03/11 12:39:41 by lboudjem         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -25,6 +25,9 @@ LST_SRCS		=	main_test.c \
 					bi_echo.c bi_pwd.c bi_cd.c bi_exit.c \
 					exe_dup_redirect.c exe_dup_pipe.c exe_cmd.c \
 					ft_clear.c s_init.c \
+					s_varfd_basic.c s_varfd_operator.c \
+					s_redirect_basic.c s_redirect_operator.c \
+					s_cmd_basic.c s_cmd_operator.c \
 					prompt.c \
 					parsing.c \
 					var_env_utils.c \
@@ -34,7 +37,6 @@ LST_SRCS		=	main_test.c \
 
 SRCS			=	${addprefix ${DIR_SRCS}, ${LST_SRCS}}
 
-READ			=	-lreadline
 
 #	==============================	OBJECTS	==============================	#
 DIR_OBJS	=	.objs/
@@ -60,7 +62,7 @@ MAKE		=	make -s
 
 #	==============================	FLAGS	==============================	#
 CFLAGS		=	-Wall -Wextra -Werror  -I${DIR_HEADER} #-fsanitize=address -g3
-RFLAGS		=	-L/usr/local/lib -I/usr/local/include
+RFLAGS		=	-L/usr/local/lib -I/usr/local/include -lreadline
 FTFLAGS		=	-L${DIR_LIBFT} -lft 
 
 
@@ -85,7 +87,7 @@ re		:	fclean
 
 #	==============================	COMPILATION	==============================	#
 ${NAME}			:	${LIBFT} ${DIR_OBJS} ${OBJS}
-				@${CC} ${CFLAGS} ${RFLAGS} ${OBJS} ${FTFLAGS} ${READ} -o ${NAME}
+				@${CC} ${CFLAGS} ${OBJS} ${FTFLAGS} ${RFLAGS} -o ${NAME}
 				@printf "$(GREEN_LIGHT)${NAME} created !\n$(END)"
 
 

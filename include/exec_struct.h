@@ -6,7 +6,7 @@
 /*   By: lboudjem <lboudjem@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/06 21:46:27 by tlegrand          #+#    #+#             */
-/*   Updated: 2023/03/10 16:44:09 by lboudjem         ###   ########.fr       */
+/*   Updated: 2023/03/11 12:38:09 by lboudjem         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,6 @@ typedef struct s_redirect
 	int					type;
 	int					fd;
 	char				*arg;
-	struct s_redirect	*next;
 }	t_redirect;
 
 /*	structure for one command to execute 
@@ -43,7 +42,7 @@ typedef struct s_redirect
 typedef struct s_cmd
 {
 	char			**arg;
-	t_redirect		*io;
+	t_list			*io;
 	struct s_cmd	*next;
 	struct s_cmd	*previous;
 }	t_cmd;
@@ -59,6 +58,8 @@ typedef struct s_line
 	int			n_cmds;
 	int			exit_status;
 	t_var_env	*lst_env;
+	t_list		*lst_varfd;
+	int			fdcount;
 }	t_line;
 
 /*	structure storing fd called by a varname
@@ -69,7 +70,6 @@ typedef struct s_varfd
 {
 	char			*varname;
 	int				fd;
-	struct s_varfd	*next;
 }	t_varfd;
 
 #endif

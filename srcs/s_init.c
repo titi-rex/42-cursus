@@ -6,7 +6,7 @@
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/09 14:18:27 by tlegrand          #+#    #+#             */
-/*   Updated: 2023/03/09 22:32:08 by tlegrand         ###   ########.fr       */
+/*   Updated: 2023/03/10 22:24:31 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,6 @@ void	s_init_varfd(t_varfd *varfd)
 {
 	varfd->varname = NULL;
 	varfd->fd = 10;
-	varfd->next = NULL;
 }
 
 void	s_init_redirect(t_redirect *io)
@@ -24,7 +23,6 @@ void	s_init_redirect(t_redirect *io)
 	io->type = 0;
 	io->fd = 0;
 	io->arg = NULL;
-	io->next = NULL;
 }
 
 void	s_init_cmd(t_cmd *cmd)
@@ -43,6 +41,7 @@ void	s_init_line(t_line *line)
 	line->pipe[1][0] = -1;
 	line->pipe[1][1] = -1;
 	line->n_cmds = 0;
+	line->fdcount = 0;
 	line->exit_status = 0;
 	line->env = NULL;
 }

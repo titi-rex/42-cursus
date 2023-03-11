@@ -3,10 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lboudjem <lboudjem@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
+<<<<<<< HEAD
 /*   Created: 2023/03/10 15:52:52 by lboudjem          #+#    #+#             */
 /*   Updated: 2023/03/11 12:05:08 by lboudjem         ###   ########.fr       */
+=======
+/*   Created: 2023/03/08 11:21:07 by louisa            #+#    #+#             */
+/*   Updated: 2023/03/10 15:23:10 by tlegrand         ###   ########.fr       */
+>>>>>>> origin/execution2
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,8 +29,13 @@ int	ft_handle_quotes(char *str, int i, int quote)
 	ft_putstr_fd("Missing quote\n", 2);
 	return (i);
 }
+<<<<<<< HEAD
 
 void	ft_browse_line(char *str)
+=======
+/*
+int	main(int argc, char **argv, char **env)
+>>>>>>> origin/execution2
 {
 	int	i;
 
@@ -43,3 +53,4 @@ void	ft_browse_line(char *str)
 		i++;
 	}
 }
+*/
