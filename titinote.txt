@@ -29,3 +29,4 @@ learn about TERMIOS
  tcsetattr, tcgetattr, tgetent, tgetflag,
 tgetnum, tgetstr, tgoto, tputs
 isatty, ttyname, ttyslot, ioctl
+make a lst->char** func for env
