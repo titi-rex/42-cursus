@@ -6,7 +6,7 @@
 /*   By: lboudjem <lboudjem@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/08 17:06:26 by tlegrand          #+#    #+#             */
-/*   Updated: 2023/03/11 12:38:19 by lboudjem         ###   ########.fr       */
+/*   Updated: 2023/03/11 15:51:51 by lboudjem         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,11 @@
 # include "exec_struct.h"
 
 /*                  Parsing functiun            */
-void		ft_browse_line(char *str);
+void		ft_browse_line(char *str, int i, int start, t_line *line);
+void		ft_quotes(char *str, int *i);
+char		*ft_creat_bloc(char *str, int *i, int *start, char *bloc);
+int			ft_handle_quotes(char *str, int i, int quote);
+char		*ft_delete_quotes(char *bloc, int size, int nb_quotes);
 
 /*     			 get path functiuns   		   */
 int			ft_splitlen(char **split);

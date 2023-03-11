@@ -6,7 +6,7 @@
 #    By: lboudjem <lboudjem@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/02/12 20:46:19 by tlegrand          #+#    #+#              #
-#    Updated: 2023/03/11 12:39:41 by lboudjem         ###   ########.fr        #
+#    Updated: 2023/03/11 14:40:57 by lboudjem         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -29,9 +29,8 @@ LST_SRCS		=	main_test.c \
 					s_redirect_basic.c s_redirect_operator.c \
 					s_cmd_basic.c s_cmd_operator.c \
 					prompt.c \
-					parsing.c \
-					var_env_utils.c \
-					var_env_utils2.c \
+					parsing.c parsing_utils.c \
+					var_env_utils.c var_env_utils2.c \
 					var_env.c \
 					get_path.c
 

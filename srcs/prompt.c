@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   prompt.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: louisa <louisa@student.42.fr>              +#+  +:+       +#+        */
+/*   By: lboudjem <lboudjem@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/08 11:21:07 by louisa            #+#    #+#             */
-/*   Updated: 2023/03/10 21:53:29 by louisa           ###   ########.fr       */
+/*   Updated: 2023/03/11 15:19:02 by lboudjem         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,10 +28,10 @@ int	ft_prompt(t_line *line)
 
 	while (1)
 	{
-		str = readline("$> ");
+		str = readline("\033[1;35m$> \033[0m");
 		if (!str)
 			return (1);
-		ft_browse_line(str);
+		ft_browse_line(str, 0, 0, line);
 		cmd = get_cmd(str, line);
 		ft_get_path(line->path, line->cmd);
 		if (!cmd)
