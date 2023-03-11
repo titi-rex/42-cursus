@@ -6,7 +6,7 @@
 #    By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/02/12 20:46:19 by tlegrand          #+#    #+#              #
-#    Updated: 2023/03/10 22:28:44 by tlegrand         ###   ########.fr        #
+#    Updated: 2023/03/11 14:34:09 by tlegrand         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,12 +22,13 @@ DIR_SRCS		=	srcs/
 
 
 LST_SRCS		=	main_test.c \
-					bi_echo.c bi_pwd.c bi_cd.c bi_exit.c \
+					bi_echo.c bi_pwd.c bi_cd.c bi_exit.c bi_env.c bi_export.c bi_unset.c \
 					exe_dup_redirect.c exe_dup_pipe.c exe_cmd.c \
 					ft_clear.c s_init.c \
 					s_varfd_basic.c s_varfd_operator.c \
 					s_redirect_basic.c s_redirect_operator.c \
 					s_cmd_basic.c s_cmd_operator.c \
+					ft_utils.c \
 					parsing.c \
 					var_env_utils.c \
 					var_env_utils2.c \

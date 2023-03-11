@@ -6,7 +6,7 @@
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/08 13:27:20 by tlegrand          #+#    #+#             */
-/*   Updated: 2023/03/09 14:37:36 by tlegrand         ###   ########.fr       */
+/*   Updated: 2023/03/11 15:39:43 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,10 +22,28 @@ static int	bi_count_arg(char **arg)
 	return (n);
 }
 
-/*	TODO: cd $HOME	*/
-/*	TODO: update env after cd	*/
+static void	ft_update_pwd(t_line *line, char *current)
+{
+	char		*oldpwd;
+	t_var_env	*tmp;
+
+	oldpwd = get_value(line->lst_env, "PWD");
+	if (ft_var_env_search(line->lst_env, "OLDPWD"))
+		change_value(line->lst_env, "OLDPWD", oldpwd);
+	else
+	{
+		tmp = ft_new_env("OLDPWD", oldpwd);
+		if (!tmp)
+			perror("Error ");
+		ft_envadd_back(&line->lst_env, tmp);
+	}
+	change_value(line->lst_env, "PWD", current);
+}
+
 int	bi_cd(t_line *line)
 {
+	char	*home;
+
 	if (bi_count_arg(line->cmd->arg) > 2)
 	{
 		ft_putstr_fd("Error, too much arguments\n", 2);
@@ -33,12 +51,14 @@ int	bi_cd(t_line *line)
 	}
 	if (!line->cmd->arg[1])
 	{
-		chdir("");
-		perror("Error ");
+		home = get_value(line->lst_env, "HOME");
+		if (chdir(home) == -1)
+			return (ft_perror_return(NULL));
+		ft_update_pwd(line, home);
 		return (EXIT_SUCCESS);
 	}
-	if (!chdir(line->cmd->arg[1]))
-		return (EXIT_SUCCESS);
-	perror("Error ");
+	if (chdir(line->cmd->arg[1]) == -1)
+		return (ft_perror_return(NULL));
+	ft_update_pwd(line, line->cmd->arg[1]);
 	return (EXIT_FAILURE);
 }

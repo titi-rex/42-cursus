@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   env_utils2.c                                       :+:      :+:    :+:   */
+/*   var_env_utils2.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lboudjem <lboudjem@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/09 15:50:31 by lboudjem          #+#    #+#             */
-/*   Updated: 2023/03/10 14:28:23 by lboudjem         ###   ########.fr       */
+/*   Updated: 2023/03/11 12:50:06 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,7 @@ void	change_value(t_var_env *lst, char *value, char *name)
 			free(lst->value);
 			lst->value = NULL;
 			lst->value = ft_strdup(value);
+			return ;
 		}
 		lst = lst->next;
 	}

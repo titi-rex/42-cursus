@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   var_env.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lboudjem <lboudjem@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/09 14:58:48 by lboudjem          #+#    #+#             */
-/*   Updated: 2023/03/10 14:54:33 by lboudjem         ###   ########.fr       */
+/*   Updated: 2023/03/11 13:25:09 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,14 +38,27 @@ void	fill_lst_env(t_line *line, int i)
 	}
 }
 
-void	print_env(t_var_env	*lst)
+int	print_env(t_var_env	*lst)
+{
+	int	err;
+
+	err = EXIT_SUCCESS;
+	while (lst)
+	{
+		if (printf("%s = %s\n", lst->name, lst->value) < 0)
+			err = EXIT_FAILURE;
+		lst = lst->next;
+	}
+	return (err);
+}
+
+t_var_env	*ft_var_env_search(t_var_env *lst, char *name)
 {
 	while (lst)
 	{
-		ft_putstr_fd(lst->name, 1);
-		ft_putchar_fd('=', 1);
-		ft_putstr_fd(lst->value, 1);
-		ft_putchar_fd('\n', 1);
+		if (ft_strncmp(lst->name, name, ft_strlen2(name) + 1))
+			return (lst);
 		lst = lst->next;
 	}
+	return (NULL);
 }

@@ -6,7 +6,7 @@
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/08 15:07:58 by tlegrand          #+#    #+#             */
-/*   Updated: 2023/03/10 23:26:59 by tlegrand         ###   ########.fr       */
+/*   Updated: 2023/03/11 14:28:08 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,16 +71,16 @@ void	ft_exe_selector(t_line *line, int pipe_in[2], int pipe_out[2])
 		ft_exe_bi(line, pipe_in, pipe_out, bi_cd);
 	else if (line->cmd->arg && !ft_strncmp(line->cmd->arg[0], "echo", 5))
 		ft_exe_bi(line, pipe_in, pipe_out, bi_echo);
-	//else if (line->cmd->arg && !ft_strncmp(line->cmd->arg[0], "env", 4))
-	//	ft_exe_bi(line, pipe_in, pipe_out, bi_env);
+	else if (line->cmd->arg && !ft_strncmp(line->cmd->arg[0], "env", 4))
+		ft_exe_bi(line, pipe_in, pipe_out, bi_env);
 	else if (line->cmd->arg && !ft_strncmp(line->cmd->arg[0], "exit", 5))
 		ft_exe_bi(line, pipe_in, pipe_out, bi_exit);
-	//else if (line->cmd->arg && !ft_strncmp(line->cmd->arg[0], "export", 7))
-	//	ft_exe_bi(line, pipe_in, pipe_out, bi_export);
+	else if (line->cmd->arg && !ft_strncmp(line->cmd->arg[0], "export", 7))
+		ft_exe_bi(line, pipe_in, pipe_out, bi_export);
 	else if (line->cmd->arg && !ft_strncmp(line->cmd->arg[0], "pwd", 4))
 		ft_exe_bi(line, pipe_in, pipe_out, bi_pwd);
-	//else if (line->cmd->arg && !ft_strncmp(line->cmd->arg[0], "unset", 6))
-	//	ft_exe_bi(line, pipe_in, pipe_out, bi_unset);
+	else if (line->cmd->arg && !ft_strncmp(line->cmd->arg[0], "unset", 6))
+		ft_exe_bi(line, pipe_in, pipe_out, bi_unset);
 	else
 		ft_exe_cmd(line, pipe_in, pipe_out);
 }

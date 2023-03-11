@@ -6,7 +6,7 @@
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/08 17:06:26 by tlegrand          #+#    #+#             */
-/*   Updated: 2023/03/10 22:58:39 by tlegrand         ###   ########.fr       */
+/*   Updated: 2023/03/11 14:39:33 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ char		*ft_get_pathcmd(char **paths, char *cmd_name);
 void		ft_get_path(char *pathvar, t_cmd *cmd);
 
 /*           	       env      		     	 */
-void		print_env(t_var_env	*lst);
+int			print_env(t_var_env	*lst);
 void		init_variables(t_var_env *lst);
 void		ft_envadd_front(t_var_env **lst, t_var_env *new);
 void		ft_envadd_back(t_var_env **lst, t_var_env *new);
@@ -39,6 +39,7 @@ void		change_value(t_var_env *lst, char *value, char *name);
 char		*get_value(t_var_env *lst, char *name);
 t_var_env	*ft_new_env(char *name, char *value);
 t_var_env	*ft_envlast(t_var_env *lst);
+t_var_env	*ft_var_env_search(t_var_env *lst, char *name);
 void		fill_lst_env(t_line *line, int i);
 
 /*				a remettre dans la libft			*/
@@ -48,10 +49,14 @@ size_t		ft_strlen2(const char *s);
 //int bi_env(t_line *line)
 
 /*				exe functions						*/
-int			bi_echo(t_line *line);
-int			bi_pwd(t_line *line);
 int			bi_cd(t_line *line);
+int			bi_echo(t_line *line);
+int			bi_env(t_line *line);
+int			bi_env_mod(t_line *line);
 int			bi_exit(t_line *line);
+int			bi_export(t_line *line);
+int			bi_pwd(t_line *line);
+int			bi_unset(t_line *line);
 
 void		ft_exe_master(t_line *line);
 
@@ -95,5 +100,12 @@ void		ft_cmd_clear_lst(t_cmd	**cmd);
 t_cmd		*ft_cmd_last(t_cmd *cmd);
 t_cmd		*ft_cmd_first(t_cmd *cmd);
 void		ft_cmd_add_back(t_cmd **start, t_cmd *new);
+
+
+
+/*			utils general	*/
+int			ft_perror_return(char *errstr);
+int			ft_error_return(char *errstr);
+int			ft_is_bi(char **arg);
 
 #endif 

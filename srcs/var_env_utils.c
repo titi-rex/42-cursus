@@ -1,18 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   env_utils.c                                        :+:      :+:    :+:   */
+/*   var_env_utils.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lboudjem <lboudjem@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/09 13:33:56 by lboudjem          #+#    #+#             */
-/*   Updated: 2023/03/10 14:50:50 by lboudjem         ###   ########.fr       */
+/*   Updated: 2023/03/11 12:52:23 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/minishell.h"
-
-// penser a free en cas d'erreur 
 
 t_var_env	*ft_new_env(char *name, char *value)
 {
@@ -30,8 +28,6 @@ t_var_env	*ft_new_env(char *name, char *value)
 		ft_free_env(new);
 		return (NULL);
 	}
-	(void) value;
-	(void) name;
 	return (new);
 }
 

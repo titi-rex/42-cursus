@@ -1,23 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   bi_env.c                                           :+:      :+:    :+:   */
+/*   bi_unset.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/11 12:06:13 by tlegrand          #+#    #+#             */
-/*   Updated: 2023/03/11 14:32:53 by tlegrand         ###   ########.fr       */
+/*   Updated: 2023/03/11 15:15:37 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/minishell.h"
 
-int	bi_env(t_line *line)
+int	bi_unset(t_line *line)
 {
-	if (line->cmd->arg[1])
-	{
-		ft_putendl_fd("Error : env take no options nor arguments", 2);
-		return (EXIT_FAILURE);
-	}
-	return (print_env(line->lst_env));
+	t_var_env	*tmp;
+
+	if (!line->cmd->arg[1])
+		return (EXIT_SUCCESS);
+	tmp = ft_var_env_search(line->lst_env, line->cmd->arg[1]);
+	if (!tmp)
+		return (EXIT_SUCCESS);
+	ft_envremove(tmp);
+	return (EXIT_SUCCESS);
 }
