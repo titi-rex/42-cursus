@@ -6,7 +6,7 @@
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/08 15:07:58 by tlegrand          #+#    #+#             */
-/*   Updated: 2023/03/11 14:28:08 by tlegrand         ###   ########.fr       */
+/*   Updated: 2023/03/11 16:06:09 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ void	ft_exe_bi(t_line *line, int pipe_in[2], int pipe_out[2], \
 
 	if (line->n_cmds == 1)
 	{
-		if (ft_dup_redirect(line->cmd->io, here_pipe))
+		if (ft_dup_redirect(line->cmd->io, here_pipe, line))
 			return ;
 		line->exit_status = ft_bi(line);
 	}
@@ -31,7 +31,7 @@ void	ft_exe_bi(t_line *line, int pipe_in[2], int pipe_out[2], \
 			perror("Error ");
 		else if (pid == 0)
 		{
-			if (ft_dup_redirect(line->cmd->io, here_pipe))
+			if (ft_dup_redirect(line->cmd->io, here_pipe, line))
 				ft_clear_line_exit(line, EXIT_FAILURE);
 			ft_dup_pipe(pipe_in, pipe_out);
 			line->exit_status = ft_bi(line);
@@ -50,7 +50,7 @@ void	ft_exe_cmd(t_line *line, int pipe_in[2], int pipe_out[2])
 		perror("Error ");
 	else if (pid == 0)
 	{
-		if (ft_dup_redirect(line->cmd->io, here_pipe))
+		if (ft_dup_redirect(line->cmd->io, here_pipe, line))
 			perror("Error ");
 		ft_dup_pipe(pipe_in, pipe_out);
 		if (execve(line->cmd->arg[0], line->cmd->arg, NULL) == -1)
@@ -60,7 +60,7 @@ void	ft_exe_cmd(t_line *line, int pipe_in[2], int pipe_out[2])
 	(void) here_pipe;
 }
 
-/*	TODO: add other built-in 
+/*	
 	TODO: handle cmd null better;
 */
 void	ft_exe_selector(t_line *line, int pipe_in[2], int pipe_out[2])

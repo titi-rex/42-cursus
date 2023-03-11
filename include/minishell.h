@@ -6,7 +6,7 @@
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/08 17:06:26 by tlegrand          #+#    #+#             */
-/*   Updated: 2023/03/11 14:39:33 by tlegrand         ###   ########.fr       */
+/*   Updated: 2023/03/11 16:47:48 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 # include <string.h>
 # include <sys/wait.h>
 # include <fcntl.h>
+# include <signal.h>
 # include <readline/readline.h>
 # include <readline/history.h>
 # include "../libft/libft.h"
@@ -60,7 +61,7 @@ int			bi_unset(t_line *line);
 
 void		ft_exe_master(t_line *line);
 
-int			ft_dup_redirect(t_list *io, int here_pipe[2]);
+int			ft_dup_redirect(t_list *io, int here_pipe[2], t_line *line);
 void		ft_dup_pipe(int pipe_in[2], int pipe_out[2]);
 
 void		ft_clear_cmd(t_cmd **cmd);
@@ -107,5 +108,10 @@ void		ft_cmd_add_back(t_cmd **start, t_cmd *new);
 int			ft_perror_return(char *errstr);
 int			ft_error_return(char *errstr);
 int			ft_is_bi(char **arg);
+
+
+/*			signals functions 		*/
+void		ft_sig_launch(void);
+void		ft_sig_handler_child(int sig, siginfo_t *sig_info, void *context);
 
 #endif 

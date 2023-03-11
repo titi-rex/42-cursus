@@ -6,7 +6,7 @@
 #    By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/02/12 20:46:19 by tlegrand          #+#    #+#              #
-#    Updated: 2023/03/11 14:34:09 by tlegrand         ###   ########.fr        #
+#    Updated: 2023/03/11 16:45:14 by tlegrand         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -28,6 +28,7 @@ LST_SRCS		=	main_test.c \
 					s_varfd_basic.c s_varfd_operator.c \
 					s_redirect_basic.c s_redirect_operator.c \
 					s_cmd_basic.c s_cmd_operator.c \
+					sig_handler.c \
 					ft_utils.c \
 					parsing.c \
 					var_env_utils.c \
