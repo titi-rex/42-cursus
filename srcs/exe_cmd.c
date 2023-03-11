@@ -6,11 +6,13 @@
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/08 15:07:58 by tlegrand          #+#    #+#             */
-/*   Updated: 2023/03/11 16:06:09 by tlegrand         ###   ########.fr       */
+/*   Updated: 2023/03/11 23:59:39 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/minishell.h"
+
+extern sig_atomic_t	g_status;
 
 void	ft_exe_bi(t_line *line, int pipe_in[2], int pipe_out[2], \
 	int (*ft_bi)(t_line *))
@@ -31,6 +33,7 @@ void	ft_exe_bi(t_line *line, int pipe_in[2], int pipe_out[2], \
 			perror("Error ");
 		else if (pid == 0)
 		{
+			ft_sig_init(ft_sig_handler_child);
 			if (ft_dup_redirect(line->cmd->io, here_pipe, line))
 				ft_clear_line_exit(line, EXIT_FAILURE);
 			ft_dup_pipe(pipe_in, pipe_out);
@@ -50,6 +53,7 @@ void	ft_exe_cmd(t_line *line, int pipe_in[2], int pipe_out[2])
 		perror("Error ");
 	else if (pid == 0)
 	{
+		ft_sig_init(ft_sig_handler_child);
 		if (ft_dup_redirect(line->cmd->io, here_pipe, line))
 			perror("Error ");
 		ft_dup_pipe(pipe_in, pipe_out);
@@ -57,7 +61,6 @@ void	ft_exe_cmd(t_line *line, int pipe_in[2], int pipe_out[2])
 			perror("Error ");
 		ft_clear_line_exit(line, EXIT_FAILURE);
 	}
-	(void) here_pipe;
 }
 
 /*	
@@ -88,16 +91,16 @@ void	ft_exe_selector(t_line *line, int pipe_in[2], int pipe_out[2])
 void	ft_get_wait_status(int max_wait, int *exit_code)
 {
 	int	wstatus;
-	int	tmp;
 	int	i;
 
 	i = -1;
-	tmp = -1;
 	wstatus = 0;
 	while (i++ < max_wait)
-		tmp = waitpid(-1, &wstatus, 0);
-	if (tmp != -1 && WIFEXITED(wstatus))
+		waitpid(-1, &wstatus, 0);
+	if (max_wait != 1 && WIFEXITED(wstatus))
 		*exit_code = WEXITSTATUS(wstatus);
+	if (max_wait != 1 && WIFSIGNALED(wstatus))
+		*exit_code = WTERMSIG(wstatus);
 }
 
 void	ft_exe_master(t_line *line)
@@ -109,6 +112,8 @@ void	ft_exe_master(t_line *line)
 	j = 1;
 	while (line->n_cmds && line->cmd)
 	{
+		if (g_status != 0)
+			return ;
 		if (line->cmd->next)
 		{
 			if (pipe(line->pipe[i]) == -1)

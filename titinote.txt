@@ -19,3 +19,13 @@ void	ft_clear_lst_cmd_next(t_cmd **cmd)
 	ft_cmd_del(*cmd);
 	ft_clear_lst_cmd_next(&next);
 }
+
+TODO:
+hanlde null cmd better
+make a better prompt
+uppdate SHLVL 
+here_doc function
+learn about TERMIOS
+ tcsetattr, tcgetattr, tgetent, tgetflag,
+tgetnum, tgetstr, tgoto, tputs
+isatty, ttyname, ttyslot, ioctl

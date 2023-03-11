@@ -6,7 +6,7 @@
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/08 17:06:26 by tlegrand          #+#    #+#             */
-/*   Updated: 2023/03/11 16:47:48 by tlegrand         ###   ########.fr       */
+/*   Updated: 2023/03/11 23:59:08 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,10 @@
 # include <stdio.h> 
 # include <string.h>
 # include <sys/wait.h>
+# include <sys/ioctl.h>
 # include <fcntl.h>
 # include <signal.h>
+# include <termios.h>
 # include <readline/readline.h>
 # include <readline/history.h>
 # include "../libft/libft.h"
@@ -111,7 +113,16 @@ int			ft_is_bi(char **arg);
 
 
 /*			signals functions 		*/
-void		ft_sig_launch(void);
-void		ft_sig_handler_child(int sig, siginfo_t *sig_info, void *context);
+void		ft_sig_init(void (*handler)(int sig, siginfo_t *info, void *ctxt));
+
+void		ft_sig_handler_shell(int sig, siginfo_t *info, void *ctxt);
+void		ft_sig_handler_child(int sig, siginfo_t *info, void *ctxt);
+
+/*			loulou dsl je fais des experiences ...		*/
+char		*ft_readline(char *prompt);
+
+# define READING 301
+# define EXECUTION 327
+
 
 #endif 
