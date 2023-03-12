@@ -6,7 +6,7 @@
 #    By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/02/12 20:46:19 by tlegrand          #+#    #+#              #
-#    Updated: 2023/03/11 21:31:47 by tlegrand         ###   ########.fr        #
+#    Updated: 2023/03/12 21:59:06 by tlegrand         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -65,7 +65,7 @@ MAKE		=	make -s
 #	==============================	FLAGS	==============================	#
 CFLAGS		=	-Wall -Wextra -Werror  -I${DIR_HEADER} #-fsanitize=address -g3
 RFLAGS		=	-L/usr/local/lib -I/usr/local/include -lreadline
-FTFLAGS		=	-L${DIR_LIBFT} -lft 
+FTFLAGS		=	-L${DIR_LIBFT} -lft -ltermcap
 
 
 #	/*\/*\/*\/*\/*\/*\/*\/*\/*\/*\/*\/*\	RULES	/*\/*\/*\/*\/*\/*\/*\/*\/*\/*\/*\/*\	#

@@ -22,11 +22,28 @@ void	ft_clear_lst_cmd_next(t_cmd **cmd)
 
 TODO:
 hanlde null cmd better
+handle erro gestion cmd in child ??????? 
 make a better prompt
 uppdate SHLVL 
 here_doc function
-learn about TERMIOS
- tcsetattr, tcgetattr, tgetent, tgetflag,
-tgetnum, tgetstr, tgoto, tputs
-isatty, ttyname, ttyslot, ioctl
+creat dir for srcs
+
 make a lst->char** func for env
+make a multi join
+
+
+Use tty function for check if is atty and open tty
+isatty, ttyname, ttyslot, 
+
+use ioctl to send request to term
+ioctl
+
+use termios function to formate tty io
+tcsetattr, tcgetattr
+ 
+termcap functin does the same but more complicated ?
+tgetent, 
+tgetflag, tgetnum, tgetstr, tgoto, 
+tputs
+
+termcap -> termios -> curse -> ncurse
