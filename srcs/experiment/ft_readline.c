@@ -6,7 +6,7 @@
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/11 21:06:26 by tlegrand          #+#    #+#             */
-/*   Updated: 2023/03/12 00:26:31 by tlegrand         ###   ########.fr       */
+/*   Updated: 2023/03/13 18:47:10 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,8 @@
 
 void	*ft_realloc(void *addr, int new_count, int size)
 {
-	free(addr);
+	if (addr)
+		free(addr);
 	addr = ft_calloc(new_count, size);
 	return (addr);
 }
@@ -36,26 +37,27 @@ char	*ft_readline(char *prompt)
 {
 	char	c_buff;
 	char	*line;
-	int		err;
 	int		n_read;
 
-	line = ft_calloc(64, sizeof(char));
-	err = 1;
+	line = NULL;
 	n_read = 0;
+	c_buff = 'a';
 	ft_putstr_fd(prompt, 1);
-	while (err)
+	while (c_buff != '\n' || c_buff != '\0')
 	{
-		err = read(0, &c_buff, 1);
-		if (err == -1)
+		if (read(0, &c_buff, 1) == -1)
+		{
+			if (line)
+				free(line);
 			perror("Error ");
-		if (c_buff == '\n')
-			break ;
-		line[n_read] = c_buff;
-		n_read++;
+			return (NULL);
+		}
 		if (n_read % 100 == 0)
-			line = ft_realloc_cpy(line, n_read % 100 * 128, sizeof(char));
+			line = ft_realloc_cpy(line, (n_read + 1) % 100 * 128, sizeof(char));
 		if (!line)
 			return (NULL);
+		line[n_read] = c_buff;
+		n_read++;
 	}
 	return (line);
 }

@@ -6,7 +6,7 @@
 #    By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/02/12 20:46:19 by tlegrand          #+#    #+#              #
-#    Updated: 2023/03/12 21:59:06 by tlegrand         ###   ########.fr        #
+#    Updated: 2023/03/13 19:15:48 by tlegrand         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,30 +20,40 @@ NAME		=	minishell
 #	==============================	SOURCES	==============================	#
 DIR_SRCS		=	srcs/
 
-
 LST_SRCS		=	main_test.c \
-					bi_echo.c bi_pwd.c bi_cd.c bi_exit.c bi_env.c bi_export.c bi_unset.c \
-					exe_dup_redirect.c exe_dup_pipe.c exe_cmd.c \
-					ft_clear.c s_init.c \
-					s_varfd_basic.c s_varfd_operator.c \
-					s_redirect_basic.c s_redirect_operator.c \
-					s_cmd_basic.c s_cmd_operator.c \
-					sig_handler.c \
-					ft_readline.c \
-					ft_utils.c \
-					parsing.c \
-					var_env_utils.c \
-					var_env_utils2.c \
-					var_env.c \
-					get_path.c
-
+					ft_clear.c \
+					signal.c \
+					ft_utils.c 
 SRCS			=	${addprefix ${DIR_SRCS}, ${LST_SRCS}}
+
+DIR_SRCS_BI		=	srcs/built_in/
+LST_SRCS_BI		=	bi_cd.c bi_echo.c bi_pwd.c  bi_exit.c bi_env.c bi_export.c bi_unset.c
+SRCS_BI			=	${addprefix ${DIR_SRCS_BI}, ${LST_SRCS_BI}}
+
+DIR_SRCS_STRUCT	=	srcs/structure/
+LST_SRCS_STRUCT	=	s_redirect_basic.c s_redirect_operator.c \
+					s_cmd_basic.c s_cmd_operator.c \
+					var_env_utils.c var_env_utils2.c var_env.c \
+					s_init.c
+SRCS_STRUCT		=	${addprefix ${DIR_SRCS_STRUCT}, ${LST_SRCS_STRUCT}}
+
+DIR_SRCS_PARSE	=	srcs/parsing/
+LST_SRCS_PARSE	=	parsing.c get_path.c ft_here_doc.c
+SRCS_PARSE		=	${addprefix ${DIR_SRCS_PARSE}, ${LST_SRCS_PARSE}}
+
+DIR_SRCS_EXE	=	srcs/execution/
+LST_SRCS_EXE	=	exe_dup_redirect.c exe_dup_pipe.c exe_cmd.c
+SRCS_EXE		=	${addprefix ${DIR_SRCS_EXE}, ${LST_SRCS_EXE}}
+
 
 
 #	==============================	OBJECTS	==============================	#
 DIR_OBJS	=	.objs/
-OBJS		=	${patsubst ${DIR_SRCS}%.c, ${DIR_OBJS}%.o, ${SRCS}}
-
+OBJS		=	${patsubst ${DIR_SRCS}%.c, ${DIR_OBJS}%.o, ${SRCS}} \
+				${patsubst ${DIR_SRCS_BI}%.c, ${DIR_OBJS}%.o, ${SRCS_BI}} \
+				${patsubst ${DIR_SRCS_STRUCT}%.c, ${DIR_OBJS}%.o, ${SRCS_STRUCT}} \
+				${patsubst ${DIR_SRCS_PARSE}%.c, ${DIR_OBJS}%.o, ${SRCS_PARSE}} \
+				${patsubst ${DIR_SRCS_EXE}%.c, ${DIR_OBJS}%.o, ${SRCS_EXE}}
 
 #	==============================	HEADERS	==============================	#
 DIR_HEADER	=	include/
@@ -74,6 +84,9 @@ FTFLAGS		=	-L${DIR_LIBFT} -lft -ltermcap
 #	==============================	BASIC	==============================	#
 all		:	${NAME}
 
+msg		:
+		@echo ${OBJS}
+
 clean	:
 		@${RM} ${DIR_OBJS}
 		@$(MAKE) -C ${DIR_LIBFT} clean
@@ -97,6 +110,21 @@ ${DIR_OBJS}%.o	:	${DIR_SRCS}%.c ${HEADER}
 				@printf "$(ORANGE)Making $@...\n$(END)"
 				@${CC} ${CFLAGS} -c $< -o $@
 
+${DIR_OBJS}%.o	:	${DIR_SRCS_BI}%.c ${HEADER}
+				@printf "$(ORANGE)Making $@...\n$(END)"
+				@${CC} ${CFLAGS} -c $< -o $@
+
+${DIR_OBJS}%.o	:	${DIR_SRCS_STRUCT}%.c ${HEADER}
+				@printf "$(ORANGE)Making $@...\n$(END)"
+				@${CC} ${CFLAGS} -c $< -o $@
+
+${DIR_OBJS}%.o	:	${DIR_SRCS_PARSE}%.c ${HEADER}
+				@printf "$(ORANGE)Making $@...\n$(END)"
+				@${CC} ${CFLAGS} -c $< -o $@
+
+${DIR_OBJS}%.o	:	${DIR_SRCS_EXE}%.c ${HEADER}
+				@printf "$(ORANGE)Making $@...\n$(END)"
+				@${CC} ${CFLAGS} -c $< -o $@
 
 #	==============================	UTILS/LIB	==============================	#
 ${DIR_OBJS}	:

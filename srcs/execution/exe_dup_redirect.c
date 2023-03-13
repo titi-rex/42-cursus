@@ -6,7 +6,7 @@
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/08 17:17:17 by tlegrand          #+#    #+#             */
-/*   Updated: 2023/03/13 17:30:08 by tlegrand         ###   ########.fr       */
+/*   Updated: 2023/03/13 18:10:41 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ int	ft_dup_here_doc(t_redirect *io, int here_pipe[2], t_line *line)
 	int	pid;
 
 	if (pipe(here_pipe) == -1)
-		return (ft_perror_return(NULL));
+		return (ft_perror_return_int(NULL));
 	pid = fork();
 	if (pid == -1)
 		perror("Error ");

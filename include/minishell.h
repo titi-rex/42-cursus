@@ -6,7 +6,7 @@
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/08 17:06:26 by tlegrand          #+#    #+#             */
-/*   Updated: 2023/03/13 14:29:30 by tlegrand         ###   ########.fr       */
+/*   Updated: 2023/03/13 18:27:30 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,7 +108,8 @@ void		ft_cmd_add_back(t_cmd **start, t_cmd *new);
 
 
 /*			utils general	*/
-int			ft_perror_return(char *errstr);
+int			ft_perror_return_int(char *errstr);
+char		*ft_perror_return_null(char *errstr);
 int			ft_error_return(char *errstr);
 int			ft_is_bi(char **arg);
 
@@ -121,6 +122,7 @@ void		ft_sig_handler_child(int sig);
 
 /*			loulou dsl je fais des experiences ...		*/
 char		*ft_readline(char *prompt);
+char		*ft_here_doc_mode(char *delimiter);
 
 # define READING 301
 # define EXECUTION 327

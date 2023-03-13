@@ -6,7 +6,7 @@
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/11 14:28:28 by tlegrand          #+#    #+#             */
-/*   Updated: 2023/03/11 15:07:42 by tlegrand         ###   ########.fr       */
+/*   Updated: 2023/03/13 18:10:41 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,13 +39,13 @@ int	bi_export(t_line *line)
 		free(tmp->value);
 		tmp->value = ft_strdup(line->cmd->arg[2]);
 		if (!tmp->value)
-			return (ft_perror_return(NULL));
+			return (ft_perror_return_int(NULL));
 		else
 			return (EXIT_SUCCESS);
 	}
 	tmp = ft_new_env(line->cmd->arg[1], line->cmd->arg[2]);
 	if (!tmp)
-		return (ft_perror_return(NULL));
+		return (ft_perror_return_int(NULL));
 	ft_envadd_back(&line->lst_env, tmp);
 	return (EXIT_SUCCESS);
 }

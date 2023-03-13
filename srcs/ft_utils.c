@@ -6,19 +6,28 @@
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/11 13:43:01 by tlegrand          #+#    #+#             */
-/*   Updated: 2023/03/11 14:39:14 by tlegrand         ###   ########.fr       */
+/*   Updated: 2023/03/13 18:08:51 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/minishell.h"
 
-int	ft_perror_return(char *errstr)
+int	ft_perror_return_int(char *errstr)
 {
 	if (errstr)
 		perror(errstr);
 	else
 		perror("Error ");
 	return (EXIT_FAILURE);
+}
+
+char	*ft_perror_return_null(char *errstr)
+{
+	if (errstr)
+		perror(errstr);
+	else
+		perror("Error ");
+	return (NULL);
 }
 
 int	ft_error_return(char *errstr)
