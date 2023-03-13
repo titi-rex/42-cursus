@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lboudjem <lboudjem@student.42.fr>          +#+  +:+       +#+        */
+/*   By: louisa <louisa@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/08 17:06:26 by tlegrand          #+#    #+#             */
-/*   Updated: 2023/03/11 15:51:51 by lboudjem         ###   ########.fr       */
+/*   Updated: 2023/03/13 17:35:16 by louisa           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,10 @@ void		ft_quotes(char *str, int *i);
 char		*ft_creat_bloc(char *str, int *i, int *start, char *bloc);
 int			ft_handle_quotes(char *str, int i, int quote);
 char		*ft_delete_quotes(char *bloc, int size, int nb_quotes);
+char	    *ft_get_expansion_value(char *bloc, t_line *line, int *len, int i);
+char	    *ft_replace_expansion_value(char *bloc, t_line *line, int len, int i);
+char	    *ft_replace_by_exit_status(char *bloc, int i, t_line *line);
+void	    ft_handle_expansion(char **bloc, t_line *line);
 
 /*     			 get path functiuns   		   */
 int			ft_splitlen(char **split);
