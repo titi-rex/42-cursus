@@ -6,14 +6,13 @@
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/13 19:29:46 by tlegrand          #+#    #+#             */
-/*   Updated: 2023/03/13 20:07:34 by tlegrand         ###   ########.fr       */
+/*   Updated: 2023/03/13 20:08:48 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/minishell.h"
 #include <termcap.h>
 
-/*	TODO: reset term state before exit	*/
 void	term_init_setting(struct termios *old)
 {
 	struct termios	t;

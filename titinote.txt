@@ -71,3 +71,4 @@ handle erro gestion cmd in child ???????
 /*	TODO:	signal in here_doc and exe	*/
 creat dir for srcs
 here_doc function
+/*	TODO: reset term state before exit	*/

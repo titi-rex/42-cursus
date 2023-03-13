@@ -6,7 +6,7 @@
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/08 12:28:13 by tlegrand          #+#    #+#             */
-/*   Updated: 2023/03/13 20:05:53 by tlegrand         ###   ########.fr       */
+/*   Updated: 2023/03/13 20:34:14 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,15 +14,39 @@
 
 sig_atomic_t	g_status = 0;
 
+/*
+char	*ft_prompt_get(t_line *line)
+{
+	char	*prompt;
+	char	*buff;
+
+	prompt = NULL;
+	return (prompt);
+}
+
+PWD
+time
+user
+exit status 
+machine
+TIME_UTC
+*/
+
+
+
+/*	TODO: CHANGE EXE ! if no cmd but redir no error ! */
+/*	TODO:FIXME:	minishell > log need to display prompt */
 /*	TODO:	handle SHLVL	*/
 /*	TODO:	listenv->char** func	*/
 /*	TODO:	secure term_init ? */
+/*	TODO:	prompt function */
 int	main(int ac, char **arg)
 {
 	char	*input;
 	char	*buff;
 	t_line	line;
 
+	printf("time : %d\n", TIME_UTC);
 	ft_sig_init(ft_sig_handler_shell);
 	term_init_setting(&line.old);
 	s_line_init(&line);
