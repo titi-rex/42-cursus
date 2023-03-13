@@ -6,7 +6,7 @@
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/08 12:18:35 by tlegrand          #+#    #+#             */
-/*   Updated: 2023/03/09 20:20:13 by tlegrand         ###   ########.fr       */
+/*   Updated: 2023/03/13 13:45:08 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ int	bi_echo(t_line *line)
 		if (line->cmd->arg[i] && printf(" ") < 0)
 			err = EXIT_FAILURE;
 	}
-	if (printf("%c", new_line))
+	if (printf("%c", new_line) < 0)
 		err = EXIT_FAILURE;
 	return (err);
 }

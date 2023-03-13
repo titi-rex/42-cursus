@@ -6,7 +6,7 @@
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/08 17:06:26 by tlegrand          #+#    #+#             */
-/*   Updated: 2023/03/11 23:59:08 by tlegrand         ###   ########.fr       */
+/*   Updated: 2023/03/13 14:29:30 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,6 +66,7 @@ void		ft_exe_master(t_line *line);
 int			ft_dup_redirect(t_list *io, int here_pipe[2], t_line *line);
 void		ft_dup_pipe(int pipe_in[2], int pipe_out[2]);
 
+void		ft_reset_line(t_line *line);
 void		ft_clear_cmd(t_cmd **cmd);
 void		ft_clear_lst_cmd(t_cmd **cmd);
 void		ft_clear_line(t_line *line);
@@ -113,10 +114,10 @@ int			ft_is_bi(char **arg);
 
 
 /*			signals functions 		*/
-void		ft_sig_init(void (*handler)(int sig, siginfo_t *info, void *ctxt));
+void		ft_sig_init(void (*handler)(int sig));
 
-void		ft_sig_handler_shell(int sig, siginfo_t *info, void *ctxt);
-void		ft_sig_handler_child(int sig, siginfo_t *info, void *ctxt);
+void		ft_sig_handler_shell(int sig);
+void		ft_sig_handler_child(int sig);
 
 /*			loulou dsl je fais des experiences ...		*/
 char		*ft_readline(char *prompt);

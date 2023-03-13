@@ -6,7 +6,7 @@
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/08 15:07:58 by tlegrand          #+#    #+#             */
-/*   Updated: 2023/03/11 23:59:39 by tlegrand         ###   ########.fr       */
+/*   Updated: 2023/03/13 15:10:11 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,13 +63,10 @@ void	ft_exe_cmd(t_line *line, int pipe_in[2], int pipe_out[2])
 	}
 }
 
-/*	
-	TODO: handle cmd null better;
-*/
 void	ft_exe_selector(t_line *line, int pipe_in[2], int pipe_out[2])
 {
-	if (!line->cmd->arg[0])
-		return ;
+	if (!line->cmd->arg || !line->cmd->arg[0])
+		return ((void)ft_putendl_fd("Error : empty cmd", 2));
 	else if (!ft_strncmp(line->cmd->arg[0], "cd", 3))
 		ft_exe_bi(line, pipe_in, pipe_out, bi_cd);
 	else if (line->cmd->arg && !ft_strncmp(line->cmd->arg[0], "echo", 5))
@@ -97,35 +94,35 @@ void	ft_get_wait_status(int max_wait, int *exit_code)
 	wstatus = 0;
 	while (i++ < max_wait)
 		waitpid(-1, &wstatus, 0);
-	if (max_wait != 1 && WIFEXITED(wstatus))
+	if (WIFEXITED(wstatus))
 		*exit_code = WEXITSTATUS(wstatus);
-	if (max_wait != 1 && WIFSIGNALED(wstatus))
+	if (WIFSIGNALED(wstatus))
 		*exit_code = WTERMSIG(wstatus);
 }
 
 void	ft_exe_master(t_line *line)
 {
 	int	i;
-	int	j;
 
 	i = 0;
-	j = 1;
-	while (line->n_cmds && line->cmd)
+	g_status = EXECUTION;
+	while (line->n_cmds)
 	{
-		if (g_status != 0)
+		if (g_status != EXECUTION)
 			return ;
 		if (line->cmd->next)
 		{
-			if (pipe(line->pipe[i]) == -1)
+			if (pipe(line->pipe[i % 2]) == -1)
 				perror("Error open pipe ");
 		}
-		ft_exe_selector(line, line->pipe[j], line->pipe[i]);
-		ft_close_pipe(line->pipe[j]);
-		i = i + 1 % 2;
-		j = j + 1 % 2;
+		ft_exe_selector(line, line->pipe[i + 1 % 2], line->pipe[i % 2]);
+		ft_close_pipe(line->pipe[i + 1 % 2]);
+		i++;
 		if (!line->cmd->next)
 			break ;
 		line->cmd = line->cmd->next;
 	}
-	ft_get_wait_status(line->n_cmds, &line->exit_status);
+	if (line->n_cmds != 1 || !ft_is_bi(line->cmd->arg))
+		ft_get_wait_status(line->n_cmds, &line->exit_status);
+	g_status = READING;
 }
