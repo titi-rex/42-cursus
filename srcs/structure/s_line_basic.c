@@ -1,18 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_clear.c                                         :+:      :+:    :+:   */
+/*   s_line_basic.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/08 18:19:34 by tlegrand          #+#    #+#             */
-/*   Updated: 2023/03/13 14:36:48 by tlegrand         ###   ########.fr       */
+/*   Updated: 2023/03/13 19:45:01 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/minishell.h"
 
-void	ft_reset_line(t_line *line)
+void	s_line_init(t_line *line)
+{
+	line->cmd = NULL;
+	line->pipe[0][0] = -1;
+	line->pipe[0][1] = -1;
+	line->pipe[1][0] = -1;
+	line->pipe[1][1] = -1;
+	line->n_cmds = 0;
+	line->exit_status = 0;
+	line->env = NULL;
+}
+
+void	s_line_reset(t_line *line)
 {
 	if (line->cmd)
 		ft_cmd_clear_lst(&line->cmd);
@@ -21,7 +33,7 @@ void	ft_reset_line(t_line *line)
 	line->n_cmds = 0;
 }
 
-void	ft_clear_line(t_line *line)
+void	s_line_clear(t_line *line)
 {
 	if (line->cmd)
 		ft_cmd_clear_lst(&line->cmd);
@@ -30,10 +42,4 @@ void	ft_clear_line(t_line *line)
 	line->n_cmds = 0;
 	//ft_envclear(&line->lst_env);
 	//ft_free2d((void **)line->env, 0);
-}
-
-void	ft_clear_line_exit(t_line *line, int exit_code)
-{
-	ft_clear_line(line);
-	exit(exit_code);
 }

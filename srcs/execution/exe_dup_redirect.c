@@ -6,7 +6,7 @@
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/08 17:17:17 by tlegrand          #+#    #+#             */
-/*   Updated: 2023/03/13 18:10:41 by tlegrand         ###   ########.fr       */
+/*   Updated: 2023/03/13 19:56:43 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ int	ft_dup_here_doc(t_redirect *io, int here_pipe[2], t_line *line)
 			io->arg++;
 		}
 		ft_close_pipe(here_pipe);
-		ft_clear_line_exit(line, EXIT_SUCCESS);
+		ft_clean_exit(line, EXIT_SUCCESS);
 	}
 	else
 	{

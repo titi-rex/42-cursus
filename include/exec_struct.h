@@ -6,7 +6,7 @@
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/06 21:46:27 by tlegrand          #+#    #+#             */
-/*   Updated: 2023/03/11 12:00:06 by tlegrand         ###   ########.fr       */
+/*   Updated: 2023/03/13 19:40:16 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,25 +52,14 @@ typedef struct s_var_env
 */
 typedef struct s_line
 {
-	t_cmd		*cmd;
-	char		**env;
-	char		*path;
-	int			pipe[2][2];
-	int			n_cmds;
-	int			exit_status;
-	t_var_env	*lst_env;
-	t_list		*lst_varfd;
-	int			fdcount;
+	t_cmd			*cmd;
+	char			**env;
+	char			*path;
+	int				pipe[2][2];
+	int				n_cmds;
+	int				exit_status;
+	t_var_env		*lst_env;
+	struct termios	old;
 }	t_line;
-
-/*	structure storing fd called by a varname
-	varname must be {name} format
-	int is the fd linked
-*/
-typedef struct s_varfd
-{
-	char			*varname;
-	int				fd;
-}	t_varfd;
 
 #endif

@@ -1,32 +1,43 @@
-void	ft_clear_lst_cmd_previous(t_cmd **cmd)
-{
-	t_cmd	*previous;
+ctrl c = SIGINT (new prompt new line)
+ctrl d = send OEF NOT A SIGNAL close terminal (exit)
+ctrl \ = SIGQUIT (rompish)
 
-	if (!cmd || !*cmd)
-		return ;
-	previous = (*cmd)->previous;
-	ft_cmd_del(*cmd);
-	ft_clear_lst_cmd_previous(&previous);
+ctrl z = SIGSTP (freeze)
+
+valgrind
+--suppressions=valgrind_ignore_leaks.txt
+--leak-check=full --show-leak-kinds=all
+--track-origins=yes --verbose
+--show-mismatched-frees=yes
+--read-var-info=yes
+
+valgrind --suppressions=valgrind_ignore_leaks.txt --leak-check=full --show-leak-kinds=all --track-origins=yes --verbose --show-mismatched-frees=yes --read-var-info=yes
+
+(option) --log-file=valgrind-out.txt
+
+valgrind_ignore_leaks.txt :
+{
+	leak readline
+	Memcheck:Leak
+	...
+	fun:readline
+}
+{
+	leak add_history
+	Memcheck:Leak
+	...
+	fun:add_history
 }
 
-void	ft_clear_lst_cmd_next(t_cmd **cmd)
-{
-	t_cmd	*next;
 
-	if (!cmd || !*cmd)
-		return ;
-	next = (*cmd)->next;
-	ft_cmd_del(*cmd);
-	ft_clear_lst_cmd_next(&next);
-}
 
 TODO:
 
-creat dir for srcs
+
 
 make a better prompt
 uppdate SHLVL 
-here_doc function
+
 make a lst->char** func for env
 
 
@@ -57,5 +68,6 @@ DONE:
 /*	TODO:	prevent exit newline especially in child	*/
 /*	TODO: handle cmd null better; */
 handle erro gestion cmd in child ??????? 
-
-
+/*	TODO:	signal in here_doc and exe	*/
+creat dir for srcs
+here_doc function

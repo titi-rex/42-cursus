@@ -6,7 +6,7 @@
 #    By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/02/12 20:46:19 by tlegrand          #+#    #+#              #
-#    Updated: 2023/03/13 19:15:48 by tlegrand         ###   ########.fr        #
+#    Updated: 2023/03/13 19:57:46 by tlegrand         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,9 +21,9 @@ NAME		=	minishell
 DIR_SRCS		=	srcs/
 
 LST_SRCS		=	main_test.c \
-					ft_clear.c \
 					signal.c \
-					ft_utils.c 
+					utils.c \
+					term.c
 SRCS			=	${addprefix ${DIR_SRCS}, ${LST_SRCS}}
 
 DIR_SRCS_BI		=	srcs/built_in/
@@ -31,10 +31,10 @@ LST_SRCS_BI		=	bi_cd.c bi_echo.c bi_pwd.c  bi_exit.c bi_env.c bi_export.c bi_uns
 SRCS_BI			=	${addprefix ${DIR_SRCS_BI}, ${LST_SRCS_BI}}
 
 DIR_SRCS_STRUCT	=	srcs/structure/
-LST_SRCS_STRUCT	=	s_redirect_basic.c s_redirect_operator.c \
+LST_SRCS_STRUCT	=	s_line_basic.c \
 					s_cmd_basic.c s_cmd_operator.c \
-					var_env_utils.c var_env_utils2.c var_env.c \
-					s_init.c
+					s_redirect_basic.c s_redirect_operator.c \
+					var_env_utils.c var_env_utils2.c var_env.c
 SRCS_STRUCT		=	${addprefix ${DIR_SRCS_STRUCT}, ${LST_SRCS_STRUCT}}
 
 DIR_SRCS_PARSE	=	srcs/parsing/

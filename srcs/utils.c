@@ -6,7 +6,7 @@
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/11 13:43:01 by tlegrand          #+#    #+#             */
-/*   Updated: 2023/03/13 18:08:51 by tlegrand         ###   ########.fr       */
+/*   Updated: 2023/03/13 19:43:52 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,4 +58,11 @@ int	ft_is_bi(char **arg)
 	else if (!ft_strncmp(arg[0], "unset", 6))
 		return (1);
 	return (0);
+}
+
+void	ft_clean_exit(t_line *line, int exit_code)
+{
+	term_reset(&line->old);
+	s_line_clear(line);
+	exit(exit_code);
 }
