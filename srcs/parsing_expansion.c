@@ -6,7 +6,7 @@
 /*   By: louisa <louisa@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/13 17:33:36 by louisa            #+#    #+#             */
-/*   Updated: 2023/03/14 14:43:32 by louisa           ###   ########.fr       */
+/*   Updated: 2023/03/14 15:42:36 by louisa           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -109,16 +109,16 @@ void	ft_handle_expansion(char **bloc, t_line *line)
 		if ((*bloc)[i] == 39)
 		{
 			i++;
-			while ((*bloc)[i] != 39)
+			while ((*bloc)[i] != 39) // verifier si tu arrives pas la fin de ta string *bloc
 				i++;
 		}
-		if ((*bloc)[i] == '$' && (*bloc)[i + 1] == '?')
+		if ((*bloc)[i] == '$' && (*bloc)[i + 1] == '?') // idem
 			*bloc = ft_replace_by_exit_status(*bloc, i, line);
-		if ((*bloc)[i] == '$')
+		if ((*bloc)[i] == '$') // idem
 		{
 			*bloc = ft_replace_expansion_value(*bloc, line, 0, i);
 			i++;
-			if (!(*bloc)[i])
+			if (!(*bloc)[i])// g pas compris :(
 				break ;
 		}
 		i++;

@@ -6,12 +6,13 @@
 /*   By: louisa <louisa@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/10 21:44:37 by louisa            #+#    #+#             */
-/*   Updated: 2023/03/10 21:44:46 by louisa           ###   ########.fr       */
+/*   Updated: 2023/03/14 15:35:02 by louisa           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/minishell.h"
 
+// t'ass refait deux fonctions qui etaient deja dans s_redirect_basic
 void	ft_free_io(t_redirect *lst)
 {
 	if (lst->arg)
