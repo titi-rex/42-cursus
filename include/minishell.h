@@ -6,7 +6,7 @@
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/08 17:06:26 by tlegrand          #+#    #+#             */
-/*   Updated: 2023/03/14 11:02:12 by tlegrand         ###   ########.fr       */
+/*   Updated: 2023/03/14 20:23:12 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,7 @@ int			bi_export(t_line *line);
 int			bi_pwd(t_line *line);
 int			bi_unset(t_line *line);
 
+int			ft_is_this_a_minishell(t_line *line);
 void		ft_exe_master(t_line *line);
 
 int			ft_dup_redirect(t_list *io, int here_pipe[2], t_line *line);

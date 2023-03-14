@@ -6,7 +6,7 @@
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/11 13:43:01 by tlegrand          #+#    #+#             */
-/*   Updated: 2023/03/14 10:44:33 by tlegrand         ###   ########.fr       */
+/*   Updated: 2023/03/14 20:24:14 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,36 @@ int	ft_is_bi(char **arg)
 
 void	ft_clean_exit(t_line *line, int exit_code)
 {
-	//term_reset(&line->old);
+	term_reset(&line->old);
 	s_line_clear(line);
 	exit(exit_code);
+}
+
+/**
+ * @brief look for a valid minishell command in cmd list
+ *  line shouldnt be NULL
+ */
+int	ft_is_this_a_minishell(t_line *line)
+{
+	t_cmd	*current;
+
+	current = line->cmd;
+	while (current)
+	{
+		if (current->arg)
+			if (!access(current->arg[0], X_OK) && !ft_strncmp(current->arg[0] + \
+				ft_strlen2(current->arg[0]) - 9, "minishell", 11))
+				return (1);
+		current = current->next;
+	}
+	current = line->cmd;
+	while (current)
+	{
+		if (current->arg)
+			if (!access(current->arg[0], X_OK) && !ft_strncmp(current->arg[0] + \
+				ft_strlen2(current->arg[0]) - 9, "minishell", 11))
+				return (1);
+		current = current->previous;
+	}
+	return (0);
 }

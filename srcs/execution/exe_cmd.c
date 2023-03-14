@@ -6,7 +6,7 @@
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/08 15:07:58 by tlegrand          #+#    #+#             */
-/*   Updated: 2023/03/14 13:08:16 by tlegrand         ###   ########.fr       */
+/*   Updated: 2023/03/14 20:34:58 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,9 +34,9 @@ void	ft_exe_bi(t_line *line, int pipe_in[2], int pipe_out[2], \
 		else if (pid == 0)
 		{
 			ft_sig_init(ft_sig_handler_child);
+			ft_dup_pipe(pipe_in, pipe_out);
 			if (ft_dup_redirect(line->cmd->io, here_pipe, line))
 				ft_clean_exit(line, EXIT_FAILURE);
-			ft_dup_pipe(pipe_in, pipe_out);
 			line->exit_status = ft_bi(line);
 			ft_clean_exit(line, EXIT_SUCCESS);
 		}
@@ -48,17 +48,18 @@ void	ft_exe_cmd(t_line *line, int pipe_in[2], int pipe_out[2])
 	int	pid;
 	int	here_pipe[2];
 
+	if (!access(line->cmd->arg[0], X_OK) && !ft_strncmp(line->cmd->arg[0] \
+		+ ft_strlen2(line->cmd->arg[0]) - 9, "minishell", 11))
+		ft_sig_init(SIG_IGN);
 	pid = fork();
 	if (pid == -1)
 		perror("Error ");
 	else if (pid == 0)
 	{
 		ft_sig_init(ft_sig_handler_child);
+		ft_dup_pipe(pipe_in, pipe_out);
 		if (ft_dup_redirect(line->cmd->io, here_pipe, line))
 			perror("Error ");
-		ft_dup_pipe(pipe_in, pipe_out);
-		if (!ft_strncmp(line->cmd->arg[0], "./minishell", 12))
-			g_status = MINISHELL;
 		if (execve(line->cmd->arg[0], line->cmd->arg, NULL) == -1)
 			perror("Error ");
 		ft_clean_exit(line, EXIT_FAILURE);
@@ -68,7 +69,7 @@ void	ft_exe_cmd(t_line *line, int pipe_in[2], int pipe_out[2])
 void	ft_exe_selector(t_line *line, int pipe_in[2], int pipe_out[2])
 {
 	if (!line->cmd->arg || !line->cmd->arg[0])
-		return ((void)ft_putendl_fd("Error : empty cmd", 2));
+		ft_exe_cmd(line, pipe_in, pipe_out);
 	else if (!ft_strncmp(line->cmd->arg[0], "cd", 3))
 		ft_exe_bi(line, pipe_in, pipe_out, bi_cd);
 	else if (line->cmd->arg && !ft_strncmp(line->cmd->arg[0], "echo", 5))
@@ -107,10 +108,9 @@ void	ft_exe_master(t_line *line)
 	int	i;
 
 	i = 0;
-	g_status = EXECUTION;
 	while (line->n_cmds)
 	{
-		if (g_status != EXECUTION && g_status != MINISHELL)
+		if (g_status == SIGINT)
 			return ;
 		if (line->cmd->next)
 		{
@@ -126,4 +126,6 @@ void	ft_exe_master(t_line *line)
 	}
 	if (line->n_cmds != 1 || !ft_is_bi(line->cmd->arg))
 		ft_get_wait_status(line->n_cmds, &line->exit_status);
+	if (ft_is_this_a_minishell(line))
+		ft_sig_init(ft_sig_handler_shell);
 }

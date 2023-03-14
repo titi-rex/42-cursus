@@ -6,7 +6,7 @@
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/11 16:11:47 by tlegrand          #+#    #+#             */
-/*   Updated: 2023/03/14 13:18:03 by tlegrand         ###   ########.fr       */
+/*   Updated: 2023/03/14 19:38:49 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,11 +16,6 @@ extern sig_atomic_t	g_status;
 
 void	ft_sig_handler_shell(int sig)
 {
-	if (g_status == MINISHELL)
-	{
-		dprintf(2, "SIGINT received while minishell inception");
-		return ;
-	}
 	if (sig == SIGINT)
 	{
 		if (g_status != EXECUTION)

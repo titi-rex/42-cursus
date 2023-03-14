@@ -72,3 +72,5 @@ handle erro gestion cmd in child ???????
 creat dir for srcs
 here_doc function
 /*	TODO: reset term state before exit	*/
+/*	TODO:FIXME:	minishell ./minishell (inception) ctrl c dont work and mess up everuything */
+/*	TODO:	secure term_init ? */
