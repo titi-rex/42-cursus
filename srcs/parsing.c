@@ -6,7 +6,7 @@
 /*   By: louisa <louisa@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/08 11:21:07 by louisa            #+#    #+#             */
-/*   Updated: 2023/03/14 15:39:40 by louisa           ###   ########.fr       */
+/*   Updated: 2023/03/14 16:08:13 by louisa           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ char	*ft_redirection_arg(char *bloc, int i)
 	return (arg);
 }
 
-// si on supprime le fd la fonction est super courte !
+// si on supprime le fd la fonction est super courte ! et c cool :)
 void	ft_redirection_type_fd(char *bloc, int *type, int *i, int *fd)
 {
 	if (bloc[*i] == '<')

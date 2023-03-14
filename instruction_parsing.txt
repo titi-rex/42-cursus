@@ -6,7 +6,7 @@
 #    By: louisa <louisa@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/03/10 16:14:31 by lboudjem          #+#    #+#              #
-#    Updated: 2023/03/10 21:49:48 by louisa           ###   ########.fr        #
+#    Updated: 2023/03/14 16:07:58 by louisa           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -49,3 +49,7 @@ si je trouve un '\0' :
 
 Autre:
 - Faire une fonction clear all qui clear toutes les liste entre deux commandes entrés par le user
+
+        Offrir des gatos a titi
+- Un titi bien nourrit travaillera mieux et sera de meilleur humeur
+- Un effet secondaire est un sentiment de réussite, de grâce, d'amour infinie et d'apaisement
