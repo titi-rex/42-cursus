@@ -6,7 +6,7 @@
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/08 17:06:26 by tlegrand          #+#    #+#             */
-/*   Updated: 2023/03/13 19:52:35 by tlegrand         ###   ########.fr       */
+/*   Updated: 2023/03/14 11:02:12 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@
 # include "exec_struct.h"
 # define READING 301
 # define EXECUTION 327
+# define MINISHELL 337
 
 /*     			 get path functiuns   		   */
 int			ft_splitlen(char **split);

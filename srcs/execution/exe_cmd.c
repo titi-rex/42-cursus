@@ -6,7 +6,7 @@
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/08 15:07:58 by tlegrand          #+#    #+#             */
-/*   Updated: 2023/03/13 19:56:43 by tlegrand         ###   ########.fr       */
+/*   Updated: 2023/03/14 13:08:16 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,6 +57,8 @@ void	ft_exe_cmd(t_line *line, int pipe_in[2], int pipe_out[2])
 		if (ft_dup_redirect(line->cmd->io, here_pipe, line))
 			perror("Error ");
 		ft_dup_pipe(pipe_in, pipe_out);
+		if (!ft_strncmp(line->cmd->arg[0], "./minishell", 12))
+			g_status = MINISHELL;
 		if (execve(line->cmd->arg[0], line->cmd->arg, NULL) == -1)
 			perror("Error ");
 		ft_clean_exit(line, EXIT_FAILURE);
@@ -108,7 +110,7 @@ void	ft_exe_master(t_line *line)
 	g_status = EXECUTION;
 	while (line->n_cmds)
 	{
-		if (g_status != EXECUTION)
+		if (g_status != EXECUTION && g_status != MINISHELL)
 			return ;
 		if (line->cmd->next)
 		{
@@ -124,5 +126,4 @@ void	ft_exe_master(t_line *line)
 	}
 	if (line->n_cmds != 1 || !ft_is_bi(line->cmd->arg))
 		ft_get_wait_status(line->n_cmds, &line->exit_status);
-	g_status = READING;
 }

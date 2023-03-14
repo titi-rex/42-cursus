@@ -6,7 +6,7 @@
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/09 15:50:31 by lboudjem          #+#    #+#             */
-/*   Updated: 2023/03/11 12:50:06 by tlegrand         ###   ########.fr       */
+/*   Updated: 2023/03/14 12:20:00 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ void	change_value(t_var_env *lst, char *value, char *name)
 {
 	while (lst)
 	{
-		if (ft_strncmp(lst->name, name, ft_strlen2(name) + 1))
+		if (ft_strncmp(lst->name, name, ft_strlen2(name) + 1) == 0)
 		{
 			free(lst->value);
 			lst->value = NULL;
@@ -64,7 +64,7 @@ char	*get_value(t_var_env *lst, char *name)
 {
 	while (lst)
 	{
-		if (ft_strncmp(lst->name, name, ft_strlen2(name) + 1))
+		if (ft_strncmp(lst->name, name, ft_strlen2(name) + 1) == 0)
 			return (lst->value);
 		lst = lst->next;
 	}

@@ -6,7 +6,7 @@
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/08 12:28:13 by tlegrand          #+#    #+#             */
-/*   Updated: 2023/03/13 20:34:14 by tlegrand         ###   ########.fr       */
+/*   Updated: 2023/03/14 13:18:38 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,23 +33,25 @@ TIME_UTC
 */
 
 
-
 /*	TODO: CHANGE EXE ! if no cmd but redir no error ! */
 /*	TODO:FIXME:	minishell > log need to display prompt */
+/*	TODO:FIXME:	minishell ./minishell (inception) ctrl c dont work and mess up everuything */
 /*	TODO:	handle SHLVL	*/
 /*	TODO:	listenv->char** func	*/
 /*	TODO:	secure term_init ? */
 /*	TODO:	prompt function */
-int	main(int ac, char **arg)
+int	main(int ac, char **arg, char **env)
 {
 	char	*input;
 	char	*buff;
 	t_line	line;
 
-	printf("time : %d\n", TIME_UTC);
 	ft_sig_init(ft_sig_handler_shell);
-	term_init_setting(&line.old);
+	//term_init_setting(&line.old);
 	s_line_init(&line);
+	line.env = env;
+	fill_lst_env(&line, 0);
+	change_value(line.lst_env, "2", "SHLVL");
 	while (1)
 	{
 		g_status = READING;
@@ -57,7 +59,10 @@ int	main(int ac, char **arg)
 		if (input && input[0] != '\0')
 			add_history(input);
 		else if (!input)
+		{
+			ft_putchar_fd('\n', 1);
 			ft_clean_exit(&line, line.exit_status);
+		}
 		//parsing(&cmdline, line);
 		line.cmd = ft_calloc(1, sizeof(t_cmd));
 		if (!line.cmd)

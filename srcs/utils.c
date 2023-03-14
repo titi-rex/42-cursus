@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_utils.c                                         :+:      :+:    :+:   */
+/*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/11 13:43:01 by tlegrand          #+#    #+#             */
-/*   Updated: 2023/03/13 19:43:52 by tlegrand         ###   ########.fr       */
+/*   Updated: 2023/03/14 10:44:33 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,7 @@ int	ft_is_bi(char **arg)
 
 void	ft_clean_exit(t_line *line, int exit_code)
 {
-	term_reset(&line->old);
+	//term_reset(&line->old);
 	s_line_clear(line);
 	exit(exit_code);
 }

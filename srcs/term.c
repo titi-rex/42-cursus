@@ -6,7 +6,7 @@
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/13 19:29:46 by tlegrand          #+#    #+#             */
-/*   Updated: 2023/03/13 20:08:48 by tlegrand         ###   ########.fr       */
+/*   Updated: 2023/03/14 10:43:12 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,8 @@ void	term_init_setting(struct termios *old)
 {
 	struct termios	t;
 
+	if (!isatty(0))
+		return ;
 	tcgetattr(0, &t);
 	*old = t;
 	t.c_lflag &= ~ECHOCTL;
@@ -25,6 +27,8 @@ void	term_init_setting(struct termios *old)
 
 void	term_reset(struct termios *old)
 {
+	if (!isatty(0))
+		return ;
 	tcsetattr(0, TCSANOW, old);
 }
 
