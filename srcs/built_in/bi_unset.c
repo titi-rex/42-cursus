@@ -6,7 +6,7 @@
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/11 12:06:13 by tlegrand          #+#    #+#             */
-/*   Updated: 2023/03/11 15:15:37 by tlegrand         ###   ########.fr       */
+/*   Updated: 2023/03/15 13:26:25 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,5 +22,6 @@ int	bi_unset(t_line *line)
 	if (!tmp)
 		return (EXIT_SUCCESS);
 	ft_envremove(tmp);
+	//ft_env_update(&line->env, line->lst_env);
 	return (EXIT_SUCCESS);
 }

@@ -6,13 +6,13 @@
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/11 14:28:28 by tlegrand          #+#    #+#             */
-/*   Updated: 2023/03/13 18:10:41 by tlegrand         ###   ########.fr       */
+/*   Updated: 2023/03/15 13:28:05 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/minishell.h"
 
-static int	ft_export_name_is_valid(char *name)
+static int	bi_export_name_is_valid(char *name)
 {
 	while (name)
 	{
@@ -29,7 +29,7 @@ int	bi_export(t_line *line)
 
 	if (!line->cmd->arg[1])
 		return (print_env(line->lst_env));
-	if (ft_export_name_is_valid(line->cmd->arg[1]))
+	if (bi_export_name_is_valid(line->cmd->arg[1]))
 		return (ft_error_return("Not a valid identifier "));
 	if (!line->cmd->arg[2])
 		return (EXIT_SUCCESS);
@@ -40,12 +40,13 @@ int	bi_export(t_line *line)
 		tmp->value = ft_strdup(line->cmd->arg[2]);
 		if (!tmp->value)
 			return (ft_perror_return_int(NULL));
-		else
-			return (EXIT_SUCCESS);
+		//ft_env_update(&line->env, line->lst_env);
+		return (EXIT_SUCCESS);
 	}
 	tmp = ft_new_env(line->cmd->arg[1], line->cmd->arg[2]);
 	if (!tmp)
 		return (ft_perror_return_int(NULL));
 	ft_envadd_back(&line->lst_env, tmp);
+	//ft_env_update(&line->env, line->lst_env);
 	return (EXIT_SUCCESS);
 }

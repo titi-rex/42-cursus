@@ -6,7 +6,7 @@
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/08 15:07:58 by tlegrand          #+#    #+#             */
-/*   Updated: 2023/03/14 20:34:58 by tlegrand         ###   ########.fr       */
+/*   Updated: 2023/03/15 12:26:46 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,8 +60,10 @@ void	ft_exe_cmd(t_line *line, int pipe_in[2], int pipe_out[2])
 		ft_dup_pipe(pipe_in, pipe_out);
 		if (ft_dup_redirect(line->cmd->io, here_pipe, line))
 			perror("Error ");
-		if (execve(line->cmd->arg[0], line->cmd->arg, NULL) == -1)
-			perror("Error ");
+		if ((!line->cmd->arg || !line->cmd->arg[0]) && line->cmd->io)
+			ft_clean_exit(line, EXIT_SUCCESS);
+		execve(line->cmd->arg[0], line->cmd->arg, NULL);
+		perror("Error ");
 		ft_clean_exit(line, EXIT_FAILURE);
 	}
 }
@@ -112,6 +114,7 @@ void	ft_exe_master(t_line *line)
 	{
 		if (g_status == SIGINT)
 			return ;
+		g_status = EXECUTION;
 		if (line->cmd->next)
 		{
 			if (pipe(line->pipe[i % 2]) == -1)
@@ -126,6 +129,6 @@ void	ft_exe_master(t_line *line)
 	}
 	if (line->n_cmds != 1 || !ft_is_bi(line->cmd->arg))
 		ft_get_wait_status(line->n_cmds, &line->exit_status);
-	if (ft_is_this_a_minishell(line))
+	if (line->n_cmds && ft_is_this_a_minishell(line))
 		ft_sig_init(ft_sig_handler_shell);
 }

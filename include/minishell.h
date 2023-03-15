@@ -6,7 +6,7 @@
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/08 17:06:26 by tlegrand          #+#    #+#             */
-/*   Updated: 2023/03/14 20:23:12 by tlegrand         ###   ########.fr       */
+/*   Updated: 2023/03/15 13:24:49 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,8 @@
 # include <readline/history.h>
 # include "../libft/libft.h"
 # include "exec_struct.h"
-# define READING 301
-# define EXECUTION 327
+# define READING 307
+# define EXECUTION 317
 # define MINISHELL 337
 
 /*     			 get path functiuns   		   */
@@ -49,6 +49,7 @@ t_var_env	*ft_new_env(char *name, char *value);
 t_var_env	*ft_envlast(t_var_env *lst);
 t_var_env	*ft_var_env_search(t_var_env *lst, char *name);
 void		fill_lst_env(t_line *line, int i);
+char		**ft_lstenv_to_tab(t_var_env *lst);
 
 /*				exe functions						*/
 int			bi_cd(t_line *line);
@@ -58,7 +59,7 @@ int			bi_exit(t_line *line);
 int			bi_export(t_line *line);
 int			bi_pwd(t_line *line);
 int			bi_unset(t_line *line);
-
+void		ft_env_update(char ***env, t_var_env *lst);
 int			ft_is_this_a_minishell(t_line *line);
 void		ft_exe_master(t_line *line);
 

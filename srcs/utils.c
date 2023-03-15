@@ -6,7 +6,7 @@
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/11 13:43:01 by tlegrand          #+#    #+#             */
-/*   Updated: 2023/03/14 20:24:14 by tlegrand         ###   ########.fr       */
+/*   Updated: 2023/03/15 13:24:21 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,6 +62,7 @@ int	ft_is_bi(char **arg)
 
 void	ft_clean_exit(t_line *line, int exit_code)
 {
+	rl_clear_history();
 	term_reset(&line->old);
 	s_line_clear(line);
 	exit(exit_code);
@@ -94,4 +95,15 @@ int	ft_is_this_a_minishell(t_line *line)
 		current = current->previous;
 	}
 	return (0);
+}
+
+void	ft_env_update(char ***env, t_var_env *lst)
+{
+	char	**buff;
+
+	buff = ft_lstenv_to_tab(lst);
+	if (!buff)
+		return ((void) perror("Error "));
+	ft_free2d((void **)*env, 0);
+	*env = buff;
 }
