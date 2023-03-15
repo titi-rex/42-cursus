@@ -6,13 +6,13 @@
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/08 17:17:17 by tlegrand          #+#    #+#             */
-/*   Updated: 2023/03/13 19:56:43 by tlegrand         ###   ########.fr       */
+/*   Updated: 2023/03/15 16:51:02 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/minishell.h"
 
-static int	ft_dup_it(t_redirect *io, int flag)
+static int	ft_dup_it(t_redirect *io, int fd_std, int flag)
 {
 	int	fd;
 
@@ -22,7 +22,7 @@ static int	ft_dup_it(t_redirect *io, int flag)
 		perror("Error dup io > ");
 		return (1);
 	}
-	if (dup2(fd, io->fd) == -1)
+	if (dup2(fd, fd_std) == -1)
 		perror("Error dup io > ");
 	close(fd);
 	return (0);
@@ -61,16 +61,16 @@ int	ft_dup_redirect(t_list *io, int here_pipe[2], t_line *line)
 	while (io)
 	{
 		if (*ft_redirect_acces_type(io->content) == 0 && \
-			ft_dup_it(io->content, O_RDONLY))
+			ft_dup_it(io->content, 0, O_RDONLY))
 			return (1);
 		else if (*ft_redirect_acces_type(io->content) == 1 && \
-			ft_dup_it(io->content, O_WRONLY | O_TRUNC | O_CREAT))
+			ft_dup_it(io->content, 1, O_WRONLY | O_TRUNC | O_CREAT))
 			return (1);
 		else if (*ft_redirect_acces_type(io->content) == 2 && \
 			ft_dup_here_doc(io->content, here_pipe, line))
 			return (1);
 		else if (*ft_redirect_acces_type(io->content) == 3 && \
-			ft_dup_it(io->content, O_WRONLY | O_APPEND | O_CREAT))
+			ft_dup_it(io->content, 1, O_WRONLY | O_APPEND | O_CREAT))
 			return (1);
 		io = io->next;
 	}

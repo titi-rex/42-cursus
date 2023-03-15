@@ -6,7 +6,7 @@
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/08 17:06:26 by tlegrand          #+#    #+#             */
-/*   Updated: 2023/03/15 14:16:26 by tlegrand         ###   ########.fr       */
+/*   Updated: 2023/03/15 16:41:14 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,6 +98,7 @@ int			*ft_redirect_acces_type(t_redirect *io);
 int			*ft_redirect_acces_fd(t_redirect *io);
 char		*ft_redirect_acces_arg(t_redirect *io);
 t_redirect	*ft_redirect_new(int type, int fd, char *arg);
+int			ft_redirect_add_list(t_list	**start, int type, int fd, char *arg);
 void		ft_redirect_del(void *addr);
 t_list		*ft_redirect_search_type(t_list *lst, int ref);
 
