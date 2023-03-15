@@ -6,7 +6,7 @@
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/08 15:07:58 by tlegrand          #+#    #+#             */
-/*   Updated: 2023/03/10 23:26:59 by tlegrand         ###   ########.fr       */
+/*   Updated: 2023/03/11 16:06:09 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ void	ft_exe_bi(t_line *line, int pipe_in[2], int pipe_out[2], \
 
 	if (line->n_cmds == 1)
 	{
-		if (ft_dup_redirect(line->cmd->io, here_pipe))
+		if (ft_dup_redirect(line->cmd->io, here_pipe, line))
 			return ;
 		line->exit_status = ft_bi(line);
 	}
@@ -31,7 +31,7 @@ void	ft_exe_bi(t_line *line, int pipe_in[2], int pipe_out[2], \
 			perror("Error ");
 		else if (pid == 0)
 		{
-			if (ft_dup_redirect(line->cmd->io, here_pipe))
+			if (ft_dup_redirect(line->cmd->io, here_pipe, line))
 				ft_clear_line_exit(line, EXIT_FAILURE);
 			ft_dup_pipe(pipe_in, pipe_out);
 			line->exit_status = ft_bi(line);
@@ -50,7 +50,7 @@ void	ft_exe_cmd(t_line *line, int pipe_in[2], int pipe_out[2])
 		perror("Error ");
 	else if (pid == 0)
 	{
-		if (ft_dup_redirect(line->cmd->io, here_pipe))
+		if (ft_dup_redirect(line->cmd->io, here_pipe, line))
 			perror("Error ");
 		ft_dup_pipe(pipe_in, pipe_out);
 		if (execve(line->cmd->arg[0], line->cmd->arg, NULL) == -1)
@@ -60,7 +60,7 @@ void	ft_exe_cmd(t_line *line, int pipe_in[2], int pipe_out[2])
 	(void) here_pipe;
 }
 
-/*	TODO: add other built-in 
+/*	
 	TODO: handle cmd null better;
 */
 void	ft_exe_selector(t_line *line, int pipe_in[2], int pipe_out[2])
@@ -71,16 +71,16 @@ void	ft_exe_selector(t_line *line, int pipe_in[2], int pipe_out[2])
 		ft_exe_bi(line, pipe_in, pipe_out, bi_cd);
 	else if (line->cmd->arg && !ft_strncmp(line->cmd->arg[0], "echo", 5))
 		ft_exe_bi(line, pipe_in, pipe_out, bi_echo);
-	//else if (line->cmd->arg && !ft_strncmp(line->cmd->arg[0], "env", 4))
-	//	ft_exe_bi(line, pipe_in, pipe_out, bi_env);
+	else if (line->cmd->arg && !ft_strncmp(line->cmd->arg[0], "env", 4))
+		ft_exe_bi(line, pipe_in, pipe_out, bi_env);
 	else if (line->cmd->arg && !ft_strncmp(line->cmd->arg[0], "exit", 5))
 		ft_exe_bi(line, pipe_in, pipe_out, bi_exit);
-	//else if (line->cmd->arg && !ft_strncmp(line->cmd->arg[0], "export", 7))
-	//	ft_exe_bi(line, pipe_in, pipe_out, bi_export);
+	else if (line->cmd->arg && !ft_strncmp(line->cmd->arg[0], "export", 7))
+		ft_exe_bi(line, pipe_in, pipe_out, bi_export);
 	else if (line->cmd->arg && !ft_strncmp(line->cmd->arg[0], "pwd", 4))
 		ft_exe_bi(line, pipe_in, pipe_out, bi_pwd);
-	//else if (line->cmd->arg && !ft_strncmp(line->cmd->arg[0], "unset", 6))
-	//	ft_exe_bi(line, pipe_in, pipe_out, bi_unset);
+	else if (line->cmd->arg && !ft_strncmp(line->cmd->arg[0], "unset", 6))
+		ft_exe_bi(line, pipe_in, pipe_out, bi_unset);
 	else
 		ft_exe_cmd(line, pipe_in, pipe_out);
 }

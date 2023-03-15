@@ -6,7 +6,7 @@
 /*   By: louisa <louisa@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/08 11:21:07 by louisa            #+#    #+#             */
-/*   Updated: 2023/03/14 16:08:13 by louisa           ###   ########.fr       */
+/*   Updated: 2023/03/15 15:49:44 by louisa           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,70 +17,77 @@
 char	*ft_redirection_arg(char *bloc, int i)
 {
 	int		len;
+	int		tmp;
 	char	*arg;
 
 	len = 0;
-	while (bloc[i] == ' ' || bloc[i] == '\t' || bloc[i] == '\n')
+	while (bloc[i] == ' ' || bloc[i] == '\t' || bloc[i] == '\n' \
+			|| bloc[i] == '>' || bloc[i] == '<')
 		i++;
-	//printf("bloc[i] = %c\n", bloc[i]);
-	while (bloc[i] != ' ' || bloc[i] != '\t' || bloc[i] != '\n')
+	tmp = i;
+	while (bloc[i] != ' ' && bloc[i] != '\t' && bloc[i] != '\n' \
+			&& bloc[i] != '\0' && bloc[i] != '>' && bloc[i] != '<')
+	{
 		len++;
-	//printf("len = %d\n", len);
-	arg = ft_substr(bloc, i, len);
+		i++;
+	}
+	arg = ft_substr(bloc, tmp, len);
 	return (arg);
 }
 
-// si on supprime le fd la fonction est super courte ! et c cool :)
-void	ft_redirection_type_fd(char *bloc, int *type, int *i, int *fd)
+int	ft_redirection_type_fd(char *bloc, int *type, int *i)
 {
 	if (bloc[*i] == '<')
 	{
-		if (*fd == -1)
-			*fd = 0;
 		*type = 0;
+		return (1);
 	}
 	if (bloc[*i] == '>')
 	{
-		if (*fd == -1)
-			*fd = 1;
 		*type = 1;
+		return (1);
 	}
 	if (ft_strncmp(&bloc[*i], "<<", 2) == 0)
 	{
-		if (*fd == -1)
-			*fd = 0;
 		*type = 2;
 		(*i)++;
+		return (1);
 	}
 	if (ft_strncmp(&bloc[*i], ">>", 2) == 0)
 	{
-		if (*fd == -1)
-			*fd = 1;
 		*type = 3;
 		(*i)++;
+		return (1);
 	}
-	(*i)++;
+	return (0);
 }
 
-void	ft_handle_redirection(char *bloc)
+t_redirect	*ft_handle_redirection(char *bloc)
 {
-	int		i;
-	int		type;
-	int		fd;
-	char	*arg;
+	int			i;
+	int			type;
+	int			fd;
+	char		*arg;
+	t_redirect	*io;
 
 	i = 0;
 	type = -1;
-	fd = -1;
+	fd = 0;
+	arg = NULL;
 	while(bloc[i])
 	{
-		ft_redirection_type_fd(bloc, &type, &i, &fd);
-		//arg = ft_redirection_arg(bloc, i);
-		printf("type = %d\n", type);
-		printf("fd = %d\n", fd);
+		if (ft_redirection_type_fd(bloc, &type, &i) == 1)
+		{
+			arg = ft_redirection_arg(bloc, i);
+			printf("arg = %s\n", arg);
+			io = ft_redirect_new(type, fd, arg); //retirer le fd
+			free(arg);
+			i++;
+		}
 		i++;
 	}
-	//printf("arg = %s\n", arg);
+	return (io);
+	(void)io;
 	(void)arg;
 }
 

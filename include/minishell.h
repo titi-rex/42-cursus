@@ -6,7 +6,7 @@
 /*   By: louisa <louisa@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/08 17:06:26 by tlegrand          #+#    #+#             */
-/*   Updated: 2023/03/13 17:35:16 by louisa           ###   ########.fr       */
+/*   Updated: 2023/03/15 15:48:46 by louisa           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 # include <string.h>
 # include <sys/wait.h>
 # include <fcntl.h>
+# include <signal.h>
 # include <readline/readline.h>
 # include <readline/history.h>
 # include "../libft/libft.h"
@@ -39,7 +40,7 @@ char		*ft_get_pathcmd(char **paths, char *cmd_name);
 void		ft_get_path(char *pathvar, t_cmd *cmd);
 
 /*           	       env      		     	 */
-void		print_env(t_var_env	*lst);
+int			print_env(t_var_env	*lst);
 void		init_variables(t_var_env *lst);
 void		ft_envadd_front(t_var_env **lst, t_var_env *new);
 void		ft_envadd_back(t_var_env **lst, t_var_env *new);
@@ -50,6 +51,7 @@ void		change_value(t_var_env *lst, char *value, char *name);
 char		*get_value(t_var_env *lst, char *name);
 t_var_env	*ft_new_env(char *name, char *value);
 t_var_env	*ft_envlast(t_var_env *lst);
+t_var_env	*ft_var_env_search(t_var_env *lst, char *name);
 void		fill_lst_env(t_line *line, int i);
 
 /*				a remettre dans la libft			*/
@@ -57,14 +59,18 @@ char		*ft_strndup(char *src, int n);
 size_t		ft_strlen2(const char *s);
 
 /*				exe functions						*/
-int			bi_echo(t_line *line);
-int			bi_pwd(t_line *line);
 int			bi_cd(t_line *line);
+int			bi_echo(t_line *line);
+int			bi_env(t_line *line);
+int			bi_env_mod(t_line *line);
 int			bi_exit(t_line *line);
+int			bi_export(t_line *line);
+int			bi_pwd(t_line *line);
+int			bi_unset(t_line *line);
 
 void		ft_exe_master(t_line *line);
 
-int			ft_dup_redirect(t_list *io, int here_pipe[2]);
+int			ft_dup_redirect(t_list *io, int here_pipe[2], t_line *line);
 void		ft_dup_pipe(int pipe_in[2], int pipe_out[2]);
 
 void		ft_clear_cmd(t_cmd **cmd);
@@ -104,5 +110,17 @@ void		ft_cmd_clear_lst(t_cmd	**cmd);
 t_cmd		*ft_cmd_last(t_cmd *cmd);
 t_cmd		*ft_cmd_first(t_cmd *cmd);
 void		ft_cmd_add_back(t_cmd **start, t_cmd *new);
+
+
+
+/*			utils general	*/
+int			ft_perror_return(char *errstr);
+int			ft_error_return(char *errstr);
+int			ft_is_bi(char **arg);
+
+
+/*			signals functions 		*/
+void		ft_sig_launch(void);
+void		ft_sig_handler_child(int sig, siginfo_t *sig_info, void *context);
 
 #endif 

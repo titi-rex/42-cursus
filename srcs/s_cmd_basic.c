@@ -6,7 +6,7 @@
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/10 22:16:33 by tlegrand          #+#    #+#             */
-/*   Updated: 2023/03/10 23:20:13 by tlegrand         ###   ########.fr       */
+/*   Updated: 2023/03/11 12:27:09 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,10 +34,7 @@ t_cmd	*ft_cmd_new_alloc(char **arg, t_list *io)
 		return (NULL);
 	new->arg = ft_calloc(ft_splitlen(arg), sizeof(void *));
 	if (!new->arg)
-	{
-		free(new);
-		return (NULL);
-	}
+		return (free(new), NULL);
 	i = 0;
 	while (arg[i])
 	{
@@ -60,4 +57,5 @@ void	ft_cmd_del(t_cmd *cmd)
 	if (cmd->arg)
 		ft_free2d((void **)cmd->arg, 0);
 	ft_lstclear(&cmd->io, ft_redirect_del);
+	free(cmd);
 }

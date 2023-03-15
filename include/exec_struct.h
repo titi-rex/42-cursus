@@ -3,15 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   exec_struct.h                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lboudjem <lboudjem@student.42.fr>          +#+  +:+       +#+        */
+/*   By: louisa <louisa@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/06 21:46:27 by tlegrand          #+#    #+#             */
-/*   Updated: 2023/03/11 15:18:34 by lboudjem         ###   ########.fr       */
+/*   Updated: 2023/03/15 15:48:34 by louisa           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef EXEC_STRUCT_H
 # define EXEC_STRUCT_H
+# include "../libft/libft.h"
 
 /*	structure for environment variables
 */

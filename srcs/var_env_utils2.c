@@ -6,7 +6,7 @@
 /*   By: louisa <louisa@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/09 15:50:31 by lboudjem          #+#    #+#             */
-/*   Updated: 2023/03/11 22:14:50 by louisa           ###   ########.fr       */
+/*   Updated: 2023/03/15 15:48:38 by louisa           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,7 @@ void	change_value(t_var_env *lst, char *value, char *name)
 			free(lst->value);
 			lst->value = NULL;
 			lst->value = ft_strdup(value);
+			return ;
 		}
 		lst = lst->next;
 	}

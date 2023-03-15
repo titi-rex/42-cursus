@@ -6,7 +6,7 @@
 #    By: louisa <louisa@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/02/12 20:46:19 by tlegrand          #+#    #+#              #
-#    Updated: 2023/03/13 17:37:00 by louisa           ###   ########.fr        #
+#    Updated: 2023/03/15 15:49:24 by louisa           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,16 +22,17 @@ DIR_SRCS		=	srcs/
 
 
 LST_SRCS		=	main_test.c \
-					bi_echo.c bi_pwd.c bi_cd.c bi_exit.c \
+					bi_echo.c bi_pwd.c bi_cd.c bi_exit.c bi_env.c bi_export.c bi_unset.c \
 					exe_dup_redirect.c exe_dup_pipe.c exe_cmd.c \
 					ft_clear.c s_init.c \
 					s_varfd_basic.c s_varfd_operator.c \
 					s_redirect_basic.c s_redirect_operator.c \
 					s_cmd_basic.c s_cmd_operator.c \
-					prompt.c \
-					parsing.c parsing_quotes.c \
-					parsing_expansion.c \
-					var_env_utils.c var_env_utils2.c \
+					sig_handler.c \
+					ft_utils.c \
+					parsing.c \
+					var_env_utils.c \
+					var_env_utils2.c \
 					var_env.c \
 					get_path.c
 

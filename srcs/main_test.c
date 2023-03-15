@@ -3,52 +3,35 @@
 /*                                                        :::      ::::::::   */
 /*   main_test.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lboudjem <lboudjem@student.42.fr>          +#+  +:+       +#+        */
+/*   By: louisa <louisa@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/08 12:28:13 by tlegrand          #+#    #+#             */
-/*   Updated: 2023/03/11 12:42:42 by lboudjem         ###   ########.fr       */
+/*   Updated: 2023/03/15 15:48:28 by louisa           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/minishell.h"
 
+// int	g_sig = 0;
+
 // int	main(int ac, char **arg)
 // {
-// 	t_line		line;
-// 	t_list		*io;
-// 	t_list		*new_l;
-// 	t_redirect	*new_red;
-// 	char		**split;
-// 	int			i;
+// 	ft_sig_launch();
 
-// 	s_init_line(&line);
-// 	line.n_cmds = 1;
-// 	line.lst_varfd = NULL;
-// 	new_red = ft_redirect_new(0, 0, "test");
-// 	if (!new_red)
-// 		return (1);
-// 	new_l = ft_lstnew(new_red);
-// 	if (!new_l)
-// 		return (1);
-// 	ft_lstadd_back(&io, new_l);
-// 	printf("io : %d, %d, %s\n", *ft_redirect_acces_type(io->content), 
-// 		*ft_redirect_acces_fd(io->content), 
-// 		ft_redirect_acces_arg(io->content));
-// 	//printf("io ad : %p\n", io);
-// 	//printf("io->next ad : %p\n", io->next);
-// 	split = ft_calloc(ac, sizeof(void *));
-// 	i = 0;
-// 	while (i < ac - 1)
+// 	while (1)
 // 	{
-// 		split[i] = ft_strdup(arg[i + 1]);
-// 		i++;
+// 		if (g_sig == SIGINT)
+// 		{
+// 			dprintf(1, "g_sig update : %d\n", g_sig);
+// 			g_sig = 0;
+// 		}
+// 		if (g_sig == SIGQUIT)
+// 		{
+// 			dprintf(2, "he heo stop\n");
+// 			g_sig = 0;
+// 		}
 // 	}
-// 	line.cmd = ft_cmd_new_alloc(split, io);
 
-
-// 	ft_exe_master(&line);
-// 	//ft_clear_line(&line);
-// 	//ft_clear_line_exit(&line, line.exit_status);
 // 	(void) arg;
 // 	(void) ac;
 // 	return (0);
