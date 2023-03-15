@@ -31,17 +31,8 @@ valgrind_ignore_leaks.txt :
 
 
 
-TODO:
-
-
-
-make a better prompt
-uppdate SHLVL 
-
-make a lst->char** func for env
-
-
-
+comme ca :
+faire un tetris in term
 make a multi join
 
 

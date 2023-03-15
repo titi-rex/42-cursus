@@ -6,7 +6,7 @@
 #    By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/02/12 20:46:19 by tlegrand          #+#    #+#              #
-#    Updated: 2023/03/13 19:57:46 by tlegrand         ###   ########.fr        #
+#    Updated: 2023/03/15 16:12:21 by tlegrand         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,7 +23,7 @@ DIR_SRCS		=	srcs/
 LST_SRCS		=	main_test.c \
 					signal.c \
 					utils.c \
-					term.c
+					term.c 
 SRCS			=	${addprefix ${DIR_SRCS}, ${LST_SRCS}}
 
 DIR_SRCS_BI		=	srcs/built_in/

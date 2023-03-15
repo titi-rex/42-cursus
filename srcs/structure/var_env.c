@@ -6,7 +6,7 @@
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/09 14:58:48 by lboudjem          #+#    #+#             */
-/*   Updated: 2023/03/15 14:23:15 by tlegrand         ###   ########.fr       */
+/*   Updated: 2023/03/15 14:26:13 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,6 +81,8 @@ char	**ft_lstenv_to_tab(t_var_env *lst)
 	char	**tab;
 	int		i;
 
+	if (!lst)
+		return (NULL);
 	tab = ft_calloc(ft_lst_env_size(lst), sizeof(t_var_env));
 	if (!tab)
 		return (NULL);
