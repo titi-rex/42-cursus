@@ -6,7 +6,7 @@
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/08 12:28:13 by tlegrand          #+#    #+#             */
-/*   Updated: 2023/03/15 16:12:42 by tlegrand         ###   ########.fr       */
+/*   Updated: 2023/03/15 16:33:01 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ machine
 TIME_UTC
 */
 
-/*	TODO:	better env function + starting env	*/
+
 /*	TODO:	prompt function */
 /*	TODO: mettre au propre	*/
 /*	TODO: CHANGE EXE ! if no cmd but redir no error ! */

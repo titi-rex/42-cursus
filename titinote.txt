@@ -67,3 +67,4 @@ here_doc function
 /*	TODO:	secure term_init ? */
 /*	TODO:	listenv->char** func	*/
 /*	TODO:	handle SHLVL	*/
+/*	TODO:	better env function + starting env	*/
