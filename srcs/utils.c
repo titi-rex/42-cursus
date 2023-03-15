@@ -6,7 +6,7 @@
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/11 13:43:01 by tlegrand          #+#    #+#             */
-/*   Updated: 2023/03/15 13:24:21 by tlegrand         ###   ########.fr       */
+/*   Updated: 2023/03/15 14:23:34 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,4 +106,39 @@ void	ft_env_update(char ***env, t_var_env *lst)
 		return ((void) perror("Error "));
 	ft_free2d((void **)*env, 0);
 	*env = buff;
+}
+
+t_var_env	*fill_lst_env_std(void)
+{
+	t_var_env	*start;
+	t_var_env	*new;
+	char		*pwd;
+
+	new = NULL;
+	start = new;
+	new = ft_new_env("SHLVL", "1");
+	ft_envadd_back(&start, new);
+	pwd = getcwd(NULL, 0);
+	if (!pwd)
+		new = ft_new_env("PWD", "");
+	else
+	{
+		new = ft_new_env("PWD", pwd);
+		free(pwd);
+	}
+	ft_envadd_back(&start, new);
+	return (start);
+}
+
+void	ft_var_env_update_shlvl(t_var_env *lst)
+{
+	char	*buff;
+	int		lvl;
+
+	lvl = ft_atoi(ft_var_env_search(lst, "SHLVL")->value);
+	lvl += 1;
+	buff = ft_itoa(lvl);
+	if (!buff)
+		return ((void) ft_perror_return_int(NULL));
+	change_value(lst, buff, "SHLVL");
 }

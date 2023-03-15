@@ -6,7 +6,7 @@
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/08 12:28:13 by tlegrand          #+#    #+#             */
-/*   Updated: 2023/03/15 13:28:43 by tlegrand         ###   ########.fr       */
+/*   Updated: 2023/03/15 14:24:02 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,6 @@ TIME_UTC
 */
 
 /*	TODO:	better env function + starting env	*/
-/*	TODO:	handle SHLVL	*/
 /*	TODO:	prompt function */
 /*	TODO: mettre au propre	*/
 /*	TODO: CHANGE EXE ! if no cmd but redir no error ! */
@@ -49,7 +48,7 @@ int	main(int ac, char **arg, char **env)
 	s_line_init(&line);
 	line.env = env;
 	fill_lst_env(&line, 0);
-	change_value(line.lst_env, "2", "SHLVL");
+	ft_var_env_update_shlvl(line.lst_env);
 	while (1)
 	{
 		g_status = READING;
@@ -68,7 +67,6 @@ int	main(int ac, char **arg, char **env)
 			line.n_cmds = 0;
 		else
 			line.n_cmds = 1;
-		dprintf(2, "n cmd : %d\n", line.n_cmds);
 		if (!ft_strncmp(input, "code", 5))
 			printf("g_status act is %d\n", g_status);
 		else if (!ft_strncmp(input, "here", 5) || !ft_strncmp(input, "\"here\"", 7))

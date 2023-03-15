@@ -6,7 +6,7 @@
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/09 14:58:48 by lboudjem          #+#    #+#             */
-/*   Updated: 2023/03/15 13:12:10 by tlegrand         ###   ########.fr       */
+/*   Updated: 2023/03/15 14:23:15 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ t_var_env	*ft_var_env_search(t_var_env *lst, char *name)
 {
 	while (lst)
 	{
-		if (ft_strncmp(lst->name, name, ft_strlen2(name) + 1))
+		if (!ft_strncmp(lst->name, name, ft_strlen2(name) + 1))
 			return (lst);
 		lst = lst->next;
 	}

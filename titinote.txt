@@ -75,4 +75,4 @@ here_doc function
 /*	TODO:FIXME:	minishell ./minishell (inception) ctrl c dont work and mess up everuything */
 /*	TODO:	secure term_init ? */
 /*	TODO:	listenv->char** func	*/
-
+/*	TODO:	handle SHLVL	*/

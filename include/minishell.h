@@ -6,7 +6,7 @@
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/08 17:06:26 by tlegrand          #+#    #+#             */
-/*   Updated: 2023/03/15 13:24:49 by tlegrand         ###   ########.fr       */
+/*   Updated: 2023/03/15 14:16:26 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,8 @@ t_var_env	*ft_envlast(t_var_env *lst);
 t_var_env	*ft_var_env_search(t_var_env *lst, char *name);
 void		fill_lst_env(t_line *line, int i);
 char		**ft_lstenv_to_tab(t_var_env *lst);
+t_var_env	*fill_lst_env_std(void);
+void		ft_var_env_update_shlvl(t_var_env *lst);
 
 /*				exe functions						*/
 int			bi_cd(t_line *line);
