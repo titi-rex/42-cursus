@@ -6,7 +6,7 @@
 /*   By: louisa <louisa@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/08 11:21:07 by louisa            #+#    #+#             */
-/*   Updated: 2023/03/15 15:49:44 by louisa           ###   ########.fr       */
+/*   Updated: 2023/03/15 16:53:12 by louisa           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,13 +62,13 @@ int	ft_redirection_type_fd(char *bloc, int *type, int *i)
 	return (0);
 }
 
-t_redirect	*ft_handle_redirection(char *bloc)
+t_list	*ft_handle_redirection(char *bloc)
 {
 	int			i;
 	int			type;
 	int			fd;
 	char		*arg;
-	t_redirect	*io;
+	t_list		*io;
 
 	i = 0;
 	type = -1;
@@ -80,12 +80,21 @@ t_redirect	*ft_handle_redirection(char *bloc)
 		{
 			arg = ft_redirection_arg(bloc, i);
 			printf("arg = %s\n", arg);
-			io = ft_redirect_new(type, fd, arg); //retirer le fd
+			ft_redirect_add_list(&io, type, fd, arg); //retirer le fd
 			free(arg);
 			i++;
 		}
 		i++;
 	}
+	
+	char *tmp;
+	tmp = ft_redirect_acces_arg(io->content);
+	if (!tmp)
+		printf("ouin ouin \n");
+	else
+		printf("wouatezefuck?!");
+		
+	//printf("arg.lst = %s\n", ft_redirect_acces_arg(io->content));
 	return (io);
 	(void)io;
 	(void)arg;

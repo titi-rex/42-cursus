@@ -6,7 +6,7 @@
 /*   By: louisa <louisa@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/08 17:06:26 by tlegrand          #+#    #+#             */
-/*   Updated: 2023/03/15 15:48:46 by louisa           ###   ########.fr       */
+/*   Updated: 2023/03/15 16:14:39 by louisa           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,6 +98,7 @@ char		*ft_redirect_acces_arg(t_redirect *io);
 t_redirect	*ft_redirect_new(int type, int fd, char *arg);
 void		ft_redirect_del(void *addr);
 t_list		*ft_redirect_search_type(t_list *lst, int ref);
+int     	ft_redirect_add_list(t_list	**start, int type, int fd, char *arg);
 
 
 /*			LESS EXPERIEMENTAL CMD LST			*/

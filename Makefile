@@ -6,7 +6,7 @@
 #    By: louisa <louisa@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/02/12 20:46:19 by tlegrand          #+#    #+#              #
-#    Updated: 2023/03/15 15:49:24 by louisa           ###   ########.fr        #
+#    Updated: 2023/03/15 16:41:40 by louisa           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -31,6 +31,10 @@ LST_SRCS		=	main_test.c \
 					sig_handler.c \
 					ft_utils.c \
 					parsing.c \
+					prompt.c \
+					parsing_quotes.c \
+					parsing_redirection.c \
+					parsing_expansion.c \
 					var_env_utils.c \
 					var_env_utils2.c \
 					var_env.c \
@@ -62,7 +66,7 @@ MAKE		=	make -s
 
 
 #	==============================	FLAGS	==============================	#
-CFLAGS		=	-Wall -Wextra -Werror  -I${DIR_HEADER} #-fsanitize=address -g3
+CFLAGS		=	-Wall -Wextra -Werror  -I${DIR_HEADER} -fsanitize=address -g3
 RFLAGS		=	-L/usr/local/lib -I/usr/local/include -lreadline
 FTFLAGS		=	-L${DIR_LIBFT} -lft 
 
