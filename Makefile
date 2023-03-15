@@ -6,7 +6,7 @@
 #    By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/02/12 20:46:19 by tlegrand          #+#    #+#              #
-#    Updated: 2023/03/15 16:12:21 by tlegrand         ###   ########.fr        #
+#    Updated: 2023/03/15 18:37:38 by tlegrand         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -42,7 +42,7 @@ LST_SRCS_PARSE	=	parsing.c get_path.c ft_here_doc.c
 SRCS_PARSE		=	${addprefix ${DIR_SRCS_PARSE}, ${LST_SRCS_PARSE}}
 
 DIR_SRCS_EXE	=	srcs/execution/
-LST_SRCS_EXE	=	exe_dup_redirect.c exe_dup_pipe.c exe_cmd.c
+LST_SRCS_EXE	=	exe_dup_redirect.c exe_dup_pipe.c exe_cmd.c exe_utils.c
 SRCS_EXE		=	${addprefix ${DIR_SRCS_EXE}, ${LST_SRCS_EXE}}
 
 
@@ -73,9 +73,9 @@ MAKE		=	make -s
 
 
 #	==============================	FLAGS	==============================	#
-CFLAGS		=	-Wall -Wextra -Werror  -I${DIR_HEADER} #-fsanitize=address -g3
-RFLAGS		=	-L/usr/local/lib -I/usr/local/include -lreadline
-FTFLAGS		=	-L${DIR_LIBFT} -lft -ltermcap
+CFLAGS		=	-Wall -Wextra -Werror -I${DIR_HEADER}  #-fsanitize=address -g3
+RFLAGS		=	-lreadline -lft -ltermcap #-L/usr/local/lib -I/usr/local/include
+FTFLAGS		=	-L${DIR_LIBFT} -lft
 
 
 #	/*\/*\/*\/*\/*\/*\/*\/*\/*\/*\/*\/*\	RULES	/*\/*\/*\/*\/*\/*\/*\/*\/*\/*\/*\/*\	#
@@ -83,9 +83,6 @@ FTFLAGS		=	-L${DIR_LIBFT} -lft -ltermcap
 
 #	==============================	BASIC	==============================	#
 all		:	${NAME}
-
-msg		:
-		@echo ${OBJS}
 
 clean	:
 		@${RM} ${DIR_OBJS}

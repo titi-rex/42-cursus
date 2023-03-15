@@ -6,7 +6,7 @@
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/08 15:07:58 by tlegrand          #+#    #+#             */
-/*   Updated: 2023/03/15 12:26:46 by tlegrand         ###   ########.fr       */
+/*   Updated: 2023/03/15 17:56:23 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,7 @@ void	ft_exe_cmd(t_line *line, int pipe_in[2], int pipe_out[2])
 			perror("Error ");
 		if ((!line->cmd->arg || !line->cmd->arg[0]) && line->cmd->io)
 			ft_clean_exit(line, EXIT_SUCCESS);
-		execve(line->cmd->arg[0], line->cmd->arg, NULL);
+		execve(line->cmd->arg[0], line->cmd->arg, line->env);
 		perror("Error ");
 		ft_clean_exit(line, EXIT_FAILURE);
 	}
