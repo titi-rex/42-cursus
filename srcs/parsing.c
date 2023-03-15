@@ -6,7 +6,7 @@
 /*   By: louisa <louisa@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/08 11:21:07 by louisa            #+#    #+#             */
-/*   Updated: 2023/03/15 16:53:12 by louisa           ###   ########.fr       */
+/*   Updated: 2023/03/15 17:29:34 by louisa           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,6 +62,7 @@ int	ft_redirection_type_fd(char *bloc, int *type, int *i)
 	return (0);
 }
 
+// retirer le fd
 t_list	*ft_handle_redirection(char *bloc)
 {
 	int			i;
@@ -73,31 +74,21 @@ t_list	*ft_handle_redirection(char *bloc)
 	i = 0;
 	type = -1;
 	fd = 0;
+	io = NULL;
 	arg = NULL;
-	while(bloc[i])
+	while (bloc[i])
 	{
 		if (ft_redirection_type_fd(bloc, &type, &i) == 1)
 		{
 			arg = ft_redirection_arg(bloc, i);
-			printf("arg = %s\n", arg);
-			ft_redirect_add_list(&io, type, fd, arg); //retirer le fd
+			ft_redirect_add_list(&io, type, fd, arg);
+			printf("arg.lst = %s\n", ft_redirect_acces_arg(io->content));
 			free(arg);
 			i++;
 		}
 		i++;
 	}
-	
-	char *tmp;
-	tmp = ft_redirect_acces_arg(io->content);
-	if (!tmp)
-		printf("ouin ouin \n");
-	else
-		printf("wouatezefuck?!");
-		
-	//printf("arg.lst = %s\n", ft_redirect_acces_arg(io->content));
 	return (io);
-	(void)io;
-	(void)arg;
 }
 
 void	ft_browse_line(char *str, int i, int start, t_line *line)
