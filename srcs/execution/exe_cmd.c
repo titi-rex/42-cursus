@@ -6,7 +6,7 @@
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/08 15:07:58 by tlegrand          #+#    #+#             */
-/*   Updated: 2023/03/15 17:56:23 by tlegrand         ###   ########.fr       */
+/*   Updated: 2023/03/16 17:42:03 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ void	ft_exe_cmd(t_line *line, int pipe_in[2], int pipe_out[2])
 
 	if (!access(line->cmd->arg[0], X_OK) && !ft_strncmp(line->cmd->arg[0] \
 		+ ft_strlen2(line->cmd->arg[0]) - 9, "minishell", 11))
-		ft_sig_init(SIG_IGN);
+		g_status = MINISHELL; //ft_sig_init(SIG_IGN);
 	pid = fork();
 	if (pid == -1)
 		perror("Error ");
@@ -98,11 +98,17 @@ void	ft_get_wait_status(int max_wait, int *exit_code)
 	i = -1;
 	wstatus = 0;
 	while (i++ < max_wait)
+	{
 		waitpid(-1, &wstatus, 0);
-	if (WIFEXITED(wstatus))
-		*exit_code = WEXITSTATUS(wstatus);
-	if (WIFSIGNALED(wstatus))
-		*exit_code = WTERMSIG(wstatus);
+		if (WIFEXITED(wstatus))
+			*exit_code = WEXITSTATUS(wstatus);
+		if (WIFSIGNALED(wstatus))
+		{
+			*exit_code = WTERMSIG(wstatus);
+			if (WTERMSIG(wstatus) == 3)
+				ft_putstr_fd("Quit\n", 2);
+		}
+	}
 }
 
 void	ft_exe_master(t_line *line)
@@ -110,11 +116,11 @@ void	ft_exe_master(t_line *line)
 	int	i;
 
 	i = 0;
+	g_status = EXECUTION;
 	while (line->n_cmds)
 	{
 		if (g_status == SIGINT)
 			return ;
-		g_status = EXECUTION;
 		if (line->cmd->next)
 		{
 			if (pipe(line->pipe[i % 2]) == -1)
@@ -130,5 +136,5 @@ void	ft_exe_master(t_line *line)
 	if (line->n_cmds != 1 || !ft_is_bi(line->cmd->arg))
 		ft_get_wait_status(line->n_cmds, &line->exit_status);
 	if (line->n_cmds && ft_is_this_a_minishell(line))
-		ft_sig_init(ft_sig_handler_shell);
+		g_status = EXECUTION; //ft_sig_init(ft_sig_handler_shell);
 }

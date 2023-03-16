@@ -6,7 +6,7 @@
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/11 16:11:47 by tlegrand          #+#    #+#             */
-/*   Updated: 2023/03/14 19:38:49 by tlegrand         ###   ########.fr       */
+/*   Updated: 2023/03/16 17:40:02 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,22 +29,19 @@ void	ft_sig_handler_shell(int sig)
 void	ft_sig_handler_child(int sig)
 {
 	if (sig == SIGQUIT)
-		exit(sig);
+		ft_putstr_fd("Quit\n", 2);
+	exit(sig);
 }
 
 void	ft_sig_init(void (*handler) (int sig))
 {
-	struct sigaction	act_int;
-	struct sigaction	act_quit;
+	struct sigaction	act;
 
-	act_int.sa_flags = 0;
-	act_quit.sa_flags = 0;
-	sigemptyset(&act_int.sa_mask);
-	sigaddset(&act_int.sa_mask, SIGINT);
-	act_int.sa_handler = handler;
-	sigemptyset(&act_quit.sa_mask);
-	sigaddset(&act_quit.sa_mask, SIGQUIT);
-	act_quit.sa_handler = SIG_IGN;
-	sigaction(SIGINT, &act_int, NULL);
-	sigaction(SIGQUIT, &act_quit, NULL);
+	act.sa_flags = 0;
+	sigemptyset(&act.sa_mask);
+	sigaddset(&act.sa_mask, SIGINT);
+	sigaddset(&act.sa_mask, SIGQUIT);
+	act.sa_handler = handler;
+	sigaction(SIGINT, &act, NULL);
+	sigaction(SIGQUIT, &act, NULL);
 }

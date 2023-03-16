@@ -68,3 +68,4 @@ here_doc function
 /*	TODO:	listenv->char** func	*/
 /*	TODO:	handle SHLVL	*/
 /*	TODO:	better env function + starting env	*/
+/*	TODO: CHANGE EXE ! if no cmd but redir no error ! */

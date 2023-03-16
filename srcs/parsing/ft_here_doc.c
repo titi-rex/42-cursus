@@ -6,7 +6,7 @@
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/13 18:46:53 by tlegrand          #+#    #+#             */
-/*   Updated: 2023/03/13 18:47:04 by tlegrand         ###   ########.fr       */
+/*   Updated: 2023/03/16 16:06:25 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,5 +54,6 @@ char	*ft_here_doc_mode(char *delimiter)
 		here_doc = ft_self_append(ft_strdup("\'"), here_doc);
 		here_doc = ft_self_append(here_doc, "\'");
 	}
+	free(delimiter);
 	return (here_doc);
 }
