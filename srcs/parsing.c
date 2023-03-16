@@ -6,7 +6,7 @@
 /*   By: louisa <louisa@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/08 11:21:07 by louisa            #+#    #+#             */
-/*   Updated: 2023/03/15 17:29:34 by louisa           ###   ########.fr       */
+/*   Updated: 2023/03/15 23:20:13 by louisa           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,10 +91,25 @@ t_list	*ft_handle_redirection(char *bloc)
 	return (io);
 }
 
+void	ft_list_cmd(char *cmd, t_line *line, t_list	*io)
+{
+	t_cmd	*cmds;
+	char	**split;
+
+	cmds = NULL;
+	split = ft_split(cmd, ' ');
+	cmds = ft_cmd_new_alloc(split, io);
+	(void)line;
+	(void)cmds;
+}
+
 void	ft_browse_line(char *str, int i, int start, t_line *line)
 {
 	char	*bloc;
-
+	char	**cmd;
+	t_list	*io;
+	
+	io = NULL;
 	bloc = NULL;
 	while (str[i])
 	{
@@ -103,8 +118,9 @@ void	ft_browse_line(char *str, int i, int start, t_line *line)
 		{
 			bloc = ft_creat_bloc(str, &i, &start, bloc);
 			ft_handle_expansion(&bloc, line);
-			ft_handle_redirection(bloc);
+			io = ft_handle_redirection(bloc);
 			printf("bloc = %s\n", bloc);
+			ft_list_cmd(bloc, line, io);
 			free(bloc);
 		}
 		if (str[i] == '\0' || str[i + 1] == '\0')
@@ -117,4 +133,5 @@ void	ft_browse_line(char *str, int i, int start, t_line *line)
 		}
 		i++;
 	}
+	(void)cmd;
 }
