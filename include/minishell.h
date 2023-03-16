@@ -6,7 +6,7 @@
 /*   By: lboudjem <lboudjem@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/08 17:06:26 by tlegrand          #+#    #+#             */
-/*   Updated: 2023/03/16 16:11:17 by lboudjem         ###   ########.fr       */
+/*   Updated: 2023/03/16 16:21:30 by lboudjem         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,9 @@ char		*ft_get_expansion_value(char *bloc, t_line *line, int *len, int i);
 char		*ft_replace_expansion_value(char *bloc, t_line *line, int len, int i);
 char		*ft_replace_by_exit_status(char *bloc, int i, t_line *line);
 char		*ft_handle_expansion(char *bloc, t_line *line);
+char		*ft_redirection_arg(char *bloc, int i);
+int			ft_redirection_type_fd(char *bloc, int *type, int *i);
+t_list		*ft_handle_redirection(char *bloc, int *error);
 
 /*     			 get path functiuns   		   */
 int			ft_splitlen(char **split);

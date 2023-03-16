@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   prompt.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: louisa <louisa@student.42.fr>              +#+  +:+       +#+        */
+/*   By: lboudjem <lboudjem@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/08 11:21:07 by louisa            #+#    #+#             */
-/*   Updated: 2023/03/11 22:19:31 by louisa           ###   ########.fr       */
+/*   Updated: 2023/03/16 16:18:36 by lboudjem         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ int	ft_prompt(t_line *line)
 			return (1);
 	}
 }
-
+/*
 int	main(int argc, char **argv, char **env)
 {
 	t_line	line;
@@ -61,3 +61,4 @@ int	main(int argc, char **argv, char **env)
 	ft_get_path(env[i], line.cmd);
 	return (0);
 }
+*/
