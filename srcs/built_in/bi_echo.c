@@ -1,34 +1,40 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   bi_pwd.c                                           :+:      :+:    :+:   */
+/*   bi_echo.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/03/08 13:10:16 by tlegrand          #+#    #+#             */
-/*   Updated: 2023/03/09 14:37:12 by tlegrand         ###   ########.fr       */
+/*   Created: 2023/03/08 12:18:35 by tlegrand          #+#    #+#             */
+/*   Updated: 2023/03/13 13:45:08 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/minishell.h"
 
-/*	TODO: use env to get pwd */
-int	bi_pwd(t_line *line)
+int	bi_echo(t_line *line)
 {
-	char	*pwd;
+	char	new_line;
+	int		i;
+	int		err;
 
-	(void) line;
-	pwd = getcwd(NULL, 0);
-	if (!pwd)
+	i = 1;
+	err = EXIT_SUCCESS;
+	new_line = '\n';
+	if (line->cmd->arg[1] && !ft_strncmp(line->cmd->arg[1], "-n", 3))
 	{
-		perror("Error ");
-		return (EXIT_FAILURE);
+		new_line = '\0';
+		i++;
 	}
-	if (printf("%s\n", pwd) < 0)
+	while (line->cmd->arg[i])
 	{
-		perror("Error ");
-		return (EXIT_FAILURE);
+		if (printf("%s", line->cmd->arg[i]) < 0)
+			err = EXIT_FAILURE;
+		i++;
+		if (line->cmd->arg[i] && printf(" ") < 0)
+			err = EXIT_FAILURE;
 	}
-	free(pwd);
-	return (EXIT_SUCCESS);
+	if (printf("%c", new_line) < 0)
+		err = EXIT_FAILURE;
+	return (err);
 }

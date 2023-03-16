@@ -6,7 +6,7 @@
 /*   By: lboudjem <lboudjem@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/08 17:06:26 by tlegrand          #+#    #+#             */
-/*   Updated: 2023/03/16 14:53:18 by lboudjem         ###   ########.fr       */
+/*   Updated: 2023/03/16 16:11:17 by lboudjem         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,12 +15,17 @@
 # include <stdio.h> 
 # include <string.h>
 # include <sys/wait.h>
+# include <sys/ioctl.h>
 # include <fcntl.h>
 # include <signal.h>
+# include <termios.h>
 # include <readline/readline.h>
 # include <readline/history.h>
 # include "../libft/libft.h"
 # include "exec_struct.h"
+# define READING 307
+# define EXECUTION 317
+# define MINISHELL 337
 
 /*                  Parsing functiun            */
 int			ft_browse_line(char *str, int i, int start, t_line *line);
@@ -39,7 +44,9 @@ char		**ft_split_path(char const *s);
 char		*ft_get_pathcmd(char **paths, char *cmd_name);
 void		ft_get_path(char *pathvar, t_cmd *cmd);
 
-/*           	       env      		     	 */
+char		*ft_here_doc_mode(char *delimiter);
+
+/*			struct var_env functions			*/
 int			print_env(t_var_env	*lst);
 void		init_variables(t_var_env *lst);
 void		ft_envadd_front(t_var_env **lst, t_var_env *new);
@@ -53,48 +60,60 @@ t_var_env	*ft_new_env(char *name, char *value);
 t_var_env	*ft_envlast(t_var_env *lst);
 t_var_env	*ft_var_env_search(t_var_env *lst, char *name);
 void		fill_lst_env(t_line *line, int i);
+char		**ft_lstenv_to_tab(t_var_env *lst);
+t_var_env	*fill_lst_env_std(void);
+void		ft_var_env_update_shlvl(t_var_env *lst);
 
 /*				exe functions						*/
 int			bi_cd(t_line *line);
 int			bi_echo(t_line *line);
 int			bi_env(t_line *line);
-int			bi_env_mod(t_line *line);
 int			bi_exit(t_line *line);
 int			bi_export(t_line *line);
 int			bi_pwd(t_line *line);
 int			bi_unset(t_line *line);
-
+void		ft_env_update(char ***env, t_var_env *lst);
+int			ft_is_this_a_minishell(t_line *line);
 void		ft_exe_master(t_line *line);
 
 int			ft_dup_redirect(t_list *io, int here_pipe[2], t_line *line);
 void		ft_dup_pipe(int pipe_in[2], int pipe_out[2]);
 
-void		ft_clear_cmd(t_cmd **cmd);
-void		ft_clear_lst_cmd(t_cmd **cmd);
-void		ft_clear_line(t_line *line);
-void		ft_clear_line_exit(t_line *line, int exit_code);
+/*			utils general	*/
+int			ft_perror_return_int(char *errstr);
+char		*ft_perror_return_null(char *errstr);
+int			ft_error_return(char *errstr);
+int			ft_is_bi(char **arg);
+void		ft_clean_exit(t_line *line, int exit_code);
 
-void		s_init_redirect(t_redirect *io);
-void		s_init_cmd(t_cmd *cmd);
-void		s_init_line(t_line *line);
+/*			signals functions 		*/
+void		ft_sig_init(void (*handler)(int sig));
 
-/*			EXPERIEMENTAL VARFD LST			*/
-int			*ft_varfd_acces_fd(t_varfd *varfd);
-char		*ft_varfd_acces_varname(t_varfd *varfd);
-t_varfd		*ft_varfd_new(char *varname, int fdcount);
-void		ft_varfd_del(void *addr);
-t_list		*ft_varfd_search(t_list *lst, char *name);
-int			ft_varfd_get_value_from_key(t_line *line, char *name);
+void		ft_sig_handler_shell(int sig);
+void		ft_sig_handler_child(int sig);
 
-/*			EXPERIEMENTAL IO LST			*/
+/*			terminal gestion functions		*/
+void		term_init_setting(struct termios *old);
+void		term_reset(struct termios *old);
+void		term_init_termcap(char *data);
+void		term_clear(void);
+
+/*			struct line functions			*/
+void		s_line_init(t_line *line);
+void		s_line_reset(t_line *line);
+void		s_line_clear(t_line *line);
+
+/*			struct redirect functions			*/
+void		s_redirect_init(t_redirect *io);
 int			*ft_redirect_acces_type(t_redirect *io);
 char		*ft_redirect_acces_arg(t_redirect *io);
 t_redirect	*ft_redirect_new(int type, char *arg);
+int			ft_redirect_add_list(t_list	**start, int type, char *arg);
 void		ft_redirect_del(void *addr);
 t_list		*ft_redirect_search_type(t_list *lst, int ref);
-int			ft_redirect_add_list(t_list	**start, int type, char *arg);
 
-/*			LESS EXPERIEMENTAL CMD LST			*/
+/*			struct cmd functions			*/
+void		s_cmd_init(t_cmd *cmd);
 t_cmd		*ft_cmd_new(char **arg, t_list *io);
 t_cmd		*ft_cmd_new_alloc(char **arg, t_list *io);
 void		ft_cmd_del(t_cmd *cmd);
@@ -102,14 +121,7 @@ void		ft_cmd_clear_lst(t_cmd	**cmd);
 t_cmd		*ft_cmd_last(t_cmd *cmd);
 t_cmd		*ft_cmd_first(t_cmd *cmd);
 void		ft_cmd_add_back(t_cmd **start, t_cmd *new);
-
-/*			utils general	*/
-int			ft_perror_return(char *errstr);
-int			ft_error_return(char *errstr);
-int			ft_is_bi(char **arg);
-
-/*			signals functions 		*/
-void		ft_sig_launch(void);
-void		ft_sig_handler_child(int sig, siginfo_t *sig_info, void *context);
+void		ft_clear_cmd(t_cmd **cmd);
+void		ft_clear_lst_cmd(t_cmd **cmd);
 
 #endif 

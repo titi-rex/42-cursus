@@ -1,26 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   bi_unset.c                                         :+:      :+:    :+:   */
+/*   bi_exit.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/03/11 12:06:13 by tlegrand          #+#    #+#             */
-/*   Updated: 2023/03/11 15:15:37 by tlegrand         ###   ########.fr       */
+/*   Created: 2023/03/08 14:10:12 by tlegrand          #+#    #+#             */
+/*   Updated: 2023/03/13 20:07:06 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/minishell.h"
 
-int	bi_unset(t_line *line)
+/*	TODO: check if display exit bedore exit at school	*/
+int	bi_exit(t_line *line)
 {
-	t_var_env	*tmp;
+	int	exit_code;
 
-	if (!line->cmd->arg[1])
-		return (EXIT_SUCCESS);
-	tmp = ft_var_env_search(line->lst_env, line->cmd->arg[1]);
-	if (!tmp)
-		return (EXIT_SUCCESS);
-	ft_envremove(tmp);
-	return (EXIT_SUCCESS);
+	if (line->cmd && line->cmd->arg && line->cmd->arg[1])
+		exit_code = ft_atoi(line->cmd->arg[1]);
+	else
+		exit_code = line->exit_status;
+	ft_clean_exit(line, exit_code);
+	return (EXIT_FAILURE);
 }

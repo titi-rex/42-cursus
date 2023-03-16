@@ -6,7 +6,7 @@
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/10 22:50:22 by tlegrand          #+#    #+#             */
-/*   Updated: 2023/03/10 23:03:02 by tlegrand         ###   ########.fr       */
+/*   Updated: 2023/03/13 19:58:23 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,4 +67,12 @@ void	ft_cmd_add_back(t_cmd **start, t_cmd *new)
 		tmp->next = new;
 		new->previous = tmp;
 	}
+}
+
+void	s_cmd_init(t_cmd *cmd)
+{
+	cmd->arg = NULL;
+	cmd->io = NULL;
+	cmd->next = NULL;
+	cmd->previous = NULL;
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exec_struct.h                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: louisa <louisa@student.42.fr>              +#+  +:+       +#+        */
+/*   By: lboudjem <lboudjem@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/06 21:46:27 by tlegrand          #+#    #+#             */
-/*   Updated: 2023/03/15 15:48:34 by louisa           ###   ########.fr       */
+/*   Updated: 2023/03/16 16:09:37 by lboudjem         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,25 +52,14 @@ typedef struct s_cmd
 */
 typedef struct s_line
 {
-	t_cmd		*cmd;
-	char		**env;
-	char		*path;
-	int			pipe[2][2];
-	int			n_cmds;
-	int			exit_status;
-	t_var_env	*lst_env;
-	t_list		*lst_varfd;
-	int			fdcount;
+	t_cmd			*cmd;
+	char			**env;
+	char			*path;
+	int				pipe[2][2];
+	int				n_cmds;
+	int				exit_status;
+	t_var_env		*lst_env;
+	struct termios	old;
 }	t_line;
-
-/*	structure storing fd called by a varname
-	varname must be {name} format
-	int is the fd linked
-*/
-typedef struct s_varfd
-{
-	char			*varname;
-	int				fd;
-}	t_varfd;
 
 #endif

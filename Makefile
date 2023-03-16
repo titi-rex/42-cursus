@@ -6,7 +6,7 @@
 #    By: lboudjem <lboudjem@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/02/12 20:46:19 by tlegrand          #+#    #+#              #
-#    Updated: 2023/03/16 14:28:43 by lboudjem         ###   ########.fr        #
+#    Updated: 2023/03/16 16:14:21 by lboudjem         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,33 +20,44 @@ NAME		=	minishell
 #	==============================	SOURCES	==============================	#
 DIR_SRCS		=	srcs/
 
-
 LST_SRCS		=	main_test.c \
-					bi_echo.c bi_pwd.c bi_cd.c bi_exit.c bi_env.c bi_export.c bi_unset.c \
-					exe_dup_redirect.c exe_dup_pipe.c exe_cmd.c \
-					ft_clear.c s_init.c \
-					s_varfd_basic.c s_varfd_operator.c \
-					s_redirect_basic.c s_redirect_operator.c \
-					s_cmd_basic.c s_cmd_operator.c \
-					sig_handler.c \
-					ft_utils.c \
-					parsing.c \
+					signal.c \
+					utils.c \
 					prompt.c \
-					parsing_quotes.c \
-					parsing_redirection.c \
-					parsing_expansion.c \
-					var_env_utils.c \
-					var_env_utils2.c \
-					var_env.c \
-					get_path.c
-
+					term.c 
 SRCS			=	${addprefix ${DIR_SRCS}, ${LST_SRCS}}
+
+DIR_SRCS_BI		=	srcs/built_in/
+LST_SRCS_BI		=	bi_cd.c bi_echo.c bi_pwd.c  bi_exit.c bi_env.c bi_export.c bi_unset.c
+SRCS_BI			=	${addprefix ${DIR_SRCS_BI}, ${LST_SRCS_BI}}
+
+DIR_SRCS_STRUCT	=	srcs/structure/
+LST_SRCS_STRUCT	=	s_line_basic.c \
+					s_cmd_basic.c s_cmd_operator.c \
+					s_redirect_basic.c s_redirect_operator.c \
+					var_env_utils.c var_env_utils2.c var_env.c
+SRCS_STRUCT		=	${addprefix ${DIR_SRCS_STRUCT}, ${LST_SRCS_STRUCT}}
+
+DIR_SRCS_PARSE	=	srcs/parsing/
+LST_SRCS_PARSE	=	parsing.c get_path.c ft_here_doc.c \
+					parsing_expansion.c \
+					parsing_quotes.c \
+					parsing_redirection.c 
+SRCS_PARSE		=	${addprefix ${DIR_SRCS_PARSE}, ${LST_SRCS_PARSE}}
+
+DIR_SRCS_EXE	=	srcs/execution/
+LST_SRCS_EXE	=	exe_dup_redirect.c exe_dup_pipe.c exe_cmd.c exe_utils.c
+SRCS_EXE		=	${addprefix ${DIR_SRCS_EXE}, ${LST_SRCS_EXE}}
+
 
 
 #	==============================	OBJECTS	==============================	#
 DIR_OBJS	=	.objs/
-OBJS		=	${patsubst ${DIR_SRCS}%.c, ${DIR_OBJS}%.o, ${SRCS}}
-
+OBJS		=	${patsubst ${DIR_SRCS}%.c, ${DIR_OBJS}%.o, ${SRCS}} \
+				${patsubst ${DIR_SRCS_BI}%.c, ${DIR_OBJS}%.o, ${SRCS_BI}} \
+				${patsubst ${DIR_SRCS_STRUCT}%.c, ${DIR_OBJS}%.o, ${SRCS_STRUCT}} \
+				${patsubst ${DIR_SRCS_PARSE}%.c, ${DIR_OBJS}%.o, ${SRCS_PARSE}} \
+				${patsubst ${DIR_SRCS_EXE}%.c, ${DIR_OBJS}%.o, ${SRCS_EXE}}
 
 #	==============================	HEADERS	==============================	#
 DIR_HEADER	=	include/
@@ -66,9 +77,9 @@ MAKE		=	make -s
 
 
 #	==============================	FLAGS	==============================	#
-CFLAGS		=	-Wall -Wextra -Werror  -I${DIR_HEADER} #-fsanitize=address -g3
-RFLAGS		=	-L/usr/local/lib -I/usr/local/include -lreadline
-FTFLAGS		=	-L${DIR_LIBFT} -lft 
+CFLAGS		=	-Wall -Wextra -Werror -I${DIR_HEADER}  #-fsanitize=address -g3
+RFLAGS		=	-lreadline -lft -ltermcap #-L/usr/local/lib -I/usr/local/include
+FTFLAGS		=	-L${DIR_LIBFT} -lft
 
 
 #	/*\/*\/*\/*\/*\/*\/*\/*\/*\/*\/*\/*\	RULES	/*\/*\/*\/*\/*\/*\/*\/*\/*\/*\/*\/*\	#
@@ -100,6 +111,21 @@ ${DIR_OBJS}%.o	:	${DIR_SRCS}%.c ${HEADER}
 				@printf "$(ORANGE)Making $@...\n$(END)"
 				@${CC} ${CFLAGS} -c $< -o $@
 
+${DIR_OBJS}%.o	:	${DIR_SRCS_BI}%.c ${HEADER}
+				@printf "$(ORANGE)Making $@...\n$(END)"
+				@${CC} ${CFLAGS} -c $< -o $@
+
+${DIR_OBJS}%.o	:	${DIR_SRCS_STRUCT}%.c ${HEADER}
+				@printf "$(ORANGE)Making $@...\n$(END)"
+				@${CC} ${CFLAGS} -c $< -o $@
+
+${DIR_OBJS}%.o	:	${DIR_SRCS_PARSE}%.c ${HEADER}
+				@printf "$(ORANGE)Making $@...\n$(END)"
+				@${CC} ${CFLAGS} -c $< -o $@
+
+${DIR_OBJS}%.o	:	${DIR_SRCS_EXE}%.c ${HEADER}
+				@printf "$(ORANGE)Making $@...\n$(END)"
+				@${CC} ${CFLAGS} -c $< -o $@
 
 #	==============================	UTILS/LIB	==============================	#
 ${DIR_OBJS}	:

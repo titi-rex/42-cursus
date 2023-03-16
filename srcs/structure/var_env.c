@@ -6,7 +6,7 @@
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/09 14:58:48 by lboudjem          #+#    #+#             */
-/*   Updated: 2023/03/11 13:25:09 by tlegrand         ###   ########.fr       */
+/*   Updated: 2023/03/15 14:26:13 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,9 +56,47 @@ t_var_env	*ft_var_env_search(t_var_env *lst, char *name)
 {
 	while (lst)
 	{
-		if (ft_strncmp(lst->name, name, ft_strlen2(name) + 1))
+		if (!ft_strncmp(lst->name, name, ft_strlen2(name) + 1))
 			return (lst);
 		lst = lst->next;
 	}
 	return (NULL);
+}
+
+int	ft_lst_env_size(t_var_env *lst)
+{
+	int	n;
+
+	n = 0;
+	while (lst)
+	{
+		n++;
+		lst = lst->next;
+	}
+	return (n);
+}
+
+char	**ft_lstenv_to_tab(t_var_env *lst)
+{
+	char	**tab;
+	int		i;
+
+	if (!lst)
+		return (NULL);
+	tab = ft_calloc(ft_lst_env_size(lst), sizeof(t_var_env));
+	if (!tab)
+		return (NULL);
+	i = 0;
+	while (lst)
+	{
+		tab[i] = ft_strjoin3(lst->name, "=", lst->value);
+		if (!tab)
+		{
+			ft_free2d((void **)tab, 0);
+			return (NULL);
+		}
+		i++;
+		lst = lst->next;
+	}
+	return (tab);
 }

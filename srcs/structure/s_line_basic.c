@@ -1,41 +1,45 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_clear.c                                         :+:      :+:    :+:   */
+/*   s_line_basic.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/08 18:19:34 by tlegrand          #+#    #+#             */
-/*   Updated: 2023/03/10 23:01:35 by tlegrand         ###   ########.fr       */
+/*   Updated: 2023/03/14 13:12:23 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/minishell.h"
 
-void	ft_clear_line(t_line *line)
+void	s_line_init(t_line *line)
+{
+	line->cmd = NULL;
+	line->pipe[0][0] = -1;
+	line->pipe[0][1] = -1;
+	line->pipe[1][0] = -1;
+	line->pipe[1][1] = -1;
+	line->n_cmds = 0;
+	line->exit_status = 0;
+	line->env = NULL;
+}
+
+void	s_line_reset(t_line *line)
 {
 	if (line->cmd)
 		ft_cmd_clear_lst(&line->cmd);
 	ft_close_pipe(line->pipe[0]);
 	ft_close_pipe(line->pipe[1]);
 	line->n_cmds = 0;
-	line->exit_status = EXIT_SUCCESS;
 }
 
-void	ft_clear_line_exit(t_line *line, int exit_code)
+void	s_line_clear(t_line *line)
 {
-	ft_clear_line(line);
-	//ft_envclear(line->env);
-	exit(exit_code);
+	if (line->cmd)
+		ft_cmd_clear_lst(&line->cmd);
+	ft_close_pipe(line->pipe[0]);
+	ft_close_pipe(line->pipe[1]);
+	line->n_cmds = 0;
+	ft_envclear(&line->lst_env);
+	//ft_free2d((void **)line->env, 0);
 }
-
-/*	old clear io
-void	ft_clear_lst_io(t_redirect *io)
-{
-	if (!io)
-		return ;
-	if (io->arg)
-		free(io->arg);
-	ft_clear_lst_io(io->next);
-}
-*/

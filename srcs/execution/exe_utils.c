@@ -1,33 +1,57 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_utils.c                                         :+:      :+:    :+:   */
+/*   exe_utils.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/03/11 13:43:01 by tlegrand          #+#    #+#             */
-/*   Updated: 2023/03/11 14:39:14 by tlegrand         ###   ########.fr       */
+/*   Created: 2023/03/15 17:36:22 by tlegrand          #+#    #+#             */
+/*   Updated: 2023/03/15 18:22:47 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/minishell.h"
+#include "minishell.h"
 
-int	ft_perror_return(char *errstr)
+/**
+ * @brief look for a valid minishell command in cmd list
+ *  line shouldnt be NULL
+ */
+int	ft_is_this_a_minishell(t_line *line)
 {
-	if (errstr)
-		perror(errstr);
-	else
-		perror("Error ");
-	return (EXIT_FAILURE);
+	t_cmd	*current;
+
+	current = line->cmd;
+	while (current)
+	{
+		if (current->arg)
+			if (!access(current->arg[0], X_OK) && !ft_strncmp(current->arg[0] + \
+				ft_strlen2(current->arg[0]) - 9, "minishell", 11))
+				return (1);
+		current = current->next;
+	}
+	current = line->cmd;
+	while (current)
+	{
+		if (current->arg)
+			if (!access(current->arg[0], X_OK) && !ft_strncmp(current->arg[0] + \
+				ft_strlen2(current->arg[0]) - 9, "minishell", 11))
+				return (1);
+		current = current->previous;
+	}
+	return (0);
 }
 
-int	ft_error_return(char *errstr)
+void	ft_env_update(char ***env, t_var_env *lst)
 {
-	if (errstr)
-		ft_putendl_fd(errstr, 2);
-	else
-		ft_putendl_fd("Error", 2);
-	return (EXIT_FAILURE);
+	char	**buff;
+
+	if (!*env || !lst)
+		return ;
+	buff = ft_lstenv_to_tab(lst);
+	if (!buff)
+		return ((void) perror("Error "));
+	ft_free2d((void **)*env, 0);
+	*env = buff;
 }
 
 int	ft_is_bi(char **arg)

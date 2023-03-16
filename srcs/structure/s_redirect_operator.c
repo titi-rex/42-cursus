@@ -6,7 +6,7 @@
 /*   By: lboudjem <lboudjem@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/10 22:07:36 by tlegrand          #+#    #+#             */
-/*   Updated: 2023/03/16 14:51:23 by lboudjem         ###   ########.fr       */
+/*   Updated: 2023/03/16 16:12:11 by lboudjem         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,4 +39,11 @@ int	ft_redirect_add_list(t_list	**start, int type, char *arg)
 	}
 	ft_lstadd_back(start, new_node);
 	return (0);
+}
+
+void	s_redirect_init(t_redirect *io)
+{
+	io->type = 0;
+	io->fd = 0;
+	io->arg = NULL;
 }

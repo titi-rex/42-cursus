@@ -1,21 +1,70 @@
-void	ft_clear_lst_cmd_previous(t_cmd **cmd)
-{
-	t_cmd	*previous;
+ctrl c = SIGINT (new prompt new line)
+ctrl d = send OEF NOT A SIGNAL close terminal (exit)
+ctrl \ = SIGQUIT (rompish)
 
-	if (!cmd || !*cmd)
-		return ;
-	previous = (*cmd)->previous;
-	ft_cmd_del(*cmd);
-	ft_clear_lst_cmd_previous(&previous);
+ctrl z = SIGSTP (freeze)
+
+valgrind
+--suppressions=valgrind_ignore_leaks.txt
+--leak-check=full --show-leak-kinds=all
+--track-origins=yes --verbose
+--show-mismatched-frees=yes
+--read-var-info=yes
+
+valgrind --suppressions=valgrind_ignore_leaks.txt --leak-check=full --show-leak-kinds=all --track-origins=yes --verbose --show-mismatched-frees=yes --read-var-info=yes
+
+(option) --log-file=valgrind-out.txt
+
+valgrind_ignore_leaks.txt :
+{
+	leak readline
+	Memcheck:Leak
+	...
+	fun:readline
+}
+{
+	leak add_history
+	Memcheck:Leak
+	...
+	fun:add_history
 }
 
-void	ft_clear_lst_cmd_next(t_cmd **cmd)
-{
-	t_cmd	*next;
 
-	if (!cmd || !*cmd)
-		return ;
-	next = (*cmd)->next;
-	ft_cmd_del(*cmd);
-	ft_clear_lst_cmd_next(&next);
-}
+
+comme ca :
+faire un tetris in term
+make a multi join
+
+
+Use tty function for check if is atty and open tty
+isatty, ttyname, ttyslot, 
+
+use ioctl to send request to term
+ioctl
+
+use termios function to formate tty io
+tcsetattr, tcgetattr
+ 
+termcap functin does the same but more complicated ?
+tgetent, 
+tgetflag, tgetnum, tgetstr, tgoto, 
+tputs
+
+termcap -> termios -> curse -> ncurse
+
+
+DONE:
+/*	TODO: sigQUIT DOES NOTHING	actually it move cursor ??*/
+/*	TODO:	handle exit code	*/
+/*	TODO:	prevent exit newline especially in child	*/
+/*	TODO: handle cmd null better; */
+handle erro gestion cmd in child ??????? 
+/*	TODO:	signal in here_doc and exe	*/
+creat dir for srcs
+here_doc function
+/*	TODO: reset term state before exit	*/
+/*	TODO:FIXME:	minishell ./minishell (inception) ctrl c dont work and mess up everuything */
+/*	TODO:	secure term_init ? */
+/*	TODO:	listenv->char** func	*/
+/*	TODO:	handle SHLVL	*/
+/*	TODO:	better env function + starting env	*/
