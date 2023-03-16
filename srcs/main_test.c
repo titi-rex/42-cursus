@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main_test.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: louisa <louisa@student.42.fr>              +#+  +:+       +#+        */
+/*   By: lboudjem <lboudjem@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/08 12:28:13 by tlegrand          #+#    #+#             */
-/*   Updated: 2023/03/15 15:52:27 by louisa           ###   ########.fr       */
+/*   Updated: 2023/03/16 14:27:46 by lboudjem         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,11 +45,7 @@ ctrl \ = SIGQUIT (rompish)
 ctrl z = SIGSTP (freeze)
 
 valgrind
---suppressions=valgrind_ignore_leaks.txt
---leak-check=full --show-leak-kinds=all
---track-origins=yes --verbose
---show-mismatched-frees=yes
---read-var-info=yes
+--suppressions=valgrind_ignore_leaks.txt --leak-check=full --show-leak-kinds=all --track-origins=yes --verbose --show-mismatched-frees=yes --read-var-info=yes
 
 (option) --log-file=valgrind-out.txt
 

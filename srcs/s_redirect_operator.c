@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   s_redirect_operator.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: louisa <louisa@student.42.fr>              +#+  +:+       +#+        */
+/*   By: lboudjem <lboudjem@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/10 22:07:36 by tlegrand          #+#    #+#             */
-/*   Updated: 2023/03/15 15:59:47 by louisa           ###   ########.fr       */
+/*   Updated: 2023/03/16 14:51:23 by lboudjem         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,12 +23,12 @@ t_list	*ft_redirect_search_type(t_list *lst, int ref)
 	return (NULL);
 }
 
-int	ft_redirect_add_list(t_list	**start, int type, int fd, char *arg)
+int	ft_redirect_add_list(t_list	**start, int type, char *arg)
 {
 	t_list		*new_node;
 	t_redirect	*new_content;
 
-	new_content = ft_redirect_new(type, fd, arg);
+	new_content = ft_redirect_new(type, arg);
 	if (!new_content)
 		return (1);
 	new_node = ft_lstnew(new_content);

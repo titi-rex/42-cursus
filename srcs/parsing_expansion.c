@@ -3,20 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   parsing_expansion.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: louisa <louisa@student.42.fr>              +#+  +:+       +#+        */
+/*   By: lboudjem <lboudjem@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/13 17:33:36 by louisa            #+#    #+#             */
-/*   Updated: 2023/03/14 15:42:36 by louisa           ###   ########.fr       */
+/*   Updated: 2023/03/16 15:56:40 by lboudjem         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/minishell.h"
 
 // free dans les cas d'erreur 
-// handle expansion si pas de pipe apres
-// echo $SHELL $HSELL $SHELL | 'echo $SHELL' | "echo $SHELL | coucou"
-// echo $SHELL $HSELL $SHELL | 'echo $SHELL' | "echo $SHELL" | coucou
-// -> probleme de fsanitize (heap buffer overflow")
 
 char	*ft_get_expansion_value(char *bloc, t_line *line, int *len, int i)
 {
@@ -25,23 +21,19 @@ char	*ft_get_expansion_value(char *bloc, t_line *line, int *len, int i)
 	int		tmp;
 
 	tmp = i;
-	while (bloc[tmp] != ' ' && bloc[tmp] != 34)
+	if (!bloc && !bloc[tmp])
+		return (NULL);
+	while (bloc[tmp] && (bloc[tmp] == '_' || ft_isalnum(bloc[tmp]) != 0) \
+			&& bloc[tmp] != 34 && bloc[tmp] != 39)
 	{
 		tmp++;
 		(*len)++;
 	}
-	name = malloc((*len + 1) * sizeof(char));
+	name = ft_substr(bloc, i, *len);
 	if (!name)
 		return (NULL);
-	name = ft_substr(bloc, i, *len);// pas besoin de malloc avant un substr
-	if (!name)
-		return (NULL);
-	value = ft_strndup(get_value(line->lst_env, name), ft_strlen2(get_value(line->lst_env, name)));
-	if (!value) // si la variable n existe pas pas d erreur remplacer par rien (effacer le $NAME)
-	{
-		printf("This variable does not exist\n");
-		return (NULL);
-	}
+	value = ft_strndup(get_value(line->lst_env, name), \
+			ft_strlen2(get_value(line->lst_env, name)));
 	free(name);
 	return (value);
 }
@@ -64,13 +56,11 @@ char	*ft_replace_expansion_value(char *bloc, t_line *line, int len, int i)
 	if (value)
 		while (value[size])
 			cpy[i++] = value[size++];
-	// else
-	// 	cpy[i++] = "";
-	while (bloc[tmp])
+	while (bloc && bloc[tmp])
 		cpy[i++] = bloc[tmp++];
 	cpy[i] = '\0';
 	free(bloc);
-	return(cpy);
+	return (cpy);
 }
 
 char	*ft_replace_by_exit_status(char *bloc, int i, t_line *line)
@@ -83,7 +73,7 @@ char	*ft_replace_by_exit_status(char *bloc, int i, t_line *line)
 	tmp = i + 2;
 	exit_s = ft_itoa(line->exit_status);
 	if (!exit_s)
-		return (free(exit_s), NULL); //pas besoin de free so exit_s deja null
+		return (NULL);
 	len = (int)(ft_strlen2(bloc)) - 2 + ft_strlen2(exit_s);
 	cpy = malloc((len + 1) * sizeof(char));
 	if (!cpy)
@@ -99,28 +89,40 @@ char	*ft_replace_by_exit_status(char *bloc, int i, t_line *line)
 	return (free(exit_s), cpy);
 }
 
-void	ft_handle_expansion(char **bloc, t_line *line)
+char	*ft_handle_expansion(char *bloc, t_line *line)
 {
 	int		i;
 
 	i = 0;
-	while ((*bloc)[i])
+	while (bloc[i])
 	{
-		if ((*bloc)[i] == 39)
+		if (bloc[i] == 34)
 		{
 			i++;
-			while ((*bloc)[i] != 39) // verifier si tu arrives pas la fin de ta string *bloc
+			while ((bloc[i]) && bloc[i] != 34)
+			{
+				if (bloc[i] && bloc[i] == '$')
+				{
+					bloc = ft_replace_expansion_value(bloc, line, 0, i);
+					printf("bloc2 = %s\n", bloc);
+				}
+				i++;
+			}
+		}
+		if (bloc[i] == 39)
+		{
+			i++;
+			while ((bloc[i]) && bloc[i] != 39)
 				i++;
 		}
-		if ((*bloc)[i] == '$' && (*bloc)[i + 1] == '?') // idem
-			*bloc = ft_replace_by_exit_status(*bloc, i, line);
-		if ((*bloc)[i] == '$') // idem
+		if (bloc[i] && bloc[i] == '$' && bloc[i + 1] == '?')
+			bloc = ft_replace_by_exit_status(bloc, i, line);
+		if (bloc[i] && bloc[i] == '$')
 		{
-			*bloc = ft_replace_expansion_value(*bloc, line, 0, i);
-			i++;
-			if (!(*bloc)[i])// g pas compris :(
-				break ;
+			bloc = ft_replace_expansion_value(bloc, line, 0, i);
+			i = -1;
 		}
 		i++;
 	}
+	return (bloc);
 }

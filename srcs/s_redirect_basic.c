@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   s_redirect_basic.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: lboudjem <lboudjem@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/10 21:36:43 by tlegrand          #+#    #+#             */
-/*   Updated: 2023/03/10 22:10:31 by tlegrand         ###   ########.fr       */
+/*   Updated: 2023/03/16 14:51:45 by lboudjem         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,14 +17,7 @@ int	*ft_redirect_acces_type(t_redirect *io)
 	if (!io)
 		return (NULL);
 	return (&io->type);
-}
-
-int	*ft_redirect_acces_fd(t_redirect *io)
-{
-	if (!io)
-		return (NULL);
-	return (&io->fd);
-}
+} 
 
 char	*ft_redirect_acces_arg(t_redirect *io)
 {
@@ -33,7 +26,7 @@ char	*ft_redirect_acces_arg(t_redirect *io)
 	return (io->arg);
 }
 
-t_redirect	*ft_redirect_new(int type, int fd, char *arg)
+t_redirect	*ft_redirect_new(int type, char *arg)
 {
 	t_redirect	*new;
 
@@ -47,7 +40,6 @@ t_redirect	*ft_redirect_new(int type, int fd, char *arg)
 		return (NULL);
 	}
 	new->type = type;
-	new->fd = fd;
 	return (new);
 }
 
