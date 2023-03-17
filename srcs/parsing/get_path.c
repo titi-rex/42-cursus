@@ -6,7 +6,7 @@
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/09 13:35:47 by lboudjem          #+#    #+#             */
-/*   Updated: 2023/03/17 21:18:23 by tlegrand         ###   ########.fr       */
+/*   Updated: 2023/03/17 22:48:57 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,10 @@ void	ft_get_path(char *pathvar, t_cmd *cmd)
 {
 	char	**paths;
 
-	if (!pathvar)
+	if (cmd->arg[0] == NULL || ft_is_bi(cmd->arg) || !pathvar)
+		return ;
+	if (!access(cmd->arg[0], X_OK) || cmd->arg[0][0] == '.' || \
+		cmd->arg[0][0] == '/')
 		return ;
 	paths = ft_split(pathvar, ':');
 	if (!paths)
@@ -52,10 +55,6 @@ void	ft_get_path(char *pathvar, t_cmd *cmd)
 		perror("Error ");
 		return ;
 	}
-	if (cmd->arg[0] == NULL)
-		return ;
-	else if (access(cmd->arg[0], X_OK) && \
-		cmd->arg[0][0] != '.' && cmd->arg[0][0] != '/')
-		cmd->arg[0] = ft_get_pathcmd(paths, cmd->arg[0]);
+	cmd->arg[0] = ft_get_pathcmd(paths, cmd->arg[0]);
 	ft_free2d((void **)paths, 0);
 }

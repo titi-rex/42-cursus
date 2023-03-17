@@ -6,7 +6,7 @@
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/15 17:36:22 by tlegrand          #+#    #+#             */
-/*   Updated: 2023/03/17 15:15:38 by tlegrand         ###   ########.fr       */
+/*   Updated: 2023/03/17 22:47:05 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ void	ft_env_update(char ***env, t_var_env *lst)
 int	ft_is_bi(char **arg)
 {
 	if (!arg || !arg[0])
-		return (1);
+		return (0);
 	if (!ft_strncmp(arg[0], "cd", 3))
 		return (1);
 	else if (!ft_strncmp(arg[0], "echo", 5))
