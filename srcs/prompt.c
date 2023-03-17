@@ -6,7 +6,7 @@
 /*   By: lboudjem <lboudjem@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/08 11:21:07 by louisa            #+#    #+#             */
-/*   Updated: 2023/03/17 15:33:08 by lboudjem         ###   ########.fr       */
+/*   Updated: 2023/03/17 17:15:33 by lboudjem         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ int	ft_prompt(t_line *line)
 			return (1);
 		ft_browse_line(str, 0, 0, line);
 		cmd = get_cmd(str, line);
-		ft_get_path(line->path, line->cmd);
+		//ft_get_path(line->path, line->cmd);
 		if (!cmd)
 			return (1);
 	}

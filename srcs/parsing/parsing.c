@@ -6,7 +6,7 @@
 /*   By: lboudjem <lboudjem@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/08 11:21:07 by louisa            #+#    #+#             */
-/*   Updated: 2023/03/17 16:36:53 by lboudjem         ###   ########.fr       */
+/*   Updated: 2023/03/17 17:19:46 by lboudjem         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,7 @@ void	ft_list_cmd(char *arg, t_line *line, t_list	*io)
 		i++;
 	}
 	cmds = ft_cmd_new_alloc(split, io);
+	ft_get_path(get_value(line->lst_env, "PATH"), cmds);
 	ft_cmd_add_back(&line->cmd, cmds);
 	//printf("arg = %s\n", ft_redirect_acces_arg(line->cmd->io->content));
 }
