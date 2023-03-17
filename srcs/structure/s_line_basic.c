@@ -6,7 +6,7 @@
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/08 18:19:34 by tlegrand          #+#    #+#             */
-/*   Updated: 2023/03/17 15:29:08 by tlegrand         ###   ########.fr       */
+/*   Updated: 2023/03/17 17:12:18 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,11 @@ void	s_line_init(t_line *line)
 	line->pipe[0][1] = -1;
 	line->pipe[1][0] = -1;
 	line->pipe[1][1] = -1;
+	line->fd_std[0] = dup(STDIN_FILENO);
+	line->fd_std[1] = dup(STDOUT_FILENO);
+	line->fd_std[2] = dup(STDERR_FILENO);
+	if (line->fd_std[0] == -1 || line->fd_std[1] == -1 || line->fd_std[2] == -1)
+		perror("Error ");
 	line->n_cmds = 0;
 	line->exit_status = 0;
 	line->env = NULL;

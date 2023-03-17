@@ -6,7 +6,7 @@
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/08 15:07:58 by tlegrand          #+#    #+#             */
-/*   Updated: 2023/03/17 16:10:33 by tlegrand         ###   ########.fr       */
+/*   Updated: 2023/03/17 17:25:03 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,8 @@ void	ft_exe_bi(t_line *line, int pipe_in[2], int pipe_out[2], \
 		if (ft_dup_redirect(line->cmd->io, here_pipe, line))
 			return ;
 		line->exit_status = ft_bi(line);
+		//dup2(line->fd_std[0], STDIN_FILENO);
+		//dup2(line->fd_std[1], STDOUT_FILENO);
 	}
 	else
 	{
@@ -116,6 +118,7 @@ void	ft_exe_master(t_line *line)
 	int	i;
 
 	i = 0;
+	g_status = EXECUTION;
 	while (i < line->n_cmds)
 	{
 		if (g_status == SIGINT)

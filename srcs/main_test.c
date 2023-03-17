@@ -6,7 +6,7 @@
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/08 12:28:13 by tlegrand          #+#    #+#             */
-/*   Updated: 2023/03/17 16:17:27 by tlegrand         ###   ########.fr       */
+/*   Updated: 2023/03/17 17:26:24 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,7 @@ void	ft_init_main(t_line *line, char **env)
 	(void)env;
 }
 
+/*	FIXME:	>> log qiu mange stdout des fois */
 /*	FIXME:	exit qui print exit mais jsp ou */
 /*	TODO:	prompt function */
 /*	TODO:	man/greeting function */
