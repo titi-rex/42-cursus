@@ -6,7 +6,7 @@
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/08 17:06:26 by tlegrand          #+#    #+#             */
-/*   Updated: 2023/03/17 21:52:31 by tlegrand         ###   ########.fr       */
+/*   Updated: 2023/03/17 23:11:32 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,9 +23,10 @@
 # include <readline/history.h>
 # include "../libft/libft.h"
 # include "exec_struct.h"
-# define READING 1
-# define EXECUTION 2
-# define MINISHELL 4
+# define READING 0b0001
+# define EXECUTION 0b0010
+# define MINISHELL 0b0100
+# define INTERRUPT 0b1000
 
 /*          Parsing functiun            */
 int			ft_browse_line(char *str, int i, int start, t_line *line);

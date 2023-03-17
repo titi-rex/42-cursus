@@ -6,7 +6,7 @@
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/08 15:07:58 by tlegrand          #+#    #+#             */
-/*   Updated: 2023/03/17 22:50:25 by tlegrand         ###   ########.fr       */
+/*   Updated: 2023/03/17 22:59:04 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -127,8 +127,8 @@ void	ft_exe_master(t_line *line)
 	g_status |= EXECUTION;
 	while (i < line->n_cmds)
 	{
-		//if (g_status == SIGINT)
-		//	return ;
+		if (g_status & INTERRUPT)
+			return ;
 		if (line->cmd->next)
 		{
 			if (pipe(line->pipe[i % 2]) == -1)
@@ -142,7 +142,7 @@ void	ft_exe_master(t_line *line)
 	}
 	if (line->n_cmds != 1 || !ft_is_bi(line->cmd->arg))
 		ft_get_wait_status(line->n_cmds, &line->exit_status);
-	if (line->n_cmds && ft_is_this_a_minishell(line))
+	if (g_status & MINISHELL)
 		g_status ^= MINISHELL;
 	g_status ^= EXECUTION;
 }
