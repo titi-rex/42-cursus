@@ -6,7 +6,7 @@
 /*   By: lboudjem <lboudjem@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/08 11:21:07 by louisa            #+#    #+#             */
-/*   Updated: 2023/03/16 16:25:57 by lboudjem         ###   ########.fr       */
+/*   Updated: 2023/03/17 13:52:07 by lboudjem         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,10 +20,8 @@ void	ft_list_cmd(char *arg, t_line *line, t_list	*io)
 	cmds = NULL;
 	split = ft_split(arg, ' ');
 	cmds = ft_cmd_new_alloc(split, io);
-	line->cmd = cmds;
+	ft_cmd_add_back(&line->cmd, cmds);
 	//printf("arg = %s\n", ft_redirect_acces_arg(line->cmd->io->content));
-	(void)line;
-	(void)cmds;
 }
 
 int	ft_browse_line(char *str, int i, int start, t_line *line)
@@ -45,7 +43,8 @@ int	ft_browse_line(char *str, int i, int start, t_line *line)
 			io = ft_handle_redirection(bloc, &error);
 			if (error == 1)
 				return (1);
-			printf("bloc = %s\n", bloc);
+			//printf("bloc = %s\n", bloc);
+			line->n_cmds++;
 			ft_list_cmd(bloc, line, io);
 			free(bloc);
 		}
@@ -56,7 +55,8 @@ int	ft_browse_line(char *str, int i, int start, t_line *line)
 			io = ft_handle_redirection(bloc, &error);
 			if (error == 1)
 				return (1);
-			printf("bloc = %s\n", bloc);
+			line->n_cmds++;
+			//printf("bloc = %s\n", bloc);
 			ft_list_cmd(bloc, line, io);
 			free(bloc);
 		}
@@ -65,7 +65,7 @@ int	ft_browse_line(char *str, int i, int start, t_line *line)
 	return (0);
 }
 
-// void	ft_parsing()
-// {
+void	ft_parsing()
+{
 	
-// }
+}
