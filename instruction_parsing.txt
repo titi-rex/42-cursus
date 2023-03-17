@@ -6,7 +6,7 @@
 #    By: lboudjem <lboudjem@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/03/10 16:14:31 by lboudjem          #+#    #+#              #
-#    Updated: 2023/03/17 17:24:37 by lboudjem         ###   ########.fr        #
+#    Updated: 2023/03/17 17:25:37 by lboudjem         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -69,7 +69,7 @@ Autre:
 - Un effet secondaire est un sentiment de réussite, de grâce, d'amour infinie et d'apaisement
 
 
-- A penser:
+- A ne pas oublier:
 echo $ print un $
 penser a free hihi
 supprimer les redirection er leurs args juste apres
