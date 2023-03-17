@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    instruction_parsing.txt                            :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: louisa <louisa@student.42.fr>              +#+  +:+       +#+         #
+#    By: lboudjem <lboudjem@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/03/10 16:14:31 by lboudjem          #+#    #+#              #
-#    Updated: 2023/03/14 16:07:58 by louisa           ###   ########.fr        #
+#    Updated: 2023/03/17 16:40:06 by lboudjem         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,7 +22,13 @@ si je trouve un pipe :
     - on recommence jusqu'a '\0'
 si je trouve un '\0' :
     - je met tout dans un element de la liste en la formatant*
-
+si je trouve un export :
+    - le egal doit etre coller (format : mot=truc)
+    - faire un arg avec tout ce qu'il ya avant le =
+    - faire un bloc avec ce qu'il y a apres le = jusqu au prochain espace ou '\0'
+    - si ya rien apres le egal = arg NULL
+    - si ya meme pas de = : je fais rien jusqu au prochain pipe/fin de ligne/redirection
+    - aussi, ignorer tous les mots jusquau prochain pipe/fin de ligne/redirection
 
                             *Formater la ligne recuperee
 
@@ -47,9 +53,22 @@ si je trouve un '\0' :
 - Si je trouve une redirection de type 2 (<<), appeler la fonction here_doc
 - dans le here_doc : interpreter les $ 
 
+                        structure des lignes de commandes
+line->arg[0] = commande (echo, ls, cat..)
+line->arg[1] = arguments (tout ce qu'il y a apres la cmd jusqu au prochain pipe ou \0 : sauf redirection)
+- Exemples :
+echo hello                     coucou = hello coucou
+echo "hello                     coucou" = hello                     coucou
+
+
 Autre:
-- Faire une fonction clear all qui clear toutes les liste entre deux commandes entrés par le user
+- Faire une fonction clear all qui clear toutes les lists entre deux commandes entrés par le user
 
         Offrir des gatos a titi
 - Un titi bien nourrit travaillera mieux et sera de meilleur humeur
 - Un effet secondaire est un sentiment de réussite, de grâce, d'amour infinie et d'apaisement
+
+
+- A penser:
+echo $ print un $
+penser a free hihi

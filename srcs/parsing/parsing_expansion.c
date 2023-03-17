@@ -6,7 +6,7 @@
 /*   By: lboudjem <lboudjem@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/13 17:33:36 by louisa            #+#    #+#             */
-/*   Updated: 2023/03/16 15:56:40 by lboudjem         ###   ########.fr       */
+/*   Updated: 2023/03/17 16:21:28 by lboudjem         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,10 +102,7 @@ char	*ft_handle_expansion(char *bloc, t_line *line)
 			while ((bloc[i]) && bloc[i] != 34)
 			{
 				if (bloc[i] && bloc[i] == '$')
-				{
 					bloc = ft_replace_expansion_value(bloc, line, 0, i);
-					printf("bloc2 = %s\n", bloc);
-				}
 				i++;
 			}
 		}

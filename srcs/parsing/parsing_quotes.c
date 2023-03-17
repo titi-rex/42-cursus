@@ -6,7 +6,7 @@
 /*   By: lboudjem <lboudjem@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/11 14:27:10 by lboudjem          #+#    #+#             */
-/*   Updated: 2023/03/16 13:25:46 by lboudjem         ###   ########.fr       */
+/*   Updated: 2023/03/17 16:19:26 by lboudjem         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,31 +45,31 @@ int	ft_handle_quotes(char *str, int i, int quote)
 	return (i);
 }
 
-char	*ft_delete_quotes(char *bloc, int size, int nb_quotes)
+char	*ft_delete_quotes(char *bloc, int size, int nb_quotes, char quote)
 {
 	char	*cpy;
 
 	while (bloc[size])
 	{
-		if (bloc[size] == 34 || bloc[size] == 39)
+		if (bloc[size] == quote)
 			nb_quotes++;
 		size++;
 	}
 	size -= nb_quotes;
-	cpy = malloc(size * sizeof(char));
+	cpy = malloc((size + 1) * sizeof(char));
 	if (!cpy)
 		return (NULL);
 	size = 0;
 	nb_quotes = 0;
 	while (bloc[size])
 	{
-		if (bloc[size] != 34 && bloc[size] != 39)
+		if (bloc[size] != quote)
 		{
 			cpy[nb_quotes] = bloc[size];
 			nb_quotes++;
 		}
 		size++;
 	}
-	cpy[nb_quotes - 1] = '\0';
+	cpy[nb_quotes] = '\0';
 	return (free(bloc), cpy);
 }
