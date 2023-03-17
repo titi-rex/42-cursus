@@ -6,7 +6,7 @@
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/06 21:46:27 by tlegrand          #+#    #+#             */
-/*   Updated: 2023/03/17 17:07:08 by tlegrand         ###   ########.fr       */
+/*   Updated: 2023/03/17 20:08:53 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,6 @@ typedef struct s_var_env
 typedef struct s_redirect
 {
 	int					type;
-	int					fd;
 	char				*arg;
 }	t_redirect;
 
@@ -54,7 +53,6 @@ typedef struct s_line
 {
 	t_cmd			*cmd;
 	char			**env;
-	char			*path;
 	int				pipe[2][2];
 	int				fd_std[2];
 	int				n_cmds;

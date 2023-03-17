@@ -6,7 +6,7 @@
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/11 14:28:28 by tlegrand          #+#    #+#             */
-/*   Updated: 2023/03/15 13:28:05 by tlegrand         ###   ########.fr       */
+/*   Updated: 2023/03/17 19:35:02 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 static int	bi_export_name_is_valid(char *name)
 {
-	while (name)
+	while (*name)
 	{
 		if (!ft_isalnum(*name) && *name != '_')
 			return (1);

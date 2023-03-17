@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lboudjem <lboudjem@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/08 17:06:26 by tlegrand          #+#    #+#             */
-/*   Updated: 2023/03/16 16:21:30 by lboudjem         ###   ########.fr       */
+/*   Updated: 2023/03/17 20:05:09 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,8 +63,9 @@ t_var_env	*ft_new_env(char *name, char *value);
 t_var_env	*ft_envlast(t_var_env *lst);
 t_var_env	*ft_var_env_search(t_var_env *lst, char *name);
 void		fill_lst_env(t_line *line, int i);
+void		fill_lst_env2(t_var_env **lst, char **env);
 char		**ft_lstenv_to_tab(t_var_env *lst);
-t_var_env	*fill_lst_env_std(void);
+void		fill_lst_env_std(t_var_env **lst);
 void		ft_var_env_update_shlvl(t_var_env *lst);
 
 /*				exe functions						*/

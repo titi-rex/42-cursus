@@ -29,11 +29,15 @@ valgrind_ignore_leaks.txt :
 	fun:add_history
 }
 
+orha : 
+use notion : 
+tile with arborescence
+bien definir ce que chqaue pqrtie doit faire et ne pa faire 
+error log
 
 
 comme ca :
 faire un tetris in term
-make a multi join
 
 
 Use tty function for check if is atty and open tty
@@ -69,3 +73,16 @@ here_doc function
 /*	TODO:	handle SHLVL	*/
 /*	TODO:	better env function + starting env	*/
 /*	TODO: CHANGE EXE ! if no cmd but redir no error ! */
+/*	FIXME:	>> log qiu mange stdout des fois */
+/*	FIXME:	exit qui print exit mais jsp ou */
+/*	TODO:	gestion arg for minishell ? + error	*/
+/*	TODO:	update redirect without fd -> update dup redirect*/
+/*	TODO:	man/greeting function */
+
+
+
+
+
+
+
+https://stackoverflow.com/questions/4842424/list-of-ansi-color-escape-sequences

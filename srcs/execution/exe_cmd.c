@@ -6,7 +6,7 @@
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/08 15:07:58 by tlegrand          #+#    #+#             */
-/*   Updated: 2023/03/17 17:25:03 by tlegrand         ###   ########.fr       */
+/*   Updated: 2023/03/17 19:24:58 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,8 @@ void	ft_exe_bi(t_line *line, int pipe_in[2], int pipe_out[2], \
 		if (ft_dup_redirect(line->cmd->io, here_pipe, line))
 			return ;
 		line->exit_status = ft_bi(line);
-		//dup2(line->fd_std[0], STDIN_FILENO);
-		//dup2(line->fd_std[1], STDOUT_FILENO);
+		dup2(line->fd_std[0], STDIN_FILENO);
+		dup2(line->fd_std[1], STDOUT_FILENO);
 	}
 	else
 	{
@@ -62,7 +62,7 @@ void	ft_exe_cmd(t_line *line, int pipe_in[2], int pipe_out[2])
 		ft_dup_pipe(pipe_in, pipe_out);
 		if (ft_dup_redirect(line->cmd->io, here_pipe, line))
 			perror("Error ");
-		if ((!line->cmd->arg || !line->cmd->arg[0]) && line->cmd->io)
+		if (!line->cmd->arg && line->cmd->io)
 			ft_clean_exit(line, EXIT_SUCCESS);
 		execve(line->cmd->arg[0], line->cmd->arg, line->env);
 		perror("Error ");
