@@ -6,7 +6,7 @@
 /*   By: lboudjem <lboudjem@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/08 17:06:26 by tlegrand          #+#    #+#             */
-/*   Updated: 2023/03/17 16:15:50 by lboudjem         ###   ########.fr       */
+/*   Updated: 2023/03/17 16:45:26 by lboudjem         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@
 # define EXECUTION 317
 # define MINISHELL 337
 
-/*                  Parsing functiun            */
+/*          Parsing functiun            */
 int			ft_browse_line(char *str, int i, int start, t_line *line);
 void		ft_quotes(char *str, int *i);
 char		*ft_creat_bloc(char *str, int *i, int *start, char *bloc);
@@ -42,7 +42,7 @@ int			ft_redirection_type_fd(char *bloc, int *type, int *i);
 t_list		*ft_handle_redirection(char *bloc, int *error);
 char		**ft_split_bis(char const *s, char c);
 
-/*     			 get path functiuns   		   */
+/*     			get path functiuns   		   */
 int			ft_splitlen(char **split);
 char		**ft_split_path(char const *s);
 char		*ft_get_pathcmd(char **paths, char *cmd_name);
@@ -68,7 +68,7 @@ char		**ft_lstenv_to_tab(t_var_env *lst);
 t_var_env	*fill_lst_env_std(void);
 void		ft_var_env_update_shlvl(t_var_env *lst);
 
-/*				exe functions						*/
+/*			exe functions						*/
 int			bi_cd(t_line *line);
 int			bi_echo(t_line *line);
 int			bi_env(t_line *line);

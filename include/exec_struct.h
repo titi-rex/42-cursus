@@ -6,7 +6,7 @@
 /*   By: lboudjem <lboudjem@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/06 21:46:27 by tlegrand          #+#    #+#             */
-/*   Updated: 2023/03/16 16:09:37 by lboudjem         ###   ########.fr       */
+/*   Updated: 2023/03/17 16:43:35 by lboudjem         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,6 @@ typedef struct s_line
 {
 	t_cmd			*cmd;
 	char			**env;
-	char			*path;
 	int				pipe[2][2];
 	int				n_cmds;
 	int				exit_status;
