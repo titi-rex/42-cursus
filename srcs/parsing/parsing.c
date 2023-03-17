@@ -6,7 +6,7 @@
 /*   By: lboudjem <lboudjem@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/08 11:21:07 by louisa            #+#    #+#             */
-/*   Updated: 2023/03/17 13:52:07 by lboudjem         ###   ########.fr       */
+/*   Updated: 2023/03/17 17:19:46 by lboudjem         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,10 +16,36 @@ void	ft_list_cmd(char *arg, t_line *line, t_list	*io)
 {
 	t_cmd	*cmds;
 	char	**split;
+	int		i;
+	int		j;
+	char	quote;
 
+	i = 0;
 	cmds = NULL;
-	split = ft_split(arg, ' ');
+	split = ft_split_bis(arg, ' ');
+	while (split[i])
+	{
+		j = 0;
+		while (split[i][j])
+		{
+			if (split[i][j] == 34)
+			{
+				quote = 34;
+				break ;
+			}
+			if (split[i][j] == 39)
+			{
+				quote = 39;
+				break ;
+			}
+			j++;
+		}
+		if (quote == 34 || quote == 39)
+			split[i] = ft_delete_quotes(split[i], 0, 0, quote);
+		i++;
+	}
 	cmds = ft_cmd_new_alloc(split, io);
+	ft_get_path(get_value(line->lst_env, "PATH"), cmds);
 	ft_cmd_add_back(&line->cmd, cmds);
 	//printf("arg = %s\n", ft_redirect_acces_arg(line->cmd->io->content));
 }
@@ -43,7 +69,6 @@ int	ft_browse_line(char *str, int i, int start, t_line *line)
 			io = ft_handle_redirection(bloc, &error);
 			if (error == 1)
 				return (1);
-			//printf("bloc = %s\n", bloc);
 			line->n_cmds++;
 			ft_list_cmd(bloc, line, io);
 			free(bloc);
@@ -56,16 +81,10 @@ int	ft_browse_line(char *str, int i, int start, t_line *line)
 			if (error == 1)
 				return (1);
 			line->n_cmds++;
-			//printf("bloc = %s\n", bloc);
 			ft_list_cmd(bloc, line, io);
 			free(bloc);
 		}
 		i++;
 	}
 	return (0);
-}
-
-void	ft_parsing()
-{
-	
 }

@@ -6,7 +6,7 @@
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/08 11:21:07 by louisa            #+#    #+#             */
-/*   Updated: 2023/03/17 20:17:42 by tlegrand         ###   ########.fr       */
+/*   Updated: 2023/03/17 20:53:01 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,27 +38,26 @@ int	ft_prompt(t_line *line)
 			return (1);
 	}
 }
-/*
-int	main(int argc, char **argv, char **env)
-{
-	t_line	line;
-	t_cmd	arg;
-	int		i;
 
-	i = 0;
-	(void)argc;
-	(void)argv;
-	line.cmd = &arg;
-	line.env = env;
-	while (env[i] && ft_strncmp(env[i], "PATH=", 5))
-		i++;
-	line.path = env[i];
-	fill_lst_env(&line, 0);
-	//print_env(line.lst_env);
-	//ft_envclear(&line.lst_env);
-	if (ft_prompt(&line) == 1)
-		return (1);
-	ft_get_path(env[i], line.cmd);
-	return (0);
-}
-*/
+// int	main(int argc, char **argv, char **env)
+// {
+// 	t_line	line;
+// 	t_cmd	arg;
+// 	int		i;
+
+// 	i = 0;
+// 	(void)argc;
+// 	(void)argv;
+// 	line.cmd = &arg;
+// 	line.env = env;
+// 	while (env[i] && ft_strncmp(env[i], "PATH=", 5))
+// 		i++;
+// 	line.path = env[i];
+// 	fill_lst_env(&line, 0);
+// 	//print_env(line.lst_env);
+// 	//ft_envclear(&line.lst_env);
+// 	if (ft_prompt(&line) == 1)
+// 		return (1);
+// 	ft_get_path(env[i], line.cmd);
+// 	return (0);
+// }
