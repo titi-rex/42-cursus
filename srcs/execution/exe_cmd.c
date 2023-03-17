@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exe_cmd.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lboudjem <lboudjem@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/08 15:07:58 by tlegrand          #+#    #+#             */
-/*   Updated: 2023/03/17 14:06:53 by lboudjem         ###   ########.fr       */
+/*   Updated: 2023/03/17 15:28:26 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -110,26 +110,22 @@ void	ft_exe_master(t_line *line)
 	int	i;
 
 	i = 0;
-	while (line->n_cmds)
+	while (i < line->n_cmds)
 	{
 		if (g_status == SIGINT)
-		{
-			dprintf(2, "EEEEUH MALAISE\n");
 			return ;
-		}
 		g_status = EXECUTION;
 		if (line->cmd->next)
 		{
 			if (pipe(line->pipe[i % 2]) == -1)
 				perror("Error open pipe ");
 		}
-		ft_exe_selector(line, line->pipe[i + 1 % 2], line->pipe[i % 2]);
-		ft_close_pipe(line->pipe[i + 1 % 2]);
+		ft_exe_selector(line, line->pipe[(i + 1) % 2], line->pipe[i % 2]);
+		ft_close_pipe(line->pipe[(i + 1) % 2]);
 		i++;
-		line->cmd = line->cmd->next;
-		dprintf(2, "OUIN %d\n", i);
+		if (line->cmd->next)
+			line->cmd = line->cmd->next;
 	}
-	dprintf(2, "OUIN\n");
 	if (line->n_cmds != 1 || !ft_is_bi(line->cmd->arg))
 		ft_get_wait_status(line->n_cmds, &line->exit_status);
 	if (line->n_cmds && ft_is_this_a_minishell(line))

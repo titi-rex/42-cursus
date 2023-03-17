@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main_test.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lboudjem <lboudjem@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/08 12:28:13 by tlegrand          #+#    #+#             */
-/*   Updated: 2023/03/17 14:06:07 by lboudjem         ###   ########.fr       */
+/*   Updated: 2023/03/17 15:30:34 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,21 +90,15 @@ int main(int ac, char **arg, char **env)
 		if (input && input[0] != '\0')
 			add_history(input);
 		else if (!input)
-		{
-			printf("ouin : %s \n", input);
 			ft_clean_exit(&line, line.exit_status);
-		}
 		ft_browse_line(input, 0, 0, &line);
-		dprintf(2, "ncd : %d\n", line.n_cmds);
-		//free(input);
-		//input = NULL;
+		free(input);
+		input = NULL;
 		//printf("line = %s\n", line.cmd->next->arg[1]);
-		//line.n_cmds = 2;
 		//if (!ft_strncmp(input, "code", 5))
 		//	printf("g_status act is %d\n", g_status);
 		ft_exe_master(&line);
-		dprintf(2, "OUIN exterrieur\n");
-		dprintf(2, "inout : %s\n", input);
+		//dprintf(2, "inout : %s\n", input);
 		s_line_reset(&line);
 	}
 	(void) arg;

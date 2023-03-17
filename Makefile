@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: lboudjem <lboudjem@student.42.fr>          +#+  +:+       +#+         #
+#    By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/02/12 20:46:19 by tlegrand          #+#    #+#              #
-#    Updated: 2023/03/17 14:07:20 by lboudjem         ###   ########.fr        #
+#    Updated: 2023/03/17 14:52:16 by tlegrand         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -77,7 +77,7 @@ MAKE		=	make -s
 
 
 #	==============================	FLAGS	==============================	#
-CFLAGS		=	-Wall -Wextra -Werror -I${DIR_HEADER}  -fsanitize=address -g3
+CFLAGS		=	-Wall -Wextra -Werror -I${DIR_HEADER}  #-fsanitize=address -g3
 RFLAGS		=	-lreadline -lft -ltermcap #-L/usr/local/lib -I/usr/local/include
 FTFLAGS		=	-L${DIR_LIBFT} -lft
 
