@@ -3,61 +3,69 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: lboudjem <lboudjem@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/08 11:21:07 by louisa            #+#    #+#             */
-/*   Updated: 2023/03/10 15:23:10 by tlegrand         ###   ########.fr       */
+/*   Updated: 2023/03/17 13:52:07 by lboudjem         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/minishell.h"
 
-char	**get_cmd(char *str, t_line *line)
+void	ft_list_cmd(char *arg, t_line *line, t_list	*io)
 {
-	(void)str;
-	line->cmd->arg = ft_split(str, ' ');
-	if (!line->cmd->arg)
-		return (NULL);
-	return (line->cmd->arg);
+	t_cmd	*cmds;
+	char	**split;
+
+	cmds = NULL;
+	split = ft_split(arg, ' ');
+	cmds = ft_cmd_new_alloc(split, io);
+	ft_cmd_add_back(&line->cmd, cmds);
+	//printf("arg = %s\n", ft_redirect_acces_arg(line->cmd->io->content));
 }
 
-int	ft_prompt(t_line *line)
+int	ft_browse_line(char *str, int i, int start, t_line *line)
 {
-	char	*str;
-	char	**cmd;
+	char	*bloc;
+	t_list	*io;
+	int		error;
 
-	while (1)
+	io = NULL;
+	bloc = NULL;
+	error = 0;
+	while (str[i])
 	{
-		str = readline("$> ");
-		if (!str)
-			return (1);
-		cmd = get_cmd(str, line);
-		ft_get_path(line->path, line->cmd);
-		if (!cmd)
-			return (1);
-	}
-}
-/*
-int	main(int argc, char **argv, char **env)
-{
-	t_line	line;
-	t_cmd	arg;
-	int		i;
-
-	i = 0;
-	(void)argc;
-	(void)argv;
-	line.cmd = &arg;
-	line.env = env;
-	while (env[i] && ft_strncmp(env[i], "PATH=", 5))
+		ft_quotes(str, &i);
+		if (str[i] == '|')
+		{
+			bloc = ft_creat_bloc(str, &i, &start, bloc);
+			bloc = ft_handle_expansion(bloc, line);
+			io = ft_handle_redirection(bloc, &error);
+			if (error == 1)
+				return (1);
+			//printf("bloc = %s\n", bloc);
+			line->n_cmds++;
+			ft_list_cmd(bloc, line, io);
+			free(bloc);
+		}
+		if (str[i] == '\0' || str[i + 1] == '\0')
+		{
+			bloc = ft_substr(str, start, (i + 1) - start);
+			bloc = ft_handle_expansion(bloc, line);
+			io = ft_handle_redirection(bloc, &error);
+			if (error == 1)
+				return (1);
+			line->n_cmds++;
+			//printf("bloc = %s\n", bloc);
+			ft_list_cmd(bloc, line, io);
+			free(bloc);
+		}
 		i++;
-	line.path = env[i];
-	fill_lst_env(&line, 0);
-	print_env(line.lst_env);
-	ft_envclear(&line.lst_env);
-	// if (ft_prompt(&line) == 1)
-	// 	return (1);
-	//ft_get_path(env[i], line.cmd);
+	}
 	return (0);
 }
-*/
+
+void	ft_parsing()
+{
+	
+}

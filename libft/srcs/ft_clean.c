@@ -3,14 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   ft_clean.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lboudjem <lboudjem@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/10 15:56:31 by tlegrand          #+#    #+#             */
-/*   Updated: 2023/03/09 13:21:40 by lboudjem         ###   ########.fr       */
+/*   Updated: 2023/03/17 15:27:41 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../libft.h"
+#include <stdio.h>
 
 void	ft_free2d(void **arr, int size)
 {

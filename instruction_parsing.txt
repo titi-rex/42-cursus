@@ -1,0 +1,55 @@
+# **************************************************************************** #
+#                                                                              #
+#                                                         :::      ::::::::    #
+#    instruction_parsing.txt                            :+:      :+:    :+:    #
+#                                                     +:+ +:+         +:+      #
+#    By: louisa <louisa@student.42.fr>              +#+  +:+       +#+         #
+#                                                 +#+#+#+#+#+   +#+            #
+#    Created: 2023/03/10 16:14:31 by lboudjem          #+#    #+#              #
+#    Updated: 2023/03/14 16:07:58 by louisa           ###   ########.fr        #
+#                                                                              #
+# **************************************************************************** #
+
+
+                Parcourir jusqu'a trouver des quotes OU un pipe OU la '\0'
+                
+si je trouve une quote :
+    - verifier que la quote se referme
+    - avant que la quote se referme, sil y a un pipe -> invalide
+si je trouve un pipe :
+    - je stock tout ce que j'ai recup dans une variable
+    - je formate* la variable pour la mettre ET je la met dans un element de la liste
+    - on recommence jusqu'a '\0'
+si je trouve un '\0' :
+    - je met tout dans un element de la liste en la formatant*
+
+
+                            *Formater la ligne recuperee
+
+- Parcourir et voir si je trouve une quote simple ou un $ :
+    - si quote : avant que la quote se referme, s'il y a un $ -> $ invalide
+    - sinon : Si il y a un $, le remplacer par sa valeur dans l'env 
+    - si $? : remplacer par exit_status (faut convertir >:()
+    - si un $ ne correspond a rien, remplacer par une chaine vide
+- Parcourir pour chercher les redirections
+    - Juste avant la redirection:
+        - Si il ya un chiffre coller a la rediction -> fd
+        - si il n y a rien, ajouter le fd standard (0 for < and <<, 1 for > and >>)
+        - PAS SURE : si il ya un nom sous le format {NAME} coller a la redirection
+    - Juste apres la redirection:
+        - Si il n y a rien apres : erreur de parsing
+        - Si il ya un nom -> c'est arg
+- Stocker chaque 'mot' dans une case du tableau arg TANT QUE ce n'est ni un $ ni une redirection
+
+
+                    A la fin, reparcourir la liste des redirection io
+
+- Si je trouve une redirection de type 2 (<<), appeler la fonction here_doc
+- dans le here_doc : interpreter les $ 
+
+Autre:
+- Faire une fonction clear all qui clear toutes les liste entre deux commandes entrés par le user
+
+        Offrir des gatos a titi
+- Un titi bien nourrit travaillera mieux et sera de meilleur humeur
+- Un effet secondaire est un sentiment de réussite, de grâce, d'amour infinie et d'apaisement

@@ -6,7 +6,7 @@
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/08 15:07:58 by tlegrand          #+#    #+#             */
-/*   Updated: 2023/03/16 17:42:03 by tlegrand         ###   ########.fr       */
+/*   Updated: 2023/03/17 16:10:33 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -116,8 +116,7 @@ void	ft_exe_master(t_line *line)
 	int	i;
 
 	i = 0;
-	g_status = EXECUTION;
-	while (line->n_cmds)
+	while (i < line->n_cmds)
 	{
 		if (g_status == SIGINT)
 			return ;
@@ -126,12 +125,11 @@ void	ft_exe_master(t_line *line)
 			if (pipe(line->pipe[i % 2]) == -1)
 				perror("Error open pipe ");
 		}
-		ft_exe_selector(line, line->pipe[i + 1 % 2], line->pipe[i % 2]);
-		ft_close_pipe(line->pipe[i + 1 % 2]);
+		ft_exe_selector(line, line->pipe[(i + 1) % 2], line->pipe[i % 2]);
+		ft_close_pipe(line->pipe[(i + 1) % 2]);
 		i++;
-		if (!line->cmd->next)
-			break ;
-		line->cmd = line->cmd->next;
+		if (line->cmd->next)
+			line->cmd = line->cmd->next;
 	}
 	if (line->n_cmds != 1 || !ft_is_bi(line->cmd->arg))
 		ft_get_wait_status(line->n_cmds, &line->exit_status);

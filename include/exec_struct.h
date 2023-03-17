@@ -3,16 +3,26 @@
 /*                                                        :::      ::::::::   */
 /*   exec_struct.h                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: lboudjem <lboudjem@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/06 21:46:27 by tlegrand          #+#    #+#             */
-/*   Updated: 2023/03/13 19:40:16 by tlegrand         ###   ########.fr       */
+/*   Updated: 2023/03/16 16:09:37 by lboudjem         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef EXEC_STRUCT_H
 # define EXEC_STRUCT_H
 # include "../libft/libft.h"
+
+/*	structure for environment variables
+*/
+typedef struct s_var_env
+{
+	char				*name;
+	char				*value;
+	struct s_var_env	*next;
+	struct s_var_env	*previous;
+}	t_var_env;
 
 /*	structure storing one redirection and point to the next
 	type	: 0 == <, 1 == >, 2 == <<, 3 == >>
@@ -37,16 +47,6 @@ typedef struct s_cmd
 	struct s_cmd	*next;
 	struct s_cmd	*previous;
 }	t_cmd;
-
-/*	structure for environment variables
-*/
-typedef struct s_var_env
-{
-	char				*name;
-	char				*value;
-	struct s_var_env	*next;
-	struct s_var_env	*previous;
-}	t_var_env;
 
 /*	structure holding the whole command line, only used in exec part
 */

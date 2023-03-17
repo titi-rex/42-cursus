@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: lboudjem <lboudjem@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/08 17:06:26 by tlegrand          #+#    #+#             */
-/*   Updated: 2023/03/15 18:35:48 by tlegrand         ###   ########.fr       */
+/*   Updated: 2023/03/16 16:21:30 by lboudjem         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,20 @@
 # define READING 307
 # define EXECUTION 317
 # define MINISHELL 337
+
+/*                  Parsing functiun            */
+int			ft_browse_line(char *str, int i, int start, t_line *line);
+void		ft_quotes(char *str, int *i);
+char		*ft_creat_bloc(char *str, int *i, int *start, char *bloc);
+int			ft_handle_quotes(char *str, int i, int quote);
+char		*ft_delete_quotes(char *bloc, int size, int nb_quotes);
+char		*ft_get_expansion_value(char *bloc, t_line *line, int *len, int i);
+char		*ft_replace_expansion_value(char *bloc, t_line *line, int len, int i);
+char		*ft_replace_by_exit_status(char *bloc, int i, t_line *line);
+char		*ft_handle_expansion(char *bloc, t_line *line);
+char		*ft_redirection_arg(char *bloc, int i);
+int			ft_redirection_type_fd(char *bloc, int *type, int *i);
+t_list		*ft_handle_redirection(char *bloc, int *error);
 
 /*     			 get path functiuns   		   */
 int			ft_splitlen(char **split);
@@ -95,10 +109,9 @@ void		s_line_clear(t_line *line);
 /*			struct redirect functions			*/
 void		s_redirect_init(t_redirect *io);
 int			*ft_redirect_acces_type(t_redirect *io);
-int			*ft_redirect_acces_fd(t_redirect *io);
 char		*ft_redirect_acces_arg(t_redirect *io);
-t_redirect	*ft_redirect_new(int type, int fd, char *arg);
-int			ft_redirect_add_list(t_list	**start, int type, int fd, char *arg);
+t_redirect	*ft_redirect_new(int type, char *arg);
+int			ft_redirect_add_list(t_list	**start, int type, char *arg);
 void		ft_redirect_del(void *addr);
 t_list		*ft_redirect_search_type(t_list *lst, int ref);
 

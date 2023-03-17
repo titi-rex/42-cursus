@@ -6,7 +6,7 @@
 #    By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/02/12 20:46:19 by tlegrand          #+#    #+#              #
-#    Updated: 2023/03/15 18:37:38 by tlegrand         ###   ########.fr        #
+#    Updated: 2023/03/17 14:52:16 by tlegrand         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,6 +23,7 @@ DIR_SRCS		=	srcs/
 LST_SRCS		=	main_test.c \
 					signal.c \
 					utils.c \
+					prompt.c \
 					term.c 
 SRCS			=	${addprefix ${DIR_SRCS}, ${LST_SRCS}}
 
@@ -38,7 +39,10 @@ LST_SRCS_STRUCT	=	s_line_basic.c \
 SRCS_STRUCT		=	${addprefix ${DIR_SRCS_STRUCT}, ${LST_SRCS_STRUCT}}
 
 DIR_SRCS_PARSE	=	srcs/parsing/
-LST_SRCS_PARSE	=	parsing.c get_path.c ft_here_doc.c
+LST_SRCS_PARSE	=	parsing.c get_path.c ft_here_doc.c \
+					parsing_expansion.c \
+					parsing_quotes.c \
+					parsing_redirection.c 
 SRCS_PARSE		=	${addprefix ${DIR_SRCS_PARSE}, ${LST_SRCS_PARSE}}
 
 DIR_SRCS_EXE	=	srcs/execution/
