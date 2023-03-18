@@ -6,7 +6,7 @@
 /*   By: lboudjem <lboudjem@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/08 11:21:07 by louisa            #+#    #+#             */
-/*   Updated: 2023/03/18 17:18:53 by lboudjem         ###   ########.fr       */
+/*   Updated: 2023/03/18 17:27:43 by lboudjem         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,6 +97,8 @@ int	ft_browse_line(char *str, int i, int start, t_line *line)
 			//printf("bloc = %s\n", bloc);
 			if (error == 1)
 				return (1);
+			if (!bloc)
+				return (1);
 			line->n_cmds++;
 			ft_list_cmd(bloc, line, io);
 			free(bloc);
@@ -109,6 +111,8 @@ int	ft_browse_line(char *str, int i, int start, t_line *line)
 			bloc = ft_handle_export(bloc);
 			//printf("bloc = %s\n", bloc);
 			if (error == 1)
+				return (1);
+			if (!bloc)
 				return (1);
 			line->n_cmds++;
 			ft_list_cmd(bloc, line, io);
