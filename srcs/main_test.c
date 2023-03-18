@@ -6,7 +6,7 @@
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/08 12:28:13 by tlegrand          #+#    #+#             */
-/*   Updated: 2023/03/18 16:53:30 by tlegrand         ###   ########.fr       */
+/*   Updated: 2023/03/18 22:36:24 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,9 @@ void	ft_init_main(t_line *line, char **env)
 	fill_lst_env2(&line->lst_env, env);
 	line->env = ft_lstenv_to_tab(line->lst_env);
 }
+
+/*	TODO:	change export / env*/
+/*	TODO:	prompt one line write on first line */
 /*	FIXME:	fd open at exit	*/
 /*	TODO:	prompt function */
 /*	TODO: mettre au propre + norme	*/
@@ -74,6 +77,8 @@ int	fmain(int ac, char **arg, char **env)
 int	main(int ac, char **arg, char **env)
 {
 	char	*input;
+	char	*prompt;
+	int		n;
 	t_line	line;
 
 
@@ -82,6 +87,10 @@ int	main(int ac, char **arg, char **env)
 	else
 		ft_greeting();
 	ft_init_main(&line, env);
+	prompt = NULL;
+	n = ft_get_git_status(&prompt);
+	printf("git status : %d\nprompt : %s\n", n, prompt);
+	free(prompt);
 	while (1)
 	{
 		if (g_status & INTERRUPT)
