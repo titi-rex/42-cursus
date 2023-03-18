@@ -6,7 +6,7 @@
 #    By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/02/12 20:46:19 by tlegrand          #+#    #+#              #
-#    Updated: 2023/03/18 22:33:51 by tlegrand         ###   ########.fr        #
+#    Updated: 2023/03/18 23:02:47 by tlegrand         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -25,6 +25,7 @@ LST_SRCS		=	main_test.c \
 					utils.c \
 					prompt.c \
 					prompt_git.c \
+					prompt_tmp.c \
 					term.c 
 SRCS			=	${addprefix ${DIR_SRCS}, ${LST_SRCS}}
 

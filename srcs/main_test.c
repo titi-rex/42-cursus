@@ -6,7 +6,7 @@
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/08 12:28:13 by tlegrand          #+#    #+#             */
-/*   Updated: 2023/03/18 22:36:24 by tlegrand         ###   ########.fr       */
+/*   Updated: 2023/03/18 23:01:56 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,14 +17,7 @@ sig_atomic_t	g_status = 0;
 int		ft_man(int num);
 void	ft_greeting(void);
 
-// /*
-// PWD
-// time
-// user
-// exit status 
-// machine
-// TIME_UTC
-// */
+
 
 void	ft_init_main(t_line *line, char **env)
 {

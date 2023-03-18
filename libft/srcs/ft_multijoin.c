@@ -6,7 +6,7 @@
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/15 15:21:08 by tlegrand          #+#    #+#             */
-/*   Updated: 2023/03/15 16:10:31 by tlegrand         ###   ########.fr       */
+/*   Updated: 2023/03/18 23:00:44 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,8 @@ char	*ft_multijoin(int n, ...)
 	while (n > 0)
 	{
 		buff = va_arg(ap, char *);
-		ft_strlcpy(join + len, buff, ft_strlen2(buff) + 1);
+		if (buff)
+			ft_strlcpy(join + len, buff, ft_strlen2(buff) + 1);
 		len += ft_strlen2(buff);
 		n--;
 	}

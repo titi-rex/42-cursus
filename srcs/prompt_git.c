@@ -6,7 +6,7 @@
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/18 20:51:52 by tlegrand          #+#    #+#             */
-/*   Updated: 2023/03/18 22:40:05 by tlegrand         ###   ########.fr       */
+/*   Updated: 2023/03/18 22:45:57 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,20 +51,18 @@ char	*ft_extract_branche(char *dir)
 		return (NULL);
 	fd = open(head, O_RDONLY);
 	if (fd == -1)
-	{
-		perror("Error ");
-		return (NULL);
-	}
+		return (ft_perror_return_null(NULL));
 	free(head);
 	ft_bzero(branch, 1024);
 	if (read(fd, &branch, 1024) == -1)
 	{
-		perror("Error ");
 		close(fd);
-		return (NULL);
+		return (ft_perror_return_null(NULL));
 	}
 	close(fd);
 	buf = ft_strrchr(branch, '/');
+	if (buf)
+		buf++;
 	return (ft_strndup(buf, ft_strlen2(buf)));
 }
 
@@ -112,7 +110,7 @@ int	ft_get_git_status(char **current_branche)
 	if (!path_dir_git)
 		return (2);
 	git_status = 0;
-	if (ft_exist(path_dir_git, "/object"))
+	if (ft_exist(path_dir_git, "/objects"))
 		git_status = 1;
 	if (ft_exist(path_dir_git, "/refs"))
 		git_status = 1;
