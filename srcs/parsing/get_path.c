@@ -6,7 +6,7 @@
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/09 13:35:47 by lboudjem          #+#    #+#             */
-/*   Updated: 2023/03/18 17:23:51 by tlegrand         ###   ########.fr       */
+/*   Updated: 2023/03/18 20:35:58 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,15 +35,13 @@ char	*ft_get_pathcmd(char **paths, char *cmd_name)
 		j++;
 	}
 	free(buffer);
-	ft_putstr_fd(cmd_name, 2);
-	ft_putendl_fd(" : command not found", 2);
-	free(cmd_name);
 	return (NULL);
 }
 
 int	ft_get_path(char *pathvar, char	**head)
 {
 	char	**paths;
+	char	*tmp;
 
 	if (*head == NULL || ft_is_bi(*head) || !pathvar)
 		return (1);
@@ -55,9 +53,10 @@ int	ft_get_path(char *pathvar, char	**head)
 		perror("Error ");
 		return (1);
 	}
-	*head = ft_get_pathcmd(paths, *head);
+	tmp = ft_get_pathcmd(paths, *head);
 	ft_free2d((void **)paths, 0);
-	if (!*head)
+	if (!tmp)
 		return (1);
+	*head = tmp;
 	return (0);
 }

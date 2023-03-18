@@ -6,7 +6,7 @@
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/08 15:07:58 by tlegrand          #+#    #+#             */
-/*   Updated: 2023/03/18 17:22:29 by tlegrand         ###   ########.fr       */
+/*   Updated: 2023/03/18 20:35:34 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,11 @@ void	ft_exe_cmd(t_line *line, int pipe_in[2], int pipe_out[2])
 		if (!line->cmd->arg && line->cmd->io)
 			ft_clean_exit(line, EXIT_SUCCESS);
 		if (ft_get_path(get_value(line->lst_env, "PATH"), &line->cmd->arg[0]))
+		{
+			ft_putstr_fd(line->cmd->arg[0], 2);
+			ft_putendl_fd(" : command not found", 2);
 			ft_clean_exit(line, EXIT_FAILURE);
+		}
 		execve(line->cmd->arg[0], line->cmd->arg, line->env);
 		perror("Error ");
 		ft_clean_exit(line, EXIT_FAILURE);
