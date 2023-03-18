@@ -6,22 +6,20 @@
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/15 16:23:42 by tlegrand          #+#    #+#             */
-/*   Updated: 2023/03/15 18:08:08 by tlegrand         ###   ########.fr       */
+/*   Updated: 2023/03/18 12:43:46 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-t_var_env	*fill_lst_env_std(void)
+void	fill_lst_env_std(t_var_env **lst)
 {
-	t_var_env	*start;
 	t_var_env	*new;
 	char		*pwd;
 
 	new = NULL;
-	start = new;
 	new = ft_new_env("SHLVL", "1");
-	ft_envadd_back(&start, new);
+	ft_envadd_back(lst, new);
 	pwd = getcwd(NULL, 0);
 	if (!pwd)
 		new = ft_new_env("PWD", "");
@@ -30,11 +28,10 @@ t_var_env	*fill_lst_env_std(void)
 		new = ft_new_env("PWD", pwd);
 		free(pwd);
 	}
-	ft_envadd_back(&start, new);
-	return (start);
+	ft_envadd_back(lst, new);
 }
 
-void	envadd(char *env, t_var_env *lst)
+void	envadd(char *env, t_var_env **lst)
 {
 	char		*name;
 	char		*value;
@@ -52,22 +49,20 @@ void	envadd(char *env, t_var_env *lst)
 	free(value);
 	if (!new)
 		return ((void)ft_envclear(&new));
-	ft_envadd_back(&lst, new);
+	ft_envadd_back(lst, new);
 }
 
-t_var_env	*fill_lst_env2(char **env)
+void	fill_lst_env2(t_var_env **lst, char **env)
 {
-	t_var_env	*lst;
 	int			i;
 
-	if (!env)
-		return (fill_lst_env_std());
-	lst = NULL;
+	if (!env || !*env)
+		return ((void) fill_lst_env_std(lst));
 	i = 0;
 	while (env[i])
 	{
 		envadd(env[i], lst);
 		i++;
 	}
-	return (lst);
+	ft_var_env_update_shlvl(*lst);
 }

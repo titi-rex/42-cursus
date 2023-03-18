@@ -6,7 +6,7 @@
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/13 19:29:46 by tlegrand          #+#    #+#             */
-/*   Updated: 2023/03/14 10:43:12 by tlegrand         ###   ########.fr       */
+/*   Updated: 2023/03/16 17:40:41 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ void	term_init_termcap(char *data)
 		return ((void) ft_putendl_fd("Error : TERM not set", 2));
 	tget_status = tgetent(data, term);
 	if (tget_status == -1)
-		return ((void) ft_putendl_fd("Error : could acces termcap database", \
+		return ((void) ft_putendl_fd("Error : couldn't acces termcap database", \
 			2));
 	if (tget_status == 0)
 		return ((void) ft_putendl_fd("Error : termcap database has too few info \

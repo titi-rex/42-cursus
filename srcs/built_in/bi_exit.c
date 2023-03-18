@@ -6,13 +6,12 @@
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/08 14:10:12 by tlegrand          #+#    #+#             */
-/*   Updated: 2023/03/13 20:07:06 by tlegrand         ###   ########.fr       */
+/*   Updated: 2023/03/17 19:28:27 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/minishell.h"
 
-/*	TODO: check if display exit bedore exit at school	*/
 int	bi_exit(t_line *line)
 {
 	int	exit_code;
@@ -21,6 +20,7 @@ int	bi_exit(t_line *line)
 		exit_code = ft_atoi(line->cmd->arg[1]);
 	else
 		exit_code = line->exit_status;
+	ft_putendl_fd("exit", 1);
 	ft_clean_exit(line, exit_code);
 	return (EXIT_FAILURE);
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exec_struct.h                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lboudjem <lboudjem@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/06 21:46:27 by tlegrand          #+#    #+#             */
-/*   Updated: 2023/03/17 16:43:35 by lboudjem         ###   ########.fr       */
+/*   Updated: 2023/03/17 20:52:46 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,6 @@ typedef struct s_var_env
 typedef struct s_redirect
 {
 	int					type;
-	int					fd;
 	char				*arg;
 }	t_redirect;
 
@@ -55,6 +54,7 @@ typedef struct s_line
 	t_cmd			*cmd;
 	char			**env;
 	int				pipe[2][2];
+	int				fd_std[2];
 	int				n_cmds;
 	int				exit_status;
 	t_var_env		*lst_env;

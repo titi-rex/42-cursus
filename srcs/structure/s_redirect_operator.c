@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   s_redirect_operator.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lboudjem <lboudjem@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/10 22:07:36 by tlegrand          #+#    #+#             */
-/*   Updated: 2023/03/16 16:12:11 by lboudjem         ###   ########.fr       */
+/*   Updated: 2023/03/17 19:42:09 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,5 @@ int	ft_redirect_add_list(t_list	**start, int type, char *arg)
 void	s_redirect_init(t_redirect *io)
 {
 	io->type = 0;
-	io->fd = 0;
 	io->arg = NULL;
 }

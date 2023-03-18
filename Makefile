@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: lboudjem <lboudjem@student.42.fr>          +#+  +:+       +#+         #
+#    By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/02/12 20:46:19 by tlegrand          #+#    #+#              #
-#    Updated: 2023/03/17 15:32:26 by lboudjem         ###   ########.fr        #
+#    Updated: 2023/03/18 12:44:20 by tlegrand         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -35,7 +35,7 @@ DIR_SRCS_STRUCT	=	srcs/structure/
 LST_SRCS_STRUCT	=	s_line_basic.c \
 					s_cmd_basic.c s_cmd_operator.c \
 					s_redirect_basic.c s_redirect_operator.c \
-					var_env_utils.c var_env_utils2.c var_env.c
+					var_env_utils.c var_env_utils2.c var_env.c env_update.c
 SRCS_STRUCT		=	${addprefix ${DIR_SRCS_STRUCT}, ${LST_SRCS_STRUCT}}
 
 DIR_SRCS_PARSE	=	srcs/parsing/
@@ -78,7 +78,7 @@ MAKE		=	make -s
 
 
 #	==============================	FLAGS	==============================	#
-CFLAGS		=	-Wall -Wextra -Werror -I${DIR_HEADER}  #-fsanitize=address -g3
+CFLAGS		=	-Wall -Wextra -Werror -I${DIR_HEADER} #-fsanitize=address -g3
 RFLAGS		=	-lreadline -lft -ltermcap #-L/usr/local/lib -I/usr/local/include
 FTFLAGS		=	-L${DIR_LIBFT} -lft
 
@@ -88,6 +88,9 @@ FTFLAGS		=	-L${DIR_LIBFT} -lft
 
 #	==============================	BASIC	==============================	#
 all		:	${NAME}
+
+msg		:
+		@printf "${REV}3${END}>\n"
 
 clean	:
 		@${RM} ${DIR_OBJS}
@@ -162,7 +165,17 @@ VIOLET		=	\033[1;35m
 CYAN		=	\033[1;36m
 WHITE		=	\033[1;37m
 END			=	\033[0m
+BOLD		=	\033[1m
+FAINT		=	\033[2m
+ITALIC		=	\033[3m
 UNDERLINE	=	\033[4m
-REV			=	\033[7m
+BLINK_SLOW	=	\033[5m
+BLINK_FAST	=	\033[6m
+BLINK_OFF	=	\033[25m
+REV_V		=	\033[7m
+CONCEAL		=	\033[8m
+CONCEAL_OFF	=	\033[28m
+CROSS_OUT	=	\033[9m
+CROSS_OUT_O	=	\033[29m
 ERASE		=	\033[2K
 RERASE		=	\r\033[2K

@@ -6,7 +6,7 @@
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/08 15:07:58 by tlegrand          #+#    #+#             */
-/*   Updated: 2023/03/17 15:28:26 by tlegrand         ###   ########.fr       */
+/*   Updated: 2023/03/18 13:44:01 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,8 @@ void	ft_exe_bi(t_line *line, int pipe_in[2], int pipe_out[2], \
 		if (ft_dup_redirect(line->cmd->io, here_pipe, line))
 			return ;
 		line->exit_status = ft_bi(line);
+		dup2(line->fd_std[0], STDIN_FILENO);
+		dup2(line->fd_std[1], STDOUT_FILENO);
 	}
 	else
 	{
@@ -50,7 +52,7 @@ void	ft_exe_cmd(t_line *line, int pipe_in[2], int pipe_out[2])
 
 	if (!access(line->cmd->arg[0], X_OK) && !ft_strncmp(line->cmd->arg[0] \
 		+ ft_strlen2(line->cmd->arg[0]) - 9, "minishell", 11))
-		ft_sig_init(SIG_IGN);
+		g_status |= MINISHELL;
 	pid = fork();
 	if (pid == -1)
 		perror("Error ");
@@ -60,7 +62,7 @@ void	ft_exe_cmd(t_line *line, int pipe_in[2], int pipe_out[2])
 		ft_dup_pipe(pipe_in, pipe_out);
 		if (ft_dup_redirect(line->cmd->io, here_pipe, line))
 			perror("Error ");
-		if ((!line->cmd->arg || !line->cmd->arg[0]) && line->cmd->io)
+		if (!line->cmd->arg && line->cmd->io)
 			ft_clean_exit(line, EXIT_SUCCESS);
 		execve(line->cmd->arg[0], line->cmd->arg, line->env);
 		perror("Error ");
@@ -70,9 +72,9 @@ void	ft_exe_cmd(t_line *line, int pipe_in[2], int pipe_out[2])
 
 void	ft_exe_selector(t_line *line, int pipe_in[2], int pipe_out[2])
 {
-	if (!line->cmd->arg || !line->cmd->arg[0])
+	if (!line->cmd->arg)
 		ft_exe_cmd(line, pipe_in, pipe_out);
-	else if (!ft_strncmp(line->cmd->arg[0], "cd", 3))
+	if (!ft_strncmp(line->cmd->arg[0], "cd", 3))
 		ft_exe_bi(line, pipe_in, pipe_out, bi_cd);
 	else if (line->cmd->arg && !ft_strncmp(line->cmd->arg[0], "echo", 5))
 		ft_exe_bi(line, pipe_in, pipe_out, bi_echo);
@@ -94,15 +96,24 @@ void	ft_get_wait_status(int max_wait, int *exit_code)
 {
 	int	wstatus;
 	int	i;
+	int	pid;
 
 	i = -1;
 	wstatus = 0;
-	while (i++ < max_wait)
-		waitpid(-1, &wstatus, 0);
-	if (WIFEXITED(wstatus))
-		*exit_code = WEXITSTATUS(wstatus);
-	if (WIFSIGNALED(wstatus))
-		*exit_code = WTERMSIG(wstatus);
+	while (++i < max_wait)
+	{
+		pid = waitpid(-1, &wstatus, 0);
+		if (WIFEXITED(wstatus))
+			*exit_code = WEXITSTATUS(wstatus);
+		if (WIFSIGNALED(wstatus))
+		{
+			*exit_code = WTERMSIG(wstatus);
+			if (WTERMSIG(wstatus) == 3)
+				ft_putstr_fd("Quit\n", 2);
+		}
+		dprintf(2, "wait end for %d\n", pid);
+	}
+	dprintf(2, "all wait end, gstatsu : %d\n", g_status);
 }
 
 void	ft_exe_master(t_line *line)
@@ -110,11 +121,14 @@ void	ft_exe_master(t_line *line)
 	int	i;
 
 	i = 0;
+	if (!line->n_cmds)
+		return ;
+	g_status ^= READING;
+	g_status |= EXECUTION;
 	while (i < line->n_cmds)
 	{
-		if (g_status == SIGINT)
+		if (g_status & INTERRUPT)
 			return ;
-		g_status = EXECUTION;
 		if (line->cmd->next)
 		{
 			if (pipe(line->pipe[i % 2]) == -1)
@@ -128,6 +142,7 @@ void	ft_exe_master(t_line *line)
 	}
 	if (line->n_cmds != 1 || !ft_is_bi(line->cmd->arg))
 		ft_get_wait_status(line->n_cmds, &line->exit_status);
-	if (line->n_cmds && ft_is_this_a_minishell(line))
-		ft_sig_init(ft_sig_handler_shell);
+	if (g_status & MINISHELL)
+		g_status ^= MINISHELL;
+	g_status ^= EXECUTION;
 }
