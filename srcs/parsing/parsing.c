@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: louisa <louisa@student.42.fr>              +#+  +:+       +#+        */
+/*   By: lboudjem <lboudjem@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/08 11:21:07 by louisa            #+#    #+#             */
-/*   Updated: 2023/03/17 23:27:30 by louisa           ###   ########.fr       */
+/*   Updated: 2023/03/18 17:03:58 by lboudjem         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,8 +64,10 @@ void	ft_list_cmd(char *arg, t_line *line, t_list	*io)
 			}
 			j++;
 		}
+		//printf("split[i] = %s\n", split[i]);
 		if (quote == 34 || quote == 39)
 			split[i] = ft_delete_quotes(split[i], 0, 0, quote);
+		//printf("split[i].2 = %s\n", split[i]);
 		i++;
 	}
 	cmds = ft_cmd_new_alloc(split, io);
@@ -90,9 +92,9 @@ int	ft_browse_line(char *str, int i, int start, t_line *line)
 		{
 			bloc = ft_creat_bloc(str, &i, &start, bloc);
 			bloc = ft_handle_expansion(bloc, line);
-			io = ft_handle_redirection(bloc, &error);
+			io = ft_handle_redirection(&bloc, &error);
 			bloc = ft_handle_export(bloc);
-			printf("bloc = %s\n", bloc);
+			//printf("bloc = %s\n", bloc);
 			if (error == 1)
 				return (1);
 			line->n_cmds++;
@@ -103,9 +105,9 @@ int	ft_browse_line(char *str, int i, int start, t_line *line)
 		{
 			bloc = ft_substr(str, start, (i + 1) - start);
 			bloc = ft_handle_expansion(bloc, line);
-			io = ft_handle_redirection(bloc, &error);
+			io = ft_handle_redirection(&bloc, &error);
 			bloc = ft_handle_export(bloc);
-			printf("bloc = %s\n", bloc);
+			//printf("bloc = %s\n", bloc);
 			if (error == 1)
 				return (1);
 			line->n_cmds++;

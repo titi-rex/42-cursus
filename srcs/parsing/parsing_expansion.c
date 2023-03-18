@@ -6,13 +6,11 @@
 /*   By: lboudjem <lboudjem@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/13 17:33:36 by louisa            #+#    #+#             */
-/*   Updated: 2023/03/17 16:21:28 by lboudjem         ###   ########.fr       */
+/*   Updated: 2023/03/18 15:41:34 by lboudjem         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/minishell.h"
-
-// free dans les cas d'erreur 
 
 char	*ft_get_expansion_value(char *bloc, t_line *line, int *len, int i)
 {
@@ -112,6 +110,9 @@ char	*ft_handle_expansion(char *bloc, t_line *line)
 			while ((bloc[i]) && bloc[i] != 39)
 				i++;
 		}
+		if (bloc[i] && bloc[i] == '$' && (bloc[i + 1] == ' ' \
+			|| bloc[i + 1] == '\0' || bloc[i + 1] == '\t'))
+			i++;
 		if (bloc[i] && bloc[i] == '$' && bloc[i + 1] == '?')
 			bloc = ft_replace_by_exit_status(bloc, i, line);
 		if (bloc[i] && bloc[i] == '$')

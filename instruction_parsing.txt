@@ -6,7 +6,7 @@
 #    By: lboudjem <lboudjem@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/03/10 16:14:31 by lboudjem          #+#    #+#              #
-#    Updated: 2023/03/18 13:39:26 by lboudjem         ###   ########.fr        #
+#    Updated: 2023/03/18 16:27:27 by lboudjem         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -36,6 +36,7 @@ si je trouve un export :
     - si quote : avant que la quote se referme, s'il y a un $ -> $ invalide
     - sinon : Si il y a un $, le remplacer par sa valeur dans l'env 
     - si $? : remplacer par exit_status (faut convertir >:()
+    - si ya un $ avec rien apres on fait rien
     - si un $ ne correspond a rien, remplacer par une chaine vide
 - Parcourir pour chercher les redirections
     - Juste avant la redirection:
@@ -70,10 +71,42 @@ Autre:
 
 
 - A ne pas oublier:
-echo $ print un $
 penser a free hihi
 supprimer les redirection er leurs args juste apres
-hd
-export test : export pas
-export test= : export test=(rien)
+export test : ca le met dans export et pas dans env
+export test= : dans env ca met test=(rien)
 echo '"'"$USER"'"'
+echo "$""USER"
+
+                        Exemples chiants a tester:
+
+echo mdrr 1<>coucou
+echo mdrr 2<>coucou
+echo >mdr>hey>>sarace \sal"mdr"
+echo <hey1<h'ey2'
+echo bonjour >hey >>hey2 >>hey3
+>> e
+ls $HOME/Desktop
+echo “$PATH”
+echo "$PATH$PWD"
+echo -n a '' b '' c '' d
+e"ch"o bonjour
+echo\ bonjour
+exit ' 3'
+exit -1
+exit -9223372036854775808
+exit 9223372036854775807
+exit +3 
+exit 2000000
+exit -2147483649
+exit 0 bonjour ->	bash: exit: too many arguments
+exit coucou    ->	exit: coucou: numeric argument required
+cat Makefile | ./minishell
+Essayer d'exécuter un mini shell dans minishell ./minishell et tester les signaux et le man de commandes
+./minishell coucou (doit renvoyer une erreur)
+echo "$ejnzefc" hey
+./minishell 2>lol (redirection de stderr, aucuns messages d'erreurs ne doivent s'imprimer dans le terminal)
+env -i ./minishell (= lance sans les var d’env)
+commande yes avec les signaux et $?
+echo $ejknfenf hey
+pouet+=a ballek

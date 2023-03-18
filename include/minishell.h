@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: lboudjem <lboudjem@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/08 17:06:26 by tlegrand          #+#    #+#             */
-/*   Updated: 2023/03/17 23:11:32 by tlegrand         ###   ########.fr       */
+/*   Updated: 2023/03/18 17:04:16 by lboudjem         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ char		*ft_replace_by_exit_status(char *bloc, int i, t_line *line);
 char		*ft_handle_expansion(char *bloc, t_line *line);
 char		*ft_redirection_arg(char *bloc, int i);
 int			ft_redirection_type_fd(char *bloc, int *type, int *i);
-t_list		*ft_handle_redirection(char *bloc, int *error);
+t_list		*ft_handle_redirection(char **bloc, int *error);
 char		**ft_split_bis(char const *s, char c);
 
 /*     			get path functiuns   		   */
