@@ -6,7 +6,7 @@
 #    By: lboudjem <lboudjem@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/03/10 16:14:31 by lboudjem          #+#    #+#              #
-#    Updated: 2023/03/18 16:27:27 by lboudjem         ###   ########.fr        #
+#    Updated: 2023/03/18 17:19:28 by lboudjem         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -77,11 +77,13 @@ export test : ca le met dans export et pas dans env
 export test= : dans env ca met test=(rien)
 echo '"'"$USER"'"'
 echo "$""USER"
+(echo coucou |   |) DIFFERENT DE (echo coucou | " "  | " ")
 
                         Exemples chiants a tester:
 
 echo mdrr 1<>coucou
 echo mdrr 2<>coucou
+echo coucou > "ihi aha"ihi
 echo >mdr>hey>>sarace \sal"mdr"
 echo <hey1<h'ey2'
 echo bonjour >hey >>hey2 >>hey3

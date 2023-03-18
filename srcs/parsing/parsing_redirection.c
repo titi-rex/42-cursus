@@ -6,7 +6,7 @@
 /*   By: lboudjem <lboudjem@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/13 17:47:02 by louisa            #+#    #+#             */
-/*   Updated: 2023/03/18 17:05:27 by lboudjem         ###   ########.fr       */
+/*   Updated: 2023/03/18 17:13:27 by lboudjem         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -112,7 +112,6 @@ char	*ft_clear_redirection(char *bloc, int i)
 	size = ft_strlen2(bloc);
 	cpy = ft_strjoin(ft_substr(bloc, 0, i), \
 		ft_substr(bloc, i + len, size - (i + len)));
-	printf("cpy = %s\n", cpy);
 	return (cpy);
 }
 
@@ -127,7 +126,7 @@ t_list	*ft_handle_redirection(char **bloc, int *error)
 	type = -1;
 	io = NULL;
 	arg = NULL;
-	while (*bloc[i])
+	while ((*bloc)[i])
 	{
 		if (ft_redirection_type_fd(*bloc, &type, &i) == 1)
 		{
