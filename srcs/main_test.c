@@ -6,7 +6,7 @@
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/08 12:28:13 by tlegrand          #+#    #+#             */
-/*   Updated: 2023/03/17 23:13:30 by tlegrand         ###   ########.fr       */
+/*   Updated: 2023/03/18 12:44:09 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,9 +28,9 @@ void	ft_greeting(void);
 
 void	ft_init_main(t_line *line, char **env)
 {
+	s_line_init(line);
 	ft_sig_init(ft_sig_handler_shell);
 	term_init_setting(&line->old);
-	s_line_init(line);
 	fill_lst_env2(&line->lst_env, env);
 	line->env = ft_lstenv_to_tab(line->lst_env);
 }

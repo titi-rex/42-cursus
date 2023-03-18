@@ -6,7 +6,7 @@
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/08 18:19:34 by tlegrand          #+#    #+#             */
-/*   Updated: 2023/03/17 20:20:38 by tlegrand         ###   ########.fr       */
+/*   Updated: 2023/03/18 12:43:26 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,8 @@
 void	s_line_init(t_line *line)
 {
 	line->cmd = NULL;
+	line->env = NULL;
+	line->lst_env = NULL;
 	line->pipe[0][0] = -1;
 	line->pipe[0][1] = -1;
 	line->pipe[1][0] = -1;
@@ -26,7 +28,6 @@ void	s_line_init(t_line *line)
 		perror("Error ");
 	line->n_cmds = 0;
 	line->exit_status = 0;
-	line->env = NULL;
 }
 
 void	s_line_reset(t_line *line)
