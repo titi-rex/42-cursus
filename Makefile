@@ -6,7 +6,7 @@
 #    By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/02/12 20:46:19 by tlegrand          #+#    #+#              #
-#    Updated: 2023/03/18 12:44:20 by tlegrand         ###   ########.fr        #
+#    Updated: 2023/03/18 16:16:27 by tlegrand         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -28,7 +28,7 @@ LST_SRCS		=	main_test.c \
 SRCS			=	${addprefix ${DIR_SRCS}, ${LST_SRCS}}
 
 DIR_SRCS_BI		=	srcs/built_in/
-LST_SRCS_BI		=	bi_cd.c bi_echo.c bi_pwd.c  bi_exit.c bi_env.c bi_export.c bi_unset.c
+LST_SRCS_BI		=	bi_cd.c bi_echo.c bi_pwd.c  bi_exit.c bi_env.c bi_export.c bi_type.c bi_unset.c
 SRCS_BI			=	${addprefix ${DIR_SRCS_BI}, ${LST_SRCS_BI}}
 
 DIR_SRCS_STRUCT	=	srcs/structure/
@@ -89,9 +89,6 @@ FTFLAGS		=	-L${DIR_LIBFT} -lft
 #	==============================	BASIC	==============================	#
 all		:	${NAME}
 
-msg		:
-		@printf "${REV}3${END}>\n"
-
 clean	:
 		@${RM} ${DIR_OBJS}
 		@$(MAKE) -C ${DIR_LIBFT} clean
@@ -136,7 +133,7 @@ ${DIR_OBJS}	:
 			@${MKDIR} ${DIR_OBJS}
 			
 nn			:
-			@norminette $(sort ${SRCS} ${SRCS_B} ${HEADER} ${HEADER_B})
+			@norminette $(sort ${SRCS} ${SRCS_BI} ${SRCS_EXE} ${SRCS_STRUCT} ${SRCS_PARSE} ${HEADER} )
 
 $(LIBFT)	:	FORCE
 			@$(MAKE) -C ${DIR_LIBFT}

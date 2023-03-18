@@ -6,7 +6,7 @@
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/08 17:06:26 by tlegrand          #+#    #+#             */
-/*   Updated: 2023/03/17 23:11:32 by tlegrand         ###   ########.fr       */
+/*   Updated: 2023/03/18 17:20:38 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ char		**ft_split_bis(char const *s, char c);
 int			ft_splitlen(char **split);
 char		**ft_split_path(char const *s);
 char		*ft_get_pathcmd(char **paths, char *cmd_name);
-void		ft_get_path(char *pathvar, t_cmd *cmd);
+int			ft_get_path(char *pathvar, char	**head);
 
 char		*ft_here_doc_mode(char *delimiter);
 
@@ -77,19 +77,20 @@ int			bi_env(t_line *line);
 int			bi_exit(t_line *line);
 int			bi_export(t_line *line);
 int			bi_pwd(t_line *line);
+int			bi_type(t_line	*line);
 int			bi_unset(t_line *line);
 void		ft_env_update(char ***env, t_var_env *lst);
-int			ft_is_this_a_minishell(t_line *line);
 void		ft_exe_master(t_line *line);
 
 int			ft_dup_redirect(t_list *io, int here_pipe[2], t_line *line);
 void		ft_dup_pipe(int pipe_in[2], int pipe_out[2]);
+void		ft_restore_std(t_list *io, int std_fd[2]);
 
 /*			utils general	*/
 int			ft_perror_return_int(char *errstr);
 char		*ft_perror_return_null(char *errstr);
 int			ft_error_return(char *errstr);
-int			ft_is_bi(char **arg);
+int			ft_is_bi(char *arg);
 void		ft_clean_exit(t_line *line, int exit_code);
 
 /*			signals functions 		*/

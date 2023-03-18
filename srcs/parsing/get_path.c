@@ -6,7 +6,7 @@
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/09 13:35:47 by lboudjem          #+#    #+#             */
-/*   Updated: 2023/03/17 22:48:57 by tlegrand         ###   ########.fr       */
+/*   Updated: 2023/03/18 17:23:51 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,26 +35,29 @@ char	*ft_get_pathcmd(char **paths, char *cmd_name)
 		j++;
 	}
 	free(buffer);
-	buffer = ft_strdup(cmd_name);
+	ft_putstr_fd(cmd_name, 2);
+	ft_putendl_fd(" : command not found", 2);
 	free(cmd_name);
-	return (buffer);
+	return (NULL);
 }
 
-void	ft_get_path(char *pathvar, t_cmd *cmd)
+int	ft_get_path(char *pathvar, char	**head)
 {
 	char	**paths;
 
-	if (cmd->arg[0] == NULL || ft_is_bi(cmd->arg) || !pathvar)
-		return ;
-	if (!access(cmd->arg[0], X_OK) || cmd->arg[0][0] == '.' || \
-		cmd->arg[0][0] == '/')
-		return ;
+	if (*head == NULL || ft_is_bi(*head) || !pathvar)
+		return (1);
+	if (!access(*head, X_OK) || *head[0] == '.' || *head[0] == '/')
+		return (0);
 	paths = ft_split(pathvar, ':');
 	if (!paths)
 	{
 		perror("Error ");
-		return ;
+		return (1);
 	}
-	cmd->arg[0] = ft_get_pathcmd(paths, cmd->arg[0]);
+	*head = ft_get_pathcmd(paths, *head);
 	ft_free2d((void **)paths, 0);
+	if (!*head)
+		return (1);
+	return (0);
 }

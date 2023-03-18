@@ -6,7 +6,7 @@
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/15 16:23:42 by tlegrand          #+#    #+#             */
-/*   Updated: 2023/03/18 12:43:46 by tlegrand         ###   ########.fr       */
+/*   Updated: 2023/03/18 15:51:37 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,6 @@ void	envadd(char *env, t_var_env **lst)
 	char		*value;
 	int			i;
 	t_var_env	*new;
-
 
 	i = 0;
 	while (env[i] && env[i] != '=')

@@ -6,7 +6,7 @@
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/08 12:28:13 by tlegrand          #+#    #+#             */
-/*   Updated: 2023/03/18 12:44:09 by tlegrand         ###   ########.fr       */
+/*   Updated: 2023/03/18 16:53:30 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,11 +34,9 @@ void	ft_init_main(t_line *line, char **env)
 	fill_lst_env2(&line->lst_env, env);
 	line->env = ft_lstenv_to_tab(line->lst_env);
 }
-
-/*	FIXME:	ctrl \ does shit	*/
+/*	FIXME:	fd open at exit	*/
 /*	TODO:	prompt function */
-/*	TODO: mettre au propre	*/
-/*	TODO:FIXME:	minishell > log need to display prompt || minishell piped */
+/*	TODO: mettre au propre + norme	*/
 int	fmain(int ac, char **arg, char **env)
 {
 	char	*input;

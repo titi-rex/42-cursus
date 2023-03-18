@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   s_redirect_basic.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lboudjem <lboudjem@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/10 21:36:43 by tlegrand          #+#    #+#             */
-/*   Updated: 2023/03/16 14:51:45 by lboudjem         ###   ########.fr       */
+/*   Updated: 2023/03/18 15:51:15 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ int	*ft_redirect_acces_type(t_redirect *io)
 	if (!io)
 		return (NULL);
 	return (&io->type);
-} 
+}
 
 char	*ft_redirect_acces_arg(t_redirect *io)
 {
