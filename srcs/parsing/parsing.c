@@ -3,14 +3,38 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lboudjem <lboudjem@student.42.fr>          +#+  +:+       +#+        */
+/*   By: louisa <louisa@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/08 11:21:07 by louisa            #+#    #+#             */
-/*   Updated: 2023/03/17 17:19:46 by lboudjem         ###   ########.fr       */
+/*   Updated: 2023/03/17 23:27:30 by louisa           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/minishell.h"
+
+char	*ft_handle_export(char *bloc)
+{
+	int	i;
+
+	i = 0;
+	while (bloc[i])
+	{
+		if(ft_strncmp(bloc, "export", 6) == 0)
+		{
+			i += 6;
+			while (bloc[i] && (bloc[i] == ' ' || bloc[i] == '\t' || bloc[i] == '\n'))
+				i++;
+			while (bloc[i] && (bloc[i] != ' ' && bloc[i] != '\t' && bloc[i] != '\n'))
+			{
+				if (bloc[i] == '=')
+					bloc[i] = ' ';
+				i++;
+			}
+		}
+		i++;
+	}
+	return (bloc);
+}
 
 void	ft_list_cmd(char *arg, t_line *line, t_list	*io)
 {
@@ -67,6 +91,8 @@ int	ft_browse_line(char *str, int i, int start, t_line *line)
 			bloc = ft_creat_bloc(str, &i, &start, bloc);
 			bloc = ft_handle_expansion(bloc, line);
 			io = ft_handle_redirection(bloc, &error);
+			bloc = ft_handle_export(bloc);
+			printf("bloc = %s\n", bloc);
 			if (error == 1)
 				return (1);
 			line->n_cmds++;
@@ -78,6 +104,8 @@ int	ft_browse_line(char *str, int i, int start, t_line *line)
 			bloc = ft_substr(str, start, (i + 1) - start);
 			bloc = ft_handle_expansion(bloc, line);
 			io = ft_handle_redirection(bloc, &error);
+			bloc = ft_handle_export(bloc);
+			printf("bloc = %s\n", bloc);
 			if (error == 1)
 				return (1);
 			line->n_cmds++;

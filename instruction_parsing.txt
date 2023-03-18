@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    instruction_parsing.txt                            :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: lboudjem <lboudjem@student.42.fr>          +#+  +:+       +#+         #
+#    By: louisa <louisa@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/03/10 16:14:31 by lboudjem          #+#    #+#              #
-#    Updated: 2023/03/17 17:25:37 by lboudjem         ###   ########.fr        #
+#    Updated: 2023/03/17 22:47:23 by louisa           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -73,3 +73,6 @@ Autre:
 echo $ print un $
 penser a free hihi
 supprimer les redirection er leurs args juste apres
+hd
+export test : export pas
+export test= : export test=(rien)
