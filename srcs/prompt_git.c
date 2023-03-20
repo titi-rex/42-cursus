@@ -6,7 +6,7 @@
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/18 20:51:52 by tlegrand          #+#    #+#             */
-/*   Updated: 2023/03/18 22:45:57 by tlegrand         ###   ########.fr       */
+/*   Updated: 2023/03/20 17:01:58 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ int	ft_exist(char *dir, char *target)
  * @param dir the .git dir
  * @return char* current branch name or NULL 
  */
-char	*ft_extract_branche(char *dir)
+char	*ft_extract_branch(char *dir)
 {
 	char	branch[1024];
 	char	*head;
@@ -63,7 +63,7 @@ char	*ft_extract_branche(char *dir)
 	buf = ft_strrchr(branch, '/');
 	if (buf)
 		buf++;
-	return (ft_strndup(buf, ft_strlen2(buf)));
+	return (ft_strndup(buf, ft_strlen2(buf) - 1));
 }
 
 /**
@@ -101,14 +101,16 @@ char	*ft_get_path_dir_git(void)
  * @param current_branche ptr to branch name, must be initialised to NULL before
  * @return int 0 : git ok, 1 detached state, 2 no git repo or repo broken
  */
-int	ft_get_git_status(char **current_branche)
+char	*ft_get_git_status(void)
 {
 	int		git_status;
 	char	*path_dir_git;
+	char	*branche;
+	char	*tmp;
 
 	path_dir_git = ft_get_path_dir_git();
 	if (!path_dir_git)
-		return (2);
+		return (NULL);
 	git_status = 0;
 	if (ft_exist(path_dir_git, "/objects"))
 		git_status = 1;
@@ -116,8 +118,13 @@ int	ft_get_git_status(char **current_branche)
 		git_status = 1;
 	if (ft_exist(path_dir_git, "/HEAD"))
 		git_status = 2;
-	else
-		*current_branche = ft_extract_branche(path_dir_git);
+	tmp = ft_extract_branch(path_dir_git);
+	if (git_status == 0)
+		branche = ft_strjoin3(" on "CYAN"{", tmp, \
+			"}"END);
+	else if (git_status == 1)
+		branche = ft_strdup(" on "RED_LIGH"{detached}"END);
+	free(tmp);
 	free(path_dir_git);
-	return (git_status);
+	return (branche);
 }

@@ -1,31 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strnstr.c                                       :+:      :+:    :+:   */
+/*   ft_count_char.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/09 15:58:00 by tlegrand          #+#    #+#             */
-/*   Updated: 2023/03/20 17:18:42 by tlegrand         ###   ########.fr       */
+/*   Created: 2023/03/20 16:07:52 by tlegrand          #+#    #+#             */
+/*   Updated: 2023/03/20 16:08:09 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../libft.h"
 
-char	*ft_strnstr(const char *haystack, const char *needle, size_t len)
+int	ft_count_char(char *str, char c)
 {
-	size_t	i;
-	size_t	n;
+	int	n;
 
-	i = 0;
-	n = ft_strlen(needle);
-	if (n == 0)
-		return ((char *) haystack);
-	while (haystack[i] && i + n <= len)
+	n = 0;
+	while (*str)
 	{
-		if (!ft_strncmp(&haystack[i], needle, n))
-			return ((char *) &haystack[i]);
-		i++;
+		if (*str == c)
+			n++;
+		str++;
 	}
-	return (NULL);
+	return (n);
 }

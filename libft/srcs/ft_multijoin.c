@@ -6,7 +6,7 @@
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/15 15:21:08 by tlegrand          #+#    #+#             */
-/*   Updated: 2023/03/18 23:00:44 by tlegrand         ###   ########.fr       */
+/*   Updated: 2023/03/20 15:25:33 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,6 @@ char	*ft_multijoin(int n, ...)
 	va_list	ap;
 	char	*buff;
 	char	*join;
-	int		len_max;
 	int		len;
 
 	len = 0;

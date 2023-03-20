@@ -6,7 +6,7 @@
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/08 13:43:09 by tlegrand          #+#    #+#             */
-/*   Updated: 2023/03/17 21:33:23 by tlegrand         ###   ########.fr       */
+/*   Updated: 2023/03/20 16:08:22 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,7 @@ int		ft_isascii(int c);
 int		ft_isprint(int c);
 int		ft_toupper(int c);
 int		ft_tolower(int c);
+int		ft_count_char(char *str, char c);
 
 /*	conversion functions	*/
 int		ft_atoi(const char *str);

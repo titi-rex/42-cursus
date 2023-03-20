@@ -6,7 +6,7 @@
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/08 17:06:26 by tlegrand          #+#    #+#             */
-/*   Updated: 2023/03/18 22:31:15 by tlegrand         ###   ########.fr       */
+/*   Updated: 2023/03/20 16:52:52 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@
 # include <readline/history.h>
 # include "../libft/libft.h"
 # include "exec_struct.h"
+# include "mycolors.h"
 # define READING 0b0001
 # define EXECUTION 0b0010
 # define MINISHELL 0b0100
@@ -132,7 +133,8 @@ void		ft_clear_cmd(t_cmd **cmd);
 void		ft_clear_lst_cmd(t_cmd **cmd);
 
 /*			prompt function				*/
-int			ft_get_git_status(char **current_branche);
-
+char		*ft_get_git_status(void);
+char		*ft_get_pwd(char *pwd, char *user);
+char		*ft_get_a_nice_prompt(t_var_env *lst_env, int exit_status);
 
 #endif 

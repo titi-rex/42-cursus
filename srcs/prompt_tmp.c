@@ -6,7 +6,7 @@
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/18 23:01:34 by tlegrand          #+#    #+#             */
-/*   Updated: 2023/03/18 23:35:16 by tlegrand         ###   ########.fr       */
+/*   Updated: 2023/03/20 17:19:01 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,26 +34,48 @@ int	ft_get_username(char *user)
 char	*ft_get_a_nice_prompt(t_var_env *lst_env, int exit_status)
 {
 	char	*prompt;
+	char	*username;
 	char	*user;
 	char	*pwd;
 	char	*exit;
 	char	*git;
-	int		i;
-
-	git = NULL;
-	i = ft_get_git_status(&git);
-	if (i == 1)
-		git = ft_strdup("detached");
-	user = ft_strdup(get_value(lst_env, "USER"));
-	if (!user)
-		user = ft_strdup("guest");
-	pwd = ft_strdup(get_value(lst_env, "PWD"));
-	exit = ft_itoa(exit_status);
-	prompt = NULL;
 
 
-	(void)pwd;
-	(void)exit;
-	(void)prompt;
+	//dprintf(2, "making prompt..\n");
+	git = ft_get_git_status();
+	user = get_value(lst_env, "USER");
+	username = ft_strjoin3(VIOLET, user, END);
+	if (!username)
+		username = ft_strdup("\033[0;35mguest\033[0m");
+	pwd = ft_get_pwd(get_value(lst_env, "PWD"), user);
+	if (!exit_status)
+		exit = ft_strjoin3(GREEN_LIGH BOLD, " (*o*) ", END);
+	else
+		exit = ft_strjoin3(RED, " (~.~) ", END);
+	prompt = ft_multijoin(6, username, " in ", pwd, git, exit, VIOLET"-$> "END);
+	free(git);
+	free(pwd);
+	free(exit);
+	free(username);
+	//dprintf(2, "prompt finished !\n");
 	return (prompt);
 }
+
+/*
+reina in pwd on (main) 
+
+
+>_
+$>
+}>
+
+exit code :
+ (^_^)	(T_T)
+
+ :-)  :-(
+
+	[$]
+
+	(~.~)	(*o*)
+
+	*/
