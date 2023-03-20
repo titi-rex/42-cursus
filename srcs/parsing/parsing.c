@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lboudjem <lboudjem@student.42.fr>          +#+  +:+       +#+        */
+/*   By: louisa <louisa@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/08 11:21:07 by louisa            #+#    #+#             */
-/*   Updated: 2023/03/18 17:27:43 by lboudjem         ###   ########.fr       */
+/*   Updated: 2023/03/19 17:23:58 by louisa           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,22 +52,24 @@ void	ft_list_cmd(char *arg, t_line *line, t_list	*io)
 		j = 0;
 		while (split[i][j])
 		{
+			//printf("split[i] = %s\n", split[i]);
 			if (split[i][j] == 34)
 			{
 				quote = 34;
 				break ;
+				//split[i] = ft_delete_quotes2(split[i], 0, 2, quote);
 			}
-			if (split[i][j] == 39)
+			else if (split[i][j] == 39)
 			{
 				quote = 39;
 				break ;
+				//split[i] = ft_delete_quotes2(split[i], 0, 2, quote);
 			}
 			j++;
 		}
-		//printf("split[i] = %s\n", split[i]);
 		if (quote == 34 || quote == 39)
 			split[i] = ft_delete_quotes(split[i], 0, 0, quote);
-		//printf("split[i].2 = %s\n", split[i]);
+		// printf("split[i].2 = %s\n", split[i]);
 		i++;
 	}
 	cmds = ft_cmd_new_alloc(split, io);
