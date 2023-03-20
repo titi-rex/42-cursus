@@ -6,7 +6,7 @@
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/08 12:28:13 by tlegrand          #+#    #+#             */
-/*   Updated: 2023/03/20 16:31:17 by tlegrand         ###   ########.fr       */
+/*   Updated: 2023/03/20 18:47:35 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@ void	ft_init_main(t_line *line, char **env)
 	line->env = ft_lstenv_to_tab(line->lst_env);
 }
 
+/*	FIXME: leaks cmd not found	*/
 /*	FIXME:	permission denied when ty to exe something inexistant	-> not found*/
 /*	TODO:	change export / env*/
 /*	TODO:	prompt one line write on first line */

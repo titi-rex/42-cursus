@@ -6,7 +6,7 @@
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/08 17:06:26 by tlegrand          #+#    #+#             */
-/*   Updated: 2023/03/20 16:52:52 by tlegrand         ###   ########.fr       */
+/*   Updated: 2023/03/20 19:07:06 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -133,8 +133,8 @@ void		ft_clear_cmd(t_cmd **cmd);
 void		ft_clear_lst_cmd(t_cmd **cmd);
 
 /*			prompt function				*/
-char		*ft_get_git_status(void);
-char		*ft_get_pwd(char *pwd, char *user);
+char		*ft_prompt_git(void);
+char		*ft_prompt_pwd(char *pwd, char *user);
 char		*ft_get_a_nice_prompt(t_var_env *lst_env, int exit_status);
 
 #endif 

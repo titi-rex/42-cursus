@@ -6,7 +6,7 @@
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/08 13:43:09 by tlegrand          #+#    #+#             */
-/*   Updated: 2023/03/20 16:08:22 by tlegrand         ###   ########.fr       */
+/*   Updated: 2023/03/20 18:52:22 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,7 @@ size_t	ft_strlcat(char *dst, const char *src, size_t dstsize);
 char	*ft_strdup(const char *s1);
 char	*ft_strndup(char *src, int n);
 char	*ft_substr(char const *s, unsigned int start, size_t len);
+char	*ft_strerase_end(char *str, char *end);
 char	*ft_strjoin(char const *s1, char const *s2);
 char	*ft_strjoin3(char const *s1, char const *s2, char const *s3);
 char	*ft_multijoin(int n, ...);

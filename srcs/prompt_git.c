@@ -6,7 +6,7 @@
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/18 20:51:52 by tlegrand          #+#    #+#             */
-/*   Updated: 2023/03/20 17:01:58 by tlegrand         ###   ########.fr       */
+/*   Updated: 2023/03/20 19:13:40 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,18 +19,14 @@
  * @param target 
  * @return int 1 dont exit or cant read it // 0 exist and can be read
  */
-int	ft_exist(char *dir, char *target)
+static char	*ft_exist(char *dir, char *target)
 {
 	char	*tmp;
-	int		res;
 
 	tmp = ft_strjoin(dir, target);
-	if (access(tmp, F_OK))
-		res = 1;
-	else
-		res = 0;
-	free(tmp);
-	return (res);
+	if (!access(tmp, F_OK))
+		return (tmp);
+	return (NULL);
 }
 
 /**
@@ -50,9 +46,9 @@ char	*ft_extract_branch(char *dir)
 	if (!head)
 		return (NULL);
 	fd = open(head, O_RDONLY);
+	free(head);
 	if (fd == -1)
 		return (ft_perror_return_null(NULL));
-	free(head);
 	ft_bzero(branch, 1024);
 	if (read(fd, &branch, 1024) == -1)
 	{
@@ -71,27 +67,57 @@ char	*ft_extract_branch(char *dir)
  * 
  * @return char* .git path or NULL
  */
-char	*ft_get_path_dir_git(void)
+char	*ft_get_path_git_dir(void)
 {
 	char	*path_dir_git;
-	char	*cwd;
-	char	*tmp;
+	char	*pwd;
+	int		i;
 
-	cwd = getcwd(NULL, 0);
-	if (!cwd)
+	path_dir_git = NULL;
+	pwd = getcwd(NULL, 0);
+	if (!pwd)
 		return (NULL);
-	tmp = ft_strnstr(cwd, ".git", ft_strlen(cwd));
-	if (!tmp)
-		path_dir_git = ft_strjoin(cwd, "/.git");
-	else
-		path_dir_git = ft_strndup(cwd, ft_strlen(cwd) - ft_strlen(tmp) + 4);
-	free(cwd);
-	if (path_dir_git && ft_exist(path_dir_git, NULL))
+	path_dir_git = ft_strnstr(pwd, "/.git", ft_strlen(pwd));
+	if (path_dir_git)
+		return (ft_strndup(pwd, ft_strlen(pwd) - ft_strlen(path_dir_git) + 5));
+	i = 0;
+	while (i++ < 3 && pwd)
 	{
+		path_dir_git = ft_exist(pwd, "/.git");
+		if (path_dir_git)
+		{
+			free(pwd);
+			return (path_dir_git);
+		}
 		free(path_dir_git);
-		return (NULL);
+		pwd = ft_strerase_end(pwd, ft_strrchr(pwd, '/'));
 	}
-	return (path_dir_git);
+	free(pwd);
+	return (NULL);
+}
+
+int	ft_git_status(char *pgd)
+{
+	char	*tmp;
+	int		status;
+
+	status = 0;
+	tmp = ft_exist(pgd, "/objects");
+	if (!tmp)
+		status = 1;
+	else
+		free(tmp);
+	tmp = ft_exist(pgd, "/refs");
+	if (!tmp)
+		status = 1;
+	else
+		free(tmp);
+	tmp = ft_exist(pgd, "/HEAD");
+	if (!tmp)
+		status = 2;
+	else
+		free(tmp);
+	return (status);
 }
 
 /**
@@ -101,30 +127,28 @@ char	*ft_get_path_dir_git(void)
  * @param current_branche ptr to branch name, must be initialised to NULL before
  * @return int 0 : git ok, 1 detached state, 2 no git repo or repo broken
  */
-char	*ft_get_git_status(void)
+char	*ft_prompt_git(void)
 {
 	int		git_status;
-	char	*path_dir_git;
+	char	*pgd;
 	char	*branche;
 	char	*tmp;
 
-	path_dir_git = ft_get_path_dir_git();
-	if (!path_dir_git)
+	tmp = NULL;
+	branche = NULL;
+	pgd = ft_get_path_git_dir();
+	if (!pgd)
 		return (NULL);
-	git_status = 0;
-	if (ft_exist(path_dir_git, "/objects"))
-		git_status = 1;
-	if (ft_exist(path_dir_git, "/refs"))
-		git_status = 1;
-	if (ft_exist(path_dir_git, "/HEAD"))
-		git_status = 2;
-	tmp = ft_extract_branch(path_dir_git);
+	git_status = ft_git_status(pgd);
 	if (git_status == 0)
+	{
+		tmp = ft_extract_branch(pgd);
 		branche = ft_strjoin3(" on "CYAN"{", tmp, \
 			"}"END);
+		free(tmp);
+	}
 	else if (git_status == 1)
 		branche = ft_strdup(" on "RED_LIGH"{detached}"END);
-	free(tmp);
-	free(path_dir_git);
+	free(pgd);
 	return (branche);
 }

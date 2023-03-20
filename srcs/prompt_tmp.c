@@ -6,7 +6,7 @@
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/18 23:01:34 by tlegrand          #+#    #+#             */
-/*   Updated: 2023/03/20 17:19:01 by tlegrand         ###   ########.fr       */
+/*   Updated: 2023/03/20 18:56:19 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,18 +42,19 @@ char	*ft_get_a_nice_prompt(t_var_env *lst_env, int exit_status)
 
 
 	//dprintf(2, "making prompt..\n");
-	git = ft_get_git_status();
+	git = ft_prompt_git();
 	user = get_value(lst_env, "USER");
 	username = ft_strjoin3(VIOLET, user, END);
 	if (!username)
 		username = ft_strdup("\033[0;35mguest\033[0m");
-	pwd = ft_get_pwd(get_value(lst_env, "PWD"), user);
+	pwd = ft_prompt_pwd(get_value(lst_env, "PWD"), user);
 	if (!exit_status)
 		exit = ft_strjoin3(GREEN_LIGH BOLD, " (*o*) ", END);
 	else
 		exit = ft_strjoin3(RED, " (~.~) ", END);
 	prompt = ft_multijoin(6, username, " in ", pwd, git, exit, VIOLET"-$> "END);
-	free(git);
+	if (git)
+		free(git);
 	free(pwd);
 	free(exit);
 	free(username);

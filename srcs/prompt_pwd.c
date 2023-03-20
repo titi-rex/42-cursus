@@ -6,7 +6,7 @@
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/20 15:53:05 by tlegrand          #+#    #+#             */
-/*   Updated: 2023/03/20 17:33:14 by tlegrand         ###   ########.fr       */
+/*   Updated: 2023/03/20 18:56:11 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ char	*ft_prettyfy_pwd(char *pwd, char *home)
 	return (ft_strjoin3(BOLD YELLOW ITALIC"/...", ptr_cwd, END));
 }
 
-char	*ft_get_pwd(char *pwd, char *user)
+char	*ft_prompt_pwd(char *pwd, char *user)
 {
 	char	*username;
 	char	*pretty_pwd;
