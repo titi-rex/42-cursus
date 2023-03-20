@@ -6,7 +6,7 @@
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/20 15:53:05 by tlegrand          #+#    #+#             */
-/*   Updated: 2023/03/20 18:56:11 by tlegrand         ###   ########.fr       */
+/*   Updated: 2023/03/20 19:18:13 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,14 +25,14 @@ char	*ft_prettyfy_pwd(char *pwd, char *home)
 		ptr_home += ft_strlen(home);
 		count = ft_count_char(ptr_home, '/');
 		if (count <= 3)
-			return (ft_strjoin3(BOLD YELLOW ITALIC"~", ptr_home, END));
-		return (ft_strjoin3(BOLD YELLOW ITALIC"~/...", ptr_cwd, END));
+			return (ft_strjoin3(" in "BOLD YELLOW ITALIC"~", ptr_home, END));
+		return (ft_strjoin3(" in "BOLD YELLOW ITALIC"~/...", ptr_cwd, END));
 	}
 	ptr_home = ft_strchr(pwd, '/');
 	count = ft_count_char(ptr_home, '/');
 	if (count <= 3)
-		return (ft_strjoin3(BOLD YELLOW ITALIC, ptr_home, END));
-	return (ft_strjoin3(BOLD YELLOW ITALIC"/...", ptr_cwd, END));
+		return (ft_strjoin3(" in "BOLD YELLOW ITALIC"", ptr_home, END));
+	return (ft_strjoin3(" in "BOLD YELLOW ITALIC"/...", ptr_cwd, END));
 }
 
 char	*ft_prompt_pwd(char *pwd, char *user)

@@ -6,7 +6,7 @@
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/20 15:08:43 by tlegrand          #+#    #+#             */
-/*   Updated: 2023/03/20 15:14:09 by tlegrand         ###   ########.fr       */
+/*   Updated: 2023/03/20 19:25:01 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,12 +20,12 @@
 # define BLUE		"\033[0;34m"
 # define PURPLE		"\033[0;35m"
 # define CYAN		"\033[0;36m"
-# define GRAY_LIGH	"\033[0;37m"
-# define GRAY_DAR	"\033[1;30m"
-# define RED_LIGH	"\033[1;31m"
-# define GREEN_LIGH	"\033[1;32m"
+# define GRAY_L		"\033[0;37m"
+# define GRAY_D		"\033[1;30m"
+# define RED_L		"\033[1;31m"
+# define GREEN_L	"\033[1;32m"
 # define YELLOW 	"\033[1;33m"
-# define BLUE_LIGH	"\033[1;34m"
+# define BLUE_L		"\033[1;34m"
 # define VIOLET		"\033[1;35m"
 # define CYAN_BIS	"\033[1;36m"
 # define WHITE		"\033[1;37m"
@@ -40,8 +40,8 @@
 # define REV_V		"\033[7m"
 # define CONCEAL	"\033[8m"
 # define CONCEAL_OF	"\033[28m"
-# define CROSS_OU	"\033[9m"
-# define CROSS_OUT_	"\033[29m"
+# define CR_OU		"\033[9m"
+# define CR_OUT_OF	"\033[29m"
 # define ERASE		"\033[2K"
 # define RERASE		"\r\033[2K"
 
