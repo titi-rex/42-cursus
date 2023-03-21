@@ -6,7 +6,7 @@
 /*   By: lboudjem <lboudjem@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/08 11:21:07 by louisa            #+#    #+#             */
-/*   Updated: 2023/03/21 12:18:40 by lboudjem         ###   ########.fr       */
+/*   Updated: 2023/03/21 13:15:24 by lboudjem         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,6 +106,7 @@ void	ft_list_cmd(char *arg, t_line *line, t_list	*io)
 	cmds = ft_cmd_new_alloc(split, io);
 	//ft_get_path(get_value(line->lst_env, "PATH"), cmds);
 	ft_cmd_add_back(&line->cmd, cmds);
+	ft_free2d((void **)split, i);
 }
 
 int	ft_browse_line(char *str, int i, int start, t_line *line)
