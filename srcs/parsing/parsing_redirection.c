@@ -6,7 +6,7 @@
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/13 17:47:02 by louisa            #+#    #+#             */
-/*   Updated: 2023/03/21 15:50:20 by tlegrand         ###   ########.fr       */
+/*   Updated: 2023/03/21 16:40:56 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,16 +49,6 @@ char	*ft_redirection_arg(char *bloc, int i)
 
 int	ft_redirection_type_fd(char *bloc, int *type, int *i)
 {
-	if (bloc[*i] == '<')
-	{
-		*type = 0;
-		return (1);
-	}
-	if (bloc[*i] == '>')
-	{
-		*type = 1;
-		return (1);
-	}
 	if (ft_strncmp(&bloc[*i], "<<", 2) == 0)
 	{
 		*type = 2;
@@ -69,6 +59,16 @@ int	ft_redirection_type_fd(char *bloc, int *type, int *i)
 	{
 		*type = 3;
 		(*i)++;
+		return (1);
+	}
+	if (bloc[*i] == '<')
+	{
+		*type = 0;
+		return (1);
+	}
+	if (bloc[*i] == '>')
+	{
+		*type = 1;
 		return (1);
 	}
 	return (0);
@@ -136,6 +136,7 @@ t_list	*ft_handle_redirection(char **bloc, int *error)
 	{
 		if (ft_redirection_type_fd(*bloc, &type, &i) == 1)
 		{
+			dprintf(2, "type is : %d\n", type);
 			arg = ft_redirection_arg(*bloc, i);
 			if (!arg)
 				return (*error = 1, NULL);
