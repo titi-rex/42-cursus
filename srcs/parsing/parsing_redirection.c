@@ -6,7 +6,7 @@
 /*   By: lboudjem <lboudjem@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/13 17:47:02 by louisa            #+#    #+#             */
-/*   Updated: 2023/03/21 15:23:58 by lboudjem         ###   ########.fr       */
+/*   Updated: 2023/03/21 16:59:45 by lboudjem         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,16 +49,6 @@ char	*ft_redirection_arg(char *bloc, int i)
 
 int	ft_redirection_type_fd(char *bloc, int *type, int *i)
 {
-	if (bloc[*i] == '<')
-	{
-		*type = 0;
-		return (1);
-	}
-	if (bloc[*i] == '>')
-	{
-		*type = 1;
-		return (1);
-	}
 	if (ft_strncmp(&bloc[*i], "<<", 2) == 0)
 	{
 		*type = 2;
@@ -69,6 +59,16 @@ int	ft_redirection_type_fd(char *bloc, int *type, int *i)
 	{
 		*type = 3;
 		(*i)++;
+		return (1);
+	}
+	if (bloc[*i] == '<' && bloc[(*i) + 1] != '<')
+	{
+		*type = 0;
+		return (1);
+	}
+	if (bloc[*i] == '>' && bloc[(*i) + 1] != '>')
+	{
+		*type = 1;
 		return (1);
 	}
 	return (0);
@@ -82,6 +82,7 @@ int	ft_size_redirection(char *bloc, int i, int len)
 		len++;
 		i++;
 	}
+
 	if (bloc[i] == 34 || bloc[i] == 39)
 	{
 		i++;
@@ -112,7 +113,7 @@ char	*ft_clear_redirection(char *bloc, int i)
 	cpy = NULL;
 	len = ft_size_redirection(bloc, i, 0);
 	size = ft_strlen2(bloc);
-	sub1 = ft_substr(bloc, 0, i);
+	sub1 = ft_substr(bloc, 0, i - 1);
 	sub2 = ft_substr(bloc, i + len, size - (i + len));
 	cpy = ft_strjoin(sub1, sub2);
 	free(bloc);
