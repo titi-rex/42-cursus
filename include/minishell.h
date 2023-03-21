@@ -6,7 +6,7 @@
 /*   By: lboudjem <lboudjem@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/08 17:06:26 by tlegrand          #+#    #+#             */
-/*   Updated: 2023/03/21 13:42:13 by lboudjem         ###   ########.fr       */
+/*   Updated: 2023/03/21 14:48:16 by lboudjem         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,9 +31,9 @@
 
 /*          Parsing functiun            */
 int			ft_browse_line(char *str, int i, int start, t_line *line);
-void		ft_quotes(char *str, int *i);
+void		ft_quotes(char *str, int *i, int *error);
 char		*ft_creat_bloc(char *str, int *i, int *start, char *bloc);
-int			ft_handle_quotes(char *str, int i, int quote);
+int			ft_handle_quotes(char *str, int i, int quote, int *error);
 char		*ft_delete_quotes(char *bloc, int size, int nb_quotes, char quote);
 int			get_nb_quotes(char *bloc, int i);
 char		*ft_del_quotes(char *bloc);

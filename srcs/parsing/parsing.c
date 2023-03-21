@@ -6,7 +6,7 @@
 /*   By: lboudjem <lboudjem@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/08 11:21:07 by louisa            #+#    #+#             */
-/*   Updated: 2023/03/21 13:58:23 by lboudjem         ###   ########.fr       */
+/*   Updated: 2023/03/21 14:57:17 by lboudjem         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,9 @@ int	ft_browse_line(char *str, int i, int start, t_line *line)
 	error = 0;
 	while (str[i])
 	{
-		ft_quotes(str, &i);
+		ft_quotes(str, &i, &error);
+		if (error == 2)
+			return (2);
 		if (str[i] == '|')
 		{
 			bloc = ft_creat_bloc(str, &i, &start, bloc);
@@ -66,7 +68,7 @@ int	ft_browse_line(char *str, int i, int start, t_line *line)
 			if (!bloc || error == 1)
 				return (free(bloc), 1);
 			if (ft_is_block_empty(bloc) == 1)
-				return (free(bloc), line->n_cmds = 0, 0);
+				return (free(bloc), line->n_cmds = 0, 1);
 			line->n_cmds++;
 			ft_list_cmd(bloc, line, io);
 			free(bloc);
@@ -80,7 +82,7 @@ int	ft_browse_line(char *str, int i, int start, t_line *line)
 			if (!bloc || error == 1)
 				return (free(bloc), 1);
 			if (ft_is_block_empty(bloc) == 1)
-				return (free(bloc), line->n_cmds = 0, 0);
+				return (free(bloc), line->n_cmds = 0, 1);
 			line->n_cmds++;
 			ft_list_cmd(bloc, line, io);
 			free(bloc);

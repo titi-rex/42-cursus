@@ -6,7 +6,7 @@
 #    By: lboudjem <lboudjem@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/03/10 16:14:31 by lboudjem          #+#    #+#              #
-#    Updated: 2023/03/21 13:23:43 by lboudjem         ###   ########.fr        #
+#    Updated: 2023/03/21 15:08:15 by lboudjem         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -61,6 +61,8 @@ line->arg[1] = arguments (tout ce qu'il y a apres la cmd jusqu au prochain pipe 
 echo hello                     coucou = hello coucou
 echo "hello                     coucou" = hello                     coucou
 
+                                Code d'erreur
+Missing quote : 2
 
 Autre:
 - Faire une fonction clear all qui clear toutes les lists entre deux commandes entrés par le user
@@ -72,17 +74,19 @@ Autre:
 
 - A ne pas oublier:
 penser a free hihi
+ajouter le here_doc
 export test : ca le met dans export et pas dans env
 export test= : dans env ca met test=(rien)
 echo "$""USER"
-(echo coucou |   |) DIFFERENT DE (echo coucou | " "  | " ")
-remonter correctement l'erreur missing quote
-renvoie code erreur specifique en cas de bloc null (2 par exemple)
 
-- Fait (normalement) :
+- Fait (normalement) (a tester quand meme) :
 export test=truc
 > log2
 supprimer les redirection er leurs args juste apres
+renvoie code erreur specifique en cas de bloc null (2 par exemple)
+(echo coucou |   |) DIFFERENT DE (echo coucou | " "  | " ")
+missing quote
+remonter correctement l'erreur missing quote
 
                         Exemples chiants a tester:
 

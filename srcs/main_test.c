@@ -6,7 +6,7 @@
 /*   By: lboudjem <lboudjem@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/08 12:28:13 by tlegrand          #+#    #+#             */
-/*   Updated: 2023/03/21 12:19:10 by lboudjem         ###   ########.fr       */
+/*   Updated: 2023/03/21 15:07:45 by lboudjem         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,6 +71,11 @@ int	fmain(int ac, char **arg, char **env)
 	return (0);
 }
 
+/// @brief 
+/// @param ac 
+/// @param arg 
+/// @param env 
+/// @return 
 int	main(int ac, char **arg, char **env)
 {
 	char	*input;
@@ -105,9 +110,9 @@ int	main(int ac, char **arg, char **env)
 			ft_putendl_fd("exit", 1);
 			ft_clean_exit(&line, line.exit_status);
 		}
-		if (ft_browse_line(input, 0, 0, &line) == 1)
+		if (ft_browse_line(input, 0, 0, &line) != 0)
 		{
-			printf("Error parsing \n");
+			dprintf(2, "Error parsing \n");
 			free(input);
 			input = NULL;
 		}

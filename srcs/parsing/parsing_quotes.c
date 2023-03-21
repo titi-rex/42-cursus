@@ -6,18 +6,18 @@
 /*   By: lboudjem <lboudjem@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/11 14:27:10 by lboudjem          #+#    #+#             */
-/*   Updated: 2023/03/21 13:41:50 by lboudjem         ###   ########.fr       */
+/*   Updated: 2023/03/21 14:51:21 by lboudjem         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/minishell.h"
 
-void	ft_quotes(char *str, int *i)
+void	ft_quotes(char *str, int *i, int *error)
 {
 	if (str[*i] == 34)
-		*i = ft_handle_quotes(str, *i, 34);
+		*i = ft_handle_quotes(str, *i, 34, error);
 	if (str[*i] == 39)
-		*i = ft_handle_quotes(str, *i, 39);
+		*i = ft_handle_quotes(str, *i, 39, error);
 }
 
 char	*ft_creat_bloc(char *str, int *i, int *start, char *bloc)
@@ -32,7 +32,7 @@ char	*ft_creat_bloc(char *str, int *i, int *start, char *bloc)
 	return (bloc);
 }
 
-int	ft_handle_quotes(char *str, int i, int quote)
+int	ft_handle_quotes(char *str, int i, int quote, int *error)
 {
 	i++;
 	while (str[i])
@@ -41,7 +41,7 @@ int	ft_handle_quotes(char *str, int i, int quote)
 			return (i);
 		i++;
 	}
-	ft_putstr_fd("Missing quote\n", 2);
+	*error = 2;
 	return (i);
 }
 
