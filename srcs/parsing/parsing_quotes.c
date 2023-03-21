@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing_quotes.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: louisa <louisa@student.42.fr>              +#+  +:+       +#+        */
+/*   By: lboudjem <lboudjem@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/11 14:27:10 by lboudjem          #+#    #+#             */
-/*   Updated: 2023/03/19 17:23:15 by louisa           ###   ########.fr       */
+/*   Updated: 2023/03/21 10:32:23 by lboudjem         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -110,6 +110,7 @@ char	*ft_delete_quotes2(char *bloc, int size, int nb_quotes, char quote)
 		size++;
 	}
 	cpy[nb_quotes] = '\0';
+	printf("cpy = %s\n", cpy);
 	return (free(bloc), cpy);
 }
 

@@ -6,7 +6,7 @@
 #    By: lboudjem <lboudjem@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/02/12 20:46:19 by tlegrand          #+#    #+#              #
-#    Updated: 2023/03/18 17:12:42 by lboudjem         ###   ########.fr        #
+#    Updated: 2023/03/21 10:48:07 by lboudjem         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -42,6 +42,7 @@ DIR_SRCS_PARSE	=	srcs/parsing/
 LST_SRCS_PARSE	=	parsing.c get_path.c ft_here_doc.c \
 					parsing_expansion.c \
 					parsing_quotes.c \
+					parsing_export.c \
 					ft_split_bis.c \
 					parsing_redirection.c 
 SRCS_PARSE		=	${addprefix ${DIR_SRCS_PARSE}, ${LST_SRCS_PARSE}}

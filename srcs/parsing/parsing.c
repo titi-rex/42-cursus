@@ -3,37 +3,90 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: louisa <louisa@student.42.fr>              +#+  +:+       +#+        */
+/*   By: lboudjem <lboudjem@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/08 11:21:07 by louisa            #+#    #+#             */
-/*   Updated: 2023/03/19 17:23:58 by louisa           ###   ########.fr       */
+/*   Updated: 2023/03/21 11:19:22 by lboudjem         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/minishell.h"
 
-char	*ft_handle_export(char *bloc)
+int	get_nb_quotes(char *bloc, int i)
 {
-	int	i;
+	int	nb;
 
-	i = 0;
+	nb = 0;
 	while (bloc[i])
 	{
-		if(ft_strncmp(bloc, "export", 6) == 0)
+		if (bloc[i] == 34)
 		{
-			i += 6;
-			while (bloc[i] && (bloc[i] == ' ' || bloc[i] == '\t' || bloc[i] == '\n'))
+			nb++;
+			i++;
+			while (bloc[i] != 34)
 				i++;
-			while (bloc[i] && (bloc[i] != ' ' && bloc[i] != '\t' && bloc[i] != '\n'))
+			nb++;
+		}
+		if (bloc[i] == 39)
+		{
+			nb++;
+			i++;
+			while (bloc[i] != 39)
+				i++;
+			nb++;
+		}
+		i++;
+	}
+	return (nb);
+}
+
+char	*ft_del_quotes(char *bloc)
+{
+	char	*cpy;
+	int		size;
+	int		nb_quotes;
+	int		i;
+	int		j;
+
+	i = 0;
+	j = 0;
+	nb_quotes = get_nb_quotes(bloc, 0);
+	size = ft_strlen2(bloc) - nb_quotes;
+	cpy = malloc((size + 1) * sizeof(char));
+	if (!cpy)
+		return (NULL);
+	while (bloc[i])
+	{
+		if (bloc[i] != 34 && bloc[i] != 39)
+		{
+			cpy[j] = bloc[i];
+			j++;
+		}
+		if (bloc[i] == 34)
+		{
+			i++;
+			while (bloc[i] != 34)
 			{
-				if (bloc[i] == '=')
-					bloc[i] = ' ';
+				cpy[j] = bloc[i];
+				j++;
+				i++;
+			}
+		}
+		if (bloc[i] == 39)
+		{
+			i++;
+			while (bloc[i] != 39)
+			{
+				cpy[j] = bloc[i];
+				j++;
 				i++;
 			}
 		}
 		i++;
 	}
-	return (bloc);
+	cpy[j] = '\0';
+	free(bloc);
+	return (cpy);
 }
 
 void	ft_list_cmd(char *arg, t_line *line, t_list	*io)
@@ -41,41 +94,18 @@ void	ft_list_cmd(char *arg, t_line *line, t_list	*io)
 	t_cmd	*cmds;
 	char	**split;
 	int		i;
-	int		j;
-	char	quote;
 
 	i = 0;
 	cmds = NULL;
 	split = ft_split_bis(arg, ' ');
 	while (split[i])
 	{
-		j = 0;
-		while (split[i][j])
-		{
-			//printf("split[i] = %s\n", split[i]);
-			if (split[i][j] == 34)
-			{
-				quote = 34;
-				break ;
-				//split[i] = ft_delete_quotes2(split[i], 0, 2, quote);
-			}
-			else if (split[i][j] == 39)
-			{
-				quote = 39;
-				break ;
-				//split[i] = ft_delete_quotes2(split[i], 0, 2, quote);
-			}
-			j++;
-		}
-		if (quote == 34 || quote == 39)
-			split[i] = ft_delete_quotes(split[i], 0, 0, quote);
-		// printf("split[i].2 = %s\n", split[i]);
+		split[i] = ft_del_quotes(split[i]);
 		i++;
 	}
 	cmds = ft_cmd_new_alloc(split, io);
 	ft_get_path(get_value(line->lst_env, "PATH"), cmds);
 	ft_cmd_add_back(&line->cmd, cmds);
-	//printf("arg = %s\n", ft_redirect_acces_arg(line->cmd->io->content));
 }
 
 int	ft_browse_line(char *str, int i, int start, t_line *line)

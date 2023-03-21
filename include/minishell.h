@@ -6,7 +6,7 @@
 /*   By: lboudjem <lboudjem@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/08 17:06:26 by tlegrand          #+#    #+#             */
-/*   Updated: 2023/03/18 17:04:16 by lboudjem         ###   ########.fr       */
+/*   Updated: 2023/03/21 10:48:43 by lboudjem         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,9 @@ char		*ft_redirection_arg(char *bloc, int i);
 int			ft_redirection_type_fd(char *bloc, int *type, int *i);
 t_list		*ft_handle_redirection(char **bloc, int *error);
 char		**ft_split_bis(char const *s, char c);
+char		*ft_handle_export(char *bloc);
+
+char		*ft_delete_quotes2(char *bloc, int size, int nb_quotes, char quote);
 
 /*     			get path functiuns   		   */
 int			ft_splitlen(char **split);
