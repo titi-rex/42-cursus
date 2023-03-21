@@ -6,7 +6,7 @@
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/13 17:47:02 by louisa            #+#    #+#             */
-/*   Updated: 2023/03/21 16:40:56 by tlegrand         ###   ########.fr       */
+/*   Updated: 2023/03/21 19:47:12 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,12 +61,12 @@ int	ft_redirection_type_fd(char *bloc, int *type, int *i)
 		(*i)++;
 		return (1);
 	}
-	if (bloc[*i] == '<')
+	if (bloc[*i] == '<' && bloc[(*i) + 1] != '<')
 	{
 		*type = 0;
 		return (1);
 	}
-	if (bloc[*i] == '>')
+	if (bloc[*i] == '>' && bloc[(*i) + 1] != '>')
 	{
 		*type = 1;
 		return (1);
@@ -82,6 +82,7 @@ int	ft_size_redirection(char *bloc, int i, int len)
 		len++;
 		i++;
 	}
+
 	if (bloc[i] == 34 || bloc[i] == 39)
 	{
 		i++;
@@ -112,7 +113,7 @@ char	*ft_clear_redirection(char *bloc, int i)
 	cpy = NULL;
 	len = ft_size_redirection(bloc, i, 0);
 	size = ft_strlen2(bloc);
-	sub1 = ft_substr(bloc, 0, i);
+	sub1 = ft_substr(bloc, 0, i - 1);
 	sub2 = ft_substr(bloc, i + len, size - (i + len));
 	cpy = ft_strjoin(sub1, sub2);
 	free(bloc);
@@ -142,7 +143,6 @@ t_list	*ft_handle_redirection(char **bloc, int *error)
 				return (*error = 1, NULL);
 			*bloc = ft_clear_redirection(*bloc, i);
 			ft_redirect_add_list(&io, type, arg);
-			dprintf(2, "redirect type is : %d\n", *ft_redirect_acces_type(io->content));
 			free(arg);
 			if (!(*bloc)[0] || !(*bloc)[1])
 				break ;

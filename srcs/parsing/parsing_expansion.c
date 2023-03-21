@@ -6,7 +6,7 @@
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/13 17:33:36 by louisa            #+#    #+#             */
-/*   Updated: 2023/03/21 15:17:44 by tlegrand         ###   ########.fr       */
+/*   Updated: 2023/03/21 19:46:31 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,6 +100,8 @@ char	*ft_handle_expansion(char *bloc, t_line *line)
 			i++;
 			while ((bloc[i]) && bloc[i] != 34)
 			{
+				if (bloc[i] && bloc[i] == '$' && ft_isalnum(bloc[i + 1]) == 0)
+					i++;
 				if (bloc[i] && bloc[i] == '$')
 					bloc = ft_replace_expansion_value(bloc, line, 0, i);
 				i++;
@@ -113,13 +115,13 @@ char	*ft_handle_expansion(char *bloc, t_line *line)
 		}
 		if (bloc[i] && bloc[i] == '$' && bloc[i + 1] == '?')
 			bloc = ft_replace_by_exit_status(bloc, i, line);
-		if (bloc[i] && bloc[i] == '$' && ft_isalnum(bloc[i + 1]) == 0)
-			i++;
 		if (bloc[i] && bloc[i] == '$')
 		{
 			bloc = ft_replace_expansion_value(bloc, line, 0, i);
 			i = -1;
 		}
+		if (!bloc[i])
+			break ;
 		i++;
 	}
 	return (bloc);
