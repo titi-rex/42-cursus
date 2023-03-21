@@ -6,7 +6,7 @@
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/13 17:47:02 by louisa            #+#    #+#             */
-/*   Updated: 2023/03/21 19:47:12 by tlegrand         ###   ########.fr       */
+/*   Updated: 2023/03/21 19:50:22 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -137,7 +137,6 @@ t_list	*ft_handle_redirection(char **bloc, int *error)
 	{
 		if (ft_redirection_type_fd(*bloc, &type, &i) == 1)
 		{
-			dprintf(2, "type is : %d\n", type);
 			arg = ft_redirection_arg(*bloc, i);
 			if (!arg)
 				return (*error = 1, NULL);
