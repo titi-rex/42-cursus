@@ -6,7 +6,7 @@
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/08 15:07:58 by tlegrand          #+#    #+#             */
-/*   Updated: 2023/03/21 12:49:25 by tlegrand         ###   ########.fr       */
+/*   Updated: 2023/03/21 15:35:35 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@ void	ft_exe_cmd(t_line *line, int pipe_in[2], int pipe_out[2])
 		ft_dup_pipe(pipe_in, pipe_out);
 		if (ft_dup_redirect(line->cmd->io, here_pipe, line))
 			perror("Error ");
-		if (!line->cmd->arg && line->cmd->io)
+		if (!line->cmd->arg[0][0] && line->cmd->io)
 			ft_clean_exit(line, EXIT_SUCCESS);
 		if (ft_get_path(get_value(line->lst_env, "PATH"), &line->cmd->arg[0]))
 		{

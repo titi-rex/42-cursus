@@ -80,11 +80,44 @@ here_doc function
 /*	TODO:	man/greeting function */
 /*	FIXME:	ctrl \ does shit	*/
 /*	TODO:FIXME:	minishell > log need to display prompt || minishell piped */
-
-
-
-
+/*	FIXME:	exit code whe nctrl c = 130 */
+/*	TODO:	change export / env*/
+/*	TODO:	prompt function */
+/*	FIXME:	leaks parsing	*/
+/*	FIXME:	leaks cmd not found	*/
+/*	FIXME:	permission denied when ty to exe something inexistant -> not found*/
+/*	FIXME:	test redir export vs env print*/
 
 
 
 https://stackoverflow.com/questions/4842424/list-of-ansi-color-escape-sequences
+
+
+/*
+
+PWD
+exit status 
+user			whoami
+machine		hostname
+TIME_	date +"%T"
+
+
+reina in pwd on (main) 
+
+
+>_
+$>
+}>
+
+exit code :
+ (^_^)	(T_T)
+
+ :-)  :-(
+
+	[$]
+
+	(~.~)	(*o*)
+
+	*/
+
+	

@@ -6,7 +6,7 @@
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/18 23:01:34 by tlegrand          #+#    #+#             */
-/*   Updated: 2023/03/21 12:45:12 by tlegrand         ###   ########.fr       */
+/*   Updated: 2023/03/21 14:43:18 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,8 +24,6 @@ char	*ft_prompt_username(char *user)
 	return (username);
 }
 
-/*	TODO:	ft_prompt_user	*/
-/*	TODO:	clean	*/
 char	*ft_get_a_nice_prompt(t_var_env *lst_env, int exit_status)
 {
 	char	*username;
@@ -52,30 +50,3 @@ char	*ft_get_a_nice_prompt(t_var_env *lst_env, int exit_status)
 		free(username);
 	return (prompt);
 }
-
-/*
-
-PWD
-exit status 
-user			whoami
-machine		hostname
-TIME_	date +"%T"
-
-
-reina in pwd on (main) 
-
-
->_
-$>
-}>
-
-exit code :
- (^_^)	(T_T)
-
- :-)  :-(
-
-	[$]
-
-	(~.~)	(*o*)
-
-	*/

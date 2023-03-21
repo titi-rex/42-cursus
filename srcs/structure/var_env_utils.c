@@ -6,7 +6,7 @@
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/09 13:33:56 by lboudjem          #+#    #+#             */
-/*   Updated: 2023/03/18 12:43:42 by tlegrand         ###   ########.fr       */
+/*   Updated: 2023/03/21 14:42:07 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,8 @@ void	ft_envadd_back(t_var_env **lst, t_var_env *new)
 
 void	ft_free_env(t_var_env *lst)
 {
+	if (!lst)
+		return ;
 	if (lst->name)
 		free(lst->name);
 	if (lst->value)
@@ -68,9 +70,16 @@ void	ft_free_env(t_var_env *lst)
 
 void	ft_envremove(t_var_env *lst)
 {
+	t_var_env	*after;
+	t_var_env	*before;
+
 	if (!lst)
 		return ;
-	lst->previous->next = lst->next;
-	lst->next->previous = lst->previous;
+	after = lst->next;
+	before = lst->previous;
 	ft_free_env(lst);
+	if (before)
+		before->next = after;
+	if (after)
+		after->previous = before;
 }

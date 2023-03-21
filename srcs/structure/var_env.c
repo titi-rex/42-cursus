@@ -6,7 +6,7 @@
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/09 14:58:48 by lboudjem          #+#    #+#             */
-/*   Updated: 2023/03/18 15:51:01 by tlegrand         ###   ########.fr       */
+/*   Updated: 2023/03/21 15:27:34 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,14 +38,17 @@ void	fill_lst_env(t_line *line, int i)
 	}
 }
 
-int	print_env(t_var_env	*lst)
+int	print_env(t_var_env	*lst, int mode)
 {
 	int	err;
 
 	err = EXIT_SUCCESS;
 	while (lst)
 	{
-		if (printf("%s=%s\n", lst->name, lst->value) < 0)
+		if (mode == 0 && printf("%s=%s\n", lst->name, lst->value) < 0)
+			err = EXIT_FAILURE;
+		else if (mode == 1 && printf("declare -x %s=\"%s\"\n", lst->name, \
+			lst->value) < 0)
 			err = EXIT_FAILURE;
 		lst = lst->next;
 	}

@@ -6,7 +6,7 @@
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/11 14:28:28 by tlegrand          #+#    #+#             */
-/*   Updated: 2023/03/18 15:52:29 by tlegrand         ###   ########.fr       */
+/*   Updated: 2023/03/21 15:22:14 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ int	bi_export(t_line *line)
 	t_var_env	*tmp;
 
 	if (!line->cmd->arg[1])
-		return (print_env(line->lst_env));
+		return (print_env(line->lst_env, 1));
 	if (bi_export_name_is_valid(line->cmd->arg[1]))
 		return (ft_error_return("Not a valid identifier "));
 	if (!line->cmd->arg[2])
