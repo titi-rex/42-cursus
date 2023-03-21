@@ -6,7 +6,7 @@
 #    By: lboudjem <lboudjem@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/03/10 16:14:31 by lboudjem          #+#    #+#              #
-#    Updated: 2023/03/21 16:32:43 by lboudjem         ###   ########.fr        #
+#    Updated: 2023/03/21 17:24:19 by lboudjem         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -78,6 +78,7 @@ ajouter le here_doc
 export test : ca le met dans export et pas dans env
 export test= : dans env ca met test=(rien)
 export TEST='""'
+"" -> permission denied (demander a titi)
 
 - Fait (normalement) (a tester quand meme) :
 export test=truc
