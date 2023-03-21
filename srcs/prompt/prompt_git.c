@@ -6,7 +6,7 @@
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/18 20:51:52 by tlegrand          #+#    #+#             */
-/*   Updated: 2023/03/21 12:47:55 by tlegrand         ###   ########.fr       */
+/*   Updated: 2023/03/21 13:01:58 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@ static char	*ft_exist(char *dir, char *target)
 	tmp = ft_strjoin(dir, target);
 	if (!access(tmp, F_OK))
 		return (tmp);
+	free(tmp);
 	return (NULL);
 }
 
@@ -144,8 +145,7 @@ char	*ft_prompt_git(void)
 	if (git_status == 0)
 	{
 		tmp = ft_extract_branch(pgd);
-		branche = ft_strjoin3(" on "CYAN"{", tmp, \
-			"}"END);
+		branche = ft_strjoin3(" on "CYAN"{", tmp,"}"END);
 		free(tmp);
 	}
 	else if (git_status == 1)

@@ -6,7 +6,7 @@
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/11 16:11:47 by tlegrand          #+#    #+#             */
-/*   Updated: 2023/03/21 12:29:28 by tlegrand         ###   ########.fr       */
+/*   Updated: 2023/03/21 13:03:45 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,5 +47,4 @@ void	ft_sig_init(void (*handler) (int sig))
 	sigaddset(&act_quit.sa_mask, SIGQUIT);
 	act_quit.sa_handler = SIG_IGN;
 	sigaction(SIGQUIT, &act_quit, NULL);
-
 }
