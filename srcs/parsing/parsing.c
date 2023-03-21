@@ -6,7 +6,7 @@
 /*   By: lboudjem <lboudjem@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/08 11:21:07 by louisa            #+#    #+#             */
-/*   Updated: 2023/03/21 15:14:12 by lboudjem         ###   ########.fr       */
+/*   Updated: 2023/03/21 17:21:42 by lboudjem         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,8 @@ int	ft_is_block_empty(char *bloc)
 	i = 0;
 	while (bloc[i])
 	{
-		if (bloc[i] != ' ' || bloc[i] != '\t' || bloc[i] != '\n')
+		if (bloc[i] != ' ' && bloc[i] != '\t' && \
+			bloc[i] != '\n' && bloc[i] != '\0')
 			return (0);
 		i++;
 	}
@@ -50,8 +51,10 @@ int	ft_browse_line(char *str, int i, int start, t_line *line)
 	char	*bloc;
 	t_list	*io;
 	int		error;
+	int		null_error;
 
 	io = NULL;
+	null_error = 0;
 	bloc = NULL;
 	error = 0;
 	while (str[i])
@@ -68,7 +71,7 @@ int	ft_browse_line(char *str, int i, int start, t_line *line)
 			if (!bloc || error == 1)
 				return (free(bloc), 1);
 			if (ft_is_block_empty(bloc) == 1 && io == NULL)
-				return (free(bloc), line->n_cmds = 0, 1);
+				null_error = 1;
 			line->n_cmds++;
 			ft_list_cmd(bloc, line, io);
 			free(bloc);
@@ -82,12 +85,16 @@ int	ft_browse_line(char *str, int i, int start, t_line *line)
 			if (!bloc || error == 1)
 				return (free(bloc), 1);
 			if (ft_is_block_empty(bloc) == 1 && io == NULL)
-				return (free(bloc), line->n_cmds = 0, 1);
+				null_error = 1;
 			line->n_cmds++;
 			ft_list_cmd(bloc, line, io);
 			free(bloc);
 		}
 		i++;
 	}
+	if (null_error == 1 && line->n_cmds == 1)
+		line->n_cmds = 0;
+	if (null_error == 1 && line->n_cmds > 1)
+		return (1);
 	return (0);
 }
