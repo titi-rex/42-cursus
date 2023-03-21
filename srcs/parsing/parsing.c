@@ -6,7 +6,7 @@
 /*   By: lboudjem <lboudjem@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/08 11:21:07 by louisa            #+#    #+#             */
-/*   Updated: 2023/03/21 13:54:32 by lboudjem         ###   ########.fr       */
+/*   Updated: 2023/03/21 13:58:23 by lboudjem         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,8 +63,10 @@ int	ft_browse_line(char *str, int i, int start, t_line *line)
 			bloc = ft_handle_expansion(bloc, line);
 			io = ft_handle_redirection(&bloc, &error);
 			bloc = ft_handle_export(bloc);
-			if (!bloc || error == 1 || ft_is_block_empty(bloc) == 1)
+			if (!bloc || error == 1)
 				return (free(bloc), 1);
+			if (ft_is_block_empty(bloc) == 1)
+				return (free(bloc), line->n_cmds = 0, 0);
 			line->n_cmds++;
 			ft_list_cmd(bloc, line, io);
 			free(bloc);
@@ -75,8 +77,10 @@ int	ft_browse_line(char *str, int i, int start, t_line *line)
 			bloc = ft_handle_expansion(bloc, line);
 			io = ft_handle_redirection(&bloc, &error);
 			bloc = ft_handle_export(bloc);
-			if (!bloc || error == 1 || ft_is_block_empty(bloc) == 1)
+			if (!bloc || error == 1)
 				return (free(bloc), 1);
+			if (ft_is_block_empty(bloc) == 1)
+				return (free(bloc), line->n_cmds = 0, 0);
 			line->n_cmds++;
 			ft_list_cmd(bloc, line, io);
 			free(bloc);
