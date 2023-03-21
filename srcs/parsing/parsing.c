@@ -3,51 +3,110 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: lboudjem <lboudjem@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/08 11:21:07 by louisa            #+#    #+#             */
-/*   Updated: 2023/03/18 16:31:15 by tlegrand         ###   ########.fr       */
+/*   Updated: 2023/03/21 13:15:24 by lboudjem         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/minishell.h"
+
+int	get_nb_quotes(char *bloc, int i)
+{
+	int	nb;
+
+	nb = 0;
+	while (bloc[i])
+	{
+		if (bloc[i] == 34)
+		{
+			nb++;
+			i++;
+			while (bloc[i] != 34)
+				i++;
+			nb++;
+		}
+		if (bloc[i] == 39)
+		{
+			nb++;
+			i++;
+			while (bloc[i] != 39)
+				i++;
+			nb++;
+		}
+		i++;
+	}
+	return (nb);
+}
+
+char	*ft_del_quotes(char *bloc)
+{
+	char	*cpy;
+	int		size;
+	int		nb_quotes;
+	int		i;
+	int		j;
+
+	i = 0;
+	j = 0;
+	nb_quotes = get_nb_quotes(bloc, 0);
+	size = ft_strlen2(bloc) - nb_quotes;
+	cpy = malloc((size + 1) * sizeof(char));
+	if (!cpy)
+		return (NULL);
+	while (bloc[i])
+	{
+		if (bloc[i] != 34 && bloc[i] != 39)
+		{
+			cpy[j] = bloc[i];
+			j++;
+		}
+		if (bloc[i] == 34)
+		{
+			i++;
+			while (bloc[i] != 34)
+			{
+				cpy[j] = bloc[i];
+				j++;
+				i++;
+			}
+		}
+		if (bloc[i] == 39)
+		{
+			i++;
+			while (bloc[i] != 39)
+			{
+				cpy[j] = bloc[i];
+				j++;
+				i++;
+			}
+		}
+		i++;
+	}
+	cpy[j] = '\0';
+	free(bloc);
+	return (cpy);
+}
 
 void	ft_list_cmd(char *arg, t_line *line, t_list	*io)
 {
 	t_cmd	*cmds;
 	char	**split;
 	int		i;
-	int		j;
-	char	quote;
 
 	i = 0;
 	cmds = NULL;
 	split = ft_split_bis(arg, ' ');
 	while (split[i])
 	{
-		j = 0;
-		while (split[i][j])
-		{
-			if (split[i][j] == 34)
-			{
-				quote = 34;
-				break ;
-			}
-			if (split[i][j] == 39)
-			{
-				quote = 39;
-				break ;
-			}
-			j++;
-		}
-		if (quote == 34 || quote == 39)
-			split[i] = ft_delete_quotes(split[i], 0, 0, quote);
+		split[i] = ft_del_quotes(split[i]);
 		i++;
 	}
 	cmds = ft_cmd_new_alloc(split, io);
 	//ft_get_path(get_value(line->lst_env, "PATH"), cmds);
 	ft_cmd_add_back(&line->cmd, cmds);
-	//printf("arg = %s\n", ft_redirect_acces_arg(line->cmd->io->content));
+	ft_free2d((void **)split, i);
 }
 
 int	ft_browse_line(char *str, int i, int start, t_line *line)
@@ -66,8 +125,12 @@ int	ft_browse_line(char *str, int i, int start, t_line *line)
 		{
 			bloc = ft_creat_bloc(str, &i, &start, bloc);
 			bloc = ft_handle_expansion(bloc, line);
-			io = ft_handle_redirection(bloc, &error);
+			io = ft_handle_redirection(&bloc, &error);
+			bloc = ft_handle_export(bloc);
+			//printf("bloc = %s\n", bloc);
 			if (error == 1)
+				return (1);
+			if (!bloc)
 				return (1);
 			line->n_cmds++;
 			ft_list_cmd(bloc, line, io);
@@ -77,8 +140,12 @@ int	ft_browse_line(char *str, int i, int start, t_line *line)
 		{
 			bloc = ft_substr(str, start, (i + 1) - start);
 			bloc = ft_handle_expansion(bloc, line);
-			io = ft_handle_redirection(bloc, &error);
+			io = ft_handle_redirection(&bloc, &error);
+			bloc = ft_handle_export(bloc);
+			//printf("bloc = %s\n", bloc);
 			if (error == 1)
+				return (1);
+			if (!bloc)
 				return (1);
 			line->n_cmds++;
 			ft_list_cmd(bloc, line, io);
