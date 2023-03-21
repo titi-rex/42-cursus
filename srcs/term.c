@@ -6,7 +6,7 @@
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/13 19:29:46 by tlegrand          #+#    #+#             */
-/*   Updated: 2023/03/16 17:40:41 by tlegrand         ###   ########.fr       */
+/*   Updated: 2023/03/21 21:50:07 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,4 +63,12 @@ void	term_clear(void)
 
 	str = tgetstr("cl", NULL);
 	tputs(str, 1, term_putchar);
+}
+
+void	term_status(void)
+{
+	struct termios	t;
+
+	tcgetattr(0, &t);
+	dprintf(2, " cflag check:%d:\n", t.c_lflag);
 }
