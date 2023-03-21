@@ -6,7 +6,7 @@
 /*   By: lboudjem <lboudjem@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/08 11:21:07 by louisa            #+#    #+#             */
-/*   Updated: 2023/03/21 14:57:17 by lboudjem         ###   ########.fr       */
+/*   Updated: 2023/03/21 15:14:12 by lboudjem         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,7 @@ int	ft_browse_line(char *str, int i, int start, t_line *line)
 			bloc = ft_handle_export(bloc);
 			if (!bloc || error == 1)
 				return (free(bloc), 1);
-			if (ft_is_block_empty(bloc) == 1)
+			if (ft_is_block_empty(bloc) == 1 && io == NULL)
 				return (free(bloc), line->n_cmds = 0, 1);
 			line->n_cmds++;
 			ft_list_cmd(bloc, line, io);
@@ -81,7 +81,7 @@ int	ft_browse_line(char *str, int i, int start, t_line *line)
 			bloc = ft_handle_export(bloc);
 			if (!bloc || error == 1)
 				return (free(bloc), 1);
-			if (ft_is_block_empty(bloc) == 1)
+			if (ft_is_block_empty(bloc) == 1 && io == NULL)
 				return (free(bloc), line->n_cmds = 0, 1);
 			line->n_cmds++;
 			ft_list_cmd(bloc, line, io);

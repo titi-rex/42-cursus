@@ -6,7 +6,7 @@
 #    By: lboudjem <lboudjem@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/03/10 16:14:31 by lboudjem          #+#    #+#              #
-#    Updated: 2023/03/21 15:08:15 by lboudjem         ###   ########.fr        #
+#    Updated: 2023/03/21 15:38:40 by lboudjem         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -77,7 +77,6 @@ penser a free hihi
 ajouter le here_doc
 export test : ca le met dans export et pas dans env
 export test= : dans env ca met test=(rien)
-echo "$""USER"
 
 - Fait (normalement) (a tester quand meme) :
 export test=truc
@@ -87,6 +86,7 @@ renvoie code erreur specifique en cas de bloc null (2 par exemple)
 (echo coucou |   |) DIFFERENT DE (echo coucou | " "  | " ")
 missing quote
 remonter correctement l'erreur missing quote
+echo "$""USER"
 
                         Exemples chiants a tester:
 
