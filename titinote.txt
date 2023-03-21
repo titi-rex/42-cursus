@@ -88,3 +88,33 @@ here_doc function
 
 
 https://stackoverflow.com/questions/4842424/list-of-ansi-color-escape-sequences
+
+
+/*
+
+PWD
+exit status 
+user			whoami
+machine		hostname
+TIME_	date +"%T"
+
+
+reina in pwd on (main) 
+
+
+>_
+$>
+}>
+
+exit code :
+ (^_^)	(T_T)
+
+ :-)  :-(
+
+	[$]
+
+	(~.~)	(*o*)
+
+	*/
+
+	
