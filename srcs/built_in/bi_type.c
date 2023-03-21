@@ -6,29 +6,43 @@
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/18 16:10:01 by tlegrand          #+#    #+#             */
-/*   Updated: 2023/03/18 20:32:20 by tlegrand         ###   ########.fr       */
+/*   Updated: 2023/03/21 13:14:48 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/minishell.h"
 
+static int	ft_search_path(char *pathvar, char *cmd_name)
+{
+	int		err;
+	char	*tmp;
+
+	err = EXIT_SUCCESS;
+	tmp = ft_strdup(cmd_name);
+	if (ft_get_path(pathvar, &cmd_name))
+	{
+		printf("type : %s not found\n", tmp);
+		err = EXIT_FAILURE;
+	}
+	else
+		printf("%s is %s\n", tmp, cmd_name);
+	free(tmp);
+	return (err);
+}
+
 int	bi_type(t_line	*line)
 {
-	char	*tmp;
 	int		i;
 	int		err;
 
 	i = 1;
-	err = EXIT_FAILURE;
+	err = EXIT_SUCCESS;
 	while (line->cmd->arg[i])
 	{
 		if (line->cmd->arg[i][0] == '.' || line->cmd->arg[i][0] == '/')
 		{
 			if (!access(line->cmd->arg[i], X_OK))
-			{
 				printf("%s is %s\n", line->cmd->arg[i], line->cmd->arg[i]);
-				err = (EXIT_SUCCESS);
-			}
 			else
 			{
 				printf("type : %s not found\n", line->cmd->arg[i]);
@@ -36,19 +50,10 @@ int	bi_type(t_line	*line)
 			}
 		}
 		if (ft_is_bi(line->cmd->arg[i]))
-		{
 			printf("%s is minishell built-in\n", line->cmd->arg[i]);
-			err = (EXIT_SUCCESS);
-		}
 		else
-		{
-			tmp = ft_strdup(line->cmd->arg[i]);
-			if (ft_get_path(get_value(line->lst_env, "PATH"), &line->cmd->arg[i]))
-				printf("type : %s not found\n", tmp);
-			else
-				printf("%s is %s\n", tmp, line->cmd->arg[i]);
-			free(tmp);
-		}
+			err = ft_search_path(get_value(line->lst_env, "PATH"), \
+				line->cmd->arg[1]);
 		i++;
 	}
 	return (err);

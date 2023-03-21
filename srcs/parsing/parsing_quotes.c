@@ -6,7 +6,7 @@
 /*   By: lboudjem <lboudjem@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/11 14:27:10 by lboudjem          #+#    #+#             */
-/*   Updated: 2023/03/21 10:32:23 by lboudjem         ###   ########.fr       */
+/*   Updated: 2023/03/21 13:41:50 by lboudjem         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,48 +74,79 @@ char	*ft_delete_quotes(char *bloc, int size, int nb_quotes, char quote)
 	return (free(bloc), cpy);
 }
 
-char	*ft_delete_quotes2(char *bloc, int size, int nb_quotes, char quote)
+int	get_nb_quotes(char *bloc, int i)
+{
+	int	nb;
+
+	nb = 0;
+	while (bloc[i])
+	{
+		if (bloc[i] == 34)
+		{
+			nb++;
+			i++;
+			while (bloc[i] != 34)
+				i++;
+			nb++;
+		}
+		if (bloc[i] == 39)
+		{
+			nb++;
+			i++;
+			while (bloc[i] != 39)
+				i++;
+			nb++;
+		}
+		i++;
+	}
+	return (nb);
+}
+
+char	*ft_del_quotes(char *bloc)
 {
 	char	*cpy;
-	int		first;
+	int		size;
+	int		nb_quotes;
+	int		i;
+	int		j;
 
-	first = 0;
+	i = 0;
+	j = 0;
+	nb_quotes = get_nb_quotes(bloc, 0);
 	size = ft_strlen2(bloc) - nb_quotes;
 	cpy = malloc((size + 1) * sizeof(char));
 	if (!cpy)
 		return (NULL);
-	size = 0;
-	nb_quotes = 0;
-	while (bloc[size] && first == 0)
+	while (bloc[i])
 	{
-		if (bloc[size] != quote)
-			cpy[nb_quotes++] = bloc[size];
-		if (bloc[size] == quote)
+		if (bloc[i] != 34 && bloc[i] != 39)
 		{
-			first = 1;
-			size++;
-			while (bloc[size] != quote)
+			cpy[j] = bloc[i];
+			j++;
+		}
+		if (bloc[i] == 34)
+		{
+			i++;
+			while (bloc[i] != 34)
 			{
-				cpy[nb_quotes] = bloc[size];
-				size++;
-				nb_quotes++;
+				cpy[j] = bloc[i];
+				j++;
+				i++;
 			}
 		}
-		size++;
+		if (bloc[i] == 39)
+		{
+			i++;
+			while (bloc[i] != 39)
+			{
+				cpy[j] = bloc[i];
+				j++;
+				i++;
+			}
+		}
+		i++;
 	}
-	while (bloc[size] && first == 1)
-	{
-		cpy[nb_quotes] = bloc[size];
-		nb_quotes++;
-		size++;
-	}
-	cpy[nb_quotes] = '\0';
-	printf("cpy = %s\n", cpy);
-	return (free(bloc), cpy);
+	cpy[j] = '\0';
+	free(bloc);
+	return (cpy);
 }
-
-// je parcours et je copie
-// des que je trouve la 1ere quote je copie pas
-// je copie tout jusqu'a trouver la 2e quote
-// je copie pas la 2e quote
-// je copie tout le reste

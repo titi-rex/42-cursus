@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing_expansion.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: louisa <louisa@student.42.fr>              +#+  +:+       +#+        */
+/*   By: lboudjem <lboudjem@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/13 17:33:36 by louisa            #+#    #+#             */
-/*   Updated: 2023/03/19 15:48:22 by louisa           ###   ########.fr       */
+/*   Updated: 2023/03/21 13:40:35 by lboudjem         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,7 @@ char	*ft_replace_expansion_value(char *bloc, t_line *line, int len, int i)
 		cpy[i++] = bloc[tmp++];
 	cpy[i] = '\0';
 	free(bloc);
+	free(value);
 	return (cpy);
 }
 
