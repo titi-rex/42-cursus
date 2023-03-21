@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lboudjem <lboudjem@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/08 17:06:26 by tlegrand          #+#    #+#             */
-/*   Updated: 2023/03/21 14:48:16 by lboudjem         ###   ########.fr       */
+/*   Updated: 2023/03/21 15:21:58 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ int			ft_get_path(char *pathvar, char	**head);
 char		*ft_here_doc_mode(char *delimiter);
 
 /*			struct var_env functions			*/
-int			print_env(t_var_env	*lst);
+int			print_env(t_var_env	*lst, int mode);
 void		init_variables(t_var_env *lst);
 void		ft_envadd_front(t_var_env **lst, t_var_env *new);
 void		ft_envadd_back(t_var_env **lst, t_var_env *new);
