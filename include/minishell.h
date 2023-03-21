@@ -6,7 +6,7 @@
 /*   By: lboudjem <lboudjem@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/08 17:06:26 by tlegrand          #+#    #+#             */
-/*   Updated: 2023/03/21 10:48:43 by lboudjem         ###   ########.fr       */
+/*   Updated: 2023/03/21 12:18:49 by lboudjem         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@
 # include <readline/history.h>
 # include "../libft/libft.h"
 # include "exec_struct.h"
+# include "mycolors.h"
 # define READING 0b0001
 # define EXECUTION 0b0010
 # define MINISHELL 0b0100
@@ -50,7 +51,7 @@ char		*ft_delete_quotes2(char *bloc, int size, int nb_quotes, char quote);
 int			ft_splitlen(char **split);
 char		**ft_split_path(char const *s);
 char		*ft_get_pathcmd(char **paths, char *cmd_name);
-void		ft_get_path(char *pathvar, t_cmd *cmd);
+int			ft_get_path(char *pathvar, char	**head);
 
 char		*ft_here_doc_mode(char *delimiter);
 
@@ -80,19 +81,20 @@ int			bi_env(t_line *line);
 int			bi_exit(t_line *line);
 int			bi_export(t_line *line);
 int			bi_pwd(t_line *line);
+int			bi_type(t_line	*line);
 int			bi_unset(t_line *line);
 void		ft_env_update(char ***env, t_var_env *lst);
-int			ft_is_this_a_minishell(t_line *line);
 void		ft_exe_master(t_line *line);
 
 int			ft_dup_redirect(t_list *io, int here_pipe[2], t_line *line);
 void		ft_dup_pipe(int pipe_in[2], int pipe_out[2]);
+void		ft_restore_std(t_list *io, int std_fd[2]);
 
 /*			utils general	*/
 int			ft_perror_return_int(char *errstr);
 char		*ft_perror_return_null(char *errstr);
 int			ft_error_return(char *errstr);
-int			ft_is_bi(char **arg);
+int			ft_is_bi(char *arg);
 void		ft_clean_exit(t_line *line, int exit_code);
 
 /*			signals functions 		*/
@@ -132,5 +134,10 @@ t_cmd		*ft_cmd_first(t_cmd *cmd);
 void		ft_cmd_add_back(t_cmd **start, t_cmd *new);
 void		ft_clear_cmd(t_cmd **cmd);
 void		ft_clear_lst_cmd(t_cmd **cmd);
+
+/*			prompt function				*/
+char		*ft_prompt_git(void);
+char		*ft_prompt_pwd(char *pwd, char *user);
+char		*ft_get_a_nice_prompt(t_var_env *lst_env, int exit_status);
 
 #endif 

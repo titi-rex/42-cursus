@@ -6,7 +6,7 @@
 #    By: lboudjem <lboudjem@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/02/12 20:46:19 by tlegrand          #+#    #+#              #
-#    Updated: 2023/03/21 10:48:07 by lboudjem         ###   ########.fr        #
+#    Updated: 2023/03/21 12:19:01 by lboudjem         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,11 +24,14 @@ LST_SRCS		=	main_test.c \
 					signal.c \
 					utils.c \
 					prompt.c \
+					prompt_git.c \
+					prompt_tmp.c \
+					prompt_pwd.c \
 					term.c 
 SRCS			=	${addprefix ${DIR_SRCS}, ${LST_SRCS}}
 
 DIR_SRCS_BI		=	srcs/built_in/
-LST_SRCS_BI		=	bi_cd.c bi_echo.c bi_pwd.c  bi_exit.c bi_env.c bi_export.c bi_unset.c
+LST_SRCS_BI		=	bi_cd.c bi_echo.c bi_pwd.c  bi_exit.c bi_env.c bi_export.c bi_type.c bi_unset.c
 SRCS_BI			=	${addprefix ${DIR_SRCS_BI}, ${LST_SRCS_BI}}
 
 DIR_SRCS_STRUCT	=	srcs/structure/
@@ -79,7 +82,7 @@ MAKE		=	make -s
 
 
 #	==============================	FLAGS	==============================	#
-CFLAGS		=	-Wall -Wextra -Werror -I${DIR_HEADER} #-fsanitize=address -g3
+CFLAGS		=	-Wall -Wextra -Werror -I${DIR_HEADER} -fsanitize=address -g3
 RFLAGS		=	-lreadline -lft -ltermcap #-L/usr/local/lib -I/usr/local/include
 FTFLAGS		=	-L${DIR_LIBFT} -lft
 
@@ -89,9 +92,6 @@ FTFLAGS		=	-L${DIR_LIBFT} -lft
 
 #	==============================	BASIC	==============================	#
 all		:	${NAME}
-
-msg		:
-		@printf "${REV}3${END}>\n"
 
 clean	:
 		@${RM} ${DIR_OBJS}
@@ -137,7 +137,7 @@ ${DIR_OBJS}	:
 			@${MKDIR} ${DIR_OBJS}
 			
 nn			:
-			@norminette $(sort ${SRCS} ${SRCS_B} ${HEADER} ${HEADER_B})
+			@norminette $(sort ${SRCS} ${SRCS_BI} ${SRCS_EXE} ${SRCS_STRUCT} ${SRCS_PARSE} ${HEADER} )
 
 $(LIBFT)	:	FORCE
 			@$(MAKE) -C ${DIR_LIBFT}

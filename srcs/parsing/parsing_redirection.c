@@ -6,7 +6,7 @@
 /*   By: lboudjem <lboudjem@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/13 17:47:02 by louisa            #+#    #+#             */
-/*   Updated: 2023/03/18 17:13:27 by lboudjem         ###   ########.fr       */
+/*   Updated: 2023/03/21 12:47:17 by lboudjem         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -126,7 +126,7 @@ t_list	*ft_handle_redirection(char **bloc, int *error)
 	type = -1;
 	io = NULL;
 	arg = NULL;
-	while ((*bloc)[i])
+	while ((*bloc) && (*bloc)[i])
 	{
 		if (ft_redirection_type_fd(*bloc, &type, &i) == 1)
 		{
@@ -135,8 +135,10 @@ t_list	*ft_handle_redirection(char **bloc, int *error)
 				return (*error = 1, NULL);
 			*bloc = ft_clear_redirection(*bloc, i);
 			ft_redirect_add_list(&io, type, arg);
+			if (!(*bloc)[0] || !(*bloc)[1])
+				break ;
 			free(arg);
-			i++;
+			i = 0;
 		}
 		i++;
 	}

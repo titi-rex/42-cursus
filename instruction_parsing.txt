@@ -6,7 +6,7 @@
 #    By: lboudjem <lboudjem@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/03/10 16:14:31 by lboudjem          #+#    #+#              #
-#    Updated: 2023/03/21 11:17:38 by lboudjem         ###   ########.fr        #
+#    Updated: 2023/03/21 12:27:20 by lboudjem         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -72,16 +72,20 @@ Autre:
 
 - A ne pas oublier:
 penser a free hihi
-supprimer les redirection er leurs args juste apres
 export test : ca le met dans export et pas dans env
 export test= : dans env ca met test=(rien)
-echo '"'"$USER"'"'
 echo "$""USER"
 (echo coucou |   |) DIFFERENT DE (echo coucou | " "  | " ")
 remonter correctement l'erreur missing quote
+> log2
+export test=truc
+renvoie code erreur specifique en cas de bloc null (2 par exemple)
+
+supprimer les redirection er leurs args juste apres
 
                         Exemples chiants a tester:
 
+echo '"'"$USER"'"'
 echo mdrr 1<>coucou
 echo mdrr 2<>coucou
 echo coucou > "ihi aha"ihi

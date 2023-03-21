@@ -6,7 +6,7 @@
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/08 13:27:20 by tlegrand          #+#    #+#             */
-/*   Updated: 2023/03/13 18:10:14 by tlegrand         ###   ########.fr       */
+/*   Updated: 2023/03/20 16:37:45 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,22 +22,26 @@ static int	bi_count_arg(char **arg)
 	return (n);
 }
 
-static void	ft_update_pwd(t_line *line, char *current)
+static void	ft_update_pwd(t_var_env *lst_env)
 {
 	char		*oldpwd;
+	char		*cwd;
 	t_var_env	*tmp;
 
-	oldpwd = get_value(line->lst_env, "PWD");
-	if (ft_var_env_search(line->lst_env, "OLDPWD"))
-		change_value(line->lst_env, "OLDPWD", oldpwd);
+	oldpwd = get_value(lst_env, "PWD");
+	if (ft_var_env_search(lst_env, "OLDPWD"))
+		change_value(lst_env, oldpwd, "OLDPWD");
 	else
 	{
 		tmp = ft_new_env("OLDPWD", oldpwd);
 		if (!tmp)
 			perror("Error ");
-		ft_envadd_back(&line->lst_env, tmp);
+		else
+			ft_envadd_back(&lst_env, tmp);
 	}
-	change_value(line->lst_env, "PWD", current);
+	cwd = getcwd(NULL, 0);
+	change_value(lst_env, cwd, "PWD");
+	free(cwd);
 }
 
 int	bi_cd(t_line *line)
@@ -54,11 +58,11 @@ int	bi_cd(t_line *line)
 		home = get_value(line->lst_env, "HOME");
 		if (chdir(home) == -1)
 			return (ft_perror_return_int("Error HOME not set "));
-		ft_update_pwd(line, home);
+		ft_update_pwd(line->lst_env);
 		return (EXIT_SUCCESS);
 	}
 	if (chdir(line->cmd->arg[1]) == -1)
 		return (ft_perror_return_int(NULL));
-	ft_update_pwd(line, line->cmd->arg[1]);
-	return (EXIT_FAILURE);
+	ft_update_pwd(line->lst_env);
+	return (EXIT_SUCCESS);
 }

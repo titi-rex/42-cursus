@@ -6,7 +6,7 @@
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/11 16:11:47 by tlegrand          #+#    #+#             */
-/*   Updated: 2023/03/17 23:12:06 by tlegrand         ###   ########.fr       */
+/*   Updated: 2023/03/18 15:22:07 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ extern sig_atomic_t	g_status;
 
 void	ft_sig_handler_shell(int sig)
 {
-	if (g_status & MINISHELL)
+	if (g_status & EXECUTION)
 		return ;
 	if (sig == SIGINT)
 	{
@@ -24,7 +24,6 @@ void	ft_sig_handler_shell(int sig)
 			ioctl(STDIN_FILENO, TIOCSTI, "\n");
 		rl_replace_line("", 0);
 		rl_on_new_line();
-		g_status |= INTERRUPT;
 	}
 }
 

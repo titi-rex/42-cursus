@@ -11,7 +11,7 @@ valgrind
 --show-mismatched-frees=yes
 --read-var-info=yes
 
-valgrind --suppressions=valgrind_ignore_leaks.txt --leak-check=full --show-leak-kinds=all --track-origins=yes --verbose --show-mismatched-frees=yes --read-var-info=yes
+valgrind --suppressions=valgrind_ignore_leaks.txt --track-fds=yes --trace-children=yes --leak-check=full --show-leak-kinds=all --track-origins=yes --verbose --show-mismatched-frees=yes --read-var-info=yes
 
 (option) --log-file=valgrind-out.txt
 
@@ -78,6 +78,8 @@ here_doc function
 /*	TODO:	gestion arg for minishell ? + error	*/
 /*	TODO:	update redirect without fd -> update dup redirect*/
 /*	TODO:	man/greeting function */
+/*	FIXME:	ctrl \ does shit	*/
+/*	TODO:FIXME:	minishell > log need to display prompt || minishell piped */
 
 
 
