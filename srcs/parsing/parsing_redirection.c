@@ -6,7 +6,7 @@
 /*   By: lboudjem <lboudjem@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/13 17:47:02 by louisa            #+#    #+#             */
-/*   Updated: 2023/03/21 12:47:17 by lboudjem         ###   ########.fr       */
+/*   Updated: 2023/03/21 13:46:15 by lboudjem         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,12 +106,18 @@ char	*ft_clear_redirection(char *bloc, int i)
 	int		len;
 	int		size;
 	char	*cpy;
+	char	*sub1;
+	char	*sub2;
 
 	cpy = NULL;
 	len = ft_size_redirection(bloc, i, 0);
 	size = ft_strlen2(bloc);
-	cpy = ft_strjoin(ft_substr(bloc, 0, i), \
-		ft_substr(bloc, i + len, size - (i + len)));
+	sub1 = ft_substr(bloc, 0, i);
+	sub2 = ft_substr(bloc, i + len, size - (i + len));
+	cpy = ft_strjoin(sub1, sub2);
+	free(bloc);
+	free(sub1);
+	free(sub2);
 	return (cpy);
 }
 

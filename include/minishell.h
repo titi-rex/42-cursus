@@ -6,7 +6,7 @@
 /*   By: lboudjem <lboudjem@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/08 17:06:26 by tlegrand          #+#    #+#             */
-/*   Updated: 2023/03/21 12:18:49 by lboudjem         ###   ########.fr       */
+/*   Updated: 2023/03/21 14:48:16 by lboudjem         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,10 +31,12 @@
 
 /*          Parsing functiun            */
 int			ft_browse_line(char *str, int i, int start, t_line *line);
-void		ft_quotes(char *str, int *i);
+void		ft_quotes(char *str, int *i, int *error);
 char		*ft_creat_bloc(char *str, int *i, int *start, char *bloc);
-int			ft_handle_quotes(char *str, int i, int quote);
+int			ft_handle_quotes(char *str, int i, int quote, int *error);
 char		*ft_delete_quotes(char *bloc, int size, int nb_quotes, char quote);
+int			get_nb_quotes(char *bloc, int i);
+char		*ft_del_quotes(char *bloc);
 char		*ft_get_expansion_value(char *bloc, t_line *line, int *len, int i);
 char		*ft_replace_expansion_value(char *bloc, t_line *line, int len, int i);
 char		*ft_replace_by_exit_status(char *bloc, int i, t_line *line);
@@ -44,8 +46,6 @@ int			ft_redirection_type_fd(char *bloc, int *type, int *i);
 t_list		*ft_handle_redirection(char **bloc, int *error);
 char		**ft_split_bis(char const *s, char c);
 char		*ft_handle_export(char *bloc);
-
-char		*ft_delete_quotes2(char *bloc, int size, int nb_quotes, char quote);
 
 /*     			get path functiuns   		   */
 int			ft_splitlen(char **split);

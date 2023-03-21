@@ -6,7 +6,7 @@
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/13 17:33:36 by louisa            #+#    #+#             */
-/*   Updated: 2023/03/21 14:01:56 by tlegrand         ###   ########.fr       */
+/*   Updated: 2023/03/21 15:17:44 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,7 @@ char	*ft_replace_expansion_value(char *bloc, t_line *line, int len, int i)
 		cpy[i++] = bloc[tmp++];
 	cpy[i] = '\0';
 	free(bloc);
+	free(value);
 	return (cpy);
 }
 
