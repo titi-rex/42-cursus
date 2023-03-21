@@ -6,7 +6,7 @@
 #    By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/02/12 20:46:19 by tlegrand          #+#    #+#              #
-#    Updated: 2023/03/20 16:57:11 by tlegrand         ###   ########.fr        #
+#    Updated: 2023/03/21 12:19:21 by tlegrand         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,10 +23,6 @@ DIR_SRCS		=	srcs/
 LST_SRCS		=	main_test.c \
 					signal.c \
 					utils.c \
-					prompt.c \
-					prompt_git.c \
-					prompt_tmp.c \
-					prompt_pwd.c \
 					term.c 
 SRCS			=	${addprefix ${DIR_SRCS}, ${LST_SRCS}}
 
@@ -53,6 +49,9 @@ DIR_SRCS_EXE	=	srcs/execution/
 LST_SRCS_EXE	=	exe_dup_redirect.c exe_dup_pipe.c exe_cmd.c exe_utils.c
 SRCS_EXE		=	${addprefix ${DIR_SRCS_EXE}, ${LST_SRCS_EXE}}
 
+DIR_SRCS_PROMPT	=	srcs/prompt/
+LST_SRCS_PROMPT	=	prompt.c prompt_git.c prompt_pwd.c 
+SRCS_PROMPT		=	${addprefix ${DIR_SRCS_PROMPT}, ${LST_SRCS_PROMPT}}
 
 
 #	==============================	OBJECTS	==============================	#
@@ -61,7 +60,8 @@ OBJS		=	${patsubst ${DIR_SRCS}%.c, ${DIR_OBJS}%.o, ${SRCS}} \
 				${patsubst ${DIR_SRCS_BI}%.c, ${DIR_OBJS}%.o, ${SRCS_BI}} \
 				${patsubst ${DIR_SRCS_STRUCT}%.c, ${DIR_OBJS}%.o, ${SRCS_STRUCT}} \
 				${patsubst ${DIR_SRCS_PARSE}%.c, ${DIR_OBJS}%.o, ${SRCS_PARSE}} \
-				${patsubst ${DIR_SRCS_EXE}%.c, ${DIR_OBJS}%.o, ${SRCS_EXE}}
+				${patsubst ${DIR_SRCS_EXE}%.c, ${DIR_OBJS}%.o, ${SRCS_EXE}} \
+				${patsubst ${DIR_SRCS_PROMPT}%.c, ${DIR_OBJS}%.o, ${SRCS_PROMPT}}
 
 #	==============================	HEADERS	==============================	#
 DIR_HEADER	=	include/
@@ -128,6 +128,10 @@ ${DIR_OBJS}%.o	:	${DIR_SRCS_PARSE}%.c ${HEADER}
 				@${CC} ${CFLAGS} -c $< -o $@
 
 ${DIR_OBJS}%.o	:	${DIR_SRCS_EXE}%.c ${HEADER}
+				@printf "$(ORANGE)Making $@...\n$(END)"
+				@${CC} ${CFLAGS} -c $< -o $@
+
+${DIR_OBJS}%.o	:	${DIR_SRCS_PROMPT}%.c ${HEADER}
 				@printf "$(ORANGE)Making $@...\n$(END)"
 				@${CC} ${CFLAGS} -c $< -o $@
 

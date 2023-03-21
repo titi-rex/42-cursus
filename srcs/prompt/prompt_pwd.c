@@ -6,7 +6,7 @@
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/20 15:53:05 by tlegrand          #+#    #+#             */
-/*   Updated: 2023/03/20 19:18:13 by tlegrand         ###   ########.fr       */
+/*   Updated: 2023/03/21 12:16:10 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ char	*ft_prompt_pwd(char *pwd, char *user)
 	if (!pwd)
 		return (NULL);
 	if (*pwd == '/' && *(pwd + 1) == '\0')
-		return (ft_strdup(BOLD YELLOW ITALIC"/"END));
+		return (ft_strdup(BOLD YELLOW ITALIC" in /"END));
 	if (user && user[0] != '/')
 		username = ft_strjoin("/", user);
 	else if (user)

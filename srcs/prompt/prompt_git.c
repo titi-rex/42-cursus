@@ -6,7 +6,7 @@
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/18 20:51:52 by tlegrand          #+#    #+#             */
-/*   Updated: 2023/03/20 19:25:10 by tlegrand         ###   ########.fr       */
+/*   Updated: 2023/03/21 12:47:55 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,7 +89,8 @@ char	*ft_get_path_git_dir(void)
 			free(pwd);
 			return (path_dir_git);
 		}
-		free(path_dir_git);
+		if (path_dir_git)
+			free(path_dir_git);
 		pwd = ft_strerase_end(pwd, ft_strrchr(pwd, '/'));
 	}
 	free(pwd);

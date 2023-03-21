@@ -6,7 +6,7 @@
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/11 16:11:47 by tlegrand          #+#    #+#             */
-/*   Updated: 2023/03/18 15:22:07 by tlegrand         ###   ########.fr       */
+/*   Updated: 2023/03/21 12:29:28 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,20 +29,23 @@ void	ft_sig_handler_shell(int sig)
 
 void	ft_sig_handler_child(int sig)
 {
-	if (sig == SIGQUIT)
-		ft_putstr_fd("Quit\n", 2);
 	exit(sig);
 }
 
 void	ft_sig_init(void (*handler) (int sig))
 {
 	struct sigaction	act;
+	struct sigaction	act_quit;
 
 	act.sa_flags = SA_RESTART;
 	sigemptyset(&act.sa_mask);
 	sigaddset(&act.sa_mask, SIGINT);
-	sigaddset(&act.sa_mask, SIGQUIT);
 	act.sa_handler = handler;
 	sigaction(SIGINT, &act, NULL);
-	sigaction(SIGQUIT, &act, NULL);
+	act_quit.sa_flags = SA_RESTART;
+	sigemptyset(&act_quit.sa_mask);
+	sigaddset(&act_quit.sa_mask, SIGQUIT);
+	act_quit.sa_handler = SIG_IGN;
+	sigaction(SIGQUIT, &act_quit, NULL);
+
 }

@@ -6,7 +6,7 @@
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/09 13:35:47 by lboudjem          #+#    #+#             */
-/*   Updated: 2023/03/20 18:44:18 by tlegrand         ###   ########.fr       */
+/*   Updated: 2023/03/21 12:57:39 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,22 +22,12 @@ char	*ft_get_pathcmd(char **paths, char *cmd_name)
 	{
 		buffer = ft_strjoin3(paths[j], "/", cmd_name);
 		if (!buffer)
-		{
-			perror(cmd_name);
-			free(cmd_name);
-			dprintf(2, " error malloc\n");
 			return (NULL);
-		}
 		if (!access(buffer, F_OK))
-		{
-			free(cmd_name);
-			dprintf(2, " sortie ok\n");
 			return (buffer);
-		}
+		free(buffer);
 		j++;
 	}
-	free(buffer);
-	dprintf(2, "pas trouver cmd\n");
 	return (NULL);
 }
 
@@ -60,6 +50,7 @@ int	ft_get_path(char *pathvar, char	**head)
 	ft_free2d((void **)paths, 0);
 	if (!tmp)
 		return (1);
+	free(*head);
 	*head = tmp;
 	return (0);
 }
