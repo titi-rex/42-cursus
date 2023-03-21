@@ -6,7 +6,7 @@
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/08 12:28:13 by tlegrand          #+#    #+#             */
-/*   Updated: 2023/03/21 15:17:17 by tlegrand         ###   ########.fr       */
+/*   Updated: 2023/03/21 15:31:15 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,15 +28,13 @@ void	ft_init_main(t_line *line, char **env)
 	line->env = ft_lstenv_to_tab(line->lst_env);
 }
 /*	FIXME:	test redir export vs env print*/
-/*	FIXME:	exit code whe nctrl c = 130 */
+
 /*	FIXME:	cmd wit honly space send smtthing to exec */
 /*	FIXME:	leaks parsing	*/
 /*	FIXME:	leaks cmd not found	*/
-/*	FIXME:	permission denied when ty to exe something inexistant	-> not found*/
-/*	TODO:	change export / env*/
+/*	FIXME:	permission denied when ty to exe something inexistant -> not found*/
 /*	TODO:	prompt one line write on first line */
 /*	FIXME:	fd open at exit	*/
-/*	TODO:	prompt function */
 /*	TODO: mettre au propre + norme	*/
 int	fmain(int ac, char **arg, char **env)
 {

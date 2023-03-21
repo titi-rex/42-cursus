@@ -6,7 +6,7 @@
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/08 17:17:17 by tlegrand          #+#    #+#             */
-/*   Updated: 2023/03/15 16:51:02 by tlegrand         ###   ########.fr       */
+/*   Updated: 2023/03/21 15:42:39 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,14 +16,15 @@ static int	ft_dup_it(t_redirect *io, int fd_std, int flag)
 {
 	int	fd;
 
+	dprintf(2, "redirect type : %d\n", io->type);
 	fd = open(io->arg, flag, 0644);
 	if (fd == -1)
 	{
-		perror("Error dup io > ");
+		perror("Error dup io ");
 		return (1);
 	}
 	if (dup2(fd, fd_std) == -1)
-		perror("Error dup io > ");
+		perror("Error dup io ");
 	close(fd);
 	return (0);
 }

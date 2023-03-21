@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing_redirection.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lboudjem <lboudjem@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/13 17:47:02 by louisa            #+#    #+#             */
-/*   Updated: 2023/03/21 13:46:15 by lboudjem         ###   ########.fr       */
+/*   Updated: 2023/03/21 15:50:20 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -141,9 +141,10 @@ t_list	*ft_handle_redirection(char **bloc, int *error)
 				return (*error = 1, NULL);
 			*bloc = ft_clear_redirection(*bloc, i);
 			ft_redirect_add_list(&io, type, arg);
+			dprintf(2, "redirect type is : %d\n", *ft_redirect_acces_type(io->content));
+			free(arg);
 			if (!(*bloc)[0] || !(*bloc)[1])
 				break ;
-			free(arg);
 			i = 0;
 		}
 		i++;
