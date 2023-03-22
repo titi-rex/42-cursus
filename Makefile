@@ -6,7 +6,7 @@
 #    By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/02/12 20:46:19 by tlegrand          #+#    #+#              #
-#    Updated: 2023/03/21 21:37:58 by tlegrand         ###   ########.fr        #
+#    Updated: 2023/03/22 13:08:38 by tlegrand         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -66,7 +66,8 @@ OBJS		=	${patsubst ${DIR_SRCS}%.c, ${DIR_OBJS}%.o, ${SRCS}} \
 
 #	==============================	HEADERS	==============================	#
 DIR_HEADER	=	include/
-HEADER		=	${addprefix ${DIR_HEADER}, ${NAME}.h}
+LST_HDR		=	${NAME}.h structure.h mycolors.h
+HEADER		=	${addprefix ${DIR_HEADER}, ${LST_HDR}}
 
 
 #	==============================	LIBRARY	==============================	#
@@ -92,6 +93,9 @@ FTFLAGS		=	-L${DIR_LIBFT} -lft
 
 #	==============================	BASIC	==============================	#
 all		:	${NAME}
+
+msg:	
+	@echo ${HEADER}
 
 clean	:
 		@${RM} ${DIR_OBJS}

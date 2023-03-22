@@ -6,7 +6,7 @@
 /*   By: lboudjem <lboudjem@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/08 17:06:26 by tlegrand          #+#    #+#             */
-/*   Updated: 2023/03/22 12:57:57 by lboudjem         ###   ########.fr       */
+/*   Updated: 2023/03/22 13:51:48 by lboudjem         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@
 # include <readline/readline.h>
 # include <readline/history.h>
 # include "../libft/libft.h"
-# include "exec_struct.h"
+# include "structure.h"
 # include "mycolors.h"
 # define READING 0b0001
 # define EXECUTION 0b0010
