@@ -6,7 +6,7 @@
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/08 17:06:26 by tlegrand          #+#    #+#             */
-/*   Updated: 2023/03/22 16:46:30 by tlegrand         ###   ########.fr       */
+/*   Updated: 2023/03/22 20:23:47 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -139,5 +139,9 @@ void		ft_clear_lst_cmd(t_cmd **cmd);
 char		*ft_prompt_git(void);
 char		*ft_prompt_pwd(char *pwd, char *user);
 char		*ft_get_a_nice_prompt(t_var_env *lst_env, int exit_status);
+
+
+void		ft_print_cmd_arg(char **arg);
+
 
 #endif 

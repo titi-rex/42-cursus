@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_split_bis.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lboudjem <lboudjem@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/17 15:16:03 by lboudjem          #+#    #+#             */
-/*   Updated: 2023/03/17 16:04:53 by lboudjem         ###   ########.fr       */
+/*   Updated: 2023/03/22 21:23:17 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ static int	ft_wordcountd(char *str, char *charset)
 	int		a;
 	char	c;
 
-	a = 1;
+	a = 0;
 	c = '\0';
 	while (*str)
 	{
@@ -56,10 +56,18 @@ static int	ft_wordcountd(char *str, char *charset)
 			c = *str;
 		else if (c == *str)
 			c = '\0';
-		if (ft_is_charsetd(*str, charset)
-			&& c == '\0' && ft_strlen(str + 1) > 0)
-			a += 1;
-		str++;
+		if ((ft_is_charsetd(*str, charset) && c == '\0' && *(str + 1) != 0))
+		{
+			a++;
+			while (*str && ft_is_charsetd(*str, charset))
+				str++;
+			if (!*str)
+				return (a);
+		}
+		else
+			str++;
+		if (!*str)
+			a++;
 	}
 	return (a);
 }
@@ -90,22 +98,23 @@ char	**ft_split_bis(char const *s, char c)
 	int			i;
 	char		charset[2];
 
-	i = 0;
+	i = -1;
 	charset[0] = c;
 	charset[1] = '\0';
+	while (*s && ft_is_charsetd(*s, charset))
+		s++;
 	size = ft_wordcountd((char *)s, charset);
 	dest = malloc((size + 1) * sizeof(char *));
 	if (!dest)
-		return (0);
-	while (i < size)
+		return (NULL);
+	while (++i < size)
 	{
 		while (ft_is_charsetd((char)*s, charset))
 			s++;
 		j = ft_wordlend((char *)s, charset);
 		dest[i] = ft_strduppd((char *)s, j);
 		s += j;
-		i++;
 	}
-	dest[size] = 0;
+	dest[size] = NULL;
 	return (dest);
 }

@@ -6,7 +6,7 @@
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/08 17:17:17 by tlegrand          #+#    #+#             */
-/*   Updated: 2023/03/22 17:19:47 by tlegrand         ###   ########.fr       */
+/*   Updated: 2023/03/22 20:15:43 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,9 +30,8 @@ static int	ft_dup_it(t_redirect *io, int fd_std, int flag)
 
 int	ft_dup_here_doc(t_redirect *io, int here_pipe[2], t_line *line)
 {
-	int	pid;
-	//char	c;
-	int	i;
+	int		pid;
+	int		i;
 
 	if (pipe(here_pipe) == -1)
 		return (ft_perror_return_int(NULL));
@@ -41,33 +40,18 @@ int	ft_dup_here_doc(t_redirect *io, int here_pipe[2], t_line *line)
 		perror("Error ");
 	else if (pid == 0)
 	{
-		i = 0;
-		while (io->arg[i])
-		{
+		i = -1;
+		while (io->arg[++i])
 			write(here_pipe[1], &io->arg[i], 1);
-			i++;
-			
-		}
 		ft_close_pipe(here_pipe);
-		dprintf(2, "close pipe\n");
 		ft_clean_exit(line, EXIT_SUCCESS);
-		
 	}
 	else
 	{
 		if (dup2(here_pipe[0], 0) == -1)
 			perror("Error dup here_doc ");
-		// i = 1;
-		// while ( i  != 0 && i != -1)
-		// {
-		// 	i = read(0, &c, 1);
-		// 	dprintf(2, "%c", c);
-		// 	dprintf(2, "%d", i);
-		// }
 		ft_close_pipe(here_pipe);
-		dprintf(2, "close pipe child\n");
 	}
-	(void)line;
 	return (0);
 }
 
