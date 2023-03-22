@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: lboudjem <lboudjem@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/08 11:21:07 by louisa            #+#    #+#             */
-/*   Updated: 2023/03/21 19:47:35 by tlegrand         ###   ########.fr       */
+/*   Updated: 2023/03/22 12:56:40 by lboudjem         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,7 @@ int	ft_browse_line(char *str, int i, int start, t_line *line)
 		{
 			bloc = ft_creat_bloc(str, &i, &start, bloc);
 			bloc = ft_handle_expansion(bloc, line);
-			io = ft_handle_redirection(&bloc, &error);
+			io = ft_handle_redirection(&bloc, &error, line);
 			bloc = ft_handle_export(bloc);
 			if (!bloc || error == 1)
 				return (free(bloc), 1);
@@ -80,7 +80,7 @@ int	ft_browse_line(char *str, int i, int start, t_line *line)
 		{
 			bloc = ft_substr(str, start, (i + 1) - start);
 			bloc = ft_handle_expansion(bloc, line);
-			io = ft_handle_redirection(&bloc, &error);
+			io = ft_handle_redirection(&bloc, &error, line);
 			bloc = ft_handle_export(bloc);
 			if (!bloc || error == 1)
 				return (free(bloc), 1);

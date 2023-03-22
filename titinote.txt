@@ -122,4 +122,7 @@ exit code :
 
 	*/
 
-	
+
+Loulounotes :
+
+nm -n *.o => pour check les fonctions utilises

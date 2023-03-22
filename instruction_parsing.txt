@@ -6,7 +6,7 @@
 #    By: lboudjem <lboudjem@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/03/10 16:14:31 by lboudjem          #+#    #+#              #
-#    Updated: 2023/03/21 17:24:19 by lboudjem         ###   ########.fr        #
+#    Updated: 2023/03/22 12:58:31 by lboudjem         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -73,20 +73,21 @@ Autre:
 
 
 - A ne pas oublier:
-penser a free hihi
-ajouter le here_doc
+casser tous les mallocs
 export test : ca le met dans export et pas dans env
 export test= : dans env ca met test=(rien)
 export TEST='""'
-"" -> permission denied (demander a titi)
 
 - Fait (normalement) (a tester quand meme) :
 export test=truc
 > log2
+ajouter le here_doc
+penser a free hihi
 supprimer les redirection er leurs args juste apres
 renvoie code erreur specifique en cas de bloc null (2 par exemple)
 (echo coucou |   |) DIFFERENT DE (echo coucou | " "  | " ")
 missing quote
+"" -> permission denied (demander a titi)
 remonter correctement l'erreur missing quote
 echo "$""USER"
 
