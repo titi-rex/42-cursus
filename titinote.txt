@@ -88,6 +88,7 @@ here_doc function
 /*	FIXME:	permission denied when ty to exe something inexistant -> not found*/
 /*	FIXME:	test redir export vs env print*/
 /*	FIXME:	cmd wit honly space send smtthing to exec */
+/*	FIXME: "" or '' or . or / send permission denied , expect not found*/
 
 
 

@@ -6,7 +6,7 @@
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/11 13:43:01 by tlegrand          #+#    #+#             */
-/*   Updated: 2023/03/21 21:48:11 by tlegrand         ###   ########.fr       */
+/*   Updated: 2023/03/22 17:16:33 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,7 @@ int	ft_error_return(char *errstr)
 
 void	ft_clean_exit(t_line *line, int exit_code)
 {
+	dprintf(2, "eeeeeuh\n");
 	rl_clear_history();
 	s_line_clear(line);
 	exit(exit_code);

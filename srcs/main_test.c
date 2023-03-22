@@ -6,7 +6,7 @@
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/08 12:28:13 by tlegrand          #+#    #+#             */
-/*   Updated: 2023/03/22 15:27:29 by tlegrand         ###   ########.fr       */
+/*   Updated: 2023/03/22 16:55:42 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,8 +28,8 @@ void	ft_init_main(t_line *line, char **env)
 	line->env = ft_lstenv_to_tab(line->lst_env);
 }
 
+/*	TODO:	secret env	*/
 
-/*	FIXME: "" or '' or . or / send permission denied , expect not found*/
 /*	FIXME:	prompt one line write on first line */
 /*	FIXME:	fd open at exit	*/
 /*	TODO: mettre au propre + norme	*/
@@ -59,6 +59,7 @@ int	fmain(int ac, char **arg, char **env)
 		//		ft_putendl_fd("Error parsing\n", 2);
 		//		continue ;
 		//}
+		
 		ft_exe_master(&line);
 		s_line_reset(&line);
 	}

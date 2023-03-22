@@ -6,7 +6,7 @@
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/13 18:46:53 by tlegrand          #+#    #+#             */
-/*   Updated: 2023/03/16 16:06:25 by tlegrand         ###   ########.fr       */
+/*   Updated: 2023/03/22 16:45:29 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,22 +38,13 @@ char	*ft_here_doc(char *end)
 	return (here_doc);
 }
 
-char	*ft_here_doc_mode(char *delimiter)
+char	*ft_here_doc_mode(char **delimiter)
 {
 	char	*here_doc;
-	char	*end;
 
 	here_doc = NULL;
-	end = ft_strtrim(delimiter, "\"\'");
-	if (!end)
-		ft_perror_return_null("NULL");
-	here_doc = ft_here_doc(end);
-	free(end);
-	if (delimiter[0] == '"' || delimiter[0] == '\'')
-	{
-		here_doc = ft_self_append(ft_strdup("\'"), here_doc);
-		here_doc = ft_self_append(here_doc, "\'");
-	}
-	free(delimiter);
+	here_doc = ft_here_doc(*delimiter);
+	free(*delimiter);
+	*delimiter = NULL;
 	return (here_doc);
 }
