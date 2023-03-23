@@ -1,0 +1,112 @@
+tlegrand in ~/.../minishell on {main} (*o*) -$> << end echo | echo hoh
+ $> dwefwelffe
+ $> fwef
+ $> ef
+ $> end
+hoh
+==400153== 
+==400153== FILE DESCRIPTORS: 3 open at exit.
+==400153== Open file descriptor 2: /dev/pts/2
+==400153==    <inherited from parent>
+==400153== 
+==400153== Open file descriptor 1:
+==400153==    at 0x49F08CB: dup2 (syscall-template.S:78)
+==400153==    by 0x10E027: ft_dup_pipe (in /nfs/homes/tlegrand/Documents/dev/CC3/minishell/minishell)
+==400153==    by 0x10E12E: ft_exe_bi (in /nfs/homes/tlegrand/Documents/dev/CC3/minishell/minishell)
+==400153==    by 0x10E428: ft_exe_selector (in /nfs/homes/tlegrand/Documents/dev/CC3/minishell/minishell)
+==400153==    by 0x10E7E1: ft_exe_master (in /nfs/homes/tlegrand/Documents/dev/CC3/minishell/minishell)
+==400153==    by 0x10993E: main (in /nfs/homes/tlegrand/Documents/dev/CC3/minishell/minishell)
+==400153== 
+==400153== Open file descriptor 0:
+==400153==    at 0x49F08CB: dup2 (syscall-template.S:78)
+==400153==    by 0x10DE73: ft_dup_here_doc (in /nfs/homes/tlegrand/Documents/dev/CC3/minishell/minishell)
+==400153==    by 0x10DF5D: ft_dup_redirect (in /nfs/homes/tlegrand/Documents/dev/CC3/minishell/minishell)
+==400153==    by 0x10E14C: ft_exe_bi (in /nfs/homes/tlegrand/Documents/dev/CC3/minishell/minishell)
+==400153==    by 0x10E428: ft_exe_selector (in /nfs/homes/tlegrand/Documents/dev/CC3/minishell/minishell)
+==400153==    by 0x10E7E1: ft_exe_master (in /nfs/homes/tlegrand/Documents/dev/CC3/minishell/minishell)
+==400153==    by 0x10993E: main (in /nfs/homes/tlegrand/Documents/dev/CC3/minishell/minishell)
+==400153== 
+==400153== 
+==400153== HEAP SUMMARY:
+==400153==     in use at exit: 204,899 bytes in 217 blocks
+==400153==   total heap usage: 1,131 allocs, 914 frees, 271,821 bytes allocated
+==400153== 
+==400154== 
+==400154== FILE DESCRIPTORS: 3 open at exit.
+==400154== Open file descriptor 2: /dev/pts/2
+==400154==    <inherited from parent>
+==400154== 
+==400154== Open file descriptor 1: /dev/pts/2
+==400154==    at 0x49F08CB: dup2 (syscall-template.S:78)
+==400154==    by 0x10EA9C: ft_restore_std (in /nfs/homes/tlegrand/Documents/dev/CC3/minishell/minishell)
+==400154==    by 0x10E0E2: ft_exe_bi (in /nfs/homes/tlegrand/Documents/dev/CC3/minishell/minishell)
+==400154==    by 0x10E428: ft_exe_selector (in /nfs/homes/tlegrand/Documents/dev/CC3/minishell/minishell)
+==400154==    by 0x10E7E1: ft_exe_master (in /nfs/homes/tlegrand/Documents/dev/CC3/minishell/minishell)
+==400154==    by 0x10993E: main (in /nfs/homes/tlegrand/Documents/dev/CC3/minishell/minishell)
+==400154== 
+==400154== Open file descriptor 0:
+==400154==    at 0x49F08CB: dup2 (syscall-template.S:78)
+==400154==    by 0x10DFF1: ft_dup_pipe (in /nfs/homes/tlegrand/Documents/dev/CC3/minishell/minishell)
+==400154==    by 0x10E12E: ft_exe_bi (in /nfs/homes/tlegrand/Documents/dev/CC3/minishell/minishell)
+==400154==    by 0x10E428: ft_exe_selector (in /nfs/homes/tlegrand/Documents/dev/CC3/minishell/minishell)
+==400154==    by 0x10E7E1: ft_exe_master (in /nfs/homes/tlegrand/Documents/dev/CC3/minishell/minishell)
+==400154==    by 0x10993E: main (in /nfs/homes/tlegrand/Documents/dev/CC3/minishell/minishell)
+==400154== 
+==400154== 
+==400154== HEAP SUMMARY:
+==400154==     in use at exit: 204,899 bytes in 217 blocks
+==400154==   total heap usage: 1,131 allocs, 914 frees, 271,821 bytes allocated
+==400154== 
+==400153== LEAK SUMMARY:
+==400153==    definitely lost: 0 bytes in 0 blocks
+==400153==    indirectly lost: 0 bytes in 0 blocks
+==400153==      possibly lost: 0 bytes in 0 blocks
+==400153==    still reachable: 0 bytes in 0 blocks
+==400153==         suppressed: 204,899 bytes in 217 blocks
+==400153== 
+==400153== For lists of detected and suppressed errors, rerun with: -s
+==400153== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
+==400154== LEAK SUMMARY:
+==400154==    definitely lost: 0 bytes in 0 blocks
+==400154==    indirectly lost: 0 bytes in 0 blocks
+==400154==      possibly lost: 0 bytes in 0 blocks
+==400154==    still reachable: 0 bytes in 0 blocks
+==400154==         suppressed: 204,899 bytes in 217 blocks
+==400154== 
+==400154== For lists of detected and suppressed errors, rerun with: -s
+==400154== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
+==400155== 
+==400155== FILE DESCRIPTORS: 3 open at exit.
+==400155== Open file descriptor 2: /dev/pts/2
+==400155==    <inherited from parent>
+==400155== 
+==400155== Open file descriptor 1:
+==400155==    at 0x49F08CB: dup2 (syscall-template.S:78)
+==400155==    by 0x10E027: ft_dup_pipe (in /nfs/homes/tlegrand/Documents/dev/CC3/minishell/minishell)
+==400155==    by 0x10E12E: ft_exe_bi (in /nfs/homes/tlegrand/Documents/dev/CC3/minishell/minishell)
+==400155==    by 0x10E428: ft_exe_selector (in /nfs/homes/tlegrand/Documents/dev/CC3/minishell/minishell)
+==400155==    by 0x10E7E1: ft_exe_master (in /nfs/homes/tlegrand/Documents/dev/CC3/minishell/minishell)
+==400155==    by 0x10993E: main (in /nfs/homes/tlegrand/Documents/dev/CC3/minishell/minishell)
+==400155== 
+==400155== Open file descriptor 0: /dev/pts/2
+==400155==    at 0x49F08CB: dup2 (syscall-template.S:78)
+==400155==    by 0x10EA86: ft_restore_std (in /nfs/homes/tlegrand/Documents/dev/CC3/minishell/minishell)
+==400155==    by 0x10E0E2: ft_exe_bi (in /nfs/homes/tlegrand/Documents/dev/CC3/minishell/minishell)
+==400155==    by 0x10E428: ft_exe_selector (in /nfs/homes/tlegrand/Documents/dev/CC3/minishell/minishell)
+==400155==    by 0x10E7E1: ft_exe_master (in /nfs/homes/tlegrand/Documents/dev/CC3/minishell/minishell)
+==400155==    by 0x10993E: main (in /nfs/homes/tlegrand/Documents/dev/CC3/minishell/minishell)
+==400155== 
+==400155== 
+==400155== HEAP SUMMARY:
+==400155==     in use at exit: 204,899 bytes in 217 blocks
+==400155==   total heap usage: 1,131 allocs, 914 frees, 271,821 bytes allocated
+==400155== 
+==400155== LEAK SUMMARY:
+==400155==    definitely lost: 0 bytes in 0 blocks
+==400155==    indirectly lost: 0 bytes in 0 blocks
+==400155==      possibly lost: 0 bytes in 0 blocks
+==400155==    still reachable: 0 bytes in 0 blocks
+==400155==         suppressed: 204,899 bytes in 217 blocks
+==400155== 
+==400155== For lists of detected and suppressed errors, rerun with: -s
+==400155== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)

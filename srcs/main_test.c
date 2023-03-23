@@ -6,7 +6,7 @@
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/08 12:28:13 by tlegrand          #+#    #+#             */
-/*   Updated: 2023/03/22 20:58:41 by tlegrand         ###   ########.fr       */
+/*   Updated: 2023/03/23 15:48:49 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,9 +28,8 @@ void	ft_init_main(t_line *line, char **env)
 	line->env = ft_lstenv_to_tab(line->lst_env);
 }
 
-/*	TODO:	secret env	*/
-
-/*	FIXME:	prompt one line write on first line */
+/*	FIXME:	< > not lean in first pos*/
+/*	TODO: clean flags gstatus	*/
 /*	FIXME:	fd open at exit	*/
 /*	TODO: mettre au propre + norme	*/
 int	fmain(int ac, char **arg, char **env)
@@ -45,7 +44,6 @@ int	fmain(int ac, char **arg, char **env)
 	prompt = ft_get_a_nice_prompt(line.lst_env, line.exit_status);
 	while (1)
 	{
-		g_status = READING;
 		input = readline(prompt);
 		if (input && input[0] != '\0')
 			add_history(input);
@@ -74,12 +72,6 @@ int	main(int ac, char **arg, char **env)
 	char	*prompt;
 	t_line	line;
 
-	
-	// if (!access(arg[1], F_OK))
-	// 	printf("accces ok\n");
-	// else
-	// 	printf("accces nop\n");
-	// exit(0);
 	if (ac != 1)
 		return (ft_man(0));
 	else
@@ -93,8 +85,6 @@ int	main(int ac, char **arg, char **env)
 			g_status ^= INTERRUPT;
 			line.exit_status = 130;
 		}
-		if (g_status ^ MINISHELL)
-			g_status |= READING;
 		prompt = ft_get_a_nice_prompt(line.lst_env, line.exit_status);
 		if (prompt)
 		{
@@ -117,7 +107,7 @@ int	main(int ac, char **arg, char **env)
 			free(input);
 			input = NULL;
 		}
-		else
+		else if (!(g_status & INTERRUPT))
 		{
 			free(input);
 			input = NULL;

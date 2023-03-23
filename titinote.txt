@@ -89,7 +89,8 @@ here_doc function
 /*	FIXME:	test redir export vs env print*/
 /*	FIXME:	cmd wit honly space send smtthing to exec */
 /*	FIXME: "" or '' or . or / send permission denied , expect not found*/
-
+/*	TODO:	secret env	*/
+/*	FIXME:	prompt one line write on first line */
 
 
 

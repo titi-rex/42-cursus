@@ -6,7 +6,7 @@
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/08 15:07:58 by tlegrand          #+#    #+#             */
-/*   Updated: 2023/03/22 20:15:00 by tlegrand         ###   ########.fr       */
+/*   Updated: 2023/03/23 16:30:42 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,8 @@ void	ft_exe_bi(t_line *line, int pipe_in[2], int pipe_out[2], \
 	int	here_pipe[2];
 	int	pid;
 
+	here_pipe[0] = -1;
+	here_pipe[1] = -1;
 	if (line->n_cmds == 1)
 	{
 		if (ft_dup_redirect(line->cmd->io, here_pipe, line))
@@ -49,6 +51,8 @@ void	ft_exe_cmd(t_line *line, int pipe_in[2], int pipe_out[2])
 	int	pid;
 	int	here_pipe[2];
 
+	here_pipe[0] = -1;
+	here_pipe[1] = -1;
 	pid = fork();
 	if (pid == -1)
 		perror("Error ");
@@ -57,8 +61,11 @@ void	ft_exe_cmd(t_line *line, int pipe_in[2], int pipe_out[2])
 		ft_sig_init(ft_sig_handler_child);
 		ft_dup_pipe(pipe_in, pipe_out);
 		if (ft_dup_redirect(line->cmd->io, here_pipe, line))
+		{
 			perror("Error ");
-		if (!line->cmd->arg[0][0] && line->cmd->io)
+			ft_clean_exit(line, EXIT_FAILURE);
+		}
+		if (!line->cmd->arg[0] && line->cmd->io)
 			ft_clean_exit(line, EXIT_SUCCESS);
 		if (ft_get_path(get_value(line->lst_env, "PATH"), &line->cmd->arg[0]))
 		{
@@ -74,9 +81,9 @@ void	ft_exe_cmd(t_line *line, int pipe_in[2], int pipe_out[2])
 
 void	ft_exe_selector(t_line *line, int pipe_in[2], int pipe_out[2])
 {
-	if (!line->cmd->arg)
+	if (!line->cmd->arg[0])
 		ft_exe_cmd(line, pipe_in, pipe_out);
-	if (!ft_strncmp(line->cmd->arg[0], "cd", 3))
+	else if (!ft_strncmp(line->cmd->arg[0], "cd", 3))
 		ft_exe_bi(line, pipe_in, pipe_out, bi_cd);
 	else if (line->cmd->arg && !ft_strncmp(line->cmd->arg[0], "echo", 5))
 		ft_exe_bi(line, pipe_in, pipe_out, bi_echo);
@@ -124,7 +131,6 @@ void	ft_exe_master(t_line *line)
 	i = 0;
 	if (!line->n_cmds)
 		return ;
-	g_status ^= READING;
 	g_status |= EXECUTION;
 	while (i < line->n_cmds)
 	{

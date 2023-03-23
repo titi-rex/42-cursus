@@ -6,7 +6,7 @@
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/23 13:43:38 by tlegrand          #+#    #+#             */
-/*   Updated: 2023/03/23 13:47:49 by tlegrand         ###   ########.fr       */
+/*   Updated: 2023/03/23 15:48:16 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
  * 
  * @param arg 
  */
-void	ft_print_cmd_arg(char **arg)
+void	debug_print_cmd_arg(char **arg)
 {
 	int	i;
 
@@ -26,7 +26,7 @@ void	ft_print_cmd_arg(char **arg)
 	i = -1;
 	while (arg[++i])
 		printf("arg[%d] = :%s:\n", i, arg[i]);
-	printf("arg[%d] = :%s:\n", i, arg[i]);
+	printf("last : arg[%d] = :%s:\n", i, arg[i]);
 }
 
 /**
@@ -34,7 +34,7 @@ void	ft_print_cmd_arg(char **arg)
  * 
  * @param lst 
  */
-void	print_env(t_var_env	*lst)
+void	debug_print_env(t_var_env	*lst)
 {
 	while (lst)
 	{
@@ -47,7 +47,7 @@ void	print_env(t_var_env	*lst)
  * @brief print term c_flag (DEBUG ONLY)
  * 
  */
-void	term_status(void)
+void	debug_term_status(void)
 {
 	struct termios	t;
 
