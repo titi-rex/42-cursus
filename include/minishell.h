@@ -6,7 +6,7 @@
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/08 17:06:26 by tlegrand          #+#    #+#             */
-/*   Updated: 2023/03/23 17:01:58 by tlegrand         ###   ########.fr       */
+/*   Updated: 2023/03/23 17:38:28 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,6 +96,7 @@ void		ft_exe_error_404(t_line *line, char *cmd);
 void		ft_perror_exit(t_line *line, int exit_status, char *errstr);
 int			ft_is_bi(char *arg);
 void		ft_clean_exit(t_line *line, int exit_code);
+char		*ft_get_input(t_line *line);
 
 /*			signals functions 		*/
 void		ft_sig_init(void (*handler)(int sig));

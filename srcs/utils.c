@@ -6,7 +6,7 @@
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/11 13:43:01 by tlegrand          #+#    #+#             */
-/*   Updated: 2023/03/23 16:53:08 by tlegrand         ###   ########.fr       */
+/*   Updated: 2023/03/23 17:38:14 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,4 +26,28 @@ void	ft_clean_exit(t_line *line, int exit_code)
 	rl_clear_history();
 	s_line_clear(line);
 	exit(exit_code);
+}
+
+char	*ft_get_input(t_line *line)
+{
+	char	*prompt;
+	char	*input;
+
+	prompt = ft_get_a_nice_prompt(line->lst_env, line->exit_status);
+	if (prompt)
+	{
+		input = readline(prompt);
+		free(prompt);
+	}
+	else
+		input = readline("guest@minishell $> ");
+	if (input && input[0] != '\0')
+		add_history(input);
+	else if (!input)
+	{
+		ft_putendl_fd("exit", 1);
+		term_reset(&line->old);
+		ft_clean_exit(line, line->exit_status);
+	}
+	return (input);
 }

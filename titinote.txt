@@ -91,6 +91,8 @@ here_doc function
 /*	FIXME: "" or '' or . or / send permission denied , expect not found*/
 /*	TODO:	secret env	*/
 /*	FIXME:	prompt one line write on first line */
+/*	TODO: clean flags gstatus	*/
+/*	FIXME:	fd open at exit	*/
 
 
 
