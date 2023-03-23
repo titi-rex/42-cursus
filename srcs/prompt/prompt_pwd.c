@@ -6,7 +6,7 @@
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/20 15:53:05 by tlegrand          #+#    #+#             */
-/*   Updated: 2023/03/21 12:16:10 by tlegrand         ###   ########.fr       */
+/*   Updated: 2023/03/23 21:05:59 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,8 @@ char	*ft_prettyfy_pwd(char *pwd, char *home)
 		return (ft_strjoin3(" in "BOLD YELLOW ITALIC"~/...", ptr_cwd, END));
 	}
 	ptr_home = ft_strchr(pwd, '/');
+	if (!ptr_home)
+		return (NULL);
 	count = ft_count_char(ptr_home, '/');
 	if (count <= 3)
 		return (ft_strjoin3(" in "BOLD YELLOW ITALIC"", ptr_home, END));

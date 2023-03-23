@@ -6,7 +6,7 @@
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/08 13:10:16 by tlegrand          #+#    #+#             */
-/*   Updated: 2023/03/21 20:34:31 by tlegrand         ###   ########.fr       */
+/*   Updated: 2023/03/23 20:50:38 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,9 @@ int	bi_pwd(t_line *line)
 {
 	char	*pwd;
 
-	(void)line;
-	pwd = getcwd(NULL, 0);
+	pwd = get_value(line->lst_env, "PWD");
+	if (!pwd)
+		pwd = getcwd(NULL, 0);
 	if (!pwd)
 	{
 		perror("Error ");

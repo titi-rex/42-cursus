@@ -6,7 +6,7 @@
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/08 15:07:58 by tlegrand          #+#    #+#             */
-/*   Updated: 2023/03/23 17:04:29 by tlegrand         ###   ########.fr       */
+/*   Updated: 2023/03/23 20:48:51 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ void	ft_exe_bi(t_line *line, int pipe_in[2], int pipe_out[2], \
 	ft_exe_init_here_pipe(here_pipe);
 	if (line->n_cmds == 1)
 	{
-		if (!ft_dup_redirect(line->cmd->io, here_pipe, line))
+		if (ft_dup_redirect(line->cmd->io, here_pipe, line))
 			return ;
 		line->exit_status = ft_bi(line);
 		ft_restore_std(line->cmd->io, line->fd_std);
