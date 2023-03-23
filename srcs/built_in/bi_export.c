@@ -6,7 +6,7 @@
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/11 14:28:28 by tlegrand          #+#    #+#             */
-/*   Updated: 2023/03/23 13:48:50 by tlegrand         ###   ########.fr       */
+/*   Updated: 2023/03/23 16:51:02 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,7 @@ int	bi_export(t_line *line)
 	if (!line->cmd->arg[1])
 		return (bi_export_print(line->lst_env));
 	if (bi_export_name_is_valid(line->cmd->arg[1]))
-		return (ft_error_return("Not a valid identifier "));
+		return (ft_putendl_fd("Not a valid identifier ", 2), EXIT_FAILURE);
 	tmp = ft_var_env_search(line->lst_env, line->cmd->arg[1]);
 	if (tmp)
 	{
@@ -74,7 +74,7 @@ int	bi_export(t_line *line)
 	if (new_value)
 		free(new_value);
 	if (!tmp)
-		return (ft_perror_return_int(NULL));
+		return (perror("Error "), EXIT_FAILURE);
 	ft_envadd_back(&line->lst_env, tmp);
 	ft_env_update(&line->env, line->lst_env);
 	return (EXIT_SUCCESS);

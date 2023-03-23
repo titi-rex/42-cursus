@@ -6,7 +6,7 @@
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/09 14:58:48 by lboudjem          #+#    #+#             */
-/*   Updated: 2023/03/23 13:45:19 by tlegrand         ###   ########.fr       */
+/*   Updated: 2023/03/23 16:53:21 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,4 +88,22 @@ char	**ft_lstenv_to_tab(t_var_env *lst)
 		lst = lst->next;
 	}
 	return (tab);
+}
+
+void	ft_var_env_update_shlvl(t_var_env *lst)
+{
+	t_var_env	*tmp;
+	char		*buff;
+	int			lvl;
+
+	tmp = ft_var_env_search(lst, "SHLVL");
+	if (!tmp)
+		return ;
+	lvl = ft_atoi(tmp->value);
+	lvl += 1;
+	buff = ft_itoa(lvl);
+	if (!buff)
+		return (perror("Error "));
+	change_value(lst, buff, "SHLVL");
+	free(buff);
 }

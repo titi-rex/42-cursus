@@ -6,7 +6,7 @@
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/08 17:06:26 by tlegrand          #+#    #+#             */
-/*   Updated: 2023/03/23 15:48:44 by tlegrand         ###   ########.fr       */
+/*   Updated: 2023/03/23 17:01:58 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,11 +88,12 @@ void		ft_exe_master(t_line *line);
 int			ft_dup_redirect(t_list *io, int here_pipe[2], t_line *line);
 void		ft_dup_pipe(int pipe_in[2], int pipe_out[2]);
 void		ft_restore_std(t_list *io, int std_fd[2]);
+void		ft_exe_init_here_pipe(int here_pipe[2]);
+
+void		ft_exe_error_404(t_line *line, char *cmd);
 
 /*			utils general	*/
-int			ft_perror_return_int(char *errstr);
-char		*ft_perror_return_null(char *errstr);
-int			ft_error_return(char *errstr);
+void		ft_perror_exit(t_line *line, int exit_status, char *errstr);
 int			ft_is_bi(char *arg);
 void		ft_clean_exit(t_line *line, int exit_code);
 

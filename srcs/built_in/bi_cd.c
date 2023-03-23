@@ -6,7 +6,7 @@
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/08 13:27:20 by tlegrand          #+#    #+#             */
-/*   Updated: 2023/03/20 16:37:45 by tlegrand         ###   ########.fr       */
+/*   Updated: 2023/03/23 16:47:46 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,12 +57,12 @@ int	bi_cd(t_line *line)
 	{
 		home = get_value(line->lst_env, "HOME");
 		if (chdir(home) == -1)
-			return (ft_perror_return_int("Error HOME not set "));
+			return (perror("Error HOME not set "), EXIT_FAILURE);
 		ft_update_pwd(line->lst_env);
 		return (EXIT_SUCCESS);
 	}
 	if (chdir(line->cmd->arg[1]) == -1)
-		return (ft_perror_return_int(NULL));
+		return (perror("Error "), EXIT_FAILURE);
 	ft_update_pwd(line->lst_env);
 	return (EXIT_SUCCESS);
 }

@@ -6,7 +6,7 @@
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/08 15:07:58 by tlegrand          #+#    #+#             */
-/*   Updated: 2023/03/23 16:30:42 by tlegrand         ###   ########.fr       */
+/*   Updated: 2023/03/23 17:04:29 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,39 +20,15 @@ void	ft_exe_bi(t_line *line, int pipe_in[2], int pipe_out[2], \
 	int	here_pipe[2];
 	int	pid;
 
-	here_pipe[0] = -1;
-	here_pipe[1] = -1;
+	ft_exe_init_here_pipe(here_pipe);
 	if (line->n_cmds == 1)
 	{
-		if (ft_dup_redirect(line->cmd->io, here_pipe, line))
+		if (!ft_dup_redirect(line->cmd->io, here_pipe, line))
 			return ;
 		line->exit_status = ft_bi(line);
 		ft_restore_std(line->cmd->io, line->fd_std);
+		return ;
 	}
-	else
-	{
-		pid = fork();
-		if (pid == -1)
-			perror("Error ");
-		else if (pid == 0)
-		{
-			ft_sig_init(ft_sig_handler_child);
-			ft_dup_pipe(pipe_in, pipe_out);
-			if (ft_dup_redirect(line->cmd->io, here_pipe, line))
-				ft_clean_exit(line, EXIT_FAILURE);
-			line->exit_status = ft_bi(line);
-			ft_clean_exit(line, EXIT_SUCCESS);
-		}
-	}
-}
-
-void	ft_exe_cmd(t_line *line, int pipe_in[2], int pipe_out[2])
-{
-	int	pid;
-	int	here_pipe[2];
-
-	here_pipe[0] = -1;
-	here_pipe[1] = -1;
 	pid = fork();
 	if (pid == -1)
 		perror("Error ");
@@ -61,18 +37,31 @@ void	ft_exe_cmd(t_line *line, int pipe_in[2], int pipe_out[2])
 		ft_sig_init(ft_sig_handler_child);
 		ft_dup_pipe(pipe_in, pipe_out);
 		if (ft_dup_redirect(line->cmd->io, here_pipe, line))
-		{
-			perror("Error ");
 			ft_clean_exit(line, EXIT_FAILURE);
-		}
+		line->exit_status = ft_bi(line);
+		ft_clean_exit(line, EXIT_SUCCESS);
+	}
+}
+
+void	ft_exe_cmd(t_line *line, int pipe_in[2], int pipe_out[2])
+{
+	int	pid;
+	int	here_pipe[2];
+
+	ft_exe_init_here_pipe(here_pipe);
+	pid = fork();
+	if (pid == -1)
+		perror("Error ");
+	else if (pid == 0)
+	{
+		ft_sig_init(ft_sig_handler_child);
+		ft_dup_pipe(pipe_in, pipe_out);
+		if (ft_dup_redirect(line->cmd->io, here_pipe, line))
+			ft_clean_exit(line, EXIT_FAILURE);
 		if (!line->cmd->arg[0] && line->cmd->io)
 			ft_clean_exit(line, EXIT_SUCCESS);
 		if (ft_get_path(get_value(line->lst_env, "PATH"), &line->cmd->arg[0]))
-		{
-			ft_putstr_fd(line->cmd->arg[0], 2);
-			ft_putendl_fd(" : command not found", 2);
-			ft_clean_exit(line, EXIT_FAILURE);
-		}
+			ft_exe_error_404(line, line->cmd->arg[0]);
 		execve(line->cmd->arg[0], line->cmd->arg, line->env);
 		perror("Error ");
 		ft_clean_exit(line, EXIT_FAILURE);

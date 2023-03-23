@@ -6,7 +6,7 @@
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/18 20:51:52 by tlegrand          #+#    #+#             */
-/*   Updated: 2023/03/21 13:01:58 by tlegrand         ###   ########.fr       */
+/*   Updated: 2023/03/23 16:46:36 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,12 +49,12 @@ char	*ft_extract_branch(char *dir)
 	fd = open(head, O_RDONLY);
 	free(head);
 	if (fd == -1)
-		return (ft_perror_return_null(NULL));
+		return (perror("Error "), NULL);
 	ft_bzero(branch, 1024);
 	if (read(fd, &branch, 1024) == -1)
 	{
 		close(fd);
-		return (ft_perror_return_null(NULL));
+		return (perror("Error "), NULL);
 	}
 	close(fd);
 	buf = ft_strrchr(branch, '/');

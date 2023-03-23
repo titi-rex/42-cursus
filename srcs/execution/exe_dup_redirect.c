@@ -6,7 +6,7 @@
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/08 17:17:17 by tlegrand          #+#    #+#             */
-/*   Updated: 2023/03/23 16:31:57 by tlegrand         ###   ########.fr       */
+/*   Updated: 2023/03/23 16:55:30 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,10 +19,13 @@ static int	ft_dup_it(t_redirect *io, int fd_std, int flag)
 
 	fd = open(io->arg, flag, 0644);
 	if (fd == -1)
-		return (1);
-	err = 0;
+		return (perror("Error "), EXIT_FAILURE);
+	err = EXIT_SUCCESS;
 	if (dup2(fd, fd_std) == -1)
-		err = 1;
+	{
+		perror("Error ");
+		err = EXIT_FAILURE;
+	}
 	close(fd);
 	return (err);
 }
@@ -32,9 +35,8 @@ int	ft_dup_here_doc(t_redirect *io, int here_pipe[2], t_line *line)
 	int		pid;
 	int		i;
 
-
 	if (pipe(here_pipe) == -1)
-		return (ft_perror_return_int(NULL));
+		return (perror("Error "), EXIT_FAILURE);
 	pid = fork();
 	if (pid == -1)
 		perror("Error ");

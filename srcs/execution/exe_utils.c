@@ -6,7 +6,7 @@
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/15 17:36:22 by tlegrand          #+#    #+#             */
-/*   Updated: 2023/03/18 16:15:51 by tlegrand         ###   ########.fr       */
+/*   Updated: 2023/03/23 17:01:51 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,4 +54,17 @@ void	ft_restore_std(t_list *io, int std_fd[2])
 		return ;
 	dup2(std_fd[0], STDIN_FILENO);
 	dup2(std_fd[1], STDOUT_FILENO);
+}
+
+void	ft_exe_init_here_pipe(int here_pipe[2])
+{
+	here_pipe[0] = -1;
+	here_pipe[1] = -1;
+}
+
+void	ft_exe_error_404(t_line *line, char *cmd)
+{
+	ft_putstr_fd(cmd, 2);
+	ft_putendl_fd(" : command not found", 2);
+	ft_clean_exit(line, EXIT_FAILURE);
 }
