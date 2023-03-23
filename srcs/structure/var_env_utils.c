@@ -6,7 +6,7 @@
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/09 13:33:56 by lboudjem          #+#    #+#             */
-/*   Updated: 2023/03/21 14:42:07 by tlegrand         ###   ########.fr       */
+/*   Updated: 2023/03/23 13:42:11 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,11 +22,15 @@ t_var_env	*ft_new_env(char *name, char *value)
 	new->next = NULL;
 	new->previous = NULL;
 	new->name = ft_strndup(name, ft_strlen2(name));
-	new->value = ft_strndup(value, ft_strlen2(value));
-	if (!new->value || !new->name)
+	if (!new->name)
+		return (ft_free_env(new), NULL);
+	if (!value)
+		new->value = NULL;
+	else
 	{
-		ft_free_env(new);
-		return (NULL);
+		new->value = ft_strndup(value, ft_strlen2(value));
+		if (!new->value)
+			return (ft_free_env(new), NULL);
 	}
 	return (new);
 }

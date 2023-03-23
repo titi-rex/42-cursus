@@ -6,7 +6,7 @@
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/09 14:58:48 by lboudjem          #+#    #+#             */
-/*   Updated: 2023/03/21 15:27:34 by tlegrand         ###   ########.fr       */
+/*   Updated: 2023/03/23 13:45:19 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,23 +36,6 @@ void	fill_lst_env(t_line *line, int i)
 		ft_envadd_back(&line->lst_env, new);
 		i++;
 	}
-}
-
-int	print_env(t_var_env	*lst, int mode)
-{
-	int	err;
-
-	err = EXIT_SUCCESS;
-	while (lst)
-	{
-		if (mode == 0 && printf("%s=%s\n", lst->name, lst->value) < 0)
-			err = EXIT_FAILURE;
-		else if (mode == 1 && printf("declare -x %s=\"%s\"\n", lst->name, \
-			lst->value) < 0)
-			err = EXIT_FAILURE;
-		lst = lst->next;
-	}
-	return (err);
 }
 
 t_var_env	*ft_var_env_search(t_var_env *lst, char *name)
@@ -92,13 +75,16 @@ char	**ft_lstenv_to_tab(t_var_env *lst)
 	i = 0;
 	while (lst)
 	{
-		tab[i] = ft_strjoin3(lst->name, "=", lst->value);
-		if (!tab)
+		if (lst->value)
 		{
-			ft_free2d((void **)tab, 0);
-			return (NULL);
+			tab[i] = ft_strjoin3(lst->name, "=", lst->value);
+			if (!tab)
+			{
+				ft_free2d((void **)tab, 0);
+				return (NULL);
+			}
+			i++;
 		}
-		i++;
 		lst = lst->next;
 	}
 	return (tab);

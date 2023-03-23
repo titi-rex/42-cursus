@@ -6,11 +6,30 @@
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/11 14:28:28 by tlegrand          #+#    #+#             */
-/*   Updated: 2023/03/21 15:22:14 by tlegrand         ###   ########.fr       */
+/*   Updated: 2023/03/23 13:48:50 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/minishell.h"
+
+static int	bi_export_print(t_var_env *lst)
+{
+	int	err;
+
+	err = EXIT_SUCCESS;
+	while (lst)
+	{
+		if (printf("declare -x %s", lst->name) < 0)
+			err = EXIT_FAILURE;
+		if (lst->value)
+			if (printf("=\"%s\"", lst->value) < 0)
+				err = EXIT_FAILURE;
+		if (printf("\n") < 0)
+			err = EXIT_FAILURE;
+		lst = lst->next;
+	}
+	return (err);
+}
 
 static int	bi_export_name_is_valid(char *name)
 {
@@ -23,27 +42,37 @@ static int	bi_export_name_is_valid(char *name)
 	return (0);
 }
 
+static char	*bi_export_get_new_value(char **arg)
+{
+	char	*value;
+
+	if (arg[2] == NULL)
+		return (NULL);
+	value = ft_strndup(arg[3], ft_strlen2(arg[3]));
+	return (value);
+}
+
 int	bi_export(t_line *line)
 {
 	t_var_env	*tmp;
+	char		*new_value;
 
 	if (!line->cmd->arg[1])
-		return (print_env(line->lst_env, 1));
+		return (bi_export_print(line->lst_env));
 	if (bi_export_name_is_valid(line->cmd->arg[1]))
 		return (ft_error_return("Not a valid identifier "));
-	if (!line->cmd->arg[2])
-		return (EXIT_SUCCESS);
 	tmp = ft_var_env_search(line->lst_env, line->cmd->arg[1]);
 	if (tmp)
 	{
 		free(tmp->value);
-		tmp->value = ft_strdup(line->cmd->arg[2]);
-		if (!tmp->value)
-			return (ft_perror_return_int(NULL));
+		tmp->value = bi_export_get_new_value(line->cmd->arg);
 		ft_env_update(&line->env, line->lst_env);
 		return (EXIT_SUCCESS);
 	}
-	tmp = ft_new_env(line->cmd->arg[1], line->cmd->arg[2]);
+	new_value = bi_export_get_new_value(line->cmd->arg);
+	tmp = ft_new_env(line->cmd->arg[1], new_value);
+	if (new_value)
+		free(new_value);
 	if (!tmp)
 		return (ft_perror_return_int(NULL));
 	ft_envadd_back(&line->lst_env, tmp);

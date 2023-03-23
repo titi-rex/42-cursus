@@ -6,7 +6,7 @@
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/11 13:43:01 by tlegrand          #+#    #+#             */
-/*   Updated: 2023/03/22 20:23:34 by tlegrand         ###   ########.fr       */
+/*   Updated: 2023/03/23 13:45:35 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,16 +62,4 @@ void	ft_var_env_update_shlvl(t_var_env *lst)
 		return ((void) ft_perror_return_int(NULL));
 	change_value(lst, buff, "SHLVL");
 	free(buff);
-}
-
-void	ft_print_cmd_arg(char **arg)
-{
-	int	i;
-
-	if (!arg)
-		return ((void)ft_putstr_fd("arg NULL\n", 2));
-	i = -1;
-	while (arg[++i])
-		printf("arg[%d] = :%s:\n", i, arg[i]);
-	printf("arg[%d] = :%s:\n", i, arg[i]);
 }

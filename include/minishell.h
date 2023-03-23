@@ -6,7 +6,7 @@
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/08 17:06:26 by tlegrand          #+#    #+#             */
-/*   Updated: 2023/03/22 20:23:47 by tlegrand         ###   ########.fr       */
+/*   Updated: 2023/03/23 13:46:02 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,6 @@ int			ft_get_path(char *pathvar, char	**head);
 char		*ft_here_doc_mode(char **delimiter);
 
 /*			struct var_env functions			*/
-int			print_env(t_var_env	*lst, int mode);
 void		init_variables(t_var_env *lst);
 void		ft_envadd_front(t_var_env **lst, t_var_env *new);
 void		ft_envadd_back(t_var_env **lst, t_var_env *new);
@@ -140,8 +139,8 @@ char		*ft_prompt_git(void);
 char		*ft_prompt_pwd(char *pwd, char *user);
 char		*ft_get_a_nice_prompt(t_var_env *lst_env, int exit_status);
 
-
+/*			debug functions					*/
 void		ft_print_cmd_arg(char **arg);
-
+void		print_env(t_var_env	*lst);
 
 #endif 

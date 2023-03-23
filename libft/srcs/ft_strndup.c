@@ -6,7 +6,7 @@
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/10 14:19:01 by lboudjem          #+#    #+#             */
-/*   Updated: 2023/03/10 15:11:42 by tlegrand         ###   ########.fr       */
+/*   Updated: 2023/03/23 13:40:33 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,6 @@ char	*ft_strndup(char *src, int n)
 	int		tmp;
 	char	*cpy;
 
-	if (!src)
-		return (NULL);
 	cpy = (char *)malloc((n + 1) * sizeof(char));
 	if (!cpy)
 		return (NULL);
