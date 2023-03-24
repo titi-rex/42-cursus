@@ -6,7 +6,7 @@
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/08 17:06:26 by tlegrand          #+#    #+#             */
-/*   Updated: 2023/03/24 12:42:00 by tlegrand         ###   ########.fr       */
+/*   Updated: 2023/03/24 15:53:58 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,7 @@ void		init_variables(t_var_env *lst);
 void		ft_envadd_front(t_var_env **lst, t_var_env *new);
 void		ft_envadd_back(t_var_env **lst, t_var_env *new);
 void		ft_free_env(t_var_env *lst);
-void		ft_envremove(t_var_env *lst);
+void		ft_envremove(t_var_env **head, t_var_env *todel);
 void		ft_envclear(t_var_env **lst);
 void		change_value(t_var_env *lst, char *value, char *name);
 char		*get_value(t_var_env *lst, char *name);
@@ -75,6 +75,7 @@ void		ft_var_env_update_shlvl(t_var_env *lst);
 
 /*			exe functions						*/
 int			bi_cd(t_line *line);
+int			bi_clear(t_line *line);
 int			bi_echo(t_line *line);
 int			bi_env(t_line *line);
 int			bi_exit(t_line *line);

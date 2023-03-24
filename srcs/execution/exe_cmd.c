@@ -6,7 +6,7 @@
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/08 15:07:58 by tlegrand          #+#    #+#             */
-/*   Updated: 2023/03/24 11:56:14 by tlegrand         ###   ########.fr       */
+/*   Updated: 2023/03/24 15:39:38 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,6 +76,8 @@ void	exe_selector(t_line *line, int pipe_in[2], int pipe_out[2])
 		exe_bi(line, pipe_in, pipe_out, bi_cd);
 	else if (line->cmd->arg && !ft_strncmp(line->cmd->arg[0], "echo", 5))
 		exe_bi(line, pipe_in, pipe_out, bi_echo);
+	else if (line->cmd->arg && !ft_strncmp(line->cmd->arg[0], "clear", 6))
+		exe_bi(line, pipe_in, pipe_out, bi_clear);
 	else if (line->cmd->arg && !ft_strncmp(line->cmd->arg[0], "env", 4))
 		exe_bi(line, pipe_in, pipe_out, bi_env);
 	else if (line->cmd->arg && !ft_strncmp(line->cmd->arg[0], "exit", 5))

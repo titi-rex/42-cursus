@@ -6,7 +6,7 @@
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/20 15:08:43 by tlegrand          #+#    #+#             */
-/*   Updated: 2023/03/24 15:22:55 by tlegrand         ###   ########.fr       */
+/*   Updated: 2023/03/24 15:30:34 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,5 +38,6 @@
 # define RERASE		"\001\r\033[2K\002"
 # define CLEAR		"\001\033[2J\002"
 # define CURSOR		"\001\033[H\002"
+# define SCREEN_RES	"\001\033[?47l\002"
 
 #endif

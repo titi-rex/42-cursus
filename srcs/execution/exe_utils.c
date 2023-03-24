@@ -6,7 +6,7 @@
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/15 17:36:22 by tlegrand          #+#    #+#             */
-/*   Updated: 2023/03/24 11:56:14 by tlegrand         ###   ########.fr       */
+/*   Updated: 2023/03/24 15:47:06 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,8 @@ int	ft_is_bi(char *arg)
 	if (!ft_strncmp(arg, "cd", 3))
 		return (1);
 	else if (!ft_strncmp(arg, "echo", 5))
+		return (1);
+	else if (!ft_strncmp(arg, "clear", 6))
 		return (1);
 	else if (!ft_strncmp(arg, "env", 4))
 		return (1);
