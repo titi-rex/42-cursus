@@ -6,7 +6,7 @@
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/15 17:36:22 by tlegrand          #+#    #+#             */
-/*   Updated: 2023/03/24 15:47:06 by tlegrand         ###   ########.fr       */
+/*   Updated: 2023/03/24 16:18:00 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,11 +39,15 @@ int	ft_is_bi(char *arg)
 		return (1);
 	else if (!ft_strncmp(arg, "exit", 5))
 		return (1);
+	else if (!ft_strncmp(arg, "loulou", 7))
+		return (1);
 	else if (!ft_strncmp(arg, "export", 7))
 		return (1);
 	else if (!ft_strncmp(arg, "pwd", 4))
 		return (1);
 	else if (!ft_strncmp(arg, "type", 5))
+		return (1);
+	else if (!ft_strncmp(arg, "titi", 5))
 		return (1);
 	else if (!ft_strncmp(arg, "unset", 6))
 		return (1);

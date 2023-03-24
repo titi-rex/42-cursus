@@ -6,7 +6,7 @@
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/08 17:06:26 by tlegrand          #+#    #+#             */
-/*   Updated: 2023/03/24 15:53:58 by tlegrand         ###   ########.fr       */
+/*   Updated: 2023/03/24 16:17:26 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,6 +80,8 @@ int			bi_echo(t_line *line);
 int			bi_env(t_line *line);
 int			bi_exit(t_line *line);
 int			bi_export(t_line *line);
+int			bi_loulou(t_line *line);
+int			bi_titi(t_line *line);
 int			bi_pwd(t_line *line);
 int			bi_type(t_line	*line);
 int			bi_unset(t_line *line);
