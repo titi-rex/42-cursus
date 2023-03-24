@@ -6,11 +6,38 @@
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/18 16:10:01 by tlegrand          #+#    #+#             */
-/*   Updated: 2023/03/24 11:57:28 by tlegrand         ###   ########.fr       */
+/*   Updated: 2023/03/24 14:48:34 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/minishell.h"
+
+static int	bi_type_tl(char *str)
+{
+	if (!ft_strncmp(str, "loulou", 7))
+	{
+		printf("loulou is awesome ! <3\n");
+		return (1);
+	}
+	if (!ft_strncmp(str, "titi", 5))
+	{
+		printf("titi is sleepy... zzz..\n");
+		return (1);
+	}
+	return (0);
+}
+
+static int	bi_type_local(char *str)
+{
+	if (!access(str, X_OK))
+		printf("%s is %s\n", str, str);
+	else
+	{
+		printf("type : %s not found\n", str);
+		return (EXIT_FAILURE);
+	}
+	return (EXIT_SUCCESS);
+}
 
 static int	bi_type_search_path(char *pathvar, char **cmd_name)
 {
@@ -41,17 +68,11 @@ int	bi_type(t_line	*line)
 	err = EXIT_SUCCESS;
 	while (line->cmd->arg[i])
 	{
-		if (line->cmd->arg[i][0] == '.' || line->cmd->arg[i][0] == '/')
-		{
-			if (!access(line->cmd->arg[i], X_OK))
-				printf("%s is %s\n", line->cmd->arg[i], line->cmd->arg[i]);
-			else
-			{
-				printf("type : %s not found\n", line->cmd->arg[i]);
-				err = (EXIT_FAILURE);
-			}
-		}
-		if (ft_is_bi(line->cmd->arg[i]))
+		if (bi_type_tl(line->cmd->arg[i]))
+			err = EXIT_SUCCESS;
+		else if (line->cmd->arg[i][0] == '.' || line->cmd->arg[i][0] == '/')
+			err = bi_type_local(line->cmd->arg[i]);
+		else if (ft_is_bi(line->cmd->arg[i]))
 			printf("%s is minishell built-in\n", line->cmd->arg[i]);
 		else
 			err = bi_type_search_path(get_value(line->lst_env, "PATH"), \
