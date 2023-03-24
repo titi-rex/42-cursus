@@ -6,7 +6,7 @@
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/18 20:51:52 by tlegrand          #+#    #+#             */
-/*   Updated: 2023/03/24 12:14:00 by tlegrand         ###   ########.fr       */
+/*   Updated: 2023/03/24 15:20:52 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -148,7 +148,7 @@ char	*prompt_git(void)
 		free(tmp);
 	}
 	else if (git_status == 1)
-		branche = ft_strdup(" on "RED_L"{detached}"END);
+		branche = ft_strdup(" on "RED"{detached}"END);
 	free(pgd);
 	return (branche);
 }

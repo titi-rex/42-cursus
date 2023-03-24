@@ -6,7 +6,7 @@
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/18 23:01:34 by tlegrand          #+#    #+#             */
-/*   Updated: 2023/03/24 12:42:41 by tlegrand         ###   ########.fr       */
+/*   Updated: 2023/03/24 15:21:29 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,10 +17,10 @@ static char	*prompt_username(char *user)
 	char	*username;
 
 	if (!user)
-		return (ft_strdup(VIOLET"guest"END));
-	username = ft_strjoin3(VIOLET, user, END);
+		return (ft_strdup(PURPLE"guest"END));
+	username = ft_strjoin3(PURPLE, user, END);
 	if (!username)
-		username = ft_strdup(VIOLET"guest"END);
+		username = ft_strdup(PURPLE"guest"END);
 	return (username);
 }
 
@@ -37,9 +37,9 @@ char	*ft_get_a_nice_prompt(t_var_env *lst_env, int exit_status)
 	username = prompt_username(get_value(lst_env, "USER"));
 	tmp = ft_strjoin3(username, pwd, git);
 	if (!exit_status)
-		prompt = ft_strjoin3(tmp, GREEN_L BOLD" (*o*) "END, VIOLET"-$> "END);
+		prompt = ft_strjoin3(tmp, GREEN BOLD" (*o*) "END, PURPLE"-$> "END);
 	else
-		prompt = ft_strjoin3(tmp, RED" (~.~) "END, VIOLET"-$> "END);
+		prompt = ft_strjoin3(tmp, RED" (~.~) "END, PURPLE"-$> "END);
 	if (tmp)
 		free(tmp);
 	if (git)

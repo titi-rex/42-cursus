@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   mycolors.h                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lboudjem <lboudjem@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/20 15:08:43 by tlegrand          #+#    #+#             */
-/*   Updated: 2023/03/22 13:51:42 by lboudjem         ###   ########.fr       */
+/*   Updated: 2023/03/24 15:22:55 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,15 +20,7 @@
 # define BLUE		"\001\033[0;34m\002"
 # define PURPLE		"\001\033[0;35m\002"
 # define CYAN		"\001\033[0;36m\002"
-# define GRAY_L		"\001\033[0;37m\002"
-# define GRAY_D		"\001\033[1;30m\002"
-# define RED_L		"\001\033[1;31m\002"
-# define GREEN_L	"\001\033[1;32m\002"
-# define YELLOW 	"\001\033[1;33m\002"
-# define BLUE_L		"\001\033[1;34m\002"
-# define VIOLET		"\001\033[1;35m\002"
-# define CYAN_BIS	"\001\033[1;36m\002"
-# define WHITE		"\001\033[1;37m\002"
+# define GRAY		"\001\033[0;37m\002"
 # define END		"\001\033[0m\002"
 # define BOLD		"\001\033[1m\002"
 # define FAINT		"\001\033[2m\002"
@@ -44,5 +36,7 @@
 # define CR_OUT_OF	"\001\033[29m\002"
 # define ERASE		"\001\033[2K\002"
 # define RERASE		"\001\r\033[2K\002"
+# define CLEAR		"\001\033[2J\002"
+# define CURSOR		"\001\033[H\002"
 
 #endif
