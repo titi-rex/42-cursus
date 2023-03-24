@@ -6,7 +6,7 @@
 #    By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/02/12 20:46:19 by tlegrand          #+#    #+#              #
-#    Updated: 2023/03/24 22:28:08 by tlegrand         ###   ########.fr        #
+#    Updated: 2023/03/24 23:40:53 by tlegrand         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,6 +24,7 @@ LST_SRCS		=	main.c \
 					signal.c \
 					utils.c \
 					term.c \
+					color_print.c \
 					debug.c 
 SRCS			=	${addprefix ${DIR_SRCS}, ${LST_SRCS}}
 
@@ -98,7 +99,7 @@ FTFLAGS		=	-L${DIR_LIBFT} -lft
 all		:	${NAME}
 
 msg:	
-	@echo "\001\033[?47l\002"
+	@echo "\001\033[38;2;215;000;005m\002 hello its a test ${END}"
 
 clean	:
 		@${RM} ${DIR_OBJS}

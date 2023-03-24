@@ -6,7 +6,7 @@
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/08 17:06:26 by tlegrand          #+#    #+#             */
-/*   Updated: 2023/03/24 16:17:26 by tlegrand         ###   ########.fr       */
+/*   Updated: 2023/03/24 23:19:33 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -148,5 +148,8 @@ char		*ft_get_a_nice_prompt(t_var_env *lst_env, int exit_status);
 void		debug_print_cmd_arg(char **arg);
 void		debug_print_env(t_var_env	*lst);
 void		debug_term_status(void);
+
+/*			color functions		*/
+int			ft_colorprint(char *str, char **color_table);
 
 #endif 
