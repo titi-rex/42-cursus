@@ -11,18 +11,18 @@ hoh
 ==400153== 
 ==400153== Open file descriptor 1:
 ==400153==    at 0x49F08CB: dup2 (syscall-template.S:78)
-==400153==    by 0x10E027: ft_dup_pipe (in /nfs/homes/tlegrand/Documents/dev/CC3/minishell/minishell)
-==400153==    by 0x10E12E: ft_exe_bi (in /nfs/homes/tlegrand/Documents/dev/CC3/minishell/minishell)
-==400153==    by 0x10E428: ft_exe_selector (in /nfs/homes/tlegrand/Documents/dev/CC3/minishell/minishell)
+==400153==    by 0x10E027: dup_pipe (in /nfs/homes/tlegrand/Documents/dev/CC3/minishell/minishell)
+==400153==    by 0x10E12E: exe_bi (in /nfs/homes/tlegrand/Documents/dev/CC3/minishell/minishell)
+==400153==    by 0x10E428: exe_selector (in /nfs/homes/tlegrand/Documents/dev/CC3/minishell/minishell)
 ==400153==    by 0x10E7E1: ft_exe_master (in /nfs/homes/tlegrand/Documents/dev/CC3/minishell/minishell)
 ==400153==    by 0x10993E: main (in /nfs/homes/tlegrand/Documents/dev/CC3/minishell/minishell)
 ==400153== 
 ==400153== Open file descriptor 0:
 ==400153==    at 0x49F08CB: dup2 (syscall-template.S:78)
-==400153==    by 0x10DE73: ft_dup_here_doc (in /nfs/homes/tlegrand/Documents/dev/CC3/minishell/minishell)
-==400153==    by 0x10DF5D: ft_dup_redirect (in /nfs/homes/tlegrand/Documents/dev/CC3/minishell/minishell)
-==400153==    by 0x10E14C: ft_exe_bi (in /nfs/homes/tlegrand/Documents/dev/CC3/minishell/minishell)
-==400153==    by 0x10E428: ft_exe_selector (in /nfs/homes/tlegrand/Documents/dev/CC3/minishell/minishell)
+==400153==    by 0x10DE73: dup_here_doc (in /nfs/homes/tlegrand/Documents/dev/CC3/minishell/minishell)
+==400153==    by 0x10DF5D: dup_selector (in /nfs/homes/tlegrand/Documents/dev/CC3/minishell/minishell)
+==400153==    by 0x10E14C: exe_bi (in /nfs/homes/tlegrand/Documents/dev/CC3/minishell/minishell)
+==400153==    by 0x10E428: exe_selector (in /nfs/homes/tlegrand/Documents/dev/CC3/minishell/minishell)
 ==400153==    by 0x10E7E1: ft_exe_master (in /nfs/homes/tlegrand/Documents/dev/CC3/minishell/minishell)
 ==400153==    by 0x10993E: main (in /nfs/homes/tlegrand/Documents/dev/CC3/minishell/minishell)
 ==400153== 
@@ -38,17 +38,17 @@ hoh
 ==400154== 
 ==400154== Open file descriptor 1: /dev/pts/2
 ==400154==    at 0x49F08CB: dup2 (syscall-template.S:78)
-==400154==    by 0x10EA9C: ft_restore_std (in /nfs/homes/tlegrand/Documents/dev/CC3/minishell/minishell)
-==400154==    by 0x10E0E2: ft_exe_bi (in /nfs/homes/tlegrand/Documents/dev/CC3/minishell/minishell)
-==400154==    by 0x10E428: ft_exe_selector (in /nfs/homes/tlegrand/Documents/dev/CC3/minishell/minishell)
+==400154==    by 0x10EA9C: exe_restore_std (in /nfs/homes/tlegrand/Documents/dev/CC3/minishell/minishell)
+==400154==    by 0x10E0E2: exe_bi (in /nfs/homes/tlegrand/Documents/dev/CC3/minishell/minishell)
+==400154==    by 0x10E428: exe_selector (in /nfs/homes/tlegrand/Documents/dev/CC3/minishell/minishell)
 ==400154==    by 0x10E7E1: ft_exe_master (in /nfs/homes/tlegrand/Documents/dev/CC3/minishell/minishell)
 ==400154==    by 0x10993E: main (in /nfs/homes/tlegrand/Documents/dev/CC3/minishell/minishell)
 ==400154== 
 ==400154== Open file descriptor 0:
 ==400154==    at 0x49F08CB: dup2 (syscall-template.S:78)
-==400154==    by 0x10DFF1: ft_dup_pipe (in /nfs/homes/tlegrand/Documents/dev/CC3/minishell/minishell)
-==400154==    by 0x10E12E: ft_exe_bi (in /nfs/homes/tlegrand/Documents/dev/CC3/minishell/minishell)
-==400154==    by 0x10E428: ft_exe_selector (in /nfs/homes/tlegrand/Documents/dev/CC3/minishell/minishell)
+==400154==    by 0x10DFF1: dup_pipe (in /nfs/homes/tlegrand/Documents/dev/CC3/minishell/minishell)
+==400154==    by 0x10E12E: exe_bi (in /nfs/homes/tlegrand/Documents/dev/CC3/minishell/minishell)
+==400154==    by 0x10E428: exe_selector (in /nfs/homes/tlegrand/Documents/dev/CC3/minishell/minishell)
 ==400154==    by 0x10E7E1: ft_exe_master (in /nfs/homes/tlegrand/Documents/dev/CC3/minishell/minishell)
 ==400154==    by 0x10993E: main (in /nfs/homes/tlegrand/Documents/dev/CC3/minishell/minishell)
 ==400154== 
@@ -82,17 +82,17 @@ hoh
 ==400155== 
 ==400155== Open file descriptor 1:
 ==400155==    at 0x49F08CB: dup2 (syscall-template.S:78)
-==400155==    by 0x10E027: ft_dup_pipe (in /nfs/homes/tlegrand/Documents/dev/CC3/minishell/minishell)
-==400155==    by 0x10E12E: ft_exe_bi (in /nfs/homes/tlegrand/Documents/dev/CC3/minishell/minishell)
-==400155==    by 0x10E428: ft_exe_selector (in /nfs/homes/tlegrand/Documents/dev/CC3/minishell/minishell)
+==400155==    by 0x10E027: dup_pipe (in /nfs/homes/tlegrand/Documents/dev/CC3/minishell/minishell)
+==400155==    by 0x10E12E: exe_bi (in /nfs/homes/tlegrand/Documents/dev/CC3/minishell/minishell)
+==400155==    by 0x10E428: exe_selector (in /nfs/homes/tlegrand/Documents/dev/CC3/minishell/minishell)
 ==400155==    by 0x10E7E1: ft_exe_master (in /nfs/homes/tlegrand/Documents/dev/CC3/minishell/minishell)
 ==400155==    by 0x10993E: main (in /nfs/homes/tlegrand/Documents/dev/CC3/minishell/minishell)
 ==400155== 
 ==400155== Open file descriptor 0: /dev/pts/2
 ==400155==    at 0x49F08CB: dup2 (syscall-template.S:78)
-==400155==    by 0x10EA86: ft_restore_std (in /nfs/homes/tlegrand/Documents/dev/CC3/minishell/minishell)
-==400155==    by 0x10E0E2: ft_exe_bi (in /nfs/homes/tlegrand/Documents/dev/CC3/minishell/minishell)
-==400155==    by 0x10E428: ft_exe_selector (in /nfs/homes/tlegrand/Documents/dev/CC3/minishell/minishell)
+==400155==    by 0x10EA86: exe_restore_std (in /nfs/homes/tlegrand/Documents/dev/CC3/minishell/minishell)
+==400155==    by 0x10E0E2: exe_bi (in /nfs/homes/tlegrand/Documents/dev/CC3/minishell/minishell)
+==400155==    by 0x10E428: exe_selector (in /nfs/homes/tlegrand/Documents/dev/CC3/minishell/minishell)
 ==400155==    by 0x10E7E1: ft_exe_master (in /nfs/homes/tlegrand/Documents/dev/CC3/minishell/minishell)
 ==400155==    by 0x10993E: main (in /nfs/homes/tlegrand/Documents/dev/CC3/minishell/minishell)
 ==400155== 

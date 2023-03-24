@@ -6,13 +6,13 @@
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/08 13:27:20 by tlegrand          #+#    #+#             */
-/*   Updated: 2023/03/23 21:08:42 by tlegrand         ###   ########.fr       */
+/*   Updated: 2023/03/24 12:06:49 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/minishell.h"
 
-static int	bi_count_arg(char **arg)
+static int	bi_cd_count_arg(char **arg)
 {
 	int	n;
 
@@ -22,7 +22,7 @@ static int	bi_count_arg(char **arg)
 	return (n);
 }
 
-static void	ft_update_pwd(t_var_env *lst_env)
+static void	bi_cd_update_pwd(t_var_env *lst_env)
 {
 	char		*oldpwd;
 	char		*cwd;
@@ -48,7 +48,7 @@ int	bi_cd(t_line *line)
 {
 	char	*home;
 
-	if (bi_count_arg(line->cmd->arg) > 2)
+	if (bi_cd_count_arg(line->cmd->arg) > 2)
 	{
 		ft_putstr_fd("Error, too much arguments\n", 2);
 		return (EXIT_FAILURE);
@@ -58,11 +58,11 @@ int	bi_cd(t_line *line)
 		home = get_value(line->lst_env, "HOME");
 		if (chdir(home) == -1)
 			return (perror("Error HOME not set "), EXIT_FAILURE);
-		ft_update_pwd(line->lst_env);
+		bi_cd_update_pwd(line->lst_env);
 		return (EXIT_SUCCESS);
 	}
 	if (chdir(line->cmd->arg[1]) == -1)
 		return (perror("Error "), EXIT_FAILURE);
-	ft_update_pwd(line->lst_env);
+	bi_cd_update_pwd(line->lst_env);
 	return (EXIT_SUCCESS);
 }
