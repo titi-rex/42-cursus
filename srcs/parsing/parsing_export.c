@@ -6,7 +6,7 @@
 /*   By: lboudjem <lboudjem@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/21 10:33:20 by lboudjem          #+#    #+#             */
-/*   Updated: 2023/03/22 17:18:20 by lboudjem         ###   ########.fr       */
+/*   Updated: 2023/03/24 13:10:07 by lboudjem         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,14 +32,11 @@ char	*ft_format_export(char *bloc, int size)
 
 	i = 0;
 	j = 0;
-	dprintf(2, "size = %d\n", size);
-	cpy = malloc((size + 3) * sizeof(char));
-	ft_strlcpy(cpy, bloc, size + 1);
+	cpy = malloc((size + 1) * sizeof(char));
 	while (bloc[i])
 	{
-		while (cpy[j] && bloc[i] && bloc[i] != '=')
+		while (bloc[i] && bloc[i] != '=')
 		{
-			printf("bloc[i] = %c\n", bloc[i]);
 			cpy[j] = bloc[i];
 			j++;
 			i++;
@@ -67,11 +64,11 @@ char	*ft_handle_export(char *bloc)
 
 	i = 0;
 	cpy = NULL;
-	if (ft_strncmp(bloc, "export", 6) == 0)
+	if (ft_strncmp(bloc, "export", 6) == 0 && bloc[6] == 32)
 	{
 		i = ft_size_export(bloc);
 		cpy = ft_substr(bloc, 0, i);
-		cpy = ft_format_export(bloc, i);
+		cpy = ft_format_export(bloc, i + 2);
 		return (cpy);
 	}
 	return (bloc);

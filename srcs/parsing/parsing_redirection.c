@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing_redirection.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: lboudjem <lboudjem@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/13 17:47:02 by louisa            #+#    #+#             */
-/*   Updated: 2023/03/23 15:33:18 by tlegrand         ###   ########.fr       */
+/*   Updated: 2023/03/24 13:05:24 by lboudjem         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,8 +42,7 @@ char	*ft_redirection_arg(char *bloc, int i)
 		i++;
 	}
 	arg = ft_substr(bloc, tmp, len);
-	arg = ft_delete_quotes(arg, 0, 0, 34);
-	arg = ft_delete_quotes(arg, 0, 0, 39);
+	arg = ft_del_quotes(arg);
 	return (arg);
 }
 

@@ -6,7 +6,7 @@
 #    By: lboudjem <lboudjem@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/03/10 16:14:31 by lboudjem          #+#    #+#              #
-#    Updated: 2023/03/22 17:11:16 by lboudjem         ###   ########.fr        #
+#    Updated: 2023/03/24 13:17:46 by lboudjem         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -73,19 +73,22 @@ Autre:
 
 
 - A ne pas oublier:
-casser tous les mallocs
-export test : ca le met dans export et pas dans env
-export test= : dans env ca met test=(rien)
-export TEST='""'
-arg des redirection "'test'"
-exporte leaks
 < log suprime pas la redirection
+export qui fait des gros leaks
+casser tous les mallocs
+yes $USER
+echo $ejknfenf hey
 
 - Fait (normalement) (a tester quand meme) :
 export test=truc
 > log2
+export TEST='""'
 ajouter le here_doc
 penser a free hihi
+exporte test=truc abort
+arg des redirection "'test'"
+export test : ca le met dans export et pas dans env
+export test= : dans env ca met test=(rien)
 supprimer les redirection er leurs args juste apres
 renvoie code erreur specifique en cas de bloc null (2 par exemple)
 (echo coucou |   |) DIFFERENT DE (echo coucou | " "  | " ")
@@ -127,4 +130,3 @@ echo "$ejnzefc" hey
 env -i ./minishell (= lance sans les var d’env)
 commande yes avec les signaux et $?
 echo $ejknfenf hey
-pouet+=a ballek
