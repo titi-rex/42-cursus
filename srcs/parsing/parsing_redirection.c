@@ -6,7 +6,7 @@
 /*   By: lboudjem <lboudjem@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/13 17:47:02 by louisa            #+#    #+#             */
-/*   Updated: 2023/03/24 13:05:24 by lboudjem         ###   ########.fr       */
+/*   Updated: 2023/03/24 14:47:03 by lboudjem         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,7 +81,6 @@ int	ft_size_redirection(char *bloc, int i, int len)
 		len++;
 		i++;
 	}
-
 	if (bloc[i] == 34 || bloc[i] == 39)
 	{
 		i++;
@@ -101,7 +100,7 @@ int	ft_size_redirection(char *bloc, int i, int len)
 	return (len);
 }
 
-char	*ft_clear_redirection(char *bloc, int i)
+char	*ft_clear_redirection(char *bloc, int i, int type)
 {
 	int		len;
 	int		size;
@@ -112,7 +111,10 @@ char	*ft_clear_redirection(char *bloc, int i)
 	cpy = NULL;
 	len = ft_size_redirection(bloc, i, 0);
 	size = ft_strlen2(bloc);
-	sub1 = ft_substr(bloc, 0, i - 1);
+	if (type == 2 || type == 3)
+		sub1 = ft_substr(bloc, 0, i - 1);
+	else if (type == 0 || type == 1)
+		sub1 = ft_substr(bloc, 0, i);
 	sub2 = ft_substr(bloc, i + len, size - (i + len));
 	cpy = ft_strjoin(sub1, sub2);
 	free(bloc);
@@ -139,7 +141,7 @@ t_list	*ft_handle_redirection(char **bloc, int *error, t_line *line)
 			arg = ft_redirection_arg(*bloc, i);
 			if (!arg)
 				return (*error = 1, NULL);
-			*bloc = ft_clear_redirection(*bloc, i);
+			*bloc = ft_clear_redirection(*bloc, i, type);
 			if (type == 2)
 			{
 				arg = ft_here_doc_mode(&arg);

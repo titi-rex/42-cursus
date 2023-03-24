@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing_expansion.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: lboudjem <lboudjem@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/13 17:33:36 by louisa            #+#    #+#             */
-/*   Updated: 2023/03/21 19:46:31 by tlegrand         ###   ########.fr       */
+/*   Updated: 2023/03/24 14:37:24 by lboudjem         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -120,8 +120,6 @@ char	*ft_handle_expansion(char *bloc, t_line *line)
 			bloc = ft_replace_expansion_value(bloc, line, 0, i);
 			i = -1;
 		}
-		if (!bloc[i])
-			break ;
 		i++;
 	}
 	return (bloc);

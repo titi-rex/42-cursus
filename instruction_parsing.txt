@@ -6,7 +6,7 @@
 #    By: lboudjem <lboudjem@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/03/10 16:14:31 by lboudjem          #+#    #+#              #
-#    Updated: 2023/03/24 13:17:46 by lboudjem         ###   ########.fr        #
+#    Updated: 2023/03/24 14:47:40 by lboudjem         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -73,20 +73,20 @@ Autre:
 
 
 - A ne pas oublier:
-< log suprime pas la redirection
 export qui fait des gros leaks
 casser tous les mallocs
-yes $USER
-echo $ejknfenf hey
 
 - Fait (normalement) (a tester quand meme) :
 export test=truc
 > log2
 export TEST='""'
+yes $USER
+echo $ejknfenf hey
 ajouter le here_doc
 penser a free hihi
 exporte test=truc abort
 arg des redirection "'test'"
+< log suprime pas la redirection
 export test : ca le met dans export et pas dans env
 export test= : dans env ca met test=(rien)
 supprimer les redirection er leurs args juste apres
