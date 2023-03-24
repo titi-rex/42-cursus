@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    instruction_parsing.txt                            :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: lboudjem <lboudjem@student.42.fr>          +#+  +:+       +#+         #
+#    By: louisa <louisa@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/03/10 16:14:31 by lboudjem          #+#    #+#              #
-#    Updated: 2023/03/24 16:13:16 by lboudjem         ###   ########.fr        #
+#    Updated: 2023/03/24 21:43:27 by louisa           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -75,8 +75,9 @@ Autre:
 - A ne pas oublier:
 export qui fait des gros leaks
 casser tous les mallocs
-export test="truc truc"
 exp"$hello"ort""''""
+quotes non fermées dans les heredocs
+cat Makefile > z | cat z | wc -l > r | ls vs cat Makefile > z | cat z | wc -l > r |ls
 
 - Fait (normalement) (a tester quand meme) :
 export test=truc
@@ -84,6 +85,7 @@ export test=truc
 ">"
 export TEST='""'
 yes $USER
+export test="truc truc"
 echo $ejknfenf hey
 ajouter le here_doc
 penser a free hihi

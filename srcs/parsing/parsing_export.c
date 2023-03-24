@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing_export.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lboudjem <lboudjem@student.42.fr>          +#+  +:+       +#+        */
+/*   By: louisa <louisa@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/21 10:33:20 by lboudjem          #+#    #+#             */
-/*   Updated: 2023/03/24 13:10:07 by lboudjem         ###   ########.fr       */
+/*   Updated: 2023/03/24 21:13:56 by louisa           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,13 +14,30 @@
 
 int	ft_size_export(char *bloc)
 {
-	int		i;
+	int	i;
 
 	i = 6;
 	while (bloc[i] && (bloc[i] == ' ' || bloc[i] == '\t' || bloc[i] == '\n'))
 		i++;
-	while (bloc[i] && bloc[i] != ' ' && bloc[i] != '\t' && bloc[i] != '\n')
+	while (bloc[i])
+	{
+		if (bloc[i] == 34)
+		{
+			i++;
+			while (bloc[i] != 34)
+				i++;
+		}
+		if (bloc[i] == 39)
+		{
+			i++;
+			while (bloc[i] != 39)
+				i++;
+		}	
+		if (bloc[i] == ' ' || bloc[i] == '\t' || bloc[i] == '\n')
+			break ;
 		i++;
+	}
+	dprintf(2, "i = %d\n", i);
 	return (i);
 }
 
@@ -73,31 +90,3 @@ char	*ft_handle_export(char *bloc)
 	}
 	return (bloc);
 }
-
-// char	*ft_handle_export(char *bloc)
-// {
-// 	int	i;
-
-// 	i = 0;
-// 	while (bloc && bloc[i])
-// 	{
-// 		if (ft_strncmp(bloc, "export", 6) == 0)
-// 		{
-// 			i += 6;
-// 			while (bloc[i] && (bloc[i] == ' ' || bloc[i] == '\t' 
-// 				|| bloc[i] == '\n'))
-// 				i++;
-// 			while (bloc[i] && (bloc[i] != ' ' && bloc[i] != '\t' 
-// 				&& bloc[i] != '\n'))
-// 			{
-// 				if (bloc[i] == '=')
-// 					bloc[i] = ' ';
-// 				i++;
-// 			}
-// 			if (!bloc[i])
-// 				break ;
-// 		}
-// 		i++;
-// 	}
-// 	return (bloc);
-// }
