@@ -6,7 +6,7 @@
 /*   By: lboudjem <lboudjem@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/13 17:47:02 by louisa            #+#    #+#             */
-/*   Updated: 2023/03/24 14:47:03 by lboudjem         ###   ########.fr       */
+/*   Updated: 2023/03/24 16:12:52 by lboudjem         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ char	*ft_redirection_arg(char *bloc, int i)
 	{
 		i++;
 		len++;
-		while (bloc[i] != 34 && bloc[i] != 39)
+		while (bloc[i] && bloc[i] != 34 && bloc[i] != 39)
 		{
 			i++;
 			len++;
@@ -136,6 +136,18 @@ t_list	*ft_handle_redirection(char **bloc, int *error, t_line *line)
 	arg = NULL;
 	while ((*bloc) && (*bloc)[i])
 	{
+		if ((*bloc)[i] == 34)
+		{
+			i++;
+			while ((*bloc)[i] && (*bloc)[i] != 34)
+				i++;	
+		}
+		if ((*bloc)[i] == 39)
+		{
+			i++;
+			while ((*bloc)[i] && (*bloc)[i] != 39)
+				i++;	
+		}
 		if (ft_redirection_type_fd(*bloc, &type, &i) == 1)
 		{
 			arg = ft_redirection_arg(*bloc, i);

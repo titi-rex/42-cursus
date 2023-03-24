@@ -6,7 +6,7 @@
 #    By: lboudjem <lboudjem@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/03/10 16:14:31 by lboudjem          #+#    #+#              #
-#    Updated: 2023/03/24 14:47:40 by lboudjem         ###   ########.fr        #
+#    Updated: 2023/03/24 16:13:16 by lboudjem         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -75,10 +75,13 @@ Autre:
 - A ne pas oublier:
 export qui fait des gros leaks
 casser tous les mallocs
+export test="truc truc"
+exp"$hello"ort""''""
 
 - Fait (normalement) (a tester quand meme) :
 export test=truc
 > log2
+">"
 export TEST='""'
 yes $USER
 echo $ejknfenf hey
@@ -88,8 +91,9 @@ exporte test=truc abort
 arg des redirection "'test'"
 < log suprime pas la redirection
 export test : ca le met dans export et pas dans env
+dans les redirections : skip tout ce quil ya entre quote
 export test= : dans env ca met test=(rien)
-supprimer les redirection er leurs args juste apres
+supprimer les redirection et leurs args juste apres
 renvoie code erreur specifique en cas de bloc null (2 par exemple)
 (echo coucou |   |) DIFFERENT DE (echo coucou | " "  | " ")
 missing quote

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing_quotes.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: lboudjem <lboudjem@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/11 14:27:10 by lboudjem          #+#    #+#             */
-/*   Updated: 2023/03/21 19:46:43 by tlegrand         ###   ########.fr       */
+/*   Updated: 2023/03/24 16:07:28 by lboudjem         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,7 +85,7 @@ int	get_nb_quotes(char *bloc, int i)
 		{
 			nb++;
 			i++;
-			while (bloc[i] != 34)
+			while (bloc[i] && bloc[i] != 34)
 				i++;
 			nb++;
 		}
@@ -93,10 +93,12 @@ int	get_nb_quotes(char *bloc, int i)
 		{
 			nb++;
 			i++;
-			while (bloc[i] != 39)
+			while (bloc[i] && bloc[i] != 39)
 				i++;
 			nb++;
 		}
+		if (!bloc[i])
+			return (-1);
 		i++;
 	}
 	return (nb);
@@ -127,7 +129,7 @@ char	*ft_del_quotes(char *bloc)
 		if (bloc[i] == 34)
 		{
 			i++;
-			while (bloc[i] != 34)
+			while (bloc [i] && bloc[i] != 34)
 			{
 				cpy[j] = bloc[i];
 				j++;
@@ -137,13 +139,15 @@ char	*ft_del_quotes(char *bloc)
 		if (bloc[i] == 39)
 		{
 			i++;
-			while (bloc[i] != 39)
+			while (bloc [i] && bloc[i] != 39)
 			{
 				cpy[j] = bloc[i];
 				j++;
 				i++;
 			}
 		}
+		if (!bloc[i])
+			return (NULL);
 		i++;
 	}
 	cpy[j] = '\0';
