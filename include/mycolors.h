@@ -6,7 +6,7 @@
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/20 15:08:43 by tlegrand          #+#    #+#             */
-/*   Updated: 2023/03/24 15:30:34 by tlegrand         ###   ########.fr       */
+/*   Updated: 2023/03/24 22:41:33 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 # define BLACK		"\001\033[0;30m\002"
 # define RED		"\001\033[0;31m\002"
 # define GREEN		"\001\033[0;32m\002"
-# define ORANGE		"\001\033[0;33m\002"
+# define YELLOW		"\001\033[0;33m\002"
 # define BLUE		"\001\033[0;34m\002"
 # define PURPLE		"\001\033[0;35m\002"
 # define CYAN		"\001\033[0;36m\002"

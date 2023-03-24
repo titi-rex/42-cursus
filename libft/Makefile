@@ -6,7 +6,7 @@
 #    By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/11/08 14:39:06 by tlegrand          #+#    #+#              #
-#    Updated: 2023/03/20 18:52:48 by tlegrand         ###   ########.fr        #
+#    Updated: 2023/03/24 22:28:08 by tlegrand         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -80,7 +80,7 @@ ${NAME}			:	${DIR_OBJS} ${OBJS}
 				@printf "\n$(GREEN_LIGHT)${NAME} created !\n$(END)"
 
 ${DIR_OBJS}%.o	:	${DIR_SRCS}%.c ${HEADER}
-				@printf "$(RERASE)$(ORANGE)Making ${NAME}...$(END)"
+				@printf "$(RERASE)$(YELLOW)Making ${NAME}...$(END)"
 				@${CC} ${CFLAGS} -c $< -o $@
 
 ${DIR_OBJS}		:
@@ -94,7 +94,7 @@ ${DIR_OBJS}		:
 BLACK		=	\033[0;30m
 RED			=	\033[0;31m
 GREEN		=	\033[0;32m
-ORANGE		=	\033[0;33m
+YELLOW		=	\033[0;33m
 BLUE		=	\033[0;34m
 PURPLE		=	\033[0;35m
 CYAN		=	\033[0;36m

@@ -6,7 +6,7 @@
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/13 18:46:53 by tlegrand          #+#    #+#             */
-/*   Updated: 2023/03/23 15:56:05 by tlegrand         ###   ########.fr       */
+/*   Updated: 2023/03/24 22:02:02 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,14 +37,15 @@ char	*ft_here_doc(char *end)
 			return (ft_here_doc_interrupt(here_doc));
 		n_read = read(0, &buff, 95);
 		if (n_read == -1)
-			break ;
+			return (perror("Error "), ft_here_doc_interrupt(here_doc));
 		buff[n_read] = 0;
 		if (!ft_strncmp(buff, end, len) && buff[len] == '\n')
-			break ;
+			return (here_doc);
 		if (ft_strrchr(buff, '\n'))
 			ft_putstr_fd(" $> ", 1);
 		here_doc = ft_self_append(here_doc, buff);
 	}
+	write(1, "\n", 1);
 	return (here_doc);
 }
 

@@ -6,7 +6,7 @@
 #    By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/02/12 20:46:19 by tlegrand          #+#    #+#              #
-#    Updated: 2023/03/24 16:17:17 by tlegrand         ###   ########.fr        #
+#    Updated: 2023/03/24 22:28:08 by tlegrand         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -120,27 +120,27 @@ ${NAME}			:	${LIBFT} ${DIR_OBJS} ${OBJS}
 
 
 ${DIR_OBJS}%.o	:	${DIR_SRCS}%.c ${HEADER}
-				@printf "$(ORANGE)Making $@...\n$(END)"
+				@printf "$(YELLOW)Making $@...\n$(END)"
 				@${CC} ${CFLAGS} -c $< -o $@
 
 ${DIR_OBJS}%.o	:	${DIR_SRCS_BI}%.c ${HEADER}
-				@printf "$(ORANGE)Making $@...\n$(END)"
+				@printf "$(YELLOW)Making $@...\n$(END)"
 				@${CC} ${CFLAGS} -c $< -o $@
 
 ${DIR_OBJS}%.o	:	${DIR_SRCS_STRUCT}%.c ${HEADER}
-				@printf "$(ORANGE)Making $@...\n$(END)"
+				@printf "$(YELLOW)Making $@...\n$(END)"
 				@${CC} ${CFLAGS} -c $< -o $@
 
 ${DIR_OBJS}%.o	:	${DIR_SRCS_PARSE}%.c ${HEADER}
-				@printf "$(ORANGE)Making $@...\n$(END)"
+				@printf "$(YELLOW)Making $@...\n$(END)"
 				@${CC} ${CFLAGS} -c $< -o $@
 
 ${DIR_OBJS}%.o	:	${DIR_SRCS_EXE}%.c ${HEADER}
-				@printf "$(ORANGE)Making $@...\n$(END)"
+				@printf "$(YELLOW)Making $@...\n$(END)"
 				@${CC} ${CFLAGS} -c $< -o $@
 
 ${DIR_OBJS}%.o	:	${DIR_SRCS_PROMPT}%.c ${HEADER}
-				@printf "$(ORANGE)Making $@...\n$(END)"
+				@printf "$(YELLOW)Making $@...\n$(END)"
 				@${CC} ${CFLAGS} -c $< -o $@
 
 #	==============================	UTILS/LIB	==============================	#
@@ -163,7 +163,7 @@ FORCE		:
 BLACK		=	\033[0;30m
 RED			=	\033[0;31m
 GREEN		=	\033[0;32m
-ORANGE		=	\033[0;33m
+YELLOW		=	\033[0;33m
 BLUE		=	\033[0;34m
 PURPLE		=	\033[0;35m
 CYAN		=	\033[0;36m

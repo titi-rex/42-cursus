@@ -6,7 +6,7 @@
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/20 15:53:05 by tlegrand          #+#    #+#             */
-/*   Updated: 2023/03/24 15:21:44 by tlegrand         ###   ########.fr       */
+/*   Updated: 2023/03/24 22:28:08 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,16 +25,16 @@ static char	*prompt_pwd_prettyfy(char *pwd, char *home)
 		ptr_home += ft_strlen(home);
 		count = ft_count_char(ptr_home, '/');
 		if (count <= 3)
-			return (ft_strjoin3(" in "BOLD ORANGE ITALIC"~", ptr_home, END));
-		return (ft_strjoin3(" in "BOLD ORANGE ITALIC"~/...", ptr_cwd, END));
+			return (ft_strjoin3(" in "BOLD YELLOW ITALIC"~", ptr_home, END));
+		return (ft_strjoin3(" in "BOLD YELLOW ITALIC"~/...", ptr_cwd, END));
 	}
 	ptr_home = ft_strchr(pwd, '/');
 	if (!ptr_home)
 		return (NULL);
 	count = ft_count_char(ptr_home, '/');
 	if (count <= 3)
-		return (ft_strjoin3(" in "BOLD ORANGE ITALIC"", ptr_home, END));
-	return (ft_strjoin3(" in "BOLD ORANGE ITALIC"/...", ptr_cwd, END));
+		return (ft_strjoin3(" in "BOLD YELLOW ITALIC"", ptr_home, END));
+	return (ft_strjoin3(" in "BOLD YELLOW ITALIC"/...", ptr_cwd, END));
 }
 
 char	*prompt_pwd(char *pwd, char *user)
@@ -47,7 +47,7 @@ char	*prompt_pwd(char *pwd, char *user)
 	if (!pwd)
 		return (NULL);
 	if (*pwd == '/' && *(pwd + 1) == '\0')
-		return (ft_strdup(BOLD ORANGE ITALIC" in /"END));
+		return (ft_strdup(BOLD YELLOW ITALIC" in /"END));
 	if (user && user[0] != '/')
 		username = ft_strjoin("/", user);
 	else if (user)
