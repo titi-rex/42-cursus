@@ -6,7 +6,7 @@
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/18 20:51:52 by tlegrand          #+#    #+#             */
-/*   Updated: 2023/03/23 16:46:36 by tlegrand         ###   ########.fr       */
+/*   Updated: 2023/03/24 12:14:00 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ static char	*ft_exist(char *dir, char *target)
  * @param dir the .git dir
  * @return char* current branch name or NULL 
  */
-char	*ft_extract_branch(char *dir)
+static char	*prompt_git_extract_branch(char *dir)
 {
 	char	branch[1024];
 	char	*head;
@@ -68,13 +68,12 @@ char	*ft_extract_branch(char *dir)
  * 
  * @return char* .git path or NULL
  */
-char	*ft_get_path_git_dir(void)
+static char	*prompt_git_get_path_dir(void)
 {
 	char	*path_dir_git;
 	char	*pwd;
 	int		i;
 
-	path_dir_git = NULL;
 	pwd = getcwd(NULL, 0);
 	if (!pwd)
 		return (NULL);
@@ -98,7 +97,7 @@ char	*ft_get_path_git_dir(void)
 	return (NULL);
 }
 
-int	ft_git_status(char *pgd)
+static int	prompt_git_status(char *pgd)
 {
 	char	*tmp;
 	int		status;
@@ -129,7 +128,7 @@ int	ft_git_status(char *pgd)
  * @param current_branche ptr to branch name, must be initialised to NULL before
  * @return int 0 : git ok, 1 detached state, 2 no git repo or repo broken
  */
-char	*ft_prompt_git(void)
+char	*prompt_git(void)
 {
 	int		git_status;
 	char	*pgd;
@@ -138,14 +137,14 @@ char	*ft_prompt_git(void)
 
 	tmp = NULL;
 	branche = NULL;
-	pgd = ft_get_path_git_dir();
+	pgd = prompt_git_get_path_dir();
 	if (!pgd)
 		return (NULL);
-	git_status = ft_git_status(pgd);
+	git_status = prompt_git_status(pgd);
 	if (git_status == 0)
 	{
-		tmp = ft_extract_branch(pgd);
-		branche = ft_strjoin3(" on "CYAN"{", tmp,"}"END);
+		tmp = prompt_git_extract_branch(pgd);
+		branche = ft_strjoin3(" on "CYAN"{", tmp, "}"END);
 		free(tmp);
 	}
 	else if (git_status == 1)

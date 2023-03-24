@@ -6,13 +6,13 @@
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/18 16:10:01 by tlegrand          #+#    #+#             */
-/*   Updated: 2023/03/21 13:46:31 by tlegrand         ###   ########.fr       */
+/*   Updated: 2023/03/24 11:57:28 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/minishell.h"
 
-static int	ft_search_path(char *pathvar, char **cmd_name)
+static int	bi_type_search_path(char *pathvar, char **cmd_name)
 {
 	int		err;
 	char	*tmp;
@@ -54,7 +54,7 @@ int	bi_type(t_line	*line)
 		if (ft_is_bi(line->cmd->arg[i]))
 			printf("%s is minishell built-in\n", line->cmd->arg[i]);
 		else
-			err = ft_search_path(get_value(line->lst_env, "PATH"), \
+			err = bi_type_search_path(get_value(line->lst_env, "PATH"), \
 				&line->cmd->arg[i]);
 		i++;
 	}

@@ -6,13 +6,13 @@
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/08 18:10:13 by tlegrand          #+#    #+#             */
-/*   Updated: 2023/03/17 15:26:54 by tlegrand         ###   ########.fr       */
+/*   Updated: 2023/03/24 11:43:53 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/minishell.h"
 
-void	ft_dup_pipe(int pipe_in[2], int pipe_out[2])
+void	dup_pipe(int pipe_in[2], int pipe_out[2])
 {
 	if (pipe_in[0] != -1)
 	{

@@ -6,7 +6,7 @@
 #    By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/02/12 20:46:19 by tlegrand          #+#    #+#              #
-#    Updated: 2023/03/23 20:26:59 by tlegrand         ###   ########.fr        #
+#    Updated: 2023/03/24 12:12:35 by tlegrand         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -54,6 +54,8 @@ SRCS_EXE		=	${addprefix ${DIR_SRCS_EXE}, ${LST_SRCS_EXE}}
 DIR_SRCS_PROMPT	=	srcs/prompt/
 LST_SRCS_PROMPT	=	prompt.c prompt_git.c prompt_pwd.c 
 SRCS_PROMPT		=	${addprefix ${DIR_SRCS_PROMPT}, ${LST_SRCS_PROMPT}}
+
+LST_DIR_SRC		=	${DIR_SRCS_BI} ${DIR_SRCS_STRUCT} ${DIR_SRCS_PARSE} ${DIR_SRCS_EXE} ${DIR_SRCS_PROMPT} 
 
 
 #	==============================	OBJECTS	==============================	#
@@ -146,7 +148,7 @@ ${DIR_OBJS}	:
 			@${MKDIR} ${DIR_OBJS}
 			
 nn			:
-			@norminette $(sort ${SRCS} ${SRCS_BI} ${SRCS_EXE} ${SRCS_STRUCT} ${SRCS_PARSE} ${HEADER} )
+			@norminette $(sort ${DIR_SRCS}  ${HEADER} )
 
 $(LIBFT)	:	FORCE
 			@$(MAKE) -C ${DIR_LIBFT}

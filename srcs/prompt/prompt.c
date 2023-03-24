@@ -6,13 +6,13 @@
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/18 23:01:34 by tlegrand          #+#    #+#             */
-/*   Updated: 2023/03/21 14:43:18 by tlegrand         ###   ########.fr       */
+/*   Updated: 2023/03/24 12:42:41 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/minishell.h"
 
-char	*ft_prompt_username(char *user)
+static char	*prompt_username(char *user)
 {
 	char	*username;
 
@@ -32,9 +32,9 @@ char	*ft_get_a_nice_prompt(t_var_env *lst_env, int exit_status)
 	char	*prompt;
 	char	*tmp;
 
-	git = ft_prompt_git();
-	pwd = ft_prompt_pwd(get_value(lst_env, "PWD"), get_value(lst_env, "USER"));
-	username = ft_prompt_username(get_value(lst_env, "USER"));
+	git = prompt_git();
+	pwd = prompt_pwd(get_value(lst_env, "PWD"), get_value(lst_env, "USER"));
+	username = prompt_username(get_value(lst_env, "USER"));
 	tmp = ft_strjoin3(username, pwd, git);
 	if (!exit_status)
 		prompt = ft_strjoin3(tmp, GREEN_L BOLD" (*o*) "END, VIOLET"-$> "END);

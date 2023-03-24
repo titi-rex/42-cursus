@@ -6,7 +6,7 @@
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/08 17:06:26 by tlegrand          #+#    #+#             */
-/*   Updated: 2023/03/23 17:38:28 by tlegrand         ###   ########.fr       */
+/*   Updated: 2023/03/24 12:42:00 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,12 +85,12 @@ int			bi_unset(t_line *line);
 void		ft_env_update(char ***env, t_var_env *lst);
 void		ft_exe_master(t_line *line);
 
-int			ft_dup_redirect(t_list *io, int here_pipe[2], t_line *line);
-void		ft_dup_pipe(int pipe_in[2], int pipe_out[2]);
-void		ft_restore_std(t_list *io, int std_fd[2]);
-void		ft_exe_init_here_pipe(int here_pipe[2]);
+int			dup_selector(t_list *io, int here_pipe[2], t_line *line);
+void		dup_pipe(int pipe_in[2], int pipe_out[2]);
+void		exe_restore_std(t_list *io, int std_fd[2]);
+void		exe_init_here_pipe(int here_pipe[2]);
 
-void		ft_exe_error_404(t_line *line, char *cmd);
+void		exe_error_404(t_line *line, char *cmd);
 
 /*			utils general	*/
 void		ft_perror_exit(t_line *line, int exit_status, char *errstr);
@@ -137,8 +137,8 @@ void		ft_clear_cmd(t_cmd **cmd);
 void		ft_clear_lst_cmd(t_cmd **cmd);
 
 /*			prompt function				*/
-char		*ft_prompt_git(void);
-char		*ft_prompt_pwd(char *pwd, char *user);
+char		*prompt_git(void);
+char		*prompt_pwd(char *pwd, char *user);
 char		*ft_get_a_nice_prompt(t_var_env *lst_env, int exit_status);
 
 /*			debug functions					*/

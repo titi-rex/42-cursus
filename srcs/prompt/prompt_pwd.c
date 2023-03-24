@@ -6,13 +6,13 @@
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/20 15:53:05 by tlegrand          #+#    #+#             */
-/*   Updated: 2023/03/23 21:05:59 by tlegrand         ###   ########.fr       */
+/*   Updated: 2023/03/24 12:42:25 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/minishell.h"
 
-char	*ft_prettyfy_pwd(char *pwd, char *home)
+static char	*prompt_pwd_prettyfy(char *pwd, char *home)
 {
 	char	*ptr_home;
 	char	*ptr_cwd;
@@ -37,7 +37,7 @@ char	*ft_prettyfy_pwd(char *pwd, char *home)
 	return (ft_strjoin3(" in "BOLD YELLOW ITALIC"/...", ptr_cwd, END));
 }
 
-char	*ft_prompt_pwd(char *pwd, char *user)
+char	*prompt_pwd(char *pwd, char *user)
 {
 	char	*username;
 	char	*pretty_pwd;
@@ -53,10 +53,10 @@ char	*ft_prompt_pwd(char *pwd, char *user)
 	else if (user)
 		username = ft_strdup(user);
 	if (!user || !username)
-		pretty_pwd = ft_prettyfy_pwd(pwd, "/home");
+		pretty_pwd = prompt_pwd_prettyfy(pwd, "/home");
 	else
 	{
-		pretty_pwd = ft_prettyfy_pwd(pwd, username);
+		pretty_pwd = prompt_pwd_prettyfy(pwd, username);
 		free(username);
 	}
 	return (pretty_pwd);
