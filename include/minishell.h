@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: lboudjem <lboudjem@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/08 17:06:26 by tlegrand          #+#    #+#             */
-/*   Updated: 2023/03/24 23:19:33 by tlegrand         ###   ########.fr       */
+/*   Updated: 2023/03/25 13:18:55 by lboudjem         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,18 +29,28 @@
 # define MINISHELL 0b0100
 # define INTERRUPT 0b1000
 
-/*          Parsing functiun            */
+/*          Parsing functiuns				*/
 int			ft_browse_line(char *str, int i, int start, t_line *line);
-void		ft_quotes(char *str, int *i, int *error);
+void		ft_list_cmd(char *arg, t_line *line, t_list	*io);
+int			ft_is_bloc_empty(char *bloc);
+void		init_bloc(t_list **io, int *error, char **bloc);
+void		separate_bloc(char **str, int *i, int *start, char **bloc);
+void		format_bloc(char **bloc, t_list **io, int *error, t_line *line);
+int			ft_fill_list(char *bloc, t_list *io, t_line *line, int *error);
 char		*ft_creat_bloc(char *str, int *i, int *start, char *bloc);
+
+/*			Parsing quotes					*/
+void		ft_quotes(char *str, int *i, int *error);
 int			ft_handle_quotes(char *str, int i, int quote, int *error);
-char		*ft_delete_quotes(char *bloc, int size, int nb_quotes, char quote);
-int			get_nb_quotes(char *bloc, int i);
-char		*ft_del_quotes(char *bloc);
+int			get_nb_quotes(char *bloc, int i, int nb);
+void		ft_skip_quotes(char *bloc, char **cpy, int *i, int *j);
+char		*ft_del_quotes(char *bloc, int i, int j);
+
 char		*ft_get_expansion_value(char *bloc, t_line *line, int *len, int i);
-char		*ft_replace_expansion_value(char *bloc, t_line *line, int len, int i);
+char		*ft_replace_expansion_val(char *bloc, t_line *line, int len, int i);
 char		*ft_replace_by_exit_status(char *bloc, int i, t_line *line);
 char		*ft_handle_expansion(char *bloc, t_line *line);
+char		*ft_handle_expansion_hd(char *bloc, t_line *line);
 char		*ft_redirection_arg(char *bloc, int i);
 int			ft_redirection_type_fd(char *bloc, int *type, int *i);
 t_list		*ft_handle_redirection(char **bloc, int *error, t_line *line);

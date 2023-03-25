@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    instruction_parsing.txt                            :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: louisa <louisa@student.42.fr>              +#+  +:+       +#+         #
+#    By: lboudjem <lboudjem@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/03/10 16:14:31 by lboudjem          #+#    #+#              #
-#    Updated: 2023/03/24 21:43:27 by louisa           ###   ########.fr        #
+#    Updated: 2023/03/25 12:22:21 by lboudjem         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -61,8 +61,6 @@ line->arg[1] = arguments (tout ce qu'il y a apres la cmd jusqu au prochain pipe 
 echo hello                     coucou = hello coucou
 echo "hello                     coucou" = hello                     coucou
 
-                                Code d'erreur
-Missing quote : 2
 
 Autre:
 - Faire une fonction clear all qui clear toutes les lists entre deux commandes entrés par le user
@@ -73,11 +71,9 @@ Autre:
 
 
 - A ne pas oublier:
-export qui fait des gros leaks
 casser tous les mallocs
 exp"$hello"ort""''""
-quotes non fermées dans les heredocs
-cat Makefile > z | cat z | wc -l > r | ls vs cat Makefile > z | cat z | wc -l > r |ls
+export TEST='""' -> puis echo $TEST
 
 - Fait (normalement) (a tester quand meme) :
 export test=truc
@@ -91,7 +87,10 @@ ajouter le here_doc
 penser a free hihi
 exporte test=truc abort
 arg des redirection "'test'"
+export qui fait des gros leaks
 < log suprime pas la redirection
+quotes non fermées dans les here_doc
+cat Makefile > z | cat z | wc -l > r | ls vs cat Makefile > z | cat z | wc -l > r |ls
 export test : ca le met dans export et pas dans env
 dans les redirections : skip tout ce quil ya entre quote
 export test= : dans env ca met test=(rien)
@@ -135,4 +134,3 @@ echo "$ejnzefc" hey
 ./minishell 2>lol (redirection de stderr, aucuns messages d'erreurs ne doivent s'imprimer dans le terminal)
 env -i ./minishell (= lance sans les var d’env)
 commande yes avec les signaux et $?
-echo $ejknfenf hey

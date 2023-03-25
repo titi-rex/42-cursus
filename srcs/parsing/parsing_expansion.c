@@ -6,7 +6,7 @@
 /*   By: lboudjem <lboudjem@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/13 17:33:36 by louisa            #+#    #+#             */
-/*   Updated: 2023/03/24 14:37:24 by lboudjem         ###   ########.fr       */
+/*   Updated: 2023/03/25 12:15:17 by lboudjem         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ char	*ft_get_expansion_value(char *bloc, t_line *line, int *len, int i)
 	return (value);
 }
 
-char	*ft_replace_expansion_value(char *bloc, t_line *line, int len, int i)
+char	*ft_replace_expansion_val(char *bloc, t_line *line, int len, int i)
 {
 	char	*value;
 	char	*cpy;
@@ -103,7 +103,7 @@ char	*ft_handle_expansion(char *bloc, t_line *line)
 				if (bloc[i] && bloc[i] == '$' && ft_isalnum(bloc[i + 1]) == 0)
 					i++;
 				if (bloc[i] && bloc[i] == '$')
-					bloc = ft_replace_expansion_value(bloc, line, 0, i);
+					bloc = ft_replace_expansion_val(bloc, line, 0, i);
 				i++;
 			}
 		}
@@ -117,7 +117,26 @@ char	*ft_handle_expansion(char *bloc, t_line *line)
 			bloc = ft_replace_by_exit_status(bloc, i, line);
 		if (bloc[i] && bloc[i] == '$')
 		{
-			bloc = ft_replace_expansion_value(bloc, line, 0, i);
+			bloc = ft_replace_expansion_val(bloc, line, 0, i);
+			i = -1;
+		}
+		i++;
+	}
+	return (bloc);
+}
+
+char	*ft_handle_expansion_hd(char *bloc, t_line *line)
+{
+	int		i;
+
+	i = 0;
+	while (bloc[i])
+	{
+		if (bloc[i] && bloc[i] == '$' && bloc[i + 1] == '?')
+			bloc = ft_replace_by_exit_status(bloc, i, line);
+		if (bloc[i] && bloc[i] == '$')
+		{
+			bloc = ft_replace_expansion_val(bloc, line, 0, i);
 			i = -1;
 		}
 		i++;
