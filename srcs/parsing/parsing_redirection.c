@@ -6,7 +6,7 @@
 /*   By: lboudjem <lboudjem@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/13 17:47:02 by louisa            #+#    #+#             */
-/*   Updated: 2023/03/25 12:08:22 by lboudjem         ###   ########.fr       */
+/*   Updated: 2023/03/25 13:18:31 by lboudjem         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ char	*ft_redirection_arg(char *bloc, int i)
 		i++;
 	}
 	arg = ft_substr(bloc, tmp, len);
-	arg = ft_del_quotes(arg);
+	arg = ft_del_quotes(arg, 0, 0);
 	return (arg);
 }
 
@@ -140,13 +140,13 @@ t_list	*ft_handle_redirection(char **bloc, int *error, t_line *line)
 		{
 			i++;
 			while ((*bloc)[i] && (*bloc)[i] != 34)
-				i++;	
+				i++;
 		}
 		if ((*bloc)[i] == 39)
 		{
 			i++;
 			while ((*bloc)[i] && (*bloc)[i] != 39)
-				i++;	
+				i++;
 		}
 		if (ft_redirection_type_fd(*bloc, &type, &i) == 1)
 		{

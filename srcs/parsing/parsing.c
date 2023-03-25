@@ -6,13 +6,25 @@
 /*   By: lboudjem <lboudjem@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/08 11:21:07 by louisa            #+#    #+#             */
-/*   Updated: 2023/03/25 13:05:38 by lboudjem         ###   ########.fr       */
+/*   Updated: 2023/03/25 13:12:19 by lboudjem         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/minishell.h"
 
-int	error_bloc(char *bloc, t_list *io, t_line *line, int *error)
+char	*ft_creat_bloc(char *str, int *i, int *start, char *bloc)
+{
+	bloc = ft_substr(str, *start, *i - *start);
+	*start = *i;
+	while (str[*start] != '|')
+		(*start)++;
+	(*start)++;
+	while (str[*start] == ' ')
+		(*start)++;
+	return (bloc);
+}
+
+int	ft_fill_list(char *bloc, t_list *io, t_line *line, int *error)
 {
 	if (!bloc || *error == 1)
 		return (free(bloc), 1);
@@ -40,7 +52,7 @@ int	ft_browse_line(char *str, int i, int start, t_line *line)
 		{
 			separate_bloc(&str, &i, &start, &bloc);
 			format_bloc(&bloc, &io, &error, line);
-			if (error_bloc(bloc, io, line, &error) == 1)
+			if (ft_fill_list(bloc, io, line, &error) == 1)
 				return (1);
 		}
 		i++;
