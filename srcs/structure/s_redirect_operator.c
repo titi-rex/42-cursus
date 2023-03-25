@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   s_redirect_operator.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: lboudjem <lboudjem@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/10 22:07:36 by tlegrand          #+#    #+#             */
-/*   Updated: 2023/03/17 19:42:09 by tlegrand         ###   ########.fr       */
+/*   Updated: 2023/03/25 13:56:51 by lboudjem         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,8 @@ int	ft_redirect_add_list(t_list	**start, int type, char *arg)
 		return (1);
 	}
 	ft_lstadd_back(start, new_node);
+	if (arg)
+		free(arg);
 	return (0);
 }
 
