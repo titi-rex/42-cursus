@@ -6,7 +6,7 @@
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/11 14:28:28 by tlegrand          #+#    #+#             */
-/*   Updated: 2023/03/25 20:03:42 by tlegrand         ###   ########.fr       */
+/*   Updated: 2023/03/25 20:05:49 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,7 +108,6 @@ int	bi_export(t_line *line)
 	err = EXIT_SUCCESS;
 	while (line->cmd->arg[i])
 	{
-			dprintf(2, " arg: %s\n", line->cmd->arg[i]);
 		if (bi_export_name_is_valid(line->cmd->arg[i]))
 			ft_putendl_fd("Not a valid identifier", 2);
 		else
