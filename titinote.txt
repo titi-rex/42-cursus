@@ -1,8 +1,6 @@
-les tests de loulou aue titi ne doit pas oublier:
+les tests de loulou que titi ne doit pas oublier:
 echo -n -n -n test tout
 echo -nnnnnnnnnnnnnnnnnnnnn bonjour
-pwd coucou ne rien imprimer
-pwd | cat -e
 
 tous les test : https://github.com/iciamyplant/Minishell/blob/master/tester/test.sh
 
