@@ -6,7 +6,7 @@
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/20 15:50:46 by tlegrand          #+#    #+#             */
-/*   Updated: 2023/02/26 18:08:10 by tlegrand         ###   ########.fr       */
+/*   Updated: 2023/03/25 13:18:42 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 /**
  * @brief give number of char in file
- * if can't open file, display error and quit
+ * if can't open file, display error 
  * 
  * @param pathname pathname of file
  * @return int number of char in file
@@ -37,7 +37,7 @@ int	ft_file_size(char *pathname)
 
 /**
  * @brief extract map from file
- * if malloc fail or can't read, display error and quit
+ * if malloc fail or can't read, display error
  * 
  * @param pathname pathname of file
  * @return char** array containing the file split in line
