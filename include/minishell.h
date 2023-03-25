@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lboudjem <lboudjem@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/08 17:06:26 by tlegrand          #+#    #+#             */
-/*   Updated: 2023/03/25 13:18:55 by lboudjem         ###   ########.fr       */
+/*   Updated: 2023/03/25 13:54:10 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -116,6 +116,7 @@ void		ft_sig_init(void (*handler)(int sig));
 
 void		ft_sig_handler_shell(int sig);
 void		ft_sig_handler_child(int sig);
+void		ft_sig_handler_loulou(int sig);
 
 /*			terminal gestion functions		*/
 void		term_init_setting(struct termios *old);

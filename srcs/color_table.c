@@ -6,7 +6,7 @@
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/25 12:15:23 by tlegrand          #+#    #+#             */
-/*   Updated: 2023/03/25 13:13:35 by tlegrand         ###   ########.fr       */
+/*   Updated: 2023/03/25 16:31:26 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,12 +106,14 @@ int	ft_color_table_n_color(char *pathname)
 {
 	char	buf[128];
 	char	*ptr;
+	int		n_read;
 	int		fd;
 	int		len;
 
 	fd = open(pathname, O_RDONLY);
 	if (fd == -1)
 		return (perror("Error "), -1);
+	n_read = 1;
 	while (buf[0] != "\"" && n_read && n_read != -1)
 		n_read = read(fd, &buf, 1);
 	if (n_read == -1)

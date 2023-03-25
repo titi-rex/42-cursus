@@ -6,7 +6,7 @@
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/09 13:35:47 by lboudjem          #+#    #+#             */
-/*   Updated: 2023/03/25 13:23:24 by tlegrand         ###   ########.fr       */
+/*   Updated: 2023/03/25 14:59:51 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,16 +34,6 @@ char	*ft_color_table_3bit(char c)
 		return (NULL);
 }
 
-char	*ft_set_color(char c, char **color_table)
-{
-	char	*color;
-
-	if (!color_table)
-		return (ft_color_table_3bit(ft_tolower(c)));
-	color = NULL;//ft_get_color_value(c, color_table);
-	return (color);
-}
-
 int	ft_colorprint(char *str, char **color_table)
 {
 	char	*color;
@@ -52,7 +42,10 @@ int	ft_colorprint(char *str, char **color_table)
 	{
 		color = ft_color_table_3bit(*str);
 		ft_putstr_fd(color, 1);
-		ft_putchar_fd(*str, 1);
+		if (*str == '\n' || *str == ' ' || *str == '\t')
+			ft_putchar_fd(*str, 1);
+		else
+			ft_putchar_fd('*', 1);
 		str++;
 	}
 	ft_putstr_fd(END, 1);
