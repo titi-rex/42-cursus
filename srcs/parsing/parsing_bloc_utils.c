@@ -6,7 +6,7 @@
 /*   By: louisa <louisa@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/25 12:59:18 by lboudjem          #+#    #+#             */
-/*   Updated: 2023/03/25 18:42:15 by louisa           ###   ########.fr       */
+/*   Updated: 2023/03/25 19:01:52 by louisa           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,4 +57,5 @@ void	format_bloc(char **bloc, t_list **io, int *error, t_line *line)
 	*bloc = ft_handle_expansion(*bloc, line);
 	*io = ft_handle_redirection(bloc, error, line);
 	*bloc = ft_handle_export(*bloc, line);
+    // fct qui protege les simples quotes
 }
