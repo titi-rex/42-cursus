@@ -6,7 +6,7 @@
 /*   By: lboudjem <lboudjem@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/21 10:33:20 by lboudjem          #+#    #+#             */
-/*   Updated: 2023/03/25 12:10:14 by lboudjem         ###   ########.fr       */
+/*   Updated: 2023/03/25 14:37:00 by lboudjem         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,15 +40,13 @@ int	ft_size_export(char *bloc)
 	return (i);
 }
 
-char	*ft_format_export(char *bloc, int size)
+char	*ft_format_export(char *bloc, int size, int i, int j)
 {
-	int		i;
-	int		j;
 	char	*cpy;
 
-	i = 0;
-	j = 0;
 	cpy = malloc((size + 1) * sizeof(char));
+	if (!cpy)
+		return (NULL);
 	while (bloc[i])
 	{
 		while (bloc[i] && bloc[i] != '=')
@@ -68,9 +66,7 @@ char	*ft_format_export(char *bloc, int size)
 			break ;
 		i++;
 	}
-	cpy[j] = '\0';
-	free(bloc);
-	return (cpy);
+	return (cpy[j] = '\0', cpy);
 }
 
 char	*ft_handle_export(char *bloc)
@@ -83,8 +79,8 @@ char	*ft_handle_export(char *bloc)
 	if (ft_strncmp(bloc, "export", 6) == 0 && bloc[6] == 32)
 	{
 		i = ft_size_export(bloc);
-		cpy = ft_substr(bloc, 0, i);
-		cpy = ft_format_export(bloc, i + 2);
+		cpy = ft_format_export(bloc, i + 2, 0, 0);
+		free(bloc);
 		return (cpy);
 	}
 	return (bloc);

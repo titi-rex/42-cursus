@@ -1,3 +1,9 @@
+les tests de loulou que titi ne doit pas oublier:
+echo -n -n -n test tout
+echo -nnnnnnnnnnnnnnnnnnnnn bonjour
+
+tous les test : https://github.com/iciamyplant/Minishell/blob/master/tester/test.sh
+
 ctrl c = SIGINT (new prompt new line)
 ctrl d = send OEF NOT A SIGNAL close terminal (exit)
 ctrl \ = SIGQUIT (rompish)
