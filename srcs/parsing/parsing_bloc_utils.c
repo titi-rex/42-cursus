@@ -6,7 +6,7 @@
 /*   By: lboudjem <lboudjem@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/25 12:59:18 by lboudjem          #+#    #+#             */
-/*   Updated: 2023/03/25 13:18:21 by lboudjem         ###   ########.fr       */
+/*   Updated: 2023/03/25 15:43:25 by lboudjem         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,12 +53,22 @@ void	init_bloc(t_list **io, int *error, char **bloc)
 	*error = 0;
 }
 
-void	separate_bloc(char **str, int *i, int *start, char **bloc)
+int	separate_bloc(char **str, int *i, int *start, char **bloc)
 {
+	int	nb_cmds;
+
+	nb_cmds = 0;
 	if ((*str)[*i] == '|')
+	{
 		*bloc = ft_creat_bloc(*str, i, start, *bloc);
+		nb_cmds++;
+	}
 	else if ((*str)[*i] == '\0' || (*str)[(*i) + 1] == '\0')
+	{
 		*bloc = ft_substr(*str, *start, ((*i) + 1) - *start);
+		nb_cmds++;
+	}
+	return (nb_cmds);
 }
 
 void	format_bloc(char **bloc, t_list **io, int *error, t_line *line)

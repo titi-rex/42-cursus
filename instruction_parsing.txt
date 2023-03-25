@@ -6,7 +6,7 @@
 #    By: lboudjem <lboudjem@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/03/10 16:14:31 by lboudjem          #+#    #+#              #
-#    Updated: 2023/03/25 12:22:21 by lboudjem         ###   ########.fr        #
+#    Updated: 2023/03/25 15:09:18 by lboudjem         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -74,6 +74,8 @@ Autre:
 casser tous les mallocs
 exp"$hello"ort""''""
 export TEST='""' -> puis echo $TEST
+<"" leaks
+| ne fait pas error parsing
 
 - Fait (normalement) (a tester quand meme) :
 export test=truc

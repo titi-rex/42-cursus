@@ -6,7 +6,7 @@
 /*   By: lboudjem <lboudjem@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/08 17:06:26 by tlegrand          #+#    #+#             */
-/*   Updated: 2023/03/25 14:53:29 by lboudjem         ###   ########.fr       */
+/*   Updated: 2023/03/25 15:44:14 by lboudjem         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ int			ft_browse_line(char *str, int i, int start, t_line *line);
 void		ft_list_cmd(char *arg, t_line *line, t_list	*io);
 int			ft_is_bloc_empty(char *bloc);
 void		init_bloc(t_list **io, int *error, char **bloc);
-void		separate_bloc(char **str, int *i, int *start, char **bloc);
+int			separate_bloc(char **str, int *i, int *start, char **bloc);
 void		format_bloc(char **bloc, t_list **io, int *error, t_line *line);
 int			ft_fill_list(char *bloc, t_list *io, t_line *line, int *error);
 char		*ft_creat_bloc(char *str, int *i, int *start, char *bloc);

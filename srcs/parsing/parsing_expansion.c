@@ -6,7 +6,7 @@
 /*   By: lboudjem <lboudjem@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/13 17:33:36 by louisa            #+#    #+#             */
-/*   Updated: 2023/03/25 14:54:09 by lboudjem         ###   ########.fr       */
+/*   Updated: 2023/03/25 15:01:33 by lboudjem         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,6 +61,8 @@ char	*ft_handle_expansion(char *bloc, t_line *line)
 	while (bloc[i])
 	{
 		ft_exp_skip_quotes(&bloc, &i, line);
+		if (!bloc[i])
+			break ;
 		if (bloc[i] == 39)
 		{
 			i++;
@@ -74,8 +76,6 @@ char	*ft_handle_expansion(char *bloc, t_line *line)
 			bloc = ft_replace_expansion_val(bloc, line, 0, i);
 			i = -1;
 		}
-		if (!bloc[i])
-			break ;
 		i++;
 	}
 	return (bloc);
