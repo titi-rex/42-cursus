@@ -6,7 +6,7 @@
 #    By: lboudjem <lboudjem@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/03/10 16:14:31 by lboudjem          #+#    #+#              #
-#    Updated: 2023/03/25 15:09:18 by lboudjem         ###   ########.fr        #
+#    Updated: 2023/03/25 16:23:56 by lboudjem         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -72,22 +72,31 @@ Autre:
 
 - A ne pas oublier:
 casser tous les mallocs
-exp"$hello"ort""''""
 export TEST='""' -> puis echo $TEST
-<"" leaks
-| ne fait pas error parsing
+/bin/echo " \" "
+/bin/echo " \$LESS "
+/bin/echo " \$ "
+/bin/echo " \\\\\ "
+export lol2="\'" puis echo $lol2
+export A=a B=b C=c D=d E=e F=f G=g H=h I=i J=j K=k L=l M=m N=n O=o P=p Q=q R=r
 
 - Fait (normalement) (a tester quand meme) :
 export test=truc
 > log2
 ">"
+|
+|||||||
+echo hello |
+<"" leaks
 export TEST='""'
 yes $USER
+exp"$hello"ort""''""
 export test="truc truc"
 echo $ejknfenf hey
 ajouter le here_doc
 penser a free hihi
 exporte test=truc abort
+| ne fait pas error parsing
 arg des redirection "'test'"
 export qui fait des gros leaks
 < log suprime pas la redirection
@@ -107,6 +116,7 @@ echo "$""USER"
                         Exemples chiants a tester:
 
 echo '"'"$USER"'"'
+export test=$test"coucou"
 echo mdrr 1<>coucou
 echo mdrr 2<>coucou
 echo coucou > "ihi aha"ihi
