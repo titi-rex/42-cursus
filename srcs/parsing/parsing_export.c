@@ -3,85 +3,19 @@
 /*                                                        :::      ::::::::   */
 /*   parsing_export.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lboudjem <lboudjem@student.42.fr>          +#+  +:+       +#+        */
+/*   By: louisa <louisa@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/21 10:33:20 by lboudjem          #+#    #+#             */
-/*   Updated: 2023/03/25 14:37:00 by lboudjem         ###   ########.fr       */
+/*   Updated: 2023/03/25 18:42:49 by louisa           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/minishell.h"
 
-int	ft_size_export(char *bloc)
+char	*ft_handle_export(char *bloc, t_line *line)
 {
-	int	i;
-
-	i = 6;
-	while (bloc[i] && (bloc[i] == ' ' || bloc[i] == '\t' || bloc[i] == '\n'))
-		i++;
-	while (bloc[i])
-	{
-		if (bloc[i] == 34)
-		{
-			i++;
-			while (bloc[i] != 34)
-				i++;
-		}
-		if (bloc[i] == 39)
-		{
-			i++;
-			while (bloc[i] != 39)
-				i++;
-		}	
-		if (bloc[i] == ' ' || bloc[i] == '\t' || bloc[i] == '\n')
-			break ;
-		i++;
-	}
-	return (i);
-}
-
-char	*ft_format_export(char *bloc, int size, int i, int j)
-{
-	char	*cpy;
-
-	cpy = malloc((size + 1) * sizeof(char));
-	if (!cpy)
-		return (NULL);
-	while (bloc[i])
-	{
-		while (bloc[i] && bloc[i] != '=')
-		{
-			cpy[j] = bloc[i];
-			j++;
-			i++;
-		}
-		if (cpy[j] && bloc[i] && bloc[i] == '=')
-		{
-			cpy[j] = ' ';
-			cpy[j + 1] = '=';
-			cpy[j + 2] = ' ';
-			j += 3;
-		}
-		if (!bloc[i])
-			break ;
-		i++;
-	}
-	return (cpy[j] = '\0', cpy);
-}
-
-char	*ft_handle_export(char *bloc)
-{
-	int		i;
-	char	*cpy;
-
-	i = 0;
-	cpy = NULL;
-	if (ft_strncmp(bloc, "export", 6) == 0 && bloc[6] == 32)
-	{
-		i = ft_size_export(bloc);
-		cpy = ft_format_export(bloc, i + 2, 0, 0);
-		free(bloc);
-		return (cpy);
-	}
+    bloc = ft_del_quotes(bloc, 0, 0);
+    bloc = ft_handle_expansion(bloc, line);
+    printf("bloc = %s\n", bloc);
 	return (bloc);
 }

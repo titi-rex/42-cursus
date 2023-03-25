@@ -3,33 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   parsing_bloc_utils.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lboudjem <lboudjem@student.42.fr>          +#+  +:+       +#+        */
+/*   By: louisa <louisa@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/25 12:59:18 by lboudjem          #+#    #+#             */
-/*   Updated: 2023/03/25 15:43:25 by lboudjem         ###   ########.fr       */
+/*   Updated: 2023/03/25 18:42:15 by louisa           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/minishell.h"
-
-void	ft_list_cmd(char *arg, t_line *line, t_list	*io)
-{
-	t_cmd	*cmds;
-	char	**split;
-	int		i;
-
-	i = 0;
-	cmds = NULL;
-	split = ft_split_bis(arg, ' ');
-	while (split[i])
-	{
-		split[i] = ft_del_quotes(split[i], 0, 0);
-		i++;
-	}
-	cmds = ft_cmd_new_alloc(split, io);
-	ft_cmd_add_back(&line->cmd, cmds);
-	ft_free2d((void **)split, i);
-}
 
 int	ft_is_bloc_empty(char *bloc)
 {
@@ -75,5 +56,5 @@ void	format_bloc(char **bloc, t_list **io, int *error, t_line *line)
 {
 	*bloc = ft_handle_expansion(*bloc, line);
 	*io = ft_handle_redirection(bloc, error, line);
-	*bloc = ft_handle_export(*bloc);
+	*bloc = ft_handle_export(*bloc, line);
 }

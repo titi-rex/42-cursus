@@ -3,19 +3,38 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lboudjem <lboudjem@student.42.fr>          +#+  +:+       +#+        */
+/*   By: louisa <louisa@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/08 11:21:07 by louisa            #+#    #+#             */
-/*   Updated: 2023/03/25 15:57:24 by lboudjem         ###   ########.fr       */
+/*   Updated: 2023/03/25 18:11:40 by louisa           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/minishell.h"
 
+void	ft_list_cmd(char *arg, t_line *line, t_list	*io)
+{
+	t_cmd	*cmds;
+	char	**split;
+	int		i;
+
+	i = 0;
+	cmds = NULL;
+	split = ft_split_bis(arg, ' ');
+	while (split[i])
+	{
+		split[i] = ft_del_quotes(split[i], 0, 0);
+		i++;
+	}
+	cmds = ft_cmd_new_alloc(split, io);
+	ft_cmd_add_back(&line->cmd, cmds);
+	ft_free2d((void **)split, i);
+}
+
 char	*ft_creat_bloc(char *str, int *i, int *start, char *bloc)
 {
 	bloc = ft_substr(str, *start, *i - *start);
-	*start = *i;
+	*start = *i; 
 	while (str[*start] != '|')
 		(*start)++;
 	(*start)++;
