@@ -6,7 +6,7 @@
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/11 13:43:01 by tlegrand          #+#    #+#             */
-/*   Updated: 2023/03/23 17:38:14 by tlegrand         ###   ########.fr       */
+/*   Updated: 2023/03/25 20:29:17 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,7 @@ char	*ft_get_input(t_line *line)
 	char	*prompt;
 	char	*input;
 
+	dup2(STDERR_FILENO, STDOUT_FILENO);
 	prompt = ft_get_a_nice_prompt(line->lst_env, line->exit_status);
 	if (prompt)
 	{
@@ -49,5 +50,6 @@ char	*ft_get_input(t_line *line)
 		term_reset(&line->old);
 		ft_clean_exit(line, line->exit_status);
 	}
+	dup2(line->fd_std[0], STDOUT_FILENO);
 	return (input);
 }

@@ -101,6 +101,9 @@ here_doc function
 /*	FIXME:	prompt one line write on first line */
 /*	TODO: clean flags gstatus	*/
 /*	FIXME:	fd open at exit	*/
+/*	FIXME:	flag echo	*/
+/*	TODO:	refaire export	*/
+/*	TODO: mettre au propre + norme	*/
 
 
 
