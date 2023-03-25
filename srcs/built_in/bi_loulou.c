@@ -6,11 +6,30 @@
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/09 13:35:47 by lboudjem          #+#    #+#             */
-/*   Updated: 2023/03/24 23:18:24 by tlegrand         ###   ########.fr       */
+/*   Updated: 2023/03/25 13:24:29 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/minishell.h"
+
+char	*ft_load_frame(char *pathname)
+{
+	char	*frame;
+	int		fd;
+	int		len;
+
+	len = ft_file_size(pathname);
+	if (len > 128)
+		return (ft_putstr_fd("Error : picture too large\n", 2), NULL);
+	fd = open(pathname, O_RDONLY);
+	if (fd == -1)
+		return (perror("Error "), NULL);
+	frame = ft_calloc(len, sizeof(char));
+	if (!frame)
+		return (perror("Error "), NULL);
+	close (fd);
+	return (frame);
+}
 
 static char	**bi_loulou_init_frame(void)
 {
@@ -38,8 +57,8 @@ static char	**bi_loulou_init_frame(void)
   nrcnggcvppppppppppppppppppppppppppppppvgncn     \n\
 gvygnnnrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrcgnnn     \n\
 cncnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnn      ");
-frame[1] = ft_strdup("\
-                ncpyngnnnnnnnnggcn                \n\
+	frame[1] = ft_strdup(\
+"                ncpyngnnnnnnnnggcn                \n\
              nggcgggggcyyccccgggggggn             \n\
             ncvcgnngrppccrrrrrcnnnnvg             \n\
             ncnngcgnnngnnggngnnnnnnnnn            \n\

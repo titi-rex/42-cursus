@@ -6,12 +6,11 @@
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/10 15:56:31 by tlegrand          #+#    #+#             */
-/*   Updated: 2023/03/21 13:46:40 by tlegrand         ###   ########.fr       */
+/*   Updated: 2023/03/25 13:20:01 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../libft.h"
-#include <stdio.h>
 
 void	ft_free2d(void **arr, int size)
 {

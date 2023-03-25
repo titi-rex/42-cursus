@@ -6,7 +6,7 @@
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/08 14:10:12 by tlegrand          #+#    #+#             */
-/*   Updated: 2023/03/24 23:06:50 by tlegrand         ###   ########.fr       */
+/*   Updated: 2023/03/25 12:07:32 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,14 +16,14 @@ int	bi_exit(t_line *line)
 {
 	int	exit_code;
 
-	if (ft_str_isdigit(line->cmd->arg[1]))
+	if (line->cmd->arg[1] && ft_str_isdigit(line->cmd->arg[1]))
 	{
 		ft_putstr_fd("exit : ", 2);
 		ft_putstr_fd(line->cmd->arg[1], 2);
 		ft_putendl_fd(" : numeric arguent needed", 2);
 		exit_code = 2;
 	}
-	else if (line->cmd->arg[2])
+	else if (line->cmd->arg[1] && line->cmd->arg[2])
 	{
 		ft_putendl_fd("exit : too much argument", 2);
 		return (EXIT_FAILURE);

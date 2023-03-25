@@ -6,7 +6,7 @@
 #    By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/11/08 14:39:06 by tlegrand          #+#    #+#              #
-#    Updated: 2023/03/24 22:28:08 by tlegrand         ###   ########.fr        #
+#    Updated: 2023/03/25 13:21:03 by tlegrand         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,7 +20,7 @@ NAME		=	libft.a
 #	==============================	SOURCES	==============================	#
 DIR_SRCS	=	srcs/
 LST_SRCS	= 	ft_isalpha.c ft_isdigit.c ft_isalnum.c ft_isprint.c ft_isascii.c ft_count_char.c ft_strerase_end.c \
-				ft_toupper.c ft_tolower.c ft_atoi.c \
+				ft_toupper.c ft_tolower.c ft_atoi.c ft_atoi_base.c \
 				ft_strchr.c ft_strrchr.c ft_strnstr.c ft_strncmp.c ft_strlen.c \
 				ft_strdup.c ft_strndup.c ft_calloc.c ft_strlcpy.c ft_strlcat.c \
 				ft_memset.c ft_bzero.c ft_memcpy.c ft_memmove.c ft_memchr.c ft_memcmp.c \
@@ -31,6 +31,7 @@ LST_SRCS	= 	ft_isalpha.c ft_isdigit.c ft_isalnum.c ft_isprint.c ft_isascii.c ft_
 				ft_lstdelone.c ft_lstclear.c ft_lstiter.c ft_lstmap.c \
 				ft_printf.c ft_putchar.c ft_putstr.c ft_putnbr.c ft_putnbr_base.c \
 				get_next_line.c get_next_line_utils.c \
+				ft_file_size.c \
 				ft_clean.c
 SRCS		=	${addprefix ${DIR_SRCS}, ${LST_SRCS}}
 

@@ -6,7 +6,7 @@
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/08 13:43:09 by tlegrand          #+#    #+#             */
-/*   Updated: 2023/03/24 23:06:14 by tlegrand         ###   ########.fr       */
+/*   Updated: 2023/03/25 13:23:08 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,8 @@
 # include <unistd.h>
 # include <limits.h>
 # include <stdarg.h>
+# include <fcntl.h>
+# include <stdio.h>
 # ifndef OPEN_MAX
 #  define OPEN_MAX 1024
 # endif
@@ -36,6 +38,7 @@ int		ft_count_char(char *str, char c);
 
 /*	conversion functions	*/
 int		ft_atoi(const char *str);
+int		ft_atoi_base(char *str, char *base);
 char	*ft_itoa(int n);
 
 /*	memory functions	*/
@@ -113,5 +116,6 @@ char	*ft_self_append(char *s1, char const *s2);
 void	ft_free2d(void **arr, int size);
 void	ft_free3d(void ***arr, int size3d, int *size2d);
 void	ft_close_pipe(int pipefd[2]);
+int		ft_file_size(char *pathname);
 
 #endif
