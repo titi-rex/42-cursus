@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   signal.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: lboudjem <lboudjem@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/11 16:11:47 by tlegrand          #+#    #+#             */
-/*   Updated: 2023/03/24 19:55:53 by tlegrand         ###   ########.fr       */
+/*   Updated: 2023/03/25 12:23:11 by lboudjem         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,6 @@ void	ft_sig_handler_shell(int sig)
 		rl_replace_line("", 0);
 		rl_on_new_line();
 		g_status |= INTERRUPT;
-		dprintf(2, "interup");
 	}
 }
 

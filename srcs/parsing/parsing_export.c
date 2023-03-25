@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing_export.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: louisa <louisa@student.42.fr>              +#+  +:+       +#+        */
+/*   By: lboudjem <lboudjem@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/21 10:33:20 by lboudjem          #+#    #+#             */
-/*   Updated: 2023/03/24 21:13:56 by louisa           ###   ########.fr       */
+/*   Updated: 2023/03/25 12:10:14 by lboudjem         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,6 @@ int	ft_size_export(char *bloc)
 			break ;
 		i++;
 	}
-	dprintf(2, "i = %d\n", i);
 	return (i);
 }
 

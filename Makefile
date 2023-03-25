@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+         #
+#    By: lboudjem <lboudjem@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/02/12 20:46:19 by tlegrand          #+#    #+#              #
-#    Updated: 2023/03/24 23:40:53 by tlegrand         ###   ########.fr        #
+#    Updated: 2023/03/25 13:01:06 by lboudjem         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -41,7 +41,7 @@ SRCS_STRUCT		=	${addprefix ${DIR_SRCS_STRUCT}, ${LST_SRCS_STRUCT}}
 
 DIR_SRCS_PARSE	=	srcs/parsing/
 LST_SRCS_PARSE	=	parsing.c get_path.c ft_here_doc.c \
-					parsing_expansion.c \
+					parsing_expansion.c parsing_bloc_utils.c \
 					parsing_quotes.c \
 					parsing_export.c \
 					ft_split_bis.c \
