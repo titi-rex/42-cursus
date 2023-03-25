@@ -6,7 +6,7 @@
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/08 12:28:13 by tlegrand          #+#    #+#             */
-/*   Updated: 2023/03/25 20:24:17 by tlegrand         ###   ########.fr       */
+/*   Updated: 2023/03/25 20:37:12 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,7 @@ void	ft_greeting(void)
 	printf(CLEAR CURSOR"Hello, welcome in "BOLD YELLOW"minishell !\n"END);
 	printf("by "BOLD RED BLINK_FAS"loulou"END" and "BOLD CYAN BLINK_FAS \
 		"titi\n"END);
+	printf(END);
 }
 
 void	ft_init_main(t_line *line, char **env)

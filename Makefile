@@ -6,7 +6,7 @@
 #    By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/02/12 20:46:19 by tlegrand          #+#    #+#              #
-#    Updated: 2023/03/25 20:30:42 by tlegrand         ###   ########.fr        #
+#    Updated: 2023/03/25 20:43:00 by tlegrand         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,7 +24,6 @@ LST_SRCS		=	main.c \
 					signal.c \
 					utils.c \
 					term.c \
-					color_print.c \
 					debug.c 
 SRCS			=	${addprefix ${DIR_SRCS}, ${LST_SRCS}}
 
