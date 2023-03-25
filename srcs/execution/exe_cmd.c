@@ -6,7 +6,7 @@
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/08 15:07:58 by tlegrand          #+#    #+#             */
-/*   Updated: 2023/03/25 18:11:38 by tlegrand         ###   ########.fr       */
+/*   Updated: 2023/03/25 20:00:15 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -127,7 +127,6 @@ void	ft_exe_master(t_line *line)
 	g_status |= EXECUTION;
 	while (i < line->n_cmds)
 	{
-		debug_print_cmd_arg(line->cmd->arg);
 		if (line->cmd->next)
 		{
 			if (pipe(line->pipe[i % 2]) == -1)
