@@ -6,7 +6,7 @@
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/08 13:43:09 by tlegrand          #+#    #+#             */
-/*   Updated: 2023/03/25 13:23:08 by tlegrand         ###   ########.fr       */
+/*   Updated: 2023/03/25 19:07:54 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@ int		ft_isdigit(int c);
 int		ft_str_isdigit(char *str);
 int		ft_isalpha(int c);
 int		ft_isalnum(int c);
+int		ft_str_isalnum(char *str);
 int		ft_isascii(int c);
 int		ft_isprint(int c);
 int		ft_toupper(int c);

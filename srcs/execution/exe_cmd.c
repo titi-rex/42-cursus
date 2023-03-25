@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exe_cmd.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lboudjem <lboudjem@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/08 15:07:58 by tlegrand          #+#    #+#             */
-/*   Updated: 2023/03/25 11:56:29 by lboudjem         ###   ########.fr       */
+/*   Updated: 2023/03/25 20:33:54 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,7 @@ void	exe_cmd(t_line *line, int pipe_in[2], int pipe_out[2])
 	{
 		ft_sig_init(ft_sig_handler_child);
 		dup_pipe(pipe_in, pipe_out);
+		ft_close_pipe(line->fd_std);
 		if (dup_selector(line->cmd->io, here_pipe, line))
 			ft_clean_exit(line, EXIT_FAILURE);
 		if (!line->cmd->arg[0] && line->cmd->io)

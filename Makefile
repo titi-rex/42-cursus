@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: lboudjem <lboudjem@student.42.fr>          +#+  +:+       +#+         #
+#    By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/02/12 20:46:19 by tlegrand          #+#    #+#              #
-#    Updated: 2023/03/25 14:54:34 by lboudjem         ###   ########.fr        #
+#    Updated: 2023/03/25 20:43:00 by tlegrand         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,7 +24,6 @@ LST_SRCS		=	main.c \
 					signal.c \
 					utils.c \
 					term.c \
-					color_print.c \
 					debug.c 
 SRCS			=	${addprefix ${DIR_SRCS}, ${LST_SRCS}}
 
@@ -88,7 +87,7 @@ MAKE		=	make -s
 
 
 #	==============================	FLAGS	==============================	#
-CFLAGS		=	-Wall -Wextra -Werror -I${DIR_HEADER} -fsanitize=address -fsanitize=leak -fsanitize=pointer-subtract -fsanitize=pointer-compare -fsanitize=undefined -g3
+CFLAGS		=	-Wall -Wextra -Werror -I${DIR_HEADER} #-fsanitize=address -fsanitize=leak -fsanitize=pointer-subtract -fsanitize=pointer-compare -fsanitize=undefined -g3
 RFLAGS		=	-lreadline -lft -ltermcap 
 FTFLAGS		=	-L${DIR_LIBFT} -lft
 

@@ -6,7 +6,7 @@
 /*   By: louisa <louisa@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/08 17:06:26 by tlegrand          #+#    #+#             */
-/*   Updated: 2023/03/25 18:42:01 by louisa           ###   ########.fr       */
+/*   Updated: 2023/03/25 21:30:05 by louisa           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,6 +68,8 @@ t_list		*ft_handle_redirection(char **bloc, int *error, t_line *line);
 
 /*			Parsing export					*/
 char		*ft_handle_export(char *bloc, t_line *line);
+int	        nb_quotes(char *bloc);
+char	    *ft_protect_export_quotes(char *bloc);
 
 /*     		Get path functiuns				*/
 int			ft_splitlen(char **split);
