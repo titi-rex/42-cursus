@@ -6,7 +6,7 @@
 #    By: louisa <louisa@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/03/10 16:14:31 by lboudjem          #+#    #+#              #
-#    Updated: 2023/03/26 11:42:21 by louisa           ###   ########.fr        #
+#    Updated: 2023/03/26 13:09:16 by louisa           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -71,8 +71,9 @@ Autre:
 
 
 - A ne pas oublier:
-export TEST='""' -> puis echo $TEST
+export TEST='""' -> puis echo "$TEST"
 casser tous les mallocs
+| echo coucou
 /bin/echo " \" "
 /bin/echo " \$LESS "
 /bin/echo " \$ "
@@ -98,6 +99,7 @@ exporte test=truc abort
 arg des redirection "'test'"
 export lol2="\'" puis echo $lol2
 export TEST="''" -> puis echo $TEST
+export TEST='""' -> puis echo $TEST
 export qui fait des gros leaks
 < log suprime pas la redirection
 quotes non fermées dans les here_doc
