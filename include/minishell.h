@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: louisa <louisa@student.42.fr>              +#+  +:+       +#+        */
+/*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/08 17:06:26 by tlegrand          #+#    #+#             */
-/*   Updated: 2023/03/26 12:19:06 by louisa           ###   ########.fr       */
+/*   Updated: 2023/03/26 12:37:31 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@
 # define MINISHELL 0b0100
 # define INTERRUPT 0b1000
 
-/*          Parsing functiuns				*/
+/*			Parsing functiuns				*/
 int			ft_parse_line(char *str, int i, int start, t_line *line);
 int			ft_bloc_empty(char *bloc);
 int			ft_bloc_separate(char **str, int *i, int *start, char **bloc);
@@ -65,13 +65,13 @@ char		*ft_redirection_clear(char *bloc, int i, int type);
 t_list		*ft_redirection_handle(char **bloc, int *error, t_line *line);
 
 /*			Parsing export					*/
-int	        ft_export_nb_quotes(char *bloc);
-char	    *ft_export_protect_quotes(char *bloc, int i);
+int			ft_export_nb_quotes(char *bloc);
+char		*ft_export_protect_quotes(char *bloc, int i);
 
-/*          Parsing utils*/
+/*			Parsing utils*/
 char		**ft_split_bis(char const *s, char c);
 
-/*     		Get path functiuns				*/
+/* 			Get path functiuns				*/
 int			ft_path_splitlen(char **split);
 int			ft_path_get(char *pathvar, char	**head);
 char		*ft_path_getcmd(char **paths, char *cmd_name);
