@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   bi_cd.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: louisa <louisa@student.42.fr>              +#+  +:+       +#+        */
+/*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/08 13:27:20 by tlegrand          #+#    #+#             */
-/*   Updated: 2023/03/26 12:10:04 by louisa           ###   ########.fr       */
+/*   Updated: 2023/03/26 14:13:17 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,6 +61,8 @@ int	bi_cd(t_line *line)
 		bi_cd_update_pwd(line->lst_env);
 		return (EXIT_SUCCESS);
 	}
+	if (line->cmd->arg[1][0] == '\0')
+		return (EXIT_SUCCESS);
 	if (chdir(line->cmd->arg[1]) == -1)
 		return (perror("Error "), EXIT_FAILURE);
 	bi_cd_update_pwd(line->lst_env);

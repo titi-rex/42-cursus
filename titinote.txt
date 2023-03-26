@@ -141,3 +141,36 @@ exit code :
 Loulounotes :
 
 nm -n *.o => pour check les fonctions utilises
+
+export test1="echo "$USER""			
+
+renvoit : 
+arg[0] = :export:
+arg[1] = :test1="echo:
+arg[2] = :"reina"":
+last : arg[3] = :(null):
+
+doit renvoyer 
+arg[0] = :export:
+arg[1] = :test1=echo reina:
+last : arg[2] = :(null):
+
+Buffer overflow 
+export test="$"
+export test=$test"$"
+$test 
+-> bufferoverflow
+
+de plus 
+export test="$"
+export test=$test"$"
+donne test='"$"'
+devrait donner autre chose jsp, bash gere ca avec des \ donc je pense qu'on est libre de faire une recette 
+maison tant que c coherent, le plus important c d'eviter les segfault abort ect, du genre test="$$" ou test="" 
+
+
+quand on fait export test="zut"
+minishell	test=""zut""
+bash		test="zut"
+
+qund on echo on a les "" qui sont print chez nous dcp :()
