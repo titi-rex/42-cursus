@@ -6,7 +6,7 @@
 #    By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/02/12 20:46:19 by tlegrand          #+#    #+#              #
-#    Updated: 2023/03/26 15:57:47 by tlegrand         ###   ########.fr        #
+#    Updated: 2023/03/26 21:21:11 by tlegrand         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -97,9 +97,6 @@ FTFLAGS		=	-L${DIR_LIBFT} -lft
 
 #	==============================	BASIC	==============================	#
 all		:	${NAME}
-
-msg:	
-	@echo "\001\033[38;2;215;000;005m\002 hello its a test ${END}"
 
 clean	:
 		@${RM} ${DIR_OBJS}

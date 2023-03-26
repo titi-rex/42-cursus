@@ -6,7 +6,7 @@
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/08 15:07:58 by tlegrand          #+#    #+#             */
-/*   Updated: 2023/03/26 15:51:48 by tlegrand         ###   ########.fr       */
+/*   Updated: 2023/03/26 21:22:37 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -119,7 +119,7 @@ static void	exe_get_wait_status(int max_wait, int *exit_code)
 	}
 }
 
-void	ft_exe_master(t_line *line)
+void	exe_master(t_line *line)
 {
 	int	i;
 
