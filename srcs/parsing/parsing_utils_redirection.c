@@ -6,7 +6,7 @@
 /*   By: louisa <louisa@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/25 13:42:09 by lboudjem          #+#    #+#             */
-/*   Updated: 2023/03/26 12:03:00 by louisa           ###   ########.fr       */
+/*   Updated: 2023/03/26 23:27:54 by louisa           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,35 +53,29 @@ char	*ft_redirection_arg(char *bloc, int i)
 
 int	ft_redirection_type(char *bloc, int *type, int *i)
 {
-	if (ft_strncmp(&bloc[*i], "<<", 2) == 0)
-	{
-		*type = 2;
-		(*i)++;
-		return (1);
-	}
-	if (ft_strncmp(&bloc[*i], ">>", 2) == 0)
-	{
-		*type = 3;
-		(*i)++;
-		return (1);
-	}
-	if (bloc[*i] == '<' && bloc[(*i) + 1] != '<')
-	{
-		*type = 0;
-		return (1);
-	}
-	if (bloc[*i] == '>' && bloc[(*i) + 1] != '>')
-	{
-		*type = 1;
-		return (1);
-	}
+    if (ft_strncmp(&bloc[*i], "<<", 2) == 0 && (bloc[(*i) + 2] == '<' || bloc[(*i) + 2] == '>'))
+        return (-1);
+	else if (ft_strncmp(&bloc[*i], ">>", 2) == 0 && (bloc[(*i) + 2] == '>' || bloc[(*i) + 2] == '<'))
+        return (-1);
+    else if (bloc[*i] == '<' && bloc[(*i) + 1] == '>')
+        return (-1);
+    else if (bloc[*i] == '>' && bloc[(*i) + 1] == '<')
+        return (-1);
+	else if (ft_strncmp(&bloc[*i], "<<", 2) == 0 && bloc[(*i) + 2] != '<')
+		return (*type = 2, 1);
+	else if (ft_strncmp(&bloc[*i], ">>", 2) == 0 && bloc[(*i) + 2] != '>')
+	    return (*type = 3, 1);
+	else if (bloc[*i] == '<' && bloc[(*i) + 1] != '<')
+		return (*type = 0, 1);
+	else if (bloc[*i] == '>' && bloc[(*i) + 1] != '>')
+		return (*type = 1, 1);
 	return (0);
 }
 
 int	ft_redirection_size(char *bloc, int i, int len)
 {
-	while (bloc[i] == ' ' || bloc[i] == '\t' || bloc[i] == '\n' \
-			|| bloc[i] == '>' || bloc[i] == '<')
+	while (bloc[i] && (bloc[i] == ' ' || bloc[i] == '\t' || bloc[i] == '\n' \
+			|| bloc[i] == '>' || bloc[i] == '<'))
 	{
 		len++;
 		i++;

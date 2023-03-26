@@ -6,7 +6,7 @@
 /*   By: louisa <louisa@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/13 17:33:36 by louisa            #+#    #+#             */
-/*   Updated: 2023/03/26 12:57:12 by louisa           ###   ########.fr       */
+/*   Updated: 2023/03/26 21:46:19 by louisa           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,9 +69,11 @@ char	*ft_exp_handle(char *bloc, t_line *line)
 			while ((bloc[i]) && bloc[i] != 39)
 				i++;
 		}
-		if (bloc[i] && bloc[i] == '$' && bloc[i + 1] == '?')
+        if (bloc[i] && bloc[i] == '$' && ft_isalnum(bloc[i + 1]) == 0)
+            break ;
+		else if (bloc[i] && bloc[i] == '$' && bloc[i + 1] == '?')
 			bloc = ft_exp_replace_exit_status(bloc, i, line);
-		if (bloc[i] && bloc[i] == '$')
+		else if (bloc[i] && bloc[i] == '$')
 		{
 			bloc = ft_exp_replace_value(bloc, line, 0, i);
 			bloc = ft_export_protect_quotes(bloc);

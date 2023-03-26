@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: louisa <louisa@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/08 17:06:26 by tlegrand          #+#    #+#             */
-/*   Updated: 2023/03/26 13:55:21 by tlegrand         ###   ########.fr       */
+/*   Updated: 2023/03/26 23:31:42 by louisa           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,7 @@ int			ft_redirection_hd(int *type, int *error, t_line *line, char **arg);
 void		ft_redirection_skip_quotes(char **bloc, int *i);
 void		ft_redirection_init(int *i, int *type, char **arg, t_list **io);
 char		*ft_redirection_arg(char *bloc, int i);
-char		*ft_redirection_clear(char *bloc, int i, int type);
+char		*ft_redirection_clear(char *bloc, int i);
 t_list		*ft_redirection_handle(char **bloc, int *error, t_line *line);
 
 /*			Parsing export					*/

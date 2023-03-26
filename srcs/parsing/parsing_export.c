@@ -6,7 +6,7 @@
 /*   By: louisa <louisa@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/21 10:33:20 by lboudjem          #+#    #+#             */
-/*   Updated: 2023/03/26 12:59:06 by louisa           ###   ########.fr       */
+/*   Updated: 2023/03/26 21:26:13 by louisa           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -111,7 +111,7 @@ char	*ft_export_protect_quotes(char *bloc)
 	{
 		if (bloc[i] == 34)
 		{
-			bloc = ft_export_protect_dquotes(bloc, 0);
+			//bloc = ft_export_protect_dquotes(bloc, 0);
 			return (bloc);
 		}
 		else if (bloc[i] == 39)
