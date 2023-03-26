@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_split.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: louisa <louisa@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/11 12:51:55 by tlegrand          #+#    #+#             */
-/*   Updated: 2023/03/17 21:33:36 by tlegrand         ###   ########.fr       */
+/*   Updated: 2023/03/26 12:05:13 by louisa           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,7 +82,7 @@ char	**ft_split(char const *s, char c)
 	return (split);
 }
 
-int	ft_splitlen(char **split)
+int	ft_path_splitlen(char **split)
 {
 	int	len;
 

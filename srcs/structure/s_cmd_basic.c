@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   s_cmd_basic.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: louisa <louisa@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/10 22:16:33 by tlegrand          #+#    #+#             */
-/*   Updated: 2023/03/17 14:40:44 by tlegrand         ###   ########.fr       */
+/*   Updated: 2023/03/26 12:05:13 by louisa           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ t_cmd	*ft_cmd_new_alloc(char **arg, t_list *io)
 	new = ft_calloc(1, sizeof(t_cmd));
 	if (!new)
 		return (NULL);
-	new->arg = ft_calloc(ft_splitlen(arg) + 1, sizeof(void *));
+	new->arg = ft_calloc(ft_path_splitlen(arg) + 1, sizeof(void *));
 	if (!new->arg)
 		return (free(new), NULL);
 	i = 0;

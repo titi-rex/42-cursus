@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   get_path.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: louisa <louisa@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/09 13:35:47 by lboudjem          #+#    #+#             */
-/*   Updated: 2023/03/24 16:04:21 by tlegrand         ###   ########.fr       */
+/*   Updated: 2023/03/26 12:06:22 by louisa           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/minishell.h"
 
-char	*ft_get_pathcmd(char **paths, char *cmd_name)
+char	*ft_path_getcmd(char **paths, char *cmd_name)
 {
 	char	*buffer;
 	int		j;
@@ -31,7 +31,7 @@ char	*ft_get_pathcmd(char **paths, char *cmd_name)
 	return (NULL);
 }
 
-int	ft_get_path(char *pathvar, char	**head)
+int	ft_path_get(char *pathvar, char	**head)
 {
 	char	**paths;
 	char	*tmp;
@@ -51,7 +51,7 @@ int	ft_get_path(char *pathvar, char	**head)
 		perror("Error ");
 		return (1);
 	}
-	tmp = ft_get_pathcmd(paths, *head);
+	tmp = ft_path_getcmd(paths, *head);
 	ft_free2d((void **)paths, 0);
 	if (!tmp)
 		return (1);

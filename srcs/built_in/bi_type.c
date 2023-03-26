@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   bi_type.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: louisa <louisa@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/18 16:10:01 by tlegrand          #+#    #+#             */
-/*   Updated: 2023/03/24 14:48:34 by tlegrand         ###   ########.fr       */
+/*   Updated: 2023/03/26 12:09:20 by louisa           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ static int	bi_type_search_path(char *pathvar, char **cmd_name)
 	tmp = ft_strdup(*cmd_name);
 	if (!tmp)
 		return (EXIT_FAILURE);
-	if (ft_get_path(pathvar, cmd_name))
+	if (ft_path_get(pathvar, cmd_name))
 	{
 		printf("type : %s not found\n", tmp);
 		err = EXIT_FAILURE;
@@ -75,7 +75,7 @@ int	bi_type(t_line	*line)
 		else if (ft_is_bi(line->cmd->arg[i]))
 			printf("%s is minishell built-in\n", line->cmd->arg[i]);
 		else
-			err = bi_type_search_path(get_value(line->lst_env, "PATH"), \
+			err = bi_type_search_path(ft_env_get_value(line->lst_env, "PATH"), \
 				&line->cmd->arg[i]);
 		i++;
 	}

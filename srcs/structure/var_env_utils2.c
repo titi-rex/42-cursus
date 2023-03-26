@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   var_env_utils2.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: louisa <louisa@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/09 15:50:31 by lboudjem          #+#    #+#             */
-/*   Updated: 2023/03/25 18:57:03 by tlegrand         ###   ########.fr       */
+/*   Updated: 2023/03/26 12:09:53 by louisa           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/minishell.h"
 
-void	init_variables(t_var_env *lst)
+void	ft_env_init(t_var_env *lst)
 {
 	lst->name = NULL;
 	lst->value = NULL;
@@ -20,7 +20,7 @@ void	init_variables(t_var_env *lst)
 	lst->previous = NULL;
 }
 
-t_var_env	*ft_envlast(t_var_env *lst)
+t_var_env	*ft_env_last(t_var_env *lst)
 {
 	if (lst)
 	{
@@ -30,7 +30,7 @@ t_var_env	*ft_envlast(t_var_env *lst)
 	return (lst);
 }
 
-void	ft_envclear(t_var_env **lst)
+void	ft_env_clear(t_var_env **lst)
 {
 	t_var_env	*buff;
 
@@ -39,13 +39,13 @@ void	ft_envclear(t_var_env **lst)
 	while (*lst)
 	{
 		buff = (*lst)->next;
-		ft_free_env(*lst);
+		ft_env_free(*lst);
 		*lst = buff;
 	}
 	lst = NULL;
 }
 
-void	change_value(t_var_env *lst, char *value, char *name)
+void	ft_env_change_value(t_var_env *lst, char *value, char *name)
 {
 	while (lst)
 	{
@@ -60,7 +60,7 @@ void	change_value(t_var_env *lst, char *value, char *name)
 	}
 }
 
-char	*get_value(t_var_env *lst, char *name)
+char	*ft_env_get_value(t_var_env *lst, char *name)
 {
 	while (lst)
 	{

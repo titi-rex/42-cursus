@@ -6,13 +6,13 @@
 /*   By: louisa <louisa@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/08 11:21:07 by louisa            #+#    #+#             */
-/*   Updated: 2023/03/25 21:40:05 by louisa           ###   ########.fr       */
+/*   Updated: 2023/03/26 12:01:08 by louisa           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/minishell.h"
 
-void	ft_list_cmd(char *arg, t_line *line, t_list	*io)
+void	ft_bloc_cmd(char *arg, t_line *line, t_list	*io)
 {
 	t_cmd	*cmds;
 	char	**split;
@@ -23,7 +23,7 @@ void	ft_list_cmd(char *arg, t_line *line, t_list	*io)
 	split = ft_split_bis(arg, ' ');
 	while (split[i])
 	{
-		split[i] = ft_del_quotes(split[i], 0, 0);
+		split[i] = ft_quotes_delete(split[i], 0, 0);
 		i++;
 	}
 	cmds = ft_cmd_new_alloc(split, io);
@@ -31,7 +31,7 @@ void	ft_list_cmd(char *arg, t_line *line, t_list	*io)
 	ft_free2d((void **)split, i);
 }
 
-char	*ft_creat_bloc(char *str, int *i, int *start, char *bloc)
+char	*ft_bloc_creat(char *str, int *i, int *start, char *bloc)
 {
 	bloc = ft_substr(str, *start, *i - *start);
 	*start = *i; 
@@ -43,41 +43,41 @@ char	*ft_creat_bloc(char *str, int *i, int *start, char *bloc)
 	return (bloc);
 }
 
-int	ft_fill_list(char *bloc, t_list *io, t_line *line, int *error)
+int	ft_bloc_fill_list(char *bloc, t_list *io, t_line *line, int *error)
 {
 	if (!bloc || *error == 1)
 		return (free(bloc), 1);
-	if (ft_is_bloc_empty(bloc) == 1 && io == NULL)
+	if (ft_bloc_empty(bloc) == 1 && io == NULL)
 		*error = -1;
-	ft_list_cmd(bloc, line, io);
+	ft_bloc_cmd(bloc, line, io);
 	free(bloc);
 	return (0);
 }
 
-int	ft_browse_line(char *str, int i, int start, t_line *line)
+int	ft_parse_line(char *str, int i, int start, t_line *line)
 {
 	char	*bloc;
 	t_list	*io;
 	int		error;
 
-	init_bloc(&io, &error, &bloc);
+	ft_bloc_init(&io, &error, &bloc);
 	while (str[i])
 	{
-		ft_quotes(str, &i, &error);
+		ft_quotes_error(str, &i, &error);
 		if (error == 2)
 			return (2);
 		if (str[i] == '|')
 		{
-			line->n_cmds += separate_bloc(&str, &i, &start, &bloc);
-			format_bloc(&bloc, &io, &error, line);
-			if (ft_fill_list(bloc, io, line, &error) == 1)
+			line->n_cmds += ft_bloc_separate(&str, &i, &start, &bloc);
+			ft_bloc_format(&bloc, &io, &error, line);
+			if (ft_bloc_fill_list(bloc, io, line, &error) == 1)
 				return (1);
 		}
 		if (str[i] == '\0' || str[i + 1] == '\0')
 		{
-			line->n_cmds += separate_bloc(&str, &i, &start, &bloc);
-			format_bloc(&bloc, &io, &error, line);
-			if (ft_fill_list(bloc, io, line, &error) == 1)
+			line->n_cmds += ft_bloc_separate(&str, &i, &start, &bloc);
+			ft_bloc_format(&bloc, &io, &error, line);
+			if (ft_bloc_fill_list(bloc, io, line, &error) == 1)
 				return (1);
 		}
 		i++;

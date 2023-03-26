@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exe_utils.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: louisa <louisa@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/15 17:36:22 by tlegrand          #+#    #+#             */
-/*   Updated: 2023/03/24 16:18:00 by tlegrand         ###   ########.fr       */
+/*   Updated: 2023/03/26 12:09:33 by louisa           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ void	ft_env_update(char ***env, t_var_env *lst)
 
 	if (!*env || !lst)
 		return ;
-	buff = ft_lstenv_to_tab(lst);
+	buff = ft_env_lst_to_tab(lst);
 	if (!buff)
 		return ((void) perror("Error "));
 	ft_free2d((void **)*env, 0);

@@ -6,13 +6,13 @@
 /*   By: louisa <louisa@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/13 17:33:36 by louisa            #+#    #+#             */
-/*   Updated: 2023/03/26 11:50:37 by louisa           ###   ########.fr       */
+/*   Updated: 2023/03/26 12:23:32 by louisa           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/minishell.h"
 
-char	*ft_get_expansion_value(char *bloc, t_line *line, int *len, int i)
+char	*ft_exp_get_value(char *bloc, t_line *line, int *len, int i)
 {
 	char	*name;
 	char	*value;
@@ -30,13 +30,13 @@ char	*ft_get_expansion_value(char *bloc, t_line *line, int *len, int i)
 	name = ft_substr(bloc, i, *len);
 	if (!name)
 		return (NULL);
-	value = ft_strndup(get_value(line->lst_env, name), \
-			ft_strlen2(get_value(line->lst_env, name)));
+	value = ft_strndup(ft_env_get_value(line->lst_env, name), \
+			ft_strlen2(ft_env_get_value(line->lst_env, name)));
 	free(name);
 	return (value);
 }
 
-void	ft_exp_skip_quotes(char **bloc, int *i, t_line *line)
+void	ft_exp_skip_quote(char **bloc, int *i, t_line *line)
 {
 	if ((*bloc)[*i] == 34)
 	{
@@ -47,20 +47,20 @@ void	ft_exp_skip_quotes(char **bloc, int *i, t_line *line)
 				&& ft_isalnum((*bloc)[(*i) + 1]) == 0)
 				(*i)++;
 			if ((*bloc)[*i] && (*bloc)[*i] == '$')
-				*bloc = ft_replace_expansion_val(*bloc, line, 0, *i);
+				*bloc = ft_exp_replace_value(*bloc, line, 0, *i);
 			(*i)++;
 		}
 	}
 }
 
+char	*ft_exp_handle(char *bloc, t_line *line)
 {
-char	*ft_handle_expansion(char *bloc, t_line *line)
 	int		i;
 
 	i = 0;
 	while (bloc[i])
 	{
-		ft_exp_skip_quotes(&bloc, &i, line);
+		ft_exp_skip_quote(&bloc, &i, line);
 		if (!bloc[i])
 			break ;
 		if (bloc[i] == 39)
@@ -70,11 +70,11 @@ char	*ft_handle_expansion(char *bloc, t_line *line)
 				i++;
 		}
 		if (bloc[i] && bloc[i] == '$' && bloc[i + 1] == '?')
-			bloc = ft_replace_by_exit_status(bloc, i, line);
+			bloc = ft_exp_replace_exit_status(bloc, i, line);
 		if (bloc[i] && bloc[i] == '$')
 		{
-			bloc = ft_replace_expansion_val(bloc, line, 0, i);
-            bloc = ft_protect_export_quotes(bloc, 0);
+			bloc = ft_exp_replace_value(bloc, line, 0, i);
+            bloc = ft_export_protect_quotes(bloc, 0);
 			i = -1;
 		}
 		i++;
@@ -82,7 +82,7 @@ char	*ft_handle_expansion(char *bloc, t_line *line)
 	return (bloc);
 }
 
-char	*ft_handle_expansion_hd(char *bloc, t_line *line)
+char	*ft_exp_handle_heredoc(char *bloc, t_line *line)
 {
 	int		i;
 
@@ -90,10 +90,10 @@ char	*ft_handle_expansion_hd(char *bloc, t_line *line)
 	while (bloc[i])
 	{
 		if (bloc[i] && bloc[i] == '$' && bloc[i + 1] == '?')
-			bloc = ft_replace_by_exit_status(bloc, i, line);
+			bloc = ft_exp_replace_exit_status(bloc, i, line);
 		if (bloc[i] && bloc[i] == '$')
 		{
-			bloc = ft_replace_expansion_val(bloc, line, 0, i);
+			bloc = ft_exp_replace_value(bloc, line, 0, i);
 			i = -1;
 		}
 		i++;

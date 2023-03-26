@@ -3,24 +3,24 @@
 /*                                                        :::      ::::::::   */
 /*   parsing_quotes.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lboudjem <lboudjem@student.42.fr>          +#+  +:+       +#+        */
+/*   By: louisa <louisa@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/11 14:27:10 by lboudjem          #+#    #+#             */
-/*   Updated: 2023/03/25 13:17:57 by lboudjem         ###   ########.fr       */
+/*   Updated: 2023/03/26 12:04:33 by louisa           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/minishell.h"
 
-void	ft_quotes(char *str, int *i, int *error)
+void	ft_quotes_error(char *str, int *i, int *error)
 {
 	if (str[*i] == 34)
-		*i = ft_handle_quotes(str, *i, 34, error);
+		*i = ft_quotes_handle(str, *i, 34, error);
 	if (str[*i] == 39)
-		*i = ft_handle_quotes(str, *i, 39, error);
+		*i = ft_quotes_handle(str, *i, 39, error);
 }
 
-int	ft_handle_quotes(char *str, int i, int quote, int *error)
+int	ft_quotes_handle(char *str, int i, int quote, int *error)
 {
 	i++;
 	while (str[i])
@@ -33,7 +33,7 @@ int	ft_handle_quotes(char *str, int i, int quote, int *error)
 	return (i);
 }
 
-int	get_nb_quotes(char *bloc, int i, int nb)
+int	ft_quotes_get_nb(char *bloc, int i, int nb)
 {
 	while (bloc[i])
 	{
@@ -84,14 +84,14 @@ void	ft_skip_quotes(char *bloc, char **cpy, int *i, int *j)
 	}
 }
 
-char	*ft_del_quotes(char *bloc, int i, int j)
+char	*ft_quotes_delete(char *bloc, int i, int j)
 {
 	char	*cpy;
 	int		size;
-	int		nb_quotes;
+	int		ft_export_nb_quotes;
 
-	nb_quotes = get_nb_quotes(bloc, 0, 0);
-	size = ft_strlen2(bloc) - nb_quotes;
+	ft_export_nb_quotes = ft_quotes_get_nb(bloc, 0, 0);
+	size = ft_strlen2(bloc) - ft_export_nb_quotes;
 	cpy = malloc((size + 1) * sizeof(char));
 	if (!cpy)
 		return (NULL);

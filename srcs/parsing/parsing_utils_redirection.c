@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing_utils_redirection.c                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lboudjem <lboudjem@student.42.fr>          +#+  +:+       +#+        */
+/*   By: louisa <louisa@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/25 13:42:09 by lboudjem          #+#    #+#             */
-/*   Updated: 2023/03/25 14:01:10 by lboudjem         ###   ########.fr       */
+/*   Updated: 2023/03/26 12:03:00 by louisa           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,11 +47,11 @@ char	*ft_redirection_arg(char *bloc, int i)
 		i++;
 	}
 	arg = ft_substr(bloc, tmp, len);
-	arg = ft_del_quotes(arg, 0, 0);
+	arg = ft_quotes_delete(arg, 0, 0);
 	return (arg);
 }
 
-int	ft_redirection_type_fd(char *bloc, int *type, int *i)
+int	ft_redirection_type(char *bloc, int *type, int *i)
 {
 	if (ft_strncmp(&bloc[*i], "<<", 2) == 0)
 	{
@@ -78,7 +78,7 @@ int	ft_redirection_type_fd(char *bloc, int *type, int *i)
 	return (0);
 }
 
-int	ft_size_redirection(char *bloc, int i, int len)
+int	ft_redirection_size(char *bloc, int i, int len)
 {
 	while (bloc[i] == ' ' || bloc[i] == '\t' || bloc[i] == '\n' \
 			|| bloc[i] == '>' || bloc[i] == '<')

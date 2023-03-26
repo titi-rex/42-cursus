@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   s_line_basic.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: louisa <louisa@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/08 18:19:34 by tlegrand          #+#    #+#             */
-/*   Updated: 2023/03/23 16:26:28 by tlegrand         ###   ########.fr       */
+/*   Updated: 2023/03/26 12:08:10 by louisa           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,6 @@ void	s_line_clear(t_line *line)
 	if (line->fd_std[1] != -1)
 		close(line->fd_std[1]);
 	line->n_cmds = 0;
-	ft_envclear(&line->lst_env);
+	ft_env_clear(&line->lst_env);
 	ft_free2d((void **)line->env, 0);
 }

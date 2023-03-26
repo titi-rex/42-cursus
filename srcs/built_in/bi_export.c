@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   bi_export.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: louisa <louisa@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/11 14:28:28 by tlegrand          #+#    #+#             */
-/*   Updated: 2023/03/25 20:05:49 by tlegrand         ###   ########.fr       */
+/*   Updated: 2023/03/26 12:10:04 by louisa           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,7 +77,7 @@ static int	bi_export_change_value(char *arg_no_format, t_var_env **lst_env, \
 	arg = bi_export_format_arg(arg_no_format);
 	if (!arg)
 		return (perror("Error "), EXIT_FAILURE);
-	tmp = ft_var_env_search(*lst_env, arg[0]);
+	tmp = ft_env_search(*lst_env, arg[0]);
 	if (tmp)
 	{
 		if (!arg[1])
@@ -87,10 +87,10 @@ static int	bi_export_change_value(char *arg_no_format, t_var_env **lst_env, \
 	}
 	else
 	{
-		tmp = ft_new_env(arg[0], arg[1]);
+		tmp = ft_env_new(arg[0], arg[1]);
 		if (!tmp)
 			return (perror("Error "), EXIT_FAILURE);
-		ft_envadd_back(lst_env, tmp);
+		ft_env_add_back(lst_env, tmp);
 	}
 	ft_free2d((void **)arg, 3);
 	ft_env_update(env, *lst_env);

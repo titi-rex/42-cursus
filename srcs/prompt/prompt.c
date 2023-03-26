@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   prompt.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: louisa <louisa@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/18 23:01:34 by tlegrand          #+#    #+#             */
-/*   Updated: 2023/03/24 15:21:29 by tlegrand         ###   ########.fr       */
+/*   Updated: 2023/03/26 12:09:20 by louisa           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,8 +33,8 @@ char	*ft_get_a_nice_prompt(t_var_env *lst_env, int exit_status)
 	char	*tmp;
 
 	git = prompt_git();
-	pwd = prompt_pwd(get_value(lst_env, "PWD"), get_value(lst_env, "USER"));
-	username = prompt_username(get_value(lst_env, "USER"));
+	pwd = prompt_pwd(ft_env_get_value(lst_env, "PWD"), ft_env_get_value(lst_env, "USER"));
+	username = prompt_username(ft_env_get_value(lst_env, "USER"));
 	tmp = ft_strjoin3(username, pwd, git);
 	if (!exit_status)
 		prompt = ft_strjoin3(tmp, GREEN BOLD" (*o*) "END, PURPLE"-$> "END);

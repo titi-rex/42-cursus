@@ -6,13 +6,13 @@
 /*   By: louisa <louisa@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/25 12:59:18 by lboudjem          #+#    #+#             */
-/*   Updated: 2023/03/26 11:43:47 by louisa           ###   ########.fr       */
+/*   Updated: 2023/03/26 12:04:16 by louisa           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/minishell.h"
 
-int	ft_is_bloc_empty(char *bloc)
+int	ft_bloc_empty(char *bloc)
 {
 	int	i;
 
@@ -27,21 +27,21 @@ int	ft_is_bloc_empty(char *bloc)
 	return (1);
 }
 
-void	init_bloc(t_list **io, int *error, char **bloc)
+void	ft_bloc_init(t_list **io, int *error, char **bloc)
 {
 	*io = NULL;
 	*bloc = NULL;
 	*error = 0;
 }
 
-int	separate_bloc(char **str, int *i, int *start, char **bloc)
+int	ft_bloc_separate(char **str, int *i, int *start, char **bloc)
 {
 	int	nb_cmds;
 
 	nb_cmds = 0;
 	if ((*str)[*i] == '|')
 	{
-		*bloc = ft_creat_bloc(*str, i, start, *bloc);
+		*bloc = ft_bloc_creat(*str, i, start, *bloc);
 		nb_cmds++;
 	}
 	else if ((*str)[*i] == '\0' || (*str)[(*i) + 1] == '\0')
@@ -52,8 +52,8 @@ int	separate_bloc(char **str, int *i, int *start, char **bloc)
 	return (nb_cmds);
 }
 
-void	format_bloc(char **bloc, t_list **io, int *error, t_line *line)
+void	ft_bloc_format(char **bloc, t_list **io, int *error, t_line *line)
 {
-	*bloc = ft_handle_expansion(*bloc, line);
-	*io = ft_handle_redirection(bloc, error, line);
+	*bloc = ft_exp_handle(*bloc, line);
+	*io = ft_redirection_handle(bloc, error, line);
 }

@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   var_env.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: louisa <louisa@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/09 14:58:48 by lboudjem          #+#    #+#             */
-/*   Updated: 2023/03/23 16:53:21 by tlegrand         ###   ########.fr       */
+/*   Updated: 2023/03/26 12:10:04 by louisa           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/minishell.h"
 
-void	fill_lst_env(t_line *line, int i)
+void	ft_env_fill_lst(t_line *line, int i)
 {
 	char		*name;
 	char		*value;
@@ -28,17 +28,17 @@ void	fill_lst_env(t_line *line, int i)
 			n++;
 		name = ft_strndup(line->env[i], n);
 		value = ft_strndup(line->env[i] + n + 1, ft_strlen2(line->env[i]) - n);
-		new = ft_new_env(name, value);
+		new = ft_env_new(name, value);
 		free(name);
 		free(value);
 		if (!new)
-			return ((void)ft_envclear(&line->lst_env));
-		ft_envadd_back(&line->lst_env, new);
+			return ((void)ft_env_clear(&line->lst_env));
+		ft_env_add_back(&line->lst_env, new);
 		i++;
 	}
 }
 
-t_var_env	*ft_var_env_search(t_var_env *lst, char *name)
+t_var_env	*ft_env_search(t_var_env *lst, char *name)
 {
 	while (lst)
 	{
@@ -62,7 +62,7 @@ int	ft_lst_env_size(t_var_env *lst)
 	return (n);
 }
 
-char	**ft_lstenv_to_tab(t_var_env *lst)
+char	**ft_env_lst_to_tab(t_var_env *lst)
 {
 	char	**tab;
 	int		i;
@@ -90,13 +90,13 @@ char	**ft_lstenv_to_tab(t_var_env *lst)
 	return (tab);
 }
 
-void	ft_var_env_update_shlvl(t_var_env *lst)
+void	ft_env_update_shlvl(t_var_env *lst)
 {
 	t_var_env	*tmp;
 	char		*buff;
 	int			lvl;
 
-	tmp = ft_var_env_search(lst, "SHLVL");
+	tmp = ft_env_search(lst, "SHLVL");
 	if (!tmp)
 		return ;
 	lvl = ft_atoi(tmp->value);
@@ -104,6 +104,6 @@ void	ft_var_env_update_shlvl(t_var_env *lst)
 	buff = ft_itoa(lvl);
 	if (!buff)
 		return (perror("Error "));
-	change_value(lst, buff, "SHLVL");
+	ft_env_change_value(lst, buff, "SHLVL");
 	free(buff);
 }

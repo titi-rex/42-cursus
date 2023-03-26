@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exe_cmd.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: louisa <louisa@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/08 15:07:58 by tlegrand          #+#    #+#             */
-/*   Updated: 2023/03/25 20:33:54 by tlegrand         ###   ########.fr       */
+/*   Updated: 2023/03/26 12:09:20 by louisa           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,7 @@ void	exe_cmd(t_line *line, int pipe_in[2], int pipe_out[2])
 			ft_clean_exit(line, EXIT_FAILURE);
 		if (!line->cmd->arg[0] && line->cmd->io)
 			ft_clean_exit(line, EXIT_SUCCESS);
-		if (ft_get_path(get_value(line->lst_env, "PATH"), &line->cmd->arg[0]))
+		if (ft_path_get(ft_env_get_value(line->lst_env, "PATH"), &line->cmd->arg[0]))
 			exe_error_404(line, line->cmd->arg[0]);
 		execve(line->cmd->arg[0], line->cmd->arg, line->env);
 		perror("Error ");

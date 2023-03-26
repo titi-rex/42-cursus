@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   var_env_utils.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: louisa <louisa@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/09 13:33:56 by lboudjem          #+#    #+#             */
-/*   Updated: 2023/03/24 15:53:45 by tlegrand         ###   ########.fr       */
+/*   Updated: 2023/03/26 12:09:53 by louisa           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/minishell.h"
 
-t_var_env	*ft_new_env(char *name, char *value)
+t_var_env	*ft_env_new(char *name, char *value)
 {
 	t_var_env	*new;
 
@@ -23,19 +23,19 @@ t_var_env	*ft_new_env(char *name, char *value)
 	new->previous = NULL;
 	new->name = ft_strndup(name, ft_strlen2(name));
 	if (!new->name)
-		return (ft_free_env(new), NULL);
+		return (ft_env_free(new), NULL);
 	if (!value)
 		new->value = NULL;
 	else
 	{
 		new->value = ft_strndup(value, ft_strlen2(value));
 		if (!new->value)
-			return (ft_free_env(new), NULL);
+			return (ft_env_free(new), NULL);
 	}
 	return (new);
 }
 
-void	ft_envadd_front(t_var_env **lst, t_var_env *new)
+void	ft_env_add_front(t_var_env **lst, t_var_env *new)
 {
 	if (*lst)
 	{
@@ -45,7 +45,7 @@ void	ft_envadd_front(t_var_env **lst, t_var_env *new)
 	*lst = new;
 }
 
-void	ft_envadd_back(t_var_env **lst, t_var_env *new)
+void	ft_env_add_back(t_var_env **lst, t_var_env *new)
 {
 	t_var_env	*last;
 
@@ -55,13 +55,13 @@ void	ft_envadd_back(t_var_env **lst, t_var_env *new)
 		*lst = new;
 	else
 	{
-		last = ft_envlast(*lst);
+		last = ft_env_last(*lst);
 		last->next = new;
 		new->previous = last;
 	}
 }
 
-void	ft_free_env(t_var_env *lst)
+void	ft_env_free(t_var_env *lst)
 {
 	if (!lst)
 		return ;
@@ -72,7 +72,7 @@ void	ft_free_env(t_var_env *lst)
 	free(lst);
 }
 
-void	ft_envremove(t_var_env **head, t_var_env *todel)
+void	ft_env_remove(t_var_env **head, t_var_env *todel)
 {
 	t_var_env	*after;
 	t_var_env	*before;
@@ -81,7 +81,7 @@ void	ft_envremove(t_var_env **head, t_var_env *todel)
 		return ;
 	after = todel->next;
 	before = todel->previous;
-	ft_free_env(todel);
+	ft_env_free(todel);
 	if (before)
 		before->next = after;
 	else

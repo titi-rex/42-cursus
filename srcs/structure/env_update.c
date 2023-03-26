@@ -3,32 +3,32 @@
 /*                                                        :::      ::::::::   */
 /*   env_update.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: louisa <louisa@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/15 16:23:42 by tlegrand          #+#    #+#             */
-/*   Updated: 2023/03/18 15:51:37 by tlegrand         ###   ########.fr       */
+/*   Updated: 2023/03/26 12:09:44 by louisa           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-void	fill_lst_env_std(t_var_env **lst)
+void	ft_env_fill_lst_std(t_var_env **lst)
 {
 	t_var_env	*new;
 	char		*pwd;
 
 	new = NULL;
-	new = ft_new_env("SHLVL", "1");
-	ft_envadd_back(lst, new);
+	new = ft_env_new("SHLVL", "1");
+	ft_env_add_back(lst, new);
 	pwd = getcwd(NULL, 0);
 	if (!pwd)
-		new = ft_new_env("PWD", "");
+		new = ft_env_new("PWD", "");
 	else
 	{
-		new = ft_new_env("PWD", pwd);
+		new = ft_env_new("PWD", pwd);
 		free(pwd);
 	}
-	ft_envadd_back(lst, new);
+	ft_env_add_back(lst, new);
 }
 
 void	envadd(char *env, t_var_env **lst)
@@ -43,25 +43,25 @@ void	envadd(char *env, t_var_env **lst)
 		i++;
 	name = ft_strndup(env, i);
 	value = ft_strndup(env + i + 1, ft_strlen2(env) - i);
-	new = ft_new_env(name, value);
+	new = ft_env_new(name, value);
 	free(name);
 	free(value);
 	if (!new)
-		return ((void)ft_envclear(&new));
-	ft_envadd_back(lst, new);
+		return ((void)ft_env_clear(&new));
+	ft_env_add_back(lst, new);
 }
 
-void	fill_lst_env2(t_var_env **lst, char **env)
+void	ft_env_fill_lst2(t_var_env **lst, char **env)
 {
 	int			i;
 
 	if (!env || !*env)
-		return ((void) fill_lst_env_std(lst));
+		return ((void) ft_env_fill_lst_std(lst));
 	i = 0;
 	while (env[i])
 	{
 		envadd(env[i], lst);
 		i++;
 	}
-	ft_var_env_update_shlvl(*lst);
+	ft_env_update_shlvl(*lst);
 }

@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   ft_env_tab.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: louisa <louisa@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/15 12:58:06 by tlegrand          #+#    #+#             */
-/*   Updated: 2023/03/24 12:10:31 by tlegrand         ###   ########.fr       */
+/*   Updated: 2023/03/26 12:05:13 by louisa           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/minishell.h"
 /*
-int	ft_splitlen(char **split)
+int	ft_path_splitlen(char **split)
 {
 	int	len;
 	len = 0;
@@ -28,7 +28,7 @@ char	**ft_env_create(char **env_ext)
 
 	if (!env_ext)
 		return (ft_env_create_std());
-	env = ft_calloc(ft_splitlen(env_ext), sizeof(void *));
+	env = ft_calloc(ft_path_splitlen(env_ext), sizeof(void *));
 	if (!env)
 		return (NULL);
 	i = 0;
@@ -76,7 +76,7 @@ int	ft_env_value_add(char **env, char *name, char *value)
 		ft_free2d((void **)buff, 0);
 		return (1);
 	}
-	end = ft_splitlen(env);
+	end = ft_path_splitlen(env);
 	free(env[end]);
 	env[end] = buff[0];
 	return (0);
