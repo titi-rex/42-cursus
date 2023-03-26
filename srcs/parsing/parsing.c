@@ -6,7 +6,7 @@
 /*   By: louisa <louisa@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/08 11:21:07 by louisa            #+#    #+#             */
-/*   Updated: 2023/03/26 12:01:08 by louisa           ###   ########.fr       */
+/*   Updated: 2023/03/26 12:59:18 by louisa           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ void	ft_bloc_cmd(char *arg, t_line *line, t_list	*io)
 char	*ft_bloc_creat(char *str, int *i, int *start, char *bloc)
 {
 	bloc = ft_substr(str, *start, *i - *start);
-	*start = *i; 
+	*start = *i;
 	while (str[*start] != '|')
 		(*start)++;
 	(*start)++;

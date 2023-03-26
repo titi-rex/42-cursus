@@ -6,7 +6,7 @@
 /*   By: louisa <louisa@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/13 17:47:02 by louisa            #+#    #+#             */
-/*   Updated: 2023/03/26 12:04:16 by louisa           ###   ########.fr       */
+/*   Updated: 2023/03/26 13:00:59 by louisa           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@ void	ft_redirection_skip_quotes(char **bloc, int *i)
 	}
 }
 
-int	ft_redirection_heredoc(int *type, int *error, t_line *line, char **arg)
+int	ft_redirection_hd(int *type, int *error, t_line *line, char **arg)
 {
 	if (*type == 2)
 	{
@@ -88,7 +88,7 @@ t_list	*ft_redirection_handle(char **bloc, int *error, t_line *line)
 			if (!arg)
 				return (*error = 1, NULL);
 			*bloc = ft_redirection_clear(*bloc, i, type);
-			if (ft_redirection_heredoc(&type, error, line, &arg) == 1)
+			if (ft_redirection_hd(&type, error, line, &arg) == 1)
 				return (NULL);
 			ft_redirect_add_list(&io, type, arg);
 			if (!(*bloc)[0] || !(*bloc)[1])
