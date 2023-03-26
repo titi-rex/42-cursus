@@ -174,3 +174,10 @@ minishell	test=""zut""
 bash		test="zut"
 
 qund on echo on a les "" qui sont print chez nous dcp :()
+
+
+<<   >
+<  >
+<  >>
+<<   >>
+devrait renvoyer une erreur (pas d'arg pour la premiere redirection ) peut import le nombre d espace 
