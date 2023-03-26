@@ -6,76 +6,76 @@
 /*   By: louisa <louisa@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/08 17:06:26 by tlegrand          #+#    #+#             */
-/*   Updated: 2023/03/25 21:30:05 by louisa           ###   ########.fr       */
+/*   Updated: 2023/03/26 11:50:45 by louisa           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef MINISHELL_H
 # define MINISHELL_H
-# include <stdio.h> 
-# include <string.h>
-# include <sys/wait.h>
-# include <sys/ioctl.h>
-# include <fcntl.h>
-# include <signal.h>
-# include <termios.h>
 # include <readline/readline.h>
 # include <readline/history.h>
 # include "../libft/libft.h"
+# include <sys/ioctl.h>
 # include "structure.h"
+# include <sys/wait.h>
 # include "mycolors.h"
-# define READING 0b0001
+# include <termios.h>
+# include <signal.h>
+# include <string.h>
+# include <stdio.h> 
+# include <fcntl.h>
+
 # define EXECUTION 0b0010
 # define MINISHELL 0b0100
 # define INTERRUPT 0b1000
+# define READING 0b0001
 
 /*          Parsing functiuns				*/
 int			ft_browse_line(char *str, int i, int start, t_line *line);
-void		ft_list_cmd(char *arg, t_line *line, t_list	*io);
 int			ft_is_bloc_empty(char *bloc);
-void		init_bloc(t_list **io, int *error, char **bloc);
 int			separate_bloc(char **str, int *i, int *start, char **bloc);
-void		format_bloc(char **bloc, t_list **io, int *error, t_line *line);
 int			ft_fill_list(char *bloc, t_list *io, t_line *line, int *error);
+void		ft_list_cmd(char *arg, t_line *line, t_list	*io);
+void		init_bloc(t_list **io, int *error, char **bloc);
+void		format_bloc(char **bloc, t_list **io, int *error, t_line *line);
 char		*ft_creat_bloc(char *str, int *i, int *start, char *bloc);
 char		**ft_split_bis(char const *s, char c);
 
 /*			Parsing quotes					*/
-void		ft_quotes(char *str, int *i, int *error);
 int			ft_handle_quotes(char *str, int i, int quote, int *error);
 int			get_nb_quotes(char *bloc, int i, int nb);
+void		ft_quotes(char *str, int *i, int *error);
 void		ft_skip_quotes(char *bloc, char **cpy, int *i, int *j);
 char		*ft_del_quotes(char *bloc, int i, int j);
 
 /*			Parsing expansion				*/
+void		ft_exp_skip_quotes(char **bloc, int *i, t_line *line);
 char		*ft_get_expansion_value(char *bloc, t_line *line, int *len, int i);
 char		*ft_replace_expansion_val(char *bloc, t_line *line, int len, int i);
 char		*ft_replace_by_exit_status(char *bloc, int i, t_line *line);
-void		ft_exp_skip_quotes(char **bloc, int *i, t_line *line);
 char		*ft_handle_expansion(char *bloc, t_line *line);
 char		*ft_handle_expansion_hd(char *bloc, t_line *line);
 
 /*			Parsing redirection				*/
-char		*ft_redirection_arg(char *bloc, int i);
 int			ft_redirection_type_fd(char *bloc, int *type, int *i);
 int			ft_size_redirection(char *bloc, int i, int len);
-char		*ft_clear_redirection(char *bloc, int i, int type);
-void		ft_skip_quote_i(char **bloc, int *i);
 int			here_doc_redir(int *type, int *error, t_line *line, char **arg);
+void		ft_skip_quote_i(char **bloc, int *i);
 void		ft_init_redirection(int *i, int *type, char **arg, t_list **io);
+char		*ft_redirection_arg(char *bloc, int i);
+char		*ft_clear_redirection(char *bloc, int i, int type);
 t_list		*ft_handle_redirection(char **bloc, int *error, t_line *line);
 t_list		*ft_handle_redirection(char **bloc, int *error, t_line *line);
 
 /*			Parsing export					*/
-char		*ft_handle_export(char *bloc, t_line *line);
 int	        nb_quotes(char *bloc);
-char	    *ft_protect_export_quotes(char *bloc);
+char	    *ft_protect_export_quotes(char *bloc, int i);
 
 /*     		Get path functiuns				*/
 int			ft_splitlen(char **split);
-char		**ft_split_path(char const *s);
-char		*ft_get_pathcmd(char **paths, char *cmd_name);
 int			ft_get_path(char *pathvar, char	**head);
+char		*ft_get_pathcmd(char **paths, char *cmd_name);
+char		**ft_split_path(char const *s);
 
 char		*ft_here_doc_mode(char **delimiter);
 
@@ -87,15 +87,15 @@ void		ft_free_env(t_var_env *lst);
 void		ft_envremove(t_var_env **head, t_var_env *todel);
 void		ft_envclear(t_var_env **lst);
 void		change_value(t_var_env *lst, char *value, char *name);
+void		fill_lst_env(t_line *line, int i);
+void		fill_lst_env2(t_var_env **lst, char **env);
+void		fill_lst_env_std(t_var_env **lst);
+void		ft_var_env_update_shlvl(t_var_env *lst);
 char		*get_value(t_var_env *lst, char *name);
+char		**ft_lstenv_to_tab(t_var_env *lst);
 t_var_env	*ft_new_env(char *name, char *value);
 t_var_env	*ft_envlast(t_var_env *lst);
 t_var_env	*ft_var_env_search(t_var_env *lst, char *name);
-void		fill_lst_env(t_line *line, int i);
-void		fill_lst_env2(t_var_env **lst, char **env);
-char		**ft_lstenv_to_tab(t_var_env *lst);
-void		fill_lst_env_std(t_var_env **lst);
-void		ft_var_env_update_shlvl(t_var_env *lst);
 
 /*			exe functions						*/
 int			bi_cd(t_line *line);
@@ -120,8 +120,8 @@ void		exe_init_here_pipe(int here_pipe[2]);
 void		exe_error_404(t_line *line, char *cmd);
 
 /*			utils general	*/
-void		ft_perror_exit(t_line *line, int exit_status, char *errstr);
 int			ft_is_bi(char *arg);
+void		ft_perror_exit(t_line *line, int exit_status, char *errstr);
 void		ft_clean_exit(t_line *line, int exit_code);
 char		*ft_get_input(t_line *line);
 
@@ -145,24 +145,24 @@ void		s_line_clear(t_line *line);
 
 /*			struct redirect functions			*/
 void		s_redirect_init(t_redirect *io);
+void		ft_redirect_del(void *addr);
+int			ft_redirect_add_list(t_list	**start, int type, char *arg);
 int			*ft_redirect_acces_type(t_redirect *io);
 char		*ft_redirect_acces_arg(t_redirect *io);
 t_redirect	*ft_redirect_new(int type, char *arg);
-int			ft_redirect_add_list(t_list	**start, int type, char *arg);
-void		ft_redirect_del(void *addr);
 t_list		*ft_redirect_search_type(t_list *lst, int ref);
 
 /*			struct cmd functions			*/
 void		s_cmd_init(t_cmd *cmd);
-t_cmd		*ft_cmd_new(char **arg, t_list *io);
-t_cmd		*ft_cmd_new_alloc(char **arg, t_list *io);
 void		ft_cmd_del(t_cmd *cmd);
 void		ft_cmd_clear_lst(t_cmd	**cmd);
-t_cmd		*ft_cmd_last(t_cmd *cmd);
-t_cmd		*ft_cmd_first(t_cmd *cmd);
 void		ft_cmd_add_back(t_cmd **start, t_cmd *new);
 void		ft_clear_cmd(t_cmd **cmd);
 void		ft_clear_lst_cmd(t_cmd **cmd);
+t_cmd		*ft_cmd_new(char **arg, t_list *io);
+t_cmd		*ft_cmd_new_alloc(char **arg, t_list *io);
+t_cmd		*ft_cmd_last(t_cmd *cmd);
+t_cmd		*ft_cmd_first(t_cmd *cmd);
 
 /*			prompt function				*/
 char		*prompt_git(void);

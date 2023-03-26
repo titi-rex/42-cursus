@@ -6,7 +6,7 @@
 /*   By: louisa <louisa@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/21 10:33:20 by lboudjem          #+#    #+#             */
-/*   Updated: 2023/03/25 21:40:20 by louisa           ###   ########.fr       */
+/*   Updated: 2023/03/26 11:45:04 by louisa           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,15 +28,13 @@ int	nb_quotes(char *bloc)
 	return (nb);
 }
 
-char	*ft_protect_export_quotes(char *bloc)
+char	*ft_protect_export_quotes(char *bloc, int i)
 {
 	char	*cpy;
 	int		size;
-	int		i;
 	int		j;
 
 	cpy = NULL;
-	i = 0;
 	j = 0;
 	size = ft_strlen2(bloc) + (nb_quotes(bloc) * 2);
 	cpy = malloc((size + 1) * sizeof(int));
@@ -56,19 +54,6 @@ char	*ft_protect_export_quotes(char *bloc)
 		j++;
 		i++;
 	}
-	cpy[j] = '\0';
-	free(bloc);
-	return (cpy);
+	return (cpy[j] = '\0', free(bloc), cpy);
 }
 
-char	*ft_handle_export(char *bloc, t_line *line)
-{
-	if (ft_strncmp(bloc, "export", 6) == 0)
-	{
-		//bloc = ft_del_quotes(bloc, 0, 0);
-		bloc = ft_handle_expansion(bloc, line);
-		//bloc = ft_protect_export_quotes(bloc);
-		return (bloc);
-	}
-	return (bloc);
-}
