@@ -6,7 +6,7 @@
 /*   By: louisa <louisa@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/08 17:06:26 by tlegrand          #+#    #+#             */
-/*   Updated: 2023/03/26 12:41:32 by louisa           ###   ########.fr       */
+/*   Updated: 2023/03/26 13:01:14 by louisa           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ char		*ft_exp_handle_heredoc(char *bloc, t_line *line);
 /*			Parsing redirection				*/
 int			ft_redirection_type(char *bloc, int *type, int *i);
 int			ft_redirection_size(char *bloc, int i, int len);
-int			ft_redirection_heredoc(int *type, int *error, t_line *line, char **arg);
+int			ft_redirection_hd(int *type, int *error, t_line *line, char **arg);
 void		ft_redirection_skip_quotes(char **bloc, int *i);
 void		ft_redirection_init(int *i, int *type, char **arg, t_list **io);
 char		*ft_redirection_arg(char *bloc, int i);
@@ -65,10 +65,10 @@ char		*ft_redirection_clear(char *bloc, int i, int type);
 t_list		*ft_redirection_handle(char **bloc, int *error, t_line *line);
 
 /*			Parsing export					*/
-int	        ft_export_nb_squotes(char *bloc);
-int	        ft_export_nb_dquotes(char *bloc);
-char	    *ft_export_protect_squotes(char *bloc, int i);
-char	    *ft_export_protect_dquotes(char *bloc, int i);
+int			ft_export_nb_squotes(char *bloc);
+int			ft_export_nb_dquotes(char *bloc);
+char		*ft_export_protect_squotes(char *bloc, int i);
+char		*ft_export_protect_dquotes(char *bloc, int i);
 char		*ft_export_protect_quotes(char *bloc);
 
 /*          Parsing utils*/
