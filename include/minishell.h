@@ -6,7 +6,7 @@
 /*   By: louisa <louisa@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/08 17:06:26 by tlegrand          #+#    #+#             */
-/*   Updated: 2023/03/26 12:19:06 by louisa           ###   ########.fr       */
+/*   Updated: 2023/03/26 12:41:32 by louisa           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,8 +65,11 @@ char		*ft_redirection_clear(char *bloc, int i, int type);
 t_list		*ft_redirection_handle(char **bloc, int *error, t_line *line);
 
 /*			Parsing export					*/
-int	        ft_export_nb_quotes(char *bloc);
-char	    *ft_export_protect_quotes(char *bloc, int i);
+int	        ft_export_nb_squotes(char *bloc);
+int	        ft_export_nb_dquotes(char *bloc);
+char	    *ft_export_protect_squotes(char *bloc, int i);
+char	    *ft_export_protect_dquotes(char *bloc, int i);
+char		*ft_export_protect_quotes(char *bloc);
 
 /*          Parsing utils*/
 char		**ft_split_bis(char const *s, char c);
