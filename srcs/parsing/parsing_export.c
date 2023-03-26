@@ -6,7 +6,7 @@
 /*   By: louisa <louisa@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/21 10:33:20 by lboudjem          #+#    #+#             */
-/*   Updated: 2023/03/26 12:51:35 by louisa           ###   ########.fr       */
+/*   Updated: 2023/03/26 12:59:06 by louisa           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ char	*ft_export_protect_dquotes(char *bloc, int i)
 	size = ft_strlen2(bloc) + (ft_export_nb_dquotes(bloc) * 2);
 	cpy = malloc((size + 1) * sizeof(int));
 	if (!cpy)
-		return NULL;
+		return (NULL);
 	while (bloc[i])
 	{
 		if (bloc[i] != 34)
@@ -84,7 +84,7 @@ char	*ft_export_protect_squotes(char *bloc, int i)
 	size = ft_strlen2(bloc) + (ft_export_nb_squotes(bloc) * 2);
 	cpy = malloc((size + 1) * sizeof(int));
 	if (!cpy)
-		return NULL;
+		return (NULL);
 	while (bloc[i])
 	{
 		if (bloc[i] != 39)
@@ -102,7 +102,6 @@ char	*ft_export_protect_squotes(char *bloc, int i)
 	return (cpy[j] = '\0', free(bloc), cpy);
 }
 
-
 char	*ft_export_protect_quotes(char *bloc)
 {
 	int	i;
@@ -112,16 +111,15 @@ char	*ft_export_protect_quotes(char *bloc)
 	{
 		if (bloc[i] == 34)
 		{
-    		bloc = ft_export_protect_dquotes(bloc, 0);
+			bloc = ft_export_protect_dquotes(bloc, 0);
 			return (bloc);
 		}
 		else if (bloc[i] == 39)
 		{
-    		bloc = ft_export_protect_squotes(bloc, 0);
+			bloc = ft_export_protect_squotes(bloc, 0);
 			return (bloc);
 		}
 		i++;
 	}
-    return (bloc);
+	return (bloc);
 }
-
