@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing_expansion.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lboudjem <lboudjem@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/13 17:33:36 by louisa            #+#    #+#             */
-/*   Updated: 2023/03/27 11:44:28 by lboudjem         ###   ########.fr       */
+/*   Updated: 2023/03/27 16:19:15 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,8 @@ char	*ft_exp_get_value(char *bloc, t_line *line, int *len, int i)
 		tmp++;
 		(*len)++;
 	}
+	if (ft_isdigit(bloc[i]))
+		(*len) = 1;
 	name = ft_substr(bloc, i, *len);
 	if (!name)
 		return (NULL);
