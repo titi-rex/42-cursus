@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing_utils_expansion.c                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: louisa <louisa@student.42.fr>              +#+  +:+       +#+        */
+/*   By: lboudjem <lboudjem@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/25 14:53:50 by lboudjem          #+#    #+#             */
-/*   Updated: 2023/03/26 21:44:10 by louisa           ###   ########.fr       */
+/*   Updated: 2023/03/27 15:10:32 by lboudjem         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@ char	*ft_exp_replace_value(char *bloc, t_line *line, int len, int i)
 	int		tmp;
 
 	value = ft_exp_get_value(bloc, line, &len, i + 1);
+	value = ft_export_protect_quotes(value);
 	size = ft_strlen2(bloc) - len + ft_strlen2(value);
 	cpy = malloc((size + 1) * sizeof(char));
 	if (!cpy)

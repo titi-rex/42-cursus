@@ -6,7 +6,7 @@
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/08 17:06:26 by tlegrand          #+#    #+#             */
-/*   Updated: 2023/03/27 14:11:41 by tlegrand         ###   ########.fr       */
+/*   Updated: 2023/03/27 15:43:35 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@
 # include "../libft/libft.h"
 # include "structure.h"
 # include "mycolors.h"
+
 # define READING 0b0001
 # define EXECUTION 0b0010
 # define MINISHELL 0b0100
@@ -34,10 +35,13 @@ int			ft_parse_line(char *str, int i, int start, t_line *line);
 int			ft_bloc_empty(char *bloc);
 int			ft_bloc_separate(char **str, int *i, int *start, char **bloc);
 int			ft_bloc_fill_list(char *bloc, t_list *io, t_line *line, int *error);
+int			ft_bloc_nb_backslash(char *bloc);
 void		ft_bloc_cmd(char *arg, t_line *line, t_list	*io);
 void		ft_bloc_init(t_list **io, int *error, char **bloc);
 void		ft_bloc_format(char **bloc, t_list **io, int *error, t_line *line);
 char		*ft_bloc_creat(char *str, int *i, int *start, char *bloc);
+char		*ft_bloc_clear_backslash(char *bloc);
+char		*ft_bloc_protect_backslash(char *bloc);
 
 /*			Parsing quotes					*/
 int			ft_quotes_handle(char *str, int i, int quote, int *error);
@@ -64,10 +68,7 @@ char		*ft_redirection_clear(char *bloc, int i);
 t_list		*ft_redirection_handle(char **bloc, int *err, t_line *line, int i);
 
 /*			Parsing export					*/
-int			ft_export_nb_squotes(char *bloc);
-int			ft_export_nb_dquotes(char *bloc);
-char		*ft_export_protect_squotes(char *bloc, int i);
-char		*ft_export_protect_dquotes(char *bloc, int i);
+int			ft_export_nb_quotes(char *bloc);
 char		*ft_export_protect_quotes(char *bloc);
 
 /*			Parsing utils*/
@@ -173,4 +174,4 @@ void		debug_term_status(void);
 /*			color functions		*/
 int			ft_colorprint(char *str, char **color_table);
 
-#endif 
+#endif
