@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   bi_export.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: louisa <louisa@student.42.fr>              +#+  +:+       +#+        */
+/*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/11 14:28:28 by tlegrand          #+#    #+#             */
-/*   Updated: 2023/03/26 12:10:04 by louisa           ###   ########.fr       */
+/*   Updated: 2023/03/27 14:32:35 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,8 @@ static int	bi_export_print(t_var_env *lst)
 
 static int	bi_export_name_is_valid(char *name)
 {
+	if (!ft_isalpha(*name) && *name != '_')
+		return (1);
 	while (*name && *name != '=')
 	{
 		if (!ft_isalnum(*name) && *name != '_')
@@ -93,7 +95,7 @@ static int	bi_export_change_value(char *arg_no_format, t_var_env **lst_env, \
 		ft_env_add_back(lst_env, tmp);
 	}
 	ft_free2d((void **)arg, 3);
-	ft_env_update(env, *lst_env);
+	exe_envtab_update(env, *lst_env);
 	return (EXIT_SUCCESS);
 }
 

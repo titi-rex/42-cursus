@@ -6,7 +6,7 @@
 #    By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/02/12 20:46:19 by tlegrand          #+#    #+#              #
-#    Updated: 2023/03/26 21:21:11 by tlegrand         ###   ########.fr        #
+#    Updated: 2023/03/27 14:10:00 by tlegrand         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -35,7 +35,7 @@ DIR_SRCS_STRUCT	=	srcs/structure/
 LST_SRCS_STRUCT	=	s_line_basic.c \
 					s_cmd_basic.c s_cmd_operator.c \
 					s_redirect_basic.c s_redirect_operator.c \
-					var_env_utils.c var_env_utils2.c var_env.c env_update.c
+					var_env_utils.c var_env_utils2.c var_env.c env_init.c
 SRCS_STRUCT		=	${addprefix ${DIR_SRCS_STRUCT}, ${LST_SRCS_STRUCT}}
 
 DIR_SRCS_PARSE	=	srcs/parsing/

@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   env_update.c                                       :+:      :+:    :+:   */
+/*   env_init.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: louisa <louisa@student.42.fr>              +#+  +:+       +#+        */
+/*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/15 16:23:42 by tlegrand          #+#    #+#             */
-/*   Updated: 2023/03/26 12:09:44 by louisa           ###   ########.fr       */
+/*   Updated: 2023/03/27 14:08:47 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-void	ft_env_fill_lst_std(t_var_env **lst)
+static void	ft_env_init_std(t_var_env **lst)
 {
 	t_var_env	*new;
 	char		*pwd;
@@ -31,7 +31,7 @@ void	ft_env_fill_lst_std(t_var_env **lst)
 	ft_env_add_back(lst, new);
 }
 
-void	envadd(char *env, t_var_env **lst)
+static void	ft_env_init_add(char *env, t_var_env **lst)
 {
 	char		*name;
 	char		*value;
@@ -51,16 +51,16 @@ void	envadd(char *env, t_var_env **lst)
 	ft_env_add_back(lst, new);
 }
 
-void	ft_env_fill_lst2(t_var_env **lst, char **env)
+void	ft_env_init(t_var_env **lst, char **env)
 {
 	int			i;
 
 	if (!env || !*env)
-		return ((void) ft_env_fill_lst_std(lst));
+		return ((void) ft_env_init_std(lst));
 	i = 0;
 	while (env[i])
 	{
-		envadd(env[i], lst);
+		ft_env_init_add(env[i], lst);
 		i++;
 	}
 	ft_env_update_shlvl(*lst);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   bi_unset.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: louisa <louisa@student.42.fr>              +#+  +:+       +#+        */
+/*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/11 12:06:13 by tlegrand          #+#    #+#             */
-/*   Updated: 2023/03/26 12:10:04 by louisa           ###   ########.fr       */
+/*   Updated: 2023/03/27 14:03:01 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,6 @@ int	bi_unset(t_line *line)
 	if (!tmp)
 		return (EXIT_SUCCESS);
 	ft_env_remove(&line->lst_env, tmp);
-	ft_env_update(&line->env, line->lst_env);
+	exe_envtab_update(&line->env, line->lst_env);
 	return (EXIT_SUCCESS);
 }

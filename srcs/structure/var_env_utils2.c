@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   var_env_utils2.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: louisa <louisa@student.42.fr>              +#+  +:+       +#+        */
+/*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/09 15:50:31 by lboudjem          #+#    #+#             */
-/*   Updated: 2023/03/26 12:09:53 by louisa           ###   ########.fr       */
+/*   Updated: 2023/03/27 14:11:18 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/minishell.h"
 
-void	ft_env_init(t_var_env *lst)
+void	ft_var_env_init(t_var_env *lst)
 {
 	lst->name = NULL;
 	lst->value = NULL;

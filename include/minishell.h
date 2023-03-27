@@ -6,7 +6,7 @@
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/08 17:06:26 by tlegrand          #+#    #+#             */
-/*   Updated: 2023/03/27 13:23:13 by tlegrand         ###   ########.fr       */
+/*   Updated: 2023/03/27 14:11:41 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,7 +80,7 @@ int			ft_path_get(char *pathvar, char	**head);
 char		*ft_here_doc_mode(char **delimiter);
 
 /*			struct var_env functions			*/
-void		ft_env_init(t_var_env *lst);
+void		ft_var_env_init(t_var_env *lst);
 void		ft_env_add_front(t_var_env **lst, t_var_env *new);
 void		ft_env_add_back(t_var_env **lst, t_var_env *new);
 void		ft_env_free(t_var_env *lst);
@@ -88,8 +88,7 @@ void		ft_env_remove(t_var_env **head, t_var_env *todel);
 void		ft_env_clear(t_var_env **lst);
 void		ft_env_change_value(t_var_env *lst, char *value, char *name);
 void		ft_env_fill_lst(t_line *line, int i);
-void		ft_env_fill_lst2(t_var_env **lst, char **env);
-void		ft_env_fill_lst_std(t_var_env **lst);
+void		ft_env_init(t_var_env **lst, char **env);
 void		ft_env_update_shlvl(t_var_env *lst);
 char		*ft_env_get_value(t_var_env *lst, char *name);
 char		**ft_env_lst_to_tab(t_var_env *lst);
@@ -109,7 +108,7 @@ int			bi_titi(t_line *line);
 int			bi_pwd(t_line *line);
 int			bi_type(t_line	*line);
 int			bi_unset(t_line *line);
-void		ft_env_update(char ***env, t_var_env *lst);
+void		exe_envtab_update(char ***env, t_var_env *lst);
 
 void		exe_master(t_line *line);
 void		exe_restore_std(t_list *io, int std_fd[2]);

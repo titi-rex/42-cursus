@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   exe_utils.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: louisa <louisa@student.42.fr>              +#+  +:+       +#+        */
+/*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/15 17:36:22 by tlegrand          #+#    #+#             */
-/*   Updated: 2023/03/26 12:09:33 by louisa           ###   ########.fr       */
+/*   Updated: 2023/03/27 14:04:35 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-void	ft_env_update(char ***env, t_var_env *lst)
+void	exe_envtab_update(char ***env, t_var_env *lst)
 {
 	char	**buff;
 
@@ -20,7 +20,7 @@ void	ft_env_update(char ***env, t_var_env *lst)
 		return ;
 	buff = ft_env_lst_to_tab(lst);
 	if (!buff)
-		return ((void) perror("Error "));
+		return ((void) perror("Error updating envtab "));
 	ft_free2d((void **)*env, 0);
 	*env = buff;
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_path.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: louisa <louisa@student.42.fr>              +#+  +:+       +#+        */
+/*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/09 13:35:47 by lboudjem          #+#    #+#             */
-/*   Updated: 2023/03/26 12:06:22 by louisa           ###   ########.fr       */
+/*   Updated: 2023/03/27 14:01:37 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ char	*ft_path_getcmd(char **paths, char *cmd_name)
 	{
 		buffer = ft_strjoin3(paths[j], "/", cmd_name);
 		if (!buffer)
-			return (NULL);
+			return (perror("Error "), NULL);
 		if (!access(buffer, F_OK))
 			return (buffer);
 		free(buffer);
