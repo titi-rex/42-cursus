@@ -6,7 +6,7 @@
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/10 21:36:43 by tlegrand          #+#    #+#             */
-/*   Updated: 2023/03/27 11:14:31 by tlegrand         ###   ########.fr       */
+/*   Updated: 2023/03/27 13:25:10 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ t_redirect	*s_redirect_new(int type, char *arg)
 	new = ft_calloc(1, sizeof(t_redirect));
 	if (!new)
 		return (NULL);
-	new->arg = ft_strdup(arg);
+	new->arg = ft_strndup(arg, ft_strlen2(arg));
 	if (!new->arg)
 	{
 		free(new);

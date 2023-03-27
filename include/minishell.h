@@ -6,7 +6,7 @@
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/08 17:06:26 by tlegrand          #+#    #+#             */
-/*   Updated: 2023/03/27 11:15:36 by tlegrand         ###   ########.fr       */
+/*   Updated: 2023/03/27 13:23:13 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ char		*ft_exp_handle_heredoc(char *bloc, t_line *line);
 /*			Parsing redirection				*/
 int			ft_redirection_type(char *bloc, int *type, int *i);
 int			ft_redirection_size(char *bloc, int i, int len);
-int			ft_redirection_hd(int *type, int *error, t_line *line, char **arg);
+int			ft_redirection_hd(int *type, t_line *line, char **arg);
 void		ft_redirection_skip_quotes(char **bloc, int *i);
 void		ft_redirection_init(int *i, int *type, char **arg, t_list **io);
 char		*ft_redirection_arg(char *bloc, int i);

@@ -6,7 +6,7 @@
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/08 17:17:17 by tlegrand          #+#    #+#             */
-/*   Updated: 2023/03/27 11:14:31 by tlegrand         ###   ########.fr       */
+/*   Updated: 2023/03/27 12:23:16 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ int	dup_here_doc(t_redirect *io, int here_pipe[2], t_line *line)
 	else if (pid == 0)
 	{
 		i = -1;
-		while (io->arg[++i])
+		while (io->arg && io->arg[++i])
 			write(here_pipe[1], &io->arg[i], 1);
 		ft_close_pipe(here_pipe);
 		ft_clean_exit(line, EXIT_SUCCESS);

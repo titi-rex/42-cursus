@@ -6,7 +6,7 @@
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/13 18:46:53 by tlegrand          #+#    #+#             */
-/*   Updated: 2023/03/27 12:15:56 by tlegrand         ###   ########.fr       */
+/*   Updated: 2023/03/27 13:29:31 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@ char	*ft_here_doc(char *end)
 {
 	char	*input;
 	char	*here_doc;
+	char	*tmp;
 	int		len;
 
 	here_doc = NULL;
@@ -39,10 +40,12 @@ char	*ft_here_doc(char *end)
 			break ;
 		if (!ft_strncmp(input, end, len))
 			return (free(input), here_doc);
-		here_doc = ft_self_append(here_doc, input);
-		here_doc = ft_self_append(here_doc, "\n");
+		tmp = ft_strjoin3(here_doc, input, "\n");
 		free(input);
-		input = NULL;
+		if (!tmp)
+			return (perror("Error adding line to here_doc "), here_doc);
+		free(here_doc);
+		here_doc = tmp;
 	}
 	write(1, "\n", 1);
 	return (here_doc);
@@ -56,7 +59,5 @@ char	*ft_here_doc_mode(char **delimiter)
 	here_doc = ft_here_doc(*delimiter);
 	free(*delimiter);
 	*delimiter = NULL;
-	if (!here_doc)
-		here_doc = ft_strdup("");
 	return (here_doc);
 }
