@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing_protect.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lboudjem <lboudjem@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/27 12:04:15 by lboudjem          #+#    #+#             */
-/*   Updated: 2023/03/27 15:32:12 by lboudjem         ###   ########.fr       */
+/*   Updated: 2023/03/27 16:27:36 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ char	*ft_bloc_clear_backslash(char *bloc)
 	i = -1;
 	j = 0;
 	cpy = NULL;
-	printf("bloc = %s\n", bloc);
+	//printf("bloc = %s\n", bloc);
 	size = ft_strlen2(bloc) - (ft_bloc_nb_backslash(bloc));
 	cpy = ft_calloc((size + 1), sizeof(int));
 	if (!cpy)

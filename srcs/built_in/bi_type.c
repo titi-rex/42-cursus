@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   bi_type.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: louisa <louisa@student.42.fr>              +#+  +:+       +#+        */
+/*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/18 16:10:01 by tlegrand          #+#    #+#             */
-/*   Updated: 2023/03/26 12:09:20 by louisa           ###   ########.fr       */
+/*   Updated: 2023/03/27 16:59:59 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ static int	bi_type_search_path(char *pathvar, char **cmd_name)
 	err = EXIT_SUCCESS;
 	tmp = ft_strdup(*cmd_name);
 	if (!tmp)
-		return (EXIT_FAILURE);
+		return (perror("Error "), EXIT_FAILURE);
 	if (ft_path_get(pathvar, cmd_name))
 	{
 		printf("type : %s not found\n", tmp);

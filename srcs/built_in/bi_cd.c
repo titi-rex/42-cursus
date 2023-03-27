@@ -6,7 +6,7 @@
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/08 13:27:20 by tlegrand          #+#    #+#             */
-/*   Updated: 2023/03/26 20:54:10 by tlegrand         ###   ########.fr       */
+/*   Updated: 2023/03/27 16:35:22 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,11 +35,13 @@ static void	bi_cd_update_pwd(t_var_env *lst_env)
 	{
 		tmp = ft_env_new("OLDPWD", oldpwd);
 		if (!tmp)
-			perror("Error ");
+			perror("Error creating OLDPWD");
 		else
 			ft_env_add_back(&lst_env, tmp);
 	}
 	cwd = getcwd(NULL, 0);
+	if (!cwd)
+		perror("Error getting cwd in update pwd ");
 	ft_env_change_value(lst_env, cwd, "PWD");
 	free(cwd);
 }

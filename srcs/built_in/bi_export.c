@@ -6,7 +6,7 @@
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/11 14:28:28 by tlegrand          #+#    #+#             */
-/*   Updated: 2023/03/27 14:32:35 by tlegrand         ###   ########.fr       */
+/*   Updated: 2023/03/27 16:57:17 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,7 +78,7 @@ static int	bi_export_change_value(char *arg_no_format, t_var_env **lst_env, \
 
 	arg = bi_export_format_arg(arg_no_format);
 	if (!arg)
-		return (perror("Error "), EXIT_FAILURE);
+		return (EXIT_FAILURE);
 	tmp = ft_env_search(*lst_env, arg[0]);
 	if (tmp)
 	{
@@ -91,7 +91,7 @@ static int	bi_export_change_value(char *arg_no_format, t_var_env **lst_env, \
 	{
 		tmp = ft_env_new(arg[0], arg[1]);
 		if (!tmp)
-			return (perror("Error "), EXIT_FAILURE);
+			return (ft_free2d((void **)arg, 3), perror("Error "), EXIT_FAILURE);
 		ft_env_add_back(lst_env, tmp);
 	}
 	ft_free2d((void **)arg, 3);
