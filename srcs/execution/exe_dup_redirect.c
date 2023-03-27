@@ -6,7 +6,7 @@
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/08 17:17:17 by tlegrand          #+#    #+#             */
-/*   Updated: 2023/03/26 15:44:40 by tlegrand         ###   ########.fr       */
+/*   Updated: 2023/03/27 11:14:31 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,16 +63,16 @@ int	dup_selector(t_list *io, int here_pipe[2], t_line *line)
 {
 	while (io)
 	{
-		if (*ft_redirect_acces_type(io->content) == 0 && \
+		if (*s_redirect_acces_type(io->content) == 0 && \
 			dup_redirect(io->content, 0, O_RDONLY))
 			return (1);
-		else if (*ft_redirect_acces_type(io->content) == 1 && \
+		else if (*s_redirect_acces_type(io->content) == 1 && \
 			dup_redirect(io->content, 1, O_WRONLY | O_TRUNC | O_CREAT))
 			return (1);
-		else if (*ft_redirect_acces_type(io->content) == 2 && \
+		else if (*s_redirect_acces_type(io->content) == 2 && \
 			dup_here_doc(io->content, here_pipe, line))
 			return (1);
-		else if (*ft_redirect_acces_type(io->content) == 3 && \
+		else if (*s_redirect_acces_type(io->content) == 3 && \
 			dup_redirect(io->content, 1, O_WRONLY | O_APPEND | O_CREAT))
 			return (1);
 		io = io->next;

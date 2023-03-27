@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   s_line_basic.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: louisa <louisa@student.42.fr>              +#+  +:+       +#+        */
+/*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/08 18:19:34 by tlegrand          #+#    #+#             */
-/*   Updated: 2023/03/26 12:08:10 by louisa           ###   ########.fr       */
+/*   Updated: 2023/03/27 11:14:46 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ void	s_line_init(t_line *line)
 void	s_line_reset(t_line *line)
 {
 	if (line->cmd)
-		ft_cmd_clear_lst(&line->cmd);
+		s_cmd_clear_lst(&line->cmd);
 	ft_close_pipe(line->pipe[0]);
 	ft_close_pipe(line->pipe[1]);
 	line->n_cmds = 0;
@@ -41,7 +41,7 @@ void	s_line_reset(t_line *line)
 void	s_line_clear(t_line *line)
 {
 	if (line->cmd)
-		ft_cmd_clear_lst(&line->cmd);
+		s_cmd_clear_lst(&line->cmd);
 	ft_close_pipe(line->pipe[0]);
 	ft_close_pipe(line->pipe[1]);
 	if (line->fd_std[0] != -1)

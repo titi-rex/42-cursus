@@ -6,13 +6,13 @@
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/10 22:50:22 by tlegrand          #+#    #+#             */
-/*   Updated: 2023/03/23 13:42:30 by tlegrand         ###   ########.fr       */
+/*   Updated: 2023/03/27 11:14:46 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/minishell.h"
 
-t_cmd	*ft_cmd_last(t_cmd *cmd)
+t_cmd	*s_cmd_last(t_cmd *cmd)
 {
 	if (cmd)
 	{
@@ -22,7 +22,7 @@ t_cmd	*ft_cmd_last(t_cmd *cmd)
 	return (cmd);
 }
 
-t_cmd	*ft_cmd_first(t_cmd *cmd)
+t_cmd	*s_cmd_first(t_cmd *cmd)
 {
 	if (cmd)
 	{
@@ -32,7 +32,7 @@ t_cmd	*ft_cmd_first(t_cmd *cmd)
 	return (cmd);
 }
 
-void	ft_cmd_clear_lst(t_cmd	**cmd)
+void	s_cmd_clear_lst(t_cmd	**cmd)
 {
 	t_cmd	*tmp;
 	t_cmd	*idx;
@@ -41,19 +41,19 @@ void	ft_cmd_clear_lst(t_cmd	**cmd)
 	while (*cmd)
 	{
 		tmp = (*cmd)->previous;
-		ft_cmd_del(*cmd);
+		s_cmd_del(*cmd);
 		*cmd = tmp;
 	}
 	*cmd = idx;
 	while (*cmd)
 	{
 		tmp = (*cmd)->next;
-		ft_cmd_del(*cmd);
+		s_cmd_del(*cmd);
 		*cmd = tmp;
 	}
 }
 
-void	ft_cmd_add_back(t_cmd **start, t_cmd *new)
+void	s_cmd_add_back(t_cmd **start, t_cmd *new)
 {
 	t_cmd	*tmp;
 
@@ -63,7 +63,7 @@ void	ft_cmd_add_back(t_cmd **start, t_cmd *new)
 		*start = new;
 	else
 	{
-		tmp = ft_cmd_last(*start);
+		tmp = s_cmd_last(*start);
 		tmp->next = new;
 		new->previous = tmp;
 	}

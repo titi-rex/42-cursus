@@ -6,7 +6,7 @@
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/25 20:38:55 by tlegrand          #+#    #+#             */
-/*   Updated: 2023/03/25 20:40:45 by tlegrand         ###   ########.fr       */
+/*   Updated: 2023/03/27 11:15:08 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,7 +87,7 @@ int	ft_gif(char *pathname)
 		return (perror("Error : "), EXIT_FAILURE);
 	else if (pid == 0)
 	{
-		ft_sig_init(ft_sig_handler_loulou);
+		sig_init(sig_handler_loulou);
 		i = 0;
 		while (!(g_status & INTERRUPT))
 		{

@@ -3,38 +3,38 @@
 /*                                                        :::      ::::::::   */
 /*   s_redirect_operator.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lboudjem <lboudjem@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/10 22:07:36 by tlegrand          #+#    #+#             */
-/*   Updated: 2023/03/25 13:56:51 by lboudjem         ###   ########.fr       */
+/*   Updated: 2023/03/27 11:14:31 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/minishell.h"
 
-t_list	*ft_redirect_search_type(t_list *lst, int ref)
+t_list	*s_redirect_search_type(t_list *lst, int ref)
 {
 	while (lst)
 	{
-		if (*ft_redirect_acces_type(lst->content) == ref)
+		if (*s_redirect_acces_type(lst->content) == ref)
 			return (lst);
 		lst = lst->next;
 	}
 	return (NULL);
 }
 
-int	ft_redirect_add_list(t_list	**start, int type, char *arg)
+int	s_redirect_add_list(t_list	**start, int type, char *arg)
 {
 	t_list		*new_node;
 	t_redirect	*new_content;
 
-	new_content = ft_redirect_new(type, arg);
+	new_content = s_redirect_new(type, arg);
 	if (!new_content)
 		return (1);
 	new_node = ft_lstnew(new_content);
 	if (!new_node)
 	{
-		ft_redirect_del(new_content);
+		s_redirect_del(new_content);
 		return (1);
 	}
 	ft_lstadd_back(start, new_node);
