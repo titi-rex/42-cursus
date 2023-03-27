@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: louisa <louisa@student.42.fr>              +#+  +:+       +#+        */
+/*   By: lboudjem <lboudjem@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/08 17:06:26 by tlegrand          #+#    #+#             */
-/*   Updated: 2023/03/26 23:33:49 by louisa           ###   ########.fr       */
+/*   Updated: 2023/03/27 10:24:09 by lboudjem         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,6 @@ char		*ft_bloc_creat(char *str, int *i, int *start, char *bloc);
 int			ft_quotes_handle(char *str, int i, int quote, int *error);
 int			ft_quotes_get_nb(char *bloc, int i, int nb);
 void		ft_quotes_error(char *str, int *i, int *error);
-void		ft_quotes_skip(char *bloc, char **cpy, int *i, int *j);
 char		*ft_quotes_delete(char *bloc, int i, int j);
 
 /*			Parsing expansion				*/
@@ -62,7 +61,7 @@ void		ft_redirection_skip_quotes(char **bloc, int *i);
 void		ft_redirection_init(int *i, int *type, char **arg, t_list **io);
 char		*ft_redirection_arg(char *bloc, int i);
 char		*ft_redirection_clear(char *bloc, int i);
-t_list		*ft_redirection_handle(char **bloc, int *error, t_line *line);
+t_list		*ft_redirection_handle(char **bloc, int *err, t_line *line, int i);
 
 /*			Parsing export					*/
 int			ft_export_nb_squotes(char *bloc);
