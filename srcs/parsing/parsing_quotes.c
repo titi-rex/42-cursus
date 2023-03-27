@@ -6,7 +6,7 @@
 /*   By: lboudjem <lboudjem@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/11 14:27:10 by lboudjem          #+#    #+#             */
-/*   Updated: 2023/03/27 15:08:03 by lboudjem         ###   ########.fr       */
+/*   Updated: 2023/03/27 15:35:51 by lboudjem         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,9 +99,7 @@ char	*ft_quotes_delete(char *bloc, int i, int j)
 	{
 		if (bloc[i] == '\\')
 		{
-			cpy[j] = bloc[i];
-			j++;
-			i++;
+			cpy[j++] = bloc[i++];
 			cpy[j] = bloc[i];
 			j++;
 			i++;
