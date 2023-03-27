@@ -6,7 +6,7 @@
 /*   By: lboudjem <lboudjem@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/08 11:21:07 by louisa            #+#    #+#             */
-/*   Updated: 2023/03/27 09:54:22 by lboudjem         ###   ########.fr       */
+/*   Updated: 2023/03/27 15:10:39 by lboudjem         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@ void	ft_bloc_cmd(char *arg, t_line *line, t_list	*io)
 {
 	t_cmd	*cmds;
 	char	**split;
+	char	*tmp;
 	int		i;
 
 	i = 0;
@@ -23,7 +24,9 @@ void	ft_bloc_cmd(char *arg, t_line *line, t_list	*io)
 	split = ft_split_bis(arg, ' ');
 	while (split[i])
 	{
-		split[i] = ft_quotes_delete(split[i], 0, 0);
+		tmp = ft_quotes_delete(split[i], 0, 0);
+		split[i] = tmp;
+		split[i] = ft_bloc_clear_backslash(split[i]);
 		i++;
 	}
 	cmds = ft_cmd_new_alloc(split, io);

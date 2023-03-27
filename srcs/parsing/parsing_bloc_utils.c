@@ -6,7 +6,7 @@
 /*   By: lboudjem <lboudjem@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/25 12:59:18 by lboudjem          #+#    #+#             */
-/*   Updated: 2023/03/27 10:16:53 by lboudjem         ###   ########.fr       */
+/*   Updated: 2023/03/27 15:10:58 by lboudjem         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,7 @@ int	ft_bloc_separate(char **str, int *i, int *start, char **bloc)
 
 void	ft_bloc_format(char **bloc, t_list **io, int *error, t_line *line)
 {
+	*bloc = ft_bloc_protect_backslash(*bloc);
 	*bloc = ft_exp_handle(*bloc, line);
 	*io = ft_redirection_handle(bloc, error, line, 0);
 }
