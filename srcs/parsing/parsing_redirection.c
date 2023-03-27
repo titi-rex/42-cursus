@@ -6,7 +6,7 @@
 /*   By: lboudjem <lboudjem@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/13 17:47:02 by louisa            #+#    #+#             */
-/*   Updated: 2023/03/27 10:24:17 by lboudjem         ###   ########.fr       */
+/*   Updated: 2023/03/27 10:34:36 by lboudjem         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,12 +58,19 @@ void	ft_redirection_skip_quotes(char **bloc, int *i)
 
 int	ft_redirection_hd(int *type, int *error, t_line *line, char **arg)
 {
+	int	dolls;
+
+	dolls = 1;
 	if (*type == 2)
 	{
+		if ((*arg)[0] == 39 || (*arg)[0] == 34)
+			dolls = 0;
+		*arg = ft_quotes_delete(*arg, 0, 0);
 		*arg = ft_here_doc_mode(arg);
 		if (!(*arg))
 			return (*error = 1, 1);
-		*arg = ft_exp_handle_heredoc(*arg, line);
+		if (dolls == 1)
+			*arg = ft_exp_handle_heredoc(*arg, line);
 	}
 	return (0);
 }

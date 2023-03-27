@@ -6,7 +6,7 @@
 /*   By: lboudjem <lboudjem@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/25 13:42:09 by lboudjem          #+#    #+#             */
-/*   Updated: 2023/03/27 10:09:03 by lboudjem         ###   ########.fr       */
+/*   Updated: 2023/03/27 10:27:31 by lboudjem         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,6 @@ char	*ft_redirection_arg(char *bloc, int i)
 		i++;
 	}
 	arg = ft_substr(bloc, tmp, len);
-	arg = ft_quotes_delete(arg, 0, 0);
 	return (arg);
 }
 
