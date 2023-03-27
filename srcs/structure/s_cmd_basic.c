@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   s_cmd_basic.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: louisa <louisa@student.42.fr>              +#+  +:+       +#+        */
+/*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/10 22:16:33 by tlegrand          #+#    #+#             */
-/*   Updated: 2023/03/26 12:05:13 by louisa           ###   ########.fr       */
+/*   Updated: 2023/03/27 11:14:46 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/minishell.h"
 
-t_cmd	*ft_cmd_new(char **arg, t_list *io)
+t_cmd	*s_cmd_new(char **arg, t_list *io)
 {
 	t_cmd	*new;
 
@@ -24,7 +24,7 @@ t_cmd	*ft_cmd_new(char **arg, t_list *io)
 	return (new);
 }
 
-t_cmd	*ft_cmd_new_alloc(char **arg, t_list *io)
+t_cmd	*s_cmd_new_alloc(char **arg, t_list *io)
 {
 	t_cmd	*new;
 	int		i;
@@ -52,10 +52,10 @@ t_cmd	*ft_cmd_new_alloc(char **arg, t_list *io)
 	return (new);
 }
 
-void	ft_cmd_del(t_cmd *cmd)
+void	s_cmd_del(t_cmd *cmd)
 {
 	if (cmd->arg)
 		ft_free2d((void **)cmd->arg, 0);
-	ft_lstclear(&cmd->io, ft_redirect_del);
+	ft_lstclear(&cmd->io, s_redirect_del);
 	free(cmd);
 }

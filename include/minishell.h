@@ -6,7 +6,7 @@
 /*   By: lboudjem <lboudjem@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/08 17:06:26 by tlegrand          #+#    #+#             */
-/*   Updated: 2023/03/27 14:04:09 by lboudjem         ###   ########.fr       */
+/*   Updated: 2023/03/27 15:20:54 by lboudjem         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,7 @@ char		*ft_exp_handle_heredoc(char *bloc, t_line *line);
 /*			Parsing redirection				*/
 int			ft_redirection_type(char *bloc, int *type, int *i);
 int			ft_redirection_size(char *bloc, int i, int len);
-int			ft_redirection_hd(int *type, int *error, t_line *line, char **arg);
+int			ft_redirection_hd(int *type, t_line *line, char **arg);
 void		ft_redirection_skip_quotes(char **bloc, int *i);
 void		ft_redirection_init(int *i, int *type, char **arg, t_list **io);
 char		*ft_redirection_arg(char *bloc, int i);
@@ -77,7 +77,10 @@ char		**ft_split_bis(char const *s, char c);
 /* 			Get path functiuns				*/
 int			ft_path_splitlen(char **split);
 int			ft_path_get(char *pathvar, char	**head);
+<<<<<<< HEAD
 char		*ft_path_getcmd(char **paths, char *cmd_name);
+=======
+>>>>>>> 7b83d451fe644ba393d8506118f3805a8164ee90
 
 char		*ft_here_doc_mode(char **delimiter);
 
@@ -112,12 +115,12 @@ int			bi_pwd(t_line *line);
 int			bi_type(t_line	*line);
 int			bi_unset(t_line *line);
 void		ft_env_update(char ***env, t_var_env *lst);
-void		exe_master(t_line *line);
 
-int			dup_selector(t_list *io, int here_pipe[2], t_line *line);
-void		dup_pipe(int pipe_in[2], int pipe_out[2]);
+void		exe_master(t_line *line);
 void		exe_restore_std(t_list *io, int std_fd[2]);
 void		exe_init_here_pipe(int here_pipe[2]);
+void		dup_pipe(int pipe_in[2], int pipe_out[2]);
+int			dup_selector(t_list *io, int here_pipe[2], t_line *line);
 
 void		exe_error_404(t_line *line, char *cmd);
 
@@ -128,11 +131,10 @@ void		ft_clean_exit(t_line *line, int exit_code);
 char		*ft_get_input(t_line *line);
 
 /*			signals functions 		*/
-void		ft_sig_init(void (*handler)(int sig));
-
-void		ft_sig_handler_shell(int sig);
-void		ft_sig_handler_child(int sig);
-void		ft_sig_handler_loulou(int sig);
+void		sig_init(void (*handler)(int sig));
+void		sig_handler_shell(int sig);
+void		sig_handler_child(int sig);
+void		sig_handler_loulou(int sig);
 
 /*			terminal gestion functions		*/
 void		term_init_setting(struct termios *old);
@@ -147,15 +149,16 @@ void		s_line_clear(t_line *line);
 
 /*			struct redirect functions			*/
 void		s_redirect_init(t_redirect *io);
-void		ft_redirect_del(void *addr);
-int			ft_redirect_add_list(t_list	**start, int type, char *arg);
-int			*ft_redirect_acces_type(t_redirect *io);
-char		*ft_redirect_acces_arg(t_redirect *io);
-t_redirect	*ft_redirect_new(int type, char *arg);
-t_list		*ft_redirect_search_type(t_list *lst, int ref);
+void		s_redirect_del(void *addr);
+int			s_redirect_add_list(t_list	**start, int type, char *arg);
+int			*s_redirect_acces_type(t_redirect *io);
+char		*s_redirect_acces_arg(t_redirect *io);
+t_redirect	*s_redirect_new(int type, char *arg);
+t_list		*s_redirect_search_type(t_list *lst, int ref);
 
 /*			struct cmd functions			*/
 void		s_cmd_init(t_cmd *cmd);
+<<<<<<< HEAD
 void		ft_cmd_del(t_cmd *cmd);
 void		ft_cmd_clear_lst(t_cmd	**cmd);
 void		ft_cmd_add_back(t_cmd **start, t_cmd *new);
@@ -163,6 +166,15 @@ t_cmd		*ft_cmd_new(char **arg, t_list *io);
 t_cmd		*ft_cmd_new_alloc(char **arg, t_list *io);
 t_cmd		*ft_cmd_last(t_cmd *cmd);
 t_cmd		*ft_cmd_first(t_cmd *cmd);
+=======
+void		s_cmd_del(t_cmd *cmd);
+void		s_cmd_clear_lst(t_cmd	**cmd);
+void		s_cmd_add_back(t_cmd **start, t_cmd *new);
+t_cmd		*s_cmd_new(char **arg, t_list *io);
+t_cmd		*s_cmd_new_alloc(char **arg, t_list *io);
+t_cmd		*s_cmd_last(t_cmd *cmd);
+t_cmd		*s_cmd_first(t_cmd *cmd);
+>>>>>>> 7b83d451fe644ba393d8506118f3805a8164ee90
 
 /*			prompt function				*/
 char		*prompt_git(void);

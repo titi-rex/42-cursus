@@ -6,7 +6,7 @@
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/11 16:11:47 by tlegrand          #+#    #+#             */
-/*   Updated: 2023/03/25 13:54:27 by tlegrand         ###   ########.fr       */
+/*   Updated: 2023/03/27 11:15:08 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 extern sig_atomic_t	g_status;
 
-void	ft_sig_handler_shell(int sig)
+void	sig_handler_shell(int sig)
 {
 	if (g_status & EXECUTION)
 		return ;
@@ -28,18 +28,18 @@ void	ft_sig_handler_shell(int sig)
 	}
 }
 
-void	ft_sig_handler_loulou(int sig)
+void	sig_handler_loulou(int sig)
 {
 	g_status |= INTERRUPT;
 	(void)sig;
 }
 
-void	ft_sig_handler_child(int sig)
+void	sig_handler_child(int sig)
 {
 	exit(sig);
 }
 
-void	ft_sig_init(void (*handler) (int sig))
+void	sig_init(void (*handler) (int sig))
 {
 	struct sigaction	act;
 	struct sigaction	act_quit;

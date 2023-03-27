@@ -6,7 +6,7 @@
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/08 15:07:58 by tlegrand          #+#    #+#             */
-/*   Updated: 2023/03/26 21:22:37 by tlegrand         ###   ########.fr       */
+/*   Updated: 2023/03/27 11:15:08 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ void	exe_bi(t_line *line, int pipe_in[2], int pipe_out[2], \
 		perror("Error ");
 	else if (pid == 0)
 	{
-		ft_sig_init(ft_sig_handler_child);
+		sig_init(sig_handler_child);
 		dup_pipe(pipe_in, pipe_out);
 		if (dup_selector(line->cmd->io, here_pipe, line))
 			ft_clean_exit(line, EXIT_FAILURE);
@@ -54,7 +54,7 @@ void	exe_cmd(t_line *line, int pipe_in[2], int pipe_out[2])
 		perror("Error ");
 	else if (pid == 0)
 	{
-		ft_sig_init(ft_sig_handler_child);
+		sig_init(sig_handler_child);
 		dup_pipe(pipe_in, pipe_out);
 		ft_close_pipe(line->fd_std);
 		if (dup_selector(line->cmd->io, here_pipe, line))

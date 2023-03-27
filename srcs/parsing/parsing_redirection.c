@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing_redirection.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lboudjem <lboudjem@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/13 17:47:02 by louisa            #+#    #+#             */
-/*   Updated: 2023/03/27 10:34:36 by lboudjem         ###   ########.fr       */
+/*   Updated: 2023/03/27 13:24:04 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ void	ft_redirection_skip_quotes(char **bloc, int *i)
 	}
 }
 
-int	ft_redirection_hd(int *type, int *error, t_line *line, char **arg)
+int	ft_redirection_hd(int *type, t_line *line, char **arg)
 {
 	int	dolls;
 
@@ -67,9 +67,7 @@ int	ft_redirection_hd(int *type, int *error, t_line *line, char **arg)
 			dolls = 0;
 		*arg = ft_quotes_delete(*arg, 0, 0);
 		*arg = ft_here_doc_mode(arg);
-		if (!(*arg))
-			return (*error = 1, 1);
-		if (dolls == 1)
+		if (*arg && dolls == 1)
 			*arg = ft_exp_handle_heredoc(*arg, line);
 	}
 	return (0);
@@ -93,9 +91,8 @@ t_list	*ft_redirection_handle(char **bloc, int *err, t_line *line, int i)
 			if (!arg)
 				return (*err = 1, NULL);
 			*bloc = ft_redirection_clear(*bloc, i);
-			if (ft_redirection_hd(&type, err, line, &arg) == 1)
-				return (NULL);
-			ft_redirect_add_list(&io, type, arg);
+			ft_redirection_hd(&type, line, &arg);
+			s_redirect_add_list(&io, type, arg);
 			i = -1;
 		}
 		i++;
