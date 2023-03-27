@@ -6,7 +6,7 @@
 /*   By: lboudjem <lboudjem@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/08 17:06:26 by tlegrand          #+#    #+#             */
-/*   Updated: 2023/03/27 15:20:54 by lboudjem         ###   ########.fr       */
+/*   Updated: 2023/03/27 15:23:10 by lboudjem         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,10 +77,6 @@ char		**ft_split_bis(char const *s, char c);
 /* 			Get path functiuns				*/
 int			ft_path_splitlen(char **split);
 int			ft_path_get(char *pathvar, char	**head);
-<<<<<<< HEAD
-char		*ft_path_getcmd(char **paths, char *cmd_name);
-=======
->>>>>>> 7b83d451fe644ba393d8506118f3805a8164ee90
 
 char		*ft_here_doc_mode(char **delimiter);
 
@@ -158,15 +154,6 @@ t_list		*s_redirect_search_type(t_list *lst, int ref);
 
 /*			struct cmd functions			*/
 void		s_cmd_init(t_cmd *cmd);
-<<<<<<< HEAD
-void		ft_cmd_del(t_cmd *cmd);
-void		ft_cmd_clear_lst(t_cmd	**cmd);
-void		ft_cmd_add_back(t_cmd **start, t_cmd *new);
-t_cmd		*ft_cmd_new(char **arg, t_list *io);
-t_cmd		*ft_cmd_new_alloc(char **arg, t_list *io);
-t_cmd		*ft_cmd_last(t_cmd *cmd);
-t_cmd		*ft_cmd_first(t_cmd *cmd);
-=======
 void		s_cmd_del(t_cmd *cmd);
 void		s_cmd_clear_lst(t_cmd	**cmd);
 void		s_cmd_add_back(t_cmd **start, t_cmd *new);
@@ -174,7 +161,6 @@ t_cmd		*s_cmd_new(char **arg, t_list *io);
 t_cmd		*s_cmd_new_alloc(char **arg, t_list *io);
 t_cmd		*s_cmd_last(t_cmd *cmd);
 t_cmd		*s_cmd_first(t_cmd *cmd);
->>>>>>> 7b83d451fe644ba393d8506118f3805a8164ee90
 
 /*			prompt function				*/
 char		*prompt_git(void);

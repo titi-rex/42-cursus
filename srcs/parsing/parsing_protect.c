@@ -6,7 +6,7 @@
 /*   By: lboudjem <lboudjem@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/27 12:04:15 by lboudjem          #+#    #+#             */
-/*   Updated: 2023/03/27 15:16:07 by lboudjem         ###   ########.fr       */
+/*   Updated: 2023/03/27 15:23:21 by lboudjem         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ char	*ft_bloc_clear_backslash(char *bloc)
 	cpy = NULL;
 	dprintf(2, "bloc = :%s:\n", bloc);
 	size = ft_strlen2(bloc) - (ft_bloc_nb_backslash(bloc));
-	printf("size = %d\n", size)
+	printf("size = %d\n", size);
 	cpy = malloc((size + 1) * sizeof(int));
 	if (!cpy)
 		return (NULL);
