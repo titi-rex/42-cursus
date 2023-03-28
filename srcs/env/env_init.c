@@ -6,19 +6,19 @@
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/15 16:23:42 by tlegrand          #+#    #+#             */
-/*   Updated: 2023/03/28 16:16:54 by tlegrand         ###   ########.fr       */
+/*   Updated: 2023/03/28 16:24:19 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-void	ft_env_update_shlvl(t_var_env *lst)
+void	env_update_shlvl(t_var_env *lst)
 {
 	t_var_env	*tmp;
 	char		*buff;
 	int			lvl;
 
-	tmp = ft_env_search(lst, "SHLVL");
+	tmp = env_search(lst, "SHLVL");
 	if (!tmp)
 		return ;
 	lvl = ft_atoi(tmp->value);
@@ -26,11 +26,11 @@ void	ft_env_update_shlvl(t_var_env *lst)
 	buff = ft_itoa(lvl);
 	if (!buff)
 		return (perror("Error "));
-	ft_env_change_value(lst, buff, "SHLVL");
+	env_change_value(lst, buff, "SHLVL");
 	free(buff);
 }
 
-static int	ft_env_init_std(t_var_env **lst)
+static int	env_init_std(t_var_env **lst)
 {
 	t_var_env	*new;
 	char		*pwd;
@@ -53,7 +53,7 @@ static int	ft_env_init_std(t_var_env **lst)
 	return (0);
 }
 
-static int	ft_env_init_add(char *env, t_var_env **lst)
+static int	env_init_add(char *env, t_var_env **lst)
 {
 	char		*name;
 	char		*value;
@@ -74,19 +74,19 @@ static int	ft_env_init_add(char *env, t_var_env **lst)
 	return (0);
 }
 
-int	ft_env_init(t_var_env **lst, char **env)
+int	env_init(t_var_env **lst, char **env)
 {
 	int			i;
 
 	if (!env || !*env)
-		return (ft_env_init_std(lst));
+		return (env_init_std(lst));
 	i = 0;
 	while (env[i])
 	{
-		if (ft_env_init_add(env[i], lst))
+		if (env_init_add(env[i], lst))
 			return (s_env_clear(lst), 1);
 		i++;
 	}
-	ft_env_update_shlvl(*lst);
+	env_update_shlvl(*lst);
 	return (0);
 }

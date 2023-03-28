@@ -6,13 +6,13 @@
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/09 14:58:48 by lboudjem          #+#    #+#             */
-/*   Updated: 2023/03/28 16:15:37 by tlegrand         ###   ########.fr       */
+/*   Updated: 2023/03/28 16:24:19 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/minishell.h"
 
-t_var_env	*ft_env_search(t_var_env *lst, char *name)
+t_var_env	*env_search(t_var_env *lst, char *name)
 {
 	while (lst)
 	{
@@ -23,7 +23,7 @@ t_var_env	*ft_env_search(t_var_env *lst, char *name)
 	return (NULL);
 }
 
-char	**ft_env_lst_to_tab(t_var_env *lst)
+char	**env_lst_to_tab(t_var_env *lst)
 {
 	char	**tab;
 	int		i;
@@ -51,7 +51,7 @@ char	**ft_env_lst_to_tab(t_var_env *lst)
 	return (tab);
 }
 
-void	ft_env_change_value(t_var_env *lst, char *value, char *name)
+void	env_change_value(t_var_env *lst, char *value, char *name)
 {
 	while (lst)
 	{
@@ -66,7 +66,7 @@ void	ft_env_change_value(t_var_env *lst, char *value, char *name)
 	}
 }
 
-char	*ft_env_get_value(t_var_env *lst, char *name)
+char	*env_get_value(t_var_env *lst, char *name)
 {
 	while (lst)
 	{

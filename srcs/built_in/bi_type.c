@@ -6,7 +6,7 @@
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/18 16:10:01 by tlegrand          #+#    #+#             */
-/*   Updated: 2023/03/27 16:59:59 by tlegrand         ###   ########.fr       */
+/*   Updated: 2023/03/28 16:23:53 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,7 +75,7 @@ int	bi_type(t_line	*line)
 		else if (ft_is_bi(line->cmd->arg[i]))
 			printf("%s is minishell built-in\n", line->cmd->arg[i]);
 		else
-			err = bi_type_search_path(ft_env_get_value(line->lst_env, "PATH"), \
+			err = bi_type_search_path(env_get_value(line->lst_env, "PATH"), \
 				&line->cmd->arg[i]);
 		i++;
 	}

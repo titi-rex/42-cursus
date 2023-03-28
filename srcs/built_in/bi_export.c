@@ -6,7 +6,7 @@
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/11 14:28:28 by tlegrand          #+#    #+#             */
-/*   Updated: 2023/03/28 12:52:24 by tlegrand         ###   ########.fr       */
+/*   Updated: 2023/03/28 16:24:19 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,7 +79,7 @@ static int	bi_export_change_value(char *arg_no_format, t_var_env **lst_env, \
 	arg = bi_export_format_arg(arg_no_format);
 	if (!arg)
 		return (EXIT_FAILURE);
-	tmp = ft_env_search(*lst_env, arg[0]);
+	tmp = env_search(*lst_env, arg[0]);
 	if (tmp)
 	{
 		if (!arg[1])

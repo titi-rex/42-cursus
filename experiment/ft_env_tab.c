@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_env_tab.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: louisa <louisa@student.42.fr>              +#+  +:+       +#+        */
+/*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/15 12:58:06 by tlegrand          #+#    #+#             */
-/*   Updated: 2023/03/26 12:05:13 by louisa           ###   ########.fr       */
+/*   Updated: 2023/03/28 16:24:19 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ char	**ft_env_create(char **env_ext)
 	return (env);
 }
 
-char	*ft_env_search(char **env, char *name)
+char	*env_search(char **env, char *name)
 {
 	int	i;
 
@@ -63,7 +63,7 @@ int	ft_env_value_add(char **env, char *name, char *value)
 	char	*pos;
 	int		end;
 
-	pos = ft_env_search(env, "@deleted");
+	pos = env_search(env, "@deleted");
 	if (pos)
 		return (ft_env_value_change(env, pos, value, name));
 	buff = ft_calloc(2, sizeof(void *));
@@ -87,7 +87,7 @@ int	ft_env_value_del(char **env, char *name, char *value)
 	char	*buff;
 	char	*to_del;
 
-	to_del = ft_env_search(env, name);
+	to_del = env_search(env, name);
 	if (!to_del)
 		return (0);
 	free(to_del);
@@ -100,7 +100,7 @@ int	ft_env_value_change(char **env, char *name, char *value, char *new_name)
 	char	*buff;
 	char	*pos;
 
-	pos = ft_env_search(env, name);
+	pos = env_search(env, name);
 	if (!pos)
 		return (ft_env_value_add(env, name, value));
 	if (!new_name)

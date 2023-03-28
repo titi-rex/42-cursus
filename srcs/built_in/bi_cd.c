@@ -6,7 +6,7 @@
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/08 13:27:20 by tlegrand          #+#    #+#             */
-/*   Updated: 2023/03/28 12:52:24 by tlegrand         ###   ########.fr       */
+/*   Updated: 2023/03/28 16:24:19 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,9 +28,9 @@ static void	bi_cd_update_pwd(t_var_env *lst_env)
 	char		*cwd;
 	t_var_env	*tmp;
 
-	oldpwd = ft_env_get_value(lst_env, "PWD");
-	if (ft_env_search(lst_env, "OLDPWD"))
-		ft_env_change_value(lst_env, oldpwd, "OLDPWD");
+	oldpwd = env_get_value(lst_env, "PWD");
+	if (env_search(lst_env, "OLDPWD"))
+		env_change_value(lst_env, oldpwd, "OLDPWD");
 	else
 	{
 		tmp = s_env_new("OLDPWD", oldpwd);
@@ -42,7 +42,7 @@ static void	bi_cd_update_pwd(t_var_env *lst_env)
 	cwd = getcwd(NULL, 0);
 	if (!cwd)
 		perror("Error getting cwd in update pwd ");
-	ft_env_change_value(lst_env, cwd, "PWD");
+	env_change_value(lst_env, cwd, "PWD");
 	free(cwd);
 }
 
@@ -50,7 +50,7 @@ int	bi_cd_chdir_from_env(t_var_env *lst_env, char *target)
 {
 	char	*tmp;
 
-	tmp = ft_env_get_value(lst_env, target);
+	tmp = env_get_value(lst_env, target);
 	if (!tmp)
 	{
 		ft_putstr_fd("Error : ", 2);

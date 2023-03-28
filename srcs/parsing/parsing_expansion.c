@@ -6,7 +6,7 @@
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/13 17:33:36 by louisa            #+#    #+#             */
-/*   Updated: 2023/03/28 15:18:58 by tlegrand         ###   ########.fr       */
+/*   Updated: 2023/03/28 16:23:53 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,8 +32,8 @@ char	*ft_exp_get_value(char *bloc, t_line *line, int *len, int i)
 	name = ft_substr(bloc, i, *len);
 	if (!name)
 		return (NULL);
-	value = ft_strndup(ft_env_get_value(line->lst_env, name), \
-			ft_strlen2(ft_env_get_value(line->lst_env, name)));
+	value = ft_strndup(env_get_value(line->lst_env, name), \
+			ft_strlen2(env_get_value(line->lst_env, name)));
 	free(name);
 	return (value);
 }

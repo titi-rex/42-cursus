@@ -6,7 +6,7 @@
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/08 17:06:26 by tlegrand          #+#    #+#             */
-/*   Updated: 2023/03/28 16:12:17 by tlegrand         ###   ########.fr       */
+/*   Updated: 2023/03/28 16:24:40 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,12 +37,12 @@ char		*ft_get_a_nice_prompt(t_var_env *lst_env, int exit_status);
 char		*ft_here_doc_mode(char **delimiter);
 
 /*			Env functions				*/
-int			ft_env_init(t_var_env **lst, char **env);
-void		ft_env_change_value(t_var_env *lst, char *value, char *name);
-void		ft_env_update_shlvl(t_var_env *lst);
-char		*ft_env_get_value(t_var_env *lst, char *name);
-char		**ft_env_lst_to_tab(t_var_env *lst);
-t_var_env	*ft_env_search(t_var_env *lst, char *name);
+int			env_init(t_var_env **lst, char **env);
+void		env_change_value(t_var_env *lst, char *value, char *name);
+void		env_update_shlvl(t_var_env *lst);
+char		*env_get_value(t_var_env *lst, char *name);
+char		**env_lst_to_tab(t_var_env *lst);
+t_var_env	*env_search(t_var_env *lst, char *name);
 
 /*			Parsing functiuns				*/
 int			ft_parse_line(char *str, int i, int start, t_line *line);
@@ -130,9 +130,9 @@ void		term_clear(void);
 void		ft_error(int errnum);
 void		ft_perror_exit(t_line *line, int exit_status, char *errstr);
 void		ft_clean_exit(t_line *line, int exit_code);
+void		*ft_free_secure(char *addr);
 char		*ft_get_input(t_line *line);
 int			ft_is_bi(char *arg);
-void		*ft_free_secure(char *addr);
 
 /*			Struct line functions			*/
 void		s_line_init(t_line *line);

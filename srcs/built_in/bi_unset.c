@@ -6,7 +6,7 @@
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/11 12:06:13 by tlegrand          #+#    #+#             */
-/*   Updated: 2023/03/28 12:52:00 by tlegrand         ###   ########.fr       */
+/*   Updated: 2023/03/28 16:24:19 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ int	bi_unset(t_line *line)
 
 	if (!line->cmd->arg[1])
 		return (EXIT_SUCCESS);
-	tmp = ft_env_search(line->lst_env, line->cmd->arg[1]);
+	tmp = env_search(line->lst_env, line->cmd->arg[1]);
 	if (!tmp)
 		return (EXIT_SUCCESS);
 	s_env_remove(&line->lst_env, tmp);

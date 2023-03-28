@@ -6,7 +6,7 @@
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/08 15:07:58 by tlegrand          #+#    #+#             */
-/*   Updated: 2023/03/27 11:15:08 by tlegrand         ###   ########.fr       */
+/*   Updated: 2023/03/28 16:23:53 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,7 @@ void	exe_cmd(t_line *line, int pipe_in[2], int pipe_out[2])
 			ft_clean_exit(line, EXIT_FAILURE);
 		if (!line->cmd->arg[0] && line->cmd->io)
 			ft_clean_exit(line, EXIT_SUCCESS);
-		if (ft_path_get(ft_env_get_value(line->lst_env, "PATH"), \
+		if (ft_path_get(env_get_value(line->lst_env, "PATH"), \
 			&line->cmd->arg[0]))
 			exe_error_404(line, line->cmd->arg[0]);
 		execve(line->cmd->arg[0], line->cmd->arg, line->env);
