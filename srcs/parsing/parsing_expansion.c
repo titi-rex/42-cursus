@@ -6,7 +6,7 @@
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/13 17:33:36 by louisa            #+#    #+#             */
-/*   Updated: 2023/03/28 16:23:53 by tlegrand         ###   ########.fr       */
+/*   Updated: 2023/03/28 20:55:14 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,11 +57,12 @@ void	ft_exp_skip_quote(char **bloc, int *i, t_line *line)
 			(*i)++;
 		}
 	}
+	(void)line;
 }
 
 char	*ft_exp_handle(char *bloc, t_line *line, int i)
 {
-	while (bloc[i])
+	while (bloc && bloc[i])
 	{
 		ft_exp_skip_quote(&bloc, &i, line);
 		if (!bloc || !bloc[i])
@@ -72,10 +73,10 @@ char	*ft_exp_handle(char *bloc, t_line *line, int i)
 			while ((bloc[i]) && bloc[i] != 39)
 				i++;
 		}
-		if (bloc[i] && bloc[i] == '$' && ft_isalnum(bloc[i + 1]) == 0)
-			break ;
-		else if (bloc[i] && bloc[i] == '$' && bloc[i + 1] == '?')
+		if (bloc[i] && bloc[i] == '$' && bloc[i + 1] == '?')
 			bloc = ft_exp_replace_exit_status(bloc, i, line);
+		else if (bloc[i] && bloc[i] == '$' && ft_isalnum(bloc[i + 1]) == 0)
+			break ;
 		else if (bloc[i] && bloc[i] == '$')
 		{
 			bloc = ft_exp_replace_value(bloc, line, 0, i);
@@ -91,16 +92,18 @@ char	*ft_exp_handle_heredoc(char *bloc, t_line *line)
 	int		i;
 
 	i = 0;
-	while (bloc[i])
+	while (bloc && bloc[i])
 	{
 		if (bloc[i] && bloc[i] == '$' && bloc[i + 1] == '?')
 			bloc = ft_exp_replace_exit_status(bloc, i, line);
-		if (bloc[i] && bloc[i] == '$')
+		if (bloc && bloc[i] && bloc[i] == '$')
 		{
 			bloc = ft_exp_replace_value(bloc, line, 0, i);
 			i = -1;
 		}
 		i++;
+		if (!bloc)
+			perror("Error ");
 	}
 	return (bloc);
 }

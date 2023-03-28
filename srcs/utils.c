@@ -6,7 +6,7 @@
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/11 13:43:01 by tlegrand          #+#    #+#             */
-/*   Updated: 2023/03/28 16:18:08 by tlegrand         ###   ########.fr       */
+/*   Updated: 2023/03/28 20:22:21 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,9 +58,11 @@ char	*ft_get_input(t_line *line)
 void	ft_error(int errnum)
 {
 	if (errnum == 1)
-		ft_printf("Error parsing\n");
+		ft_printf("Error syntaxe\n");
 	else if (errnum == 2)
 		ft_printf("Error malloc\n");
+	else if (errnum == 3)
+		ft_printf("Error syntaxe : missing quote\n");
 }
 
 void	*ft_free_secure(char *ptr)

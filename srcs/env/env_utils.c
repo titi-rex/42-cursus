@@ -6,7 +6,7 @@
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/09 14:58:48 by lboudjem          #+#    #+#             */
-/*   Updated: 2023/03/28 16:24:19 by tlegrand         ###   ########.fr       */
+/*   Updated: 2023/03/28 20:16:49 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ char	**env_lst_to_tab(t_var_env *lst)
 		if (lst->value)
 		{
 			tab[i] = ft_strjoin3(lst->name, "=", lst->value);
-			if (!tab)
+			if (!tab[i])
 			{
 				ft_free2d((void **)tab, 0);
 				return (perror("Error "), NULL);
@@ -57,7 +57,7 @@ void	env_change_value(t_var_env *lst, char *value, char *name)
 	{
 		if (ft_strncmp(lst->name, name, ft_strlen2(name) + 1) == 0)
 		{
-			free(lst->value);
+			ft_free_secure(lst->value);
 			lst->value = NULL;
 			lst->value = ft_strndup(value, ft_strlen2(value));
 			return ;

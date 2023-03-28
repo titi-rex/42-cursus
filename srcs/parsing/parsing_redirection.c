@@ -6,7 +6,7 @@
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/13 17:47:02 by louisa            #+#    #+#             */
-/*   Updated: 2023/03/28 15:36:10 by tlegrand         ###   ########.fr       */
+/*   Updated: 2023/03/28 21:27:50 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,15 +84,16 @@ t_list	*ft_redirection_handle(char **bloc, int *err, t_line *line, int i)
 		ft_redirection_skip_quotes(bloc, &i);
 		if (ft_redirection_type(*bloc, &type, &i) == -1)
 			return (*err = 1, NULL);
-		if (ft_redirection_type(*bloc, &type, &i) == 1)
+		else if (ft_redirection_type(*bloc, &type, &i) == 1)
 		{
 			arg = ft_redirection_arg(*bloc, i);
+			arg = ft_quotes_delete(arg, 0, 0);
 			if (!arg)
 				return (*err = 2, io);
-			arg = ft_quotes_delete(arg, 0, 0);
 			*bloc = ft_redirection_clear(*bloc, i);
 			ft_redirection_hd(&type, line, &arg);
-			s_redirect_add_list(&io, type, arg);
+			if (s_redirect_add_list(&io, type, arg))
+				return (free(arg), *err = 2, io);
 			i = -1;
 		}
 		i++;

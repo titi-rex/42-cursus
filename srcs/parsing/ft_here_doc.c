@@ -6,7 +6,7 @@
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/13 18:46:53 by tlegrand          #+#    #+#             */
-/*   Updated: 2023/03/27 13:32:53 by tlegrand         ###   ########.fr       */
+/*   Updated: 2023/03/28 21:24:03 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,8 @@ char	*ft_here_doc_mode(char **delimiter)
 {
 	char	*here_doc;
 
-	here_doc = NULL;
+	if (!*delimiter)
+		return (NULL);
 	here_doc = ft_here_doc(*delimiter);
 	free(*delimiter);
 	*delimiter = NULL;

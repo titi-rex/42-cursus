@@ -6,7 +6,7 @@
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/25 12:59:18 by lboudjem          #+#    #+#             */
-/*   Updated: 2023/03/28 16:19:25 by tlegrand         ###   ########.fr       */
+/*   Updated: 2023/03/28 21:15:28 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,4 +67,21 @@ void	ft_bloc_format(char **bloc, t_list **io, int *error, t_line *line)
 		return ;
 	*io = ft_redirection_handle(bloc, error, line, 0);
 	*bloc = ft_exp_handle(*bloc, line, 0);
+}
+
+void	ft_bloc_cmd_free(char **split, int i)
+{
+	int	j;
+
+	j = 0;
+	while (split[j])
+	{
+		if (j == i)
+			j++;
+		if (split[j])
+			free(split[j]);
+		if (split[j])
+			j++;
+	}
+	free(split);
 }

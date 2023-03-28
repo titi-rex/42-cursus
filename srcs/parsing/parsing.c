@@ -6,7 +6,7 @@
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/08 11:21:07 by louisa            #+#    #+#             */
-/*   Updated: 2023/03/28 16:03:12 by tlegrand         ###   ########.fr       */
+/*   Updated: 2023/03/28 21:30:44 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,11 +26,11 @@ int	ft_bloc_cmd(char *arg, t_line *line, t_list	*io)
 	{
 		tmp = ft_quotes_delete(split[i], 0, 0);
 		if (!tmp)
-			return (ft_free2d((void **)split, 0), 1);
+			return (ft_bloc_cmd_free(split, i), 1);
 		split[i] = tmp;
 		split[i] = ft_bloc_clear_backslash(split[i]);
 		if (!split[i])
-			return (ft_free2d((void **)split, 0), 1);
+			return (ft_bloc_cmd_free(split, i), 1);
 		i++;
 	}
 	cmds = s_cmd_new_alloc(split, io);
@@ -98,8 +98,8 @@ int	ft_parse_line(char *str, int i, int start, t_line *line)
 	ft_bloc_init(&io, error, &bloc);
 	while (str[++i])
 	{
-		if (ft_quotes_error(str, &i, &error[0]) == 2)
-			return (1);
+		if (ft_quotes_error(str, &i, &error[0]) == 3)
+			return (error[0]);
 		if (str[i] == '|')
 		{
 			line->n_cmds += ft_bloc_separate(&str, &i, &start, &bloc);

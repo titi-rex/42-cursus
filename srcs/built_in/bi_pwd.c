@@ -6,7 +6,7 @@
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/08 13:10:16 by tlegrand          #+#    #+#             */
-/*   Updated: 2023/03/27 16:56:03 by tlegrand         ###   ########.fr       */
+/*   Updated: 2023/03/28 21:38:54 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@ int	bi_pwd(t_line *line)
 	if (printf("%s\n", pwd) < 0)
 	{
 		perror("Error printf ");
+		free(pwd);
 		return (EXIT_FAILURE);
 	}
 	free(pwd);

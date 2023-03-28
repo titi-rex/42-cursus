@@ -6,7 +6,7 @@
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/15 16:23:42 by tlegrand          #+#    #+#             */
-/*   Updated: 2023/03/28 16:24:19 by tlegrand         ###   ########.fr       */
+/*   Updated: 2023/03/28 20:14:34 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ static int	env_init_std(t_var_env **lst)
 
 	new = s_env_new("SHLVL", "1");
 	if (!new)
-		return (s_env_clear(&new), 1);
+		return (1);
 	s_env_add_back(lst, new);
 	pwd = getcwd(NULL, 0);
 	if (!pwd)
@@ -47,7 +47,7 @@ static int	env_init_std(t_var_env **lst)
 		new = s_env_new("PWD", pwd);
 		free(pwd);
 	}
-	if (!pwd)
+	if (!new)
 		return (1);
 	s_env_add_back(lst, new);
 	return (0);
@@ -65,11 +65,13 @@ static int	env_init_add(char *env, t_var_env **lst)
 		i++;
 	name = ft_strndup(env, i);
 	value = ft_strndup(env + i + 1, ft_strlen2(env) - i);
+	if (!value)
+		return (ft_free_secure(name), 1);
 	new = s_env_new(name, value);
 	ft_free_secure(name);
 	ft_free_secure(value);
 	if (!new)
-		return (s_env_clear(&new), 1);
+		return (1);
 	s_env_add_back(lst, new);
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/11 14:27:10 by lboudjem          #+#    #+#             */
-/*   Updated: 2023/03/28 15:54:28 by tlegrand         ###   ########.fr       */
+/*   Updated: 2023/03/28 21:23:06 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ int	ft_quotes_handle(char *str, int i, int quote, int *error)
 			return (i);
 		i++;
 	}
-	*error = 2;
+	*error = 3;
 	return (i);
 }
 
@@ -94,11 +94,13 @@ char	*ft_quotes_delete(char *bloc, int i, int j)
 	char	*cpy;
 	int		size;
 
+	if (!bloc)
+		return (NULL);
 	size = ft_strlen2(bloc) - ft_quotes_get_nb(bloc, 0, 0);
 	cpy = ft_calloc((size + 1), sizeof(char));
 	if (!cpy)
-		return (NULL);
-	while (bloc[i])
+		return (ft_free_secure(bloc), NULL);
+	while (bloc && bloc[i])
 	{
 		if (bloc[i] == '\\')
 		{
@@ -112,5 +114,5 @@ char	*ft_quotes_delete(char *bloc, int i, int j)
 		if (!bloc[i])
 			break ;
 	}
-	return (free(bloc), cpy);
+	return (ft_free_secure(bloc), cpy);
 }

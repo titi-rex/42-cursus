@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: lboudjem <lboudjem@student.42.fr>          +#+  +:+       +#+         #
+#    By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/02/12 20:46:19 by tlegrand          #+#    #+#              #
-#    Updated: 2023/03/28 15:05:11 by lboudjem         ###   ########.fr        #
+#    Updated: 2023/03/28 20:03:23 by tlegrand         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -60,8 +60,6 @@ LST_SRCS_STRUCT	=	s_line_basic.c \
 					s_redirect_basic.c s_redirect_operator.c \
 					s_var_env_basic.c s_var_env_operator.c 
 SRCS_STRUCT		=	${addprefix ${DIR_SRCS_STRUCT}, ${LST_SRCS_STRUCT}}
-
-LST_DIR_SRC		=	${DIR_SRCS_BI} ${DIR_SRCS_STRUCT} ${DIR_SRCS_PARSE} ${DIR_SRCS_EXE} ${DIR_SRCS_PROMPT} 
 
 
 #	==============================	OBJECTS	==============================	#

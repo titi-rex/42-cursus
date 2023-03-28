@@ -6,7 +6,7 @@
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/08 17:06:26 by tlegrand          #+#    #+#             */
-/*   Updated: 2023/03/28 16:24:40 by tlegrand         ###   ########.fr       */
+/*   Updated: 2023/03/28 21:15:49 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,7 @@ int			ft_bloc_separate(char **str, int *i, int *start, char **bloc);
 int			ft_bloc_fill_list(char *bloc, t_list *io, t_line *line, int *error);
 int			ft_bloc_nb_backslash(char *bloc);
 int			ft_bloc_cmd(char *arg, t_line *line, t_list	*io);
+void		ft_bloc_cmd_free(char **split, int i);
 void		ft_bloc_init(t_list **io, int *error, char **bloc);
 void		ft_bloc_format(char **bloc, t_list **io, int *error, t_line *line);
 char		*ft_bloc_creat(char *str, int *i, int *start, char *bloc);
