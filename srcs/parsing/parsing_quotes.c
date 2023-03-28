@@ -6,18 +6,19 @@
 /*   By: lboudjem <lboudjem@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/11 14:27:10 by lboudjem          #+#    #+#             */
-/*   Updated: 2023/03/28 11:36:42 by lboudjem         ###   ########.fr       */
+/*   Updated: 2023/03/28 13:36:07 by lboudjem         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/minishell.h"
 
-void	ft_quotes_error(char *str, int *i, int *error)
+int	ft_quotes_error(char *str, int *i, int *error)
 {
 	if (str[*i] == 34)
 		*i = ft_quotes_handle(str, *i, 34, error);
 	if (str[*i] == 39)
 		*i = ft_quotes_handle(str, *i, 39, error);
+	return (*error);
 }
 
 int	ft_quotes_handle(char *str, int i, int quote, int *error)

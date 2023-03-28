@@ -6,7 +6,7 @@
 /*   By: lboudjem <lboudjem@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/08 17:06:26 by tlegrand          #+#    #+#             */
-/*   Updated: 2023/03/28 12:27:52 by lboudjem         ###   ########.fr       */
+/*   Updated: 2023/03/28 13:38:22 by lboudjem         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ char		*ft_bloc_protect_backslash(char *bloc);
 /*			Parsing quotes					*/
 int			ft_quotes_handle(char *str, int i, int quote, int *error);
 int			ft_quotes_get_nb(char *bloc, int i, int nb);
-void		ft_quotes_error(char *str, int *i, int *error);
+int			ft_quotes_error(char *str, int *i, int *error);
 char		*ft_quotes_delete(char *bloc, int i, int j);
 
 /*			Parsing expansion				*/

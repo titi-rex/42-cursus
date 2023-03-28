@@ -6,7 +6,7 @@
 /*   By: lboudjem <lboudjem@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/25 12:59:18 by lboudjem          #+#    #+#             */
-/*   Updated: 2023/03/28 12:28:05 by lboudjem         ###   ########.fr       */
+/*   Updated: 2023/03/28 13:32:52 by lboudjem         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,10 +17,12 @@ int	ft_bloc_empty(char *bloc)
 	int	i;
 
 	i = 0;
+	if (bloc[0] == '\0')
+		return (2);
 	while (bloc[i])
 	{
 		if (bloc[i] != ' ' && bloc[i] != '\t' && \
-			bloc[i] != '\n' && bloc[i] != '\0')
+			bloc[i] != '\n')
 			return (0);
 		i++;
 	}
@@ -31,7 +33,8 @@ void	ft_bloc_init(t_list **io, int *error, char **bloc)
 {
 	*io = NULL;
 	*bloc = NULL;
-	*error = 0;
+	error[0] = 0;
+	error[1] = 0;
 }
 
 int	ft_bloc_separate(char **str, int *i, int *start, char **bloc)

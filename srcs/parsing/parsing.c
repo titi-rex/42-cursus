@@ -6,7 +6,7 @@
 /*   By: lboudjem <lboudjem@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/08 11:21:07 by louisa            #+#    #+#             */
-/*   Updated: 2023/03/28 11:36:03 by lboudjem         ###   ########.fr       */
+/*   Updated: 2023/03/28 13:37:23 by lboudjem         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,12 +48,23 @@ char	*ft_bloc_creat(char *str, int *i, int *start, char *bloc)
 
 int	ft_bloc_fill_list(char *bloc, t_list *io, t_line *line, int *error)
 {
-	if (!bloc || *error == 1)
+	if (!bloc || error[0] == 1)
 		return (free(bloc), 1);
+	if (ft_bloc_empty(bloc) == 2 && io == NULL)
+		return (free(bloc), error[1] = -1, 1);
 	if (ft_bloc_empty(bloc) == 1 && io == NULL)
-		*error = -1;
+		error[1] = -1;
 	ft_bloc_cmd(bloc, line, io);
 	free(bloc);
+	return (0);
+}
+
+int	ft_bloc_manage_error(int *error, int *n_cmds)
+{
+	if (error[1] == -1 && *n_cmds == 1)
+		*n_cmds = 0;
+	if (error[1] == -1 && *n_cmds > 1)
+		return (1);
 	return (0);
 }
 
@@ -61,33 +72,27 @@ int	ft_parse_line(char *str, int i, int start, t_line *line)
 {
 	char	*bloc;
 	t_list	*io;
-	int		error;
+	int		error[2];
 
-	ft_bloc_init(&io, &error, &bloc);
-	while (str[i])
+	ft_bloc_init(&io, error, &bloc);
+	while (str[++i])
 	{
-		ft_quotes_error(str, &i, &error);
-		if (error == 2)
-			return (2);
+		if (ft_quotes_error(str, &i, &error[0]) == 2)
+			return (1);
 		if (str[i] == '|')
 		{
 			line->n_cmds += ft_bloc_separate(&str, &i, &start, &bloc);
-			ft_bloc_format(&bloc, &io, &error, line);
-			if (ft_bloc_fill_list(bloc, io, line, &error) == 1)
+			ft_bloc_format(&bloc, &io, &error[0], line);
+			if (ft_bloc_fill_list(bloc, io, line, error) == 1)
 				return (1);
 		}
 		if (str[i] == '\0' || str[i + 1] == '\0')
 		{
 			line->n_cmds += ft_bloc_separate(&str, &i, &start, &bloc);
-			ft_bloc_format(&bloc, &io, &error, line);
-			if (ft_bloc_fill_list(bloc, io, line, &error) == 1)
+			ft_bloc_format(&bloc, &io, &error[0], line);
+			if (ft_bloc_fill_list(bloc, io, line, error) == 1)
 				return (1);
 		}
-		i++;
 	}
-	if (error == -1 && line->n_cmds == 1)
-		line->n_cmds = 0;
-	if (error == -1 && line->n_cmds > 1)
-		return (1);
-	return (0);
+	return (ft_bloc_manage_error(error, &(line->n_cmds)));
 }

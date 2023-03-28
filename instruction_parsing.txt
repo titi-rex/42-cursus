@@ -6,7 +6,7 @@
 #    By: lboudjem <lboudjem@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/03/10 16:14:31 by lboudjem          #+#    #+#              #
-#    Updated: 2023/03/28 12:13:46 by lboudjem         ###   ########.fr        #
+#    Updated: 2023/03/28 12:46:49 by lboudjem         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -104,19 +104,19 @@ echo 'jojo' \
 
 - A ne pas oublier:
 casser tous les mallocs
-| echo coucou
 tab
-echo coucou > "ihi aha"ihi
 
 - Fait (normalement) (a tester quand meme) :
 export TEST='""' -> puis echo "$TEST"
 export test='""' puis echo "'$test'"
 export test="''" puis echo $test ''
 export test=truc
+echo coucou > "ihi aha"ihi
 here_doc +  fleche du haut
-> >> log
->>>>> log
+| echo coucou
 >>> log : leaks
+>>>>> log
+> >> log
 ><<log
 > log2
 ">"
