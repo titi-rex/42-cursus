@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing_protect.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: lboudjem <lboudjem@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/27 12:04:15 by lboudjem          #+#    #+#             */
-/*   Updated: 2023/03/27 16:27:36 by tlegrand         ###   ########.fr       */
+/*   Updated: 2023/03/28 10:45:44 by lboudjem         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ int	ft_bloc_nb_backslash(char *bloc)
 
 	i = 0;
 	nb = 0;
-	while (bloc && bloc[i])
+	while (bloc[i])
 	{
 		if (bloc[i] == '\\' && bloc[i + 1] != '\\')
 			nb++;
@@ -39,7 +39,6 @@ char	*ft_bloc_clear_backslash(char *bloc)
 	i = -1;
 	j = 0;
 	cpy = NULL;
-	//printf("bloc = %s\n", bloc);
 	size = ft_strlen2(bloc) - (ft_bloc_nb_backslash(bloc));
 	cpy = ft_calloc((size + 1), sizeof(int));
 	if (!cpy)
@@ -66,12 +65,12 @@ char	*ft_bloc_protect_backslash(char *bloc)
 	j = 0;
 	cpy = NULL;
 	size = ft_bloc_nb_backslash(bloc) + ft_strlen2(bloc);
-	cpy = malloc((size + 1) * sizeof(int));
+	cpy = ft_calloc((size + 1), sizeof(int));
 	if (!cpy)
 		return (NULL);
 	while (bloc[++i])
 	{
-		if (cpy[j] && bloc[i] != '\\')
+		if (bloc[i] != '\\')
 			cpy[j] = bloc[i];
 		else if (bloc[i] == '\\')
 		{
@@ -81,5 +80,5 @@ char	*ft_bloc_protect_backslash(char *bloc)
 		}
 		j++;
 	}
-	return (cpy[j] = '\0', free(bloc), cpy);
+	return (free(bloc), cpy);
 }

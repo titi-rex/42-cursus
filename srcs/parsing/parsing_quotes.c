@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing_quotes.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: louisa <louisa@student.42.fr>              +#+  +:+       +#+        */
+/*   By: lboudjem <lboudjem@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/11 14:27:10 by lboudjem          #+#    #+#             */
-/*   Updated: 2023/03/27 21:17:12 by louisa           ###   ########.fr       */
+/*   Updated: 2023/03/28 11:36:42 by lboudjem         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,8 +73,9 @@ void	ft_skip_quotes(char *bloc, char **cpy, int *i, int *j)
 			(*j)++;
 			(*i)++;
 		}
+		(*i)++;
 	}
-	if (bloc[*i] == 39)
+	else if (bloc[*i] == 39)
 	{
 		(*i)++;
 		while (bloc[*i] && (bloc[*i] != 39 || bloc[(*i) - 1] == '\\'))
@@ -83,6 +84,7 @@ void	ft_skip_quotes(char *bloc, char **cpy, int *i, int *j)
 			(*j)++;
 			(*i)++;
 		}
+		(*i)++;
 	}
 }
 
@@ -92,7 +94,7 @@ char	*ft_quotes_delete(char *bloc, int i, int j)
 	int		size;
 
 	size = ft_strlen2(bloc) - ft_quotes_get_nb(bloc, 0, 0);
-	cpy = ft_calloc((size + 2), sizeof(char));
+	cpy = ft_calloc((size + 1), sizeof(char));
 	if (!cpy)
 		return (NULL);
 	while (bloc[i])
@@ -100,13 +102,11 @@ char	*ft_quotes_delete(char *bloc, int i, int j)
 		if (bloc[i] == '\\')
 		{
 			cpy[j++] = bloc[i++];
-			cpy[j] = bloc[i];
-			j++;
-			i++;
+			cpy[j++] = bloc[i++];
 		}
 		else if (bloc[i] != 34 && bloc[i] != 39)
 			cpy[j++] = bloc[i++];
-		else
+		else if (bloc[i] == 34 || bloc[i] == 39)
 			ft_skip_quotes(bloc, &cpy, &i, &j);
 		if (!bloc[i])
 			break ;

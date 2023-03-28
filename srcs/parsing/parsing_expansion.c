@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing_expansion.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: lboudjem <lboudjem@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/13 17:33:36 by louisa            #+#    #+#             */
-/*   Updated: 2023/03/27 16:19:15 by tlegrand         ###   ########.fr       */
+/*   Updated: 2023/03/28 11:14:28 by lboudjem         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,7 +78,6 @@ char	*ft_exp_handle(char *bloc, t_line *line)
 		else if (bloc[i] && bloc[i] == '$')
 		{
 			bloc = ft_exp_replace_value(bloc, line, 0, i);
-			//bloc = ft_export_protect_quotes(bloc);
 			i = -1;
 		}
 		i++;

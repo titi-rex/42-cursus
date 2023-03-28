@@ -6,7 +6,7 @@
 /*   By: lboudjem <lboudjem@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/21 10:33:20 by lboudjem          #+#    #+#             */
-/*   Updated: 2023/03/27 14:04:18 by lboudjem         ###   ########.fr       */
+/*   Updated: 2023/03/28 11:35:30 by lboudjem         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,6 @@ char	*ft_export_protect_quotes(char *bloc)
 	int		i;
 	int		j;
 
-	cpy = NULL;
 	i = 0;
 	j = 0;
 	size = ft_export_nb_quotes(bloc) + ft_strlen2(bloc);
