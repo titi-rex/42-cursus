@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing_quotes.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lboudjem <lboudjem@student.42.fr>          +#+  +:+       +#+        */
+/*   By: louisa <louisa@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/11 14:27:10 by lboudjem          #+#    #+#             */
-/*   Updated: 2023/03/27 15:35:51 by lboudjem         ###   ########.fr       */
+/*   Updated: 2023/03/27 21:17:12 by louisa           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ int	ft_quotes_get_nb(char *bloc, int i, int nb)
 		{
 			nb++;
 			i++;
-			while (bloc[i] && bloc[i] != 34)
+			while (bloc[i] && (bloc[i] != 34 || bloc[i - 1] == '\\'))
 				i++;
 			nb++;
 		}
@@ -51,7 +51,7 @@ int	ft_quotes_get_nb(char *bloc, int i, int nb)
 		{
 			nb++;
 			i++;
-			while (bloc[i] && bloc[i] != 39)
+			while (bloc[i] && (bloc[i] != 39 || bloc[i - 1] == '\\'))
 				i++;
 			nb++;
 		}
@@ -67,7 +67,7 @@ void	ft_skip_quotes(char *bloc, char **cpy, int *i, int *j)
 	if (bloc[*i] == 34)
 	{
 		(*i)++;
-		while (bloc[*i] && bloc[*i] != 34)
+		while (bloc[*i] && (bloc[*i] != 34 || bloc[(*i) - 1] == '\\'))
 		{
 			(*cpy)[*j] = bloc[*i];
 			(*j)++;
@@ -77,7 +77,7 @@ void	ft_skip_quotes(char *bloc, char **cpy, int *i, int *j)
 	if (bloc[*i] == 39)
 	{
 		(*i)++;
-		while (bloc[*i] && bloc[*i] != 39)
+		while (bloc[*i] && (bloc[*i] != 39 || bloc[(*i) - 1] == '\\'))
 		{
 			(*cpy)[*j] = bloc[*i];
 			(*j)++;
