@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: lboudjem <lboudjem@student.42.fr>          +#+  +:+       +#+         #
+#    By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/02/12 20:46:19 by tlegrand          #+#    #+#              #
-#    Updated: 2023/03/28 10:43:23 by lboudjem         ###   ########.fr        #
+#    Updated: 2023/03/28 12:59:33 by tlegrand         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -31,12 +31,14 @@ DIR_SRCS_BI		=	srcs/built_in/
 LST_SRCS_BI		=	bi_cd.c bi_echo.c bi_pwd.c  bi_exit.c bi_env.c bi_export.c bi_type.c bi_unset.c bi_clear.c bi_loulou.c bi_titi.c
 SRCS_BI			=	${addprefix ${DIR_SRCS_BI}, ${LST_SRCS_BI}}
 
-DIR_SRCS_STRUCT	=	srcs/structure/
-LST_SRCS_STRUCT	=	s_line_basic.c \
-					s_cmd_basic.c s_cmd_operator.c \
-					s_redirect_basic.c s_redirect_operator.c \
-					var_env_utils.c var_env_utils2.c var_env.c env_init.c
-SRCS_STRUCT		=	${addprefix ${DIR_SRCS_STRUCT}, ${LST_SRCS_STRUCT}}
+DIR_SRCS_ENV	=	srcs/env/
+LST_SRCS_ENV	=	env_init.c env_utils.c
+SRCS_ENV		=	${addprefix ${DIR_SRCS_ENV}, ${LST_SRCS_ENV}}
+
+DIR_SRCS_EXE	=	srcs/execution/
+LST_SRCS_EXE	=	exe_cmd.c exe_utils.c \
+					exe_dup_redirect.c exe_dup_pipe.c 
+SRCS_EXE		=	${addprefix ${DIR_SRCS_EXE}, ${LST_SRCS_EXE}}
 
 DIR_SRCS_PARSE	=	srcs/parsing/
 LST_SRCS_PARSE	=	parsing.c get_path.c ft_here_doc.c \
@@ -48,13 +50,16 @@ LST_SRCS_PARSE	=	parsing.c get_path.c ft_here_doc.c \
 					parsing_redirection.c parsing_utils_redirection.c
 SRCS_PARSE		=	${addprefix ${DIR_SRCS_PARSE}, ${LST_SRCS_PARSE}}
 
-DIR_SRCS_EXE	=	srcs/execution/
-LST_SRCS_EXE	=	exe_dup_redirect.c exe_dup_pipe.c exe_cmd.c exe_utils.c
-SRCS_EXE		=	${addprefix ${DIR_SRCS_EXE}, ${LST_SRCS_EXE}}
-
 DIR_SRCS_PROMPT	=	srcs/prompt/
 LST_SRCS_PROMPT	=	prompt.c prompt_git.c prompt_pwd.c 
 SRCS_PROMPT		=	${addprefix ${DIR_SRCS_PROMPT}, ${LST_SRCS_PROMPT}}
+
+DIR_SRCS_STRUCT	=	srcs/structure/
+LST_SRCS_STRUCT	=	s_line_basic.c \
+					s_cmd_basic.c s_cmd_operator.c \
+					s_redirect_basic.c s_redirect_operator.c \
+					s_var_env_basic.c s_var_env_operator.c 
+SRCS_STRUCT		=	${addprefix ${DIR_SRCS_STRUCT}, ${LST_SRCS_STRUCT}}
 
 LST_DIR_SRC		=	${DIR_SRCS_BI} ${DIR_SRCS_STRUCT} ${DIR_SRCS_PARSE} ${DIR_SRCS_EXE} ${DIR_SRCS_PROMPT} 
 
@@ -66,7 +71,8 @@ OBJS		=	${patsubst ${DIR_SRCS}%.c, ${DIR_OBJS}%.o, ${SRCS}} \
 				${patsubst ${DIR_SRCS_STRUCT}%.c, ${DIR_OBJS}%.o, ${SRCS_STRUCT}} \
 				${patsubst ${DIR_SRCS_PARSE}%.c, ${DIR_OBJS}%.o, ${SRCS_PARSE}} \
 				${patsubst ${DIR_SRCS_EXE}%.c, ${DIR_OBJS}%.o, ${SRCS_EXE}} \
-				${patsubst ${DIR_SRCS_PROMPT}%.c, ${DIR_OBJS}%.o, ${SRCS_PROMPT}}
+				${patsubst ${DIR_SRCS_PROMPT}%.c, ${DIR_OBJS}%.o, ${SRCS_PROMPT}} \
+				${patsubst ${DIR_SRCS_ENV}%.c, ${DIR_OBJS}%.o, ${SRCS_ENV}}
 
 #	==============================	HEADERS	==============================	#
 DIR_HEADER	=	include/
@@ -134,6 +140,10 @@ ${DIR_OBJS}%.o	:	${DIR_SRCS_PARSE}%.c ${HEADER}
 				@${CC} ${CFLAGS} -c $< -o $@
 
 ${DIR_OBJS}%.o	:	${DIR_SRCS_EXE}%.c ${HEADER}
+				@printf "$(YELLOW)Making $@...\n$(END)"
+				@${CC} ${CFLAGS} -c $< -o $@
+
+${DIR_OBJS}%.o	:	${DIR_SRCS_ENV}%.c ${HEADER}
 				@printf "$(YELLOW)Making $@...\n$(END)"
 				@${CC} ${CFLAGS} -c $< -o $@
 
