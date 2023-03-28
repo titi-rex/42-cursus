@@ -6,7 +6,7 @@
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/17 15:16:03 by lboudjem          #+#    #+#             */
-/*   Updated: 2023/03/22 21:23:17 by tlegrand         ###   ########.fr       */
+/*   Updated: 2023/03/28 15:51:09 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,7 +80,7 @@ static char	*ft_strduppd(char *src, int j)
 	i = 0;
 	dst = malloc((j + 1) * sizeof(char));
 	if (!dst)
-		return (0);
+		return (NULL);
 	while (i < j && src[i])
 	{
 		dst[i] = src[i];
@@ -90,21 +90,18 @@ static char	*ft_strduppd(char *src, int j)
 	return (dst);
 }
 
-char	**ft_split_bis(char const *s, char c)
+char	**ft_split_bis(char const *s, char charset[2])
 {
 	char		**dest;
 	int			size;
 	int			j;
 	int			i;
-	char		charset[2];
 
 	i = -1;
-	charset[0] = c;
-	charset[1] = '\0';
 	while (*s && ft_is_charsetd(*s, charset))
 		s++;
 	size = ft_wordcountd((char *)s, charset);
-	dest = malloc((size + 1) * sizeof(char *));
+	dest = ft_calloc((size + 1), sizeof(char *));
 	if (!dest)
 		return (NULL);
 	while (++i < size)
@@ -113,8 +110,9 @@ char	**ft_split_bis(char const *s, char c)
 			s++;
 		j = ft_wordlend((char *)s, charset);
 		dest[i] = ft_strduppd((char *)s, j);
+		if (!dest[i])
+			return (ft_free2d((void **) dest, 0), NULL);
 		s += j;
 	}
-	dest[size] = NULL;
 	return (dest);
 }

@@ -6,7 +6,7 @@
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/10 22:16:33 by tlegrand          #+#    #+#             */
-/*   Updated: 2023/03/27 11:14:46 by tlegrand         ###   ########.fr       */
+/*   Updated: 2023/03/28 16:02:26 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,7 @@ t_cmd	*s_cmd_new_alloc(char **arg, t_list *io)
 		{
 			ft_free2d((void **) new->arg, 0);
 			free(new);
+			return (NULL);
 		}
 		i++;
 	}

@@ -6,7 +6,7 @@
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/15 16:23:42 by tlegrand          #+#    #+#             */
-/*   Updated: 2023/03/28 12:52:35 by tlegrand         ###   ########.fr       */
+/*   Updated: 2023/03/28 16:16:54 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,13 +30,14 @@ void	ft_env_update_shlvl(t_var_env *lst)
 	free(buff);
 }
 
-static void	ft_env_init_std(t_var_env **lst)
+static int	ft_env_init_std(t_var_env **lst)
 {
 	t_var_env	*new;
 	char		*pwd;
 
-	new = NULL;
 	new = s_env_new("SHLVL", "1");
+	if (!new)
+		return (s_env_clear(&new), 1);
 	s_env_add_back(lst, new);
 	pwd = getcwd(NULL, 0);
 	if (!pwd)
@@ -46,10 +47,13 @@ static void	ft_env_init_std(t_var_env **lst)
 		new = s_env_new("PWD", pwd);
 		free(pwd);
 	}
+	if (!pwd)
+		return (1);
 	s_env_add_back(lst, new);
+	return (0);
 }
 
-static void	ft_env_init_add(char *env, t_var_env **lst)
+static int	ft_env_init_add(char *env, t_var_env **lst)
 {
 	char		*name;
 	char		*value;
@@ -62,24 +66,27 @@ static void	ft_env_init_add(char *env, t_var_env **lst)
 	name = ft_strndup(env, i);
 	value = ft_strndup(env + i + 1, ft_strlen2(env) - i);
 	new = s_env_new(name, value);
-	free(name);
-	free(value);
+	ft_free_secure(name);
+	ft_free_secure(value);
 	if (!new)
-		return ((void)s_env_clear(&new));
+		return (s_env_clear(&new), 1);
 	s_env_add_back(lst, new);
+	return (0);
 }
 
-void	ft_env_init(t_var_env **lst, char **env)
+int	ft_env_init(t_var_env **lst, char **env)
 {
 	int			i;
 
 	if (!env || !*env)
-		return ((void) ft_env_init_std(lst));
+		return (ft_env_init_std(lst));
 	i = 0;
 	while (env[i])
 	{
-		ft_env_init_add(env[i], lst);
+		if (ft_env_init_add(env[i], lst))
+			return (s_env_clear(lst), 1);
 		i++;
 	}
 	ft_env_update_shlvl(*lst);
+	return (0);
 }

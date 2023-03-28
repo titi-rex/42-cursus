@@ -6,7 +6,7 @@
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/11 13:43:01 by tlegrand          #+#    #+#             */
-/*   Updated: 2023/03/26 21:38:07 by tlegrand         ###   ########.fr       */
+/*   Updated: 2023/03/28 16:18:08 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,8 +48,24 @@ char	*ft_get_input(t_line *line)
 	{
 		ft_putendl_fd("exit", 1);
 		term_reset(&line->old);
+		dup2(line->fd_std[0], STDOUT_FILENO);
 		ft_clean_exit(line, line->exit_status);
 	}
 	dup2(line->fd_std[0], STDOUT_FILENO);
 	return (input);
+}
+
+void	ft_error(int errnum)
+{
+	if (errnum == 1)
+		ft_printf("Error parsing\n");
+	else if (errnum == 2)
+		ft_printf("Error malloc\n");
+}
+
+void	*ft_free_secure(char *ptr)
+{
+	if (ptr)
+		free(ptr);
+	return (NULL);
 }

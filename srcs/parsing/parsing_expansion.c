@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing_expansion.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lboudjem <lboudjem@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/13 17:33:36 by louisa            #+#    #+#             */
-/*   Updated: 2023/03/28 12:27:38 by lboudjem         ###   ########.fr       */
+/*   Updated: 2023/03/28 15:18:58 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,8 @@ char	*ft_exp_get_value(char *bloc, t_line *line, int *len, int i)
 
 void	ft_exp_skip_quote(char **bloc, int *i, t_line *line)
 {
+	if (!*bloc)
+		return ;
 	if ((*bloc)[*i] == 34)
 	{
 		(*i)++;
@@ -50,6 +52,8 @@ void	ft_exp_skip_quote(char **bloc, int *i, t_line *line)
 				(*i)++;
 			if ((*bloc)[*i] && (*bloc)[*i] == '$')
 				*bloc = ft_exp_replace_value(*bloc, line, 0, *i);
+			if (!*bloc)
+				return ;
 			(*i)++;
 		}
 	}
@@ -60,7 +64,7 @@ char	*ft_exp_handle(char *bloc, t_line *line, int i)
 	while (bloc[i])
 	{
 		ft_exp_skip_quote(&bloc, &i, line);
-		if (!bloc[i])
+		if (!bloc || !bloc[i])
 			break ;
 		if (bloc[i] == 39)
 		{

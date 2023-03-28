@@ -6,7 +6,7 @@
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/09 14:58:48 by lboudjem          #+#    #+#             */
-/*   Updated: 2023/03/28 12:52:57 by tlegrand         ###   ########.fr       */
+/*   Updated: 2023/03/28 16:15:37 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ char	**ft_env_lst_to_tab(t_var_env *lst)
 		return (NULL);
 	tab = ft_calloc(s_env_size(lst), sizeof(t_var_env));
 	if (!tab)
-		return (NULL);
+		return (perror("Error "), NULL);
 	i = 0;
 	while (lst)
 	{
@@ -42,7 +42,7 @@ char	**ft_env_lst_to_tab(t_var_env *lst)
 			if (!tab)
 			{
 				ft_free2d((void **)tab, 0);
-				return (NULL);
+				return (perror("Error "), NULL);
 			}
 			i++;
 		}

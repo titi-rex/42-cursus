@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lboudjem <lboudjem@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/08 17:06:26 by tlegrand          #+#    #+#             */
-/*   Updated: 2023/03/28 13:39:16 by lboudjem         ###   ########.fr       */
+/*   Updated: 2023/03/28 16:12:17 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,14 +32,13 @@
 
 /*			Prompt function				*/
 char		*prompt_git(void);
-char		*prompt_pwd(char *pwd, char *user);
+char		*prompt_pwd(char *user);
 char		*ft_get_a_nice_prompt(t_var_env *lst_env, int exit_status);
 char		*ft_here_doc_mode(char **delimiter);
 
 /*			Env functions				*/
+int			ft_env_init(t_var_env **lst, char **env);
 void		ft_env_change_value(t_var_env *lst, char *value, char *name);
-void		ft_env_fill_lst(t_line *line, int i);
-void		ft_env_init(t_var_env **lst, char **env);
 void		ft_env_update_shlvl(t_var_env *lst);
 char		*ft_env_get_value(t_var_env *lst, char *name);
 char		**ft_env_lst_to_tab(t_var_env *lst);
@@ -51,7 +50,7 @@ int			ft_bloc_empty(char *bloc);
 int			ft_bloc_separate(char **str, int *i, int *start, char **bloc);
 int			ft_bloc_fill_list(char *bloc, t_list *io, t_line *line, int *error);
 int			ft_bloc_nb_backslash(char *bloc);
-void		ft_bloc_cmd(char *arg, t_line *line, t_list	*io);
+int			ft_bloc_cmd(char *arg, t_line *line, t_list	*io);
 void		ft_bloc_init(t_list **io, int *error, char **bloc);
 void		ft_bloc_format(char **bloc, t_list **io, int *error, t_line *line);
 char		*ft_bloc_creat(char *str, int *i, int *start, char *bloc);
@@ -87,7 +86,7 @@ int			ft_export_nb_quotes(char *bloc);
 char		*ft_export_protect_quotes(char *bloc);
 
 /*			Parsing utils	*/
-char		**ft_split_bis(char const *s, char c);
+char		**ft_split_bis(char const *s, char charset[2]);
 
 /* 			Get path functiuns				*/
 int			ft_path_splitlen(char **split);
@@ -128,10 +127,12 @@ void		term_init_termcap(char *data);
 void		term_clear(void);
 
 /*			Utils general	*/
-int			ft_is_bi(char *arg);
+void		ft_error(int errnum);
 void		ft_perror_exit(t_line *line, int exit_status, char *errstr);
 void		ft_clean_exit(t_line *line, int exit_code);
 char		*ft_get_input(t_line *line);
+int			ft_is_bi(char *arg);
+void		*ft_free_secure(char *addr);
 
 /*			Struct line functions			*/
 void		s_line_init(t_line *line);

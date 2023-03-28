@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing_redirection.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lboudjem <lboudjem@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/13 17:47:02 by louisa            #+#    #+#             */
-/*   Updated: 2023/03/28 12:17:23 by lboudjem         ###   ########.fr       */
+/*   Updated: 2023/03/28 15:36:10 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,6 @@ char	*ft_redirection_clear(char *bloc, int i)
 	char	*sub1;
 	char	*sub2;
 
-	cpy = NULL;
 	len = ft_redirection_size(bloc, i, 0);
 	size = ft_strlen2(bloc);
 	sub1 = ft_substr(bloc, 0, i);
@@ -89,7 +88,7 @@ t_list	*ft_redirection_handle(char **bloc, int *err, t_line *line, int i)
 		{
 			arg = ft_redirection_arg(*bloc, i);
 			if (!arg)
-				return (*err = 1, NULL);
+				return (*err = 2, io);
 			arg = ft_quotes_delete(arg, 0, 0);
 			*bloc = ft_redirection_clear(*bloc, i);
 			ft_redirection_hd(&type, line, &arg);

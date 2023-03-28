@@ -6,7 +6,7 @@
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/09 13:33:56 by lboudjem          #+#    #+#             */
-/*   Updated: 2023/03/28 12:52:00 by tlegrand         ###   ########.fr       */
+/*   Updated: 2023/03/28 16:06:14 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,8 @@ t_var_env	*s_env_new(char *name, char *value)
 {
 	t_var_env	*new;
 
+	if (!name)
+		return (NULL);
 	new = (t_var_env *)malloc(sizeof(t_var_env));
 	if (!new)
 		return (NULL);

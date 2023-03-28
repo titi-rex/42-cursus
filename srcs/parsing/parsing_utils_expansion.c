@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing_utils_expansion.c                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lboudjem <lboudjem@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/25 14:53:50 by lboudjem          #+#    #+#             */
-/*   Updated: 2023/03/28 11:34:49 by lboudjem         ###   ########.fr       */
+/*   Updated: 2023/03/28 15:22:06 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ char	*ft_exp_replace_value(char *bloc, t_line *line, int len, int i)
 	size = ft_strlen2(bloc) - len + ft_strlen2(value);
 	cpy = ft_calloc((size + 1), sizeof(char));
 	if (!cpy)
-		return (NULL);
+		return (free(bloc), ft_free_secure(value));
 	tmp = i + len + 1;
 	ft_strlcpy(cpy, bloc, i + 1);
 	size = 0;
@@ -46,14 +46,16 @@ char	*ft_exp_replace_exit_status(char *bloc, int i, t_line *line)
 	int		len;
 	int		tmp;
 
+	if (!bloc)
+		return (NULL);
 	tmp = i + 2;
 	exit_s = ft_itoa(line->exit_status);
 	if (!exit_s)
-		return (NULL);
+		return (ft_free_secure(bloc));
 	len = (int)(ft_strlen2(bloc)) - 2 + ft_strlen2(exit_s);
 	cpy = malloc((len + 1) * sizeof(char));
 	if (!cpy)
-		return (NULL);
+		return (free(bloc), free(exit_s), NULL);
 	ft_strlcpy(cpy, bloc, i + 1);
 	len = 0;
 	while (exit_s[len])
@@ -62,5 +64,6 @@ char	*ft_exp_replace_exit_status(char *bloc, int i, t_line *line)
 		cpy[i++] = bloc[tmp++];
 	cpy[i] = '\0';
 	free(bloc);
-	return (free(exit_s), cpy);
+	free(exit_s);
+	return (cpy);
 }

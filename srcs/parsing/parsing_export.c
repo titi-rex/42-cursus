@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing_export.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lboudjem <lboudjem@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/21 10:33:20 by lboudjem          #+#    #+#             */
-/*   Updated: 2023/03/28 12:26:45 by lboudjem         ###   ########.fr       */
+/*   Updated: 2023/03/28 15:13:21 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,13 +35,15 @@ char	*ft_export_protect_quotes(char *bloc)
 	int		i;
 	int		j;
 
-	i = 0;
+	i = -1;
 	j = 0;
+	if (!bloc)
+		return (NULL);
 	size = ft_export_nb_quotes(bloc) + ft_strlen2(bloc);
 	cpy = ft_calloc(size + 1, sizeof(int));
 	if (!cpy)
-		return (NULL);
-	while (bloc[i])
+		return (free(bloc), NULL);
+	while (bloc[++i])
 	{
 		if (bloc[i] == 34 || bloc[i] == 39)
 		{
@@ -51,7 +53,6 @@ char	*ft_export_protect_quotes(char *bloc)
 		else
 			cpy[j] = bloc[i];
 		j++;
-		i++;
 	}
 	return (free(bloc), cpy);
 }

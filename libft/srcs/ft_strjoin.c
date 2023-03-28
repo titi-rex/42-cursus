@@ -6,7 +6,7 @@
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/11 16:36:20 by tlegrand          #+#    #+#             */
-/*   Updated: 2023/03/20 17:43:51 by tlegrand         ###   ########.fr       */
+/*   Updated: 2023/03/28 15:38:12 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,8 @@ char	*ft_strjoin(char const *s1, char const *s2)
 	size_t	len_s2;
 	char	*str;
 
+	if (!s1 && !s2)
+		return (NULL);
 	len_s1 = ft_strlen2(s1);
 	len_s2 = ft_strlen2(s2);
 	str = (char *)malloc((len_s1 + len_s2 + 1) * sizeof(char));
