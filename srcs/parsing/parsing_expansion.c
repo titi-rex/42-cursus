@@ -6,7 +6,7 @@
 /*   By: lboudjem <lboudjem@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/13 17:33:36 by louisa            #+#    #+#             */
-/*   Updated: 2023/03/28 11:14:28 by lboudjem         ###   ########.fr       */
+/*   Updated: 2023/03/28 12:27:38 by lboudjem         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,11 +55,8 @@ void	ft_exp_skip_quote(char **bloc, int *i, t_line *line)
 	}
 }
 
-char	*ft_exp_handle(char *bloc, t_line *line)
+char	*ft_exp_handle(char *bloc, t_line *line, int i)
 {
-	int		i;
-
-	i = 0;
 	while (bloc[i])
 	{
 		ft_exp_skip_quote(&bloc, &i, line);

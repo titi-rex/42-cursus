@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: lboudjem <lboudjem@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/08 17:06:26 by tlegrand          #+#    #+#             */
-/*   Updated: 2023/03/27 15:43:35 by tlegrand         ###   ########.fr       */
+/*   Updated: 2023/03/28 12:27:52 by lboudjem         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ void		ft_exp_skip_quote(char **bloc, int *i, t_line *line);
 char		*ft_exp_get_value(char *bloc, t_line *line, int *len, int i);
 char		*ft_exp_replace_value(char *bloc, t_line *line, int len, int i);
 char		*ft_exp_replace_exit_status(char *bloc, int i, t_line *line);
-char		*ft_exp_handle(char *bloc, t_line *line);
+char		*ft_exp_handle(char *bloc, t_line *line, int i);
 char		*ft_exp_handle_heredoc(char *bloc, t_line *line);
 
 /*			Parsing redirection				*/

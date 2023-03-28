@@ -6,7 +6,7 @@
 /*   By: lboudjem <lboudjem@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/27 12:04:15 by lboudjem          #+#    #+#             */
-/*   Updated: 2023/03/28 10:45:44 by lboudjem         ###   ########.fr       */
+/*   Updated: 2023/03/28 12:26:35 by lboudjem         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,6 @@ int	ft_bloc_nb_backslash(char *bloc)
 	}
 	return (nb);
 }
-
 
 char	*ft_bloc_clear_backslash(char *bloc)
 {
