@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    instruction_parsing.txt                            :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: lboudjem <lboudjem@student.42.fr>          +#+  +:+       +#+         #
+#    By: louisa <louisa@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/03/10 16:14:31 by lboudjem          #+#    #+#              #
-#    Updated: 2023/03/28 14:54:49 by lboudjem         ###   ########.fr        #
+#    Updated: 2023/03/28 18:45:06 by louisa           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -109,6 +109,7 @@ $ et redirection dans var env
 tab
 echo \\ : Heap overflow
 echo "\" : Heap overflow
+export test="\"
 
 $test (avec test vide)
 
