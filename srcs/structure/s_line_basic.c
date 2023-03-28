@@ -6,7 +6,7 @@
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/08 18:19:34 by tlegrand          #+#    #+#             */
-/*   Updated: 2023/03/27 11:14:46 by tlegrand         ###   ########.fr       */
+/*   Updated: 2023/03/28 12:52:35 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,6 @@ void	s_line_clear(t_line *line)
 	if (line->fd_std[1] != -1)
 		close(line->fd_std[1]);
 	line->n_cmds = 0;
-	ft_env_clear(&line->lst_env);
+	s_env_clear(&line->lst_env);
 	ft_free2d((void **)line->env, 0);
 }
