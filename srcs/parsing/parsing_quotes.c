@@ -6,7 +6,7 @@
 /*   By: lboudjem <lboudjem@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/11 14:27:10 by lboudjem          #+#    #+#             */
-/*   Updated: 2023/03/29 10:49:27 by lboudjem         ###   ########.fr       */
+/*   Updated: 2023/03/29 12:23:52 by lboudjem         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,61 +34,6 @@ int	ft_quotes_handle(char *str, int i, int quote, int *error)
 	return (i);
 }
 
-int	ft_quotes_get_nb(char *bloc, int i, int nb)
-{
-	while (bloc[i])
-	{
-		if (bloc[i] == '\\')
-			i += 2;
-		if (bloc[i] == 34)
-		{
-			nb++;
-			i++;
-			while (bloc[i] && (bloc[i] != 34 || bloc[i - 1] == '\\'))
-				i++;
-			nb++;
-		}
-		if (bloc[i] == 39)
-		{
-			nb++;
-			i++;
-			while (bloc[i] && (bloc[i] != 39 || bloc[i - 1] == '\\'))
-				i++;
-			nb++;
-		}
-		if (!bloc[i])
-			return (-1);
-		i++;
-	}
-	return (nb);
-}
-
-void	ft_skip_quotes(char *bloc, char **cpy, int *i, int *j)
-{
-	if (bloc[*i] == 34)
-	{
-		(*i)++;
-		while (bloc[*i] && (bloc[*i] != 34))
-		{
-			(*cpy)[*j] = bloc[*i];
-			(*j)++;
-			(*i)++;
-		}
-		(*i)++;
-	}
-	else if (bloc[*i] == 39)
-	{
-		(*i)++;
-		while (bloc[*i] && (bloc[*i] != 39))
-		{
-			(*cpy)[*j] = bloc[*i];
-			(*j)++;
-			(*i)++;
-		}
-		(*i)++;
-	}
-}
-
 char	*ft_quotes_delete_secure(char *bloc, int i, int j)
 {
 	char	*cpy;
@@ -100,7 +45,7 @@ char	*ft_quotes_delete_secure(char *bloc, int i, int j)
 	cpy = ft_calloc((size + 1), sizeof(char));
 	if (!cpy)
 		return (ft_free_secure(bloc), NULL);
-	while (bloc && bloc[i])
+	while (bloc[i])
 	{
 		if (bloc[i] == '\\')
 		{
@@ -109,7 +54,6 @@ char	*ft_quotes_delete_secure(char *bloc, int i, int j)
 		}
 		else if (bloc[i] != 34 && bloc[i] != 39)
 			cpy[j++] = bloc[i++];
-
 		else if (bloc[i] == 34 || bloc[i] == 39)
 			ft_skip_quotes(bloc, &cpy, &i, &j);
 		if (!bloc[i - 1] || !bloc[i])
