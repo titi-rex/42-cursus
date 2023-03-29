@@ -6,7 +6,7 @@
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/08 13:10:16 by tlegrand          #+#    #+#             */
-/*   Updated: 2023/03/28 21:38:54 by tlegrand         ###   ########.fr       */
+/*   Updated: 2023/03/29 12:08:47 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,12 @@ int	bi_pwd(t_line *line)
 	pwd = getcwd(NULL, 0);
 	if (!pwd)
 	{
-		perror("Error gtting cwd in pwd ");
-		return (EXIT_FAILURE);
+		pwd = env_get_value(line->lst_env, "PWD");
+		if (!pwd)
+			return (perror("Error no pwd available "), EXIT_FAILURE);
+		if (printf("%s\n", pwd) < 0)
+			return (perror("Error printf "), EXIT_FAILURE);
+		return (EXIT_SUCCESS);
 	}
 	if (printf("%s\n", pwd) < 0)
 	{
@@ -30,5 +34,4 @@ int	bi_pwd(t_line *line)
 	}
 	free(pwd);
 	return (EXIT_SUCCESS);
-	(void)line;
 }
