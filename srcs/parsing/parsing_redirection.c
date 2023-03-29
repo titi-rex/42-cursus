@@ -6,7 +6,7 @@
 /*   By: lboudjem <lboudjem@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/13 17:47:02 by louisa            #+#    #+#             */
-/*   Updated: 2023/03/29 12:43:04 by lboudjem         ###   ########.fr       */
+/*   Updated: 2023/03/29 12:50:31 by lboudjem         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,7 @@ int	ft_redirection_hd(int *type, t_line *line, char **arg)
 		if (*arg && dolls == 1)
 			*arg = ft_exp_handle_heredoc(*arg, line);
 	}
-	return (0);
+	return (-1);
 }
 
 t_list	*ft_redirection_handle(char **bloc, int *err, t_line *line, int i)
@@ -92,10 +92,9 @@ t_list	*ft_redirection_handle(char **bloc, int *err, t_line *line, int i)
 			if (type != 2)
 				arg = ft_quotes_delete(arg, 0, 0);
 			*bloc = ft_redirection_clear(*bloc, i);
-			ft_redirection_hd(&type, line, &arg);
+			i = ft_redirection_hd(&type, line, &arg);
 			if (s_redirect_add_list(&io, type, arg))
 				return (free(arg), *err = 2, io);
-			i = -1;
 		}
 		i++;
 	}
