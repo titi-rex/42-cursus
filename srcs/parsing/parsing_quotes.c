@@ -6,7 +6,7 @@
 /*   By: lboudjem <lboudjem@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/11 14:27:10 by lboudjem          #+#    #+#             */
-/*   Updated: 2023/03/29 11:24:32 by lboudjem         ###   ########.fr       */
+/*   Updated: 2023/03/29 12:23:52 by lboudjem         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,6 @@ char	*ft_quotes_delete_secure(char *bloc, int i, int j)
 		}
 		else if (bloc[i] != 34 && bloc[i] != 39)
 			cpy[j++] = bloc[i++];
-
 		else if (bloc[i] == 34 || bloc[i] == 39)
 			ft_skip_quotes(bloc, &cpy, &i, &j);
 		if (!bloc[i - 1] || !bloc[i])
