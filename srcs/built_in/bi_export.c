@@ -6,7 +6,7 @@
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/11 14:28:28 by tlegrand          #+#    #+#             */
-/*   Updated: 2023/03/29 16:30:53 by tlegrand         ###   ########.fr       */
+/*   Updated: 2023/03/29 21:01:39 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,6 +104,9 @@ int	bi_export(t_line *line)
 
 	if (!line->cmd->arg[1])
 		return (bi_export_print(line->lst_env));
+	if (line->cmd->arg[1] && line->cmd->arg[1][0] == '-' && \
+		line->cmd->arg[1][1] != '\0')
+		return (perror("Error : no option available "), 2);
 	i = 1;
 	err = EXIT_SUCCESS;
 	while (line->cmd->arg[i])

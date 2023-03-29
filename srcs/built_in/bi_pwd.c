@@ -6,7 +6,7 @@
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/08 13:10:16 by tlegrand          #+#    #+#             */
-/*   Updated: 2023/03/29 12:08:47 by tlegrand         ###   ########.fr       */
+/*   Updated: 2023/03/29 21:01:52 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,9 @@ int	bi_pwd(t_line *line)
 {
 	char	*pwd;
 
+	if (line->cmd->arg[1] && line->cmd->arg[1][0] == '-' && \
+		line->cmd->arg[1][1] != '\0')
+		return (perror("Error : no option available "), 2);
 	pwd = getcwd(NULL, 0);
 	if (!pwd)
 	{

@@ -210,3 +210,16 @@ by the conditional
   missing arguments.
 
 The exit status of the last command is availab
+
+
+
+change : bi
+exit
+export
+cd
+pwd
+type
+unset
+suppr clear
+
+

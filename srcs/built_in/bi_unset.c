@@ -6,7 +6,7 @@
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/11 12:06:13 by tlegrand          #+#    #+#             */
-/*   Updated: 2023/03/29 14:40:53 by tlegrand         ###   ########.fr       */
+/*   Updated: 2023/03/29 21:02:06 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,9 @@ int	bi_unset(t_line *line)
 	int			i;
 	int			err;
 
+	if (line->cmd->arg[1] && line->cmd->arg[1][0] == '-' && \
+		line->cmd->arg[1][1] != '\0')
+		return (perror("Error : no option available "), 2);
 	i = 1;
 	err = 0;
 	while (line->cmd->arg[i])

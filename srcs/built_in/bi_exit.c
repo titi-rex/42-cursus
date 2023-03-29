@@ -6,7 +6,7 @@
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/08 14:10:12 by tlegrand          #+#    #+#             */
-/*   Updated: 2023/03/29 14:18:53 by tlegrand         ###   ########.fr       */
+/*   Updated: 2023/03/29 20:40:20 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,11 +36,21 @@ static int	bi_atoi_256(const char *str)
 	return ((int) sign * res);
 }
 
+int	bi_exit_is_number(char *str)
+{
+	if (*str != '-' && *str != '+' && !ft_isdigit(*str))
+		return (1);
+	str++;
+	if (ft_str_isdigit(str))
+		return (1);
+	return (0);
+}
+
 int	bi_exit(t_line *line)
 {
 	unsigned char	exit_code;
 
-	if (line->cmd->arg[1] && (ft_str_isdigit(line->cmd->arg[1]) || \
+	if (line->cmd->arg[1] && (bi_exit_is_number(line->cmd->arg[1]) || \
 		ft_strlen(line->cmd->arg[1]) > 19))
 	{
 		ft_putstr_fd("exit : ", 2);

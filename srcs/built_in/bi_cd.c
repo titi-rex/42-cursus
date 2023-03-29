@@ -6,7 +6,7 @@
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/08 13:27:20 by tlegrand          #+#    #+#             */
-/*   Updated: 2023/03/29 14:18:10 by tlegrand         ###   ########.fr       */
+/*   Updated: 2023/03/29 21:00:09 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,6 +65,9 @@ int	bi_cd_chdir_from_env(t_var_env *lst_env, char *target)
 
 int	bi_cd(t_line *line)
 {
+	if (line->cmd->arg[1] && line->cmd->arg[1][0] == '-' && \
+		line->cmd->arg[1][1] != '\0')
+		return (perror("Error : no option available "), 2);
 	if (bi_cd_count_arg(line->cmd->arg) > 2)
 		return (ft_putstr_fd("Error, too much arguments\n", 2), 2);
 	if (!line->cmd->arg[1] || !ft_strncmp(line->cmd->arg[1], "~", 2))
