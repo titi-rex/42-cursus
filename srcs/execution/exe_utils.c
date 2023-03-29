@@ -6,7 +6,7 @@
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/15 17:36:22 by tlegrand          #+#    #+#             */
-/*   Updated: 2023/03/29 15:36:53 by tlegrand         ###   ########.fr       */
+/*   Updated: 2023/03/29 16:30:07 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,15 +17,14 @@ void	exe_envtab_update(char ***env, t_var_env *lst)
 	char	**buff;
 
 	buff = NULL;
-	if (!*env)
-		return ;
 	if (lst)
 	{
 		buff = env_lst_to_tab(lst);
 		if (!buff)
 			return ((void) perror("Error updating envtab "));
 	}
-	ft_free2d((void **)*env, 0);
+	if (*env)
+		ft_free2d((void **)*env, 0);
 	*env = buff;
 }
 
