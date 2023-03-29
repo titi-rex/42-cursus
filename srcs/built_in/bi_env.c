@@ -6,7 +6,7 @@
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/11 12:06:13 by tlegrand          #+#    #+#             */
-/*   Updated: 2023/03/23 12:34:56 by tlegrand         ###   ########.fr       */
+/*   Updated: 2023/03/29 14:18:33 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ int	bi_env(t_line *line)
 	if (line->cmd->arg[1])
 	{
 		ft_putendl_fd("Error : env take no options nor arguments", 2);
-		return (EXIT_FAILURE);
+		return (2);
 	}
 	return (bi_env_print(line->lst_env));
 }

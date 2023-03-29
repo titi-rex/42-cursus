@@ -6,7 +6,7 @@
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/08 14:10:12 by tlegrand          #+#    #+#             */
-/*   Updated: 2023/03/29 13:31:50 by tlegrand         ###   ########.fr       */
+/*   Updated: 2023/03/29 14:18:53 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ int	bi_exit(t_line *line)
 	else if (line->cmd->arg[1] && line->cmd->arg[2])
 	{
 		ft_putendl_fd("exit : too much argument", 2);
-		return (EXIT_FAILURE);
+		return (2);
 	}
 	else if (line->cmd->arg && line->cmd->arg[1])
 		exit_code = bi_atoi_256(line->cmd->arg[1]);
