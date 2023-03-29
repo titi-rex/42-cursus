@@ -6,7 +6,7 @@
 /*   By: lboudjem <lboudjem@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/25 13:42:09 by lboudjem          #+#    #+#             */
-/*   Updated: 2023/03/29 13:41:45 by lboudjem         ###   ########.fr       */
+/*   Updated: 2023/03/29 13:58:36 by lboudjem         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ char	*ft_redirection_arg(char *bloc, int i)
 		return (NULL);
 	ft_skip_both_quotes(&i, &len, bloc);
 	while (bloc[i] != ' ' && bloc[i] != '\t' && bloc[i] != '\n' \
-			&& bloc[i] != '\0')
+			&& bloc[i] != '\0' && bloc[i] != '<' && bloc[i] != '>')
 	{
 		len++;
 		i++;
