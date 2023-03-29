@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing_utils_redirection.c                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: lboudjem <lboudjem@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/25 13:42:09 by lboudjem          #+#    #+#             */
-/*   Updated: 2023/03/28 21:22:59 by tlegrand         ###   ########.fr       */
+/*   Updated: 2023/03/29 13:41:45 by lboudjem         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,7 +88,7 @@ int	ft_redirection_size(char *bloc, int i, int len)
 	{
 		i++;
 		len++;
-		while (bloc[i] != 34 && bloc[i] != 39)
+		while (bloc[i] && bloc[i] != 34 && bloc[i] != 39)
 		{
 			i++;
 			len++;
