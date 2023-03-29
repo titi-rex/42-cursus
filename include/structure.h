@@ -6,7 +6,7 @@
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/06 21:46:27 by tlegrand          #+#    #+#             */
-/*   Updated: 2023/03/22 13:07:39 by tlegrand         ###   ########.fr       */
+/*   Updated: 2023/03/29 13:22:04 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,7 @@ typedef struct s_line
 	int				exit_status;
 	t_var_env		*lst_env;
 	struct termios	old;
+	int				term_status;
 }	t_line;
 
 #endif

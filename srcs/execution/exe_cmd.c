@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exe_cmd.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lboudjem <lboudjem@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/08 15:07:58 by tlegrand          #+#    #+#             */
-/*   Updated: 2023/03/29 11:10:10 by lboudjem         ###   ########.fr       */
+/*   Updated: 2023/03/29 14:01:42 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ void	exe_bi(t_line *line, int pipe_in[2], int pipe_out[2], \
 		perror("Error ");
 	else if (pid == 0)
 	{
-		sig_init(sig_handler_child);
+		sig_init(sig_handler_child, sig_handler_child);
 		dup_pipe(pipe_in, pipe_out);
 		if (dup_selector(line->cmd->io, here_pipe, line))
 			ft_clean_exit(line, EXIT_FAILURE);
@@ -54,7 +54,7 @@ void	exe_cmd(t_line *line, int pipe_in[2], int pipe_out[2])
 		perror("Error ");
 	else if (pid == 0)
 	{
-		sig_init(sig_handler_child);
+		sig_init(sig_handler_child, sig_handler_child);
 		dup_pipe(pipe_in, pipe_out);
 		ft_close_pipe(line->fd_std);
 		if (dup_selector(line->cmd->io, here_pipe, line))
@@ -64,6 +64,8 @@ void	exe_cmd(t_line *line, int pipe_in[2], int pipe_out[2])
 		if (ft_path_get(env_get_value(line->lst_env, "PATH"), \
 			&line->cmd->arg[0]))
 			exe_error_404(line, line->cmd->arg[0]);
+		if (access(line->cmd->arg[0], X_OK))
+			exe_error_403(line, line->cmd->arg[0]);
 		execve(line->cmd->arg[0], line->cmd->arg, line->env);
 		perror("Error ");
 		ft_clean_exit(line, EXIT_FAILURE);
@@ -112,8 +114,8 @@ static void	exe_get_wait_status(int max_wait, int *exit_code)
 			*exit_code = WEXITSTATUS(wstatus);
 		if (WIFSIGNALED(wstatus))
 		{
-			*exit_code = WTERMSIG(wstatus);
-			if (WTERMSIG(wstatus) == 3)
+			*exit_code = WTERMSIG(wstatus) + 128;
+			if (*exit_code == 131)
 				ft_putstr_fd("Quit\n", 2);
 		}
 	}

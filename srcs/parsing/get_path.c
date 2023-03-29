@@ -6,7 +6,7 @@
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/09 13:35:47 by lboudjem          #+#    #+#             */
-/*   Updated: 2023/03/27 14:01:37 by tlegrand         ###   ########.fr       */
+/*   Updated: 2023/03/29 14:05:41 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ int	ft_path_get(char *pathvar, char	**head)
 	if (!ft_strncmp(*head, "/", 2) || !ft_strncmp(*head, ".", 2) \
 		|| *head[0] == '\0')
 		return (1);
-	if (!access(*head, X_OK))
+	if (!access(*head, R_OK))
 		return (0);
 	if (!pathvar)
 		return (1);

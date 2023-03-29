@@ -6,14 +6,14 @@
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/13 19:29:46 by tlegrand          #+#    #+#             */
-/*   Updated: 2023/03/28 20:01:56 by tlegrand         ###   ########.fr       */
+/*   Updated: 2023/03/29 13:31:04 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/minishell.h"
 #include <termcap.h>
 
-void	term_init_setting(struct termios *old)
+void	term_init_setting(struct termios *old, int *status)
 {
 	struct termios	t;
 
@@ -27,12 +27,14 @@ void	term_init_setting(struct termios *old)
 		t.c_lflag &= ~ECHOCTL;
 		if (tcsetattr(0, TCSANOW, &t) == -1)
 			perror("Error ");
+		else
+			*status = 1;
 	}
 }
 
-void	term_reset(struct termios *old)
+void	term_reset(struct termios *old, int *status)
 {
-	if (!isatty(0))
+	if (!isatty(0)  || *status == 0)
 		return ;
 	if (tcsetattr(0, TCSANOW, old) == -1)
 		perror("Error ");

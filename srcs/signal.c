@@ -6,7 +6,7 @@
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/11 16:11:47 by tlegrand          #+#    #+#             */
-/*   Updated: 2023/03/28 17:19:02 by tlegrand         ###   ########.fr       */
+/*   Updated: 2023/03/29 13:51:18 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ void	sig_handler_child(int sig)
 	exit(sig);
 }
 
-void	sig_init(void (*handler) (int sig))
+void	sig_init(void (*handler) (int sig), void (*handler_quit) (int sig))
 {
 	struct sigaction	act;
 	struct sigaction	act_quit;
@@ -46,6 +46,6 @@ void	sig_init(void (*handler) (int sig))
 	act_quit.sa_flags = SA_RESTART;
 	sigemptyset(&act_quit.sa_mask);
 	sigaddset(&act_quit.sa_mask, SIGQUIT);
-	act_quit.sa_handler = SIG_IGN;
+	act_quit.sa_handler = handler_quit;
 	sigaction(SIGQUIT, &act_quit, NULL);
 }

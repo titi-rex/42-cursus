@@ -6,7 +6,7 @@
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/11 13:43:01 by tlegrand          #+#    #+#             */
-/*   Updated: 2023/03/28 20:22:21 by tlegrand         ###   ########.fr       */
+/*   Updated: 2023/03/29 13:30:40 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ char	*ft_get_input(t_line *line)
 	else if (!input)
 	{
 		ft_putendl_fd("exit", 1);
-		term_reset(&line->old);
+		term_reset(&line->old, &line->term_status);
 		dup2(line->fd_std[0], STDOUT_FILENO);
 		ft_clean_exit(line, line->exit_status);
 	}
@@ -55,8 +55,9 @@ char	*ft_get_input(t_line *line)
 	return (input);
 }
 
-void	ft_error(int errnum)
+void	ft_error(int errnum, int *exit_status)
 {
+	*exit_status = 2;
 	if (errnum == 1)
 		ft_printf("Error syntaxe\n");
 	else if (errnum == 2)

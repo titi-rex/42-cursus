@@ -6,7 +6,7 @@
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/08 14:10:12 by tlegrand          #+#    #+#             */
-/*   Updated: 2023/03/26 13:55:37 by tlegrand         ###   ########.fr       */
+/*   Updated: 2023/03/29 13:31:50 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@ int	bi_exit(t_line *line)
 	else
 		exit_code = line->exit_status;
 	ft_putendl_fd("exit", 1);
-	term_reset(&line->old);
+	term_reset(&line->old, &line->term_status);
 	ft_clean_exit(line, exit_code);
 	return (EXIT_FAILURE);
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lboudjem <lboudjem@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/08 17:06:26 by tlegrand          #+#    #+#             */
-/*   Updated: 2023/03/29 12:26:22 by lboudjem         ###   ########.fr       */
+/*   Updated: 2023/03/29 14:01:00 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,6 +101,7 @@ void		exe_master(t_line *line);
 void		exe_restore_std(t_list *io, int std_fd[2]);
 void		exe_envtab_update(char ***env, t_var_env *lst);
 void		exe_init_here_pipe(int here_pipe[2]);
+void		exe_error_403(t_line *line, char *cmd);
 void		exe_error_404(t_line *line, char *cmd);
 void		dup_pipe(int pipe_in[2], int pipe_out[2]);
 int			dup_selector(t_list *io, int here_pipe[2], t_line *line);
@@ -119,19 +120,19 @@ int			bi_type(t_line	*line);
 int			bi_unset(t_line *line);
 
 /*			Signals functions 		*/
-void		sig_init(void (*handler)(int sig));
+void		sig_init(void (*handler) (int sig), void (*handler_quit) (int sig));
 void		sig_handler_shell(int sig);
 void		sig_handler_child(int sig);
 void		sig_handler_loulou(int sig);
 
 /*			Terminal functions		*/
-void		term_init_setting(struct termios *old);
-void		term_reset(struct termios *old);
+void		term_init_setting(struct termios *old, int *status);
+void		term_reset(struct termios *old, int *status);
 void		term_init_termcap(char *data);
 void		term_clear(void);
 
 /*			Utils general	*/
-void		ft_error(int errnum);
+void		ft_error(int errnum, int *exit_status);
 void		ft_perror_exit(t_line *line, int exit_status, char *errstr);
 void		ft_clean_exit(t_line *line, int exit_code);
 void		*ft_free_secure(char *addr);

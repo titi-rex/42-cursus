@@ -6,7 +6,7 @@
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/08 12:28:13 by tlegrand          #+#    #+#             */
-/*   Updated: 2023/03/28 20:17:48 by tlegrand         ###   ########.fr       */
+/*   Updated: 2023/03/29 13:43:45 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,8 +36,8 @@ static void	ft_greeting(void)
 static void	ft_main_init(t_line *line, char **env)
 {
 	s_line_init(line);
-	sig_init(sig_handler_shell);
-	term_init_setting(&line->old);
+	sig_init(sig_handler_shell, SIG_IGN);
+	term_init_setting(&line->old, &line->term_status);
 	if (env_init(&line->lst_env, env))
 		return ((void) perror("Error "));
 	line->env = env_lst_to_tab(line->lst_env);
@@ -70,7 +70,7 @@ int	main(int ac, char **arg, char **env)
 		err = ft_parse_line(input, -1, 0, &line);
 		free(input);
 		if (err != 0)
-			ft_error(err);
+			ft_error(err, &line.exit_status);
 		else if (!(g_status & INTERRUPT))
 			exe_master(&line);
 		s_line_reset(&line);
