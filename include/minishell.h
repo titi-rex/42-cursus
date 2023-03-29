@@ -6,7 +6,7 @@
 /*   By: lboudjem <lboudjem@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/08 17:06:26 by tlegrand          #+#    #+#             */
-/*   Updated: 2023/03/29 11:13:16 by lboudjem         ###   ########.fr       */
+/*   Updated: 2023/03/29 12:26:22 by lboudjem         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,7 +85,9 @@ t_list		*ft_redirection_handle(char **bloc, int *err, t_line *line, int i);
 
 /*			Parsing export					*/
 int			ft_export_nb_quotes(char *bloc);
+int			ft_export_nb_dolls(char *bloc);
 char		*ft_export_protect_quotes(char *bloc);
+char		*ft_export_protect_dolls(char *bloc);
 
 /*			Parsing utils	*/
 char		**ft_split_bis(char const *s, char charset[2]);

@@ -6,7 +6,7 @@
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/13 17:33:36 by louisa            #+#    #+#             */
-/*   Updated: 2023/03/29 12:28:13 by tlegrand         ###   ########.fr       */
+/*   Updated: 2023/03/29 12:45:24 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,7 +74,9 @@ char	*ft_exp_handle(char *bloc, t_line *line, int i)
 			while ((bloc[i]) && bloc[i] != 39)
 				i++;
 		}
-		if (bloc[i] && bloc[i] == '$' && bloc[i + 1] == '?')
+		if (bloc[i] && bloc[i] == '\\' && bloc[i + 1] == '$')
+			i += 2;
+		else if (bloc[i] && bloc[i] == '$' && bloc[i + 1] == '?')
 			bloc = ft_exp_replace_exit_status(bloc, i, line);
 		else if (bloc[i] && bloc[i] == '$' && ft_isalnum(bloc[i + 1]) == 0)
 			break ;

@@ -6,7 +6,7 @@
 /*   By: lboudjem <lboudjem@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/11 14:27:10 by lboudjem          #+#    #+#             */
-/*   Updated: 2023/03/29 12:23:52 by lboudjem         ###   ########.fr       */
+/*   Updated: 2023/03/29 12:38:50 by lboudjem         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,7 @@ char	*ft_quotes_delete(char *bloc, int i, int j)
 
 	tmp = 0;
 	quote = 0;
-	while (bloc[tmp])
+	while (bloc && bloc[tmp])
 	{
 		if (bloc[tmp] == 34 || bloc[tmp] == 39)
 			quote = 1;
