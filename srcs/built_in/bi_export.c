@@ -6,7 +6,7 @@
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/11 14:28:28 by tlegrand          #+#    #+#             */
-/*   Updated: 2023/03/29 14:19:32 by tlegrand         ###   ########.fr       */
+/*   Updated: 2023/03/29 15:58:49 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,8 +70,7 @@ static char	**bi_export_format_arg(char *arg)
 	return (format);
 }
 
-static int	bi_export_change_value(char *arg_no_format, t_var_env **lst_env, \
-	char ***env)
+static int	bi_export_change_value(char *arg_no_format, t_var_env **lst_env)
 {
 	t_var_env	*tmp;
 	char		**arg;
@@ -95,7 +94,6 @@ static int	bi_export_change_value(char *arg_no_format, t_var_env **lst_env, \
 		s_env_add_back(lst_env, tmp);
 	}
 	ft_free2d((void **)arg, 3);
-	exe_envtab_update(env, *lst_env);
 	return (EXIT_SUCCESS);
 }
 
@@ -116,9 +114,9 @@ int	bi_export(t_line *line)
 			err = 2;
 		}
 		else
-			err = bi_export_change_value(line->cmd->arg[i], \
-				&line->lst_env, &line->env);
+			err = bi_export_change_value(line->cmd->arg[i], &line->lst_env);
 		i++;
 	}
+	exe_envtab_update(&line->env, line->lst_env);
 	return (err);
 }

@@ -6,7 +6,7 @@
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/15 16:23:42 by tlegrand          #+#    #+#             */
-/*   Updated: 2023/03/28 20:14:34 by tlegrand         ###   ########.fr       */
+/*   Updated: 2023/03/29 15:58:29 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,10 @@ static int	env_init_std(t_var_env **lst)
 	new = s_env_new("SHLVL", "1");
 	if (!new)
 		return (1);
-	s_env_add_back(lst, new);
+	if (!env_search(*lst, "SHLVL"))
+		s_env_add_back(lst, new);
+	else
+		s_env_del(new);
 	pwd = getcwd(NULL, 0);
 	if (!pwd)
 		new = s_env_new("PWD", "");
@@ -49,7 +52,10 @@ static int	env_init_std(t_var_env **lst)
 	}
 	if (!new)
 		return (1);
-	s_env_add_back(lst, new);
+	if (!env_search(*lst, "PWD"))
+		s_env_add_back(lst, new);
+	else
+		s_env_del(new);
 	return (0);
 }
 
@@ -89,6 +95,7 @@ int	env_init(t_var_env **lst, char **env)
 			return (s_env_clear(lst), 1);
 		i++;
 	}
+	env_init_std(lst);
 	env_update_shlvl(*lst);
 	return (0);
 }
