@@ -6,7 +6,7 @@
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/08 11:21:07 by louisa            #+#    #+#             */
-/*   Updated: 2023/03/29 12:35:48 by tlegrand         ###   ########.fr       */
+/*   Updated: 2023/03/29 13:11:36 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,6 +66,8 @@ int	ft_bloc_fill_list(char *bloc, t_list *io, t_line *line, int *error)
 	if (ft_bloc_empty(bloc) == 2 && io == NULL)
 	{
 		error[0] = 1;
+		if (line->n_cmds == 1)
+			return (free(bloc), error[1] = -1, 0);
 		return (free(bloc), error[1] = -1, 1);
 	}
 	if (ft_bloc_empty(bloc) == 1 && io == NULL)
