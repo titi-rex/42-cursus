@@ -6,7 +6,7 @@
 /*   By: lboudjem <lboudjem@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/25 14:53:50 by lboudjem          #+#    #+#             */
-/*   Updated: 2023/03/29 11:09:26 by lboudjem         ###   ########.fr       */
+/*   Updated: 2023/03/29 12:28:20 by lboudjem         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@ char	*ft_exp_replace_value(char *bloc, t_line *line, int len, int i)
 	value = ft_exp_get_value(bloc, line, &len, i + 1);
 	value = ft_bloc_protect_backslash(value);
 	value = ft_export_protect_quotes(value);
+	value = ft_export_protect_dolls(value);
 	size = ft_strlen2(bloc) - len + ft_strlen2(value);
 	cpy = ft_calloc((size + 1), sizeof(char));
 	if (!cpy)

@@ -6,7 +6,7 @@
 /*   By: lboudjem <lboudjem@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/13 17:47:02 by louisa            #+#    #+#             */
-/*   Updated: 2023/03/29 12:14:44 by lboudjem         ###   ########.fr       */
+/*   Updated: 2023/03/29 12:43:04 by lboudjem         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,7 +79,7 @@ t_list	*ft_redirection_handle(char **bloc, int *err, t_line *line, int i)
 	t_list		*io;
 
 	ft_redirection_init(&i, &type, &arg, &io);
-	while ((*bloc) && (*bloc)[++i])
+	while ((*bloc) && (*bloc)[i])
 	{
 		ft_redirection_skip_quotes(bloc, &i);
 		if (ft_redirection_type(*bloc, &type, &i) == -1)
@@ -87,16 +87,17 @@ t_list	*ft_redirection_handle(char **bloc, int *err, t_line *line, int i)
 		else if (ft_redirection_type(*bloc, &type, &i) == 1)
 		{
 			arg = ft_redirection_arg(*bloc, i);
+			if (!arg)
+				return (*err = 1, io);
 			if (type != 2)
 				arg = ft_quotes_delete(arg, 0, 0);
-			if (!arg)
-				return (*err = 2, io);
 			*bloc = ft_redirection_clear(*bloc, i);
 			ft_redirection_hd(&type, line, &arg);
 			if (s_redirect_add_list(&io, type, arg))
 				return (free(arg), *err = 2, io);
 			i = -1;
 		}
+		i++;
 	}
 	return (*err = 0, io);
 }
