@@ -47,24 +47,6 @@ error log
 comme ca :
 faire un tetris in term
 
-
-Use tty function for check if is atty and open tty
-isatty, ttyname, ttyslot, 
-
-use ioctl to send request to term
-ioctl
-
-use termios function to formate tty io
-tcsetattr, tcgetattr
- 
-termcap functin does the same but more complicated ?
-tgetent, 
-tgetflag, tgetnum, tgetstr, tgoto, 
-tputs
-
-termcap -> termios -> curse -> ncurse
-
-
 DONE:
 /*	TODO: sigQUIT DOES NOTHING	actually it move cursor ??*/
 /*	TODO:	handle exit code	*/
@@ -106,11 +88,6 @@ here_doc function
 /*	TODO: mettre au propre + norme	*/
 
 
-
-https://stackoverflow.com/questions/4842424/list-of-ansi-color-escape-sequences
-
-
-/*
 
 PWD
 exit status 
@@ -221,5 +198,5 @@ pwd
 type
 unset
 suppr clear
-
+get_path
 

@@ -6,7 +6,7 @@
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/09 13:35:47 by lboudjem          #+#    #+#             */
-/*   Updated: 2023/03/29 14:05:41 by tlegrand         ###   ########.fr       */
+/*   Updated: 2023/03/29 22:39:08 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,14 +43,13 @@ int	ft_path_get(char *pathvar, char	**head)
 		return (1);
 	if (!access(*head, R_OK))
 		return (0);
+	if (*head[0] == '.' || *head[0] == '/')
+		return (1);
 	if (!pathvar)
 		return (1);
 	paths = ft_split(pathvar, ':');
 	if (!paths)
-	{
-		perror("Error ");
-		return (1);
-	}
+		return (perror("Error "), 1);
 	tmp = ft_path_getcmd(paths, *head);
 	ft_free2d((void **)paths, 0);
 	if (!tmp)

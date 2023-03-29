@@ -6,7 +6,7 @@
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/08 17:17:17 by tlegrand          #+#    #+#             */
-/*   Updated: 2023/03/27 12:23:16 by tlegrand         ###   ########.fr       */
+/*   Updated: 2023/03/29 22:45:43 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ static int	dup_redirect(t_redirect *io, int fd_std, int flag)
 	int	fd;
 	int	err;
 
-	fd = open(io->arg, flag, 0644);
+	fd = open(io->arg, flag, 0664);
 	if (fd == -1)
 		return (perror("Error "), EXIT_FAILURE);
 	err = EXIT_SUCCESS;
