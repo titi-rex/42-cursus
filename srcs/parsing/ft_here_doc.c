@@ -6,7 +6,7 @@
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/13 18:46:53 by tlegrand          #+#    #+#             */
-/*   Updated: 2023/03/28 21:24:03 by tlegrand         ###   ########.fr       */
+/*   Updated: 2023/03/29 12:46:46 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ char	*ft_here_doc(char *end)
 		if (!ft_strncmp(input, end, len))
 			return (free(input), here_doc);
 		tmp = ft_strjoin3(here_doc, input, "\n");
-		free(input);
+		input = ft_free_secure(input);
 		if (!tmp)
 			return (perror("Error adding line to here_doc "), here_doc);
 		free(here_doc);

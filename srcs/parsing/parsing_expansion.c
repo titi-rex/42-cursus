@@ -6,7 +6,7 @@
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/13 17:33:36 by louisa            #+#    #+#             */
-/*   Updated: 2023/03/29 12:45:24 by tlegrand         ###   ########.fr       */
+/*   Updated: 2023/03/29 12:47:16 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,6 @@ char	*ft_exp_handle(char *bloc, t_line *line, int i)
 {
 	while (bloc && bloc[i])
 	{
-		dprintf(2, "bloc[%d] :%c:\n", i, bloc[i]);
 		ft_exp_skip_quote(&bloc, &i, line);
 		if (!bloc || !bloc[i])
 			break ;
@@ -87,7 +86,6 @@ char	*ft_exp_handle(char *bloc, t_line *line, int i)
 		}
 		i++;
 	}
-	dprintf(2, "bloc :%s:\n", bloc);
 	return (bloc);
 }
 
