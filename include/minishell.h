@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: lboudjem <lboudjem@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/08 17:06:26 by tlegrand          #+#    #+#             */
-/*   Updated: 2023/03/28 21:15:49 by tlegrand         ###   ########.fr       */
+/*   Updated: 2023/03/29 11:13:16 by lboudjem         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,6 +62,7 @@ char		*ft_bloc_protect_backslash(char *bloc);
 int			ft_quotes_handle(char *str, int i, int quote, int *error);
 int			ft_quotes_get_nb(char *bloc, int i, int nb);
 int			ft_quotes_error(char *str, int *i, int *error);
+void		ft_skip_quotes(char *bloc, char **cpy, int *i, int *j);
 char		*ft_quotes_delete(char *bloc, int i, int j);
 
 /*			Parsing expansion				*/

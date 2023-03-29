@@ -6,7 +6,7 @@
 #    By: lboudjem <lboudjem@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/03/10 16:14:31 by lboudjem          #+#    #+#              #
-#    Updated: 2023/03/29 10:51:23 by lboudjem         ###   ########.fr        #
+#    Updated: 2023/03/29 11:28:42 by lboudjem         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -105,7 +105,6 @@ echo 'jojo' \
 - A ne pas oublier:
 casser tous les mallocs
 export test='echo $USER C"es"t'
-$ et redirection dans var env
 tab
 
 $test (avec test vide)
@@ -114,6 +113,7 @@ $test (avec test vide)
 export TEST='""' -> puis echo "$TEST"
 export test='""' puis echo "'$test'"
 export test="''" puis echo $test ''
+$ et redirection dans var env
 export test=truc
 echo \\ : Heap overflow
 echo "\" : Heap overflow

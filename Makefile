@@ -6,7 +6,7 @@
 #    By: lboudjem <lboudjem@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/02/12 20:46:19 by tlegrand          #+#    #+#              #
-#    Updated: 2023/03/29 10:43:25 by lboudjem         ###   ########.fr        #
+#    Updated: 2023/03/29 11:12:33 by lboudjem         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -45,6 +45,7 @@ LST_SRCS_PARSE	=	parsing.c get_path.c ft_here_doc.c \
 					parsing_expansion.c parsing_bloc_utils.c \
 					parsing_utils_expansion.c \
 					parsing_quotes.c parsing_protect.c \
+					parsing_quotes_utils.c \
 					parsing_export.c \
 					ft_split_bis.c \
 					parsing_redirection.c parsing_utils_redirection.c

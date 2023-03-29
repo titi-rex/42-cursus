@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing_bloc_utils.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: lboudjem <lboudjem@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/25 12:59:18 by lboudjem          #+#    #+#             */
-/*   Updated: 2023/03/28 21:41:42 by tlegrand         ###   ########.fr       */
+/*   Updated: 2023/03/29 11:24:56 by lboudjem         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,6 @@ void	ft_bloc_format(char **bloc, t_list **io, int *error, t_line *line)
 	*bloc = ft_exp_handle(*bloc, line, 0);
 	if (!*bloc)
 		return ;
-	*bloc = ft_exp_handle(*bloc, line, 0);
 }
 
 void	ft_bloc_cmd_free(char **split, int i)
