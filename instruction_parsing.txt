@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    instruction_parsing.txt                            :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: louisa <louisa@student.42.fr>              +#+  +:+       +#+         #
+#    By: lboudjem <lboudjem@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/03/10 16:14:31 by lboudjem          #+#    #+#              #
-#    Updated: 2023/03/28 18:45:06 by louisa           ###   ########.fr        #
+#    Updated: 2023/03/29 10:51:23 by lboudjem         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -107,9 +107,6 @@ casser tous les mallocs
 export test='echo $USER C"es"t'
 $ et redirection dans var env
 tab
-echo \\ : Heap overflow
-echo "\" : Heap overflow
-export test="\"
 
 $test (avec test vide)
 
@@ -118,9 +115,13 @@ export TEST='""' -> puis echo "$TEST"
 export test='""' puis echo "'$test'"
 export test="''" puis echo $test ''
 export test=truc
+echo \\ : Heap overflow
+echo "\" : Heap overflow
 echo coucou > "ihi aha"ihi
 here_doc +  fleche du haut
 | echo coucou
+export test="\"
+echo' a'
 >>> log : leaks
 >>>>> log
 > >> log

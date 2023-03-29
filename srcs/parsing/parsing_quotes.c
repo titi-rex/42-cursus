@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing_quotes.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: lboudjem <lboudjem@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/11 14:27:10 by lboudjem          #+#    #+#             */
-/*   Updated: 2023/03/28 21:23:06 by tlegrand         ###   ########.fr       */
+/*   Updated: 2023/03/29 10:49:27 by lboudjem         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,7 @@ void	ft_skip_quotes(char *bloc, char **cpy, int *i, int *j)
 	if (bloc[*i] == 34)
 	{
 		(*i)++;
-		while (bloc[*i] && (bloc[*i] != 34 || bloc[(*i) - 1] == '\\'))
+		while (bloc[*i] && (bloc[*i] != 34))
 		{
 			(*cpy)[*j] = bloc[*i];
 			(*j)++;
@@ -79,7 +79,7 @@ void	ft_skip_quotes(char *bloc, char **cpy, int *i, int *j)
 	else if (bloc[*i] == 39)
 	{
 		(*i)++;
-		while (bloc[*i] && (bloc[*i] != 39 || bloc[(*i) - 1] == '\\'))
+		while (bloc[*i] && (bloc[*i] != 39))
 		{
 			(*cpy)[*j] = bloc[*i];
 			(*j)++;
@@ -89,7 +89,7 @@ void	ft_skip_quotes(char *bloc, char **cpy, int *i, int *j)
 	}
 }
 
-char	*ft_quotes_delete(char *bloc, int i, int j)
+char	*ft_quotes_delete_secure(char *bloc, int i, int j)
 {
 	char	*cpy;
 	int		size;
@@ -109,10 +109,29 @@ char	*ft_quotes_delete(char *bloc, int i, int j)
 		}
 		else if (bloc[i] != 34 && bloc[i] != 39)
 			cpy[j++] = bloc[i++];
+
 		else if (bloc[i] == 34 || bloc[i] == 39)
 			ft_skip_quotes(bloc, &cpy, &i, &j);
-		if (!bloc[i])
+		if (!bloc[i - 1] || !bloc[i])
 			break ;
 	}
 	return (ft_free_secure(bloc), cpy);
+}
+
+char	*ft_quotes_delete(char *bloc, int i, int j)
+{
+	int	tmp;
+	int	quote;
+
+	tmp = 0;
+	quote = 0;
+	while (bloc[tmp])
+	{
+		if (bloc[tmp] == 34 || bloc[tmp] == 39)
+			quote = 1;
+		tmp++;
+	}
+	if (quote == 1)
+		bloc = ft_quotes_delete_secure(bloc, i, j);
+	return (bloc);
 }
