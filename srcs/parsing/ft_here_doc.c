@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_here_doc.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: lboudjem <lboudjem@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/13 18:46:53 by tlegrand          #+#    #+#             */
-/*   Updated: 2023/03/29 12:46:46 by tlegrand         ###   ########.fr       */
+/*   Updated: 2023/03/29 13:01:39 by lboudjem         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ char	*ft_here_doc(char *end)
 		input = readline(" $> ");
 		if (!input)
 			break ;
-		if (!ft_strncmp(input, end, len))
+		if (!ft_strncmp(input, end, len + 1))
 			return (free(input), here_doc);
 		tmp = ft_strjoin3(here_doc, input, "\n");
 		input = ft_free_secure(input);

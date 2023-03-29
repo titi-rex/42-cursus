@@ -6,7 +6,7 @@
 #    By: lboudjem <lboudjem@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/03/10 16:14:31 by lboudjem          #+#    #+#              #
-#    Updated: 2023/03/29 12:46:21 by lboudjem         ###   ########.fr        #
+#    Updated: 2023/03/29 13:59:16 by lboudjem         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -103,6 +103,9 @@ echo 'jojo' \
  
 
 - A ne pas oublier:
+cat <<"<<""<"
+<<"<">>"<"
+export test='echo C"est > $out'
 
 - Fait (normalement) (a tester quand meme) :
 export TEST='""' -> puis echo "$TEST"
@@ -121,6 +124,7 @@ export test=truc
 export test="\"
 echo' a'
 tab
+<< ""
 >>> log : leaks
 >>>>> log
 > >> log
