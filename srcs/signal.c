@@ -6,7 +6,7 @@
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/11 16:11:47 by tlegrand          #+#    #+#             */
-/*   Updated: 2023/03/27 11:15:08 by tlegrand         ###   ########.fr       */
+/*   Updated: 2023/03/28 17:19:02 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,12 +26,6 @@ void	sig_handler_shell(int sig)
 		rl_on_new_line();
 		g_status |= INTERRUPT;
 	}
-}
-
-void	sig_handler_loulou(int sig)
-{
-	g_status |= INTERRUPT;
-	(void)sig;
 }
 
 void	sig_handler_child(int sig)
