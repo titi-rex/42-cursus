@@ -6,7 +6,7 @@
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/15 17:36:22 by tlegrand          #+#    #+#             */
-/*   Updated: 2023/03/29 14:09:34 by tlegrand         ###   ########.fr       */
+/*   Updated: 2023/03/29 14:11:45 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,6 @@ void	exe_error_403(t_line *line, char *cmd)
 	line->exit_status = 126;
 	ft_clean_exit(line, 126);
 }
-
 
 void	exe_error_404(t_line *line, char *cmd)
 {
