@@ -35,6 +35,15 @@ valgrind_ignore_leaks.txt :
 	fun:add_history
 }
 
+
+
+new parsing
+echo	"coucou   $USER   ca va?" > log | < file cat || echo oui '$SHELL' ;
+(echo)->(coucou  )->($USER)->(  ca va ?)->(>)->(log)->(|)->(<)->(file)->(cat)->(||)->(echo)->(oui)->($SHELL)->(;)
+word 	qword			dolls	qword		red	  word	pipe  red 	word  word 	or 		word	word	Qdolls end
+
+
+
 gneheheheheheheheheh
 them bash tonka
 orha : 
