@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing_expansion.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: lboudjem <lboudjem@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/13 17:33:36 by louisa            #+#    #+#             */
-/*   Updated: 2023/03/29 12:47:16 by tlegrand         ###   ########.fr       */
+/*   Updated: 2023/03/30 11:16:23 by lboudjem         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,7 +77,7 @@ char	*ft_exp_handle(char *bloc, t_line *line, int i)
 			i += 2;
 		else if (bloc[i] && bloc[i] == '$' && bloc[i + 1] == '?')
 			bloc = ft_exp_replace_exit_status(bloc, i, line);
-		else if (bloc[i] && bloc[i] == '$' && ft_isalnum(bloc[i + 1]) == 0)
+		else if (bloc[i] && bloc[i] == '$' && ft_isalnum(bloc[i + 1]) == 0 && bloc[i + 1] != '_')
 			break ;
 		else if (bloc[i] && bloc[i] == '$')
 		{

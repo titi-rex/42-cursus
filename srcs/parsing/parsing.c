@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: lboudjem <lboudjem@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/08 11:21:07 by louisa            #+#    #+#             */
-/*   Updated: 2023/03/29 13:11:36 by tlegrand         ###   ########.fr       */
+/*   Updated: 2023/03/30 09:31:55 by lboudjem         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ int	ft_bloc_cmd(char *arg, t_line *line, t_list	*io)
 
 	i = 0;
 	cmds = NULL;
-	split = ft_split_bis(arg, " ");
+	split = ft_split_bis(arg, " \t");
 	while (split[i])
 	{
 		tmp = ft_quotes_delete(split[i], 0, 0);
