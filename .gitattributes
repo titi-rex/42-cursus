@@ -1,2 +1,3 @@
-*.ber linguist-language=C
-*.xpm linguist-language=C
+*.ber linguist-language=sprites
+*.xpm linguist-language=sprites
+minilibx-linux linguist-vendored
