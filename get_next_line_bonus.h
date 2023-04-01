@@ -6,7 +6,7 @@
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/06 12:00:41 by tlegrand          #+#    #+#             */
-/*   Updated: 2022/12/06 12:00:56 by tlegrand         ###   ########.fr       */
+/*   Updated: 2023/04/01 11:45:58 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,15 +16,19 @@
 # include <stdlib.h>
 # include <limits.h>
 
+# ifndef OPEN_MAX
+#  define OPEN_MAX 512
+# endif
+
 # ifndef BUFFER_SIZE
 #  define BUFFER_SIZE 1
 # endif
 
 char	*get_next_line(int fd);
-char	*ft_self_append(char *s1, char const *s2);
-size_t	ft_strlcpy(char *dst, const char *src, size_t dstsize);
-size_t	ft_strlen(const char *s);
-char	*ft_strchr(const char *s, int c);
-char	*ft_substr(char const *s, unsigned int start, size_t len);
+char	*gnl_chr_nl(char *s);
+size_t	gnl_strlcat(char *dst, char *src, size_t start);
+char	*gnl_refresh(char *s_buff);
+char	*gnl_expand(char *line, size_t *size);
+char	*gnl_init(size_t *idx, size_t *size, int *n_read);
 
 #endif

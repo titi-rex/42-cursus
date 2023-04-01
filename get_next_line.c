@@ -6,93 +6,37 @@
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/28 16:40:14 by tlegrand          #+#    #+#             */
-/*   Updated: 2022/12/09 15:52:45 by tlegrand         ###   ########.fr       */
+/*   Updated: 2023/04/01 11:48:07 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 
-static int	ft_fill_buff(char **s_buff, int fd)
-{
-	char	read_buff[BUFFER_SIZE + 1];
-	int		len;
-
-	while (!ft_strchr(*s_buff, '\n'))
-	{
-		len = read(fd, read_buff, BUFFER_SIZE);
-		if (len == -1)
-		{
-			free(*s_buff);
-			*s_buff = NULL;
-			return (1);
-		}
-		if (!len)
-			break ;
-		read_buff[len] = '\0';
-		*s_buff = ft_self_append(*s_buff, read_buff);
-		if (!*s_buff)
-			return (1);
-		if (!len)
-			break ;
-	}
-	return (0);
-}
-
-static char	*get_line(char *s_buff)
-{
-	char	*line;
-	size_t	i;
-
-	if (!s_buff || !*s_buff)
-		return (NULL);
-	i = 0;
-	while (s_buff[i] && s_buff[i] != '\n')
-		i++;
-	if (s_buff[i] == '\n')
-		i++;
-	line = ft_substr(s_buff, 0, i);
-	return (line);
-}
-/*essayer de reduire getstock en mettant un marquer dqns get line */
-static char	*get_stock(char *s_buff)
-{
-	size_t	i;
-	char	*new;
-
-	if (!s_buff)
-		return (NULL);
-	i = 0;
-	while (s_buff[i] && s_buff[i] != '\n')
-		i++;
-	if (!s_buff[i])
-	{
-		free(s_buff);
-		return (NULL);
-	}
-	if (s_buff[i] == '\n')
-		i++;
-	new = ft_substr(s_buff, i, ft_strlen(s_buff) - i);
-	free(s_buff);
-	return (new);
-}
-
 char	*get_next_line(int fd)
 {
-	static char	*s_buff;
+	static char	s_buff[BUFFER_SIZE + 1];
 	char		*line;
+	size_t		idx;
+	size_t		size;
+	int			n_read;
 
 	if (fd < 0 || BUFFER_SIZE < 1 || fd > OPEN_MAX)
 		return (NULL);
-	if (ft_fill_buff(&s_buff, fd))
-		return (NULL);
-	line = get_line(s_buff);
-	if (!line)
+	line = gnl_init(&idx, &size, &n_read);
+	while (!gnl_chr_nl(line))
 	{
-		if (s_buff)
-			free(s_buff);
-		s_buff = NULL;
-		return (NULL);
+		if (s_buff[0] == 0)
+			n_read = read(fd, s_buff, BUFFER_SIZE);
+		if (n_read == -1)
+			return (free(line), NULL);
+		else if (n_read == 0)
+			return (line);
+		if (idx == size - 1)
+			line = gnl_expand(line, &size);
+		if (!line)
+			return (NULL);
+		idx = gnl_strlcat(line, s_buff, idx);
+		gnl_refresh(s_buff);
 	}
-	s_buff = get_stock(s_buff);
 	return (line);
 }

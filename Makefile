@@ -6,7 +6,7 @@
 #    By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/12/03 11:42:37 by tlegrand          #+#    #+#              #
-#    Updated: 2022/12/03 11:52:28 by tlegrand         ###   ########.fr        #
+#    Updated: 2023/04/01 11:51:21 by tlegrand         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -38,16 +38,16 @@ FLAGS		=	-Wall -Wextra -Werror -I ${HEADER}
 all		: 	test
 
 test	:	${DIR_OBJS} ${OBJS} ${OBJS_T}
-		${CC} ${FLAGS} ${OBJS} ${OBJS_T} && ./a.out && ${RM} a.out
+		${CC} ${FLAGS} ${OBJS} ${OBJS_T} 
 
 leaks	: ${DIR_OBJS} ${OBJS} ${OBJS_T}
-		${CC} ${FLAGS} ${OBJS} ${OBJS_T} && leaks --atExit -- ./a.out && ${RM} a.out
+		${CC} ${FLAGS} ${OBJS} ${OBJS_T} && leaks --atExit -- ./a.out
 
 test_b	:	${DIR_OBJS} ${OBJS_B} ${OBJS_T}
-		${CC} ${FLAGS} ${OBJS_B} ${OBJS_T} && ./a.out && ${RM} a.out
+		${CC} ${FLAGS} ${OBJS_B} ${OBJS_T} && ./a.out
 
 leaks_b	: ${DIR_OBJS} ${OBJS_B} ${OBJS_T}
-		${CC} ${FLAGS} ${OBJS_B} ${OBJS_T} && leaks --atExit -- ./a.out && ${RM} a.out
+		${CC} ${FLAGS} ${OBJS_B} ${OBJS_T} && leaks --atExit -- ./a.out
 
 nn	:
 	norminette ${SRCS} ${SRCS_B} ${HEADER} ${HEADER_B}

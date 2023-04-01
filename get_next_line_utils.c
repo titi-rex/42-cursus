@@ -6,103 +6,83 @@
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/28 16:40:09 by tlegrand          #+#    #+#             */
-/*   Updated: 2022/12/09 15:53:18 by tlegrand         ###   ########.fr       */
+/*   Updated: 2023/04/01 11:46:26 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 
-char	*ft_substr(char const *s, unsigned int start, size_t len)
+char	*gnl_chr_nl(char *s)
 {
-	char	*sub;
-
 	if (!s)
 		return (NULL);
-	if (start >= ft_strlen(s))
-	{
-		sub = (char *)malloc(sizeof(char));
-		if (sub)
-			sub[0] = 0;
-		return (sub);
-	}
-	if (len > ft_strlen(s) - start)
-		len = ft_strlen(s) - start;
-	sub = (char *)malloc((len + 1) * sizeof(char));
-	if (!sub)
-		return (sub);
-	ft_strlcpy(sub, s + start, len + 1);
-	return (sub);
-}
-
-char	*ft_strchr(const char *s, int c)
-{
-	int	i;
-
-	i = 0;
-	if (!s)
-		return (NULL);
-	while (*(s + i) != (char)c && *(s + i) != 0)
-		i++;
-	if (*(s + i) == (char)c)
-		return ((char *)(s + i));
+	while (*s != '\n' && *s)
+		++s;
+	if (*s == '\n')
+		return (s);
 	return (NULL);
 }
 
-size_t	ft_strlcpy(char *dst, const char *src, size_t dstsize)
+size_t	gnl_strlcat(char *dst, char *src, size_t start)
 {
-	size_t	i;
+	size_t	j;
 
-	i = 0;
-	if (dstsize)
+	j = 0;
+	while (src && src[j] && src[j] != '\n')
 	{
-		while (i < dstsize - 1 && src[i])
-		{
-			dst[i] = src[i];
-			i++;
-		}
-		dst[i] = 0;
+		dst[start + j] = src[j];
+		++j;
 	}
-	while (src[i])
-		i++;
-	return (i);
+	if (src && src[j] == '\n')
+	{
+		dst[start + j] = src[j];
+		++j;
+	}
+	dst[start + j] = '\0';
+	return (start + j);
 }
 
-size_t	ft_strlen(const char *s)
+char	*gnl_refresh(char *s_buff)
 {
-	size_t	i;
+	char	*ptr;
+	int		len;
 
-	i = 0;
-	while (s[i])
-		i++;
-	return (i);
-}
-/*reduire self_append grace a protection strelen?*/
-
-char	*ft_self_append(char *self, char const *to_append)
-{
-	size_t	len_s;
-	size_t	len_ta;
-	char	*new_str;
-
-	if (!self && !to_append)
-		return (NULL);
-	if (!self)
-		len_s = 0;
-	else
-		len_s = ft_strlen(self);
-	if (!to_append)
-		len_ta = 0;
-	else
-		len_ta = ft_strlen(to_append);
-	new_str = (char *)malloc((len_s + len_ta + 1) * sizeof(char));
-	if (new_str)
+	ptr = gnl_chr_nl(s_buff);
+	if (ptr)
+		ptr++;
+	len = 0;
+	while (ptr && *ptr && len < BUFFER_SIZE)
 	{
-		if (self)
-			ft_strlcpy(new_str, self, len_s + 1);
-		if (to_append)
-			ft_strlcpy(new_str + len_s, to_append, len_ta + 1);
+		*(s_buff + len) = *ptr;
+		len++;
+		ptr++;
 	}
-	if (self)
-		free(self);
-	return (new_str);
+	while (len < BUFFER_SIZE)
+	{
+		*(s_buff + len) = 0;
+		len++;
+	}
+	return (s_buff);
+}
+
+char	*gnl_expand(char *line, size_t *size)
+{
+	char	*new_line;
+
+	*size = ((*size + BUFFER_SIZE) << 1) + 1;
+	new_line = malloc(*size * sizeof(char));
+	if (!new_line)
+		return (free(line), NULL);
+	gnl_strlcat(new_line, line, 0);
+	if (line)
+		free(line);
+	return (new_line);
+}
+
+char	*gnl_init(size_t *idx, size_t *size, int *n_read)
+{
+	*idx = 0;
+	*size = 1;
+	*n_read = 1;
+	return (NULL);
 }
