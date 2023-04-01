@@ -14,7 +14,6 @@
 # define GET_NEXT_LINE_BONUS_H
 # include <unistd.h>
 # include <stdlib.h>
-# include <fcntl.h> 
 # include <limits.h>
 
 # ifndef BUFFER_SIZE
