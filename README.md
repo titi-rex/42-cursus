@@ -26,7 +26,7 @@ Cardboard Box by cinamerg <br>
 #### General
 I use a structure storing everything i need for the game.
 #### Map parsing
-First step : get the map. Rather than use GNl, i made a function reading the file in one shot, then split the result by '\n' .<br>
+First step : get the map. Rather than use GNL, i made a function reading the file in one shot, then split the result by '\n' .<br>
 After ward the parsing is quite easy, the biggest difficulty being finding if there is a path. To do that, i used a simple backtraking function. <br>
 Th map is stored in struct with position of wall, collectible, starting position and exit in a char ** <br>
 #### The game
