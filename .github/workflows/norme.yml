@@ -1,6 +1,10 @@
 # .github/workflows/main.yml
 name: Norminette
-on: pull_request
+on: 
+  pull_request:
+  push:
+    branches:
+      - main
 
 jobs:
   norminette_job:
