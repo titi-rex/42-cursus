@@ -6,7 +6,7 @@
 #    By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/12/03 11:42:37 by tlegrand          #+#    #+#              #
-#    Updated: 2023/04/01 11:51:21 by tlegrand         ###   ########.fr        #
+#    Updated: 2023/04/10 16:33:30 by tlegrand         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -32,23 +32,16 @@ HEADER_B	=	get_next_line_bonus.h \
 
 RM			=	rm -rf
 
-FLAGS		=	-Wall -Wextra -Werror -I ${HEADER}
+FLAGS		=	-Wall -Wextra -Werror #-fsanitize=address -fsanitize=leak -fsanitize=pointer-subtract -fsanitize=pointer-compare -fsanitize=undefined -g3
 
 
 all		: 	test
 
-test	:	${DIR_OBJS} ${OBJS} ${OBJS_T}
-		${CC} ${FLAGS} ${OBJS} ${OBJS_T} 
-
-leaks	: ${DIR_OBJS} ${OBJS} ${OBJS_T}
-		${CC} ${FLAGS} ${OBJS} ${OBJS_T} && leaks --atExit -- ./a.out
+test	:	${DIR_OBJS} ${OBJS} ${OBJS_T} ${HEADER}
+		${CC} ${FLAGS} ${OBJS} ${OBJS_T} -o test
 
 test_b	:	${DIR_OBJS} ${OBJS_B} ${OBJS_T}
-		${CC} ${FLAGS} ${OBJS_B} ${OBJS_T} && ./a.out
-
-leaks_b	: ${DIR_OBJS} ${OBJS_B} ${OBJS_T}
-		${CC} ${FLAGS} ${OBJS_B} ${OBJS_T} && leaks --atExit -- ./a.out
-
+		${CC} ${FLAGS} ${OBJS_B} ${OBJS_T} -o test
 nn	:
 	norminette ${SRCS} ${SRCS_B} ${HEADER} ${HEADER_B}
 

@@ -6,7 +6,7 @@
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/02 18:27:08 by tlegrand          #+#    #+#             */
-/*   Updated: 2023/04/01 11:44:16 by tlegrand         ###   ########.fr       */
+/*   Updated: 2023/04/10 15:56:49 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ char	*get_next_line(int fd)
 			return (free(line), NULL);
 		else if (n_read == 0)
 			return (line);
-		if (idx == size - 1)
+		if ((size_t)n_read >= size - idx)
 			line = gnl_expand(line, &size);
 		if (!line)
 			return (NULL);
