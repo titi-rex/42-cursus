@@ -1,0 +1,66 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   philo.h                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/04/04 19:50:00 by tlegrand          #+#    #+#             */
+/*   Updated: 2023/04/06 12:01:27 by tlegrand         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#ifndef PHILO_H
+# define PHILO_H
+# include <stdio.h>
+# include <unistd.h>
+# include <stdlib.h>
+# include <pthread.h>
+# include <sys/time.h>
+
+typedef struct s_philo
+{
+	int				id;
+	pthread_t		id_thread;
+	long int		last_meal;
+	int				n_meal;
+	pthread_mutex_t	fork_left;
+	pthread_mutex_t	*fork_right;
+	struct s_data	*data;
+
+}	t_philo;
+
+typedef struct s_data
+{
+	t_philo			*philo;
+	int				time_death;
+	int				time_eat;
+	int				time_sleep;
+	int				n_philo;
+	int				n_meal;
+	pthread_mutex_t	write;
+	pthread_mutex_t	death;
+	int				dead;
+}	t_data;
+
+int	parser(int ac, char **arg, t_data *data);
+
+
+#endif
+
+/*
+
+memset
+printf write
+malloc / free
+gettimeofdat
+pthread : 
+-create
+-detach
+-join
+mutex :
+-init
+-destroy
+-lock
+-unlpck
+*/
