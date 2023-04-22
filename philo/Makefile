@@ -6,7 +6,7 @@
 #    By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/02/12 20:46:19 by tlegrand          #+#    #+#              #
-#    Updated: 2023/04/04 20:03:12 by tlegrand         ###   ########.fr        #
+#    Updated: 2023/04/23 00:44:18 by tlegrand         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,7 +20,7 @@ NAME		=	philo
 #	==============================	SOURCES	==============================	#
 DIR_SRCS		=	srcs/
 
-LST_SRCS		= 	main.c
+LST_SRCS		= 	main.c parser.c init.c ft_atoi.c routine.c utils.c
 SRCS			=	${addprefix ${DIR_SRCS}, ${LST_SRCS}}
 
 
@@ -41,7 +41,7 @@ MAKE		=	make -s
 
 
 #	==============================	FLAGS	==============================	#
-CFLAGS		=	-Wall -Wextra -Werror -I${DIR_HEADER}
+CFLAGS		=	-Wall -Wextra -Werror -I${DIR_HEADER} #-fsanitize=thread -g3
 
 
 
@@ -53,11 +53,9 @@ all		:	${NAME}
 
 clean	:
 		@${RM} ${DIR_OBJS}
-		@$(MAKE) -C ${DIR_LIBFT} clean
 
 fclean	:	clean
 		@${RM} ${NAME} ${NAME_B}
-		@$(MAKE) -C ${DIR_LIBFT} fclean
 		@printf "$(GREEN)All clean !\n$(END)"
 
 re		:	fclean

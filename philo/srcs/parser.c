@@ -6,7 +6,7 @@
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/06 11:41:39 by tlegrand          #+#    #+#             */
-/*   Updated: 2023/04/06 12:00:19 by tlegrand         ###   ########.fr       */
+/*   Updated: 2023/04/23 00:31:39 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,6 @@ static int	check_arg(t_data *data)
 		return (1);
 	if (data->time_sleep < 0)
 		return (1);
-
 	return (0);
 }
 
@@ -56,6 +55,9 @@ int	parser(int ac, char **arg, t_data *data)
 			return (ft_error_arg(3));
 	}
 	else
-		data->n_meal = -1;
+		data->n_meal = -2;
+	data->dead = 0;
+	pthread_mutex_init(&data->m_write, NULL);
+	pthread_mutex_init(&data->m_death, NULL);
 	return (0);
 }
