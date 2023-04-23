@@ -6,7 +6,7 @@
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/04 19:50:05 by tlegrand          #+#    #+#             */
-/*   Updated: 2023/04/23 00:53:05 by tlegrand         ###   ########.fr       */
+/*   Updated: 2023/04/23 16:58:58 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,20 @@ void	print_data(t_data *data)
 	printf("time_sleep	: %ld\n", data->time_sleep);
 	printf("n_meal	: %d\n", data->n_meal);
 	printf("dead	: %d\n", data->dead);
+}
+
+int	ending(t_data *data)
+{
+	int	i;
+
+	i = 0;
+	while (i < data->n_philo)
+	{
+		pthread_join(data->philo[i].id_thread, NULL);
+		printf("wait%d ", i);
+		++i;
+	}
+	return (0);
 }
 
 int	main(int ac, char **arg)
@@ -37,7 +51,7 @@ int	main(int ac, char **arg)
 		return (1);
 	while (end(&data) == 0)
 		continue ;
-	usleep(100);
+	ending(&data);
 	if (data.n_meal != -2 && data.dead == data.n_philo)
 		printf("All philosophers had ate enough\n");
 	return (0);

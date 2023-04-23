@@ -6,7 +6,7 @@
 #    By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/02/12 20:46:19 by tlegrand          #+#    #+#              #
-#    Updated: 2023/04/23 00:44:18 by tlegrand         ###   ########.fr        #
+#    Updated: 2023/04/23 17:11:17 by tlegrand         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -41,7 +41,7 @@ MAKE		=	make -s
 
 
 #	==============================	FLAGS	==============================	#
-CFLAGS		=	-Wall -Wextra -Werror -I${DIR_HEADER} #-fsanitize=thread -g3
+CFLAGS		=	-Wall -Wextra -Werror -I${DIR_HEADER} -fsanitize=thread -g3
 
 
 

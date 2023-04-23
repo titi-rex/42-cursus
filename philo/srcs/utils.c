@@ -6,7 +6,7 @@
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/22 23:16:11 by tlegrand          #+#    #+#             */
-/*   Updated: 2023/04/23 00:53:23 by tlegrand         ###   ########.fr       */
+/*   Updated: 2023/04/23 17:28:52 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,13 @@
 
 int	end(t_data *data)
 {
+	pthread_mutex_lock(&data->m_death);
 	if (data->dead < 0 || data->dead == data->n_philo)
+	{
+		pthread_mutex_unlock(&data->m_death);
 		return (1);
+	}
+	pthread_mutex_unlock(&data->m_death);
 	return (0);
 }
 

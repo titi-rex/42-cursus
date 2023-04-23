@@ -6,7 +6,7 @@
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/22 20:46:13 by tlegrand          #+#    #+#             */
-/*   Updated: 2023/04/23 01:11:33 by tlegrand         ###   ########.fr       */
+/*   Updated: 2023/04/23 16:58:22 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,8 @@ void	*philosophing(void *ptr)
 			break ;
 		p_print(philo, "is thinking");
 	}
+	philo->n_meal = -1;
+	dprintf(2, "%d dead\n", philo->id);
 	return (NULL);
 }
 
@@ -69,7 +71,6 @@ int	philo_launch(t_data *data)
 		if (pthread_create(&data->philo[i].id_thread, NULL, &philosophing, \
 			&data->philo[i]))
 			return (i);
-		pthread_detach(data->philo[i].id_thread);
 		++i;
 	}
 	return (0);
