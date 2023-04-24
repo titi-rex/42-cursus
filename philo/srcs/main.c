@@ -6,7 +6,7 @@
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/04 19:50:05 by tlegrand          #+#    #+#             */
-/*   Updated: 2023/04/23 16:58:58 by tlegrand         ###   ########.fr       */
+/*   Updated: 2023/04/24 15:21:51 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,6 @@ int	ending(t_data *data)
 	while (i < data->n_philo)
 	{
 		pthread_join(data->philo[i].id_thread, NULL);
-		printf("wait%d ", i);
 		++i;
 	}
 	return (0);
@@ -44,7 +43,6 @@ int	main(int ac, char **arg)
 		return (1);
 	if (data.n_philo == 0)
 		return (0);
-	print_data(&data);
 	if (philo_init(&data))
 		return (1);
 	if (philo_launch(&data))

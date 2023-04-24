@@ -6,7 +6,7 @@
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/06 11:41:39 by tlegrand          #+#    #+#             */
-/*   Updated: 2023/04/23 00:31:39 by tlegrand         ###   ########.fr       */
+/*   Updated: 2023/04/24 12:54:34 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,6 @@ int	parser(int ac, char **arg, t_data *data)
 	else
 		data->n_meal = -2;
 	data->dead = 0;
-	pthread_mutex_init(&data->m_write, NULL);
-	pthread_mutex_init(&data->m_death, NULL);
+	pthread_mutex_init(&data->m_death_note, NULL);
 	return (0);
 }

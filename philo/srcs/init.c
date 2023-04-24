@@ -6,7 +6,7 @@
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/22 20:46:13 by tlegrand          #+#    #+#             */
-/*   Updated: 2023/04/23 16:58:22 by tlegrand         ###   ########.fr       */
+/*   Updated: 2023/04/24 15:28:51 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,12 +26,14 @@ int	philo_init(t_data *data)
 		data->philo[i].time_last_meal = 0;
 		data->philo[i].n_meal = 0;
 		pthread_mutex_init(&data->philo[i].m_fork_left, NULL);
+		data->philo[i].fork_left = 0;
 		if (data->n_philo == 1)
 			data->philo[i].m_fork_right = NULL;
-		else if (i < data->n_philo - 1)
-			data->philo[i].m_fork_right = &data->philo[i + 1].m_fork_left;
 		else
-			data->philo[i].m_fork_right = &data->philo[0].m_fork_left;
+		{
+			data->philo[i].m_fork_right = &data->philo[(i + 1) % data->n_philo].m_fork_left;
+			data->philo[i].fork_right = &data->philo[(i + 1) % data->n_philo].fork_left;
+		}
 		data->philo[i].data = data;
 		++i;
 	}
@@ -43,9 +45,10 @@ void	*philosophing(void *ptr)
 	t_philo	*philo;
 
 	philo = ptr;
-	philo->time_last_meal = get_time();
+	philo->time_last_meal = philo->data->time_start;
+	p_print(philo, "is thinking");
 	if (philo->id % 2 == 0)
-		p_pause(philo, philo->data->time_eat);
+		p_pause(philo, (philo->data->time_eat * 0.9));
 	while (end(philo->data) == 0 && p_died(philo) == 0)
 	{
 		if (p_eat(philo))
@@ -56,17 +59,18 @@ void	*philosophing(void *ptr)
 		p_print(philo, "is thinking");
 	}
 	philo->n_meal = -1;
-	dprintf(2, "%d dead\n", philo->id);
 	return (NULL);
 }
 
 int	philo_launch(t_data *data)
 {
 	int	i;
+	int nb;
 
 	i = 0;
+	nb = data->n_philo;
 	data->time_start = get_time();
-	while (i < data->n_philo)
+	while (i < nb)
 	{
 		if (pthread_create(&data->philo[i].id_thread, NULL, &philosophing, \
 			&data->philo[i]))

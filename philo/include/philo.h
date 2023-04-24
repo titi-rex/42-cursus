@@ -6,7 +6,7 @@
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/04 19:50:00 by tlegrand          #+#    #+#             */
-/*   Updated: 2023/04/22 23:59:45 by tlegrand         ###   ########.fr       */
+/*   Updated: 2023/04/24 12:49:40 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,8 @@ typedef struct s_philo
 	int				n_meal;
 	pthread_mutex_t	m_fork_left;
 	pthread_mutex_t	*m_fork_right;
+	int				fork_left;
+	int				*fork_right;
 	struct s_data	*data;
 
 }	t_philo;
@@ -40,8 +42,7 @@ typedef struct s_data
 	long int		time_sleep;
 	long int		time_start;
 	int				n_meal;
-	pthread_mutex_t	m_write;
-	pthread_mutex_t	m_death;
+	pthread_mutex_t	m_death_note;
 	int				dead;
 }	t_data;
 
@@ -52,7 +53,7 @@ int			ft_atoi(char *str);
 
 long int	get_time(void);
 int			end(t_data *data);
-int			p_print(t_philo *philo, char *str);
+void		p_print(t_philo *philo, char *str);
 
 
 int			p_pause(t_philo *philo, long int duration);
