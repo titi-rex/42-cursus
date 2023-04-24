@@ -6,7 +6,7 @@
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/22 20:46:13 by tlegrand          #+#    #+#             */
-/*   Updated: 2023/04/24 15:28:51 by tlegrand         ###   ########.fr       */
+/*   Updated: 2023/04/24 15:34:44 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ void	*philosophing(void *ptr)
 	p_print(philo, "is thinking");
 	if (philo->id % 2 == 0)
 		p_pause(philo, (philo->data->time_eat * 0.9));
-	while (end(philo->data) == 0 && p_died(philo) == 0)
+	while (end(philo->data) == 0)
 	{
 		if (p_eat(philo))
 			break ;
