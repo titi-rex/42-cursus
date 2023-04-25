@@ -6,7 +6,7 @@
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/22 20:46:13 by tlegrand          #+#    #+#             */
-/*   Updated: 2023/04/25 20:14:16 by tlegrand         ###   ########.fr       */
+/*   Updated: 2023/04/26 00:10:20 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,43 +23,24 @@ int	philo_init(t_data *data)
 	while (i < data->n_philo)
 	{
 		data->philo[i].id = i + 1;
-		data->philo[i].id_thread = 0;
+		data->philo[i].pid = 0;
 		data->philo[i].time_last_meal = 0;
 		data->philo[i].n_meal = 0;
-		pthread_mutex_init(&data->philo[i].m_fork_left, NULL);
-		data->philo[i].fork_left = 0;
-		data->philo[i].m_fork_right = \
-			&data->philo[(i + 1) % data->n_philo].m_fork_left;
-		data->philo[i].fork_right = \
-			&data->philo[(i + 1) % data->n_philo].fork_left;
-		if (data->n_philo == 1)
-			data->philo[i].m_fork_right = NULL;
+		data->philo->sem_forks = data->sem_forks;
 		data->philo[i].data = data;
 		++i;
 	}
 	return (0);
 }
 
-void	*philosophing(void *ptr)
+static int	philo_create(t_philo *philo)
 {
-	t_philo	*philo;
-
-	philo = ptr;
-	philo->time_last_meal = philo->data->time_start;
-	p_print(philo, "is thinking");
-	if (philo->id % 2 == 0)
-		p_pause(philo, (philo->data->time_eat * 0.9));
-	while (is_end(philo->data) == 0)
-	{
-		if (p_eat(philo))
-			break ;
-		p_print(philo, "is sleeping");
-		if (p_pause(philo, philo->data->time_sleep))
-			break ;
-		p_print(philo, "is thinking");
-	}
-	philo->n_meal = -1;
-	return (NULL);
+	philo->pid = fork();
+	if (philo->pid == -1)
+		return (-1);
+	else if (philo->pid == 0)
+		philosophing(philo);
+	return (0);
 }
 
 int	philo_launch(t_data *data)
@@ -72,10 +53,8 @@ int	philo_launch(t_data *data)
 		return (-1);
 	while (i < data->n_philo)
 	{
-		if (pthread_create(&data->philo[i].id_thread, NULL, &philosophing, \
-			&data->philo[i]))
-			return (printf("Error : philo %d creation failed\n", \
-				data->philo[i].id), i);
+		if (philo_create(&data->philo[i]))
+			return (printf("Error : philo %d creation failed\n", i), i);
 		++i;
 	}
 	return (0);
