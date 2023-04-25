@@ -6,7 +6,7 @@
 #    By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/02/12 20:46:19 by tlegrand          #+#    #+#              #
-#    Updated: 2023/04/24 15:35:27 by tlegrand         ###   ########.fr        #
+#    Updated: 2023/04/25 18:54:07 by tlegrand         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,7 +20,7 @@ NAME		=	philo
 #	==============================	SOURCES	==============================	#
 DIR_SRCS		=	srcs/
 
-LST_SRCS		= 	main.c parser.c init.c ft_atoi.c routine.c utils.c
+LST_SRCS		= 	main.c parser.c init_launch.c routine.c utils.c
 SRCS			=	${addprefix ${DIR_SRCS}, ${LST_SRCS}}
 
 

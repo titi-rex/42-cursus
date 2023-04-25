@@ -6,38 +6,24 @@
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/04 19:50:05 by tlegrand          #+#    #+#             */
-/*   Updated: 2023/04/24 15:21:51 by tlegrand         ###   ########.fr       */
+/*   Updated: 2023/04/25 18:52:22 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/philo.h"
 
-void	print_data(t_data *data)
+static void	clear_all(t_data *data)
 {
-	printf("n_philo	: %d\n", data->n_philo);
-	printf("time_death	: %ld\n", data->time_death);
-	printf("time_eat	: %ld\n", data->time_eat);
-	printf("time_sleep	: %ld\n", data->time_sleep);
-	printf("n_meal	: %d\n", data->n_meal);
-	printf("dead	: %d\n", data->dead);
-}
-
-int	ending(t_data *data)
-{
-	int	i;
-
-	i = 0;
-	while (i < data->n_philo)
-	{
-		pthread_join(data->philo[i].id_thread, NULL);
-		++i;
-	}
-	return (0);
+	while (--data->n_philo > 0)
+		pthread_mutex_destroy(&data->philo[data->n_philo].m_fork_left);
+	free(data->philo);
+	pthread_mutex_destroy(&data->m_death_note);
 }
 
 int	main(int ac, char **arg)
 {
 	t_data	data;
+	int		i;
 
 	if (parser(ac, arg, &data))
 		return (1);
@@ -45,12 +31,16 @@ int	main(int ac, char **arg)
 		return (0);
 	if (philo_init(&data))
 		return (1);
-	if (philo_launch(&data))
-		return (1);
-	while (end(&data) == 0)
-		continue ;
-	ending(&data);
-	if (data.n_meal != -2 && data.dead == data.n_philo)
-		printf("All philosophers had ate enough\n");
+	i = philo_launch(&data);
+	if (i)
+		data.n_philo = i;
+	i = 0;
+	while (i < data.n_philo)
+	{
+		pthread_join(data.philo[i].id_thread, NULL);
+		++i;
+	}
+	printf("dead is %d\n", data.dead);
+	clear_all(&data);
 	return (0);
 }

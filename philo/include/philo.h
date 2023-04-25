@@ -6,7 +6,7 @@
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/04 19:50:00 by tlegrand          #+#    #+#             */
-/*   Updated: 2023/04/24 12:49:40 by tlegrand         ###   ########.fr       */
+/*   Updated: 2023/04/25 19:15:31 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,7 @@ typedef struct s_data
 	long int		time_eat;
 	long int		time_sleep;
 	long int		time_start;
+	long int		time_pause;
 	int				n_meal;
 	pthread_mutex_t	m_death_note;
 	int				dead;
@@ -49,32 +50,13 @@ typedef struct s_data
 int			parser(int ac, char **arg, t_data *data);
 int			philo_init(t_data *data);
 int			philo_launch(t_data *data);
-int			ft_atoi(char *str);
 
 long int	get_time(void);
-int			end(t_data *data);
+int			is_end(t_data *data);
 void		p_print(t_philo *philo, char *str);
-
 
 int			p_pause(t_philo *philo, long int duration);
 int			p_eat(t_philo *philo);
 int			p_died(t_philo *philo);
 
 #endif
-
-/*
-
-memset
-printf write
-malloc / free
-gettimeofdat
-pthread : 
--create
--detach
--join
-mutex :
--init
--destroy
--lock
--unlpck
-*/
