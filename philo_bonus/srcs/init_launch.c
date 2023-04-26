@@ -6,7 +6,7 @@
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/22 20:46:13 by tlegrand          #+#    #+#             */
-/*   Updated: 2023/04/26 00:10:20 by tlegrand         ###   ########.fr       */
+/*   Updated: 2023/04/26 16:55:38 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,10 +23,10 @@ int	philo_init(t_data *data)
 	while (i < data->n_philo)
 	{
 		data->philo[i].id = i + 1;
-		data->philo[i].pid = 0;
+		data->philo[i].pid = -1;
 		data->philo[i].time_last_meal = 0;
 		data->philo[i].n_meal = 0;
-		data->philo->sem_forks = data->sem_forks;
+		data->philo->sem_time_meal = NULL;
 		data->philo[i].data = data;
 		++i;
 	}

@@ -6,7 +6,7 @@
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/04 19:50:00 by tlegrand          #+#    #+#             */
-/*   Updated: 2023/04/26 00:00:09 by tlegrand         ###   ########.fr       */
+/*   Updated: 2023/04/26 16:55:56 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,18 +28,10 @@ typedef struct s_philo
 	int				pid;
 	long int		time_last_meal;
 	int				n_meal;
-	sem_t			*sem_forks;
+	sem_t			*sem_time_meal;
 	struct s_data	*data;
 
 }	t_philo;
-
-typedef struct s_watcher
-{
-	pthread_t			pid;
-	long int	time_death;
-	t_philo		*philo;
-	sem_t		*sem_death_note;
-}	t_watcher;
 
 typedef struct s_data
 {
@@ -52,18 +44,17 @@ typedef struct s_data
 	long int		time_pause;
 	int				n_meal;
 	sem_t			*sem_forks;
-	int				forks;
-	sem_t			*sem_death_note;
-	int				dead;
+	sem_t			*sem_stop;
+	sem_t			*sem_print;
+	sem_t			*sem_meal;
 }	t_data;
 
 int			parser(int ac, char **arg, t_data *data);
 int			philo_init(t_data *data);
 int			philo_launch(t_data *data);
-void		watcher_init(t_watcher *watcher, t_philo *philo);
 void		*watching(void *ptr);
 void		philosophing(t_philo *philo);
-
+long int	p_last_meal(t_philo *philo, sem_t *sem_time_meal);
 long int	get_time(void);
 int			is_end(t_data *data);
 void		clear_all(t_data *data);

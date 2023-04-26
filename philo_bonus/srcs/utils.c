@@ -6,7 +6,7 @@
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/22 23:16:11 by tlegrand          #+#    #+#             */
-/*   Updated: 2023/04/26 00:00:59 by tlegrand         ###   ########.fr       */
+/*   Updated: 2023/04/26 16:51:57 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,29 +28,20 @@ void	clear_all(t_data *data)
 {
 	if (data->philo)
 		free(data->philo);
-	sem_close(data->sem_death_note);
-	sem_unlink("/death_note");
+	sem_close(data->sem_print);
+	sem_unlink("/print");
 	sem_close(data->sem_forks);
 	sem_unlink("/forks");
+	sem_close(data->sem_stop);
+	sem_unlink("/stop");
+	sem_close(data->sem_meal);
+	sem_unlink("/meal");
+	sem_unlink("/time");
 }
 
 void	p_print(t_philo *philo, char *str)
 {
-	sem_wait(philo->data->sem_death_note);
-	if (philo->data->dead >= 0 || philo->data->dead == -philo->id)
-		printf("%ld %d %s\n", get_time() - philo->data->time_start, \
-			philo->id, str);
-	sem_post(philo->data->sem_death_note);
-}
-
-int	is_end(t_data *data)
-{
-	sem_wait(data->sem_death_note);
-	if (data->dead < 0 || data->dead == data->n_philo)
-	{
-		sem_post(data->sem_death_note);
-		return (1);
-	}
-	sem_post(data->sem_death_note);
-	return (0);
+	sem_wait(philo->data->sem_print);
+	printf("%ld %d %s\n", get_time() - philo->data->time_start, philo->id, str);
+	sem_post(philo->data->sem_print);
 }

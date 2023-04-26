@@ -6,7 +6,7 @@
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/06 11:41:39 by tlegrand          #+#    #+#             */
-/*   Updated: 2023/04/25 23:57:04 by tlegrand         ###   ########.fr       */
+/*   Updated: 2023/04/26 17:05:46 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,18 +63,31 @@ static int	check_arg(t_data *data)
 
 int	sem_create(t_data *data)
 {
-	sem_unlink("/death_note");
+	sem_unlink("/print");
 	sem_unlink("/forks");
-	data->sem_death_note = sem_open("/death_note", O_CREAT, 0644, 1);
-	if (data->sem_death_note == SEM_FAILED)
+	sem_unlink("/stop");
+	sem_unlink("/time");
+	sem_unlink("/meal");
+	data->sem_print = sem_open("/print", O_CREAT, 0644, 1);
+	if (data->sem_print == SEM_FAILED)
 		return (1);
 	data->sem_forks = sem_open("/forks", O_CREAT, 0644, data->n_philo);
 	if (data->sem_forks == SEM_FAILED)
 	{
-		sem_close(data->sem_death_note);
-		sem_unlink("/death_note");
+		sem_close(data->sem_print);
+		sem_unlink("/print");
 		return (1);
 	}
+	data->sem_stop = sem_open("/stop", O_CREAT, 0644, 0);
+	if (data->sem_forks == SEM_FAILED)
+	{
+		sem_close(data->sem_print);
+		sem_unlink("/print");
+		sem_close(data->sem_forks);
+		sem_unlink("/forks");
+		return (1);
+	}
+	data->sem_meal = sem_open("/meal", O_CREAT, 0644, 0);
 	return (0);
 }
 
@@ -88,7 +101,7 @@ int	parser(int ac, char **arg, t_data *data)
 	data->time_death = ft_atoi(arg[2]);
 	data->time_eat = ft_atoi(arg[3]);
 	data->time_sleep = ft_atoi(arg[4]);
-	data->time_pause = data->n_philo * 5;
+	data->time_pause = data->n_philo * 10;
 	if (check_arg(data))
 		return (parser_error(3));
 	if (ac == 6)
@@ -98,8 +111,7 @@ int	parser(int ac, char **arg, t_data *data)
 			return (parser_error(3));
 	}
 	else
-		data->n_meal = -2;
-	data->dead = 0;
+		data->n_meal = -1;
 	if (sem_create(data))
 		return (parser_error(4));
 	return (0);
