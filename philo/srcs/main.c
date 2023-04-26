@@ -6,7 +6,7 @@
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/04 19:50:05 by tlegrand          #+#    #+#             */
-/*   Updated: 2023/04/25 18:52:22 by tlegrand         ###   ########.fr       */
+/*   Updated: 2023/04/26 15:52:09 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,6 @@ int	main(int ac, char **arg)
 		pthread_join(data.philo[i].id_thread, NULL);
 		++i;
 	}
-	printf("dead is %d\n", data.dead);
 	clear_all(&data);
 	return (0);
 }
