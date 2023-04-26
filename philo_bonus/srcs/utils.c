@@ -6,7 +6,7 @@
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/22 23:16:11 by tlegrand          #+#    #+#             */
-/*   Updated: 2023/04/26 16:51:57 by tlegrand         ###   ########.fr       */
+/*   Updated: 2023/04/26 19:05:31 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,19 +24,30 @@ long int	get_time(void)
 	return ((tv.tv_sec * 1000) + (tv.tv_usec / 1000));
 }
 
-void	clear_all(t_data *data)
+void	sem_killer(sem_t *sem, char *name)
 {
+	if (sem == SEM_FAILED)
+		return ;
+	if (sem)
+		sem_close(sem);
+	if (name)
+		sem_unlink(name);
+}
+
+int	clear_all(t_data *data)
+{
+	int	i;
+
+	i = -1;
+	while (++i < data->n_philo)
+		sem_killer(data->philo[i].sem_time_meal, "/time");
 	if (data->philo)
 		free(data->philo);
-	sem_close(data->sem_print);
-	sem_unlink("/print");
-	sem_close(data->sem_forks);
-	sem_unlink("/forks");
-	sem_close(data->sem_stop);
-	sem_unlink("/stop");
-	sem_close(data->sem_meal);
-	sem_unlink("/meal");
-	sem_unlink("/time");
+	sem_killer(data->sem_print, "/print");
+	sem_killer(data->sem_forks, "/forks");
+	sem_killer(data->sem_meal, "/meal");
+	sem_killer(data->sem_stop, "/stop");
+	return (1);
 }
 
 void	p_print(t_philo *philo, char *str)

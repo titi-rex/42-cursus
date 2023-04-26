@@ -6,7 +6,7 @@
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/06 11:41:39 by tlegrand          #+#    #+#             */
-/*   Updated: 2023/04/26 17:05:46 by tlegrand         ###   ########.fr       */
+/*   Updated: 2023/04/26 19:12:40 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,8 @@ static int	parser_error(int err)
 		printf("Error : negative value are not possible...\n");
 	else if (err == 4)
 		printf("Error : sem_open failed\n");
+	else if (err == 5)
+		printf("Error : 0 philosopher mean no simulation\n");
 	return (1);
 }
 
@@ -63,32 +65,29 @@ static int	check_arg(t_data *data)
 
 int	sem_create(t_data *data)
 {
+	int	err;
+
+	err = 0;
 	sem_unlink("/print");
 	sem_unlink("/forks");
+	sem_unlink("/meal");
 	sem_unlink("/stop");
 	sem_unlink("/time");
-	sem_unlink("/meal");
-	data->sem_print = sem_open("/print", O_CREAT, 0644, 1);
-	if (data->sem_print == SEM_FAILED)
-		return (1);
-	data->sem_forks = sem_open("/forks", O_CREAT, 0644, data->n_philo);
-	if (data->sem_forks == SEM_FAILED)
-	{
-		sem_close(data->sem_print);
-		sem_unlink("/print");
-		return (1);
-	}
-	data->sem_stop = sem_open("/stop", O_CREAT, 0644, 0);
-	if (data->sem_forks == SEM_FAILED)
-	{
-		sem_close(data->sem_print);
-		sem_unlink("/print");
-		sem_close(data->sem_forks);
-		sem_unlink("/forks");
-		return (1);
-	}
-	data->sem_meal = sem_open("/meal", O_CREAT, 0644, 0);
-	return (0);
+	data->sem_print = sem_open("/print", O_CREAT, S_IRWXG, 1);
+	data->sem_forks = sem_open("/forks", O_CREAT, S_IRWXG, data->n_philo);
+	data->sem_meal = sem_open("/meal", O_CREAT, S_IRWXG, 0);
+	data->sem_stop = sem_open("/stop", O_CREAT, S_IRWXG, 0);
+	if (data->sem_print == SEM_FAILED || data->sem_forks == SEM_FAILED)
+		err = 1;
+	if (data->sem_meal == SEM_FAILED || data->sem_stop == SEM_FAILED)
+		err = 1;
+	if (err == 0)
+		return (0);
+	sem_killer(data->sem_print, "/print");
+	sem_killer(data->sem_forks, "/forks");
+	sem_killer(data->sem_meal, "/meal");
+	sem_killer(data->sem_stop, "/stop");
+	return (err);
 }
 
 int	parser(int ac, char **arg, t_data *data)
@@ -104,6 +103,8 @@ int	parser(int ac, char **arg, t_data *data)
 	data->time_pause = data->n_philo * 10;
 	if (check_arg(data))
 		return (parser_error(3));
+	if (data->n_philo == 0)
+		return (parser_error(5));
 	if (ac == 6)
 	{
 		data->n_meal = ft_atoi(arg[5]);

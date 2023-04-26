@@ -6,7 +6,7 @@
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/04 19:50:00 by tlegrand          #+#    #+#             */
-/*   Updated: 2023/04/26 16:55:56 by tlegrand         ###   ########.fr       */
+/*   Updated: 2023/04/26 19:05:42 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,23 +43,25 @@ typedef struct s_data
 	long int		time_start;
 	long int		time_pause;
 	int				n_meal;
-	sem_t			*sem_forks;
-	sem_t			*sem_stop;
 	sem_t			*sem_print;
+	sem_t			*sem_forks;
 	sem_t			*sem_meal;
+	sem_t			*sem_stop;
 }	t_data;
 
 int			parser(int ac, char **arg, t_data *data);
 int			philo_init(t_data *data);
 int			philo_launch(t_data *data);
+
+long int	get_time(void);
+void		sem_killer(sem_t *sem, char *name);
+int			clear_all(t_data *data);
+
 void		*watching(void *ptr);
 void		philosophing(t_philo *philo);
-long int	p_last_meal(t_philo *philo, sem_t *sem_time_meal);
-long int	get_time(void);
-int			is_end(t_data *data);
-void		clear_all(t_data *data);
-void		p_print(t_philo *philo, char *str);
 
+long int	p_last_meal(t_philo *philo, sem_t *sem_time_meal);
+void		p_print(t_philo *philo, char *str);
 int			p_pause(long int duration, long int time_pause);
 int			p_eat(t_philo *philo);
 int			p_died(t_philo *philo);
