@@ -6,7 +6,7 @@
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/04 19:50:05 by tlegrand          #+#    #+#             */
-/*   Updated: 2023/04/26 19:17:07 by tlegrand         ###   ########.fr       */
+/*   Updated: 2023/04/27 15:13:57 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,16 @@ void	*eat_watcher(void *ptr)
 	return (NULL);
 }
 
+void	kill_eat_watcher(sem_t *sem_meal, pthread_t watcher_pid, int n)
+{
+	int	i;
+
+	i = n;
+	while (i-- >= 0)
+			sem_post(sem_meal);
+	pthread_join(watcher_pid, NULL);
+}
+
 int	main(int ac, char **arg)
 {
 	t_data		data;
@@ -55,12 +65,11 @@ int	main(int ac, char **arg)
 		sem_wait(data.sem_stop);
 	}
 	serial_killer(&data);
+	while (i-- > 0)
+		waitpid(data.philo[i].pid, NULL, 0);
+	i = data.n_philo;
 	if (data.n_meal != -1)
-	{
-		while (i-- >= 0)
-			sem_post(data.sem_meal);
-		pthread_join(eat_watcher_pid, NULL);
-	}
+		kill_eat_watcher(data.sem_meal, eat_watcher_pid, data.n_philo);
 	clear_all(&data);
 	exit(0);
 }

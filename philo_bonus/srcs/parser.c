@@ -6,7 +6,7 @@
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/06 11:41:39 by tlegrand          #+#    #+#             */
-/*   Updated: 2023/04/26 19:12:40 by tlegrand         ###   ########.fr       */
+/*   Updated: 2023/04/27 15:10:22 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,11 +68,13 @@ int	sem_create(t_data *data)
 	int	err;
 
 	err = 0;
+	sem_unlink("/start");
 	sem_unlink("/print");
 	sem_unlink("/forks");
 	sem_unlink("/meal");
 	sem_unlink("/stop");
 	sem_unlink("/time");
+	data->sem_start = sem_open("/start", O_CREAT, S_IRWXG, 0);
 	data->sem_print = sem_open("/print", O_CREAT, S_IRWXG, 1);
 	data->sem_forks = sem_open("/forks", O_CREAT, S_IRWXG, data->n_philo);
 	data->sem_meal = sem_open("/meal", O_CREAT, S_IRWXG, 0);

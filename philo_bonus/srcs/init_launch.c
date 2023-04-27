@@ -6,7 +6,7 @@
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/22 20:46:13 by tlegrand          #+#    #+#             */
-/*   Updated: 2023/04/26 16:55:38 by tlegrand         ###   ########.fr       */
+/*   Updated: 2023/04/27 16:45:55 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ int	philo_init(t_data *data)
 	return (0);
 }
 
-static int	philo_create(t_philo *philo)
+int	philo_create(t_philo *philo)
 {
 	philo->pid = fork();
 	if (philo->pid == -1)
@@ -57,5 +57,9 @@ int	philo_launch(t_data *data)
 			return (printf("Error : philo %d creation failed\n", i), i);
 		++i;
 	}
+	while (i-- > 0)
+		sem_post(data->sem_start);
+	while (++i < data->n_philo)
+		sem_wait(data->sem_stop);
 	return (0);
 }

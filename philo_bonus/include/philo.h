@@ -6,7 +6,7 @@
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/04 19:50:00 by tlegrand          #+#    #+#             */
-/*   Updated: 2023/04/26 19:05:42 by tlegrand         ###   ########.fr       */
+/*   Updated: 2023/04/27 15:08:03 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,7 @@ typedef struct s_data
 	long int		time_start;
 	long int		time_pause;
 	int				n_meal;
+	sem_t			*sem_start;
 	sem_t			*sem_print;
 	sem_t			*sem_forks;
 	sem_t			*sem_meal;
