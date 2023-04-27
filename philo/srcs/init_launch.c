@@ -6,7 +6,7 @@
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/22 20:46:13 by tlegrand          #+#    #+#             */
-/*   Updated: 2023/04/27 16:39:04 by tlegrand         ###   ########.fr       */
+/*   Updated: 2023/04/27 17:29:30 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,7 +81,7 @@ int	philo_launch(t_data *data)
 				data->philo[i].id), i);
 		++i;
 	}
-	data->time_start = get_time() ;
+	data->time_start = get_time();
 	if (data->time_start == -1)
 		return (-1);
 	pthread_mutex_unlock(&data->m_start);

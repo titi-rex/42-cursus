@@ -6,7 +6,7 @@
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/04 19:50:05 by tlegrand          #+#    #+#             */
-/*   Updated: 2023/04/27 15:13:57 by tlegrand         ###   ########.fr       */
+/*   Updated: 2023/04/27 17:28:59 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ void	kill_eat_watcher(sem_t *sem_meal, pthread_t watcher_pid, int n)
 
 	i = n;
 	while (i-- >= 0)
-			sem_post(sem_meal);
+		sem_post(sem_meal);
 	pthread_join(watcher_pid, NULL);
 }
 
@@ -58,6 +58,7 @@ int	main(int ac, char **arg)
 	if (philo_init(&data))
 		return (clear_all(&data));
 	i = data.n_philo;
+	data.le_seum = dup(STDOUT_FILENO);
 	if (philo_launch(&data) == 0)
 	{
 		if (data.n_meal != -1)
@@ -73,8 +74,3 @@ int	main(int ac, char **arg)
 	clear_all(&data);
 	exit(0);
 }
-
-
-/*
-TODO:	eat and die same time
-*/
