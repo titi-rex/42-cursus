@@ -6,7 +6,7 @@
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/04 19:50:05 by tlegrand          #+#    #+#             */
-/*   Updated: 2023/04/27 17:28:59 by tlegrand         ###   ########.fr       */
+/*   Updated: 2023/04/28 12:51:48 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,6 @@ int	main(int ac, char **arg)
 	if (philo_init(&data))
 		return (clear_all(&data));
 	i = data.n_philo;
-	data.le_seum = dup(STDOUT_FILENO);
 	if (philo_launch(&data) == 0)
 	{
 		if (data.n_meal != -1)
@@ -68,7 +67,6 @@ int	main(int ac, char **arg)
 	serial_killer(&data);
 	while (i-- > 0)
 		waitpid(data.philo[i].pid, NULL, 0);
-	i = data.n_philo;
 	if (data.n_meal != -1)
 		kill_eat_watcher(data.sem_meal, eat_watcher_pid, data.n_philo);
 	clear_all(&data);

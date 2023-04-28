@@ -6,7 +6,7 @@
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/22 20:46:13 by tlegrand          #+#    #+#             */
-/*   Updated: 2023/04/27 17:29:30 by tlegrand         ###   ########.fr       */
+/*   Updated: 2023/04/28 12:53:01 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,11 +46,11 @@ void	*philosophing(void *ptr)
 	t_philo	*philo;
 
 	philo = ptr;
-	if (philo->time_last_meal == -1)
-		return (NULL);
 	pthread_mutex_lock(&philo->data->m_start);
 	philo->time_last_meal = philo->data->time_start;
 	pthread_mutex_unlock(&philo->data->m_start);
+	if (philo->time_last_meal == -1)
+		return (NULL);
 	p_print(philo, "is thinking");
 	if (philo->id % 2 == 0)
 		p_pause(philo, (philo->data->time_eat * 0.9));
@@ -77,13 +77,15 @@ int	philo_launch(t_data *data)
 	{
 		if (pthread_create(&data->philo[i].id_thread, NULL, &philosophing, \
 			&data->philo[i]))
-			return (printf("Error : philo %d creation failed\n", \
-				data->philo[i].id), i);
+		{
+			printf("Error : philo %d creation failed\n", data->philo[i].id);
+			break ;
+		}
 		++i;
 	}
 	data->time_start = get_time();
-	if (data->time_start == -1)
-		return (-1);
 	pthread_mutex_unlock(&data->m_start);
+	if (i != data->n_philo)
+		return (1);
 	return (0);
 }

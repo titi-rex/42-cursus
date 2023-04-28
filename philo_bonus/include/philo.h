@@ -6,7 +6,7 @@
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/04 19:50:00 by tlegrand          #+#    #+#             */
-/*   Updated: 2023/04/27 17:15:16 by tlegrand         ###   ########.fr       */
+/*   Updated: 2023/04/28 12:39:21 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,6 @@
 # include <semaphore.h>
 # include <sys/time.h>
 # include <sys/wait.h>
-# include <errno.h>
 
 typedef struct s_philo
 {
@@ -49,7 +48,6 @@ typedef struct s_data
 	sem_t			*sem_forks;
 	sem_t			*sem_meal;
 	sem_t			*sem_stop;
-	int				le_seum;
 }	t_data;
 
 int			parser(int ac, char **arg, t_data *data);
