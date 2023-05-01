@@ -6,7 +6,7 @@
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/28 21:50:35 by tlegrand          #+#    #+#             */
-/*   Updated: 2023/04/28 22:46:30 by tlegrand         ###   ########.fr       */
+/*   Updated: 2023/05/01 20:12:17 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,11 +20,13 @@ int	main(void)
 
 	str = "hello";
 	printf(":%s:\n", str);
-	printf(":%10s:\n", str);
+	printf(":%--20s:\n", str);
 	return (0);
 }
 
 /*
+
+multijoin(tab)
 sum up
 
 -&/. or 0
