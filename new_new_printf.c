@@ -6,7 +6,7 @@
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/01 19:43:06 by tlegrand          #+#    #+#             */
-/*   Updated: 2023/05/02 16:48:29 by tlegrand         ###   ########.fr       */
+/*   Updated: 2023/05/02 22:37:36 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,16 @@ int	is_flag(char c)
 	return (0);
 }
 
-int	get_flags(char *str, int flags[3])
+int	ft_flush_buffer(t_print_buffer *p)
+{
+	int	w_len;
+
+	w_len = write(1, p->buffer, p->idx);
+	p->idx = 0;
+	return (w_len);
+}
+
+int	get_flags(const char *str, int flags[3])
 {
 	int	bit;
 
@@ -134,6 +143,22 @@ c p no preci
 else preci 
 */
 
+int	ft_power_recursive(int nb, int power)
+{
+	int		res;
+
+	res = 1;
+	dprintf(2, "malaise..\n");
+	if (power < 0)
+		return (0);
+	if (power == 0)
+		return (res);
+	if (power > 1)
+		res *= ft_power_recursive(nb, power - 1);
+	res *= nb;
+	return (res);
+}
+
 int	padding(t_print_buffer *p, char c, int size)
 {
 	int	w_len;
@@ -160,10 +185,12 @@ int	get_char(t_print_buffer *p, char c)
 	return (w_len);
 }
 
+/*
 int	get_str(t_print_buffer *p, char *str, int flags[3])
 {
 	int	w_len;
 
+	
 	w_len = 0;
 	return (w_len);
 }
@@ -175,25 +202,30 @@ int	get_uint(t_print_buffer *p, unsigned int number, int base, int flags[3])
 	w_len = 0;
 	return (w_len);
 }
-
+*/
 int	get_int(t_print_buffer *p, int number, int size, int flags[3])
 {
 	int	w_len;
 	int	pow;
 
 	w_len = 0;
+	
+	dprintf(2, "get int launched, int ot print : %d\tlen : %d\n", number, size);
 	if (flags[0] & PLUS)
 		p->buffer[p->idx] = '+';
 	else if (flags[0] & BLANK)
 		p->buffer[p->idx] = ' ';
-	// if (flags[0] & PRECISION)
-	// 	w_len = padding(p, '0', flags[3] - size)
-	pow = ft_power(10, size);
+	if (flags[0] & PRECISION)
+		w_len = padding(p, '0', flags[3] - size);
+	pow = ft_power_recursive(10, size);
 	while (number)
 	{
 		p->buffer[p->idx] = (number / pow);
 		if (p->idx == BUFFER_SIZE)
 			w_len += ft_flush_buffer(p);
+		number /= 10;
+		pow /= 10;
+		dprintf(2, "oops\n");
 	}
 	return (w_len);
 }
@@ -203,7 +235,7 @@ int	get_int(t_print_buffer *p, int number, int size, int flags[3])
 
 */
 
-int	get_conversion(t_print_buffer *p, const char *str, va_list ap, int flags[3])
+int	get_conversion(t_print_buffer *p, va_list ap, int flags[3])
 {
 	int	w_len;
 	int	size;
@@ -223,11 +255,11 @@ int	get_conversion(t_print_buffer *p, const char *str, va_list ap, int flags[3])
 	}
 	if (size < flags[2])
 		tmp = flags[2];
-	if (flags[0] & LEFT == 0 && flags[1] > tmp)
+	if ((flags[0] & LEFT) == 0 && flags[1] > tmp)
 	{
-		if (flags[0] & PLUS || flags[0] & BLANK)
+		if ((flags[0] & PLUS) || (flags[0] & BLANK))
 			--flags[1];
-		if (flags[0] & PRECISION == 0 && flags[0] & ZERO)
+		if ((flags[0] & PRECISION) == 0 && (flags[0] & ZERO))
 			w_len += padding(p, '0', flags[1] - tmp);
 		else
 			w_len += padding(p, ' ', flags[1] - tmp);
@@ -239,10 +271,30 @@ int	get_conversion(t_print_buffer *p, const char *str, va_list ap, int flags[3])
 	return (w_len);
 }
 
+void	print_flags(int flags[3])
+{
+	if (flags[0] == 0)
+		dprintf(2, "NO FLAGS ");
+	if (flags[0] & LEFT)
+		dprintf(2, "LEFT ");
+	if (flags[0] & PRECISION)
+		dprintf(2, "PRECISION ");
+	if (flags[0] & ZERO)
+		dprintf(2, "ZERO ");
+	if (flags[0] & BLANK)
+		dprintf(2, "BLANK ");
+	if (flags[0] & PLUS)
+		dprintf(2, "PLUS ");
+	if (flags[0] & ALTERNATE)
+		dprintf(2, "ALTERNATE ");
+	dprintf(2, "\nwidth : %d\n", flags[1]);
+	dprintf(2, "precision : %d\n", flags[2]);
+	dprintf(2, "specifier : %c\n", flags[3]);
+}
 
 int	ft_select_print(t_print_buffer *p, const char *str, va_list ap)
 {
-	int	i;
+	// int	i;
 	int	flags[4];
 	int	w_len;
 
@@ -252,19 +304,11 @@ int	ft_select_print(t_print_buffer *p, const char *str, va_list ap)
 	flags[2] = 0;
 	flags[3] = 0;
 	++str;
-	if (get_flag(str, flags) == -1)
+	if (get_flags(str, flags) == -1)
 		return (0);
-	get_conversion(p, str, ap, flags);
+	print_flags(flags);
+	get_conversion(p, ap, flags);
 
-	return (w_len);
-}
-
-int	ft_flush_buffer(t_print_buffer *p)
-{
-	int	w_len;
-
-	w_len = write(1, p->buffer, p->idx);
-	p->idx = 0;
 	return (w_len);
 }
 
@@ -289,6 +333,7 @@ int	ft_printf(const char *str, ...)
 			w_len += ft_flush_buffer(&p);
 		if (!*str)
 			w_len += ft_flush_buffer(&p);
+		dprintf(2, "ouin \n");
 	}
 	va_end(ap);
 	return (w_len);
@@ -296,6 +341,6 @@ int	ft_printf(const char *str, ...)
 
 int	main(void)
 {
-	printf("ret : %d\n", ft_printf("hello 15 non\n"));
-	printf("trueret : %d\n", printf("hello 15 non\n"));
+	printf("ret : %d\n", ft_printf("hello %d non\n", 15));
+	printf("trueret : %d\n", printf("hello %d non\n", 15));
 }
