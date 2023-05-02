@@ -6,11 +6,13 @@
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/22 20:46:13 by tlegrand          #+#    #+#             */
-/*   Updated: 2023/04/28 12:53:01 by tlegrand         ###   ########.fr       */
+/*   Updated: 2023/05/02 15:23:29 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/philo.h"
+
+//TODO:	destroy malloc befor efree philo 
 
 int	philo_init(t_data *data)
 {
