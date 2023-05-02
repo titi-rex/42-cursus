@@ -6,7 +6,7 @@
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/28 21:50:35 by tlegrand          #+#    #+#             */
-/*   Updated: 2023/05/01 20:12:17 by tlegrand         ###   ########.fr       */
+/*   Updated: 2023/05/02 16:44:12 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,10 +17,14 @@
 int	main(void)
 {
 	char	*str;
+	int		n;
 
 	str = "hello";
-	printf(":%s:\n", str);
-	printf(":%--20s:\n", str);
+	n = 651;
+	printf(":%d:\n", n);
+	printf(":%+6.5d:\n", n);
+	printf(":%c:\n", n);
+	(void)str;
 	return (0);
 }
 

@@ -6,7 +6,7 @@
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/25 20:40:41 by tlegrand          #+#    #+#             */
-/*   Updated: 2023/05/01 20:10:49 by tlegrand         ###   ########.fr       */
+/*   Updated: 2023/05/02 15:09:28 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,18 +15,22 @@
 # include <unistd.h>
 # include <stdarg.h>
 # include <stdlib.h>
-#include  <stdio.h>
+# include  <stdio.h>
 
 # define BUFFER_SIZE 256
 
-# define HYPHEN 0b00000001
-# define DOT 0b00000010
+# define LEFT 0b00000001
+# define PRECISION 0b00000010
 # define ZERO 0b00000100 
 # define BLANK 0b00001000 
 # define PLUS 0b00010000 
-# define HASH 0b00100000 
+# define ALTERNATE 0b00100000 
 
-
+typedef struct s_print_buffer
+{
+	char	buffer[BUFFER_SIZE];
+	int		idx;
+}	t_print_buffer;
 
 int		ft_printf(const char *str, ...);
 int		ft_putchar(char c);
