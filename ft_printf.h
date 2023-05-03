@@ -6,7 +6,7 @@
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/25 20:40:41 by tlegrand          #+#    #+#             */
-/*   Updated: 2023/05/02 22:25:17 by tlegrand         ###   ########.fr       */
+/*   Updated: 2023/05/03 13:04:27 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 # include <stdlib.h>
 # include  <stdio.h>
 
-# define BUFFER_SIZE 6
+# define BUFFER_SIZE 256
 
 # define LEFT 0b00000001
 # define PRECISION 0b00000010

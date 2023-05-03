@@ -6,7 +6,7 @@
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/01 19:43:06 by tlegrand          #+#    #+#             */
-/*   Updated: 2023/05/02 22:37:36 by tlegrand         ###   ########.fr       */
+/*   Updated: 2023/05/03 14:03:46 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -128,7 +128,9 @@ int	ft_numlen(long long int num, int base)
 {
 	int	len;
 
-	len = 1;
+	if (num == 0)
+		return (1);
+	len = 0;
 	while (num)
 	{
 		num /= base;
@@ -148,7 +150,6 @@ int	ft_power_recursive(int nb, int power)
 	int		res;
 
 	res = 1;
-	dprintf(2, "malaise..\n");
 	if (power < 0)
 		return (0);
 	if (power == 0)
@@ -166,6 +167,7 @@ int	padding(t_print_buffer *p, char c, int size)
 	w_len = 0;
 	while (size-- > 0)
 	{
+		dprintf(2, " pad size %d \n", size);
 		p->buffer[p->idx] = c;
 		++p->idx;
 		if (p->idx == BUFFER_SIZE)
@@ -209,14 +211,13 @@ int	get_int(t_print_buffer *p, int number, int size, int flags[3])
 	int	pow;
 
 	w_len = 0;
-	
-	dprintf(2, "get int launched, int ot print : %d\tlen : %d\n", number, size);
+	dprintf(2, "get int launched, int to print : %d\tlen : %d\tflags[3] %d\n", number, size, flags[2]);
 	if (flags[0] & PLUS)
 		p->buffer[p->idx] = '+';
 	else if (flags[0] & BLANK)
 		p->buffer[p->idx] = ' ';
 	if (flags[0] & PRECISION)
-		w_len = padding(p, '0', flags[3] - size);
+		w_len = padding(p, '0', flags[2] - size);
 	pow = ft_power_recursive(10, size);
 	while (number)
 	{
@@ -225,7 +226,6 @@ int	get_int(t_print_buffer *p, int number, int size, int flags[3])
 			w_len += ft_flush_buffer(p);
 		number /= 10;
 		pow /= 10;
-		dprintf(2, "oops\n");
 	}
 	return (w_len);
 }
@@ -253,8 +253,11 @@ int	get_conversion(t_print_buffer *p, va_list ap, int flags[3])
 		d = va_arg(ap, int);
 		size = 1;
 	}
+	dprintf(2, "flags 2 : %d\tsize : %d\n", flags[2], size);
 	if (size < flags[2])
 		tmp = flags[2];
+	else
+		tmp = size;
 	if ((flags[0] & LEFT) == 0 && flags[1] > tmp)
 	{
 		if ((flags[0] & PLUS) || (flags[0] & BLANK))
@@ -333,7 +336,6 @@ int	ft_printf(const char *str, ...)
 			w_len += ft_flush_buffer(&p);
 		if (!*str)
 			w_len += ft_flush_buffer(&p);
-		dprintf(2, "ouin \n");
 	}
 	va_end(ap);
 	return (w_len);
@@ -341,6 +343,6 @@ int	ft_printf(const char *str, ...)
 
 int	main(void)
 {
-	printf("ret : %d\n", ft_printf("hello %d non\n", 15));
+	printf("ret : %d\n", ft_printf("hello %.5d non\n", 15));
 	printf("trueret : %d\n", printf("hello %d non\n", 15));
 }
