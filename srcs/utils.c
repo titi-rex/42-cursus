@@ -6,7 +6,7 @@
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/03 15:34:54 by tlegrand          #+#    #+#             */
-/*   Updated: 2023/05/03 15:51:37 by tlegrand         ###   ########.fr       */
+/*   Updated: 2023/05/03 21:36:05 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ int	is_specifier(char c)
 {
 	if (c == 'c' || c == 's' || c == 'p' || c == 'd' || c == 'i')
 		return (1);
-	if (c == 'o' || c == 'u' || c == 'x' || c == 'X' || c == '%')
+	if (c == 'o' || c == 'u' || c == 'x' || c == 'X' || c == '%' || c == 'b')
 		return (1);
 	return (0);
 }

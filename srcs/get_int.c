@@ -1,64 +1,62 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_value.c                                        :+:      :+:    :+:   */
+/*   get_int.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/03 15:35:21 by tlegrand          #+#    #+#             */
-/*   Updated: 2023/05/03 16:42:30 by tlegrand         ###   ########.fr       */
+/*   Updated: 2023/05/03 21:22:51 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-
-int	get_char(t_print_buffer *p, char c)
+int	sizeof_int(int d, int flags[4])
 {
-	int	w_len;
+	int	size;
 
-	w_len = 0;
-	p->buffer[p->idx] = c;
-	if (p->idx == BUFFER_SIZE)
-		w_len += ft_flush_buffer(p);
-	return (w_len);
+	if (flags[3] == 'c')
+		return (1);
+	size = ft_numlen(d, 10);
+	return (size);
 }
 
-/*
-int	get_str(t_print_buffer *p, char *str, int flags[3])
-{
-	int	w_len;
-
-	
-	w_len = 0;
-	return (w_len);
-}
-*/
-
-
-int	get_int(t_print_buffer *p, int number, int size, int flags[3])
+int	get_int(t_print_buffer *p, int number, int size, int flags[4])
 {
 	int	w_len;
 	int	pow;
 
 	w_len = 0;
-	dprintf(2, "get int launched, int to print : %d\tlen : %d\n", number, size);
-	if (flags[0] & PLUS)
-		p->buffer[p->idx] = '+';
-	else if (flags[0] & BLANK)
-		p->buffer[p->idx] = ' ';
 	if (flags[0] & PRECISION)
 		w_len = padding(p, '0', flags[2] - size);
 	pow = ft_power_recursive(10, size - 1);
 	while (pow)
 	{
-		dprintf(2, " number : %d\tpow %d\ttmp %d\tnext number %d\n", number, pow, number / pow, number - ((number / pow) * pow));
-		p->buffer[p->idx] = (number / pow) + '0';
-		++p->idx;
-		if (p->idx == BUFFER_SIZE)
-			w_len += ft_flush_buffer(p);
+		w_len += write_buffer(p, (number / pow) + '0');
 		number = number - ((number / pow) * pow);
 		pow /= 10;
 	}
+	return (w_len);
+}
+
+int	conversion_int(t_print_buffer *p, va_list ap, int flags[4])
+{
+	int	d;
+	int	w_len;
+	int	size;
+	int	tmp;
+
+	w_len = 0;
+	d = va_arg(ap, int);
+	size = sizeof_int(d, flags);
+	tmp = ft_max(size, flags[2]);
+	w_len += pad_adjust_right(p, tmp, get_sign(flags, d), flags);
+	d = ft_abs(d);
+	if (flags[3] == 'c')
+		w_len += write_buffer(p, d);
+	else
+		w_len += get_int(p, d, size, flags);
+	w_len += pad_adjust_left(p, tmp, flags);
 	return (w_len);
 }

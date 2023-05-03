@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   conversion.c                                       :+:      :+:    :+:   */
+/*   get_uint.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/03 16:05:14 by tlegrand          #+#    #+#             */
-/*   Updated: 2023/05/03 16:47:33 by tlegrand         ###   ########.fr       */
+/*   Updated: 2023/05/03 21:31:20 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int	sizeof_uint(unsigned int u, int flags[3])
+int	sizeof_uint(unsigned int u, int flags[4])
 {
 	int	size;
 
@@ -27,8 +27,6 @@ int	sizeof_uint(unsigned int u, int flags[3])
 	else if (flags[3] == 'x' || flags[3] == 'X')
 	{
 		size = ft_numlen(u, 16);
-		if (flags[0] & ALTERNATE)
-			size += 2;
 	}
 	else if (flags[3] == 'o')
 	{
@@ -36,51 +34,58 @@ int	sizeof_uint(unsigned int u, int flags[3])
 		if (flags[0] & ALTERNATE)
 			size += 1;
 	}
+	else if (flags[3] == 'b')
+	{
+		size = ft_numlen(u, 2);
+		if (flags[0] & ALTERNATE)
+			size += 2;
+	}
+	else if (flags[3] == 'u')
+		size = ft_numlen(u, 10);
 	return (size);
 }
 
-
-int	get_uint(t_print_buffer *p, unsigned int number, int base, int flags[3])
+int	get_uint(t_print_buffer *p, unsigned int number, int size, int flags[4])
 {
-	int	w_len;
-	int	pow;
+	char	*base;
+	int		w_len;
+	int		pow;
+	int		base_len;
 
 	w_len = 0;
-	dprintf(2, "get int launched, int to print : %u\tlen : %d\n", number, size);
-	if (flags[0] & PLUS)
-		p->buffer[p->idx] = '+';
-	else if (flags[0] & BLANK)
-		p->buffer[p->idx] = ' ';
+	base_len = get_base(flags[3]);
+	if (flags[3] == 'X')
+		base = "0123456789ABCDEF";
+	else
+		base = "0123456789abcdef";
 	if (flags[0] & PRECISION)
-		w_len = padding(p, '0', flags[2] - size);
-	pow = ft_power_recursive(base, size - 1);
+		w_len += padding(p, '0', flags[2] - size);
+	pow = ft_power_recursive(base_len, size - 1);
 	while (pow)
 	{
-		dprintf(2, " number : %d\tpow %d\ttmp %d\tnext number %d\n", number, pow, number / pow, number - ((number / pow) * pow));
-		p->buffer[p->idx] = "0123456789abcdef"[(number / pow)];
-		++p->idx;
-		if (p->idx == BUFFER_SIZE)
-			w_len += ft_flush_buffer(p);
+		w_len += write_buffer(p, base[(number / pow)]);
 		number = number - ((number / pow) * pow);
-		pow /= 10;
+		pow /= base_len;
 	}
 	return (w_len);
 }
 
-
-int	conversion_uint(t_print_buffer *p, va_list ap, int flags[3], int base)
+int	conversion_uint(t_print_buffer *p, va_list ap, int flags[4])
 {
 	unsigned int	u;
 	int				w_len;
 	int				size;
 	int				tmp;
 
+	w_len = 0;
 	u = va_arg(ap, unsigned int);
-	size = sizeof_uint(u, flags[3])
+	size = sizeof_uint(u, flags);
 	tmp = ft_max(size, flags[2]);
-	w_len += pad_adjust_right(p, tmp, flags);
-	w_len += get_uint(p, u, base, flags);
+	w_len += pad_adjust_right(p, tmp, get_sign(flags, u), flags);
+	w_len += get_uint(p, u, size, flags);
 	w_len += pad_adjust_left(p, tmp, flags);
 	return (w_len);
 }
 
+// dprintf(2, "get int launched, int to print : %u\tlen : %d\n", number, size);
+// dprintf(2, " number : %d\tpow %d\ttmp %d\tnext number %d\n", number, pow, number / pow, number - ((number / pow) * pow));

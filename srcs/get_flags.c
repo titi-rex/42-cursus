@@ -6,13 +6,13 @@
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/03 15:37:03 by tlegrand          #+#    #+#             */
-/*   Updated: 2023/05/03 16:29:16 by tlegrand         ###   ########.fr       */
+/*   Updated: 2023/05/03 21:24:11 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int	get_flags(const char *str, int flags[3])
+int	get_flags(const char *str, int flags[4])
 {
 	int	bit;
 
@@ -44,7 +44,7 @@ int	get_flags(const char *str, int flags[3])
 	return (0);
 }
 
-void	print_flags(int flags[3])
+void	print_flags(int flags[4])
 {
 	if (flags[0] == 0)
 		dprintf(2, "NO FLAGS ");
