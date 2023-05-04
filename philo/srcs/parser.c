@@ -6,7 +6,7 @@
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/06 11:41:39 by tlegrand          #+#    #+#             */
-/*   Updated: 2023/04/25 19:15:54 by tlegrand         ###   ########.fr       */
+/*   Updated: 2023/04/27 15:36:30 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ static int	ft_atoi(const char *str)
 	return ((int) sign * res);
 }
 
-static int	parser_error(int err)
+int	parser_error(int err)
 {
 	if (err == 1)
 		printf("Error : need at least 4 arg\n");
@@ -43,6 +43,8 @@ static int	parser_error(int err)
 		printf("Error : too much arg\n");
 	else if (err == 3)
 		printf("Error : negative value are not possible...\n");
+	else if (err == 4)
+		printf("Error : mutex_init failed\n");
 	return (1);
 }
 
@@ -61,15 +63,11 @@ static int	check_arg(t_data *data)
 
 int	parser(int ac, char **arg, t_data *data)
 {
-	if (ac < 5)
-		return (parser_error(1));
-	if (ac > 6)
-		return (parser_error(2));
 	data->n_philo = ft_atoi(arg[1]);
 	data->time_death = ft_atoi(arg[2]);
 	data->time_eat = ft_atoi(arg[3]);
 	data->time_sleep = ft_atoi(arg[4]);
-	data->time_pause = data->n_philo * 5;
+	data->time_pause = data->n_philo * 10;
 	if (check_arg(data))
 		return (parser_error(3));
 	if (ac == 6)
@@ -81,6 +79,12 @@ int	parser(int ac, char **arg, t_data *data)
 	else
 		data->n_meal = -2;
 	data->dead = 0;
-	pthread_mutex_init(&data->m_death_note, NULL);
+	if (pthread_mutex_init(&data->m_death_note, NULL))
+		return (parser_error(4));
+	if (pthread_mutex_init(&data->m_start, NULL))
+	{
+		pthread_mutex_destroy(&data->m_death_note);
+		return (parser_error(4));
+	}
 	return (0);
 }

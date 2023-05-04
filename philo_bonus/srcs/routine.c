@@ -6,7 +6,7 @@
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/22 22:10:07 by tlegrand          #+#    #+#             */
-/*   Updated: 2023/04/26 19:13:19 by tlegrand         ###   ########.fr       */
+/*   Updated: 2023/04/27 17:28:12 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,9 +19,9 @@ int	p_pause(long int duration, long int time_pause)
 	end_time = get_time() + duration;
 	if (end_time == -1)
 		return (-1);
-	usleep(duration * 0.9);
+	usleep(duration * 0.8);
 	while (get_time() < end_time)
-		usleep(time_pause);
+		usleep(time_pause * 5);
 	return (0);
 }
 
@@ -50,6 +50,8 @@ void	philosophing(t_philo *philo)
 
 	philo->time_last_meal = philo->data->time_start;
 	philo->sem_time_meal = sem_open("/time", O_CREAT, S_IRWXU, 1);
+	sem_wait(philo->data->sem_start);
+	sem_post(philo->data->sem_stop);
 	pthread_create(&watcher_pid, NULL, watching, philo);
 	p_print(philo, "is thinking");
 	if (philo->id % 2 == 0)
@@ -57,13 +59,7 @@ void	philosophing(t_philo *philo)
 	while (1)
 	{
 		if (p_eat(philo))
-		{
-			sem_wait(philo->sem_time_meal);
-			philo->time_last_meal = -1;
-			sem_post(philo->sem_time_meal);
 			sem_post(philo->data->sem_meal);
-			break ;
-		}
 		p_print(philo, "is sleeping");
 		p_pause(philo->data->time_sleep, philo->data->time_pause);
 		p_print(philo, "is thinking");

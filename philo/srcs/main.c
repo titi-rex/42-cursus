@@ -6,7 +6,7 @@
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/04 19:50:05 by tlegrand          #+#    #+#             */
-/*   Updated: 2023/04/26 15:52:09 by tlegrand         ###   ########.fr       */
+/*   Updated: 2023/05/02 15:24:07 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,10 @@ int	main(int ac, char **arg)
 	t_data	data;
 	int		i;
 
+	if (ac < 5)
+		return (parser_error(1));
+	if (ac > 6)
+		return (parser_error(2));
 	if (parser(ac, arg, &data))
 		return (1);
 	if (data.n_philo == 0)

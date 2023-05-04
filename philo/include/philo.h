@@ -6,7 +6,7 @@
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/04 19:50:00 by tlegrand          #+#    #+#             */
-/*   Updated: 2023/05/04 20:59:52 by tlegrand         ###   ########.fr       */
+/*   Updated: 2023/05/04 21:02:34 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,10 +43,12 @@ typedef struct s_data
 	long int		time_pause;
 	int				n_meal;
 	pthread_mutex_t	m_death_note;
+	pthread_mutex_t	m_start;
 	int				dead;
 }	t_data;
 
 int			parser(int ac, char **arg, t_data *data);
+int			parser_error(int err);
 int			philo_init(t_data *data);
 int			philo_launch(t_data *data);
 
