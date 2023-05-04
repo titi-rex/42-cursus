@@ -6,7 +6,7 @@
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/25 20:40:41 by tlegrand          #+#    #+#             */
-/*   Updated: 2023/05/04 14:06:28 by tlegrand         ###   ########.fr       */
+/*   Updated: 2023/05/04 15:46:45 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ int							ft_printf(const char *str, ...);
 
 int							flush_buffer(t_print_buffer *p);
 int							write_buffer(t_print_buffer *p, char c);
-int							write_buffer_str(t_print_buffer *p, char *str);
+int							write_buffer_str(t_print_buffer *p, char *str, int max);
 
 int							padding(t_print_buffer *p, char c, int size);
 int							pad_adjust_right(t_print_buffer *p, int size, \
@@ -62,6 +62,7 @@ int							ft_atoi(const char *str);
 
 int							ft_abs(int a);
 int							ft_max(int a, int b);
+int							ft_min(int a, int b);
 unsigned long long int		ft_power_recursive(unsigned long long int nb, \
 	int power);
 

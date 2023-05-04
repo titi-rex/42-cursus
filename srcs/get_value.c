@@ -6,7 +6,7 @@
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/03 15:35:21 by tlegrand          #+#    #+#             */
-/*   Updated: 2023/05/04 13:29:54 by tlegrand         ###   ########.fr       */
+/*   Updated: 2023/05/04 15:46:18 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ static int	get_sign(int flag[4], int d)
 	return (-1);
 }
 
-static int	get_size(unsigned int u, int flags[4])
+static int	get_size(unsigned long int u, int flags[4])
 {
 	if (flags[3] == 'c')
 		return (1);
@@ -55,7 +55,7 @@ static int	get_size(unsigned int u, int flags[4])
 		return (ft_numlen(u, 8));
 	else if (flags[3] == 'b')
 		return (ft_numlen(u, 2));
-	else if (flags[3] == 'u' || flags[3] == 'd')
+	else if (flags[3] == 'u' || flags[3] == 'd' || flags[3] == 'i')
 		return (ft_numlen(u, 10));
 	return (-1);
 }
@@ -99,7 +99,7 @@ int	get_uint(t_print_buffer *p, va_list ap, int flags[4])
 	tmp = ft_max(size, flags[2]);
 	w_len += pad_adjust_right(p, tmp, get_sign(flags, u), flags);
 	if (u == 0 && flags[3] == 'p')
-		w_len += write_buffer_str(p, "(nil)");
+		w_len += write_buffer_str(p, "(nil)", 0);
 	else
 		w_len += extract_number(p, u, size, flags);
 	w_len += pad_adjust_left(p, tmp, flags);
@@ -118,12 +118,14 @@ int	get_str(t_print_buffer *p, va_list ap, int flags[4])
 	size = ft_strlen2(str);
 	if (size == 0)
 		size = 6;
+	else
+		size = ft_min(size, flags[2]);
 	tmp = ft_max(size, flags[2]);
 	w_len += pad_adjust_right(p, tmp, -1, flags);
 	if (str == NULL)
-		w_len += write_buffer_str(p, "(null)");
+		w_len += write_buffer_str(p, "(null)", 0);
 	else
-		w_len += write_buffer_str(p, str);
+		w_len += write_buffer_str(p, str, flags[2]);
 	w_len += pad_adjust_left(p, tmp, flags);
 	return (w_len);
 }

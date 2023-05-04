@@ -6,7 +6,7 @@
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/03 15:37:45 by tlegrand          #+#    #+#             */
-/*   Updated: 2023/05/04 13:59:55 by tlegrand         ###   ########.fr       */
+/*   Updated: 2023/05/04 15:46:33 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,13 @@ unsigned long long int	ft_power_recursive(unsigned long long int nb, int power)
 int	ft_max(int a, int b)
 {
 	if (a > b)
+		return (a);
+	return (b);
+}
+
+int	ft_min(int a, int b)
+{
+	if (a < b)
 		return (a);
 	return (b);
 }

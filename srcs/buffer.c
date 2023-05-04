@@ -6,7 +6,7 @@
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/04 13:13:55 by tlegrand          #+#    #+#             */
-/*   Updated: 2023/05/04 13:14:13 by tlegrand         ###   ########.fr       */
+/*   Updated: 2023/05/04 15:44:47 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,15 +34,25 @@ int	write_buffer(t_print_buffer *p, char c)
 	return (w_len);
 }
 
-int	write_buffer_str(t_print_buffer *p, char *str)
+int	write_buffer_str(t_print_buffer *p, char *str, int max)
 {
 	int	w_len;
 
 	w_len = 0;
-	while (*str)
+	if (max <= 0)
+	{
+		while (*str)
+		{
+			w_len += write_buffer(p, *str);
+			++str;
+		}
+		return (w_len);
+	}
+	while (*str && max > 0)
 	{
 		w_len += write_buffer(p, *str);
 		++str;
+		--max;
 	}
 	return (w_len);
 }
