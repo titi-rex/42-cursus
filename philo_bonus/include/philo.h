@@ -6,7 +6,7 @@
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/04 19:50:00 by tlegrand          #+#    #+#             */
-/*   Updated: 2023/04/26 19:05:42 by tlegrand         ###   ########.fr       */
+/*   Updated: 2023/05/04 21:00:06 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 # define PHILO_H
 # include <stdio.h>
 # include <unistd.h>
-# include <string.h>
 # include <stdlib.h>
 # include <pthread.h>
 # include <fcntl.h> 

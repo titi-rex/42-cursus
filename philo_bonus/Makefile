@@ -6,7 +6,7 @@
 #    By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/02/12 20:46:19 by tlegrand          #+#    #+#              #
-#    Updated: 2023/04/26 18:07:53 by tlegrand         ###   ########.fr        #
+#    Updated: 2023/05/04 20:58:44 by tlegrand         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -41,7 +41,7 @@ MAKE		=	make -s
 
 
 #	==============================	FLAGS	==============================	#
-CFLAGS		=	-Wall -Wextra -Werror -I${DIR_HEADER} -pthread -g3 -fsanitize=thread #-fsanitize=address -fsanitize=leak
+CFLAGS		=	-Wall -Wextra -Werror -I${DIR_HEADER} -pthread #-g3 -fsanitize=thread #-fsanitize=address -fsanitize=leak
 
 
 
@@ -63,8 +63,8 @@ re		:	fclean
 
 
 #	==============================	COMPILATION	==============================	#
-${NAME}			:	${LIBFT} ${DIR_OBJS} ${OBJS}
-				@${CC} ${CFLAGS} ${OBJS} ${FTFLAGS} -o ${NAME}
+${NAME}			:	${DIR_OBJS} ${OBJS}
+				@${CC} ${CFLAGS} ${OBJS} -o ${NAME}
 				@printf "$(GREEN_LIGHT)${NAME} created !\n$(END)"
 
 ${DIR_OBJS}%.o	:	${DIR_SRCS}%.c ${HEADER} ${HEADER_B} 

@@ -6,7 +6,7 @@
 #    By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/02/12 20:46:19 by tlegrand          #+#    #+#              #
-#    Updated: 2023/04/26 19:18:37 by tlegrand         ###   ########.fr        #
+#    Updated: 2023/05/04 20:58:26 by tlegrand         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -33,6 +33,7 @@ OBJS		=	${patsubst ${DIR_SRCS}%.c, ${DIR_OBJS}%.o, ${SRCS}}
 DIR_HEADER	=	include/
 HEADER		=	${addprefix ${DIR_HEADER}, ${NAME}.h}
 
+
 #	==============================	COMMANDS	==============================	#
 CC 			=	cc
 MKDIR 		=	mkdir -p
@@ -41,7 +42,7 @@ MAKE		=	make -s
 
 
 #	==============================	FLAGS	==============================	#
-CFLAGS		=	-Wall -Wextra -Werror -I${DIR_HEADER} -pthread -g3  -fsanitize=address -fsanitize=leak #-fsanitize=thread
+CFLAGS		=	-Wall -Wextra -Werror -I${DIR_HEADER} -pthread #-g3  -fsanitize=address -fsanitize=leak #-fsanitize=thread
 
 
 #	/*\/*\/*\/*\/*\/*\/*\/*\/*\/*\/*\/*\	RULES	/*\/*\/*\/*\/*\/*\/*\/*\/*\/*\/*\/*\	#
@@ -62,8 +63,8 @@ re		:	fclean
 
 
 #	==============================	COMPILATION	==============================	#
-${NAME}			:	${LIBFT} ${DIR_OBJS} ${OBJS}
-				@${CC} ${CFLAGS} ${OBJS} ${FTFLAGS} -o ${NAME}
+${NAME}			:	${DIR_OBJS} ${OBJS}
+				@${CC} ${CFLAGS} ${OBJS} -o ${NAME}
 				@printf "$(GREEN_LIGHT)${NAME} created !\n$(END)"
 
 ${DIR_OBJS}%.o	:	${DIR_SRCS}%.c ${HEADER} ${HEADER_B} 
