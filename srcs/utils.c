@@ -6,17 +6,11 @@
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/03 15:34:54 by tlegrand          #+#    #+#             */
-/*   Updated: 2023/05/03 21:36:05 by tlegrand         ###   ########.fr       */
+/*   Updated: 2023/05/04 13:17:38 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
-
-void	ft_bzero(void *s, size_t n)
-{
-	while (n-- > 0)
-		*(unsigned char *)(s + n) = 0;
-}
 
 int	ft_isdigit(int c)
 {

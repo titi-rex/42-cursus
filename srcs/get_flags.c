@@ -6,11 +6,28 @@
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/03 15:37:03 by tlegrand          #+#    #+#             */
-/*   Updated: 2023/05/03 21:24:11 by tlegrand         ###   ########.fr       */
+/*   Updated: 2023/05/04 13:18:18 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
+
+static int	get_specifier(int flags[4], char c)
+{
+	if (!is_specifier(c))
+		return (1);
+	flags[3] = c;
+	if (flags[3] == 'p' || flags[3] == 'c' || flags[3] == 's')
+		if (flags[0] & ZERO)
+			flags[0] ^= ZERO;
+	if (flags[3] == 'p')
+	{
+		flags[0] |= ALTERNATE;
+		flags[0] |= PRECISION;
+		flags[2] = 12;
+	}
+	return (0);
+}
 
 int	get_flags(const char *str, int flags[4])
 {
@@ -19,8 +36,6 @@ int	get_flags(const char *str, int flags[4])
 	bit = is_flag(*(++str));
 	while (*str && !is_specifier(*str) && bit)
 	{
-		if (flags[0] & bit)
-			return (1);
 		flags[0] |= bit;
 		++str;
 		bit = is_flag(*str);
@@ -35,16 +50,25 @@ int	get_flags(const char *str, int flags[4])
 		while (*str && ft_isdigit(*str))
 			++str;
 	}
-	if (!is_specifier(*str))
+	if (get_specifier(flags, *str))
 		return (1);
-	flags[3] = *str;
-	if (flags[3] == 'p' || flags[3] == 'c' || flags[3] == 's')
-		if (flags[0] & ZERO)
-			flags[0] ^= ZERO;
 	return (0);
 }
 
-void	print_flags(int flags[4])
+int	get_flags_error(t_print_buffer *p, const char *str)
+{
+	int	w_len;
+
+	w_len = 0;
+	while (*str)
+	{
+		w_len += write_buffer(p, *str);
+		++str;
+	}
+	return (w_len);
+}
+
+void	debug_print_flags(int flags[4])
 {
 	if (flags[0] == 0)
 		dprintf(2, "NO FLAGS ");

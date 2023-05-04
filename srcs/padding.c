@@ -6,7 +6,7 @@
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/03 19:35:14 by tlegrand          #+#    #+#             */
-/*   Updated: 2023/05/03 21:34:51 by tlegrand         ###   ########.fr       */
+/*   Updated: 2023/05/04 13:10:10 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,10 +18,7 @@ int	padding(t_print_buffer *p, char c, int size)
 
 	w_len = 0;
 	while (size-- > 0)
-	{
 		w_len += write_buffer(p, c);
-		dprintf(2, " pad size %d \n", size);
-	}
 	return (w_len);
 }
 
@@ -30,11 +27,14 @@ int	write_sign(t_print_buffer *p, int sign, int specifier)
 	int	w_len;
 
 	w_len = 0;
-	dprintf(2, "sign %d\tspecifier %c\n", sign, specifier);
 	if (sign != -1)
 		w_len += write_buffer(p, sign);
-	if (sign == '0' && specifier != 'o')
-			w_len += write_buffer(p, specifier);
+	if (sign == '0' && (specifier == 'x' || specifier == 'p'))
+		w_len += write_buffer(p, 'x');
+	else if (sign == '0' && specifier == 'X')
+		w_len += write_buffer(p, 'X');
+	else if (sign == '0' && specifier == 'b')
+		w_len += write_buffer(p, 'b');
 	return (w_len);
 }
 
@@ -47,7 +47,6 @@ int	pad_adjust_right(t_print_buffer *p, int size, int sign, int flags[4])
 		--flags[1];
 	if (sign == 0 && flags[3] != 'o')
 		--flags[1];
-	dprintf(2, "width %d\n", flags[1]);
 	if ((flags[0] & LEFT) == 0 && flags[1] > size)
 	{
 		if ((flags[0] & PRECISION) == 0 && (flags[0] & ZERO))
@@ -71,6 +70,6 @@ int	pad_adjust_left(t_print_buffer *p, int size, int flags[4])
 
 	w_len = 0;
 	if ((flags[0] & LEFT) && flags[1] > size)
-			w_len += padding(p, ' ', flags[1] - size);
+		w_len += padding(p, ' ', flags[1] - size);
 	return (w_len);
 }
