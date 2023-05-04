@@ -6,7 +6,7 @@
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/03 15:37:03 by tlegrand          #+#    #+#             */
-/*   Updated: 2023/05/04 20:51:51 by tlegrand         ###   ########.fr       */
+/*   Updated: 2023/05/04 20:53:03 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,25 +67,4 @@ int	get_flags_error(t_print_buffer *p, const char **str)
 		++(*str);
 	}
 	return (w_len);
-}
-
-void	debug_print_flags(int flags[4])
-{
-	if (flags[0] == 0)
-		dprintf(2, "NO FLAGS ");
-	if (flags[0] & LEFT)
-		dprintf(2, "LEFT ");
-	if (flags[0] & PRECISION)
-		dprintf(2, "PRECISION ");
-	if (flags[0] & ZERO)
-		dprintf(2, "ZERO ");
-	if (flags[0] & BLANK)
-		dprintf(2, "BLANK ");
-	if (flags[0] & PLUS)
-		dprintf(2, "PLUS ");
-	if (flags[0] & ALTERNATE)
-		dprintf(2, "ALTERNATE ");
-	dprintf(2, "\nwidth : %d\n", flags[1]);
-	dprintf(2, "precision : %d\n", flags[2]);
-	dprintf(2, "specifier : %c\n", flags[3]);
 }

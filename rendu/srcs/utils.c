@@ -1,17 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_atoi.c                                          :+:      :+:    :+:   */
+/*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/08 15:30:13 by tlegrand          #+#    #+#             */
-/*   Updated: 2023/05/01 20:20:33 by tlegrand         ###   ########.fr       */
+/*   Created: 2023/05/03 15:34:54 by tlegrand          #+#    #+#             */
+/*   Updated: 2023/05/04 19:40:23 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../libft.h"
+#include "../ft_printf.h"
 
+int	ft_isdigit(int c)
+{
+	if (c >= '0' && c <= '9')
+		return (1);
+	return (0);
+}
 
 int	ft_atoi(const char *str)
 {
@@ -34,4 +40,38 @@ int	ft_atoi(const char *str)
 		str++;
 	}
 	return ((int) sign * res);
+}
+
+int	is_specifier(char c)
+{
+	if (c == 'c' || c == 's' || c == 'p' || c == 'd' || c == 'i')
+		return (1);
+	if (c == 'o' || c == 'u' || c == 'x' || c == 'X' || c == '%' || c == 'b')
+		return (1);
+	return (0);
+}
+
+int	is_flag(char c)
+{
+	if (c == '-')
+		return (LEFT);
+	if (c == '0')
+		return (ZERO);
+	if (c == ' ')
+		return (BLANK);
+	if (c == '+')
+		return (PLUS);
+	if (c == '#')
+		return (ALTERNATE);
+	return (0);
+}
+
+size_t	ft_strlen2(const char *s)
+{
+	size_t	i;
+
+	i = 0;
+	while (s && s[i])
+		i++;
+	return (i);
 }

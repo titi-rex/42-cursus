@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   utils_math.c                                       :+:      :+:    :+:   */
+/*   utils_math_bonus.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/03 15:37:45 by tlegrand          #+#    #+#             */
-/*   Updated: 2023/05/04 19:40:23 by tlegrand         ###   ########.fr       */
+/*   Updated: 2023/05/04 20:39:28 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../ft_printf.h"
+#include "../ft_printf_bonus.h"
 
 unsigned long long int	ft_power_recursive(unsigned long long int nb, int power)
 {
