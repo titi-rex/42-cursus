@@ -6,7 +6,7 @@
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/03 15:37:03 by tlegrand          #+#    #+#             */
-/*   Updated: 2023/05/04 14:43:12 by tlegrand         ###   ########.fr       */
+/*   Updated: 2023/05/04 15:52:30 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,8 @@ static int	get_specifier(int flags[4], char c)
 	if (!is_specifier(c))
 		return (1);
 	flags[3] = c;
-	if (flags[3] == 'p' || flags[3] == 'c' || flags[3] == 's')
+	if (flags[3] == 'p' || flags[3] == 'c' || flags[3] == 's' || \
+		flags[3] == '%')
 		if (flags[0] & ZERO)
 			flags[0] ^= ZERO;
 	if (flags[3] == 'p')
@@ -52,6 +53,7 @@ int	get_flags(const char *str, int flags[4])
 	}
 	if (get_specifier(flags, *str))
 		return (1);
+	debug_print_flags(flags);
 	return (0);
 }
 

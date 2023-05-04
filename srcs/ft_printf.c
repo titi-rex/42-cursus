@@ -6,7 +6,7 @@
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/01 19:43:06 by tlegrand          #+#    #+#             */
-/*   Updated: 2023/05/04 14:07:12 by tlegrand         ###   ########.fr       */
+/*   Updated: 2023/05/04 15:53:54 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,10 +23,7 @@ int	selector(t_print_buffer *p, const char **str, va_list ap)
 	flags[2] = 0;
 	flags[3] = 0;
 	if (get_flags(*str, flags))
-	{
-		w_len += get_flags_error(p, *str);
-		return (w_len);
-	}
+		return (get_flags_error(p, *str));
 	if (flags[3] == 'c' || flags[3] == 'd' || flags[3] == 'i' || \
 		flags[3] == '%')
 		get_int(p, ap, flags);
@@ -36,6 +33,8 @@ int	selector(t_print_buffer *p, const char **str, va_list ap)
 	else if (flags[3] == 's')
 		get_str(p, ap, flags);
 	while (**str && **str != flags[3])
+		++(*str);
+	if (**str == '%')
 		++(*str);
 	return (w_len);
 }
