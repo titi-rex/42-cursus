@@ -7,8 +7,6 @@
 *.obj
 *.elf
 
-philo_bonus
-philo
 .json
 
 
