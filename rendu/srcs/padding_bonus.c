@@ -6,7 +6,7 @@
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/03 19:35:14 by tlegrand          #+#    #+#             */
-/*   Updated: 2023/05/04 20:39:28 by tlegrand         ###   ########.fr       */
+/*   Updated: 2023/05/05 13:39:38 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,8 @@ int	pad_adjust_right(t_print_buffer *p, int size, int sign, int flags[4])
 			w_len += write_sign(p, sign, flags[3]);
 		}
 	}
-	w_len += write_sign(p, sign, flags[3]);
+	else
+		w_len += write_sign(p, sign, flags[3]);
 	return (w_len);
 }
 

@@ -6,7 +6,7 @@
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/04 19:49:04 by tlegrand          #+#    #+#             */
-/*   Updated: 2023/05/04 20:56:28 by tlegrand         ###   ########.fr       */
+/*   Updated: 2023/05/05 13:38:25 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 
 int	main(void)
 {
-	ft_printf("%5.d\n", 1);
-	printf("%5.d\n", 1);
+	ft_printf(":%.d:\n", 0);
+	printf(":%.d:\n", 0);
 }
 
 /*
