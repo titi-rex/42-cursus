@@ -6,7 +6,7 @@
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/03 19:35:14 by tlegrand          #+#    #+#             */
-/*   Updated: 2023/05/05 13:39:38 by tlegrand         ###   ########.fr       */
+/*   Updated: 2023/05/05 22:46:51 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ int	pad_adjust_right(t_print_buffer *p, int size, int sign, int flags[4])
 	w_len = 0;
 	if (sign != -1)
 		--flags[1];
-	if (sign == 0 && flags[3] != 'o')
+	if (sign == '0' && flags[3] != 'o')
 		--flags[1];
 	if ((flags[0] & LEFT) == 0 && flags[1] > size)
 	{

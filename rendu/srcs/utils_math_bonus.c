@@ -6,7 +6,7 @@
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/03 15:37:45 by tlegrand          #+#    #+#             */
-/*   Updated: 2023/05/04 20:39:28 by tlegrand         ###   ########.fr       */
+/*   Updated: 2023/05/05 22:35:49 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ int	ft_min(int a, int b)
 	return (b);
 }
 
-int	ft_abs(int a)
+long int	ft_abs(long int a)
 {
 	if (a < 0)
 		return (-a);

@@ -6,7 +6,7 @@
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/03 16:05:14 by tlegrand          #+#    #+#             */
-/*   Updated: 2023/05/04 20:39:28 by tlegrand         ###   ########.fr       */
+/*   Updated: 2023/05/05 22:28:36 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,6 +57,8 @@ int	extract_number(t_print_buffer *p, unsigned long int number, \
 	if (flags[0] & PRECISION)
 		w_len += padding(p, '0', flags[2] - size);
 	pow = ft_power_recursive(base_len, size - 1);
+	if ((flags[0] & PRECISION) && flags[2] == 0 && number / pow == 0)
+		return (w_len);
 	while (pow)
 	{
 		w_len += write_buffer(p, base[(number / pow)]);

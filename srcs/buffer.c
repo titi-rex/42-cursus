@@ -6,7 +6,7 @@
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/04 13:13:55 by tlegrand          #+#    #+#             */
-/*   Updated: 2023/05/04 19:47:54 by tlegrand         ###   ########.fr       */
+/*   Updated: 2023/05/05 20:37:47 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ int	write_buffer_str(t_print_buffer *p, char *str, int max)
 	int	w_len;
 
 	w_len = 0;
-	if (max <= 0)
+	if (max < 0)
 	{
 		while (*str)
 		{

@@ -6,7 +6,7 @@
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/03 19:35:14 by tlegrand          #+#    #+#             */
-/*   Updated: 2023/05/04 19:40:23 by tlegrand         ###   ########.fr       */
+/*   Updated: 2023/05/05 22:47:00 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ int	pad_adjust_right(t_print_buffer *p, int size, int sign, int flags[4])
 	w_len = 0;
 	if (sign != -1)
 		--flags[1];
-	if (sign == 0 && flags[3] != 'o')
+	if (sign == '0' && flags[3] != 'o')
 		--flags[1];
 	if ((flags[0] & LEFT) == 0 && flags[1] > size)
 	{
@@ -60,7 +60,8 @@ int	pad_adjust_right(t_print_buffer *p, int size, int sign, int flags[4])
 			w_len += write_sign(p, sign, flags[3]);
 		}
 	}
-	w_len += write_sign(p, sign, flags[3]);
+	else
+		w_len += write_sign(p, sign, flags[3]);
 	return (w_len);
 }
 

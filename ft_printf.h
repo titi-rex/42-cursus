@@ -6,7 +6,7 @@
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/25 20:40:41 by tlegrand          #+#    #+#             */
-/*   Updated: 2023/05/04 19:47:43 by tlegrand         ###   ########.fr       */
+/*   Updated: 2023/05/05 22:34:52 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,7 @@ size_t						ft_strlen2(const char *s);
 int							ft_numlen(unsigned long long int num, int base);
 int							ft_atoi(const char *str);
 
-int							ft_abs(int a);
+long int					ft_abs(long int a);
 int							ft_max(int a, int b);
 int							ft_min(int a, int b);
 unsigned long long int		ft_power_recursive(unsigned long long int nb, \
