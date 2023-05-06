@@ -6,7 +6,7 @@
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/01 19:43:06 by tlegrand          #+#    #+#             */
-/*   Updated: 2023/05/05 21:38:46 by tlegrand         ###   ########.fr       */
+/*   Updated: 2023/05/06 22:51:06 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,11 +42,13 @@ int	selector(t_print_buffer *p, const char **str, va_list ap)
 int	ft_printf(const char *str, ...)
 {
 	t_print_buffer	p;
-	int				w_len;
 	va_list			ap;
+	int				w_len;
+	int				err;
 
 	va_start(ap, str);
 	w_len = 0;
+	err = 0;
 	p.idx = 0;
 	while (*str)
 	{
@@ -56,8 +58,12 @@ int	ft_printf(const char *str, ...)
 			w_len += write_buffer(&p, *str);
 		if (*str)
 			++str;
+		if (w_len < 0)
+			err = -1;
 	}
 	w_len += flush_buffer(&p);
 	va_end(ap);
+	if (err)
+		return (-1);
 	return (w_len);
 }
