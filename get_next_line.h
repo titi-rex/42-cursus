@@ -6,7 +6,7 @@
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/28 16:40:12 by tlegrand          #+#    #+#             */
-/*   Updated: 2023/04/10 16:24:02 by tlegrand         ###   ########.fr       */
+/*   Updated: 2023/05/06 23:23:44 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,10 +15,6 @@
 # include <unistd.h>
 # include <stdlib.h>
 # include <limits.h>
-
-# ifndef OPEN_MAX
-#  define OPEN_MAX 512
-# endif
 
 # ifndef BUFFER_SIZE
 #  define BUFFER_SIZE 1
