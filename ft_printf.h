@@ -6,7 +6,7 @@
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/25 20:40:41 by tlegrand          #+#    #+#             */
-/*   Updated: 2023/05/05 22:34:52 by tlegrand         ###   ########.fr       */
+/*   Updated: 2023/05/05 22:38:43 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,6 @@
 # include <unistd.h>
 # include <stdarg.h>
 # include <stdlib.h>
-# include  <stdio.h>
 
 # define LEFT 0b00000001
 # define PRECISION 0b00000010
@@ -31,12 +30,6 @@ typedef struct s_print_buffer
 	char	buffer[BUFFER_SIZE];
 	int		idx;
 }	t_print_buffer;
-
-union u_union_int
-{
-	unsigned int	u_int;
-	int				s_int;
-};
 
 int							ft_printf(const char *str, ...);
 
