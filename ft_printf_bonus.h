@@ -6,7 +6,7 @@
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/25 20:40:41 by tlegrand          #+#    #+#             */
-/*   Updated: 2023/05/06 22:37:20 by tlegrand         ###   ########.fr       */
+/*   Updated: 2023/05/06 23:13:03 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,28 +23,18 @@
 # define PLUS 0b00010000 
 # define ALTERNATE 0b00100000 
 
-# define BUFFER_SIZE 256
-
-typedef struct s_print_buffer
-{
-	char	buffer[BUFFER_SIZE];
-	int		idx;
-}	t_print_buffer;
-
 int						ft_printf(const char *str, ...);
 
-int						flush_buffer(t_print_buffer *p);
-int						write_buffer(t_print_buffer *p, char c);
-int						write_buffer_str(t_print_buffer *p, char *str, int max);
+int						write_str(char *str, int max);
 
-int						padding(t_print_buffer *p, char c, int size);
-int						pad_adjust_right(t_print_buffer *p, int size, \
+int						padding(char c, int size);
+int						pad_adjust_right(int size, \
 	int sign, int flags[4]);
-int						pad_adjust_left(t_print_buffer *p, int size, \
+int						pad_adjust_left(int size, \
 	int flags[4]);
 
 int						get_flags(const char *str, int flags[4]);
-int						get_flags_error(t_print_buffer *p, \
+int						get_flags_error(\
 	const char **str);
 
 int						is_flag(char c);
@@ -60,11 +50,11 @@ int						ft_min(int a, int b);
 unsigned long long int	ft_power_recursive(unsigned long long int nb, \
 	int power);
 
-int						extract_number(t_print_buffer *p, \
+int						extract_number(\
 	unsigned long int number, int size, int flags[4]);
 
-int						get_str(t_print_buffer *p, va_list ap, int flags[4]);
-int						get_int(t_print_buffer *p, va_list ap, int flags[4]);
-int						get_uint(t_print_buffer *p, va_list ap,	int flags[4]);
+int						get_str(va_list ap, int flags[4]);
+int						get_int(va_list ap, int flags[4]);
+int						get_uint(va_list ap,	int flags[4]);
 
 #endif

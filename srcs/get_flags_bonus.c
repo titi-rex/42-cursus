@@ -6,7 +6,7 @@
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/03 15:37:03 by tlegrand          #+#    #+#             */
-/*   Updated: 2023/05/05 23:00:58 by tlegrand         ###   ########.fr       */
+/*   Updated: 2023/05/06 23:12:44 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,14 +52,14 @@ int	get_flags(const char *str, int flags[4])
 	return (0);
 }
 
-int	get_flags_error(t_print_buffer *p, const char **str)
+int	get_flags_error(const char **str)
 {
 	int	w_len;
 
 	w_len = 0;
 	while (**str)
 	{
-		w_len += write_buffer(p, **str);
+		w_len += write(1, *str, 1);
 		++(*str);
 	}
 	return (w_len);

@@ -6,7 +6,7 @@
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/03 15:35:21 by tlegrand          #+#    #+#             */
-/*   Updated: 2023/05/05 22:57:00 by tlegrand         ###   ########.fr       */
+/*   Updated: 2023/05/06 23:11:16 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,7 @@ static int	get_size(unsigned long int u, int flags[4])
 	return (-1);
 }
 
-int	get_int(t_print_buffer *p, va_list ap, int flags[4])
+int	get_int(va_list ap, int flags[4])
 {
 	long int	d;
 	int			w_len;
@@ -77,16 +77,16 @@ int	get_int(t_print_buffer *p, va_list ap, int flags[4])
 	if (flags[0] & PRECISION && flags[2] == 0 && d == 0)
 		size = 0;
 	tmp = ft_max(size, flags[2]);
-	w_len += pad_adjust_right(p, tmp, sign, flags);
+	w_len += pad_adjust_right(tmp, sign, flags);
 	if (flags[3] == 'c')
-		w_len += write_buffer(p, d);
+		w_len += write(1, &d, 1);
 	else
-		w_len += extract_number(p, d, size, flags);
-	w_len += pad_adjust_left(p, tmp, flags);
+		w_len += extract_number(d, size, flags);
+	w_len += pad_adjust_left(tmp, flags);
 	return (w_len);
 }
 
-int	get_uint(t_print_buffer *p, va_list ap, int flags[4])
+int	get_uint(va_list ap, int flags[4])
 {
 	unsigned long int	u;
 	int					w_len;
@@ -101,16 +101,16 @@ int	get_uint(t_print_buffer *p, va_list ap, int flags[4])
 	tmp = ft_max(size, flags[2]);
 	if (flags[3] == 'p' && u == 0)
 		tmp = 5;
-	w_len += pad_adjust_right(p, tmp, get_sign(flags, u), flags);
+	w_len += pad_adjust_right(tmp, get_sign(flags, u), flags);
 	if (u == 0 && flags[3] == 'p')
-		w_len += write_buffer_str(p, "(nil)", 5);
+		w_len += write(1, "(nil)", 5);
 	else
-		w_len += extract_number(p, u, size, flags);
-	w_len += pad_adjust_left(p, tmp, flags);
+		w_len += extract_number(u, size, flags);
+	w_len += pad_adjust_left(tmp, flags);
 	return (w_len);
 }
 
-int	get_str(t_print_buffer *p, va_list ap, int flags[4])
+int	get_str(va_list ap, int flags[4])
 {
 	char	*str;
 	int		w_len;
@@ -125,11 +125,11 @@ int	get_str(t_print_buffer *p, va_list ap, int flags[4])
 		size = ft_min(size, flags[2]);
 	if (flags[0] & PRECISION && str == NULL && flags[2] < 6)
 		size = 0;
-	w_len += pad_adjust_right(p, size, -1, flags);
+	w_len += pad_adjust_right(size, -1, flags);
 	if (str == NULL && size >= 6)
-		w_len += write_buffer_str(p, "(null)", 6);
+		w_len += write(1, "(null)", 6);
 	else if (str)
-		w_len += write_buffer_str(p, str, size);
-	w_len += pad_adjust_left(p, size, flags);
+		w_len += write_str(str, size);
+	w_len += pad_adjust_left(size, flags);
 	return (w_len);
 }

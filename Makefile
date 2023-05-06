@@ -6,7 +6,7 @@
 #    By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/02/12 20:46:19 by tlegrand          #+#    #+#              #
-#    Updated: 2023/05/06 22:33:24 by tlegrand         ###   ########.fr        #
+#    Updated: 2023/05/06 23:11:39 by tlegrand         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,7 +22,7 @@ LST_SRCS		= 	ft_printf.c  \
 					ft_putadr.c ft_putnbr_base.c ft_putchar.c ft_putstr.c 
 SRCS			=	${addprefix ${DIR_SRCS}, ${LST_SRCS}}
 
-LST_SRCS_B		= 	ft_printf_bonus.c buffer_bonus.c padding_bonus.c \
+LST_SRCS_B		= 	ft_printf_bonus.c write_bonus.c padding_bonus.c \
 					get_flags_bonus.c get_value_bonus.c extract_number_bonus.c \
 					utils_bonus.c utils_math_bonus.c 
 SRCS_B			=	${addprefix ${DIR_SRCS}, ${LST_SRCS_B}}
