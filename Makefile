@@ -6,7 +6,7 @@
 #    By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/02/12 20:46:19 by tlegrand          #+#    #+#              #
-#    Updated: 2023/05/04 20:44:40 by tlegrand         ###   ########.fr        #
+#    Updated: 2023/05/06 22:33:24 by tlegrand         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,9 +18,8 @@ NAME		=	libftprintf.a
 
 #	==============================	SOURCES	==============================	#
 DIR_SRCS		=	srcs/
-LST_SRCS		= 	ft_printf.c buffer.c padding.c \
-					get_flags.c get_value.c extract_number.c \
-					utils.c utils_math.c 
+LST_SRCS		= 	ft_printf.c  \
+					ft_putadr.c ft_putnbr_base.c ft_putchar.c ft_putstr.c 
 SRCS			=	${addprefix ${DIR_SRCS}, ${LST_SRCS}}
 
 LST_SRCS_B		= 	ft_printf_bonus.c buffer_bonus.c padding_bonus.c \

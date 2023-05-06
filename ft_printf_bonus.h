@@ -6,7 +6,7 @@
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/25 20:40:41 by tlegrand          #+#    #+#             */
-/*   Updated: 2023/05/05 22:38:27 by tlegrand         ###   ########.fr       */
+/*   Updated: 2023/05/06 22:37:20 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,46 +31,40 @@ typedef struct s_print_buffer
 	int		idx;
 }	t_print_buffer;
 
-int							ft_printf(const char *str, ...);
+int						ft_printf(const char *str, ...);
 
-int							flush_buffer(t_print_buffer *p);
-int							write_buffer(t_print_buffer *p, char c);
-int							write_buffer_str(t_print_buffer *p, char *str, \
-	int max);
+int						flush_buffer(t_print_buffer *p);
+int						write_buffer(t_print_buffer *p, char c);
+int						write_buffer_str(t_print_buffer *p, char *str, int max);
 
-int							padding(t_print_buffer *p, char c, int size);
-int							pad_adjust_right(t_print_buffer *p, int size, \
+int						padding(t_print_buffer *p, char c, int size);
+int						pad_adjust_right(t_print_buffer *p, int size, \
 	int sign, int flags[4]);
-int							pad_adjust_left(t_print_buffer *p, int size, \
+int						pad_adjust_left(t_print_buffer *p, int size, \
 	int flags[4]);
 
-int							get_flags(const char *str, int flags[4]);
-int							get_flags_error(t_print_buffer *p, \
+int						get_flags(const char *str, int flags[4]);
+int						get_flags_error(t_print_buffer *p, \
 	const char **str);
 
-int							is_flag(char c);
-int							is_specifier(char c);
-int							ft_isdigit(int c);
-size_t						ft_strlen2(const char *s);
-int							ft_numlen(unsigned long long int num, int base);
-int							ft_atoi(const char *str);
+int						is_flag(char c);
+int						is_specifier(char c);
+int						ft_isdigit(int c);
+size_t					ft_strlen2(const char *s);
+int						ft_numlen(unsigned long long int num, int base);
+int						ft_atoi(const char *str);
 
-long int					ft_abs(long int a);
-int							ft_max(int a, int b);
-int							ft_min(int a, int b);
-unsigned long long int		ft_power_recursive(unsigned long long int nb, \
+long int				ft_abs(long int a);
+int						ft_max(int a, int b);
+int						ft_min(int a, int b);
+unsigned long long int	ft_power_recursive(unsigned long long int nb, \
 	int power);
 
-int							extract_number(t_print_buffer *p, \
+int						extract_number(t_print_buffer *p, \
 	unsigned long int number, int size, int flags[4]);
 
-int							get_str(t_print_buffer *p, va_list ap, \
-	int flags[4]);
-int							get_int(t_print_buffer *p, va_list ap, \
-	int flags[4]);
-int							get_uint(t_print_buffer *p, va_list ap, \
-	int flags[4]);
-
-void						debug_print_flags(int flags[4]);
+int						get_str(t_print_buffer *p, va_list ap, int flags[4]);
+int						get_int(t_print_buffer *p, va_list ap, int flags[4]);
+int						get_uint(t_print_buffer *p, va_list ap,	int flags[4]);
 
 #endif
