@@ -6,7 +6,7 @@
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/03 15:35:21 by tlegrand          #+#    #+#             */
-/*   Updated: 2023/05/06 23:11:16 by tlegrand         ###   ########.fr       */
+/*   Updated: 2023/05/20 21:29:26 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,14 +14,10 @@
 
 static int	get_sign(int flag[4], int d)
 {
-	if (flag[3] == 'c' || flag[3] == 's')
+	if (flag[3] == 'c')
 		return (-1);
 	if ((flag[3] == 'd' || flag[3] == 'i') && d < 0)
 		return ('-');
-	if (flag[0] & PLUS)
-		return ('+');
-	if (flag[0] & BLANK)
-		return (' ');
 	if (flag[0] & ALTERNATE)
 	{
 		if (flag[3] == 'p' && d == 0)
@@ -35,6 +31,10 @@ static int	get_sign(int flag[4], int d)
 		if (flag[3] == 'x' || flag[3] == 'X')
 			return ('0');
 	}
+	if (flag[0] & PLUS)
+		return ('+');
+	if (flag[0] & BLANK)
+		return (' ');
 	return (-1);
 }
 

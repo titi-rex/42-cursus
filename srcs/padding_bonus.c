@@ -6,7 +6,7 @@
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/03 19:35:14 by tlegrand          #+#    #+#             */
-/*   Updated: 2023/05/06 23:12:29 by tlegrand         ###   ########.fr       */
+/*   Updated: 2023/06/06 21:24:45 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,11 +22,13 @@ int	padding(char c, int size)
 	return (w_len);
 }
 
-int	write_sign(int sign, int specifier)
+int	write_sign(int sign, int specifier, int flag)
 {
 	int	w_len;
 
 	w_len = 0;
+	if (sign != -1 && specifier == 'p' && flag & BLANK)
+		w_len += write(1, " ", 1);
 	if (sign != -1)
 		w_len += write(1, &sign, 1);
 	if (sign == '0' && (specifier == 'x' || specifier == 'p'))
@@ -51,17 +53,17 @@ int	pad_adjust_right(int size, int sign, int flags[4])
 	{
 		if ((flags[0] & PRECISION) == 0 && (flags[0] & ZERO))
 		{
-			w_len += write_sign(sign, flags[3]);
+			w_len += write_sign(sign, flags[3], flags[0]);
 			w_len += padding('0', flags[1] - size);
 		}
 		else
 		{
 			w_len += padding(' ', flags[1] - size);
-			w_len += write_sign(sign, flags[3]);
+			w_len += write_sign(sign, flags[3], flags[0]);
 		}
 	}
 	else
-		w_len += write_sign(sign, flags[3]);
+		w_len += write_sign(sign, flags[3], flags[0]);
 	return (w_len);
 }
 
