@@ -1,0 +1,10 @@
+class need 
+_private
+public
+
+Constructor
+Destructor
+comparator
+
+get func
+set func
