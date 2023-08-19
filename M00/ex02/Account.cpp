@@ -6,7 +6,7 @@
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/19 12:07:09 by tlegrand          #+#    #+#             */
-/*   Updated: 2023/08/19 13:24:39 by tlegrand         ###   ########.fr       */
+/*   Updated: 2023/08/19 13:58:30 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,15 @@ int Account::_totalNbDeposits = 0;
 int Account::_totalNbWithdrawals = 0;
 
 void	Account::_displayTimestamp(void) {
-	std::time_t	t = std::time(NULL);
-	std::cout << "[" << t << "] ";
+	std::time_t	t;
+	struct tm	*t_info;
+	char	buffer[15];
+	
+	std::time(&t);
+	t_info = std::localtime(&t);
+	buffer[14] = 0;
+	std::strftime(buffer, 14, "%Y%m%d_%H%M%S", t_info);
+	std::cout << "[" << buffer << "] ";
 }
 
 Account::Account(void) 
