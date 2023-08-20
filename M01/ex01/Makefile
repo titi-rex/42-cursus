@@ -6,7 +6,7 @@
 #    By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/08/15 11:48:58 by tlegrand          #+#    #+#              #
-#    Updated: 2023/08/19 17:42:48 by tlegrand         ###   ########.fr        #
+#    Updated: 2023/08/20 23:44:35 by tlegrand         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,7 +15,7 @@ NAME	=	zombie
 
 HDR		=	Zombie.hpp
 
-SRC		=	main.cpp Zombie.cpp newZombie.cpp randomChump.cpp
+SRC		=	main.cpp Zombie.cpp zombieHorde.cpp 
 
 OBJ_DIR	=	.obj/
 OBJ_LST	=	${SRC:.cpp=.o}
@@ -24,7 +24,7 @@ OBJ		=	$(addprefix $(OBJ_DIR), $(OBJ_LST))
 CC		=	c++
 RM		=	rm -rf
 
-CFLAG	=	-Wall -Werror -Wextra -std=c++98
+CFLAG	=	-Wall -Werror -Wextra -std=c++98 -fsanitize=leaks -g3
 
 
 

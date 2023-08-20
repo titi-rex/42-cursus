@@ -1,30 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Zombie.hpp                                         :+:      :+:    :+:   */
+/*   zombieHorde.cpp                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/08/19 16:58:04 by tlegrand          #+#    #+#             */
-/*   Updated: 2023/08/20 20:56:21 by tlegrand         ###   ########.fr       */
+/*   Created: 2023/08/20 20:36:02 by tlegrand          #+#    #+#             */
+/*   Updated: 2023/08/20 23:50:55 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef _ZOMBIE_H__
-# define _ZOMBIE_H__
-# include <string>
+#include "Zombie.hpp"
+#include <string>
 
-class Zombie
+Zombie* zombieHorde(int N, std::string name)
 {
-	private	:
-		std::string	_name;
-	
-	public	:
-		Zombie(void);
-		Zombie(std::string name);
-		~Zombie(void);
-		void	announce(void);
+	Zombie	*horde;
 
-};
-
-#endif
+	horde = new Zombie[N];
+	for (std::size_t i{0}; i < N; ++i)
+		new (&horde[i]) Zombie(name);
+	return (horde);
+}
