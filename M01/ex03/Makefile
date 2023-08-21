@@ -6,16 +6,16 @@
 #    By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/08/15 11:48:58 by tlegrand          #+#    #+#              #
-#    Updated: 2023/08/21 19:43:52 by tlegrand         ###   ########.fr        #
+#    Updated: 2023/08/21 19:43:32 by tlegrand         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME	=	
+NAME	=	war
 
 
-HDR		=	
+HDR		=	Weapon.hpp HumanA.hpp HumanB.hpp
 
-SRC		=	
+SRC		=	main.cpp Weapon.cpp HumanA.cpp HumanB.cpp
 
 OBJ_DIR	=	.obj/
 OBJ_LST	=	${SRC:.cpp=.o}
@@ -24,8 +24,7 @@ OBJ		=	$(addprefix $(OBJ_DIR), $(OBJ_LST))
 CC		=	c++
 RM		=	rm -rf
 
-CFLAGS	=	-Wall -Werror -Wextra -std=c++98
-
+CFLAG	=	-Wall -Werror -Wextra -std=c++98 -fsanitize=leak -g3
 
 
 .PHONY	:	all clean fclean re
@@ -43,12 +42,12 @@ re		:	fclean all
 		
 
 ${NAME}	:	$(OBJ_DIR) ${OBJ} 
-		@$(CC) $(OBJ) -o $@
+		$(CC) ${CFLAG} $(OBJ) -o $@
 		@printf "$(GREEN_LIGHT)$@ created !\n$(END)"
 
 $(OBJ_DIR)%.o	:	%.cpp $(HDR)
 		@printf "$(YELLOW)Making $@...\n$(END)"
-		@${CC} ${CFLAGS} -c $< -o $@
+		${CC} ${CFLAG} -c $< -o $@
 
 $(OBJ_DIR)	:
 			@mkdir -p $(OBJ_DIR)

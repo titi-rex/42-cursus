@@ -5,29 +5,25 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/08/19 16:57:34 by tlegrand          #+#    #+#             */
-/*   Updated: 2023/08/21 19:50:29 by tlegrand         ###   ########.fr       */
+/*   Created: 2023/08/21 18:27:20 by tlegrand          #+#    #+#             */
+/*   Updated: 2023/08/21 18:39:15 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Zombie.hpp"
-
-Zombie* zombieHorde(int N, std::string name);
-
-typedef Zombie* ZombiePtr;
-
-void	announceHorde(int const N, ZombiePtr const horde)
-{
-	for (int i = 0; i < N; ++i)
-		horde[i].announce();
-}
+#include <iostream>
+#include <string>
 
 int	main(void)
 {
-	ZombiePtr	horde;
-	
-	horde = zombieHorde(3, "Lily");
-	announceHorde(3, horde);
-	delete[] horde;
+	std::string	string = "HI THIS IS BRAIN";
+	std::string	*stringPTR = &string;
+	std::string	&stringREF = string;
+
+	std::cout << "Memory addresse of string " << &string << std::endl; 
+	std::cout << "Memory addresse held by stringPTR " << stringPTR << std::endl; 
+	std::cout << "Memory addresse held by stringREF " << &stringREF << std::endl; 
+	std::cout << "Value of string " << string << std::endl; 
+	std::cout << "Value pointed by stringPTR " << *stringPTR << std::endl; 
+	std::cout << "Value pointed by stringREF " << stringREF << std::endl;
 	return (0);
 }

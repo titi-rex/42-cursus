@@ -1,24 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   zombieHorde.cpp                                    :+:      :+:    :+:   */
+/*   HumanB.hpp                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/08/20 20:36:02 by tlegrand          #+#    #+#             */
-/*   Updated: 2023/08/21 19:45:44 by tlegrand         ###   ########.fr       */
+/*   Created: 2023/08/21 18:49:57 by tlegrand          #+#    #+#             */
+/*   Updated: 2023/08/21 19:42:59 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Zombie.hpp"
-#include <string>
+#ifndef _HUMAN_B_H__
+# define _HUMAN_B_H__
+# include "Weapon.hpp"
+# include <string>
 
-Zombie* zombieHorde(int N, std::string name)
+class HumanB
 {
-	Zombie	*horde;
+	private	:
+		std::string	_name;
+		Weapon*		_weapon;
 
-	horde = new Zombie[N];
-	for (int i = 0; i < N; ++i)
-		new (&horde[i]) Zombie(name);
-	return (horde);
-}
+	public	:
+		HumanB(std::string name);
+		~HumanB(void);
+		void	attack(void) const;
+		void	setWeapon(Weapon& weapon);
+};
+
+#endif
