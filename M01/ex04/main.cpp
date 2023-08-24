@@ -6,7 +6,7 @@
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/21 20:41:42 by tlegrand          #+#    #+#             */
-/*   Updated: 2023/08/22 00:11:01 by tlegrand         ###   ########.fr       */
+/*   Updated: 2023/08/24 14:37:31 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,13 +36,40 @@ file.seekg( 0, std::ios_base::beg );
 
 #include <iostream>
 #include <fstream>
-#define BUFFER_SIZE 24
+#define BUFFER_SIZE 1024
 
+std::string	get_file(char *pathanme)
+{
+	std::ifstream	in;
+	std::string		str_file;
+	char			buffer[BUFFER_SIZE];
+	
+	in.open(pathanme, std::ios::in);
+	
+	while (!in.eof())
+	{
+		in.get(buffer, BUFFER_SIZE, '\0');
+		str_file.append(buffer);
+	}
+	in.close();
 
+	return (str_file);
+}
+
+void	write_file(char *pathname, std::string data)
+{
+	std::ofstream	out;
+	std::string		name(pathname);
+	
+	name += ".replace";
+	out.open(name.data(), std::ios::out);
+	out << data;
+	out.close();
+}
 int	stringContent(const std::string small, const std::string big)
 {
-	std::size_t	i = 0;
-	int			k = 0;
+	std::size_t		i = 0;
+	unsigned int	k = 0;
 	
 	if (small.size() > big.size())
 		return (-1);
@@ -58,47 +85,32 @@ int	stringContent(const std::string small, const std::string big)
 	return (-1);
 }
 
-
-int	sed(std::ofstream out, const char* const r_buffer, const std::string s, const std::string r)
+void	search_n_destroy(std::string data, char *s1, char *s2)
 {
-	std::string	buffer();
+	std::string	search(s1);
+	std::string replace(s2);
 	std::size_t	i = 0;
 	
-	
-	return (0);
+	while (i < data.size())
+	{
+		if (data.compare(i, std::string::npos, search))
+		{
+			std::cout << search << " is in " << data << " at i = " << i << std::endl;
+			// data.erase();
+		}
+		++i;
+	}
 }
 
 int	main(int ac, char** arg)
 {
 	if (ac != 4)
 		return (1);
-	std::ifstream	in;
-	std::ofstream	out;
-	std::string		name;
-	in.open(arg[1], std::ios::in);
-	name = arg[1];
-	name += ".replace";
-	out.open(name.data(), std::ios::out);
+	std::string		buff;
 
-
-
+	buff = get_file(arg[1]);
 	
-	std::string		to_search(arg[2]);
-	std::string		to_replace(arg[3]);
-	char			r_buff[BUFFER_SIZE];
-
-
-	while (!in.eof())
-	{
-		in.get(r_buff, BUFFER_SIZE, '\0');
-		std::cout << "content input :" << r_buff << std::endl;
-		sed(out, r_buff, to_search, to_replace);
-	}
-
-
-	
-	in.close();
-	out.close();
-		
+	search_n_destroy(buff, arg[2], arg[3]);
+	write_file(arg[1], buff);
 	return (0);	
 }
