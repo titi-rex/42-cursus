@@ -1,8 +1,0 @@
-
-#include ".hpp"
-
-::(void) {};
-
-::~(void) {};
-
-
