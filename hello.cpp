@@ -1,4 +1,8 @@
 
-#include ""
+#include "hello.hpp"
 
-#include <lb>
+hello::hello(void) {};
+
+hello::~hello(void) {};
+
+
