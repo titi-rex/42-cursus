@@ -1,39 +1,96 @@
 #!/bin/bash
 # create hpp and cpp file for class
 
+#intern function
 
+#padding function
+#add padding depending on longer variable type knew
+padding () {
+	PAD=""
+	if [[ ${#arr[0]} -ge $SIZE  ]];
+	then
+		SIZE=$(( (${#arr[0]} / 4) * 4 + 4))
+	fi
+	if [[ ${#arr[0]} -lt $SIZE ]];
+	then
+		for (( i=${#arr[0]}; i < $SIZE; i+=4))
+		do
+			PAD="$PAD	"
+		done
+	fi
+}
+
+#padding function
+get_function () {
+	for (( i=1; i < ${#arr[@]}; ++i ))
+	do
+		FUNC="$FUNC${arr[$i]}"
+		if [ $i -ne $(( ${#arr[@]} - 1 )) ];
+		then
+			FUNC="$FUNC "
+		fi
+	done
+}
+
+
+#start 
 printf "\033[1;36mWelcome in class editor\033[0m\n"
-read -p "Enter class name : " NAME
-if [[ ( $NAME = "" ) ]];
+
+
+#check if user already supply a classname, if not ask for it
+if [[ -z $1 ]];
 then
-	printf "\033[0;33mPlease insert a name next time...\033[0m\n"
-	exit
+
+	read -p "Enter class name : " NAME
+	if [[ ( $NAME = "" ) ]];
+	then
+		printf "\033[0;33mPlease insert a name next time...\033[0m\n"
+		exit
+	fi
+
+else
+	NAME=$1
 fi
 
-printf "\033[3mHint : You can type 'next' (or 'n') to ignore next questions\033[0m\n"
 
-#create needed files
-_NAME_HPP="$NAME.hpp"
-_NAME_CPP="$NAME.cpp"
-_TMP="$NAME.tmp"
-
-touch $_NAME_HPP
-touch $_NAME_CPP
-touch $_TMP
-
-
-#write start of files
-echo "
-#ifndef _"$NAME"_H__
-# define _"$NAME"_H__" > $_NAME_HPP
-
-echo "
-#include \""$_NAME_HPP"\"" > $_NAME_CPP
-
+#hint and format
+printf "Hint : \033[3mYou can press enter or write 'next' (or 'n') to ignore next questions\033[0m\n"
 printf "\033[4mExpected format :\033[0m\n"
 printf "Include : \033[3minclude\033[0m or \033[3m\"include\"\033[0m for local file\n"
 printf "Variable :\033[3m type name \033[0m (example : int number)\n"
 printf "Function :\033[3m type name(type1 var1, ..., typen varn) \033[0m (example : void hello(void) const)\n"
+
+
+#initialize name variable
+_NAME_HPP="$NAME.hpp"
+_NAME_CPP="$NAME.cpp"
+_TMP="$NAME.tmp"
+
+
+#create include guard
+INCLUDE_GUARD="_"
+for (( i=0; i<${#NAME}; ++i))
+do
+
+	if [[ "${NAME:$i:1}" =~ [[:upper:]] ]];
+	then
+		INCLUDE_GUARD="$INCLUDE_GUARD""_"
+	fi
+	INCLUDE_GUARD="$INCLUDE_GUARD${NAME:$i:1}"
+
+done
+INCLUDE_GUARD="${INCLUDE_GUARD^^}_H__"
+
+
+#write start of files
+echo "
+#ifndef $INCLUDE_GUARD
+# define $INCLUDE_GUARD" > $_NAME_HPP
+
+echo "
+#include \""$_NAME_HPP"\"" > $_NAME_CPP
+
+
 #ask for include file
 read -a arr -p "Enter all needed includes  : ";
 for INCLUDE in "${arr[@]}";
@@ -64,15 +121,17 @@ $NAME::~$NAME(void) {};
 
 " >> $_NAME_CPP
 
+
 #write private section
+printf "\033[0;31m!---PRIVATE SECTION---!\033[0m\n"
+printf "\033[3mAutomatic '_' prefix\033[0m\n"
+
 echo "
 class $NAME {
 	
 	private	:" >> $_NAME_HPP
 	
 
-printf "\033[0;31m!---PRIVATE SECTION---!\033[0m\n"
-printf "\033[3mAutomatic '_' prefix\033[0m\n"
 #ask for private variable
 SIZE=4
 while read -a arr -p "Enter variable : ";
@@ -83,32 +142,23 @@ do
 		break
 	fi
 
-	#add padding dependning on longer variable type knew
-	PAD="	"
-	if [[ ${#arr[0]} -lt $SIZE ]];
-	then
-		for (( i=${#arr[0]}; i < $SIZE; i+=4))
-		do
-			PAD="$PAD	"
-		done
-	fi
+	padding
 
-	if [[ ${#arr[0]} -gt $(( $SIZE + 3)) ]];
-	then
-		SIZE=${#arr[0]}
-	fi
-
+	#uppercase first letter to match camelCase
 	CVAR=${arr[1]}
 	CVAR=${CVAR^}
 
 	GET="get"$CVAR"(void) const"
 	SET="set"$CVAR"(${arr[0]} ${arr[1]})"
 
+	#write private variable with padding and '-' prefix
 	echo "		${arr[0]}""$PAD""_${arr[1]};" >> $_NAME_HPP
 
+	#store get and set function int mp file int order to write it latter in public section
 	echo "		${arr[0]}	$GET;" >> $_TMP
 	echo "		void	$SET;" >> $_TMP
 
+	#write get and set in cpp file
 	echo "${arr[0]}	$NAME::$GET { return (this->_${arr[1]}); };
 	" >> $_NAME_CPP
 	echo "void	$NAME::$SET { this->_${arr[1]} = ${arr[1]}; };
@@ -116,7 +166,7 @@ do
 
 done
 
-#add private function
+#ask for private function
 SIZE=4
 while read -a arr -p "Enter private function : ";
 do
@@ -126,31 +176,10 @@ do
 		break
 	fi
 
-	#add padding dependning on longer variable type knew
-	PAD="	"
-	if [[ ${#arr[0]} -lt $SIZE ]];
-	then
-		for (( i=${#arr[0]}; i < $SIZE; i+=4))
-		do
-			PAD="$PAD	"
-		done
-	fi
-	if [[ ${#arr[0]} -gt $(( $SIZE + 3)) ]];
-	then
-		SIZE=${#arr[0]}
-	fi
+	padding
+	get_function
 
-	#get function
-	for (( i=1; i < ${#arr[@]}; ++i ))
-	do
-		FUNC="$FUNC${arr[$i]}"
-		if [ $i -ne $(( ${#arr[@]} - 1 )) ];
-		then
-			FUNC="$FUNC "
-		fi
-	done
-
-	#write function in hpp and cpp files
+	#write function protoype in hpp and cpp files
 	echo "		${arr[0]}""$PAD""_$FUNC;" >> $_NAME_HPP
 	echo "${arr[0]}	$NAME::_$FUNC {};
 	" >> $_NAME_CPP
@@ -160,11 +189,12 @@ done
 
 
 #write public section
+printf "\033[1;32m!---PUBLIC SECTION---!\033[0m\n"
+
 echo "
 	public	:" >> $_NAME_HPP
 
 
-printf "\033[1;32m!---PUBLIC SECTION---!\033[0m\n"
 #ask for public  variable
 SIZE=4
 while read -a arr -p "Enter public  variable : ";
@@ -175,19 +205,7 @@ do
 		break
 	fi
 
-	#add padding depending on longer variable type knew
-	PAD="	"
-	if [[ ${#arr[0]} -lt $SIZE ]];
-	then
-		for (( i=${#arr[0]}; i < $SIZE; i+=4))
-		do
-			PAD="$PAD	"
-		done
-	fi
-	if [[ ${#arr[0]} -gt $(( $SIZE + 3)) ]];
-	then
-		SIZE=${#arr[0]}
-	fi
+	padding
 
 	#write variable in hpp file
 	echo "		${arr[0]}""$PAD""${arr[1]};" >> $_NAME_HPP
@@ -202,15 +220,12 @@ echo "
 " >> $_NAME_HPP
 
 
-#copy get and set function prototype in hpp file
+#copy get and set function prototype in hpp file and add newline
 cat $_TMP >> $_NAME_HPP
-
-
-#add a newline
 echo "" >> $_NAME_HPP
 
 
-#add public functions
+#aask for public functions
 SIZE=4
 while read -a arr -p "Enter public function : ";
 do
@@ -220,29 +235,8 @@ do
 		break
 	fi
 
-	#add padding depending on longer variable type knew
-	PAD="	"
-	if [[ ${#arr[0]} -lt $SIZE ]];
-	then
-		for (( i=${#arr[0]}; i < $SIZE; i+=4))
-		do
-			PAD="$PAD	"
-		done
-	fi
-	if [[ ${#arr[0]} -gt $(( $SIZE + 3)) ]];
-	then
-		SIZE=${#arr[0]}
-	fi
-
-	#get function
-	for (( i=1; i < ${#arr[@]}; ++i ))
-	do
-		FUNC="$FUNC${arr[$i]}"
-		if [ $i -ne $(( ${#arr[@]} - 1 )) ];
-		then
-			FUNC="$FUNC "
-		fi
-	done
+	padding
+	get_function
 
 	#write function in hpp and cpp files
 	echo "		${arr[0]}""$PAD""$FUNC;" >> $_NAME_HPP
