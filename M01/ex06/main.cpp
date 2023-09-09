@@ -1,26 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   HumanA.cpp                                         :+:      :+:    :+:   */
+/*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/08/21 19:03:53 by tlegrand          #+#    #+#             */
-/*   Updated: 2023/09/09 23:47:01 by tlegrand         ###   ########.fr       */
+/*   Created: 2023/09/09 22:03:05 by tlegrand          #+#    #+#             */
+/*   Updated: 2023/09/10 00:05:50 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "HumanA.hpp"
-#include "Weapon.hpp"
 #include <string>
-#include <iostream>
+#include "Harl.hpp"
 
-HumanA::HumanA(std::string name, Weapon& weapon) : _name(name), _weapon(weapon) {std::cout << "HumanA constructor called" << std::endl;};
-
-HumanA::~HumanA(void) {std::cout << "HumanA destructor called" << std::endl;};
-
-void	HumanA::attack(void) const
+int	main(int ac, char** arg)
 {
-	std::cout << this->_name << " attack with their " << this->_weapon.getType() << std::endl;
-};
-
+	Harl		harl;
+	std::string	level;
+	
+	if (ac != 2)
+		return (0);
+	level = arg[1];
+	harl.filter(level);
+	return (0);
+}
