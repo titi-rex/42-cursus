@@ -1,28 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.cpp                                           :+:      :+:    :+:   */
+/*   Fixed.hpp                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/09/10 00:21:50 by tlegrand          #+#    #+#             */
-/*   Updated: 2023/09/10 12:29:25 by tlegrand         ###   ########.fr       */
+/*   Created: 2023/09/10 12:03:46 by tlegrand          #+#    #+#             */
+/*   Updated: 2023/09/10 12:15:38 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Fixed.hpp"
-#include <iostream>
+#ifndef __FIXED_H__
+# define __FIXED_H__
 
-int	main(void)
-{
-	Fixed a;
-	Fixed b( a );
-	Fixed c;
+class Fixed {
+	
+	private	:
+		int					_value;
+		static const int	_bit;
 
-	c = b;
+	public	:
 
-	std::cout << a.getRawBits() << std::endl;
-	std::cout << b.getRawBits() << std::endl;
-	std::cout << c.getRawBits() << std::endl;
-	return (0);
-}
+		Fixed(void);
+		Fixed(const Fixed& F);
+		~Fixed(void);
+		Fixed& operator=(const Fixed& F);
+
+		int		getRawBits(void) const;
+		void	setRawBits(int const raw);
+
+
+};
+
+#endif

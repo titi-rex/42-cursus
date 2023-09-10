@@ -6,16 +6,16 @@
 #    By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/08/15 11:48:58 by tlegrand          #+#    #+#              #
-#    Updated: 2023/08/21 19:43:52 by tlegrand         ###   ########.fr        #
+#    Updated: 2023/09/10 12:32:22 by tlegrand         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME	=	
+NAME	=	fixed
 
 
-HDR		=	
+HDR		=	Fixed.hpp
 
-SRC		=	
+SRC		=	Fixed.cpp main.cpp
 
 OBJ_DIR	=	.obj/
 OBJ_LST	=	${SRC:.cpp=.o}
