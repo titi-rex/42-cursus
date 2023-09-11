@@ -1,6 +1,8 @@
 #!/bin/bash
 # create hpp and cpp file for class
 
+VERSION="V3"
+
 #intern function
 
 #padding function
@@ -81,20 +83,18 @@ get_function () {
 
 
 #start 
-printf "\033[1;36mWelcome in class editor\033[0m\n"
+printf "\033[1;36mWelcome in class editor $VERSION\033[0m\n"
 
 
 #check if user already supply a classname, if not ask for it
 if [[ -z $1 ]];
 then
-
 	read -p "Enter class name : " NAME
 	if [[ ( $NAME = "" ) ]];
 	then
 		printf "\033[0;33mPlease insert a name next time...\033[0m\n"
 		exit
 	fi
-
 else
 	NAME=$1
 fi
@@ -104,6 +104,7 @@ fi
 printf "Hint : \033[3mYou can press enter or write 'next' (or 'n') to ignore next questions\033[0m\n"
 printf "\033[4mExpected format :\033[0m\n"
 printf "Include : \033[3minclude\033[0m or \033[3m\"include\"\033[0m for local file\n"
+printf "Inheritance : \033[3macces-specifier name, acces-specifier name, etc.\033[0m\n"
 printf "Variable :\033[3m type name \033[0m (example : int* number) \033[0;31m(please do not stick * or & to name)\033[0m\n"
 printf "Function :\033[3m type name(type1 var1, ..., typen varn) \033[0m (example : void hello(void) const)\n"
 
@@ -117,13 +118,11 @@ _TMP="$NAME.tmp"
 #create include guard
 for (( i=0; i<${#NAME}; ++i))
 do
-
 	if [[ "${NAME:$i:1}" =~ [[:upper:]] ]];
 	then
 		INCLUDE_GUARD="$INCLUDE_GUARD""_"
 	fi
 	INCLUDE_GUARD="$INCLUDE_GUARD${NAME:$i:1}"
-
 done
 INCLUDE_GUARD="${INCLUDE_GUARD^^}_H__"
 
@@ -139,7 +138,6 @@ echo "#include \""$_NAME_HPP"\"" > $_NAME_CPP
 read -a arr -p "Enter all needed includes  : ";
 for INCLUDE in "${arr[@]}";
 do
-
 	if [[ ( $INCLUDE = "" ) || ( $INCLUDE = "n" ) || ( $INCLUDE = "next" ) ]];
 	then
 		break
@@ -148,21 +146,30 @@ do
 	if [ ${INCLUDE:0:1} == "\"" ]
 	then
 		echo "# include $INCLUDE" >> $_NAME_HPP
-		echo "#include $INCLUDE" >> $_NAME_CPP
 	else
 		echo "# include <$INCLUDE>" >> $_NAME_HPP
-		echo "#include <$INCLUDE>" >> $_NAME_CPP
 	fi
-
 done
 
+
+#ask heritage
+read -a arr -p "Enter all parents class  : ";
+if [[ -n ${arr[0]} ]];
+then
+	INHERITANCE=": "
+	for (( i=0; i<${#arr[@]}; ++i ))
+	do
+		INHERITANCE="${INHERITANCE} ${arr[$i]}"
+	done
+fi
 
 #write private section
 printf "\033[1;31m!---PRIVATE SECTION---!\033[0m\n"
 printf "\033[3mAutomatic '_' prefix\033[0m\n"
 
 echo "
-class $NAME {
+class $NAME $INHERITANCE
+{
 	
 	private	:" >> $_NAME_HPP
 	
@@ -276,8 +283,7 @@ echo -e "
 		$NAME&	operator=(const $NAME& cpy);
 		~$NAME(void);
 
-$TMP_HPP
-" >> $_NAME_HPP
+$TMP_HPP" >> $_NAME_HPP
 
 
 #add default constructor and destructor in cpp file
