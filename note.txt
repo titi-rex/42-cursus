@@ -1,20 +1,17 @@
-class need 
-_private
-public
-
-Constructor
-Destructor
-comparator
-
-get func
-set func
-
 
 class.sh
 
 manque
-) fin priv func
-cpy constructi
-assignemnt op
+commentaire ranger .cpp
+// OCF
+// other constructor
+// get/set
+// public func 
+// static func
+mettre destructo devant copy assign
+prendre e ncompte heritage dans constructor
 protected
-gestion type compose
+
+hp 	100
+ep	50
+ad	30

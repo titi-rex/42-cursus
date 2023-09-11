@@ -6,7 +6,7 @@
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/11 21:38:38 by tlegrand          #+#    #+#             */
-/*   Updated: 2023/09/11 21:40:17 by tlegrand         ###   ########.fr       */
+/*   Updated: 2023/09/11 23:34:07 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,6 @@
 
 class DiamondTrap :  public ScavTrap, public FragTrap
 {
-	
 	private	:
 		std::string	_name;
 
@@ -34,6 +33,7 @@ class DiamondTrap :  public ScavTrap, public FragTrap
 		void	setName(std::string name);
 
 		void	whoAmI(void);
+		void	myStats(void) const;
 };
 
 #endif

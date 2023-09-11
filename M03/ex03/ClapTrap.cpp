@@ -6,18 +6,18 @@
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/11 15:06:49 by tlegrand          #+#    #+#             */
-/*   Updated: 2023/09/11 21:43:48 by tlegrand         ###   ########.fr       */
+/*   Updated: 2023/09/11 23:18:58 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ClapTrap.hpp"
 
-ClapTrap::ClapTrap(void) : _name(""), _hp(10), _ep(10), _ad(0) {std::cout << "ClapTrap Default constructor called" << std::endl;};
+ClapTrap::ClapTrap(void) : _name("nameless"), _hp(10), _ep(10), _ad(0) {std::cout << "ClapTrap Default constructor called" << std::endl;};
 
 ClapTrap::ClapTrap(const std::string name) : _hp(10), _ep(10), _ad(0) 
 {
 	this->setName(name);
-	std::cout << "ClapTrap Name constructor called" << std::endl;
+	std::cout << "ClapTrap ("<< this->getName() << ") Name constructor called" << std::endl;
 };
 
 ClapTrap::ClapTrap(const ClapTrap& cpy)
@@ -26,7 +26,7 @@ ClapTrap::ClapTrap(const ClapTrap& cpy)
 	this->setHp(cpy.getHp());
 	this->setEp(cpy.getEp());
 	this->setAd(cpy.getAd());
-	std::cout << "CalpTrap Copy constructor called" << std::endl;
+	std::cout << "ClapTrap ("<< this->getName() << ") Copy constructor called" << std::endl;
 };
 
 ClapTrap&	ClapTrap::operator=(const ClapTrap& cpy) 
@@ -40,7 +40,7 @@ ClapTrap&	ClapTrap::operator=(const ClapTrap& cpy)
 	return (*this);
 };
 
-ClapTrap::~ClapTrap(void) {std::cout << "ClapTrap Destructor called" << std::endl;};
+ClapTrap::~ClapTrap(void) {std::cout << "ClapTrap ("<< this->getName() << ") Destructor called" << std::endl;};
 
 std::string	ClapTrap::getName(void) const { return (this->_name); };
 void	ClapTrap::setName(std::string name) { this->_name = name; };

@@ -6,7 +6,7 @@
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/11 15:06:49 by tlegrand          #+#    #+#             */
-/*   Updated: 2023/09/11 21:42:50 by tlegrand         ###   ########.fr       */
+/*   Updated: 2023/09/11 22:54:22 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 #include <string>
 #include <iostream>
 
-ClapTrap::ClapTrap(void) : _name(""), _hp(10), _ep(10), _ad(0) {std::cout << "Default constructor called" << std::endl;};
+ClapTrap::ClapTrap(void) : _name("nameless"), _hp(10), _ep(10), _ad(0) {std::cout << "Default constructor called" << std::endl;};
 
 ClapTrap::ClapTrap(std::string name) : _name(""), _hp(10), _ep(10), _ad(0) 
 {

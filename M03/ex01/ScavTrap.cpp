@@ -6,7 +6,7 @@
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/11 16:13:18 by tlegrand          #+#    #+#             */
-/*   Updated: 2023/09/11 21:42:15 by tlegrand         ###   ########.fr       */
+/*   Updated: 2023/09/11 22:45:39 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,37 +20,29 @@ ScavTrap::ScavTrap(void) : _guardStatus(false)
 	this->setAd(20);
 };
 
-ScavTrap::ScavTrap(const ScavTrap& cpy) : ClapTrap()
+ScavTrap::ScavTrap(const ScavTrap& cpy) : ClapTrap(cpy)
 {
-	std::cout << "ScavTrap Copy constructor called" << std::endl;
 	this->setGuardStatus(cpy.getGuardStatus());
-	this->setName(cpy.getName());
-	this->setHp(cpy.getHp());
-	this->setEp(cpy.getEp());
-	this->setAd(cpy.getAd());
+	std::cout << "ScavTrap ("<< this->getName() << ") Copy constructor called" << std::endl;
 };
 
 ScavTrap&	ScavTrap::operator=(const ScavTrap& cpy) 
 {
 	if (this == &cpy)
 		return (*this);
+	this->ClapTrap::operator=(cpy);
 	this->setGuardStatus(cpy.getGuardStatus());
-	this->setName(cpy.getName());
-	this->setHp(cpy.getHp());
-	this->setEp(cpy.getEp());
-	this->setAd(cpy.getAd());
 	return (*this);
 };
 
-ScavTrap::~ScavTrap(void) {std::cout << "ScavTrap destructor called" << std::endl;};
+ScavTrap::~ScavTrap(void) {std::cout << "ScavTrap ("<< this->getName() << ") Destructor called" << std::endl;};
 
-ScavTrap::ScavTrap(const std::string name) : _guardStatus(false)
+ScavTrap::ScavTrap(const std::string name) : ClapTrap(name), _guardStatus(false)
 {
-	std::cout << "ScavTrap Name constructor called" << std::endl;
-	this->setName(name);
 	this->setHp(100);
 	this->setEp(50);
 	this->setAd(20);
+	std::cout << "ScavTrap ("<< this->getName() << ") Name constructor called" << std::endl;
 };
 
 bool	ScavTrap::getGuardStatus(void) const { return (this->_guardStatus); };

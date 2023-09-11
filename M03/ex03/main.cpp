@@ -6,7 +6,7 @@
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/11 16:49:15 by tlegrand          #+#    #+#             */
-/*   Updated: 2023/09/11 21:45:07 by tlegrand         ###   ########.fr       */
+/*   Updated: 2023/09/11 23:35:14 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,10 +17,18 @@ int	main(void)
 	DiamondTrap	bot1("irina");
 	DiamondTrap	bot2(bot1);
 
+	bot1.setName("shadorsu");
+	bot1.setEp(6);
+	bot1.guardGate();
 	bot1.whoAmI();
+	bot1.myStats();
+	
+	bot2.whoAmI();
+	bot2.myStats();
+
 	bot1.attack("bob");
 	bot1.guardGate();
-	bot1.guardGate();
+	bot1.highFiveGuys();
 	// bot2.setName("Shedorus");
 	// bot1.attack("the wall");
 	// bot1.highFiveGuys();
