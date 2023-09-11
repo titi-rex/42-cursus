@@ -6,7 +6,7 @@
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/11 15:06:49 by tlegrand          #+#    #+#             */
-/*   Updated: 2023/09/11 17:09:30 by tlegrand         ###   ########.fr       */
+/*   Updated: 2023/09/11 21:43:24 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,12 +59,12 @@ void	ClapTrap::attack(const std::string& target)
 {
 	if (this->getHp() <= 0)
 	{
-		std::cout << "ClapTrap " << this->_name << " is dead..." << std::endl;
+		std::cout << "ClapTrap " << this->getName() << " is dead..." << std::endl;
 		return ;
 	}
 	if (this->getEp() <= 0)
 	{
-		std::cout << "ClapTrap " << this->_name << " has no energy left ..." << std::endl;
+		std::cout << "ClapTrap " << this->getName() << " has no energy left ..." << std::endl;
 		return ;
 	}
 	std::cout << "ClapTrap " << this->getName() << " attacks " << target << ", causing " << this->getAd() << " points of damage !" << std::endl;
@@ -75,28 +75,28 @@ void	ClapTrap::takeDamage(unsigned int amount)
 {
 	if (this->getHp() <= 0)
 	{
-		std::cout << "ClapTrap " << this->_name << " is already dead..." << std::endl;
+		std::cout << "ClapTrap " << this->getName() << " is already dead..." << std::endl;
 		return ;
 	}
-	std::cout << "ClapTrap " << this->_name << " has taken " << amount << " damage !" << std::endl;
+	std::cout << "ClapTrap " << this->getName() << " has taken " << amount << " damage !" << std::endl;
 	this->setHp(this->getHp() - amount);
 	if (this->getHp() <= 0)
-		std::cout << "ClapTrap " << this->_name << " has fallen amid the brave..." << std::endl;
+		std::cout << "ClapTrap " << this->getName() << " has fallen amid the brave..." << std::endl;
 };
 
 void	ClapTrap::beRepaired(unsigned int amount) 
 {
 	if (this->getHp() <= 0)
 	{
-		std::cout << "ClapTrap " << this->_name << " is dead..." << std::endl;
+		std::cout << "ClapTrap " << this->getName() << " is dead..." << std::endl;
 		return ;
 	}
 	if (this->getEp() <= 0)
 	{
-		std::cout << "ClapTrap " << this->_name << " has no energy left ..." << std::endl;
+		std::cout << "ClapTrap " << this->getName() << " has no energy left ..." << std::endl;
 		return ;
 	}
-	std::cout << "ClapTrap " << this->_name << " repaired itself and heal " << amount << " hit points." << std::endl;
+	std::cout << "ClapTrap " << this->getName() << " repaired itself and heal " << amount << " hit points." << std::endl;
 	this->setHp(this->getHp() + amount);
 	this->setEp(this->getEp() - 1);
 };

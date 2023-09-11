@@ -6,7 +6,7 @@
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/11 16:13:16 by tlegrand          #+#    #+#             */
-/*   Updated: 2023/09/11 20:34:09 by tlegrand         ###   ########.fr       */
+/*   Updated: 2023/09/11 21:30:39 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,9 @@
 # define _SCAV_TRAP_H__
 # include "ClapTrap.hpp"
 
-class ScavTrap : public ClapTrap
+class ScavTrap : virtual public ClapTrap
 {
-	private	:
+	protected:
 		bool	_guardStatus;
 		
 	public	:

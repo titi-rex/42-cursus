@@ -6,26 +6,25 @@
 #    By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/08/15 11:48:58 by tlegrand          #+#    #+#              #
-#    Updated: 2023/09/11 21:53:30 by tlegrand         ###   ########.fr        #
+#    Updated: 2023/09/11 21:49:19 by tlegrand         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME	=	bank
+NAME	=	robot
 
 
-HDR		=	Account.hpp
+HDR		=	ClapTrap.hpp ScavTrap.hpp FragTrap.hpp DiamondTrap.hpp
 
-SRC		=	Account.cpp tests.cpp
+SRC		=	ClapTrap.cpp ScavTrap.cpp FragTrap.cpp DiamondTrap.cpp main.cpp
 
 OBJ_DIR	=	.obj/
 OBJ_LST	=	${SRC:.cpp=.o}
 OBJ		=	$(addprefix $(OBJ_DIR), $(OBJ_LST))
 
-
 CC		=	c++
 RM		=	rm -rf
 
-CFLAG	=	-Wall -Werror -Wextra -std=c++98
+CFLAGS	=	-Wall -Werror -Wextra -std=c++98 -Wno-shadow
 
 
 
@@ -50,6 +49,6 @@ ${NAME}	:	$(OBJ_DIR) ${OBJ}
 $(OBJ_DIR)%.o	:	%.cpp $(HDR)
 		@printf "$(YELLOW)Making $@...\n$(END)"
 		@${CC} ${CFLAGS} -c $< -o $@
-		
+
 $(OBJ_DIR)	:
 			@mkdir -p $(OBJ_DIR)

@@ -6,7 +6,7 @@
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/11 16:13:18 by tlegrand          #+#    #+#             */
-/*   Updated: 2023/09/11 17:21:36 by tlegrand         ###   ########.fr       */
+/*   Updated: 2023/09/11 21:42:15 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,12 +61,12 @@ void	ScavTrap::attack(const std::string& target)
 {
 	if (this->getHp() <= 0)
 	{
-		std::cout << "ScavTrap " << this->_name << " is dead..." << std::endl;
+		std::cout << "ScavTrap " << this->getName() << " is dead..." << std::endl;
 		return ;
 	}
 	if (this->getEp() <= 0)
 	{
-		std::cout << "ScavTrap " << this->_name << " need to sleep ..." << std::endl;
+		std::cout << "ScavTrap " << this->getName() << " need to sleep ..." << std::endl;
 		return ;
 	}
 	std::cout << "ScavTrap " << this->getName() << " violently attacks " << target << ", causing " << this->getAd() << " points of damage !" << std::endl;
@@ -77,7 +77,7 @@ void	ScavTrap::guardGate(void)
 {
 	if (this->getHp() <= 0)
 	{
-		std::cout << "ScavTrap " << this->_name << " is dead..." << std::endl;
+		std::cout << "ScavTrap " << this->getName() << " is dead..." << std::endl;
 		return ;
 	}
 	if (this->getGuardStatus() == false)

@@ -6,7 +6,7 @@
 #    By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/08/15 11:48:58 by tlegrand          #+#    #+#              #
-#    Updated: 2023/09/09 23:53:32 by tlegrand         ###   ########.fr        #
+#    Updated: 2023/09/11 21:51:42 by tlegrand         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -43,7 +43,7 @@ re		:	fclean all
 		
 
 ${NAME}	:	$(OBJ_DIR) ${OBJ} 
-		@$(CC) $(OBJ) -o $@
+		@$(CC) ${CFLAGS} $(OBJ) -o $@
 		@printf "$(GREEN_LIGHT)$@ created !\n$(END)"
 
 $(OBJ_DIR)%.o	:	%.cpp $(HDR)

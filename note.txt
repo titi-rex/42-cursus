@@ -8,3 +8,13 @@ comparator
 
 get func
 set func
+
+
+class.sh
+
+manque
+) fin priv func
+cpy constructi
+assignemnt op
+protected
+gestion type compose

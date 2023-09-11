@@ -5,40 +5,30 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/09/11 15:54:20 by tlegrand          #+#    #+#             */
-/*   Updated: 2023/09/11 16:01:23 by tlegrand         ###   ########.fr       */
+/*   Created: 2023/09/11 16:49:15 by tlegrand          #+#    #+#             */
+/*   Updated: 2023/09/11 21:45:07 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ClapTrap.hpp"
-#include <string>
+#include "DiamondTrap.hpp"
 
 int	main(void)
 {
-	ClapTrap	r1("richaslyson");
-	ClapTrap	r2(r1);
-	ClapTrap	r3;
-	
-	r1.setAd(3);
-	r3.setName("loulou");
-	r3.setAd(13);
+	DiamondTrap	bot1("irina");
+	DiamondTrap	bot2(bot1);
 
-	r1.attack("bob");
-	r2.takeDamage(r1.getAd());
-	r2.beRepaired(4);
-	r3.attack("rychaslyson");
-	r1.takeDamage(r3.getAd());
-	r1.attack("loulou");
-	r2.beRepaired(0);
-	r2.attack("boby");
-	r2.attack("boby");
-	r2.attack("boby");
-	r2.attack("boby");
-	r2.attack("boby");
-	r2.attack("boby");
-	r2.attack("boby");
-	r2.attack("boby");
-	r2.attack("boby");
-	r2.attack("boby");
-	r2.attack("boby");
-};
+	bot1.whoAmI();
+	bot1.attack("bob");
+	bot1.guardGate();
+	bot1.guardGate();
+	// bot2.setName("Shedorus");
+	// bot1.attack("the wall");
+	// bot1.highFiveGuys();
+	// bot1.beRepaired(15);
+	// bot1.takeDamage(600);
+	// bot1.highFiveGuys();
+	// bot2.highFiveGuys();
+	// bot2.highFiveGuys();
+	// bot2.attack("bob");
+	return (0);
+}

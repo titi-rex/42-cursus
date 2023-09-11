@@ -6,7 +6,7 @@
 #    By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/08/15 11:48:58 by tlegrand          #+#    #+#              #
-#    Updated: 2023/08/21 19:43:32 by tlegrand         ###   ########.fr        #
+#    Updated: 2023/09/11 21:58:04 by tlegrand         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,7 +24,7 @@ OBJ		=	$(addprefix $(OBJ_DIR), $(OBJ_LST))
 CC		=	c++
 RM		=	rm -rf
 
-CFLAG	=	-Wall -Werror -Wextra -std=c++98 -fsanitize=leak -g3
+CFLAG	=	-Wall -Werror -Wextra -std=c++98
 
 
 .PHONY	:	all clean fclean re
@@ -42,12 +42,12 @@ re		:	fclean all
 		
 
 ${NAME}	:	$(OBJ_DIR) ${OBJ} 
-		$(CC) ${CFLAG} $(OBJ) -o $@
+		@$(CC) ${CFLAG} $(OBJ) -o $@
 		@printf "$(GREEN_LIGHT)$@ created !\n$(END)"
 
 $(OBJ_DIR)%.o	:	%.cpp $(HDR)
 		@printf "$(YELLOW)Making $@...\n$(END)"
-		${CC} ${CFLAG} -c $< -o $@
+		@${CC} ${CFLAG} -c $< -o $@
 
 $(OBJ_DIR)	:
 			@mkdir -p $(OBJ_DIR)

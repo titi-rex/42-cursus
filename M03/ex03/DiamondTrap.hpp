@@ -1,38 +1,39 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ScavTrap.hpp                                       :+:      :+:    :+:   */
+/*   DiamondTrap.hpp                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/09/11 16:13:16 by tlegrand          #+#    #+#             */
-/*   Updated: 2023/09/11 20:34:09 by tlegrand         ###   ########.fr       */
+/*   Created: 2023/09/11 21:38:38 by tlegrand          #+#    #+#             */
+/*   Updated: 2023/09/11 21:40:17 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef _SCAV_TRAP_H__
-# define _SCAV_TRAP_H__
-# include "ClapTrap.hpp"
+#ifndef _DIAMOND_TRAP_H__
+# define _DIAMOND_TRAP_H__
+# include "ScavTrap.hpp"
+# include "FragTrap.hpp"
 
-class ScavTrap : public ClapTrap
+class DiamondTrap :  public ScavTrap, public FragTrap
 {
+	
 	private	:
-		bool	_guardStatus;
-		
+		std::string	_name;
+
 	public	:
 
-		ScavTrap(void);
-		ScavTrap(const ScavTrap& cpy);
-		ScavTrap&	operator=(const ScavTrap& cpy);
-		~ScavTrap(void);
+		DiamondTrap(void);
+		DiamondTrap(const DiamondTrap& cpy);
+		DiamondTrap&	operator=(const DiamondTrap& cpy);
+		~DiamondTrap(void);
 
-		ScavTrap(const std::string name);
+		DiamondTrap(std::string name);
 
-		bool	getGuardStatus(void) const;
-		void	setGuardStatus(bool status);
+		std::string	getName(void) const;
+		void	setName(std::string name);
 
-		void	attack(const std::string& target);
-		void	guardGate(void);
+		void	whoAmI(void);
 };
 
 #endif

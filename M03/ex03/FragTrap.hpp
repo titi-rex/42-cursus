@@ -1,31 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.cpp                                           :+:      :+:    :+:   */
+/*   FragTrap.hpp                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/09/11 16:49:15 by tlegrand          #+#    #+#             */
-/*   Updated: 2023/09/11 20:29:42 by tlegrand         ###   ########.fr       */
+/*   Created: 2023/09/11 20:51:41 by tlegrand          #+#    #+#             */
+/*   Updated: 2023/09/11 21:30:45 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ScavTrap.hpp"
+#ifndef _FRAG_TRAP_H__
+# define _FRAG_TRAP_H__
+# include "ClapTrap.hpp"
 
-int	main(void)
+class FragTrap :  virtual public ClapTrap
 {
-	ScavTrap	scav1("irina");
+	
+	public	:
 
-	scav1.setAd(15);
-	ScavTrap	scav2(scav1);
+		FragTrap(void);
+		FragTrap(const FragTrap& cpy);
+		FragTrap&	operator=(const FragTrap& cpy);
+		~FragTrap(void);
 
-	scav2.setName("Shedorus");
-	scav1.attack("the wall");
-	scav1.beRepaired(15);
-	scav1.takeDamage(600);
-	scav1.takeDamage(600);
-	scav2.guardGate();
-	scav2.guardGate();
-	scav2.attack("bob");
-	return (0);
-}
+		FragTrap(const std::string name);
+
+		void	highFiveGuys(void);
+};
+
+#endif
