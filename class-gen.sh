@@ -1,7 +1,7 @@
 #!/bin/bash
 # create hpp and cpp file for class
 
-VERSION="V3"
+VERSION="V3.1"
 
 #intern function
 
@@ -287,9 +287,12 @@ $TMP_HPP" >> $_NAME_HPP
 
 
 #add default constructor and destructor in cpp file
-CONS=${CONS:0:${#CONS[@]} - 3}
+if [[ -n $CONS ]];
+then
+	CONS=" : ${CONS:0:${#CONS[@]} - 3}"
+fi
 echo -e "
-$NAME::$NAME(void) : $CONS {};
+$NAME::$NAME(void)$CONS {};
 
 $NAME::$NAME(const $NAME& cpy)
 {
