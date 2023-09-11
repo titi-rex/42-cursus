@@ -6,7 +6,7 @@
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/10 12:03:46 by tlegrand          #+#    #+#             */
-/*   Updated: 2023/09/10 18:55:54 by tlegrand         ###   ########.fr       */
+/*   Updated: 2023/09/11 13:58:00 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,10 +20,7 @@ class Fixed {
 		int					_rawbits;
 		static const int	_point;
 		
-
 	public	:
-		int	two_complement(void) const;
-
 		Fixed(void);
 		Fixed(const int value);
 		Fixed(const float value);
@@ -32,10 +29,10 @@ class Fixed {
 		
 		Fixed&	operator=(const Fixed& F);
 		
-		Fixed	operator+(const Fixed& F);
-		Fixed	operator-(const Fixed& F);
-		Fixed	operator*(const Fixed& F);
-		Fixed	operator/(const Fixed& F);
+		Fixed	operator+(const Fixed& F) const;
+		Fixed	operator-(const Fixed& F) const;
+		Fixed	operator*(const Fixed& F) const;
+		Fixed	operator/(const Fixed& F) const;
 		
 		Fixed&	operator++(void);
 		Fixed	operator++(int);

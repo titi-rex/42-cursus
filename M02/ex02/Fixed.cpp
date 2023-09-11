@@ -6,7 +6,7 @@
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/10 12:06:22 by tlegrand          #+#    #+#             */
-/*   Updated: 2023/09/10 19:01:43 by tlegrand         ###   ########.fr       */
+/*   Updated: 2023/09/11 14:46:53 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,16 +17,6 @@
 
 const int	Fixed::_point = 8;
 
-int	Fixed::two_complement(void) const
-{
-	int	tmp;
-
-	tmp = this->getRawBits();
-	std::cout << "Bfore 2comp : " << std::bitset<8>(tmp) << std::endl;
-	tmp = ~tmp + 1;
-	std::cout << "After 2comp : " << std::bitset<8>(tmp) << std::endl;
-	return (tmp);
-};
 
 //	Constructor
 Fixed::Fixed(void) : _rawbits(0) {std::cout << "Default constructor called" << std::endl;};
@@ -62,7 +52,7 @@ Fixed&	Fixed::operator=(const Fixed& F)
 	return (*this);
 };
 
-Fixed	Fixed::operator+(const Fixed& F) 
+Fixed	Fixed::operator+(const Fixed& F) const
 {
 	Fixed	ret;
 	
@@ -70,7 +60,7 @@ Fixed	Fixed::operator+(const Fixed& F)
 	return (ret);
 };
 
-Fixed	Fixed::operator-(const Fixed& F) 
+Fixed	Fixed::operator-(const Fixed& F) const
 {
 	Fixed	ret;
 
@@ -78,7 +68,7 @@ Fixed	Fixed::operator-(const Fixed& F)
 	return (ret);
 };
 
-Fixed	Fixed::operator*(const Fixed& F) 
+Fixed	Fixed::operator*(const Fixed& F) const
 {
 	Fixed	ret;
 	
@@ -86,7 +76,7 @@ Fixed	Fixed::operator*(const Fixed& F)
 	return (ret);
 };
 
-Fixed	Fixed::operator/(const Fixed& F) 
+Fixed	Fixed::operator/(const Fixed& F) const
 {
 	Fixed	ret;
 	
