@@ -1,7 +1,7 @@
 #!/bin/bash
 # create hpp and cpp file for class
 
-VERSION="V3.1"
+VERSION="V3.2"
 
 #intern function
 
@@ -104,7 +104,7 @@ fi
 printf "Hint : \033[3mYou can press enter or write 'next' (or 'n') to ignore next questions\033[0m\n"
 printf "\033[4mExpected format :\033[0m\n"
 printf "Include : \033[3minclude\033[0m or \033[3m\"include\"\033[0m for local file\n"
-printf "Inheritance : \033[3macces-specifier name, acces-specifier name, etc.\033[0m\n"
+printf "Inheritance : \033[3macces-specifier name\033[0m each class and his specifier must me separated by blank\n"
 printf "Variable :\033[3m type name \033[0m (example : int* number) \033[0;31m(please do not stick * or & to name)\033[0m\n"
 printf "Function :\033[3m type name(type1 var1, ..., typen varn) \033[0m (example : void hello(void) const)\n"
 
@@ -112,7 +112,6 @@ printf "Function :\033[3m type name(type1 var1, ..., typen varn) \033[0m (exampl
 #initialize name variable
 _NAME_HPP="$NAME.hpp"
 _NAME_CPP="$NAME.cpp"
-_TMP="$NAME.tmp"
 
 
 #create include guard
@@ -153,14 +152,25 @@ done
 
 
 #ask heritage
-read -a arr -p "Enter all parents class  : ";
+read -a arr -p "Enter all parents class : ";
 if [[ -n ${arr[0]} ]];
 then
-	INHERITANCE=": "
+	INHERITANCE=":"
+	H_CPYC=":"
+	H_DEFC=":"
 	for (( i=0; i<${#arr[@]}; ++i ))
 	do
-		INHERITANCE="${INHERITANCE} ${arr[$i]}"
+		if [[ ($i == $(( ${#arr[@]} - 1 )) ) || (${arr[$i]} == "private") || (${arr[$i]} == "protected") || (${arr[$i]} == "public") || (${arr[$i]} == "virtual") ]];
+		then
+			INHERITANCE="${INHERITANCE} ${arr[$i]}"
+		else
+			INHERITANCE="${INHERITANCE} ${arr[$i]},"
+			H_CPYC="${H_CPYC} ${arr[$i]}(src),"
+			H_DEFC="${H_DEFC}${arr[$i]}(),"
+		fi
 	done
+	H_CPYC="${H_CPYC} ${arr[-1]}(src)"
+	H_DEFC="${H_DEFC}${arr[-1]}()"
 fi
 
 #write private section
@@ -208,7 +218,7 @@ do
 	FUNC_PROTO="${FUNC_PROTO}void	$NAME::$SET { this->_$NVAR = $NVAR; };\n\n"
 	#store for constructor and operator=
 	CONS="${CONS}_$NVAR(0), "
-	OPEG="${OPEG}this->set${CVAR}(cpy.get${CVAR}());
+	OPEG="${OPEG}this->set${CVAR}(src.get${CVAR}());
 	"
 
 done
@@ -270,7 +280,7 @@ do
 	echo "		$TYPE""$PAD""$NVAR;" >> $_NAME_HPP
 	#store for constructor and operator=
 	CONS="${CONS}$NVAR(0), "
-	OPEG="${OPEG}this->$NVAR = cpy.$NVAR;
+	OPEG="${OPEG}this->$NVAR = src.$NVAR;
 	"
 
 done
@@ -279,8 +289,8 @@ done
 #add default constructor and destructor in hpp file
 echo -e "
 		$NAME(void);
-		$NAME(const $NAME& cpy);
-		$NAME&	operator=(const $NAME& cpy);
+		$NAME(const $NAME& src);
+		$NAME&	operator=(const $NAME& src);
 		~$NAME(void);
 
 $TMP_HPP" >> $_NAME_HPP
@@ -294,14 +304,14 @@ fi
 echo -e "
 $NAME::$NAME(void)$CONS {};
 
-$NAME::$NAME(const $NAME& cpy)
+$NAME::$NAME(const $NAME& src) $H_CPYC
 {
 	${OPEG}
 };
 
-$NAME&	$NAME::operator=(const $NAME& cpy) 
+$NAME&	$NAME::operator=(const $NAME& src) 
 {
-	if (this == &cpy)
+	if (this == &src)
 		return (*this);
 	${OPEG}return (*this);
 };
@@ -334,10 +344,16 @@ do
 	get_function
 
 	#write function in hpp and cpp files
-	echo "		${arr[0]}""$PAD""$FUNC;" >> $_NAME_HPP
-	echo "${arr[0]}	$NAME::$FUNC {};
+	if [[ ${arr[0]:0:${#NAME}} == $NAME ]];
+	then
+		echo "		$FUNC;" >> $_NAME_HPP
+		echo "$NAME::$FUNC $H_DEFC{};
 	" >> $_NAME_CPP
-
+	else
+		echo "		${arr[0]}""$PAD""$FUNC;" >> $_NAME_HPP
+		echo "${arr[0]}	$NAME::$FUNC {};
+	" >> $_NAME_CPP
+	fi
 done
 
 
@@ -345,9 +361,4 @@ done
 echo "};
 
 #endif" >> $_NAME_HPP
-
-
-#delete temp file
-rm -f $_TMP
-
 
