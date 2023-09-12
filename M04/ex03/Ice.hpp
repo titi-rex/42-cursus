@@ -1,24 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   zombieHorde.cpp                                    :+:      :+:    :+:   */
+/*   Ice.hpp                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/08/20 20:36:02 by tlegrand          #+#    #+#             */
-/*   Updated: 2023/09/12 21:22:19 by tlegrand         ###   ########.fr       */
+/*   Created: 2023/09/12 22:00:14 by tlegrand          #+#    #+#             */
+/*   Updated: 2023/09/12 22:00:23 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Zombie.hpp"
-#include <string>
+#ifndef _ICE_H__
+# define _ICE_H__
+# include "AMateria.hpp"
+# include "ICharacter.hpp"
 
-Zombie* zombieHorde(int N, std::string name)
+class Ice : public AMateria
 {
-	Zombie	*horde;
+	public	:
 
-	horde = new Zombie[N];
-	for (int i = 0; i < N; ++i)
-		new (&horde[i]) Zombie(name);
-	return (horde);
-}
+		Ice(void);
+		Ice(const Ice& src);
+		Ice&	operator=(const Ice& src);
+		~Ice(void);
+
+
+		Ice(std::string const & type);
+		AMateria*		clone(void) const;
+		void			use(ICharacter& target);
+};
+
+#endif

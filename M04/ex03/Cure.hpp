@@ -1,24 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   zombieHorde.cpp                                    :+:      :+:    :+:   */
+/*   Cure.hpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/08/20 20:36:02 by tlegrand          #+#    #+#             */
-/*   Updated: 2023/09/12 21:22:19 by tlegrand         ###   ########.fr       */
+/*   Created: 2023/09/12 22:17:36 by tlegrand          #+#    #+#             */
+/*   Updated: 2023/09/12 22:20:35 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Zombie.hpp"
-#include <string>
+#ifndef _CURE_H__
+# define _CURE_H__
+# include "AMateria.hpp"
+# include "ICharacter.hpp"
 
-Zombie* zombieHorde(int N, std::string name)
+class Cure : public AMateria
 {
-	Zombie	*horde;
+	public	:
 
-	horde = new Zombie[N];
-	for (int i = 0; i < N; ++i)
-		new (&horde[i]) Zombie(name);
-	return (horde);
-}
+		Cure(void);
+		Cure(const Cure& src);
+		Cure&	operator=(const Cure& src);
+		~Cure(void);
+		
+		Cure(std::string const & type);
+		
+		AMateria* 	clone(void) const;
+		void		 use(ICharacter& target);
+
+};
+
+#endif

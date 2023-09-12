@@ -1,24 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   zombieHorde.cpp                                    :+:      :+:    :+:   */
+/*   IMateriaSource.hpp                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/08/20 20:36:02 by tlegrand          #+#    #+#             */
-/*   Updated: 2023/09/12 21:22:19 by tlegrand         ###   ########.fr       */
+/*   Created: 2023/09/12 23:56:42 by tlegrand          #+#    #+#             */
+/*   Updated: 2023/09/13 00:33:34 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Zombie.hpp"
-#include <string>
+#ifndef _I_MATERIA_SOURCE_H__
+# define _I_MATERIA_SOURCE_H__
+# include <string>
+# include <iostream>
+# include "AMateria.hpp"
 
-Zombie* zombieHorde(int N, std::string name)
+class AMateria;
+
+class IMateriaSource 
 {
-	Zombie	*horde;
+	public	:
+		virtual ~IMateriaSource(void) {};
+		
+		virtual void		learnMateria(AMateria*) = 0;
+		virtual AMateria*	createMateria(std::string const & type) = 0;
+};
 
-	horde = new Zombie[N];
-	for (int i = 0; i < N; ++i)
-		new (&horde[i]) Zombie(name);
-	return (horde);
-}
+#endif
