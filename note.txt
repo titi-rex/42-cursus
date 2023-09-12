@@ -12,6 +12,8 @@ mettre destructo devant copy assign
 prendre e ncompte heritage dans constructor
 protected
 
+add clone and reset func
+
 hp 	100
 ep	50
 ad	30

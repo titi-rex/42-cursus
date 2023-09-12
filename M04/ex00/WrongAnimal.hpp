@@ -1,37 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.cpp                                           :+:      :+:    :+:   */
+/*   WrongAnimal.hpp                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/09/11 16:49:15 by tlegrand          #+#    #+#             */
-/*   Updated: 2023/09/12 18:45:28 by tlegrand         ###   ########.fr       */
+/*   Created: 2023/09/12 18:57:19 by tlegrand          #+#    #+#             */
+/*   Updated: 2023/09/12 18:57:28 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ScavTrap.hpp"
+#ifndef _WRONG_ANIMAL_H__
+# define _WRONG_ANIMAL_H__
+# include <iostream>
 
-int	main(void)
+class WrongAnimal 
 {
-	ScavTrap	scav1("irina");
-	ClapTrap	clap("noemie");
-
-
-	clap.attack("bob");
-	scav1.attack("bob");
-	return (1);
 	
-	scav1.setAd(15);
-	ScavTrap	scav2(scav1);
+	protected:
+		std::string	_type;
 
-	scav2.setName("Shedorus");
-	scav1.attack("the wall");
-	scav1.beRepaired(15);
-	scav1.takeDamage(600);
-	scav1.takeDamage(600);
-	scav2.guardGate();
-	scav2.guardGate();
-	scav2.attack("bob");
-	return (0);
-}
+	public	:
+
+		WrongAnimal(void);
+		WrongAnimal(const WrongAnimal& src);
+		WrongAnimal&	operator=(const WrongAnimal& src);
+		~WrongAnimal(void);
+
+		std::string	getType(void) const;
+		void	setType(std::string type);
+
+		void	makeSound(void) const;
+};
+
+#endif

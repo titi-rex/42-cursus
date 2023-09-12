@@ -1,37 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.cpp                                           :+:      :+:    :+:   */
+/*   Animal.hpp                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/09/11 16:49:15 by tlegrand          #+#    #+#             */
-/*   Updated: 2023/09/12 18:45:28 by tlegrand         ###   ########.fr       */
+/*   Created: 2023/09/12 18:07:21 by tlegrand          #+#    #+#             */
+/*   Updated: 2023/09/12 18:55:07 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ScavTrap.hpp"
+#ifndef _ANIMAL_H__
+# define _ANIMAL_H__
+# include <string>
+# include <iostream>
 
-int	main(void)
+class Animal 
 {
-	ScavTrap	scav1("irina");
-	ClapTrap	clap("noemie");
-
-
-	clap.attack("bob");
-	scav1.attack("bob");
-	return (1);
 	
-	scav1.setAd(15);
-	ScavTrap	scav2(scav1);
+	protected:
+		std::string	_type;
 
-	scav2.setName("Shedorus");
-	scav1.attack("the wall");
-	scav1.beRepaired(15);
-	scav1.takeDamage(600);
-	scav1.takeDamage(600);
-	scav2.guardGate();
-	scav2.guardGate();
-	scav2.attack("bob");
-	return (0);
-}
+	public	:
+
+		Animal(void);
+		Animal(const Animal& src);
+		Animal&	operator=(const Animal& src);
+		virtual ~Animal(void);
+
+		std::string	getType(void) const;
+		void		setType(std::string type);
+
+		virtual void	makeSound(void) const;
+};
+
+#endif
