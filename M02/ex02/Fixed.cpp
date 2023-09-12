@@ -6,7 +6,7 @@
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/10 12:06:22 by tlegrand          #+#    #+#             */
-/*   Updated: 2023/09/11 14:46:53 by tlegrand         ###   ########.fr       */
+/*   Updated: 2023/09/12 14:24:45 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -192,6 +192,6 @@ const Fixed&	Fixed::max(const Fixed& F1, const Fixed& F2)
 //	Other
 std::ostream&	operator<<(std::ostream& os, const Fixed& F)
 {
-	os << F.toFloat();
+	os << F.toFloat() << std::endl;
 	return (os);
 };

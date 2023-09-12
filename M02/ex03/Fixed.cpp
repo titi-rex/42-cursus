@@ -6,7 +6,7 @@
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/10 12:06:22 by tlegrand          #+#    #+#             */
-/*   Updated: 2023/09/10 19:01:43 by tlegrand         ###   ########.fr       */
+/*   Updated: 2023/09/12 15:15:18 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,52 +17,32 @@
 
 const int	Fixed::_point = 8;
 
-int	Fixed::two_complement(void) const
-{
-	int	tmp;
-
-	tmp = this->getRawBits();
-	std::cout << "Bfore 2comp : " << std::bitset<8>(tmp) << std::endl;
-	tmp = ~tmp + 1;
-	std::cout << "After 2comp : " << std::bitset<8>(tmp) << std::endl;
-	return (tmp);
-};
 
 //	Constructor
-Fixed::Fixed(void) : _rawbits(0) {std::cout << "Default constructor called" << std::endl;};
+Fixed::Fixed(void) : _rawbits(0) {};
 
-Fixed::Fixed(const Fixed& F) 
-{
-	std::cout << "Copy constructor called" << std::endl;
-	this->setRawBits(F.getRawBits());
-};
+Fixed::Fixed(const Fixed& F) {this->setRawBits(F.getRawBits());};
 
-Fixed::Fixed(const int value) 
-{
-	std::cout << "Int constructor called" << std::endl;
-	this->setRawBits(value << this->_point);
-};
+Fixed::Fixed(const int value) {this->setRawBits(value << this->_point);};
 
 Fixed::Fixed(const float value) 
 {
-	std::cout << "Float constructor called" << std::endl;
 	this->setRawBits(static_cast<int>(roundf(value * (1 << this->_point))));
 };
 
-Fixed::~Fixed(void) {std::cout << "Destructor called" << std::endl;};
+Fixed::~Fixed(void) {};
 
 
 //	Operator overload
 Fixed&	Fixed::operator=(const Fixed& F) 
 {
-	std::cout << "Copy assignment operator called" << std::endl;
 	if (this == &F)
 		return (*this);
 	this->setRawBits(F.getRawBits());
 	return (*this);
 };
 
-Fixed	Fixed::operator+(const Fixed& F) 
+Fixed	Fixed::operator+(const Fixed& F) const
 {
 	Fixed	ret;
 	
@@ -70,7 +50,7 @@ Fixed	Fixed::operator+(const Fixed& F)
 	return (ret);
 };
 
-Fixed	Fixed::operator-(const Fixed& F) 
+Fixed	Fixed::operator-(const Fixed& F) const
 {
 	Fixed	ret;
 
@@ -78,7 +58,7 @@ Fixed	Fixed::operator-(const Fixed& F)
 	return (ret);
 };
 
-Fixed	Fixed::operator*(const Fixed& F) 
+Fixed	Fixed::operator*(const Fixed& F) const
 {
 	Fixed	ret;
 	
@@ -86,7 +66,7 @@ Fixed	Fixed::operator*(const Fixed& F)
 	return (ret);
 };
 
-Fixed	Fixed::operator/(const Fixed& F) 
+Fixed	Fixed::operator/(const Fixed& F) const
 {
 	Fixed	ret;
 	

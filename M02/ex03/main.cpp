@@ -6,45 +6,36 @@
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/10 00:21:50 by tlegrand          #+#    #+#             */
-/*   Updated: 2023/09/10 19:04:01 by tlegrand         ###   ########.fr       */
+/*   Updated: 2023/09/12 15:16:25 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Fixed.hpp"
+#include "Point.hpp"
 #include <iostream>
-#include <bitset>
+
+
+bool	bsp( Point const a, Point const b, Point const c, Point const point);
 
 int main( void )
 {
-	Fixed c(7.5f);
-	Fixed d(-2.75f);
-
-	std::cout << "c is " << c << std::endl;
-	std::cout << "d is " << d << std::endl;
-	std::cout << "c + d is " << c + d << std::endl;
-	std::cout << "c - d is " << std::endl << c - d << std::endl;
-	std::cout << "c * d is " << c * d << std::endl;
-	std::cout << "c / d is " << c / d << std::endl;
-	std::cout << "min is " << Fixed::min( c, d ) << std::endl;
+	Point	a(0, 0);
+	Point	b(5, 0);
+	Point	c(2.5, 5);
+	Point	point(0, 0);
 	
-	std::cout << "c == d " << (c == d) << std::endl;
-	std::cout << "c != d " << (c != d) << std::endl;
-	std::cout << "c < d " << (c < d) << std::endl;
-	std::cout << "c > d " << (c > d) << std::endl;
-	std::cout << "c <= d " << (c <= d) << std::endl;
-	std::cout << "c >= d " << (c >= d) << std::endl;
+	a.setName("a");
+	b.setName("b");
+	c.setName("c");
+	point.setName("point");
 
-	
-	Fixed a;
-	Fixed const b( Fixed( 5.05f ) * Fixed( 2 ) );
-
-	
-	std::cout << a << std::endl;
-	std::cout << ++a << std::endl;
-	std::cout << a << std::endl;
-	std::cout << a++ << std::endl;
-	std::cout << a << std::endl;
-	std::cout << b << std::endl;
-	std::cout << Fixed::max( a, b ) << std::endl;
-	return 0;
+	point.info();
+	if (bsp(a, b, c, point) == true)
+		std::cout <<  " is inside the triangle !" << std::endl;
+	else
+		std::cout <<  " is not inside the triangle..." << std::endl;
+	std::cout << "formed by " << std::endl;
+	a.info();
+	b.info();
+	c.info();
+	return (0);
 }
