@@ -6,7 +6,7 @@
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/13 00:08:57 by tlegrand          #+#    #+#             */
-/*   Updated: 2023/09/13 00:38:46 by tlegrand         ###   ########.fr       */
+/*   Updated: 2023/09/13 11:34:36 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,10 @@ void	MateriaSource::learnMateria(AMateria* m)
 	for (int i=0; i<4; ++i)
 	{
 		if (this->_stock[i] == NULL)
-			this->_stock[i] = m->clone();
+		{
+			this->_stock[i] = m;	// pas une deep copy !!! utilisr clone mais le main leak?
+			return ;				// dlete me sinon apprise ??
+		}
 	}
 };
 	

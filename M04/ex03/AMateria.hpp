@@ -6,7 +6,7 @@
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/12 21:39:11 by tlegrand          #+#    #+#             */
-/*   Updated: 2023/09/13 00:06:33 by tlegrand         ###   ########.fr       */
+/*   Updated: 2023/09/13 20:09:02 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,11 +15,15 @@
 # include <string>
 # include <iostream>
 # include "ICharacter.hpp"
+# include "Floor.hpp"
 
 class ICharacter;
+class Floor;
 
 class AMateria 
 {
+	private	:
+		static Floor	*_floor;
 	
 	protected:
 		std::string	_type;
@@ -38,6 +42,10 @@ class AMateria
 		
 		virtual AMateria*	clone(void) const = 0;
 		virtual void		use(ICharacter& target);
+
+		void	addNode(void);
+		Floor*	getFloor(void) const;
+		void	clearFloor(void);
 };
 
 #endif

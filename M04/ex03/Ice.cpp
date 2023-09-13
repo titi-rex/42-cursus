@@ -6,7 +6,7 @@
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/12 22:18:18 by tlegrand          #+#    #+#             */
-/*   Updated: 2023/09/12 23:36:32 by tlegrand         ###   ########.fr       */
+/*   Updated: 2023/09/13 10:55:14 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,8 +34,10 @@ Ice::Ice(std::string const & type) : AMateria(type) {std::clog << "Ice typcons "
 	
 AMateria*	Ice::clone(void) const 
 {
+	Ice*	p = new Ice();
+	
 	std::clog << "Ice clone " << std::endl;
-	return (new Ice());
+	return (p);
 };
 	
 void	Ice::use(ICharacter& target) 

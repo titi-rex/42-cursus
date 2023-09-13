@@ -6,16 +6,16 @@
 #    By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/08/15 11:48:58 by tlegrand          #+#    #+#              #
-#    Updated: 2023/09/13 00:37:45 by tlegrand         ###   ########.fr        #
+#    Updated: 2023/09/13 19:47:43 by tlegrand         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME	=	rpg
 
 
-HDR		=	AMateria.hpp Ice.hpp Cure.hpp ICharacter.hpp Character.hpp IMateriaSource.hpp MateriaSource.hpp
+HDR		=	AMateria.hpp Ice.hpp Cure.hpp ICharacter.hpp Character.hpp IMateriaSource.hpp MateriaSource.hpp Floor.hpp
 
-SRC		=	AMateria.cpp Ice.cpp Cure.cpp Character.cpp MateriaSource.cpp main.cpp
+SRC		=	AMateria.cpp Ice.cpp Cure.cpp Character.cpp MateriaSource.cpp Floor.cpp main.cpp
 
 OBJ_DIR	=	.obj/
 OBJ_LST	=	${SRC:.cpp=.o}
@@ -24,7 +24,7 @@ OBJ		=	$(addprefix $(OBJ_DIR), $(OBJ_LST))
 CC		=	c++
 RM		=	rm -rf
 
-CFLAGS	=	-Wall -Werror -Wextra -std=c++98
+CFLAGS	=	-Wall -Werror -Wextra -std=c++98 #-fsanitize=address -g3
 
 
 

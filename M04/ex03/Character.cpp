@@ -6,7 +6,7 @@
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/12 22:49:29 by tlegrand          #+#    #+#             */
-/*   Updated: 2023/09/12 23:54:24 by tlegrand         ###   ########.fr       */
+/*   Updated: 2023/09/13 19:25:27 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,24 +71,36 @@ void				Character::setName(std::string name) { this->_name = name; };
 AMateria*	Character::getInventory(int idx) const {return (this->_inventory[idx]);};
 
 
-	
+
 void	Character::equip(AMateria* m) 
 {
 	for (int i=0; i<4; ++i)
 	{
 		if (this->_inventory[i] == NULL)
+		{
 			this->_inventory[i] = m;
+			std::cout << this->getName() << " equip " << m->getType() << " at " << i << std::endl;
+			return ;
+		}
 	}
 };
-	
+
 void	Character::unequip(int idx) 
 {
+	if (idx < 0 || idx > 3)
+		return ;
 	if (this->_inventory[idx] != NULL)
+	{
+		std::cout << this->getName() << " UNequip " << this->_inventory[idx]->getType() << " at " << idx << std::endl;
+		this->_inventory[idx]->addNode();
 		this->_inventory[idx] = NULL;
+	}
 };
-	
+
 void	Character::use(int idx, ICharacter& target) 
 {
+	if (idx < 0 || idx > 3)
+		return ;
 	if (this->_inventory[idx] != NULL)
 		this->_inventory[idx]->use(target);
 };
