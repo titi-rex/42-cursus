@@ -6,13 +6,15 @@
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/15 13:47:16 by tlegrand          #+#    #+#             */
-/*   Updated: 2023/08/16 23:57:30 by tlegrand         ###   ########.fr       */
+/*   Updated: 2023/09/13 21:52:43 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef _CONTACT_H__
 # define _CONTACT_H__
 # include <string>
+# include <iostream>
+# include <iomanip>
 
 class Contact {
 	

@@ -6,12 +6,11 @@
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/15 13:47:01 by tlegrand          #+#    #+#             */
-/*   Updated: 2023/08/17 00:13:02 by tlegrand         ###   ########.fr       */
+/*   Updated: 2023/09/13 21:52:37 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <iostream>
-#include <iomanip>
+
 #include "Contact.hpp"
 
 Contact::Contact(void) : _fname(""), _lname(""), _nname(""), _pnumber(""), _secret("") {}

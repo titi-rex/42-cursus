@@ -6,29 +6,27 @@
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/15 13:32:55 by tlegrand          #+#    #+#             */
-/*   Updated: 2023/08/17 00:12:45 by tlegrand         ###   ########.fr       */
+/*   Updated: 2023/09/13 21:58:51 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <iostream>
-#include <iomanip>
-#include <string>
 #include "PhoneBook.hpp"
 
 PhoneBook::PhoneBook(void) : _idx(-1), _ncontact(0) {}
 
 
-void	PhoneBook::_display_field(std::string str) const {
+void	PhoneBook::_display_field(std::string str) const 
+{
 	
 	std::string	tmp(str, 0, 10);
 
 	if (str.size() > 10)
 		tmp[9] = '.';
 	std::cout << std::setw(10) << tmp;
-	return ;
 }
 
-void	PhoneBook::_display(void) const {
+void	PhoneBook::_display(void) const
+{
 	std::string	str;
 	int			i = 0;
 
@@ -49,10 +47,10 @@ void	PhoneBook::_display(void) const {
 	}
 }
 
-void	PhoneBook::add_contact(std::string data[5]) {
-	this->_idx = ++this->_idx % 3;
-	std::cout << "idx : " << this->_idx << std::endl;
-	if (this->_ncontact < 3)
+void	PhoneBook::add_contact(std::string data[5]) 
+{
+	this->_idx = ++this->_idx % MAX_CONTACT;
+	if (this->_ncontact < MAX_CONTACT)
 		++this->_ncontact;
 	this->_contact[this->_idx].fillContact(data[0], data[1], data[2], data[3], data[4]);
 	std::cout << "ADDED" << std::endl;

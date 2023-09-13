@@ -6,13 +6,18 @@
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/15 13:01:04 by tlegrand          #+#    #+#             */
-/*   Updated: 2023/08/17 00:03:24 by tlegrand         ###   ########.fr       */
+/*   Updated: 2023/09/13 21:58:44 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef _PHONE_BOOK_H__
 # define _PHONE_BOOK_H__
-#include "Contact.hpp"
+# include "Contact.hpp"
+# include <iostream>
+# include <iomanip>
+# include <string>
+
+# define MAX_CONTACT 8
 
 class PhoneBook 
 {
@@ -20,7 +25,7 @@ class PhoneBook
 	
 		int		_idx;
 		int		_ncontact;
-		Contact	_contact[3];
+		Contact	_contact[MAX_CONTACT];
 	
 		void	_display_field(std::string str) const;
 		void	_display(void) const;
