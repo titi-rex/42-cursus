@@ -6,7 +6,7 @@
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/13 18:55:23 by tlegrand          #+#    #+#             */
-/*   Updated: 2023/09/13 20:18:34 by tlegrand         ###   ########.fr       */
+/*   Updated: 2023/09/14 19:10:24 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,7 @@ Floor::~Floor(void)
 	delete this->_m;
 	delete this->_next;
 	this->_next = NULL;
+	this->_m = NULL;
 	std::clog << "Floor dest " << std::endl;
 };
 
@@ -54,8 +55,13 @@ void	Floor::addNode(AMateria* m)
 {
 	Floor*	tmp = this;
 
-	while (tmp->_next)
+	while (tmp->_next && tmp->_m != m)
 		tmp = tmp->_next;
+	if (tmp->_m == m)
+	{
+		std::cout << "Garbage already collected" << std::endl;
+		return ;
+	}
 	tmp->_next = new Floor(m);
 	std::clog << "Node added " << std::endl;
 };

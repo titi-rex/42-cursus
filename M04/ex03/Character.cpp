@@ -6,7 +6,7 @@
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/12 22:49:29 by tlegrand          #+#    #+#             */
-/*   Updated: 2023/09/13 19:25:27 by tlegrand         ###   ########.fr       */
+/*   Updated: 2023/09/14 19:16:24 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,8 @@ Character&	Character::operator=(const Character& src)
 Character::~Character(void) 
 {
 	std::clog << "Character dest " << std::endl;
+	if (this->getInventory(0) != NULL)
+		this->getInventory(0)->clearFloor();
 	for (int i=0; i<4; ++i)
 		delete this->getInventory(i);
 };
@@ -71,9 +73,16 @@ void				Character::setName(std::string name) { this->_name = name; };
 AMateria*	Character::getInventory(int idx) const {return (this->_inventory[idx]);};
 
 
-
 void	Character::equip(AMateria* m) 
 {
+	for (int i=0; i<4; ++i)
+	{
+		if (this->_inventory[i] == m)
+		{
+			std::cout << "Can't equip same materia twice" << std::endl;
+			return ;
+		}
+	}
 	for (int i=0; i<4; ++i)
 	{
 		if (this->_inventory[i] == NULL)

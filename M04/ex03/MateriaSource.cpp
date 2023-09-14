@@ -6,7 +6,7 @@
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/13 00:08:57 by tlegrand          #+#    #+#             */
-/*   Updated: 2023/09/13 11:34:36 by tlegrand         ###   ########.fr       */
+/*   Updated: 2023/09/14 19:15:50 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,8 @@ MateriaSource&	MateriaSource::operator=(const MateriaSource& src)
 MateriaSource::~MateriaSource(void) 
 {
 	std::clog << "MateriaSource dest " << std::endl;
+	if (this->_stock[0] != NULL)
+		this->_stock[0]->clearFloor();
 	for (int i=0; i<4; ++i)
 		delete this->_stock[i];
 };
@@ -61,14 +63,16 @@ AMateria*	MateriaSource::getStock(int idx) const {return (this->_stock[idx]);};
 
 void	MateriaSource::learnMateria(AMateria* m) 
 {
+	m->addNode();
 	for (int i=0; i<4; ++i)
 	{
 		if (this->_stock[i] == NULL)
 		{
-			this->_stock[i] = m;	// pas une deep copy !!! utilisr clone mais le main leak?
-			return ;				// dlete me sinon apprise ??
+			this->_stock[i] = m->clone();
+			return ;
 		}
 	}
+	std::cout << "Can't learn materia" << std::endl;
 };
 	
 AMateria*	MateriaSource::createMateria(std::string const & type) 

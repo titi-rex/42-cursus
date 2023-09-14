@@ -6,7 +6,7 @@
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/12 23:14:11 by tlegrand          #+#    #+#             */
-/*   Updated: 2023/09/13 20:10:40 by tlegrand         ###   ########.fr       */
+/*   Updated: 2023/09/14 19:26:34 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,12 @@ int	main(void)
 	src->learnMateria(new Cure());
 	std::cout<< "-----------------" << std::endl;
 	std::cout<< "-----------------" << std::endl;
+
+	tmp = new Ice();
+	src->learnMateria(tmp);
+	src->learnMateria(tmp);
+	std::cout<< "-----------------" << std::endl;
+	std::cout<< "-----------------" << std::endl;
 	
 	ICharacter* me = new Character("me");
 	ICharacter* bob = new Character("bob");
@@ -37,6 +43,7 @@ int	main(void)
 	tmp = src->createMateria("ice");
 	std::cout<< "-----------------" << std::endl;
 	me->equip(tmp);
+	me->equip(tmp);
 	std::cout<< "-----------------" << std::endl;
 	tmp = src->createMateria("cure");
 	std::cout<< "-----------------" << std::endl;
@@ -53,6 +60,7 @@ int	main(void)
 	tmp = src->createMateria("cure");
 	std::cout<< "-----------------" << std::endl;
 	me->equip(tmp);
+	delete tmp;
 	std::cout<< "-----------------" << std::endl;
 	std::cout<< "-----------------" << std::endl;
 
@@ -65,7 +73,6 @@ int	main(void)
 	me->unequip(0);
 	me->unequip(1);
 	me->unequip(2);
-	tmp->clearFloor();
 
 	me->unequip(3);
 	me->unequip(4);
@@ -81,8 +88,6 @@ int	main(void)
 	delete bob;
 	delete me;
 	delete src;
-	tmp->clearFloor();
 
-	delete tmp;
 	return (0);
 }
