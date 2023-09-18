@@ -6,7 +6,7 @@
 #    By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/08/15 11:48:58 by tlegrand          #+#    #+#              #
-#    Updated: 2023/09/13 22:02:00 by tlegrand         ###   ########.fr        #
+#    Updated: 2023/09/18 10:10:23 by tlegrand         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,7 +21,7 @@ OBJ		=	${SRC:.cpp=.o}
 CC		=	c++
 RM		=	rm -f
 
-CFLAG	=	-Wall -Werror -Wextra -std=c++98
+CFLAGS	=	-Wall -Werror -Wextra -std=c++98
 
 
 
@@ -30,19 +30,16 @@ CFLAG	=	-Wall -Werror -Wextra -std=c++98
 all 	:	${NAME}
 
 clean	:
-		@$(RM) ${OBJ}
+		$(RM) ${OBJ}
 
 fclean	:	clean
-		@$(RM) ${NAME}
-		@printf "$(GREEN)All clean !\n$(END)"
+		$(RM) ${NAME}
 
 re		:	fclean all
 		
 
 ${NAME}	:	${OBJ} 
-		@$(CC) ${CFLAGS} $^ -o $@
-		@printf "$(GREEN_LIGHT)$@ created !\n$(END)"
+		$(CC) ${CFLAGS} $^ -o $@
 
 %.o		:	%.cpp $(HDR)
-		@printf "$(YELLOW)Making $@...\n$(END)"
-		@${CC} ${CFLAGS} -c $< -o $@
+		${CC} ${CFLAGS} -c $< -o $@

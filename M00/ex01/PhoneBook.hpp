@@ -6,7 +6,7 @@
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/15 13:01:04 by tlegrand          #+#    #+#             */
-/*   Updated: 2023/09/13 21:58:44 by tlegrand         ###   ########.fr       */
+/*   Updated: 2023/09/18 10:56:37 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,7 @@
 
 class PhoneBook 
 {
-	private:
-	
+	private :
 		int		_idx;
 		int		_ncontact;
 		Contact	_contact[MAX_CONTACT];
@@ -30,8 +29,7 @@ class PhoneBook
 		void	_display_field(std::string str) const;
 		void	_display(void) const;
 	
-	public:
-	
+	public :
 		PhoneBook(void);
 		
 		void	add_contact(std::string data[5]);

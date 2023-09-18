@@ -6,7 +6,7 @@
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/15 13:47:16 by tlegrand          #+#    #+#             */
-/*   Updated: 2023/09/13 21:52:43 by tlegrand         ###   ########.fr       */
+/*   Updated: 2023/09/18 10:58:32 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,14 +18,14 @@
 
 class Contact {
 	
-	std::string	_fname;
-	std::string	_lname;
-	std::string	_nname;
-	std::string	_pnumber;
-	std::string	_secret;
-	
-	public:
-	
+	private	:
+		std::string	_fname;
+		std::string	_lname;
+		std::string	_nname;
+		std::string	_pnumber;
+		std::string	_secret;
+		
+	public	:
 		Contact(void);
 		
 		std::string	getFname(void) const;
