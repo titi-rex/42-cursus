@@ -6,7 +6,7 @@
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/21 18:49:57 by tlegrand          #+#    #+#             */
-/*   Updated: 2023/08/21 19:42:59 by tlegrand         ###   ########.fr       */
+/*   Updated: 2023/09/18 21:45:06 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ class HumanB
 		HumanB(std::string name);
 		~HumanB(void);
 		void	attack(void) const;
-		void	setWeapon(Weapon& weapon);
+		void	setWeapon(Weapon* weapon);
 };
 
 #endif

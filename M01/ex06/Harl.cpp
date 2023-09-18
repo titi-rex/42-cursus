@@ -6,7 +6,7 @@
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/09 22:34:03 by tlegrand          #+#    #+#             */
-/*   Updated: 2023/09/10 00:26:10 by tlegrand         ###   ########.fr       */
+/*   Updated: 2023/09/18 21:59:51 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,11 +32,8 @@ void	Harl::complain(int start) const
 	std::string	str[4] = {"DEBUG", "INFO","WARNING", "ERROR"};
 	hptr		func[4] = {&Harl::_debug, &Harl::_info, &Harl::_warning, &Harl::_error};
 
-	for (int i=start; i < 4; ++i)
-	{
-		std::cout << "[ " << str[i] << " ]" << std::endl;
-		(this->*func[i])();
-	}
+	std::cout << "[ " << str[start] << " ]" << std::endl;
+	(this->*func[start])();
 };
 
 void	Harl::filter(std::string level) const
@@ -44,7 +41,7 @@ void	Harl::filter(std::string level) const
 	std::string	str[5] = {"DEBUG", "INFO","WARNING", "ERROR", "Probably complaining about insignificant problems"};
 	int			n;
 	
-	n = 4;
+	n = -2;
 	for (int i=0; i < 4; ++i)
 	{
 		if (level.compare(str[i]) == 0)
@@ -53,22 +50,26 @@ void	Harl::filter(std::string level) const
 			break ;
 		}
 	}
-	switch(n)
+	while (n < 4 && n!= -1)
 	{
-		case 0:
-			this->complain(0);
-			break ;
-		case 1:
-			this->complain(1);
-			break ;
-		case 2:
-			this->complain(2);
-			break ;
-		case 3:
-			this->complain(3);
-			break ;
-		default:
-			std::cout << "[ " << str[4] << " ]" << std::endl;
-			break ;
+		switch(n)
+		{
+			case 0:
+				this->complain(0);
+				break ;
+			case 1:
+				this->complain(1);
+				break ;
+			case 2:
+				this->complain(2);
+				break ;
+			case 3:
+				this->complain(3);
+				break ;
+			default:
+				std::cout << "[ " << str[4] << " ]" << std::endl;
+				break ;
+		}
+		++n;
 	}
 };

@@ -6,13 +6,11 @@
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/10 12:06:22 by tlegrand          #+#    #+#             */
-/*   Updated: 2023/09/10 14:29:45 by tlegrand         ###   ########.fr       */
+/*   Updated: 2023/09/18 22:06:23 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Fixed.hpp"
-#include <iostream>
-#include <cmath>
 
 const int	Fixed::_point = 8;
 

@@ -18,3 +18,5 @@ BUG : some function with complexe return type discard some type
 array not handled
 add clone and reset func
 should ignore keyword like virtual in cpp
+
+nice them : duru
