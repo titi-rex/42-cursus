@@ -6,7 +6,7 @@
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/21 20:41:42 by tlegrand          #+#    #+#             */
-/*   Updated: 2023/09/20 15:25:57 by tlegrand         ###   ########.fr       */
+/*   Updated: 2023/09/20 16:39:43 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,7 +76,8 @@ int	main(int ac, char** arg)
 
 	if (get_file(arg[1], buff))
 		return (1);
-	search_n_destroy(buff, arg[2], arg[3]);
+	if (arg[2][0] != '\0')
+		search_n_destroy(buff, arg[2], arg[3]);
 	if (write_file(arg[1], buff))
 		return (1);
 	return (0);	
