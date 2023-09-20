@@ -6,7 +6,7 @@
 #    By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/08/15 11:48:58 by tlegrand          #+#    #+#              #
-#    Updated: 2023/09/18 10:13:36 by tlegrand         ###   ########.fr        #
+#    Updated: 2023/09/20 15:44:22 by tlegrand         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,7 +24,7 @@ OBJ		=	$(addprefix $(OBJ_DIR), $(OBJ_LST))
 CC		=	c++
 RM		=	rm -rf
 
-CFLAG	=	-Wall -Werror -Wextra -std=c++98
+CFLAGS	=	-Wall -Werror -Wextra -std=c++98
 
 
 .PHONY	:	all clean fclean re
@@ -41,10 +41,10 @@ re		:	fclean all
 		
 
 ${NAME}	:	$(OBJ_DIR) ${OBJ} 
-		$(CC) ${CFLAG} $(OBJ) -o $@
+		$(CC) ${CFLAGS} $(OBJ) -o $@
 
 $(OBJ_DIR)%.o	:	%.cpp $(HDR)
-		${CC} ${CFLAG} -c $< -o $@
+		${CC} ${CFLAGS} -c $< -o $@
 
 $(OBJ_DIR)	:
 			@mkdir -p $(OBJ_DIR)

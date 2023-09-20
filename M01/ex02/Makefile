@@ -6,14 +6,12 @@
 #    By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/08/15 11:48:58 by tlegrand          #+#    #+#              #
-#    Updated: 2023/09/18 10:13:25 by tlegrand         ###   ########.fr        #
+#    Updated: 2023/09/20 15:44:36 by tlegrand         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME	=	brain
 
-
-HDR		=	
 
 SRC		=	main.cpp
 
