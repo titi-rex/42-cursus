@@ -6,7 +6,7 @@
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/10 00:21:50 by tlegrand          #+#    #+#             */
-/*   Updated: 2023/09/10 12:29:25 by tlegrand         ###   ########.fr       */
+/*   Updated: 2023/09/20 21:10:04 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 int	main(void)
 {
 	Fixed a;
-	Fixed b( a );
+	Fixed b(a);
 	Fixed c;
 
 	c = b;
@@ -24,5 +24,8 @@ int	main(void)
 	std::cout << a.getRawBits() << std::endl;
 	std::cout << b.getRawBits() << std::endl;
 	std::cout << c.getRawBits() << std::endl;
+	c.setRawBits(5);
+	std::cout << c.getRawBits() << std::endl;
+
 	return (0);
 }

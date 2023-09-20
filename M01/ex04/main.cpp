@@ -6,7 +6,7 @@
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/21 20:41:42 by tlegrand          #+#    #+#             */
-/*   Updated: 2023/09/20 16:39:43 by tlegrand         ###   ########.fr       */
+/*   Updated: 2023/09/20 21:05:18 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@ int	get_file(const char* const pathanme, std::string& str_file)
 	if (in.good() == false)
 	{
 		in.close();
+		std::cerr << "Failed to open file" << std::endl;
 		return (1);
 	}
 	while (!in.eof())

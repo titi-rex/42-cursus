@@ -6,7 +6,7 @@
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/10 12:03:46 by tlegrand          #+#    #+#             */
-/*   Updated: 2023/09/18 22:06:20 by tlegrand         ###   ########.fr       */
+/*   Updated: 2023/09/20 21:11:28 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,6 @@ class Fixed {
 		static const int	_point;
 
 	public	:
-
 		Fixed(void);
 		Fixed(const int value);
 		Fixed(const float value);
