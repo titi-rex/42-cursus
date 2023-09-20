@@ -6,33 +6,9 @@
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/21 20:41:42 by tlegrand          #+#    #+#             */
-/*   Updated: 2023/08/24 15:22:13 by tlegrand         ###   ########.fr       */
+/*   Updated: 2023/09/20 15:25:57 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
-/*
-Create a program that takes three parameters in the following order: a filename and
-two strings, s1 and s2.
-It will open the file <filename> and copies its content into a new file
-<filename>.replace, replacing every occurrence of s1 with s2.
-Using C file manipulation functions is forbidden and will be considered cheating. All
-the member functions of the class std::string are allowed, except replace. Use them
-wisely!
-Of course, handle unexpected inputs and errors. You have to create and turn in your
-own tests to ensure your program works as expected.
-10
-*/
-/*
-#include <fstream>
-#include <limits>
-
-ifstream file;
-file.open(name,std::ios::in|std::ios::binary);
-file.ignore( std::numeric_limits<std::streamsize>::max() );
-std::streamsize length = file.gcount();
-file.clear();   //  Since ignore will have set eof.
-file.seekg( 0, std::ios_base::beg );
-*/
 
 #include <iostream>
 #include <fstream>

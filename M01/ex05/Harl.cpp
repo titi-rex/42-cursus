@@ -6,12 +6,11 @@
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/09 22:34:03 by tlegrand          #+#    #+#             */
-/*   Updated: 2023/09/10 00:06:15 by tlegrand         ###   ########.fr       */
+/*   Updated: 2023/09/20 15:25:42 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Harl.hpp"
-#include <string>
 #include <iostream>
 
 Harl::Harl(void) {std::cout << "Harl constructor called" << std::endl;};

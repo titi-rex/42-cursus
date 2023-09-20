@@ -6,11 +6,10 @@
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/09 22:03:05 by tlegrand          #+#    #+#             */
-/*   Updated: 2023/09/10 00:05:39 by tlegrand         ###   ########.fr       */
+/*   Updated: 2023/09/20 15:25:48 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <string>
 #include "Harl.hpp"
 
 int	main(int ac, char** arg)

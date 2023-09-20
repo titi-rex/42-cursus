@@ -6,14 +6,13 @@
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/09 22:33:57 by tlegrand          #+#    #+#             */
-/*   Updated: 2023/09/10 00:06:36 by tlegrand         ###   ########.fr       */
+/*   Updated: 2023/09/20 15:25:45 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef __HARL_H__
 # define __HARL_H__
 # include <string>
-
 
 class Harl {
 	
