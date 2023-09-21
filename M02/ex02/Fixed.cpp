@@ -6,7 +6,7 @@
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/10 12:06:22 by tlegrand          #+#    #+#             */
-/*   Updated: 2023/09/21 16:33:45 by tlegrand         ###   ########.fr       */
+/*   Updated: 2023/09/21 23:12:37 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,7 @@ Fixed	Fixed::operator-(const Fixed& F) const
 {
 	Fixed	ret;
 
-	ret.setRawBits(this->getRawBits() + (~F.getRawBits() + 1));
+	ret.setRawBits(this->getRawBits() - F.getRawBits());
 	return (ret);
 };
 
