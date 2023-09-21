@@ -6,7 +6,7 @@
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/10 00:21:50 by tlegrand          #+#    #+#             */
-/*   Updated: 2023/09/21 17:00:29 by tlegrand         ###   ########.fr       */
+/*   Updated: 2023/09/21 20:50:34 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ int main( void )
 	Point	a(1, 1);
 	Point	b(5, 0);
 	Point	c(2.5, 5);
-	Point	point(4, 2);
+	Point	point(3.45, 3);
 	
 	a.setName("a");
 	b.setName("b");

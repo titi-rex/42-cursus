@@ -6,7 +6,7 @@
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/10 00:21:50 by tlegrand          #+#    #+#             */
-/*   Updated: 2023/09/12 14:24:06 by tlegrand         ###   ########.fr       */
+/*   Updated: 2023/09/21 20:36:17 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 
 int main( void )
 {
-	Fixed c(7.52f);
+	Fixed c(7.5f);
 	Fixed d(-2.75f);
 
 
