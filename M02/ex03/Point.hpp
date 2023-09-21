@@ -6,7 +6,7 @@
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/12 14:32:06 by tlegrand          #+#    #+#             */
-/*   Updated: 2023/09/12 14:59:47 by tlegrand         ###   ########.fr       */
+/*   Updated: 2023/09/21 16:07:53 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,12 +31,14 @@ class Point
 		~Point(void);
 
 		Point(const float x, const float y);
+		Point(const Fixed x, const Fixed y);
 
 		Fixed const	getX(void) const;
 		Fixed const	getY(void) const;
 		
 		std::string getName(void) const;
 		void 		setName(std::string name);
+		Point	operator-(const Point& F) const;
 
 		void	info(void) const;
 };

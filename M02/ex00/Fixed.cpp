@@ -6,7 +6,7 @@
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/10 12:06:22 by tlegrand          #+#    #+#             */
-/*   Updated: 2023/09/18 22:05:15 by tlegrand         ###   ########.fr       */
+/*   Updated: 2023/09/21 16:24:03 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,6 @@ int	Fixed::getRawBits(void) const
 
 void	Fixed::setRawBits(int const raw) 
 {
-	std::cout << "setRawBits member function called" << std::endl;
 	this->_value = raw;
 };
 

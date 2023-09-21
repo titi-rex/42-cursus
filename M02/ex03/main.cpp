@@ -6,22 +6,21 @@
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/10 00:21:50 by tlegrand          #+#    #+#             */
-/*   Updated: 2023/09/12 15:16:25 by tlegrand         ###   ########.fr       */
+/*   Updated: 2023/09/21 17:00:29 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Point.hpp"
 #include <iostream>
 
-
 bool	bsp( Point const a, Point const b, Point const c, Point const point);
 
 int main( void )
 {
-	Point	a(0, 0);
+	Point	a(1, 1);
 	Point	b(5, 0);
 	Point	c(2.5, 5);
-	Point	point(0, 0);
+	Point	point(4, 2);
 	
 	a.setName("a");
 	b.setName("b");

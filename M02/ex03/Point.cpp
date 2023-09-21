@@ -6,7 +6,7 @@
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/12 14:32:10 by tlegrand          #+#    #+#             */
-/*   Updated: 2023/09/12 15:14:15 by tlegrand         ###   ########.fr       */
+/*   Updated: 2023/09/21 16:08:36 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@ Point&	Point::operator=(const Point& cpy)
 Point::~Point(void) {};
 
 Point::Point(const float x, const float y) : _x(x), _y(y), _name("nameless") {};
+Point::Point(const Fixed x, const Fixed y) : _x(x), _y(y), _name("nameless") {};
 
 Fixed const	Point::getX(void) const { return (this->_x); };
 
@@ -40,3 +41,16 @@ void	Point::info(void) const
 {
 	std::cout << "Point " << this->getName() << " x:" << this->getX() << " y:" << this->getY() << std::endl;
 }
+
+Point	Point::operator-(const Point& F) const
+{
+	Fixed	tmpX;
+	Fixed	tmpY;
+
+	tmpX = this->getX() - F.getX();
+	tmpY = this->getY() - F.getY();
+
+	Point	res(tmpX, tmpY);
+	return (res);
+};
+
