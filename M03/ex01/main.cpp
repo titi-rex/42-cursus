@@ -6,7 +6,7 @@
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/11 16:49:15 by tlegrand          #+#    #+#             */
-/*   Updated: 2023/09/12 18:45:28 by tlegrand         ###   ########.fr       */
+/*   Updated: 2023/09/27 12:42:44 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,6 @@ int	main(void)
 
 	clap.attack("bob");
 	scav1.attack("bob");
-	return (1);
 	
 	scav1.setAd(15);
 	ScavTrap	scav2(scav1);

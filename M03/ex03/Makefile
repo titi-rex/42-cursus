@@ -6,7 +6,7 @@
 #    By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/08/15 11:48:58 by tlegrand          #+#    #+#              #
-#    Updated: 2023/09/11 21:49:19 by tlegrand         ###   ########.fr        #
+#    Updated: 2023/09/27 13:48:45 by tlegrand         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,7 +24,7 @@ OBJ		=	$(addprefix $(OBJ_DIR), $(OBJ_LST))
 CC		=	c++
 RM		=	rm -rf
 
-CFLAGS	=	-Wall -Werror -Wextra -std=c++98 -Wno-shadow
+CFLAGS	=	-Wall -Werror -Wextra -std=c++98 
 
 
 
@@ -33,22 +33,22 @@ CFLAGS	=	-Wall -Werror -Wextra -std=c++98 -Wno-shadow
 all 	:	${NAME}
 
 clean	:
-		@$(RM) $(OBJ_DIR)
+		$(RM) $(OBJ_DIR)
 
 fclean	:	clean
-		@$(RM) ${NAME}
-		@printf "$(GREEN)All clean !\n$(END)"
+		$(RM) ${NAME}
+		
 
 re		:	fclean all
 		
 
 ${NAME}	:	$(OBJ_DIR) ${OBJ} 
-		@$(CC) ${CFLAGS} $(OBJ) -o $@
-		@printf "$(GREEN_LIGHT)$@ created !\n$(END)"
+		$(CC) ${CFLAGS} $(OBJ) -o $@
+		
 
 $(OBJ_DIR)%.o	:	%.cpp $(HDR)
-		@printf "$(YELLOW)Making $@...\n$(END)"
-		@${CC} ${CFLAGS} -c $< -o $@
+		
+		${CC} ${CFLAGS} -c $< -o $@
 
 $(OBJ_DIR)	:
 			@mkdir -p $(OBJ_DIR)

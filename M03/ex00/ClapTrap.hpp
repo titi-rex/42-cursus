@@ -6,7 +6,7 @@
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/11 15:06:51 by tlegrand          #+#    #+#             */
-/*   Updated: 2023/09/11 15:16:40 by tlegrand         ###   ########.fr       */
+/*   Updated: 2023/09/27 12:33:27 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,6 @@ class ClapTrap {
 		void	setEp(int ep);
 		int		getAd(void) const;
 		void	setAd(int ad);
-
 
 		void	attack(const std::string& target);
 		void	takeDamage(unsigned int amount);

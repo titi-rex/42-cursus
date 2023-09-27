@@ -6,7 +6,7 @@
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/11 20:51:41 by tlegrand          #+#    #+#             */
-/*   Updated: 2023/09/11 20:51:42 by tlegrand         ###   ########.fr       */
+/*   Updated: 2023/09/27 13:35:33 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,9 +16,6 @@
 
 class FragTrap :  public ClapTrap
 {
-	
-	private	:
-
 	public	:
 
 		FragTrap(void);

@@ -6,13 +6,13 @@
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/11 20:51:38 by tlegrand          #+#    #+#             */
-/*   Updated: 2023/09/11 22:50:49 by tlegrand         ###   ########.fr       */
+/*   Updated: 2023/09/27 13:36:02 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "FragTrap.hpp"
 
-FragTrap::FragTrap(void) 
+FragTrap::FragTrap(void)
 {
 	this->setHp(100);
 	this->setEp(100);

@@ -6,7 +6,7 @@
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/11 15:54:20 by tlegrand          #+#    #+#             */
-/*   Updated: 2023/09/11 16:01:23 by tlegrand         ###   ########.fr       */
+/*   Updated: 2023/09/27 12:32:43 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@ int	main(void)
 	r3.setName("loulou");
 	r3.setAd(13);
 
+	r2.setName("bob");
 	r1.attack("bob");
 	r2.takeDamage(r1.getAd());
 	r2.beRepaired(4);
