@@ -6,7 +6,7 @@
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/12 22:49:29 by tlegrand          #+#    #+#             */
-/*   Updated: 2023/09/14 19:16:24 by tlegrand         ###   ########.fr       */
+/*   Updated: 2023/09/28 14:15:26 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,6 @@ Character::Character(void) : _name("nameless")
 Character::Character(const Character& src) 
 {
 	this->setName(src.getName());
-	for (int i=0; i<4; ++i)
-		delete this->getInventory(i);
 	for (int i=0; i<4; ++i)
 	{
 		if (src.getInventory(i) != NULL)
@@ -53,18 +51,25 @@ Character&	Character::operator=(const Character& src)
 
 Character::~Character(void) 
 {
+	bool	is_clear = false;
+	
 	std::clog << "Character dest " << std::endl;
-	if (this->getInventory(0) != NULL)
-		this->getInventory(0)->clearFloor();
 	for (int i=0; i<4; ++i)
+	{
+		if (is_clear == false && this->getInventory(i) != NULL)
+		{
+			this->getInventory(i)->clearFloor();
+			is_clear = true;
+		}
 		delete this->getInventory(i);
+	}
 };
 
 Character::Character(std::string name) : _name(name) 
 {
 	for (int i=0; i<4; ++i)
 		this->_inventory[i] = NULL;
-	std::clog << "Character namecons " << std::endl;
+	std::clog << "Character namecons (" << this->getName() << ")" << std::endl;
 };
 
 
@@ -92,6 +97,7 @@ void	Character::equip(AMateria* m)
 			return ;
 		}
 	}
+	std::cout << this->getName() << " can't equip " << m->getType() << " (no space left)" << std::endl;
 };
 
 void	Character::unequip(int idx) 
@@ -113,4 +119,3 @@ void	Character::use(int idx, ICharacter& target)
 	if (this->_inventory[idx] != NULL)
 		this->_inventory[idx]->use(target);
 };
-	

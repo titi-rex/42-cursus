@@ -6,7 +6,7 @@
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/12 18:07:31 by tlegrand          #+#    #+#             */
-/*   Updated: 2023/09/12 20:50:30 by tlegrand         ###   ########.fr       */
+/*   Updated: 2023/09/28 14:52:56 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,8 @@
 # define _CAT_H__
 # include "Animal.hpp"
 # include "Brain.hpp"
+# include <string>
+# include <iostream>
 
 class Cat : public Animal
 {
@@ -21,11 +23,12 @@ class Cat : public Animal
 		Brain*	_brain;
 	
 	public	:
-
 		Cat(void);
 		Cat(const Cat& src);
 		Cat&	operator=(const Cat& src);
 		~Cat(void);
+
+		Brain*	getBrain(void) const;
 
 		void	makeSound(void) const;
 };

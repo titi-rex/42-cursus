@@ -6,7 +6,7 @@
 #    By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/08/15 11:48:58 by tlegrand          #+#    #+#              #
-#    Updated: 2023/09/27 12:31:03 by tlegrand         ###   ########.fr        #
+#    Updated: 2023/09/28 13:09:51 by tlegrand         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,7 +24,7 @@ OBJ		=	$(addprefix $(OBJ_DIR), $(OBJ_LST))
 CC		=	c++
 RM		=	rm -rf
 
-CFLAGS	=	-Wall -Wextra -std=c++98
+CFLAGS	=	-Wall -Wextra -Werror -std=c++98
 
 
 

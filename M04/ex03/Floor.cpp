@@ -6,7 +6,7 @@
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/13 18:55:23 by tlegrand          #+#    #+#             */
-/*   Updated: 2023/09/14 19:10:24 by tlegrand         ###   ########.fr       */
+/*   Updated: 2023/09/28 14:11:59 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,10 +27,7 @@ Floor&	Floor::operator=(const Floor& src)
 {
 	if (this == &src)
 		return (*this);
-	if (this->_m != NULL)
-		delete this->_m;
-	if (this->_next != NULL)
-		delete this->_next;
+	delete this->_m;
 	this->_m = src._m;
 	this->_next = src._next;
 	return (*this);
@@ -59,7 +56,7 @@ void	Floor::addNode(AMateria* m)
 		tmp = tmp->_next;
 	if (tmp->_m == m)
 	{
-		std::cout << "Garbage already collected" << std::endl;
+		std::clog << "Garbage already collected" << std::endl;
 		return ;
 	}
 	tmp->_next = new Floor(m);

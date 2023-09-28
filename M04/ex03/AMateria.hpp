@@ -6,7 +6,7 @@
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/12 21:39:11 by tlegrand          #+#    #+#             */
-/*   Updated: 2023/09/13 20:09:02 by tlegrand         ###   ########.fr       */
+/*   Updated: 2023/09/28 14:41:20 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,6 @@ class AMateria
 		std::string	_type;
 
 	public	:
-
 		AMateria(void);
 		AMateria(const AMateria& src);
 		AMateria&	operator=(const AMateria& src);

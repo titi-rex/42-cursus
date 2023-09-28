@@ -6,7 +6,7 @@
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/12 18:09:55 by tlegrand          #+#    #+#             */
-/*   Updated: 2023/09/12 20:52:43 by tlegrand         ###   ########.fr       */
+/*   Updated: 2023/09/28 14:53:27 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,8 @@
 # define _DOG_H__
 # include "Animal.hpp"
 # include "Brain.hpp"
+# include <string>
+# include <iostream>
 
 class Dog : public Animal
 {
@@ -21,11 +23,12 @@ class Dog : public Animal
 		Brain*	_brain;
 
 	public	:
-
 		Dog(void);
 		Dog(const Dog& src);
 		Dog&	operator=(const Dog& src);
 		~Dog(void);
+
+		Brain*	getBrain(void) const;
 
 		void	makeSound(void) const;
 };

@@ -6,7 +6,7 @@
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/12 22:46:41 by tlegrand          #+#    #+#             */
-/*   Updated: 2023/09/13 10:51:52 by tlegrand         ###   ########.fr       */
+/*   Updated: 2023/09/28 13:38:57 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,6 @@ class Character : public ICharacter
 		AMateria*	_inventory[4];
 
 	public	:
-
 		Character(void);
 		Character(const Character& src);
 		Character&	operator=(const Character& src);
@@ -35,9 +34,9 @@ class Character : public ICharacter
 		void		setName(std::string name);
 		AMateria*	getInventory(int idx) const;
 
-		void					equip(AMateria* m);
-		void					unequip(int idx);
-		void					use(int idx, ICharacter& target);
+		void	equip(AMateria* m);
+		void	unequip(int idx);
+		void	use(int idx, ICharacter& target);
 };
 
 #endif

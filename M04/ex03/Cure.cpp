@@ -6,7 +6,7 @@
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/12 22:18:22 by tlegrand          #+#    #+#             */
-/*   Updated: 2023/09/12 23:36:42 by tlegrand         ###   ########.fr       */
+/*   Updated: 2023/09/28 13:30:01 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,7 @@
 
 Cure::Cure(void) : AMateria("cure") {std::clog << "Cure defcons " << std::endl;};
 
-Cure::Cure(const Cure& src) : AMateria(src)
-{
-	std::clog << "Cure cpycons " << std::endl;
-
-};
+Cure::Cure(const Cure& src) : AMateria(src) {std::clog << "Cure cpycons " << std::endl;};
 
 Cure&	Cure::operator=(const Cure& src) 
 {

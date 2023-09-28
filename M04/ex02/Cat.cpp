@@ -6,7 +6,7 @@
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/12 18:07:25 by tlegrand          #+#    #+#             */
-/*   Updated: 2023/09/12 21:18:52 by tlegrand         ###   ########.fr       */
+/*   Updated: 2023/09/28 14:50:50 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,9 +29,10 @@ Cat&	Cat::operator=(const Cat& src)
 	if (this == &src)
 		return (*this);
 	this->Animal::operator=(src);
+	delete this->_brain;
+	this->_brain = new Brain(src.getBrain());
 	return (*this);
 };
-
 
 Cat::~Cat(void) 
 {
@@ -44,3 +45,7 @@ void	Cat::makeSound(void) const
 	std::cout << "Mew mew mew mewwwww" << std::endl;
 };
 	
+Brain*	Cat::getBrain(void) const
+{
+	return (this->_brain);
+};

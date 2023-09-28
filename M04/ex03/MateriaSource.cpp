@@ -6,7 +6,7 @@
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/13 00:08:57 by tlegrand          #+#    #+#             */
-/*   Updated: 2023/09/14 19:15:50 by tlegrand         ###   ########.fr       */
+/*   Updated: 2023/09/28 15:17:16 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,6 @@ MateriaSource::MateriaSource(void)
 
 MateriaSource::MateriaSource(const MateriaSource& src) 
 {
-	for (int i=0; i<4; ++i)
-		delete this->_stock[i];
 	for (int i=0; i<4; ++i)
 	{
 		if (src._stock[i] != NULL)
@@ -58,6 +56,7 @@ MateriaSource::~MateriaSource(void)
 		delete this->_stock[i];
 };
 
+
 AMateria*	MateriaSource::getStock(int idx) const {return (this->_stock[idx]);};
 
 
@@ -74,7 +73,7 @@ void	MateriaSource::learnMateria(AMateria* m)
 	}
 	std::cout << "Can't learn materia" << std::endl;
 };
-	
+
 AMateria*	MateriaSource::createMateria(std::string const & type) 
 {
 	for (int i=0; i<4; ++i)
@@ -82,6 +81,6 @@ AMateria*	MateriaSource::createMateria(std::string const & type)
 		if (this->_stock[i] != NULL && (this->_stock[i]->getType() == type))
 			return (this->_stock[i]->clone());
 	}
+	std::cout << "Can't create unknow materia" << std::endl;
 	return (NULL);
 };
-	

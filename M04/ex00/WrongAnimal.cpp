@@ -6,13 +6,13 @@
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/12 18:57:43 by tlegrand          #+#    #+#             */
-/*   Updated: 2023/09/12 19:04:13 by tlegrand         ###   ########.fr       */
+/*   Updated: 2023/09/28 13:08:53 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "WrongAnimal.hpp"
 
-WrongAnimal::WrongAnimal(void) : _type("animal") {std::cout << "WrongAnimal default constructor" << std::endl;};
+WrongAnimal::WrongAnimal(void) : _type("WrongAnimal") {std::cout << "WrongAnimal default constructor" << std::endl;};
 
 WrongAnimal::WrongAnimal(const WrongAnimal& src) 
 {

@@ -6,7 +6,7 @@
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/12 21:41:28 by tlegrand          #+#    #+#             */
-/*   Updated: 2023/09/14 19:24:40 by tlegrand         ###   ########.fr       */
+/*   Updated: 2023/09/28 13:29:23 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,25 +26,17 @@ AMateria&	AMateria::operator=(const AMateria& src)
 	return (*this);
 };
 
-AMateria::~AMateria(void) 
-{
-	std::clog << "AMateria dest " << std::endl;
-};
+AMateria::~AMateria(void) {std::clog << "AMateria dest " << std::endl;};
 
 AMateria::AMateria(std::string const& type) : _type(type) {std::clog << "AMateria typcons " << std::endl;};
-
 
 std::string	AMateria::getType(void) const { return (this->_type); };
 void		AMateria::setType(std::string type) {this->_type = type;};
 
+void AMateria::use(ICharacter& target) {std::cout << "* nothing happend to " << target.getName() << " *" << std::endl;};
+
+
 Floor*	AMateria::getFloor(void) const { return (this->_floor); };
-
-
-void AMateria::use(ICharacter& target) 
-{
-	std::cout << "* nothing happend to " << target.getName() << " *" << std::endl;
-};
-
 
 void	AMateria::addNode(void) 
 {

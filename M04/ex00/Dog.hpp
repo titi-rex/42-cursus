@@ -6,13 +6,15 @@
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/12 18:09:55 by tlegrand          #+#    #+#             */
-/*   Updated: 2023/09/12 18:44:13 by tlegrand         ###   ########.fr       */
+/*   Updated: 2023/09/28 13:20:48 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef _DOG_H__
 # define _DOG_H__
 # include "Animal.hpp"
+# include <string>
+# include <iostream>
 
 class Dog : public Animal
 {

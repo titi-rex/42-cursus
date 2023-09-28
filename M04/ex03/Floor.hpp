@@ -6,7 +6,7 @@
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/13 18:52:44 by tlegrand          #+#    #+#             */
-/*   Updated: 2023/09/13 20:17:20 by tlegrand         ###   ########.fr       */
+/*   Updated: 2023/09/28 13:31:02 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,6 @@ class AMateria;
 
 class Floor 
 {
-	
 	private	:
 		AMateria*	_m;
 		Floor*		_next;

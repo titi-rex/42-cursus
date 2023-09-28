@@ -6,7 +6,7 @@
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/13 00:08:47 by tlegrand          #+#    #+#             */
-/*   Updated: 2023/09/13 00:30:09 by tlegrand         ###   ########.fr       */
+/*   Updated: 2023/09/28 14:04:21 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,17 +21,15 @@ class MateriaSource : public IMateriaSource
 		AMateria*	_stock[4];
 
 	public	:
-
 		MateriaSource(void);
 		MateriaSource(const MateriaSource& src);
 		MateriaSource&	operator=(const MateriaSource& src);
 		~MateriaSource(void);
 
+		AMateria*	getStock(int idx) const;
 
 		void		learnMateria(AMateria* m);
 		AMateria*	createMateria(std::string const & type);
-		AMateria*	getStock(int idx) const;
-
 };
 
 #endif

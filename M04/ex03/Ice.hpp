@@ -6,7 +6,7 @@
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/12 22:00:14 by tlegrand          #+#    #+#             */
-/*   Updated: 2023/09/12 22:00:23 by tlegrand         ###   ########.fr       */
+/*   Updated: 2023/09/28 13:27:42 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,8 +24,8 @@ class Ice : public AMateria
 		Ice&	operator=(const Ice& src);
 		~Ice(void);
 
-
 		Ice(std::string const & type);
+
 		AMateria*		clone(void) const;
 		void			use(ICharacter& target);
 };

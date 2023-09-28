@@ -6,7 +6,7 @@
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/12 23:14:11 by tlegrand          #+#    #+#             */
-/*   Updated: 2023/09/14 19:26:34 by tlegrand         ###   ########.fr       */
+/*   Updated: 2023/09/28 15:21:01 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,51 +18,51 @@
 int	main(void)
 {
 	IMateriaSource*	src = new MateriaSource();
-	AMateria*			tmp;
+	AMateria*		tmp;
 
-	std::cout<< "-----------------" << std::endl;
+	std::clog<< "-----------------" << std::endl;
 	src->learnMateria(new Ice());
-	std::cout<< "-----------------" << std::endl;
+	std::clog<< "-----------------" << std::endl;
 	src->learnMateria(new Cure());
-	std::cout<< "-----------------" << std::endl;
-	std::cout<< "-----------------" << std::endl;
+	std::clog<< "-----------------" << std::endl;
+	std::clog<< "-----------------" << std::endl;
 
 	tmp = new Ice();
 	src->learnMateria(tmp);
 	src->learnMateria(tmp);
-	std::cout<< "-----------------" << std::endl;
-	std::cout<< "-----------------" << std::endl;
+	std::clog<< "-----------------" << std::endl;
+	std::clog<< "-----------------" << std::endl;
 	
 	ICharacter* me = new Character("me");
 	ICharacter* bob = new Character("bob");
 
 
-
-	std::cout<< "-----------------" << std::endl;
-	std::cout<< "-----------------" << std::endl;
+	std::clog<< "-----------------" << std::endl;
+	std::clog<< "-----------------" << std::endl;
 	tmp = src->createMateria("ice");
-	std::cout<< "-----------------" << std::endl;
+	std::clog<< "-----------------" << std::endl;
 	me->equip(tmp);
 	me->equip(tmp);
-	std::cout<< "-----------------" << std::endl;
+	std::clog<< "-----------------" << std::endl;
 	tmp = src->createMateria("cure");
-	std::cout<< "-----------------" << std::endl;
+	std::clog<< "-----------------" << std::endl;
 	me->equip(tmp);
-	std::cout<< "-----------------" << std::endl;
+	std::clog<< "-----------------" << std::endl;
 	tmp = src->createMateria("ice");
-	std::cout<< "-----------------" << std::endl;
+	std::clog<< "-----------------" << std::endl;
 	me->equip(tmp);
-	std::cout<< "-----------------" << std::endl;
+	std::clog<< "-----------------" << std::endl;
 	tmp = src->createMateria("ice");
-	std::cout<< "-----------------" << std::endl;
+	std::clog<< "-----------------" << std::endl;
 	me->equip(tmp);
-	std::cout<< "-----------------" << std::endl;
+	std::clog<< "-----------------" << std::endl;
 	tmp = src->createMateria("cure");
-	std::cout<< "-----------------" << std::endl;
+	std::clog<< "-----------------" << std::endl;
 	me->equip(tmp);
 	delete tmp;
-	std::cout<< "-----------------" << std::endl;
-	std::cout<< "-----------------" << std::endl;
+	
+	std::clog<< "-----------------" << std::endl;
+	std::clog<< "-----------------" << std::endl;
 
 	me->use(0, *bob);
 	me->use(1, *bob);
@@ -77,16 +77,18 @@ int	main(void)
 	me->unequip(3);
 	me->unequip(4);
 	me->use(0, *bob);
+	
+	std::clog<< "-----------------" << std::endl;
+
 	bob->use(0, *me);
 	bob->unequip(0);
-
-	std::cout<< "-----------------" << std::endl;
 	
-	std::cout<< "-----------------" << std::endl;
-	std::cout<< "-----------------" << std::endl;
+	std::clog<< "-----------------" << std::endl;
+	std::clog<< "-----------------" << std::endl;
 
 	delete bob;
 	delete me;
+	
 	delete src;
 
 	return (0);
