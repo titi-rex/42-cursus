@@ -6,7 +6,7 @@
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/12 22:49:29 by tlegrand          #+#    #+#             */
-/*   Updated: 2023/09/28 14:15:26 by tlegrand         ###   ########.fr       */
+/*   Updated: 2023/09/28 15:24:32 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,8 @@ Character::Character(void) : _name("nameless")
 Character::Character(const Character& src) 
 {
 	this->setName(src.getName());
+	for (int i=0; i<4; ++i)
+		delete this->getInventory(i);
 	for (int i=0; i<4; ++i)
 	{
 		if (src.getInventory(i) != NULL)
@@ -97,7 +99,6 @@ void	Character::equip(AMateria* m)
 			return ;
 		}
 	}
-	std::cout << this->getName() << " can't equip " << m->getType() << " (no space left)" << std::endl;
 };
 
 void	Character::unequip(int idx) 
