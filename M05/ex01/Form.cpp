@@ -6,7 +6,7 @@
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/01 17:37:08 by tlegrand          #+#    #+#             */
-/*   Updated: 2023/10/01 17:38:02 by tlegrand         ###   ########.fr       */
+/*   Updated: 2023/10/01 18:07:13 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,11 +40,12 @@ int	Form::_check_grade(int grade)
 
 void	Form::beSigned(Bureaucrat& B)
 {
+	if (this->_signed)
+		throw Form::signedException("already signed");
 	if (B.getGrade() <= this->getGradeSign())
 		this->_signed = true;
 	else
-		throw Form::GradeTooLowException("Grade too low for sign");
-
+		throw Form::GradeTooLowException("grade too low");
 };
 
 const std::string&	Form::getName(void) const { return (this->_name); };

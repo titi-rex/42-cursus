@@ -6,7 +6,7 @@
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/01 14:55:24 by tlegrand          #+#    #+#             */
-/*   Updated: 2023/10/01 17:52:31 by tlegrand         ###   ########.fr       */
+/*   Updated: 2023/10/01 18:08:47 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,9 +50,6 @@ int	main(void)
 	{
 		std::cerr << e.what() << std::endl;
 	}
-
-
-	
 	try
 	{
 		Bureaucrat	b1("Smith", 15);
@@ -61,15 +58,14 @@ int	main(void)
 		Form	f1("AC-12", 97, 13);
 		Form	f2("AC-15", 15, 1);
 
-		f1.beSigned(b1);
-		f2.beSigned(b1);
 		b1.signForm(f1);
+		b2.signForm(f1);
+		b2.signForm(f2);
+		b2.signForm(f1);
 	}
 	catch(const std::exception& e)
 	{
 		std::cerr << e.what() << std::endl;
 	}
-	
-
 	return (0);
 }

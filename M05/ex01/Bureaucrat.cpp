@@ -6,7 +6,7 @@
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/01 14:56:09 by tlegrand          #+#    #+#             */
-/*   Updated: 2023/10/01 17:44:43 by tlegrand         ###   ########.fr       */
+/*   Updated: 2023/10/01 18:06:09 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,10 +51,20 @@ void	Bureaucrat::decGrade(void) {this->_setGrade(this->getGrade() + 1);};
 
 void	Bureaucrat::signForm(Form& F)
 {
-	if (F.getSigned() == true)
-		std::cout << this->_name << " signed " << F.getName() << std::endl;
-	else
-		std::cout << this->_name << " couldn't sign " << F.getName() << " because grade too low" << std::endl;
+	try
+	{
+		F.beSigned(*this);
+		std::cout << this->getName() << " signed "<< F.getName() << std::endl;
+	}
+	catch(const Form::GradeTooLowException& e)
+	{
+		std::cout << this->_name << " couldn't sign " << F.getName() << " because " << e.what() << std::endl;
+		throw;
+	}
+	catch(const Form::signedException& e)
+	{
+		std::cout << this->_name << " couldn't sign " << F.getName() << " because " << e.what() << std::endl;
+	}
 };
 
 std::ostream&	operator<<(std::ostream& os, const Bureaucrat& B)

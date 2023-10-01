@@ -6,7 +6,7 @@
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/01 17:37:10 by tlegrand          #+#    #+#             */
-/*   Updated: 2023/10/01 17:40:28 by tlegrand         ###   ########.fr       */
+/*   Updated: 2023/10/01 18:04:22 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,11 @@ class Form
 		{
 			public	:
 				GradeTooLowException(std::string str) : invalid_argument(str) {};
+		};
+		class signedException : public std::runtime_error
+		{
+			public	:
+				signedException(std::string str) : runtime_error(str) {};
 		};
 };
 
