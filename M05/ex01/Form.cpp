@@ -6,7 +6,7 @@
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/01 17:37:08 by tlegrand          #+#    #+#             */
-/*   Updated: 2023/10/01 18:07:13 by tlegrand         ###   ########.fr       */
+/*   Updated: 2023/10/01 21:09:25 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 Form::Form(void) : _name("unkonw form"), _signed(false), _gradeSign(150), _gradeExecute(150) {};
 
-Form::Form(const Form& src) : _name(src.getName()), _signed(src.getSigned()), _gradeSign(_check_grade(src.getGradeSign())), _gradeExecute(_check_grade(src.getGradeExe())) {};
+Form::Form(const Form& src) : _name(src.getName()), _signed(src.getSigned()), _gradeSign(_checkGradeCons(src.getGradeSign())), _gradeExecute(_checkGradeCons(src.getGradeExe())) {};
 
 Form&	Form::operator=(const Form& src) 
 {
@@ -27,9 +27,9 @@ Form&	Form::operator=(const Form& src)
 
 Form::~Form(void) {};
 
-Form::Form(std::string name, int gradeSign, int gradeExecute) : _name(name), _signed(false), _gradeSign(_check_grade(gradeSign)), _gradeExecute(_check_grade(gradeExecute)) {};
+Form::Form(std::string name, int gradeSign, int gradeExecute) : _name(name), _signed(false), _gradeSign(_checkGradeCons(gradeSign)), _gradeExecute(_checkGradeCons(gradeExecute)) {};
 
-int	Form::_check_grade(int grade)
+int	Form::_checkGradeCons(int grade)
 {
 	if (grade < 1)
 		throw Form::GradeTooHighException("Grade too high at construction");
