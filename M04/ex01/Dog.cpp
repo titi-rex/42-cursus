@@ -6,7 +6,7 @@
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/12 18:09:52 by tlegrand          #+#    #+#             */
-/*   Updated: 2023/09/28 14:52:34 by tlegrand         ###   ########.fr       */
+/*   Updated: 2023/10/03 21:23:52 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@ Dog::Dog(void)
 
 Dog::Dog(const Dog& src) : Animal(src)
 {
+	this->_brain = new Brain(src.getBrain());
 	std::cout << "Dog copy constructor" << std::endl;
 };
 
