@@ -13,6 +13,8 @@ mettre set/get after other constructor
 prendre e ncompte heritage dans constructor attention aux interface
 protected
 
+empty line afeter private / public
+
 
 BUG : some function with complexe return type discard some type
 array not handled
