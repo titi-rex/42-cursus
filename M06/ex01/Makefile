@@ -6,16 +6,16 @@
 #    By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/08/15 11:48:58 by tlegrand          #+#    #+#              #
-#    Updated: 2023/11/05 21:23:58 by tlegrand         ###   ########.fr        #
+#    Updated: 2023/11/05 21:39:05 by tlegrand         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME	=	convert
+NAME	=	serial
 
 
-HDR		=	ScalarConverter.hpp
+HDR		=	Serializer.hpp Data.hpp
 
-SRC		=	ScalarConverter.cpp main.cpp
+SRC		=	main.cpp Serializer.cpp
 
 OBJ_DIR	=	.obj/
 OBJ_LST	=	${SRC:.cpp=.o}
@@ -24,7 +24,7 @@ OBJ		=	$(addprefix $(OBJ_DIR), $(OBJ_LST))
 CC		=	c++
 RM		=	rm -rf
 
-CFLAGS	=	-Wall -Wextra -Werror -std=c++98 
+CFLAGS	=	-Wall -Werror -Wextra -std=c++98
 
 
 
