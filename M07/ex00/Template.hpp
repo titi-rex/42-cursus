@@ -1,26 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.cpp                                           :+:      :+:    :+:   */
+/*   Template.hpp                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/03 13:17:45 by tlegrand          #+#    #+#             */
-/*   Updated: 2023/11/06 10:56:36 by tlegrand         ###   ########.fr       */
+/*   Created: 2023/11/06 11:10:24 by tlegrand          #+#    #+#             */
+/*   Updated: 2023/11/06 11:34:30 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ScalarConverter.hpp"
+#ifndef _TEMPLATE_H__
+# define _TEMPLATE_H__
 
-int	main(int ac, char** arg)
+template <typename T> void swap(T& a, T& b)
 {
-	ScalarConverter	converter;
-
-	if (ac != 2)
-	{
-		std::cerr << "Wrong number of arg" << std::endl;
-		return (1);
-	}
-	converter.convert(arg[1]);
-	return (0);	
+	T	tmp;
+	
+	tmp = a;
+	a = b;
+	b = tmp;
 }
+
+template <typename T> T min(T& a, T& b)
+{
+	return ((a < b) ? a : b);
+}
+
+template <typename T> T max(T& a, T& b)
+{
+	return ((a > b) ? a : b);
+}
+
+#endif

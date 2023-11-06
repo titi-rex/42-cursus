@@ -6,7 +6,7 @@
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/01 22:25:06 by tlegrand          #+#    #+#             */
-/*   Updated: 2023/10/01 22:45:56 by tlegrand         ###   ########.fr       */
+/*   Updated: 2023/11/06 12:24:42 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,6 @@
 class RobotomyRequestForm : public AForm
 {
 	public	:
-
 		RobotomyRequestForm(void);
 		RobotomyRequestForm(const RobotomyRequestForm& src);
 		RobotomyRequestForm&	operator=(const RobotomyRequestForm& src);

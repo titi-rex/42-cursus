@@ -6,7 +6,7 @@
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/01 22:25:03 by tlegrand          #+#    #+#             */
-/*   Updated: 2023/10/01 22:46:04 by tlegrand         ###   ########.fr       */
+/*   Updated: 2023/11/06 12:24:39 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,6 @@
 class PresidentialPardonForm : public AForm
 {
 	public	:
-
 		PresidentialPardonForm(void);
 		PresidentialPardonForm(const PresidentialPardonForm& src);
 		PresidentialPardonForm&	operator=(const PresidentialPardonForm& src);

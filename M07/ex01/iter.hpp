@@ -1,26 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.cpp                                           :+:      :+:    :+:   */
+/*   iter.hpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/03 13:17:45 by tlegrand          #+#    #+#             */
-/*   Updated: 2023/11/06 10:56:36 by tlegrand         ###   ########.fr       */
+/*   Created: 2023/11/06 11:37:38 by tlegrand          #+#    #+#             */
+/*   Updated: 2023/11/06 12:55:12 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ScalarConverter.hpp"
+#ifndef _ITER_H__
+# define _ITER_H__
 
-int	main(int ac, char** arg)
+template <typename T, typename F>
+void	iter(T a, size_t len, F f)
 {
-	ScalarConverter	converter;
-
-	if (ac != 2)
-	{
-		std::cerr << "Wrong number of arg" << std::endl;
-		return (1);
-	}
-	converter.convert(arg[1]);
-	return (0);	
+	if (!a)
+		return ;
+	for (size_t i = 0; i < len; ++i)
+		f(a[i]);
 }
+
+#endif
