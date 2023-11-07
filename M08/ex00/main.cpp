@@ -6,7 +6,7 @@
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/06 14:56:11 by tlegrand          #+#    #+#             */
-/*   Updated: 2023/11/07 11:34:37 by tlegrand         ###   ########.fr       */
+/*   Updated: 2023/11/07 13:26:27 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,11 +22,14 @@ int	main(void)
 	std::vector<int>	v(base, base + sizeof(base) / sizeof(int));
 	std::list<int>		l(base, base + sizeof(base) / sizeof(int));
 
-	int	val = 9;
+
+	
+	
+	int	val = 96;
 	try
 	{
-		easyfind(v, 0);
-		std::cout << val << " has been found !" << std::endl;
+		easyfind(v, val);
+		std::cout << val << " found !" << std::endl;
 	}
 	catch(const std::invalid_argument& e)
 	{
@@ -34,8 +37,8 @@ int	main(void)
 	}
 	try
 	{
-		easyfind(l, 0);
-		std::cout << val << " has been found !" << std::endl;
+		easyfind(l, val);
+		std::cout << val << " found !" << std::endl;
 	}
 	catch(const std::invalid_argument& e)
 	{
