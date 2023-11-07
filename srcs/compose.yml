@@ -11,6 +11,7 @@ services:
       MYSQL_DATABASE: ${MSQL_DB}
       MYSQL_USER: ${MSQL_U}
       MYSQL_PASSWORD: ${MSQL_P}
+
   wordpress:
     depends_on:
       - db
