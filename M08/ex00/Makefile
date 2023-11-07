@@ -6,14 +6,14 @@
 #    By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/08/15 11:48:58 by tlegrand          #+#    #+#              #
-#    Updated: 2023/11/06 14:56:04 by tlegrand         ###   ########.fr        #
+#    Updated: 2023/11/07 10:56:07 by tlegrand         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME	=	easyfind
 
 
-HDR		=	
+HDR		=	easyfind.hpp
 
 SRC		=	main.cpp
 
