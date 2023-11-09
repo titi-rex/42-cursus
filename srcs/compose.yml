@@ -1,30 +1,69 @@
 version: '3'
 
 services:
+
   db:
-    image: mysql:5.7
+    container_name: mariadb
+    image: mariadb:latest
+    # args:
+    #   DB_DATABASE: wordpress
+    #   DB_USER: wordpress
+    #   DB_USER_PASSWORD: wordpress
+    #   DB_ROOT_PASSWORD: wordpress
+    env_file:
+      - .env
     volumes:
-      - db_data:/var/lib/mysql
+      - mariadb_data:/var/lib/mysql
+    networks:
+      - inception
     restart: always
-    environment:
-      MYSQL_ROOT_PASSWORD: ${MSQL_RP}
-      MYSQL_DATABASE: ${MSQL_DB}
-      MYSQL_USER: ${MSQL_U}
-      MYSQL_PASSWORD: ${MSQL_P}
 
   wordpress:
+    container_name: wordpress
     depends_on:
       - db
     image: wordpress:latest
-    ports:
-      - "8000:80"
+    env_file:
+      - .env
+    volumes:
+      - wordpress_data::/var/www/html/wordpress
+    networks:
+      - inception
     restart: always
-    environment:
-      WORDPRESS_DB_HOST: db:3306 
-      WORDPRESS_DB_USER: wordpress
-      WORDPRESS_DB_PASSWORD: wordpress
-      WORDPRESS_DB_NAME: wordpress
+
+  nginx:
+    container_name: nginx
+    depends_on:
+      - wordpress
+    build:
+      context: requirements/nginx
+    image: mynginx
+    ports:
+      - 443:443
+    volumes:
+      - wordpress_data::/var/www/html/wordpress
+    networks:
+      - inception
+    restart: always
 
 volumes:
-  db_data: {}
+  mariadb_data:
+    driver: local
+    name: mariadb_data
+    driver_opts:
+      type: none
+      device: /home/reina/data/mariadb
+      o: bind
+  wordpress_data:
+    driver: local
+    name: wordpress_data
+    driver_opts:
+      type: none
+      device: /home/reina/data/wordpress
+      o: bind
 
+networks:
+  inception:
+    driver: bridge
+    name: inception
+  
