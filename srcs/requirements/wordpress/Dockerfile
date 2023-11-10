@@ -2,9 +2,9 @@ FROM debian:11
 RUN apt-get update -y && apt-get upgrade -y && apt-get install -y wget php php-fpm php-mysql mariadb-client 
 
 
-ARG	PHP_VERSION=8.2
+ARG	PHP_VERSION
 
-WORKDIR /var/www/html/
+# WORKDIR /var/www/html/
 
 RUN wget https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.phar \
 	&& chmod +x wp-cli.phar \
@@ -14,11 +14,10 @@ RUN wget https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.ph
 
 
 COPY conf/www.conf /etc/php/${PHP_VERSION}/fpm/pool.d/www.conf
-COPY tools/entrypoint.sh /tmp
+COPY tools/entrypoint.sh /tmp/
 
 EXPOSE 9000
 
-# ENTRYPOINT ["/usr/sbin/php-fpm8.2", "-F"]
 ENTRYPOINT ["sh", "/tmp/entrypoint.sh"]
 
 # RUN apk update && apk upgrade && apk add \
