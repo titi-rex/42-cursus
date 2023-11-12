@@ -6,7 +6,7 @@
 #    By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/11/10 19:52:12 by tlegrand          #+#    #+#              #
-#    Updated: 2023/11/10 23:10:53 by tlegrand         ###   ########.fr        #
+#    Updated: 2023/11/12 20:21:06 by tlegrand         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -65,7 +65,7 @@ wp-run	:	wp-build
 
 
 fclean :
-docker stop $(docker ps -qa); docker rm $(docker ps -qa); docker rmi -f $(docker images -qa); docker volume rm $(docker volume ls -q);docker network rm $(docker network ls -q) 2>/dev/null 
+	docker stop $(docker ps -qa); docker rm $(docker ps -qa); docker rmi -f $(docker images -qa); docker volume rm $(docker volume ls -q);docker network rm $(docker network ls -q) 2>/dev/null 
 
 
 # if [ "127.0.0.1	iel-amra.42.fr" = "$(head -n1 /etc/hosts)" ]

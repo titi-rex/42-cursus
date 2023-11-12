@@ -1,5 +1,5 @@
 FROM debian:11
-RUN apt-get update -y && apt-get upgrade -y && apt-get install -y mariadb-server
+RUN apt-get update -y && apt-get upgrade -y && apt-get install -y mariadb-server dumb-init
 
 ARG DB_NAME
 ARG DB_USER
@@ -17,5 +17,5 @@ RUN service mariadb start && mysql -u root -e \
 
 EXPOSE 3306
 
-ENTRYPOINT ["mysqld", "--bind-address=0.0.0.0"]
-
+ENTRYPOINT ["/usr/bin/dumb-init", "--"]
+CMD ["mysqld", "--bind-address=0.0.0.0"]

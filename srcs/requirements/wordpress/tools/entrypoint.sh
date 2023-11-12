@@ -8,11 +8,13 @@ then
 	&& wp plugin update --allow-root --path="/var/www/html/wordpress" --all \
 	&& wp theme install --allow-root --path="/var/www/html/wordpress" inspiro --activate \
 	&& wp user create --allow-root --path="/var/www/html/wordpress" $WP_USER $WP_USER_EMAIL --user_pass=$WP_USER_PASSWORD \
-	&& chown www-data:www-data /var/www/html/wordpress -R \
-	&& echo "$(date '+%Y-%m-%d %H:%M:%S') Wordpress installation finish all good!" >> /var/www/html/wordpress/mylog.log \
-	|| echo "$(date '+%Y-%m-%d %H:%M:%S') Wordpress installation failed!" >> /var/www/html/wordpress/mylog.log
+	&& chown www-data:www-data /var/www/html/wordpress/wp-content/uploads -R \
+	&& echo "$(date '+%Y-%m-%d %H:%M:%S') Wordpress installation finish all good!" >> /var/www/html/mylog.log 
+	|| echo "$(date '+%Y-%m-%d %H:%M:%S') Wordpress installation failed!" >> /var/www/html/mylog.log
 else
-	echo "$(date '+%Y-%m-%d %H:%M:%S') Wordpress already installed!" >> /var/www/html/wordpress/mylog.log
+	echo "$(date '+%Y-%m-%d %H:%M:%S') Wordpress already installed!" >> /var/www/html/mylog.log
 fi
+
+echo  "$(date '+%Y-%m-%d %H:%M:%S') scipt end!" >> /var/www/html/mylog.log
 
 /usr/sbin/php-fpm${PHP_VERSION} -F
