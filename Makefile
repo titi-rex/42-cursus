@@ -6,7 +6,7 @@
 #    By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/11/10 19:52:12 by tlegrand          #+#    #+#              #
-#    Updated: 2023/11/12 20:21:06 by tlegrand         ###   ########.fr        #
+#    Updated: 2023/11/13 10:49:28 by tlegrand         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,7 +14,7 @@
 COMPOSE	=	docker-compose -f srcs/compose.yml 
 
 
-all:
+all:	up
 
 
 up :	volumes
@@ -25,6 +25,8 @@ down:
 
 clean:
 	${COMPOSE} down --rmi all -v --remove-orphans
+	rm -rf /home/${USER}/data/wordpress
+	rm -rf /home/${USER}/data/mariadb
 
 ps :
 	${COMPOSE} ps
