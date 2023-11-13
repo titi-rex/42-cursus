@@ -1,16 +1,7 @@
 #!/bin/bash
 
-sudo apt-install update -y && sudo apt upgrade -y
-parametrer ssh
-connecter en local via ssh
-
-parameter sudo
-
-
-install docker
-install make
-install git
-
+apt update -y && apt upgrade -y
+apt install -y sudo ssh curl docker git make
 
 
 
