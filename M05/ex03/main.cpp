@@ -6,7 +6,7 @@
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/01 14:55:24 by tlegrand          #+#    #+#             */
-/*   Updated: 2023/10/02 21:28:17 by tlegrand         ###   ########.fr       */
+/*   Updated: 2023/11/13 20:40:03 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,5 +44,10 @@ int	main(void)
 	{
 		std::cerr << e.what() << std::endl;
 	}
+
+	delete f1;
+	delete f2;
+	delete f3;
+	
 	return (0);
 }

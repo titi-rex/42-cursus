@@ -6,7 +6,7 @@
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/01 17:37:10 by tlegrand          #+#    #+#             */
-/*   Updated: 2023/10/01 21:55:58 by tlegrand         ###   ########.fr       */
+/*   Updated: 2023/11/13 20:40:22 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ class AForm
 		AForm(void);
 		AForm(const AForm& src);
 		AForm&	operator=(const AForm& src);
-		~AForm(void);
+		virtual ~AForm(void);
 
 		AForm(std::string name, std::string target, int gradeSign, int gradeExecute);
 
