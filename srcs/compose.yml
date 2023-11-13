@@ -58,14 +58,14 @@ volumes:
     name: mariadb_data
     driver_opts:
       type: none
-      device: /home/reina/data/mariadb
+      device: /home/tlegrand/data/mariadb
       o: bind
   wordpress_data:
     driver: local
     name: wordpress_data
     driver_opts:
       type: none
-      device: /home/reina/data/wordpress
+      device: /home/tlegrand/data/wordpress
       o: bind
 
 networks:

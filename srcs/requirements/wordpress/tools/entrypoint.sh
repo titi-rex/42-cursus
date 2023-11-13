@@ -9,7 +9,7 @@ then
 	&& wp theme install --allow-root --path="/var/www/html/wordpress" inspiro --activate \
 	&& wp user create --allow-root --path="/var/www/html/wordpress" $WP_USER $WP_USER_EMAIL --user_pass=$WP_USER_PASSWORD \
 	&& chown www-data:www-data /var/www/html/wordpress/wp-content/uploads -R \
-	&& echo "$(date '+%Y-%m-%d %H:%M:%S') Wordpress installation finish all good!" >> /var/www/html/mylog.log 
+	&& echo "$(date '+%Y-%m-%d %H:%M:%S') Wordpress installation finish all good!" >> /var/www/html/mylog.log \
 	|| echo "$(date '+%Y-%m-%d %H:%M:%S') Wordpress installation failed!" >> /var/www/html/mylog.log
 else
 	echo "$(date '+%Y-%m-%d %H:%M:%S') Wordpress already installed!" >> /var/www/html/mylog.log

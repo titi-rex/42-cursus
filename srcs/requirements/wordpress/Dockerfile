@@ -15,8 +15,8 @@ COPY tools/entrypoint.sh /tmp/
 
 EXPOSE 9000
 
-#  ["/usr/bin/dumb-init", "--"]
-ENTRYPOINT  ["sh", "/tmp/entrypoint.sh"]
+ENTRYPOINT  ["/usr/bin/dumb-init", "--"]
+CMD  ["sh", "/tmp/entrypoint.sh"]
 
 
 
