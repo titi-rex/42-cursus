@@ -7,8 +7,7 @@ WORKDIR /var/www/html/
 
 ADD https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.phar /usr/local/bin/wp
 RUN chmod +x /usr/local/bin/wp \
-	&& mkdir -p /run/php \
-	&& mkdir -p /var/www/html/wordpress 
+	&& mkdir -p /run/php /var/www/html/wordpress
 
 COPY conf/www.conf /etc/php/${PHP_VERSION}/fpm/pool.d/www.conf
 COPY tools/entrypoint.sh /tmp/

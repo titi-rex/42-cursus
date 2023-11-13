@@ -55,7 +55,7 @@ wp-build	:
 
 
 nginx-run	:	nginx-build
-		docker run -p 8443:443 --rm --name nginx my_nginx
+		docker run -d -p 443:443 --rm --name nginx my_nginx
 
 db-run	:	db-build
 	docker run --env-file=srcs/.env --rm --name db my_db

@@ -14,7 +14,6 @@ RUN openssl req -x509 -newkey rsa:2048 -nodes \
 COPY conf/nginx.conf /etc/nginx/sites-available/tlegrand.42.fr.conf
 RUN ln -s /etc/nginx/sites-available/tlegrand.42.fr.conf /etc/nginx/sites-enabled/tlegrand.42.fr.conf 
 
-
 EXPOSE 443
 
 ENTRYPOINT ["/usr/bin/dumb-init", "--"]
