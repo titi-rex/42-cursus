@@ -6,11 +6,11 @@
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/06 14:56:11 by tlegrand          #+#    #+#             */
-/*   Updated: 2023/11/06 14:56:48 by tlegrand         ###   ########.fr       */
+/*   Updated: 2023/11/07 11:36:19 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <iomanip>
+#include <iostream>
 
 int	main(void)
 {

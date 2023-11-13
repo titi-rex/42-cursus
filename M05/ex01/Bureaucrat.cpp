@@ -6,7 +6,7 @@
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/01 14:56:09 by tlegrand          #+#    #+#             */
-/*   Updated: 2023/10/01 18:06:09 by tlegrand         ###   ########.fr       */
+/*   Updated: 2023/11/13 15:06:02 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,16 +23,14 @@ Bureaucrat&	Bureaucrat::operator=(const Bureaucrat& src)
 {
 	if (this == &src)
 		return (*this);
-	this->~Bureaucrat();
-	new(this) Bureaucrat(src);
+	_setGrade(src.getGrade());
 	return (*this);
 };
 
 Bureaucrat::~Bureaucrat(void) {};
 
-Bureaucrat::Bureaucrat(std::string name = "nameless", int grade = 150) : _name(name) {this->_setGrade(grade);};
+Bureaucrat::Bureaucrat(std::string name, int grade) : _name(name) {this->_setGrade(grade);};
 
-Bureaucrat::Bureaucrat(int grade) : _name("poor smith") {this->_setGrade(grade);};
 
 const std::string&	Bureaucrat::getName(void) const { return (this->_name); };
 int					Bureaucrat::getGrade(void) const { return (this->_grade); };
@@ -71,4 +69,3 @@ std::ostream&	operator<<(std::ostream& os, const Bureaucrat& B)
 {
 	return (os << B.getName() << ", bureaucrat grade " << B.getGrade());
 };
-

@@ -6,13 +6,13 @@
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/01 17:37:08 by tlegrand          #+#    #+#             */
-/*   Updated: 2023/10/01 21:09:25 by tlegrand         ###   ########.fr       */
+/*   Updated: 2023/11/13 15:03:11 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Form.hpp"
 
-Form::Form(void) : _name("unkonw form"), _signed(false), _gradeSign(150), _gradeExecute(150) {};
+Form::Form(void) : _name("unknow form"), _signed(false), _gradeSign(150), _gradeExecute(150) {};
 
 Form::Form(const Form& src) : _name(src.getName()), _signed(src.getSigned()), _gradeSign(_checkGradeCons(src.getGradeSign())), _gradeExecute(_checkGradeCons(src.getGradeExe())) {};
 

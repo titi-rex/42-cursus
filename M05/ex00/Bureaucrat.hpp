@@ -6,7 +6,7 @@
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/01 14:56:00 by tlegrand          #+#    #+#             */
-/*   Updated: 2023/10/01 16:32:15 by tlegrand         ###   ########.fr       */
+/*   Updated: 2023/11/13 14:18:48 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,10 +31,9 @@ class Bureaucrat
 		~Bureaucrat(void);
 
 		Bureaucrat(std::string name, int grade);
-		Bureaucrat(int grade);
 		
 		std::string	getName(void) const;
-		int		getGrade(void) const;
+		int			getGrade(void) const;
 		
 		void	incGrade(void);
 		void	decGrade(void);
@@ -44,6 +43,7 @@ class Bureaucrat
 			public	:
 				GradeTooHighException(std::string str) : invalid_argument(str) {};
 		};
+
 		class GradeTooLowException : public std::invalid_argument
 		{
 			public	:
