@@ -1,5 +1,5 @@
 FROM debian:11
-RUN apt-get update -y && apt-get upgrade -y && apt-get install -y curl dumb-init php php-fpm php-mysql mariadb-client 
+RUN apt-get update -y && apt-get upgrade -y && apt-get install -y curl php php-fpm php-mysql mariadb-client 
 
 ARG	PHP_VERSION
 
@@ -14,8 +14,7 @@ COPY tools/entrypoint.sh /tmp/
 
 EXPOSE 9000
 
-ENTRYPOINT  ["/usr/bin/dumb-init", "--"]
-CMD  ["sh", "/tmp/entrypoint.sh"]
+ENTRYPOINT ["sh", "/tmp/entrypoint.sh"]
 
 
 

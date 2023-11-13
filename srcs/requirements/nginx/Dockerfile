@@ -1,5 +1,5 @@
 FROM debian:11
-RUN apt update -y && apt upgrade -y && apt install -y openssl nginx dumb-init
+RUN apt update -y && apt upgrade -y && apt install -y openssl nginx 
 RUN openssl req -x509 -newkey rsa:2048 -nodes \
 	-keyout /etc/ssl/tlegrand.42.fr.key \
 	-out /etc/ssl/tlegrand.42.fr.cert \
@@ -16,5 +16,4 @@ RUN ln -s /etc/nginx/sites-available/tlegrand.42.fr.conf /etc/nginx/sites-enable
 
 EXPOSE 443
 
-ENTRYPOINT ["/usr/bin/dumb-init", "--"]
-CMD ["nginx", "-g", "daemon off;"]
+ENTRYPOINT ["nginx", "-g", "daemon off;"]
