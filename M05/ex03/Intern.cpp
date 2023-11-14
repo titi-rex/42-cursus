@@ -6,7 +6,7 @@
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/02 20:47:58 by tlegrand          #+#    #+#             */
-/*   Updated: 2023/10/02 21:24:46 by tlegrand         ###   ########.fr       */
+/*   Updated: 2023/11/14 18:44:41 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,5 +39,7 @@ AForm*	Intern::makeForm(const std::string form, std::string target) const
 		if (listForm[i].compare(form) == 0)
 			return ((this->*f[i])(target));
 	}
+	std::cout << "Error, the intern does not know this Form " << std::endl;
+	throw std::runtime_error("invalid Form");
 	return (NULL);
 };
