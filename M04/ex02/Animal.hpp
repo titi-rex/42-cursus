@@ -6,7 +6,7 @@
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/12 18:07:21 by tlegrand          #+#    #+#             */
-/*   Updated: 2023/09/28 14:38:55 by tlegrand         ###   ########.fr       */
+/*   Updated: 2023/11/14 19:17:45 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,6 @@ class Animal
 		std::string	_type;
 
 	public	:
-
 		Animal(void);
 		Animal(const Animal& src);
 		Animal&	operator=(const Animal& src);

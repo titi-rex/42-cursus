@@ -6,7 +6,7 @@
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/12 18:07:19 by tlegrand          #+#    #+#             */
-/*   Updated: 2023/10/03 21:26:20 by tlegrand         ###   ########.fr       */
+/*   Updated: 2023/11/14 19:16:33 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,10 @@ int	main(void)
 	{
 		delete meta[i];
 		std::cout << "Animal " << i << " was deleted..." << std::endl;
+	}
+	Dog	out;
+	{
+		Dog tmp = out;
 	}
 	return (0);
 }
