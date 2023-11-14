@@ -6,7 +6,7 @@
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/05 22:07:49 by tlegrand          #+#    #+#             */
-/*   Updated: 2023/11/05 22:41:59 by tlegrand         ###   ########.fr       */
+/*   Updated: 2023/11/14 19:06:19 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,32 +43,32 @@ void	identify(Base* p)
 		std::cout << "Can't identify object.." << std::endl;
 }
 
-void	identify(Base& r)
+void	identify(Base& p)
 {
 	try
 	{
-		A& a = dynamic_cast<A&>(r);
+		A& a = dynamic_cast<A&>(p);
 		std::cout << "Objet is class A!" << std::endl;
 		(void)a;
 		return ;
 	}
-	catch(...) {}
+	catch(std::exception & e) {}
 	try
 	{
-		B& b = dynamic_cast<B&>(r);
+		B& b = dynamic_cast<B&>(p);
 		std::cout << "Objet is class B!" << std::endl;
 		(void)b;
 		return ;
 	}
-	catch(...) {}
+	catch(std::exception & e) {}
 	try
 	{
-		C& c = dynamic_cast<C&>(r);
+		C& c = dynamic_cast<C&>(p);
 		std::cout << "Objet is class C!" << std::endl;
 		(void)c;
 		return ;
 	}
-	catch(...) {}
+	catch(std::exception & e) {}
 	std::cout << "Can't identify object.." << std::endl;
 }
 
@@ -76,10 +76,14 @@ int	main(void)
 {
 	std::srand(std::time(NULL));
 	Base*	ptr;
+	Base	p;
 
 	ptr = generate();
 	identify(ptr);
 	identify(*ptr);
 	delete ptr;
+	ptr = &p;
+	identify(ptr);
+	identify(p);
 	return (0);
 }

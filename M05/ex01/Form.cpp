@@ -6,7 +6,7 @@
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/01 17:37:08 by tlegrand          #+#    #+#             */
-/*   Updated: 2023/11/13 15:03:11 by tlegrand         ###   ########.fr       */
+/*   Updated: 2023/11/14 18:40:31 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,6 @@ Form&	Form::operator=(const Form& src)
 {
 	if (this == &src)
 		return (*this);
-	this->~Form();
-	new(this) Form(src);
 	return (*this);
 };
 

@@ -6,7 +6,7 @@
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/03 13:14:57 by tlegrand          #+#    #+#             */
-/*   Updated: 2023/11/05 21:32:01 by tlegrand         ###   ########.fr       */
+/*   Updated: 2023/11/14 18:54:28 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,13 +31,12 @@ class ScalarConverter
 		static int 	is_double(std::string input);
 		static void	print_double_fist(std::string input, int wit);
 		
-
-	public	:
 		ScalarConverter(void);
 		ScalarConverter(const ScalarConverter& src);
 		ScalarConverter&	operator=(const ScalarConverter& src);
 		~ScalarConverter(void);
 
+	public	:
 		static void	convert(std::string input);
 };
 

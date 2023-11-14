@@ -1,16 +1,20 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   Serializer.cpp                                     :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/11/14 19:00:16 by tlegrand          #+#    #+#             */
+/*   Updated: 2023/11/14 19:01:17 by tlegrand         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "Serializer.hpp"
 
 Serializer::Serializer(void) {};
-
 Serializer::Serializer(const Serializer& src) {(void)src;};
-
-Serializer&	Serializer::operator=(const Serializer& src) 
-{
-	if (this == &src)
-		return (*this);
-	return (*this);
-};
-
+Serializer&	Serializer::operator=(const Serializer& src) {return ((void)src, *this);};
 Serializer::~Serializer(void) {};
 
 
