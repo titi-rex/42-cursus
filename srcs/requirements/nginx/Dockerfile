@@ -1,5 +1,7 @@
 FROM debian:11
-RUN apt update -y -q && apt upgrade -y -q && apt install -y -q openssl nginx 
+
+RUN apt-get update -y --quiet && apt-get upgrade -y --quiet && apt-get install -y --quiet --no-install-recommends openssl nginx 
+
 RUN openssl req -x509 -newkey rsa:2048 -nodes \
 	-keyout /etc/ssl/tlegrand.42.fr.key \
 	-out /etc/ssl/tlegrand.42.fr.cert \
@@ -10,8 +12,8 @@ RUN openssl req -x509 -newkey rsa:2048 -nodes \
 #	-subj	: data pour le certificat
 #	-nodes	: pas d'encryption de la cle
 
-
 COPY conf/nginx.conf /etc/nginx/sites-available/tlegrand.42.fr.conf
+
 RUN ln -s /etc/nginx/sites-available/tlegrand.42.fr.conf /etc/nginx/sites-enabled/tlegrand.42.fr.conf 
 
 EXPOSE 443

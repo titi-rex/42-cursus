@@ -1,5 +1,6 @@
 FROM debian:11
-RUN apt-get update -y -q && apt-get upgrade -y -q && apt-get install -y -q mariadb-server
+
+RUN apt-get update -y --quiet && apt-get upgrade -y --quiet && apt-get install -y --quiet mariadb-server
 
 ARG DB_NAME
 ARG DB_USER

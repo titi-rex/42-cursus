@@ -6,7 +6,7 @@
 #    By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/11/10 19:52:12 by tlegrand          #+#    #+#              #
-#    Updated: 2023/11/13 19:41:40 by tlegrand         ###   ########.fr        #
+#    Updated: 2023/11/14 20:55:34 by tlegrand         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -62,6 +62,22 @@ sclean:
 .PHONY:	all re clean fclean up down prune ps data volumes
 
 
+
+
+# BONUS
+build-ftp	:
+	docker build -t ftptest srcs/bonus/ftp/
+
+ftp-run	:	build-ftp
+	docker run -d -p 7042:7042 --rm --name testftp ftptest
+
+enter-ftp	:
+	docker exec -it testftp /bin/bash
+
+
+
+
+# MANDATORY
 nginx-build	:
 		docker build -t my_nginx srcs/requirements/nginx
 
