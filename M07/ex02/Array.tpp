@@ -6,7 +6,7 @@
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/06 14:19:23 by tlegrand          #+#    #+#             */
-/*   Updated: 2023/11/06 14:20:33 by tlegrand         ###   ########.fr       */
+/*   Updated: 2023/11/15 22:12:27 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 
 template <typename T> Array<T>::Array(void)
 {
-	this->_arr = NULL;
+	this->_arr = new T[0];
 	this->_size = 0;
 }
 
@@ -23,16 +23,26 @@ template <typename T> Array<T>::Array(unsigned int n)
 {
 	this->_arr = new T[n];
 	this->_size = n;
-	// for (size_t i = 0; i < _size; ++i)
-	// 	_arr[i] = 1;
 }
 
-template <typename T> Array<T>::Array(const Array& src)
+template <typename T> Array<T>::Array(const Array<T>& src)
 {
 	this->_size = src._size;
 	this->_arr = new T[this->_size];
 	for (size_t i = 0; i < this->_size; ++i)
 		this->_arr[i] = src._arr[i];
+}
+
+template <typename T> Array<T>& Array<T>::operator=(const Array<T>& src)
+{
+	if (this == &src)
+		return (*this);
+	delete[] this->_arr;
+	this->_size = src._size;
+	this->_arr = new T[this->_size];
+	for (size_t i = 0; i < this->_size; ++i)
+		this->_arr[i] = src._arr[i];
+	return (*this);
 }
 
 template <typename T> Array<T>::~Array(void)

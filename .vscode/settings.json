@@ -73,6 +73,7 @@
 		"numbers": "cpp",
 		"fstream": "cpp",
 		"codecvt": "cpp",
-		"list": "cpp"
+		"list": "cpp",
+		"*.tpp": "cpp"
 	}
 }

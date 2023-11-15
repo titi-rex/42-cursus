@@ -6,14 +6,14 @@
 #    By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/08/15 11:48:58 by tlegrand          #+#    #+#              #
-#    Updated: 2023/11/06 14:10:59 by tlegrand         ###   ########.fr        #
+#    Updated: 2023/11/15 21:56:59 by tlegrand         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME	=	array
 
 
-HDR		=	Array.hpp
+HDR		=	Array.hpp Array.tpp
 
 SRC		=	main.cpp
 
@@ -24,7 +24,7 @@ OBJ		=	$(addprefix $(OBJ_DIR), $(OBJ_LST))
 CC		=	c++
 RM		=	rm -rf
 
-CFLAGS	=	-Wall -Werror -Wextra -std=c++98 -g3
+CFLAGS	=	-Wall -Werror -Wextra -std=c++98
 
 
 
