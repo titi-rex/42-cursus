@@ -32,8 +32,6 @@ fclean	:	clean
 
 re	:	fclean all
 
-prune	:	fclean
-		docker system prune -f
 
 ps :
 	@echo "=============================="
