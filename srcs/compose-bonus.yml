@@ -55,6 +55,26 @@ services:
       - inception
     restart: always
 
+
+# bonus
+  ftp:
+    container_name: vsftp
+    init: true
+    depends_on:
+      - nginx
+    build:
+      context: requirements/vsftp
+    image: my_vsftp
+    ports:
+      - 7042:7042
+    volumes:
+      - wordpress_data:/var/www/html/wordpress
+    networks:
+      - inception
+    restart: always 
+
+# volumes
+
 volumes:
   mariadb_data:
     driver: local
@@ -70,6 +90,8 @@ volumes:
       type: none
       device: /home/${USER}/data/wordpress
       o: bind
+
+# network
 
 networks:
   inception:

@@ -27,18 +27,22 @@ clean	:
 		${COMPOSE} down --rmi all -v --remove-orphans
 
 fclean	:	clean
-		sudo rm -rf /home/${USER}/data/wordpress/*
-		sudo rm -rf /home/${USER}/data/mariadb/*
+		sudo rm -rf /home/${USER}/data/
 
 re	:	fclean all
 
 
+logs:
+	# @docker logs mariadb
+	# @docker logs nginx
+	@docker logs wordpress
+
 ps :
-	@echo "=============================="
+	@echo "=========== containers ================"
 	@${COMPOSE} ps
-	@echo "=============================="
+	@echo "============= volumes ================="
 	@docker volume ls
-	@echo "=============================="
+	@echo "============== images ================="
 	@docker images
 	@echo "=============================="
 	
