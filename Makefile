@@ -6,12 +6,13 @@
 #    By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/11/10 19:52:12 by tlegrand          #+#    #+#              #
-#    Updated: 2023/11/14 20:55:34 by tlegrand         ###   ########.fr        #
+#    Updated: 2023/11/19 22:15:20 by tlegrand         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 
 COMPOSE	=	docker-compose -f srcs/compose.yml 
+COMPOSE_BONUS	=	docker-compose -f srcs/compose-bonus.yml 
 
 
 all	:	up
@@ -31,6 +32,13 @@ fclean	:	clean
 
 re	:	fclean all
 
+
+bonus:	volumes
+	${COMPOSE_BONUS} up -d --build
+
+bdown:
+	${COMPOSE_BONUS} down 
+	
 
 logs:
 	# @docker logs mariadb

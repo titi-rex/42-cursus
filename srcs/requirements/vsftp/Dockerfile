@@ -5,7 +5,7 @@ ENV DEBIAN_FRONTEND noninteractive
 RUN apt-get update -y --quiet && apt-get upgrade -y --quiet && apt-get install -y --quiet --no-install-recommends vsftpd
 
 COPY conf/ftp.conf /etc/vsftpd.conf
-COPY conf/vsftpd.user_list /etc/vsftpd.user_list
+COPY conf/vsftpd.userlist /etc/vsftpd.userlist
 
 RUN mkdir -p /var/www/
 
