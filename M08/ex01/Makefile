@@ -6,16 +6,16 @@
 #    By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/08/15 11:48:58 by tlegrand          #+#    #+#              #
-#    Updated: 2023/11/06 14:55:47 by tlegrand         ###   ########.fr        #
+#    Updated: 2023/11/19 18:36:56 by tlegrand         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME	=	span
 
 
-HDR		=	
+HDR		=	Span.hpp
 
-SRC		=	
+SRC		=	main.cpp Span.cpp
 
 OBJ_DIR	=	.obj/
 OBJ_LST	=	${SRC:.cpp=.o}
