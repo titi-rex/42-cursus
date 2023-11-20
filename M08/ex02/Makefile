@@ -6,16 +6,16 @@
 #    By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/08/15 11:48:58 by tlegrand          #+#    #+#              #
-#    Updated: 2023/11/06 14:55:52 by tlegrand         ###   ########.fr        #
+#    Updated: 2023/11/20 13:05:12 by tlegrand         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME	=	abomination
 
 
-HDR		=	
+HDR		=	MutantStack.hpp
 
-SRC		=	
+SRC		=	main.cpp MutantStack.cpp
 
 OBJ_DIR	=	.obj/
 OBJ_LST	=	${SRC:.cpp=.o}
