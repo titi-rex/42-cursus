@@ -6,7 +6,7 @@
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/06 12:59:31 by tlegrand          #+#    #+#             */
-/*   Updated: 2023/11/15 22:11:11 by tlegrand         ###   ########.fr       */
+/*   Updated: 2023/11/16 11:20:51 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,7 @@ int	main(void)
 {
 	try
 	{
+		std::cout << "test class " << std::endl;
 		Array<Aw>	arraw(5);
 		for (int i = 0; i < MAX_VAL; ++i)
     	{
@@ -46,6 +47,7 @@ int	main(void)
 	}
 	
 	std::cout << "test construction " << std::endl;
+	try
 	{
 		Array<int>	empty;
 		Array<int>	base(17);
@@ -55,79 +57,69 @@ int	main(void)
 		std::cout << "size of base " << base.size() << std::endl;
 		print_arr(base);
 	}
-	
-	Array<int>	numbers(MAX_VAL);
-	int*		control = new int[MAX_VAL];
-    std::srand(time(NULL));
-	
- 	for (int i = 0; i < MAX_VAL; ++i)
-    {
-        const int value = std::rand();
-        numbers[i] = value;
-        control[i] = value;
-    }
-   for (int i = 0; i < MAX_VAL; ++i)
-    {
-        if (control[i] != numbers[i])
-        {
-            std::cerr << "didn't save the same value!!" << std::endl;
-			delete[] control;
-            return 1;
-        }
-    }
-	std::cout << "test wrong acces " << std::endl;
-	try
-    {
-        numbers[-2] = 0;
-    }
-    catch(const std::exception& e)
-    {
-        std::cerr << e.what() << '\n';
-    }
-    try
-    {
-        numbers[MAX_VAL] = 0;
-    }
-    catch(const std::exception& e)
-    {
-        std::cerr << e.what() << '\n';
-    }
-	std::cout << "test copy " << std::endl;
-
-    for (int i = 0; i < MAX_VAL; ++i)
-    {
-        numbers[i] = std::rand() % 151 + 1;
-		control[i] = 0;
-    }
+	catch (const std::exception& e)
 	{
-		Array<int>	cpy;
-
-		cpy = numbers;
-		for (size_t i = 0; i < cpy.size(); ++i)
+		e.what();
+	}
+	
+	try 
+	{
+		Array<int>	numbers(MAX_VAL);
+		int*		control = new int[MAX_VAL];
+		std::srand(time(NULL));
+		
+		for (int i = 0; i < MAX_VAL; ++i)
 		{
-			if (cpy[i] != numbers[i])
+			const int value = std::rand();
+			numbers[i] = value;
+			control[i] = value;
+		}
+		for (int i = 0; i < MAX_VAL; ++i)
+		{
+			if (control[i] != numbers[i])
 			{
-				std::cout << "ERROR copy failed at i " << i << std::endl;
-				break ;
+				std::cerr << "didn't save the same value!!" << std::endl;
+				delete[] control;
+				return 1;
+			}
+		}
+		delete[] control;
+
+		std::cout << "test wrong acces " << std::endl;
+		try
+		{
+			numbers[-2] = 0;
+		}
+		catch(const std::exception& e)
+		{
+			std::cerr << e.what() << '\n';
+		}
+		try
+		{
+			numbers[MAX_VAL] = 0;
+		}
+		catch(const std::exception& e)
+		{
+			std::cerr << e.what() << '\n';
+		}
+		std::cout << "test copy " << std::endl;
+		{
+			Array<int>	cpy;
+
+			cpy = numbers;
+			for (size_t i = 0; i < cpy.size(); ++i)
+			{
+				if (cpy[i] != numbers[i])
+				{
+					std::cout << "ERROR copy failed at i " << i << std::endl;
+					break ;
+				}
 			}
 		}
 	}
-	print_arr(numbers);
-	std::cout << std::endl;	
-	for (int i = 0; i < MAX_VAL; ++i)
+	catch(const std::exception& e)
     {
-		std::cout << control[i] << " ";
+        std::cerr << e.what() << '\n';
     }
-	std::cout << std::endl;	
-	for (int i = 0; i < MAX_VAL; ++i)
-    {
-        if (control[i] == numbers[i])
-        {
-            std::cerr << "numbers wrong value!!" << std::endl;
-			break ;
-        }
-    }
-	delete[] control;
-	
 	return (0);
 }

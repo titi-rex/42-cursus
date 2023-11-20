@@ -6,14 +6,14 @@
 #    By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/08/15 11:48:58 by tlegrand          #+#    #+#              #
-#    Updated: 2023/11/06 11:11:57 by tlegrand         ###   ########.fr        #
+#    Updated: 2023/11/16 10:38:11 by tlegrand         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME	=	template
 
 
-HDR		=	Template.hpp
+HDR		=	whatever.hpp
 
 SRC		=	main.cpp
 

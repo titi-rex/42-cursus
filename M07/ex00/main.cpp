@@ -6,16 +6,19 @@
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/06 11:09:55 by tlegrand          #+#    #+#             */
-/*   Updated: 2023/11/15 21:13:23 by tlegrand         ###   ########.fr       */
+/*   Updated: 2023/11/16 10:53:25 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <iostream>
-#include "Template.hpp"
+#include "whatever.hpp"
+
 
 int	main(void)
 {
 	{
+		std::cout << "test with int " <<std::endl;
+		
 		int	a = 5;
 		int	b = 0;
 		
@@ -27,6 +30,8 @@ int	main(void)
 		std::cout << "max is " << ::max(a, b) << std::endl;
 	}
 	{
+		std::cout << "test with float " <<std::endl;
+		
 		float	a = 5.9;
 		float	b = 0.1;
 		
@@ -38,6 +43,8 @@ int	main(void)
 		std::cout << "max is " << ::max(a, b) << std::endl;
 	}
 	{
+		std::cout << "test with string" <<std::endl;
+		
 		std::string c = "chaine1";
 		std::string d = "chaine2";
 
