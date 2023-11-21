@@ -6,7 +6,7 @@
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/20 11:01:40 by tlegrand          #+#    #+#             */
-/*   Updated: 2023/11/20 14:19:53 by tlegrand         ###   ########.fr       */
+/*   Updated: 2023/11/21 17:16:16 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,21 +22,19 @@ class MutantStack : public std::stack<T>
 	private	:
 
 	public	:
-		MutantStack(void);
-		MutantStack(const MutantStack& src);
-		MutantStack&	operator=(const MutantStack& src);
-		~MutantStack(void);
+		MutantStack(void) {};
+		MutantStack(const MutantStack& src) : std::stack<T>(src) {};
+		MutantStack&	operator=(const MutantStack& src) 
+		{
+			this->std::stack<T>::operator=(src);
+			return (*this);
+		};
+		~MutantStack(void) {};
 
-		typedef typename MutantStack<T>::container_type::iterator iterator;
-		typedef typename MutantStack<T>::container_type::const_iterator const_iterator;
-		
-		iterator	begin(void);
-		iterator	end(void);
+		typedef typename std::stack<T>::container_type::iterator iterator;
 
-		const_iterator	cbegin(void);
-		const_iterator	cend(void);
+		iterator	begin(void) {return (this->c.begin());};
+		iterator	end(void) {return (this->c.end());};
 };
-
-# include "MutantStack.tpp"
 
 #endif

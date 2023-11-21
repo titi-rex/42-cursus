@@ -6,7 +6,7 @@
 #    By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/08/15 11:48:58 by tlegrand          #+#    #+#              #
-#    Updated: 2023/11/20 13:05:12 by tlegrand         ###   ########.fr        #
+#    Updated: 2023/11/21 17:01:20 by tlegrand         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,7 +15,7 @@ NAME	=	abomination
 
 HDR		=	MutantStack.hpp
 
-SRC		=	main.cpp MutantStack.cpp
+SRC		=	main.cpp 
 
 OBJ_DIR	=	.obj/
 OBJ_LST	=	${SRC:.cpp=.o}
