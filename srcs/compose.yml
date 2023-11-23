@@ -34,7 +34,7 @@ services:
       - .env
     image: my_wordpress
     volumes:
-      - wordpress_data:/var/www/html/wordpress
+      - wordpress_data:/var/www/wordpress
     networks:
       - inception
     restart: always
@@ -50,7 +50,7 @@ services:
     ports:
       - 443:443
     volumes:
-      - wordpress_data:/var/www/html/wordpress
+      - wordpress_data:/var/www/wordpress
     networks:
       - inception
     restart: always

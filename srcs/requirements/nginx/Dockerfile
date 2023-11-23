@@ -13,6 +13,9 @@ RUN openssl req -x509 -newkey rsa:2048 -nodes \
 #	-nodes	: pas d'encryption de la cle
 
 COPY conf/nginx.conf /etc/nginx/sites-available/tlegrand.42.fr.conf
+COPY static/cv.html /srv/static/cv.html
+COPY static/mainpage.html /srv/static/mainpage.html
+COPY static/rush.css /srv/static/rush.css
 
 RUN ln -s /etc/nginx/sites-available/tlegrand.42.fr.conf /etc/nginx/sites-enabled/tlegrand.42.fr.conf 
 

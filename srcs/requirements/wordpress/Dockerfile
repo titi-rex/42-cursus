@@ -8,13 +8,13 @@ COPY conf/www.conf /etc/php/${PHP_VERSION}/fpm/pool.d/www.conf
 COPY tools/entrypoint.sh /tmp/
 
 ADD https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.phar /usr/local/bin/wp
-ADD https://github.com/vrana/adminer/releases/download/v4.8.1/adminer-4.8.1.php /var/www/html/wordpress/adminer.php 
+ADD https://github.com/vrana/adminer/releases/download/v4.8.1/adminer-4.8.1.php /var/www/wordpress/adminer.php 
 
 RUN chmod +x /usr/local/bin/wp \
-	&& chmod +r /var/www/html/wordpress/adminer.php \
-	&& mkdir -p /run/php /var/www/html/wordpress 
+	&& chmod +r /var/www/wordpress/adminer.php \
+	&& mkdir -p /run/php /var/www/wordpress 
 	
-WORKDIR /var/www/html/
+WORKDIR /var/www/
 
 EXPOSE 9000
 

@@ -48,12 +48,12 @@ logs:
 ps :
 	@echo "=========== containers ================"
 	@${COMPOSE} ps
-	@echo "============= volumes ================="
-	@docker volume ls
-	@echo "============== images ================="
-	@docker images
-	@echo "=============================="
-	
+
+
+bps :
+	@echo "=========== containers ================"
+	@${COMPOSE_BONUS} ps
+
 data:
 	ls -l /home/${USER}/data/*
 	
@@ -76,10 +76,10 @@ sclean:
 
 # BONUS
 build-ftp	:
-	docker build -t ftptest srcs/bonus/ftp/
+	docker build -t ftptest srcs/requirements/vsftp/
 
 ftp-run	:	build-ftp
-	docker run -d -p 7042:7042 --rm --name testftp ftptest
+	docker run -d -p 21:21 -p 7042:7042 --rm --name testftp ftptest
 
 enter-ftp	:
 	docker exec -it testftp /bin/bash
