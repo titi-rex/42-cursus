@@ -6,7 +6,7 @@
 #    By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/11/10 19:52:12 by tlegrand          #+#    #+#              #
-#    Updated: 2023/11/19 22:15:20 by tlegrand         ###   ########.fr        #
+#    Updated: 2023/11/23 22:22:46 by tlegrand         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -39,11 +39,20 @@ bonus:	volumes
 bdown:
 	${COMPOSE_BONUS} down 
 	
+top:
+	${COMPOSE_BONUS} top
 
 logs:
-	# @docker logs mariadb
-	# @docker logs nginx
+	@echo "			**** LOGS ****"
+	@echo "=========== mariadb ================"
+	@docker logs mariadb
+	@echo "=========== nginx ================"
+	@docker logs nginx
+	@echo "=========== wordpress ================"
 	@docker logs wordpress
+	@echo "=========== redis ================"
+	@docker logs redis
+
 
 ps :
 	@echo "=========== containers ================"

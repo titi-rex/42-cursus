@@ -1,6 +1,8 @@
 FROM debian:11
 
-RUN apt-get update -y --quiet && apt-get upgrade -y --quiet && apt-get install -y --quiet curl php php-fpm php-mysql mariadb-client 
+RUN apt-get --quiet update -y  \
+	&& apt-get --quiet upgrade -y \
+	&& apt-get --quiet install -y curl php php-fpm php-mysql mariadb-client 
 
 ARG	PHP_VERSION
 

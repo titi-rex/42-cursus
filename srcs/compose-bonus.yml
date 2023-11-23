@@ -30,6 +30,7 @@ services:
         PHP_VERSION: ${PHP_VERSION}
     depends_on:
       - db
+      - redis
     env_file:
       - .env
     image: my_wordpress
@@ -72,6 +73,16 @@ services:
     networks:
       - inception
     restart: always 
+
+  redis:
+    container_name: redis
+    init: true
+    build:
+      context: requirements/redis
+    image: my_redis
+    networks:
+      - inception
+    restart: always
 
 # volumes
 
