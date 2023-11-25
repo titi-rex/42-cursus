@@ -6,7 +6,7 @@
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/19 18:31:42 by tlegrand          #+#    #+#             */
-/*   Updated: 2023/11/25 12:00:21 by tlegrand         ###   ########.fr       */
+/*   Updated: 2023/11/25 14:40:37 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ Span::Span(unsigned int n) : _max_size(n)
 
 void	Span::addNumber(int n) 
 {
-	if (_stock.size() > _max_size)
+	if (_stock.size() >= _max_size)
 		throw std::invalid_argument("No more place left!");
 	_stock.push_back(n);
 };
@@ -70,7 +70,7 @@ int	Span::longestSpan(void) const
 	
 void	Span::addRange(std::vector<int>::iterator start, std::vector<int>::iterator end) 
 {
-	if (std::distance(start, end) + _stock.size() > _max_size)
+	if (std::distance(start, end) + _stock.size() >= _max_size)
 		throw std::invalid_argument("No more place left!");
 	for (std::vector<int>::iterator it = start; it != end; ++it)
 	{
