@@ -1,6 +1,8 @@
 FROM debian:11
 
-RUN apt-get update -y --quiet && apt-get upgrade -y --quiet && apt-get install -y --quiet --no-install-recommends openssl nginx 
+RUN apt-get --quiet update -y \
+	&& apt-get --quiet upgrade -y \
+	&& apt-get --quiet install -y --no-install-recommends openssl nginx 
 
 RUN openssl req -x509 -newkey rsa:2048 -nodes \
 	-keyout /etc/ssl/tlegrand.42.fr.key \

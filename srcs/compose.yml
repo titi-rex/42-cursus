@@ -30,6 +30,7 @@ services:
         PHP_VERSION: ${PHP_VERSION}
     depends_on:
       - db
+      - redis
     env_file:
       - .env
     image: my_wordpress
@@ -55,6 +56,40 @@ services:
       - inception
     restart: always
 
+
+# bonus
+  ftp:
+    container_name: vsftp
+    init: true
+    depends_on:
+      - wordpress
+    build:
+      context: requirements/vsftp
+      args:
+        FTP_USER: ${FTP_USER}
+        FTP_PASS: ${FTP_PASS}
+    image: my_vsftp
+    ports:
+      - 20:20
+      - 21:21
+    volumes:
+      - wordpress_data:/var/www/wordpress
+    networks:
+      - inception
+    restart: always 
+
+  redis:
+    container_name: redis
+    init: true
+    build:
+      context: requirements/redis
+    image: my_redis
+    networks:
+      - inception
+    restart: always
+
+# volumes
+
 volumes:
   mariadb_data:
     driver: local
@@ -71,8 +106,10 @@ volumes:
       device: /home/${USER}/data/wordpress
       o: bind
 
+# network
+
 networks:
   inception:
     driver: bridge
     name: inception
-
+  

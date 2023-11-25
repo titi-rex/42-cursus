@@ -12,17 +12,9 @@
 
 
 COMPOSE	=	docker-compose -f srcs/compose.yml 
-COMPOSE_BONUS	=	docker-compose -f srcs/compose-bonus.yml 
 
 
 all	:	up
-
-
-up 	:	volumes
-	${COMPOSE} up -d --build
-	
-down:
-	${COMPOSE} down 
 
 clean	:
 		${COMPOSE} down --rmi all -v --remove-orphans
@@ -33,14 +25,14 @@ fclean	:	clean
 re	:	fclean all
 
 
-bonus:	volumes
-	${COMPOSE_BONUS} up -d --build
-
-bdown:
-	${COMPOSE_BONUS} down 
+up 	:	volumes
+	${COMPOSE} up -d --build
+	
+down:
+	${COMPOSE} down 
 	
 top:
-	${COMPOSE_BONUS} top
+	${COMPOSE} top
 
 logs:
 	@echo "			**** LOGS ****"
@@ -51,69 +43,19 @@ logs:
 	@echo "=========== wordpress ================"
 	@docker logs wordpress
 	@echo "=========== redis ================"
-	@docker logs redis
-
+	@docker logs redis	
+	@echo "=========== vsftp ================"
+	@docker logs vsftp
 
 ps :
 	@echo "=========== containers ================"
 	@${COMPOSE} ps
 
-
-bps :
-	@echo "=========== containers ================"
-	@${COMPOSE_BONUS} ps
-
-data:
-	ls -l /home/${USER}/data/*
-	
-
 volumes	:
 		mkdir -p /home/${USER}/data/wordpress
 		mkdir -p /home/${USER}/data/mariadb
 
-sclean:
-	docker stop $(docker ps -qa); 
-	docker rm $(docker ps -qa); 
-	docker rmi -f $(docker images -qa); 
-	docker volume rm $(docker volume ls -q);
-	docker network rm $(docker network ls -q);
 
 .PHONY:	all re clean fclean up down prune ps data volumes
 
-
-
-
-# BONUS
-build-ftp	:
-	docker build -t ftptest srcs/requirements/vsftp/
-
-ftp-run	:	build-ftp
-	docker run -d -p 21:21 -p 7042:7042 --rm --name testftp ftptest
-
-enter-ftp	:
-	docker exec -it testftp /bin/bash
-
-
-
-
-# MANDATORY
-nginx-build	:
-		docker build -t my_nginx srcs/requirements/nginx
-
-db-build	:
-	docker build  -t my_mariadb  srcs/requirements/mariadb
-
-wp-build	:
-		docker build -t my_wp srcs/requirements/wordpress
-
-
-
-nginx-run	:	nginx-build
-		docker run -d -p 443:443 --rm --name nginx my_nginx
-
-db-run	:	db-build
-	docker run --env-file=srcs/.env --rm --name db my_db
-
-wp-run	:	wp-build
-		docker run --env-file=srcs/.env --rm --name wp my_wp
-
+# docker stop $(docker ps -qa); docker rm $(docker ps -qa); docker rmi -f $(docker images -qa); docker volume rm $(docker volume ls -q); docker network rm $(docker network ls -q);
