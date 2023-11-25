@@ -6,7 +6,7 @@
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/20 11:01:40 by tlegrand          #+#    #+#             */
-/*   Updated: 2023/11/21 17:16:16 by tlegrand         ###   ########.fr       */
+/*   Updated: 2023/11/25 12:43:19 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,9 +18,6 @@
 template <typename T>
 class MutantStack : public std::stack<T>
 {
-	
-	private	:
-
 	public	:
 		MutantStack(void) {};
 		MutantStack(const MutantStack& src) : std::stack<T>(src) {};
@@ -35,6 +32,11 @@ class MutantStack : public std::stack<T>
 
 		iterator	begin(void) {return (this->c.begin());};
 		iterator	end(void) {return (this->c.end());};
+
+		typedef typename std::stack<T>::container_type::const_iterator const_iterator;
+
+		const_iterator	cbegin(void) {return (this->c.cbegin());};
+		const_iterator	cend(void) {return (this->c.cend());};
 };
 
 #endif

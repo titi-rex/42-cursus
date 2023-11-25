@@ -6,7 +6,7 @@
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/06 14:56:11 by tlegrand          #+#    #+#             */
-/*   Updated: 2023/11/07 13:26:27 by tlegrand         ###   ########.fr       */
+/*   Updated: 2023/11/25 11:45:28 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,10 +22,9 @@ int	main(void)
 	std::vector<int>	v(base, base + sizeof(base) / sizeof(int));
 	std::list<int>		l(base, base + sizeof(base) / sizeof(int));
 
-
-	
 	
 	int	val = 96;
+	std::cout << "val : " << val << std::endl;
 	try
 	{
 		easyfind(v, val);
@@ -44,7 +43,5 @@ int	main(void)
 	{
 		std::cerr << e.what() << '\n';
 	}
-	
-	
-	
+		
 }

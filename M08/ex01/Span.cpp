@@ -6,7 +6,7 @@
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/19 18:31:42 by tlegrand          #+#    #+#             */
-/*   Updated: 2023/11/19 19:54:13 by tlegrand         ###   ########.fr       */
+/*   Updated: 2023/11/25 12:00:21 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,16 +14,14 @@
 
 Span::Span(void) : _stock(), _max_size(0) {};
 
-Span::Span(const Span& src) : _max_size(src._max_size)
-{
-	_stock = src._stock;
-};
+Span::Span(const Span& src) : _stock(src._stock), _max_size(src._max_size) {};
 
 Span&	Span::operator=(const Span& src) 
 {
 	if (this == &src)
 		return (*this);
 	_stock = src._stock;
+	_max_size = src._max_size;
 	return (*this);
 };
 

@@ -6,7 +6,7 @@
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/19 18:21:54 by tlegrand          #+#    #+#             */
-/*   Updated: 2023/11/19 19:48:19 by tlegrand         ###   ########.fr       */
+/*   Updated: 2023/11/25 12:19:57 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,8 +24,8 @@ class Span
 		std::vector<int>	_stock;
 		size_t				_max_size;
 
-	public	:
 		Span(void);
+	public	:
 		Span(const Span& src);
 		Span&	operator=(const Span& src);
 		~Span(void);
