@@ -58,26 +58,6 @@ services:
 
 
 # bonus
-  ftp:
-    container_name: vsftp
-    init: true
-    depends_on:
-      - wordpress
-    build:
-      context: requirements/vsftp
-      args:
-        FTP_USER: ${FTP_USER}
-        FTP_PASS: ${FTP_PASS}
-    image: my_vsftp
-    ports:
-      - 20:20
-      - 21:21
-    volumes:
-      - wordpress_data:/var/www/wordpress
-    networks:
-      - inception
-    restart: always 
-
   redis:
     container_name: redis
     init: true
@@ -89,7 +69,6 @@ services:
     restart: always
 
 # volumes
-
 volumes:
   mariadb_data:
     driver: local

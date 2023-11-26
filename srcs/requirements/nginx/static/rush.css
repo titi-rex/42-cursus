@@ -35,7 +35,7 @@ footer p{
 }
 
 .wpp {
-	background-image: url(../stock/hd1.jpeg);
+	background-image: url(hd1.jpeg);
 	width: 100vw;
 	height: 100vh;
 	display: flex;
