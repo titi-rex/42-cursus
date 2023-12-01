@@ -44,8 +44,6 @@ logs:
 	@docker logs wordpress
 	@echo "=========== redis ================"
 	@docker logs redis	
-	@echo "=========== vsftp ================"
-	@docker logs vsftp
 
 ps :
 	@echo "=========== containers ================"

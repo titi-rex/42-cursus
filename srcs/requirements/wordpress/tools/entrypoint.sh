@@ -18,8 +18,6 @@ then
 	wp config set --allow-root --path="/var/www/wordpress" WP_REDIS_PREFIX "incep-redis"
 	wp plugin update --allow-root --path="/var/www/wordpress" --all 
 	wp redis enable --allow-root --path="/var/www/wordpress"
-	# (option) dwl a theme
-	wp theme install --allow-root --path="/var/www/wordpress" https://public-api.wordpress.com/rest/v1/themes/download/organizer.zip  --activate 
 else
 	echo "$(date '+%Y-%m-%d %H:%M:%S') Wordpress script end!" 
 fi
