@@ -6,7 +6,7 @@
 #    By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/11/10 19:52:12 by tlegrand          #+#    #+#              #
-#    Updated: 2023/11/23 22:22:46 by tlegrand         ###   ########.fr        #
+#    Updated: 2023/11/26 14:22:39 by tlegrand         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -46,7 +46,6 @@ logs:
 	@docker logs redis	
 
 ps :
-	@echo "=========== containers ================"
 	@${COMPOSE} ps
 
 volumes	:
