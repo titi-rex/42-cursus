@@ -6,7 +6,7 @@
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/27 11:18:45 by tlegrand          #+#    #+#             */
-/*   Updated: 2024/05/27 15:17:29 by tlegrand         ###   ########.fr       */
+/*   Updated: 2024/05/27 19:20:11 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,30 +16,33 @@
 # include <string>
 # include <fstream>
 # include <iostream>
+# include <exception>
 # include <cstdlib>
 # include <ctime>
-#include <cstring>
-#include <locale>
-#include <sstream>
+# include <cstring>
+
+# include <sstream>
  
 
 
 class BitcoinExchange
 {
     private:
-        std::map<int, float>    _price;
-        int                     _parseDate(std::string str);
-        bool                    _checkDate(std::string str);
-        bool                    _checkValue(std::string str);
+        std::map<std::time_t, float>    _price;
+        std::time_t                     _parseDate(std::string& str);
         
     public:
         BitcoinExchange(void);
         BitcoinExchange(const BitcoinExchange& src);
         BitcoinExchange& operator=(const BitcoinExchange& src);
         ~BitcoinExchange(void);
-        
-        bool    loadPriceDb(std::string path);
-        int     findPrice(int date);
+
+        void    loadPriceDb(std::string path);
+        void    compute(std::string path);
+        float   findPrice(std::time_t date);
+
+        void    print(std::string& date, float amount, float value);
+        void    error(std::string str);
 };
 
 template <typename T, typename U>
