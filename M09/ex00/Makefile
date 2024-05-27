@@ -6,16 +6,16 @@
 #    By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/08/15 11:48:58 by tlegrand          #+#    #+#              #
-#    Updated: 2023/09/18 22:45:17 by tlegrand         ###   ########.fr        #
+#    Updated: 2024/05/27 13:17:44 by tlegrand         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME	=	
+NAME	=	btc
 
 
-HDR		=	
+HDR		=	BitcoinExchange.hpp
 
-SRC		=	
+SRC		=	main.cpp BitcoinExchange.cpp
 
 OBJ_DIR	=	.obj/
 OBJ_LST	=	${SRC:.cpp=.o}
