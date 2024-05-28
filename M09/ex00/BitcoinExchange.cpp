@@ -6,7 +6,7 @@
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/27 13:57:02 by tlegrand          #+#    #+#             */
-/*   Updated: 2024/05/27 19:45:22 by tlegrand         ###   ########.fr       */
+/*   Updated: 2024/05/28 10:37:40 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,9 +84,9 @@ void    BitcoinExchange::error(std::string str)
     std::cerr << "Error: " << str << std::endl;
 }
 
-void    BitcoinExchange::print(std::string& date, float amount, float value)
+void    BitcoinExchange::print(std::string& date, float amount, float rate)
 {
-    std::cout << date << " => " << amount << " = " << amount * value << std::endl;
+    std::cout << date << " => " << amount << " = " << amount * rate << std::endl;
 }
 
 float BitcoinExchange::findPrice(std::time_t date)
@@ -146,14 +146,10 @@ void BitcoinExchange::compute(std::string path)
                 this->error("number too large");
                 continue;
             }
-            float value = this->findPrice(udate);
-            this->print(date, amount, value);
+            float rate = this->findPrice(udate);
+            this->print(date, amount, rate);
         }
 
     in.close();
 }
 
-// date | value
-// invalid date | value
-// date | invalid value
-// date | no value
