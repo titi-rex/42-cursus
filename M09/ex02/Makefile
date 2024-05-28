@@ -6,16 +6,16 @@
 #    By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/08/15 11:48:58 by tlegrand          #+#    #+#              #
-#    Updated: 2023/09/18 22:45:17 by tlegrand         ###   ########.fr        #
+#    Updated: 2024/05/28 12:30:56 by tlegrand         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME	=	
+NAME	=	PmergeMe
 
 
-HDR		=	
+HDR		=	PmergeMe.hpp
 
-SRC		=	
+SRC		=	main.cpp PmergeMe.cpp
 
 OBJ_DIR	=	.obj/
 OBJ_LST	=	${SRC:.cpp=.o}
