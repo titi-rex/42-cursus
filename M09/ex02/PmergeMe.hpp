@@ -6,7 +6,7 @@
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/28 12:31:21 by tlegrand          #+#    #+#             */
-/*   Updated: 2024/05/29 13:55:16 by tlegrand         ###   ########.fr       */
+/*   Updated: 2024/05/29 21:41:31 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,27 +25,61 @@
 # include <exception>
 #include <unistd.h> 
 
+
 template <typename T>
-std::clock_t timer(T& obj1, T& obj2, void f(T&, T&))
+void printContainer(const T& m)
 {
-    std::clock_t start = std::clock();
-    f(obj1, obj2);
-    std::clock_t end = std::clock();
-    return (end - start);
+    for (typename T::const_iterator it = m.begin(); it != m.end(); ++it)
+    {
+        std::cout << *it << " ";
+    }
+    std::cout << std::endl;
 }
+
 
 template <typename T>
 std::ostream& operator<<(std::ostream &os, const std::vector<T>& m)
 {
-    for (typename std::vector<T>::const_iterator it = m.begin(); it != m.end(); ++it)
+    for (size_t i = 0; i != m.size(); ++i)
     {
-        os << *it << " ";
+        if (i + 1 == m.size())
+        {
+            if (i % 2 == 0)
+                os << "[" << m.at(i) << "]";
+            else
+                os << m.at(i) << ") ";
+        }
+        else if (i % 2 == 0)
+            os << "(" << m.at(i) << " ";
+        else
+            os << m.at(i) << ") ";
     }
-    os << std::endl;
     return (os);
 }
 
-template <typename T> void swap(T& a, T& b)
+template <typename T>
+std::ostream& operator<<(std::ostream &os, const std::deque<T>& m)
+{
+    for (size_t i = 0; i != m.size(); ++i)
+    {
+        if (i + 1 == m.size())
+        {
+            if (i % 2 == 0)
+                os << "[" << m.at(i) << "]";
+            else
+                os << m.at(i) << ") ";
+        }
+        else if (i % 2 == 0)
+            os << "(" << m.at(i) << " ";
+        else
+            os << m.at(i) << ") ";
+    }
+    return (os);
+}
+
+// logic utils
+template <typename T>
+void swap(T& a, T& b)
 {
 	T	tmp;
 	
@@ -54,17 +88,158 @@ template <typename T> void swap(T& a, T& b)
 	b = tmp;
 }
 
-template <typename T> const T& min(const T& a, const T& b)
+template <typename T>
+T& sortAndSwap(T& a, T& b)
 {
-	return ((a < b) ? a : b);
+    if (a > b)
+        swap(a, b);
+    return (b);    
+};
+
+class PmergeMe 
+{
+    private:
+        bool    _verbose;
+        int     _depht;
+        int     _dVerbosity;
+
+        void    _dive(void);
+        void    _rise(void);
+        template <typename T> void  _logger(const std::string& str, const T& obj);
+        template <typename C> int   _getOdd(C& input);
+        template <typename C> void  _getSequence(C& input, C& seq);
+        template <typename C> void  _sortPairs(C& input, const C& sorted);
+        template <typename C> void  _insertDicho(const C& input, C& sorted);
+
+        PmergeMe(void);
+        PmergeMe(const PmergeMe& src);
+        PmergeMe& operator=(const PmergeMe& src);
+
+    public:
+        PmergeMe(const bool verbose=false, const int depth_verbosity=0);
+        ~PmergeMe(void);
+
+        template <typename T> double timer(T& obj1, T& obj2);
+        template <typename C> void compute(C& input, C& sorted);
+
+};
+
+template <typename T>
+double PmergeMe::timer(T& obj1, T& obj2)
+{
+    std::clock_t start = std::clock();
+    compute(obj1, obj2);
+    std::clock_t end = std::clock();
+    return (static_cast<double>(end - start));
 }
 
-template <typename T> const T& max(const T& a, const T& b)
+
+template <typename T>
+void PmergeMe::_logger(const std::string& str, const T& obj)
 {
-	return ((a > b) ? a : b);
+    if (_verbose && _depht >= _dVerbosity)
+        std::cout << "d" << _depht << ": " << str << ": " << obj << std::endl;
 }
 
+template <typename C> 
+void PmergeMe::compute(C& input, C& sorted)
+{
+    _dive();
 
-void    compute(std::vector<int>& vec, std::vector<int>& sorted);
+    int odd = _getOdd(input);
+    if (input.size() > 2)
+    {
+        C   seq;
+
+        _getSequence(input, seq);
+        compute(seq, sorted);
+        _logger("Input", input);
+        _logger("Sorted", sorted);
+        _sortPairs(input, sorted);
+        _insertDicho(input, sorted);
+    }
+    else
+    {
+        _logger("MAX DEPTH", _depht);
+        sorted = input;
+        sortAndSwap(sorted.at(0), sorted.at(1));
+        _logger("Input", input);
+        _logger("Sorted", sorted);
+    }
+    if (odd != -1)
+    {
+        _logger("Insert alone", odd);
+        sorted.insert(std::lower_bound(sorted.begin(), sorted.end(), odd), odd);
+    }
+    _logger("Sorted", sorted);
+    _rise();
+}
+
+template <typename C>
+int    PmergeMe::_getOdd(C& input)
+{
+    int odd = -1;
+    if (input.size() % 2 == 1)
+    {
+        odd = input.back();
+        input.pop_back();
+        _logger("Alone", odd);
+    }
+    return (odd);
+};
+
+template <typename C>
+void    PmergeMe::_getSequence(C& input, C& seq)
+{
+    for (size_t i = 0; i < input.size(); i += 2) 
+    {
+        seq.push_back(sortAndSwap(input.at(i), input.at(i + 1)));
+    }
+    _logger("Input size", input.size());
+    _logger("Input", input);
+    _logger("Sequence", seq);
+};
+
+template <typename C>
+void    PmergeMe::_sortPairs(C& input, const C& sorted)
+{
+    for (size_t i = 0, j = 1; i < sorted.size(); ++i, j += 2)
+    {
+        _logger("Search", sorted.at(i));
+        typename C::iterator it = std::find(input.begin() + j, input.end(), sorted.at(i));
+        if (*it == input.at(j))
+        {
+            _logger("No swap needed", *it);
+            continue;
+        }
+        _logger("Swap with", input.at(j));
+        swap(*(it - 1), input.at(j - 1));
+        swap(*it, input.at(j));
+    }
+    _logger("Input with sorted pairs", input);
+}
+
+template <typename C>
+void    PmergeMe::_insertDicho(const C& input, C& sorted)
+{
+    _logger("Insert first", input.at(0));
+    sorted.insert(sorted.begin(), input.at(0));
+    for (size_t i = 2; i < input.size(); i += 2) 
+    {
+        _logger("Insert", input.at(i));
+        sorted.insert(std::lower_bound(sorted.begin(), sorted.end(), input.at(i)), input.at(i));
+        _logger("Sorted", sorted);
+    }
+}
+
+// 5 7 78 94
+// 5  0  5  2  1
+// (0  1 )  (2  3 )
+// (1  0 )  (3  2 )
+//  2 2 6 10 22
+// 
+// (y4, y3) (y6, y5) (y16, y15, y14, y13, y12, y11, y10, y9, y8, y7), 
+
+
 
 #endif

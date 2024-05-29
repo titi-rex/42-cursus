@@ -6,7 +6,7 @@
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/21 18:02:24 by tlegrand          #+#    #+#             */
-/*   Updated: 2024/05/29 15:44:34 by tlegrand         ###   ########.fr       */
+/*   Updated: 2024/05/29 21:42:14 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,24 +20,42 @@ int	main(int ac, char** arg)
         return (1);
     }
 
-    std::vector<int>    input;
-    std::vector<int>    sorted;
+    std::vector<int>    v_input;
+    std::deque<int>     d_input;
+    std::vector<int>    v_sorted;
+    std::deque<int>     d_sorted;
 
+    PmergeMe    m(false);
+    
     for (int i = 1; i < ac; ++i)
     {
-        input.push_back(std::atoi(arg[i]));
+        v_input.push_back(std::atoi(arg[i]));
+        d_input.push_back(std::atoi(arg[i]));
         
     }
 
-    std::cout << "Raw: " << input;
+    std::cout << "Raw: (size: " << v_input.size() << ") ";
+    printContainer(v_input);
 
-    std::clock_t v_time = timer(input, sorted, compute);
+    double v_time = m.timer(v_input, v_sorted);
+    double d_time = m.timer(d_input, d_sorted);
 
-    std::cout << std::fixed << std::setprecision(2) << "Time: " << 1000 * v_time / CLOCKS_PER_SEC << std::endl;
-	return (0);
+    std::cout << "Container: vector" << std::endl;
+    std::cout << std::fixed << std::setprecision(2) << "Time: " << v_time << "us" << std::endl;
+    std::cout << "Sorted: (size: " << v_sorted.size() << ") ";
+    printContainer(v_sorted);
+
+
+    std::cout << "Container: deque" << std::endl;
+    std::cout << std::fixed << std::setprecision(2) << "Time: " << d_time << "us" << std::endl;
+    std::cout << "Sorted: (size: " << d_sorted.size() << ") " << d_sorted << std::endl;
+
+
+
+    return (0);
 }
 
-
+// 49 19 87 10 6 50 62 81 42 56 53 28 13 4 45 68 73 9 75 94 85 64 34 67 72 89 25 17 33 3
 // X [all]
 // S1 [X/2]
 // S2 [S1/2]
