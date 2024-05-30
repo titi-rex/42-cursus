@@ -6,7 +6,7 @@
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/21 18:02:24 by tlegrand          #+#    #+#             */
-/*   Updated: 2024/05/29 21:42:14 by tlegrand         ###   ########.fr       */
+/*   Updated: 2024/05/30 22:17:27 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,18 +39,19 @@ int	main(int ac, char** arg)
 
     double v_time = m.timer(v_input, v_sorted);
     double d_time = m.timer(d_input, d_sorted);
-
+    
     std::cout << "Container: vector" << std::endl;
+    validate(v_input, v_sorted);
     std::cout << std::fixed << std::setprecision(2) << "Time: " << v_time << "us" << std::endl;
     std::cout << "Sorted: (size: " << v_sorted.size() << ") ";
     printContainer(v_sorted);
 
 
     std::cout << "Container: deque" << std::endl;
+    validate(d_input, d_sorted);
     std::cout << std::fixed << std::setprecision(2) << "Time: " << d_time << "us" << std::endl;
-    std::cout << "Sorted: (size: " << d_sorted.size() << ") " << d_sorted << std::endl;
-
-
+    std::cout << "Sorted: (size: " << d_sorted.size() << ") ";
+    printContainer(d_sorted);
 
     return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/28 12:31:21 by tlegrand          #+#    #+#             */
-/*   Updated: 2024/05/29 21:41:31 by tlegrand         ###   ########.fr       */
+/*   Updated: 2024/05/30 22:15:43 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@
 # include <algorithm>
 
 # include <exception>
-#include <unistd.h> 
+# include <unistd.h> 
 
 
 template <typename T>
@@ -95,6 +95,33 @@ T& sortAndSwap(T& a, T& b)
         swap(a, b);
     return (b);    
 };
+
+template <typename C> 
+bool validate(C ref, C& sorted)
+{
+    for(typename C::iterator it = sorted.begin(); it != sorted.end(); ++it)
+    {
+        typename C::iterator i = std::find(ref.begin(), ref.end(), *it);
+        if (i != ref.end())
+            ref.erase(i);
+        if ((it + 1) != sorted.end())
+        {
+            if (*it > *(it + 1))
+            {
+                std::cerr << "Error: not sorted: " << *it << " " << *(it + 1) << std::endl;
+                return (false);
+            }
+        }
+    }
+    if (ref.size() != 0)
+    {
+        std::cerr << "Error: missing numbers: ";
+        printContainer(ref);
+        return (false);
+    }
+    return (true);
+}
+
 
 class PmergeMe 
 {
