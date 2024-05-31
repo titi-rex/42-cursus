@@ -6,7 +6,7 @@
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/28 12:31:21 by tlegrand          #+#    #+#             */
-/*   Updated: 2024/05/30 22:15:43 by tlegrand         ###   ########.fr       */
+/*   Updated: 2024/05/31 14:52:50 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,13 +25,20 @@
 # include <exception>
 # include <unistd.h> 
 
-
+// print
 template <typename T>
 void printContainer(const T& m)
 {
+    int i = 0;
+
     for (typename T::const_iterator it = m.begin(); it != m.end(); ++it)
     {
         std::cout << *it << " ";
+        if (++i > 10)
+        {
+            std::cout << " [...]";
+            break ;
+        }
     }
     std::cout << std::endl;
 }
@@ -77,24 +84,30 @@ std::ostream& operator<<(std::ostream &os, const std::deque<T>& m)
     return (os);
 }
 
+
 // logic utils
+template <typename T> T max(T& a, T& b)
+{
+	return ((a > b) ? a : b);
+}
+
+template <typename T> T min(T& a, T& b)
+{
+	return ((a < b) ? a : b);
+}
+
+
 template <typename T>
 void swap(T& a, T& b)
 {
 	T	tmp;
-	
+
 	tmp = a;
 	a = b;
 	b = tmp;
 }
 
-template <typename T>
-T& sortAndSwap(T& a, T& b)
-{
-    if (a > b)
-        swap(a, b);
-    return (b);    
-};
+
 
 template <typename C> 
 bool validate(C ref, C& sorted)
@@ -132,6 +145,8 @@ class PmergeMe
 
         void    _dive(void);
         void    _rise(void);
+        size_t  _getNextJacobstahl(int first, bool reset=false);
+
         template <typename T> void  _logger(const std::string& str, const T& obj);
         template <typename C> int   _getOdd(C& input);
         template <typename C> void  _getSequence(C& input, C& seq);
@@ -148,8 +163,9 @@ class PmergeMe
 
         template <typename T> double timer(T& obj1, T& obj2);
         template <typename C> void compute(C& input, C& sorted);
-
+        template <typename T> T& sortAndSwap(T& a, T& b);
 };
+
 
 template <typename T>
 double PmergeMe::timer(T& obj1, T& obj2)
@@ -168,11 +184,18 @@ void PmergeMe::_logger(const std::string& str, const T& obj)
         std::cout << "d" << _depht << ": " << str << ": " << obj << std::endl;
 }
 
+template <typename T>
+T& PmergeMe::sortAndSwap(T& a, T& b)
+{
+    if (a > b)
+        swap(a, b);
+    return (b);    
+};
+
 template <typename C> 
 void PmergeMe::compute(C& input, C& sorted)
 {
     _dive();
-
     int odd = _getOdd(input);
     if (input.size() > 2)
     {
@@ -246,27 +269,31 @@ void    PmergeMe::_sortPairs(C& input, const C& sorted)
     _logger("Input with sorted pairs", input);
 }
 
+
 template <typename C>
-void    PmergeMe::_insertDicho(const C& input, C& sorted)
+void     PmergeMe::_insertDicho(const C& input, C& sorted)
 {
     _logger("Insert first", input.at(0));
     sorted.insert(sorted.begin(), input.at(0));
-    for (size_t i = 2; i < input.size(); i += 2) 
+    _logger("Sorted", sorted);
+    int size = (input.size() - 2) / 2;
+    int i = 0;
+    while (i < size)
     {
-        _logger("Insert", input.at(i));
-        sorted.insert(std::lower_bound(sorted.begin(), sorted.end(), input.at(i)), input.at(i));
-        _logger("Sorted", sorted);
+        int nj = _getNextJacobstahl(i);
+        int left = size - i;
+        int space = min(nj, left);
+        for (int k=0; k < space; ++k)
+        {
+            int l = 2 * (k + i) + 2;
+            _logger("Insert", input.at(l));
+            sorted.insert(std::lower_bound(sorted.begin(), sorted.end(), input.at(l)), input.at(l));
+            _logger("Sorted", sorted);
+        }
+        i += space;
     }
+    _getNextJacobstahl(0, true);
 }
-
-// 5 7 78 94
-// 5  0  5  2  1
-// (0  1 )  (2  3 )
-// (1  0 )  (3  2 )
-//  2 2 6 10 22
-// 
-// (y4, y3) (y6, y5) (y16, y15, y14, y13, y12, y11, y10, y9, y8, y7), 
-
 
 
 #endif
