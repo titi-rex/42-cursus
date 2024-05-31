@@ -6,7 +6,7 @@
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/27 11:18:45 by tlegrand          #+#    #+#             */
-/*   Updated: 2024/05/28 10:35:52 by tlegrand         ###   ########.fr       */
+/*   Updated: 2024/05/31 16:39:24 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,9 @@ class BitcoinExchange
 {
     private:
         std::map<std::time_t, float>    _price;
-        std::time_t                     _parseDate(std::string& str);
+        
+        std::time_t _parseDate(std::string& str);
+        float       _checkAmount(std::stringstream &stream);
         
     public:
         BitcoinExchange(void);

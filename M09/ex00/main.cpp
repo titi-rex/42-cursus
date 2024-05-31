@@ -6,7 +6,7 @@
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/21 18:02:24 by tlegrand          #+#    #+#             */
-/*   Updated: 2024/05/27 18:43:29 by tlegrand         ###   ########.fr       */
+/*   Updated: 2024/05/31 16:13:17 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,9 +24,8 @@ int	main(int ac, char** arg)
         std::cerr << "Error: need ONE input file" << std::endl;
         return (1);
     }
-    
-    BitcoinExchange bank;
 
+    BitcoinExchange bank;
     try 
     {
         bank.loadPriceDb("data.csv");
@@ -37,9 +36,5 @@ int	main(int ac, char** arg)
         bank.error(error.what());
         return(1);
     }
-
-    
-
-    
 	return (0);
 }

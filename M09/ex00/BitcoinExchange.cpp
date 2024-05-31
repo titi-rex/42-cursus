@@ -6,7 +6,7 @@
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/27 13:57:02 by tlegrand          #+#    #+#             */
-/*   Updated: 2024/05/28 10:37:40 by tlegrand         ###   ########.fr       */
+/*   Updated: 2024/05/31 16:52:40 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,9 @@ std::time_t BitcoinExchange::_parseDate(std::string& str)
     std::memset(&date, 0, sizeof(date));
     std::memset(&control, 0, sizeof(control));
 
+    if (str.size() > 10)
+        throw std::runtime_error("invalid date => " + str);
+
     std::stringstream   stream(str);
     char                tmp;
 
@@ -39,11 +42,13 @@ std::time_t BitcoinExchange::_parseDate(std::string& str)
     date.tm_mon -= 1;
     control = date;
     std::time_t unix_time = std::mktime(&date);
+    if (unix_time == -1)
+        throw std::runtime_error("can't mktime for: " + str);
 
     if (control.tm_year != date.tm_year
         || control.tm_mon != date.tm_mon
         ||control.tm_mday!= date.tm_mday)
-        return (-1);
+        throw std::runtime_error("invalid date => " + str);
     return (unix_time);
 }
 
@@ -66,8 +71,6 @@ void BitcoinExchange::loadPriceDb(std::string path)
                 if (date == "")
                     break;
                 std::time_t udate = this->_parseDate(date);
-                if (udate == -1)
-                    throw std::runtime_error("invalid date in database: " + date);
                 this->_price[udate] = std::atof(price.c_str());
             }
     }
@@ -77,6 +80,8 @@ void BitcoinExchange::loadPriceDb(std::string path)
         throw error;
     }
     in.close();
+    if (this->_price.empty() == true)
+        throw std::runtime_error("corrupted database");
 };
 
 void    BitcoinExchange::error(std::string str)
@@ -91,17 +96,35 @@ void    BitcoinExchange::print(std::string& date, float amount, float rate)
 
 float BitcoinExchange::findPrice(std::time_t date)
 {
-
     if (this->_price.count(date) == 1)
         return (this->_price.at(date));
     else
     {
         std::map<std::time_t , float>::iterator it = this->_price.lower_bound(date);
-        if (it != this->_price.begin())
-            --it;
+        if (it == this->_price.begin())
+            throw std::runtime_error("date too old for database");
+        if (it == this->_price.end())
+            throw std::runtime_error("date more recent than database");     
+        --it;
         return (it->second);
     }
 };
+
+float BitcoinExchange::_checkAmount(std::stringstream &stream)
+{
+    float amount = 0;
+    std::string tmp;
+
+    stream >> tmp;
+    if (tmp == "")
+        throw std::runtime_error("no amount provided");    
+    if (amount < 0)
+        throw std::runtime_error("not a positive number");
+    amount = std::atof(tmp.c_str());
+    if (amount > 1000)
+        throw std::runtime_error("number too large");
+    return (amount);
+}
 
 void BitcoinExchange::compute(std::string path)
 {
@@ -113,41 +136,26 @@ void BitcoinExchange::compute(std::string path)
 
     std::string line;
     std::getline(in, line);
-
     while(std::getline(in, line))
         {
             std::stringstream stream(line);
             std::string date;
-            float amount = 0;
             char tmp;
             stream >> date >> tmp;
 
             if (date == "")
                 return ;
-            std::time_t udate = this->_parseDate(date);
-            if (udate == -1)
+            try 
             {
-                this->error("invalid date => " + date);
-                continue;
+                std::time_t udate = this->_parseDate(date);
+                float amount = _checkAmount(stream);
+                float rate = this->findPrice(udate);
+                this->print(date, amount, rate); 
             }
-            if (!stream)
+            catch (std::exception & error)
             {
-                this->error("no amount provided");
-                continue;
+                this->error(error.what());
             }
-            stream >> amount;
-            if (amount < 0)
-            {
-                this->error("not a positive number");
-                continue;
-            }
-            if (amount > 1000)
-            {
-                this->error("number too large");
-                continue;
-            }
-            float rate = this->findPrice(udate);
-            this->print(date, amount, rate);
         }
 
     in.close();
