@@ -6,7 +6,7 @@
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/21 18:02:24 by tlegrand          #+#    #+#             */
-/*   Updated: 2024/06/03 12:18:59 by tlegrand         ###   ########.fr       */
+/*   Updated: 2024/06/03 14:25:11 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,19 +41,19 @@ int	main(int ac, char** arg)
     std::cout << "Raw: (size: " << v_input.size() << ") ";
     printContainer(v_input);
 
-    double v_time = m.timer(v_input, v_sorted);
-    double d_time = m.timer(d_input, d_sorted);
+    double v_time = m.timer(v_input, v_sorted) / CLOCKS_PER_SEC;
+    double d_time = m.timer(d_input, d_sorted) / CLOCKS_PER_SEC;
     
     std::cout << "" << std::endl;
     validate(v_input, v_sorted);
     std::cout << "Container: vector, time for " << v_sorted.size() << " elements: ";
-    std::cout << std::fixed << std::setprecision(6) << v_time  / CLOCKS_PER_SEC << "us" << std::endl;
+    std::cout << std::fixed << std::setprecision(6) << v_time << "us" << std::endl;
     std::cout << "Sorted: ";
     printContainer(v_sorted);
 
     validate(d_input, d_sorted);
     std::cout << "Container: deque, time for " << d_sorted.size() << " elements: ";
-    std::cout << std::fixed << std::setprecision(6) <<  d_time / CLOCKS_PER_SEC << "us" << std::endl;
+    std::cout << std::fixed << std::setprecision(6) << d_time << "us" << std::endl;
     std::cout << "Sorted: ";
     printContainer(d_sorted);
 
