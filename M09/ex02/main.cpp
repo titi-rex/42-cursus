@@ -6,7 +6,7 @@
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/21 18:02:24 by tlegrand          #+#    #+#             */
-/*   Updated: 2024/06/03 14:25:11 by tlegrand         ###   ########.fr       */
+/*   Updated: 2024/06/04 11:31:51 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,28 +34,30 @@ int	main(int ac, char** arg)
             std::cerr << "Error : invalid input: " << tmp << std::endl;
             return (1);
         }
+        if (std::find(v_input.begin(), v_input.end(), tmp) != v_input.end())
+        {
+            std::cerr << "Error : no duplicate allowed: " << tmp << std::endl;
+            return (1);
+        }
         v_input.push_back(tmp);
         d_input.push_back(tmp);
     }
 
-    std::cout << "Raw: (size: " << v_input.size() << ") ";
+    std::cout << "Input: (size: " << v_input.size() << ") ";
     printContainer(v_input);
 
     double v_time = m.timer(v_input, v_sorted) / CLOCKS_PER_SEC;
     double d_time = m.timer(d_input, d_sorted) / CLOCKS_PER_SEC;
     
-    std::cout << "" << std::endl;
     validate(v_input, v_sorted);
+    std::cout << "Sorted: (size: " << v_sorted.size() << ") ";
+    printContainer(v_sorted);
     std::cout << "Container: vector, time for " << v_sorted.size() << " elements: ";
     std::cout << std::fixed << std::setprecision(6) << v_time << "us" << std::endl;
-    std::cout << "Sorted: ";
-    printContainer(v_sorted);
 
     validate(d_input, d_sorted);
     std::cout << "Container: deque, time for " << d_sorted.size() << " elements: ";
     std::cout << std::fixed << std::setprecision(6) << d_time << "us" << std::endl;
-    std::cout << "Sorted: ";
-    printContainer(d_sorted);
 
     return (0);
 }
