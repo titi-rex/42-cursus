@@ -6,7 +6,7 @@
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/28 10:42:15 by tlegrand          #+#    #+#             */
-/*   Updated: 2024/06/03 12:15:39 by tlegrand         ###   ########.fr       */
+/*   Updated: 2024/06/04 13:12:49 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ bool is_op(char c)
 
 int compute(std::string input)
 {
-    std::stack<char>    stack;
+    std::stack<int>     stack;
     std::stringstream   stream(input);
     while (stream)
     {
@@ -66,6 +66,6 @@ int compute(std::string input)
     int res = stack.top();
     stack.pop();
     if (stack.empty() == false)
-        throw std::runtime_error("operande missing");
+        throw std::runtime_error("not enough operator");
     return (res);
 }

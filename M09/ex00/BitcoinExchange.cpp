@@ -6,7 +6,7 @@
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/27 13:57:02 by tlegrand          #+#    #+#             */
-/*   Updated: 2024/06/03 12:27:01 by tlegrand         ###   ########.fr       */
+/*   Updated: 2024/06/04 13:27:02 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -112,13 +112,6 @@ float BitcoinExchange::_checkAmount(std::stringstream &stream)
     stream >> tmp;
     if (tmp == "")
         throw std::runtime_error("no amount provided!");
-    for (std::string::const_iterator it = tmp.begin(); it < tmp.end(); ++it)
-    {
-        if (it == tmp.begin() && *it != '-' && std::isdigit(*it) == false)
-           throw std::runtime_error("not number: " + tmp);
-        if (std::isdigit(*it) == false && *it != '.')
-           throw std::runtime_error("not number: " + tmp);
-    }
     amount = std::atof(tmp.c_str());
     if (amount < 0)
         throw std::runtime_error("not a positive number: " + tmp);
