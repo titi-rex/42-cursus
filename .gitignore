@@ -1,6 +1,10 @@
 # Prerequisites
 *.d
 
+# env
+*.env
+*.cert
+
 # Compiled Object files
 *.slo
 *.lo
