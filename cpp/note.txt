@@ -1,0 +1,24 @@
+
+class.sh
+
+manque
+commentaire ranger .cpp
+// OCF
+// other constructor
+// get/set
+// public func 
+// static func
+(mettre destructo devant copy assign)
+mettre set/get after other constructor
+prendre e ncompte heritage dans constructor attention aux interface
+protected
+
+empty line afeter private / public
+
+
+BUG : some function with complexe return type discard some type
+array not handled
+add clone and reset func
+should ignore keyword like virtual in cpp
+
+nice them : duru
