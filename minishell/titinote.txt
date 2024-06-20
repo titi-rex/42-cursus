@@ -1,0 +1,211 @@
+les tests de loulou que titi ne doit pas oublier:
+echo -n -n -n test tout
+echo -nnnnnnnnnnnnnnnnnnnnn bonjour
+
+tous les test : https://github.com/iciamyplant/Minishell/blob/master/tester/test.sh
+
+ctrl c = SIGINT (new prompt new line)
+ctrl d = send OEF NOT A SIGNAL close terminal (exit)
+ctrl \ = SIGQUIT (rompish)
+
+ctrl z = SIGSTP (freeze)
+
+valgrind
+--suppressions=valgrind_ignore_leaks.txt
+--leak-check=full --show-leak-kinds=all
+--track-origins=yes --verbose
+--show-mismatched-frees=yes
+--read-var-info=yes
+
+valgrind --suppressions=valgrind_ignore_leaks.txt --track-fds=yes --trace-children=yes --leak-check=full --show-leak-kinds=all --track-origins=yes --verbose --show-mismatched-frees=yes --read-var-info=yes
+
+(option) --log-file=valgrind-out.txt
+
+valgrind_ignore_leaks.txt :
+{
+	leak readline
+	Memcheck:Leak
+	...
+	fun:readline
+}
+{
+	leak add_history
+	Memcheck:Leak
+	...
+	fun:add_history
+}
+
+
+
+new parsing
+echo	"coucou   $USER   ca va?" > log | < file cat || echo oui '$SHELL' ;
+(echo)->(coucou  )->($USER)->(  ca va ?)->(>)->(log)->(|)->(<)->(file)->(cat)->(||)->(echo)->(oui)->($SHELL)->(;)
+word 	qword			dolls	qword		red	  word	pipe  red 	word  word 	or 		word	word	Qdolls end
+
+
+
+gneheheheheheheheheh
+them bash tonka
+orha : 
+use notion : 
+tile with arborescence
+bien definir ce que chqaue pqrtie doit faire et ne pa faire 
+error log
+
+
+comme ca :
+faire un tetris in term
+
+DONE:
+/*	TODO: sigQUIT DOES NOTHING	actually it move cursor ??*/
+/*	TODO:	handle exit code	*/
+/*	TODO:	prevent exit newline especially in child	*/
+/*	TODO: handle cmd null better; */
+handle erro gestion cmd in child ??????? 
+/*	TODO:	signal in here_doc and exe	*/
+creat dir for srcs
+here_doc function
+/*	TODO: reset term state before exit	*/
+/*	TODO:FIXME:	minishell ./minishell (inception) ctrl c dont work and mess up everuything */
+/*	TODO:	secure term_init ? */
+/*	TODO:	listenv->char** func	*/
+/*	TODO:	handle SHLVL	*/
+/*	TODO:	better env function + starting env	*/
+/*	TODO: CHANGE EXE ! if no cmd but redir no error ! */
+/*	FIXME:	>> log qiu mange stdout des fois */
+/*	FIXME:	exit qui print exit mais jsp ou */
+/*	TODO:	gestion arg for minishell ? + error	*/
+/*	TODO:	update redirect without fd -> update dup redirect*/
+/*	TODO:	man/greeting function */
+/*	FIXME:	ctrl \ does shit	*/
+/*	TODO:FIXME:	minishell > log need to display prompt || minishell piped */
+/*	FIXME:	exit code whe nctrl c = 130 */
+/*	TODO:	change export / env*/
+/*	TODO:	prompt function */
+/*	FIXME:	leaks parsing	*/
+/*	FIXME:	leaks cmd not found	*/
+/*	FIXME:	permission denied when ty to exe something inexistant -> not found*/
+/*	FIXME:	test redir export vs env print*/
+/*	FIXME:	cmd wit honly space send smtthing to exec */
+/*	FIXME: "" or '' or . or / send permission denied , expect not found*/
+/*	TODO:	secret env	*/
+/*	FIXME:	prompt one line write on first line */
+/*	TODO: clean flags gstatus	*/
+/*	FIXME:	fd open at exit	*/
+/*	FIXME:	flag echo	*/
+/*	TODO:	refaire export	*/
+/*	TODO: mettre au propre + norme	*/
+
+
+
+PWD
+exit status 
+user			whoami
+machine		hostname
+TIME_	date +"%T"
+
+
+reina in pwd on (main) 
+
+
+>_
+$>
+}>
+
+exit code :
+ (^_^)	(T_T)
+
+ :-)  :-(
+
+	[$]
+
+	(~.~)	(*o*)
+
+	*/
+
+
+Loulounotes :
+
+nm -n *.o => pour check les fonctions utilises
+
+export test1="echo "$USER""			
+
+renvoit : 
+arg[0] = :export:
+arg[1] = :test1="echo:
+arg[2] = :"reina"":
+last : arg[3] = :(null):
+
+doit renvoyer 
+arg[0] = :export:
+arg[1] = :test1=echo reina:
+last : arg[2] = :(null):
+
+Buffer overflow 
+export test="$"
+export test=$test"$"
+$test 
+-> bufferoverflow
+
+de plus 
+export test="$"
+export test=$test"$"
+donne test='"$"'
+devrait donner autre chose jsp, bash gere ca avec des \ donc je pense qu'on est libre de faire une recette 
+maison tant que c coherent, le plus important c d'eviter les segfault abort ect, du genre test="$$" ou test="" 
+
+
+quand on fait export test="zut"
+minishell	test=""zut""
+bash		test="zut"
+
+qund on echo on a les "" qui sont print chez nous dcp :()
+
+
+<<   >
+<  >
+<  >>
+<<   >>
+>   >>
+<    <<
+devrait renvoyer une erreur (pas d'arg pour la premiere redirection ) peut import le nombre d espace 
+
+
+
+exit status of an executed command is the value returned by the waitpid system call or equivalent function.
+ Exit statuses fall between 0 and 255, though, as explained below, the shell may use values above 125 specially.
+  Exit statuses from shell builtins and compound commands are also limited to this range. Under certain circumstances, 
+  the shell will use special values to indicate specific failure modes.
+
+For the shell’s purposes, a command which exits with a zero exit status has succeeded. A non-zero exit status indicates 
+failure. This seemingly counter-intuitive scheme is used so there is one well-defined way to indicate success and a variety
+ of ways to indicate various failure modes. When a command terminates on a fatal signal whose number is N, Bash uses the
+  value 128+N as the exit status.
+
+If a command is not found, the child process created to execute it returns a status of 127. If a command is found but is not 
+executable, the return status is 126.
+
+If a command fails because of an error during expansion or redirection, the exit status is greater than zero.
+
+The exit status is used by the Bash conditional commands (see Conditional Constructs) and some of the list constructs (see 
+Lists of Commands).
+
+All of the Bash builtins return an exit status of zero if they succeed and a non-zero status on failure, so they may be used 
+by the conditional
+ and list constructs. All builtins return an exit status of 2 to indicate incorrect usage, generally invalid options or
+  missing arguments.
+
+The exit status of the last command is availab
+
+
+
+change : bi
+exit
+export
+cd
+pwd
+type
+unset
+suppr clear
+get_path
+dup_redirect

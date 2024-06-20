@@ -1,0 +1,62 @@
+les tests relou execution :
+####	built-in	####
+pwd in dir deleted
+cd in dir deleted 
+unset home then cd / cd home
+unset pwd then pwd
+same with env -i
+echo bonjour j'aime les gatos > log (!restore stdout after)
+idem with < << >>
+unset/export with multiple value
+exit can take value starting with - or + 
+exit with non numerical arg exit with warning and exit status 2 (number with more than 19 char are non-numerical)
+exit with more than 1 arg dont exit and say error
+BUT exit with more than 1 arg AND first arg is non-numerical exit with warning and exit status 2 (i suppose in this case bash do not check if there is other arg)
+exit write exit before exiting (should be in stderr but bash do some magic here so std err will be fine)
+####	env		####
+unset all env then ./minishell, at least SHLVL need to be here
+unset all env, add 1-2 test env variable then ./minishell, SHLVL need to be here AND the variable you add 
+####	ctrl	####
+interactive mode : nothing written 
+ctrl c -> new prompt empty -> exit code 130
+ctrl z -> nothing
+ctrl d -> exit with exit code 0 (exit is writen on prompt, look bash) 
+interactive mode : something  written
+ctrl c -> new prompt empty -> exit code 130
+ctrl z -> nothing 
+ctrl d -> nothing
+execution : 
+ctrl c -> stop execution, new prompt empty -> exit code 130
+ctrl z -> stop execution by SIGQUIT, ie minishell need to display "Quit\n" -> exit code 131
+ctrl d -> nothing
+heredoc
+ctrl c -> stop here_doc, cancel execution, new prompt empty -> exit code 130
+ctrl z -> nothing
+ctrl d -> line empty -> act like delimiter, ie close here_doc, execution continue
+ctrl d -> line not empty -> nothing
+while execution is executing, minishell should block all sig (ctrl c and ctrl \ in our case), 
+you need to look exit status of your child, and act as needed based on this data
+in fact, main process can always block ctrl \
+beware of using SIG_IGN, it is herited by cmd launch by execve (aka dont use it in a sig_handler for child)
+####	exit	####
+exit by signal = sig number + 128
+bad use bi exit 2(en théorie), 1 (en pratique)
+####	simple exe	####
+all piped cmd should start at same time, ie sleep 10 | sleep 5 should wait 10 sec
+exe error 404 403 if you dont find a bin you should say cmd not found (404), if you find the bin but can exe : permission denied (403)
+look fd open at exit, in all child (! if you make a dup of stdin/stdout at beginning dont forget them)
+cmd empty : ""  ''
+cmd . / should send error 404 (in bash . is a built-in and / a shortcut to cd /, but we dont hav to implement this)
+an empty line should do nothing and NOT change exit status
+of course you should be able to launch 57 or more minishell inside your minishell
+if you use ansi escape code to add color in prompt or else, be sure all ansi sequence start by \001 and end by \002 (look what ascii it is)
+####	ouin what is this fuck ???	####
+this section is not mandatory to validate minishell but you need to be sure mini will not segfault
+./minishell > log		with color and ansi escape sequence there is a lot of shit but it's ok
+./minishell 2> logerr	idem
+< RunCommand_file ./minishell (!dont put rm -rf * inside RC_file .......)	minishell should execute all command (one by line) abd exit when EOF encoutered
+./minishell | ./minishell 		HAHAAHHAHAHA, just make sur there is no segfault you should echo cmd to execute cmd in the second minishell
+ redirecting stdin to stderr before readline cancel this tricky redirect (./m > log and ./m | ./m), dont forget to resore sdtin after if doing so !
+< cat /dev/urandom | ./minishell 	->	you shall not crash, WARNING running this test will fill your repo with random file of random size, can delete some of your file, etc, try carefully
+
+not a test but if you need to store multiple information at the same time inside your global, using bitwise operator is advised and really helpfull
