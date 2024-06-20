@@ -62,4 +62,5 @@ I print one time all my map, then i only print what i need to print, ie when pla
 Before moving, the game check if the movement if authorized, ie if there isn't a wall at the new location. <br>
 After moving, the map is updated, in particular the number of collectible, and a comparison between player position, exit and enemy trigger end events <br>
 
-
+# CC3-philosophers
+42 project philosophers 

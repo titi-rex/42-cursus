@@ -5,8 +5,8 @@
 #                                                     +:+ +:+         +:+      #
 #    By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2022/11/19 14:03:05 by tlegrand          #+#    #+#              #
-#    Updated: 2024/06/20 17:56:55 by tlegrand         ###   ########.fr        #
+#    Created: 2023/02/12 20:46:19 by tlegrand          #+#    #+#              #
+#    Updated: 2023/05/04 21:02:17 by tlegrand         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,45 +14,24 @@
 #	/*\/*\/*\/*\/*\/*\/*\/*\/*\/*\/*\/*\	PROJECT VARIABLES	/*\/*\/*\/*\/*\/*\/*\/*\/*\/*\/*\/*\	#
 
 #	==============================	NAMES	==============================	#
-NAME		=	so_long
-NAME_B		=	so_long_bonus
+NAME		=	philo
 
 
 #	==============================	SOURCES	==============================	#
-DIR_SRCS	=	src/
-LST_SRCS	=	main.c map_get.c map_check.c map_init.c map_utils.c \
-				ft_init.c ft_init_sprites.c ft_destroy.c \
-				ft_clean.c \
-				ft_hook.c ft_move.c\
-				ft_display.c 
-SRCS		=	${addprefix ${DIR_SRCS}, ${LST_SRCS}}
+DIR_SRCS		=	srcs/
 
-LST_SRCS_B	=	main_bonus.c map_get.c map_check.c map_init.c map_utils.c \
-				ft_init_bonus.c ft_init_sprites_bonus.c ft_init_sprites_player_bonus.c ft_destroy_bonus.c \
-				ft_clean.c ft_img_draw.c ft_random.c \
-				ft_hook_bonus.c ft_move_bonus.c ft_enemy_bonus.c \
-				ft_display_bonus.c ft_animate_bonus.c \
-				ft_endgame_bonus.c
-SRCS_B		=	${addprefix ${DIR_SRCS}, ${LST_SRCS_B}}
+LST_SRCS		= 	main.c parser.c init_launch.c routine.c utils.c
+SRCS			=	${addprefix ${DIR_SRCS}, ${LST_SRCS}}
 
 
 #	==============================	OBJECTS	==============================	#
 DIR_OBJS	=	.objs/
 OBJS		=	${patsubst ${DIR_SRCS}%.c, ${DIR_OBJS}%.o, ${SRCS}}
-OBJS_B		=	${patsubst ${DIR_SRCS}%.c, ${DIR_OBJS}%.o, ${SRCS_B}}
 
 
 #	==============================	HEADERS	==============================	#
 DIR_HEADER	=	include/
-LST_HEADER	=	${NAME}.h ${NAME_B}.h 
-HEADER		=	${addprefix ${DIR_HEADER}, ${LST_HEADER}}
-
-
-#	==============================	LIBRARY	==============================	#
-DIR_LIBFT	=	libft/
-LIBFT		=	$(addprefix $(DIR_LIBFT), libft.a)
-DIR_LIBMLX	=	minilibx-linux/
-LIBMLX		=	$(addprefix $(DIR_LIBMLX), libmlx.a)
+HEADER		=	${addprefix ${DIR_HEADER}, ${NAME}.h}
 
 
 #	==============================	COMMANDS	==============================	#
@@ -63,10 +42,7 @@ MAKE		=	make -s
 
 
 #	==============================	FLAGS	==============================	#
-CFLAGS		=	-Wall -Wextra -Werror -I${DIR_HEADER}
-FTFLAGS		=	-L${DIR_LIBFT} -lft 
-MLXFLAGS	=	-L${DIR_LIBMLX} -lmlx -lXext -lX11 -lm -lz 
-
+CFLAGS		=	-Wall -Wextra -Werror -I${DIR_HEADER} -pthread #-g3  -fsanitize=address -fsanitize=leak #-fsanitize=thread
 
 
 #	/*\/*\/*\/*\/*\/*\/*\/*\/*\/*\/*\/*\	RULES	/*\/*\/*\/*\/*\/*\/*\/*\/*\/*\/*\/*\	#
@@ -75,17 +51,11 @@ MLXFLAGS	=	-L${DIR_LIBMLX} -lmlx -lXext -lX11 -lm -lz
 #	==============================	BASIC	==============================	#
 all		:	${NAME}
 
-bonus	:	${NAME_B}
-
 clean	:
 		@${RM} ${DIR_OBJS}
-		@${MAKE} -C ${DIR_LIBFT} clean
-		
+
 fclean	:	clean
-		@${RM} ${NAME}
-		@${RM} ${NAME_B}
-		@${MAKE} -C ${DIR_LIBFT} fclean
-		@${MAKE} -C ${DIR_LIBMLX} clean
+		@${RM} ${NAME} ${NAME_B}
 		@printf "$(GREEN)All clean !\n$(END)"
 
 re		:	fclean
@@ -93,15 +63,11 @@ re		:	fclean
 
 
 #	==============================	COMPILATION	==============================	#
-${NAME}			:	${LIBFT} ${LIBMLX} ${DIR_OBJS} ${OBJS}
-				@${CC} ${CFLAGS} ${OBJS} ${FTFLAGS} ${MLXFLAGS} -o $@
-				@printf "$(GREEN_LIGHT)$@ created !\n$(END)"
+${NAME}			:	${DIR_OBJS} ${OBJS}
+				@${CC} ${CFLAGS} ${OBJS} -o ${NAME}
+				@printf "$(GREEN_LIGHT)${NAME} created !\n$(END)"
 
-${NAME_B}		:	${LIBFT} ${LIBMLX} ${DIR_OBJS} ${OBJS_B}
-				@${CC} ${CFLAGS} ${OBJS_B} ${FTFLAGS} ${MLXFLAGS} -o $@
-				@printf "$(GREEN_LIGHT)$@ created !\n$(END)"
-
-${DIR_OBJS}%.o	:	${DIR_SRCS}%.c ${HEADER}
+${DIR_OBJS}%.o	:	${DIR_SRCS}%.c ${HEADER} ${HEADER_B} 
 				@printf "$(ORANGE)Making $@...\n$(END)"
 				@${CC} ${CFLAGS} -c $< -o $@
 
@@ -109,17 +75,10 @@ ${DIR_OBJS}%.o	:	${DIR_SRCS}%.c ${HEADER}
 #	==============================	UTILS/LIB	==============================	#
 ${DIR_OBJS}	:
 			@${MKDIR} ${DIR_OBJS}
-
+			
 nn			:
 			@norminette $(sort ${SRCS} ${SRCS_B} ${HEADER} ${HEADER_B})
 
-${LIBFT}	:	FORCE
-			@$(MAKE) -C ${DIR_LIBFT}
-
-${LIBMLX}	:	FORCE
-			@$(MAKE) -C ${DIR_LIBMLX}
-
-FORCE		:
 
 
 
