@@ -6,7 +6,7 @@
 #    By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/12/03 11:42:37 by tlegrand          #+#    #+#              #
-#    Updated: 2023/02/14 20:07:56 by tlegrand         ###   ########.fr        #
+#    Updated: 2024/06/20 17:51:52 by tlegrand         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,7 +20,7 @@ NAME_C		=	client
 
 
 #	==============================	SOURCES	==============================	#
-DIR_SRCS	=	srcs/
+DIR_SRCS	=	src/
 LST_SRCS_S	= 	server.c utils.c
 SRCS_S		=	${addprefix ${DIR_SRCS}, ${LST_SRCS_S}}
 LST_SRCS_C	=	client.c utils.c

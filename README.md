@@ -19,4 +19,7 @@ Do not handle binary file, maybe in V3
 42 project  pipex <br>
 With all bonus <br>
 
+# minitalk
+just a draft
+
 
