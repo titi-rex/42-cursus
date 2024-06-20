@@ -1,3 +1,4 @@
 *.ber linguist-vendored
 *.xpm linguist-vendored
+*.cub linguist-vendored
 minilibx-linux linguist-vendored
