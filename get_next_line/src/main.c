@@ -1,30 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putstr.c                                        :+:      :+:    :+:   */
+/*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/25 17:59:15 by tlegrand          #+#    #+#             */
-/*   Updated: 2023/05/06 22:32:20 by tlegrand         ###   ########.fr       */
+/*   Created: 2023/03/30 22:36:37 by tlegrand          #+#    #+#             */
+/*   Updated: 2023/04/10 16:19:03 by tlegrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../ft_printf.h"
+#include "get_next_line.h"
+#include <stdio.h>
+#include <fcntl.h>
 
-int	ft_putstr(char *s)
+int	main(int ac, char **arg)
 {
-	int	len;
+	int		fd;
+	char	*line;
 
-	len = 0;
-	if (!s)
-		return (ft_putstr("(null)"));
-	while (*s)
+	if (ac != 2)
+		return (1);
+	fd = open(arg[1], O_RDONLY);
+	if (fd == -1)
+		return (perror("Error "), 1);
+	line = "";
+	while (line)
 	{
-		len += ft_putchar(*s);
-		s++;
-		if (len == -1)
-			return (len);
+		line = get_next_line(fd);
+		printf(":%s:", line);
+		if (line)
+			free(line);
 	}
-	return (len);
+	printf("\nEND\n");
 }

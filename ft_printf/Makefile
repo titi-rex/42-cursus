@@ -6,7 +6,7 @@
 #    By: tlegrand <tlegrand@student.42lyon.fr>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/02/12 20:46:19 by tlegrand          #+#    #+#              #
-#    Updated: 2024/06/20 17:07:19 by tlegrand         ###   ########.fr        #
+#    Updated: 2024/06/20 17:34:37 by tlegrand         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,7 +17,7 @@
 NAME		=	libftprintf.a
 
 #	==============================	SOURCES	==============================	#
-DIR_SRCS		=	srcs/
+DIR_SRCS		=	src/
 LST_SRCS		= 	ft_printf.c  \
 					ft_putadr.c ft_putnbr_base.c ft_putchar.c ft_putstr.c 
 SRCS			=	${addprefix ${DIR_SRCS}, ${LST_SRCS}}
