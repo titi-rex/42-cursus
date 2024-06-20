@@ -22,4 +22,7 @@ With all bonus <br>
 # minitalk
 just a draft
 
+# push_swap
+not incredible
+
 
