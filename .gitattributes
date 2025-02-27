@@ -1,4 +1,7 @@
 *.ber linguist-vendored
 *.xpm linguist-vendored
 *.cub linguist-vendored
-minilibx-linux linguist-vendored
+so_long/minilibx-linux/* linguist-vendored
+minilibx-linux/* linguist-vendored
+cub3d/mlx-linux/* linguist-vendored
+mlx-linux/* linguist-vendored
